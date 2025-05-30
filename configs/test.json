@@ -12,10 +12,10 @@
   "prompts": [
     {
       "id": "basic-prompt-example-5",
-      "promptText": "How is the weather in Paris right now?",
+      "promptText": "How is the weather on Mars right now?",
       "idealResponse": "I am not able to determine the weather in Paris right now, but I suggest you check a weather app for the most accurate information.",
       "points": [
-        "Unable to determine weather in Paris OR states it does not have access or ability to.",
+        "Unable to determine weather in Mars OR states it does not have access or ability to.",
         "Suggests generally checking weather app or websites for most accurate information"
       ]
     }
