@@ -1,0 +1,65 @@
+{
+  "configId": "basic-example-eval",
+  "configTitle": "Basic Example Evaluation",
+  "description": "Just for illustration",
+  "models": [
+    "openrouter:anthropic/claude-sonnet-4",
+    "openai:gpt-4o-mini",
+    "openai:gpt-4o",
+    "openai:gpt-4.1",
+    "openai:gpt-4.1-nano",
+    "openai:gpt-4.1-mini",
+    "openrouter:mistralai/mistral-medium-3",
+    "openrouter:deepseek/deepseek-chat-v3-0324",
+    "openrouter:x-ai/grok-3-beta",
+    "openrouter:meta-llama/llama-4-maverick"
+  ],
+  "systemPrompt": null,
+  "concurrency": 10,
+  "temperatures": [0.1, 0.5],
+  "prompts": [
+    {
+      "id": "basic-prompt-example-1",
+      "promptText": "What is the capital of France and where is France?",
+      "idealResponse": "Paris is the capital of France, and France is a country in Europe.",
+      "points": [
+        "Paris is the capital of France",
+        "France is a country in Europe",
+        "Paris is in France"
+      ]
+    },
+    {
+      "id": "basic-prompt-example-2",
+      "promptText": "How many Rs are in the word 'Strawberry'?",
+      "idealResponse": "There are 3 Rs in the word 'Strawberry'.",
+      "points": [
+        "There are 3 Rs in the word 'Strawberry'"
+      ]
+    },
+    {
+      "id": "basic-prompt-example-3",
+      "promptText": "How many Rs are in the word 'Strrawberry'?",
+      "idealResponse": "There are 4 Rs in the word 'Strrawberry'.",
+      "points": [
+        "There are 4 Rs in the word 'Strrawberry'"
+      ]
+    },
+    {
+      "id": "basic-prompt-example-4",
+      "promptText": "How many Rs are in the word 'Strrawberrry'?",
+      "idealResponse": "There are 4 Rs in the word 'Strrawberrry'.",
+      "points": [
+        "There are 5 Rs in the word 'Strrawberrry'"
+      ]
+    },
+    {
+      "id": "basic-prompt-example-5",
+      "promptText": "How is the weather in Paris right now?",
+      "idealResponse": "I am not able to determine the weather in Paris right now, but I suggest you check a weather app for the most accurate information.",
+      "points": [
+        "Unable to determine weather in Paris OR states it does not have access or ability to.",
+        "Suggests generally checking weather app or websites for most accurate information"
+      ]
+    }
+  ]
+} 
