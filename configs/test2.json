@@ -1,0 +1,21 @@
+{
+  "configId": "test2",
+  "configTitle": "Test2",
+  "description": "Testing...",
+  "models": [
+    "openai:gpt-4.1-nano",
+    "openrouter:mistralai/mistral-medium-3"
+  ],
+  "systemPrompt": null,
+  "concurrency": 10,
+  "prompts": [
+    {
+      "id": "basic-prompt-example-5",
+      "promptText": "Hello",
+      "idealResponse": "Hi there, how can I help you?",
+      "points": [
+        "Says hello"
+      ]
+    }
+  ]
+} 
