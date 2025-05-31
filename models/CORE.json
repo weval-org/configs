@@ -1,6 +1,9 @@
 [
+  "openrouter:openai/gpt-4.1",
+  "openrouter:openai/gpt-4.1-mini",
+  "openrouter:openai/gpt-4.1-nano",
   "openrouter:anthropic/claude-sonnet-4",
-  "openai:gpt-4.1",
+  "openrouter:anthropic/claude-3.5-haiku",
   "openrouter:deepseek/deepseek-chat-v3-0324",
   "openrouter:meta-llama/llama-4-maverick",
   "openrouter:mistralai/mistral-large-2411",
