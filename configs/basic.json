@@ -4,11 +4,6 @@
   "description": "Just for illustration",
   "models": [
     "openrouter:anthropic/claude-sonnet-4",
-    "openai:gpt-4o-mini",
-    "openai:gpt-4o",
-    "openai:gpt-4.1",
-    "openai:gpt-4.1-nano",
-    "openai:gpt-4.1-mini",
     "openrouter:mistralai/mistral-medium-3",
     "openrouter:deepseek/deepseek-chat-v3-0324",
     "openrouter:x-ai/grok-3-beta",
