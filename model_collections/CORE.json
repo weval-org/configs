@@ -1,0 +1,9 @@
+[
+  "openrouter:anthropic/claude-sonnet-4",
+  "openai:gpt-4.1",
+  "openrouter:deepseek/deepseek-chat-v3-0324",
+  "openrouter:meta-llama/llama-4-maverick",
+  "openrouter:mistralai/mistral-large-2411",
+  "openrouter:x-ai/grok-2-1212",
+  "openrouter:google/gemini-2.5-flash-preview-05-20"
+]
