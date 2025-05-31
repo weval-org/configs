@@ -41,7 +41,7 @@
     {
       "id": "basic-prompt-example-4",
       "promptText": "How many Rs are in the word 'Strrawberrry'?",
-      "idealResponse": "There are 4 Rs in the word 'Strrawberrry'.",
+      "idealResponse": "There are 5 Rs in the word 'Strrawberrry'.",
       "points": [
         "There are 5 Rs in the word 'Strrawberrry'"
       ]
