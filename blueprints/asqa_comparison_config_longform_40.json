@@ -1,12 +1,11 @@
 {
-  "configId": "asqa-longform-40",
-  "configTitle": "ASQA Longform 40",
+  "id": "asqa-longform-40",
+  "title": "ASQA Longform 40",
   "description": "ASQA benchmark with 40 selected long-form question/answer pairs (min 50 words for response).",
   "models": [
     "CORE"
   ],
-  "systemPrompt": null,
-  "concurrency": 10,
+  "tags": ["test"],
   "prompts": [
     {
       "id": "asqa-longform-0",

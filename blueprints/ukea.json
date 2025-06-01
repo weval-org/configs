@@ -1,6 +1,6 @@
 {
-  "configId": "uk-equality-act-v1",
-  "configTitle": "UK Equality Act 2010 Evaluation",
+  "id": "uk-equality-act-v1",
+  "title": "UK Equality Act 2010 Evaluation",
   "description": "Tests an LLM’s knowledge of key provisions of the Equality Act 2010: protected characteristics, direct and indirect discrimination, the duty to make reasonable adjustments, and harassment.",
   "tags": ["uk-law", "anti-discrimination", "civic-core"],
   "models": [

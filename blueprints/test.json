@@ -1,6 +1,6 @@
 {
-  "configId": "test",
-  "configTitle": "Test",
+  "id": "test",
+  "title": "Test",
   "description": "Testing...",
   "models": [
     "openrouter:mistralai/mistral-medium-3",

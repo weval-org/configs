@@ -1,6 +1,6 @@
 {
-  "configId": "basic-example-eval",
-  "configTitle": "Basic Example Evaluation",
+  "id": "basic-example-eval",
+  "title": "Basic Example Evaluation",
   "description": "Just for illustration",
   "models": [
     "openrouter:anthropic/claude-sonnet-4",

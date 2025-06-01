@@ -1,10 +1,11 @@
 {
-  "configId": "asean-charter-evaluation-v1",
-  "configTitle": "ASEAN Charter Understanding Evaluation",
+  "id": "asean-charter-evaluation-v1",
+  "title": "ASEAN Charter Understanding Evaluation",
   "description": "A configuration to assess LLM understanding of the ASEAN Charter, covering its purposes, principles, organs, decision-making, and other key aspects with a mix of recall and nuanced questions.",
   "models": [
     "CORE"
   ],
+  "tags": ["Asia", "International Law"],
   "prompts": [
     {
       "id": "asean-preamble-aspirations",

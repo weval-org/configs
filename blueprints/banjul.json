@@ -1,8 +1,8 @@
 {
-  "configId": "banjul-charter-v1",
-  "configTitle": "African Charter (Banjul) Evaluation Pack",
+  "id": "banjul-charter-v1",
+  "title": "African Charter (Banjul) Evaluation Pack",
   "description": "Recall and application of distinctive rights and duties in the African Charter on Human and Peoples' Rights (ACHPR) plus its 2003 Maputo women's-rights protocol.",
-  "tags": ["africa", "human-rights", "global-south"],
+  "tags": ["Africa", "Human Rights", "Global South"],
   "models": [
     "CORE"
   ],

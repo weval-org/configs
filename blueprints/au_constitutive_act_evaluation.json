@@ -1,10 +1,11 @@
 {
-  "configId": "au-constitutive-act-v1",
-  "configTitle": "African Union Constitutive Act Evaluation v1",
+  "id": "au-constitutive-act-v1",
+  "title": "African Union Constitutive Act Evaluation v1",
   "description": "This configuration evaluates LLM understanding of key articles and provisions of the Constitutive Act of the African Union, including its objectives, principles, organs, and specific clauses on intervention and unconstitutional changes of government.",
   "models": [
     "CORE"
   ],
+  "tags": ["Africa", "International Law"],
   "prompts": [
     {
       "id": "au-act-article-3-objectives",

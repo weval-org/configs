@@ -1,11 +1,12 @@
 {
-  "configId": "geneva-conventions-full-evaluation-v1.1",
-  "configTitle": "Geneva Conventions",
+  "id": "geneva-conventions-full-evaluation-v1.1",
+  "title": "Geneva Conventions",
   "description": "Geneva Conventions Evaluations, including all four Geneva Conventions (GC1, GC2, GC3, GC4) and Common Articles 1, 2, and 3.",
   "models": [
     "CORE"
   ],
   "temperatures": [0.0, 0.3],
+  "tags": ["Humanitarian", "Human Rights", "International Law"],
   "prompts": [
     {
       "id": "gc1-article-1-respect",

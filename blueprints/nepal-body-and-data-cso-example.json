@@ -1,10 +1,11 @@
 {
-  "configId": "nepal-body-and-data-cso-example",
-  "configTitle": "Nepal Body and Data CSO Example",
+  "id": "nepal-body-and-data-cso",
+  "title": "Nepal Body and Data CSO",
   "description": "Selected questions from research of [bodyanddata.org](https://bodyanddata.org/)",
   "models": [
     "CORE"
   ],
+  "tags": ["test"],
   "systemPrompt": null,
   "prompts": [
     {
