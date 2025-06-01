@@ -1,0 +1,141 @@
+{
+  "configId": "banjul-charter-v1",
+  "configTitle": "African Charter (Banjul) Evaluation Pack",
+  "description": "Recall and application of distinctive rights and duties in the African Charter on Human and Peoples' Rights (ACHPR) plus its 2003 Maputo women's-rights protocol.",
+  "tags": ["africa", "human-rights", "global-south"],
+  "models": [
+    "CORE"
+  ],
+  "prompts": [
+    {
+      "id": "achpr-article20-self-determination",
+      "promptText": "State the collective right recognised in Article 20(1) of the African Charter and list its two key elements.",
+      "idealResponse": "Article 20(1) of the African Charter on Human and Peoples' Rights states: \"All peoples shall have right to existence. They shall have the unquestionable and inalienable right to self-determination. They shall freely determine their political status and shall pursue their economic and social development according to the policy they have freely chosen.\" The two key elements are thus: (a) the right of all peoples to freely determine their political status, and (b) the right of all peoples to pursue their economic and social development according to the policy they have freely chosen.",
+      "points": [
+        "Identifies the right as self-determination of peoples.",
+        "Mentions freedom to determine political status.",
+        "Mentions freedom to pursue economic and social development."
+      ]
+    },
+    {
+      "id": "achpr-article24-environment",
+      "promptText": "Quote or paraphrase the environmental right set out in Article 24 of the African Charter.",
+      "idealResponse": "Article 24 of the African Charter on Human and Peoples' Rights states: \"All peoples shall have the right to a general satisfactory environment favourable to their development.\"",
+      "points": [
+        "Right belongs to all peoples.",
+        "References a satisfactory or healthy environment.",
+        "Links that environment to development."
+      ]
+    },
+    {
+      "id": "achpr-individual-duties",
+      "promptText": "List three individual duties contained in Articles 28–29 of the African Charter.",
+      "idealResponse": "Article 28 of the African Charter states: \"Every individual shall have the duty to respect and consider his fellow beings without discrimination, and to maintain relations aimed at promoting, safeguarding and reinforcing mutual respect and tolerance.\" Article 29 lists further duties, including: \"(1) To preserve the harmonious development of the family and to work for the cohesion and respect of the family; to respect his parents at all times, to maintain them in case of need; (2) To serve his national community by placing his physical and intellectual abilities at its service; ... (6) To work to the best of his abilities and competence, and to pay taxes imposed by law in the interest of the society; (7) To preserve and strengthen positive African cultural values in his relations with other members of the society, in the spirit of tolerance, dialogue and consultation and, in general, to contribute to the promotion of the moral well being of society.\"",
+      "points": [
+        "Duty to respect fellow beings / rights of others.",
+        "Duty to preserve or strengthen the family and serve the nation.",
+        "Duty to pay taxes or contribute to public expenses."
+      ]
+    },
+    {
+      "id": "achpr-article56-admissibility",
+      "promptText": "Name any three admissibility conditions that a communication must meet under Article 56 of the African Charter when submitted to the African Commission.",
+      "idealResponse": "Article 56 of the African Charter stipulates that communications relating to human and peoples' rights (other than those from States Parties) shall be considered if they, among other conditions: \"(1) Indicate their authors even if the latter request anonymity; (2) Are compatible with the Charter of the Organization of African Unity or with the present Charter; (3) Are not written in disparaging or insulting language directed against the State concerned and its institutions or to the Organization of African Unity; (4) Are not based exclusively on news disseminated through the mass media; (5) Are sent after exhausting local remedies, if any, unless it is obvious that this procedure is unduly prolonged; (6) Are submitted within a reasonable period from the time local remedies are exhausted or from the date the Commission is seized of the matter; and (7) Do not deal with cases which have been settled by these States involved in accordance with the principles of the Charter of the United Nations, or the Charter of the Organization of African Unity or the provisions of the present Charter.\" Three such conditions are: indication of the author's identity (even if anonymity is requested), exhaustion of local remedies (unless unduly prolonged), and submission within a reasonable time after exhaustion of local remedies.",
+      "points": [
+        "Mentions identity (or justified anonymity) requirement.",
+        "Mentions exhaustion of domestic or local remedies.",
+        "Mentions reasonable-time or duplicate-consideration requirement."
+      ]
+    },
+    {
+      "id": "achpr-health-and-women-children",
+      "promptText": "What obligation does Article 16 place on States regarding health, and what extra obligation does Article 18(3) add for women and children?",
+      "idealResponse": "Article 16 of the African Charter states: \"(1) Every individual shall have the right to enjoy the best attainable state of physical and mental health. (2) States parties to the present Charter shall take the necessary measures to protect the health of their people and to ensure that they receive medical attention when they are sick.\" Article 18(3) adds the obligation that: \"The State shall ensure the elimination of every discrimination against women and also ensure the protection of the rights of the woman and the child as stipulated in international declarations and conventions.\"",
+      "points": [
+        "Article 16: protect health and provide medical care.",
+        "Article 18(3): eliminate discrimination against women.",
+        "Article 18(3): protect rights of women and children."
+      ]
+    },
+    {
+      "id": "achpr-expression-limit",
+      "promptText": "Under Article 9(2) of the African Charter, what limitation accompanies the right to express and disseminate opinions?",
+      "idealResponse": "Article 9(2) of the African Charter states: \"Every individual shall have the right to express and disseminate his opinions within the law.\" The limitation is that this right must be exercised \"within the law.\"",
+      "points": [
+        "States that exercise of the right is limited 'within the law' or equivalent wording."
+      ]
+    },
+    {
+      "id": "achpr-article21-resources",
+      "promptText": "Article 21 concerns peoples' rights over natural resources. State one of those rights and a circumstance that triggers lawful recovery of property.",
+      "idealResponse": "Article 21(1) of the African Charter states: \"All peoples shall freely dispose of their wealth and natural resources. This right shall be exercised in the exclusive interest of the people. In no case shall a people be deprived of it.\" Article 21(2) further states: \"In case of spoliation the dispossessed people shall have the right to the lawful recovery of its property as well as to an adequate compensation.\" Thus, one right is the right of all peoples to freely dispose of their wealth and natural resources. Lawful recovery of property is triggered in the case of spoliation.",
+      "points": [
+        "Right to freely dispose of wealth or natural resources.",
+        "Right to lawful recovery and compensation if despoiled."
+      ]
+    },
+    {
+      "id": "maputo-protocol",
+      "promptText": "Which 2003 instrument supplements the African Charter on women's rights, and name one area it specifically addresses.",
+      "idealResponse": "The instrument that supplements the African Charter on women's rights is the \"Protocol to the African Charter on Human and Peoples' Rights on the Rights of Women in Africa,\" adopted in Maputo on July 11, 2003 (often referred to as the Maputo Protocol). Article 5 of this Protocol, for example, specifically addresses the \"Elimination of Harmful Practices,\" obliging States Parties to prohibit and condemn all forms of harmful practices such as female genital mutilation and to take legislative and other measures to eliminate them. Other areas addressed include, but are not limited to, elimination of discrimination (Article 2), right to dignity (Article 3), rights to life, integrity and security of the person (Article 4), marriage (Article 6), access to justice (Article 8), political participation (Article 9), health and reproductive rights (Article 14), and widows' rights (Article 20).",
+      "points": [
+        "Identifies the Maputo Protocol.",
+        "Names at least one covered area such as FGM elimination, reproductive health, or political participation."
+      ]
+    },
+    {
+      "id": "achpr-article22-development",
+      "promptText": "Describe the right to development as enshrined in Article 22 of the African Charter on Human and Peoples' Rights and the corresponding duty of States.",
+      "idealResponse": "Article 22(1) of the African Charter on Human and Peoples' Rights states: \"All peoples shall have the right to their economic, social and cultural development with due regard to their freedom and identity and in the equal enjoyment of the common heritage of mankind.\" Article 22(2) further states: \"States shall have the duty, individually or collectively, to ensure the exercise of the right to development.\" Thus, the right involves peoples' entitlement to pursue their holistic development respecting their freedom and identity, and States have a corresponding duty to facilitate this.",
+      "points": [
+        "Identifies the right belongs to all peoples.",
+        "Mentions economic, social, and cultural development.",
+        "Notes the elements of freedom, identity, and equal enjoyment of common heritage.",
+        "States the duty of States to ensure the exercise of this right."
+      ]
+    },
+    {
+      "id": "achpr-clawback-clauses-nature",
+      "promptText": "Several rights in the African Charter are accompanied by \"claw-back clauses\" (e.g., \"within the law\" or subject to restrictions \"provided for by law\"). Referring to Articles 9 (expression), 10 (association), or 11 (assembly), explain the nature of such limitations.",
+      "idealResponse": "The African Charter on Human and Peoples\" Rights permits limitations on certain rights if these are \"within the law\" or \"provided for by law.\" For example, Article 9(2) states the right to express opinions is exercised \"within the law.\" Article 10(1) states the right to free association is \"provided that he abides by the law.\" Article 11 states the right to assemble freely is \"subject only to necessary restrictions provided for by law in particular those enacted in the interest of national security, the safety, health, ethics and rights and freedoms of others.\" These clauses mean that States Parties can enact national legislation that may restrict these rights, provided such laws are aimed at legitimate purposes recognized by the Charter, such as public order, national security, or the rights of others, and are consistent with other international human rights obligations. The exercise of these rights is therefore not absolute and can be regulated by domestic law.",
+      "points": [
+        "Explains that \"claw-back clauses\" allow rights to be limited by national law.",
+        "References at least one relevant article (e.g., Art. 9, 10, or 11).",
+        "Mentions that limitations must serve legitimate aims (e.g., national security, public order, rights of others).",
+        "Notes that the exercise of such rights is not absolute."
+      ]
+    },
+    {
+      "id": "maputo-article14-reproductive-health-abortion",
+      "promptText": "Article 14 of the Maputo Protocol addresses women\"s health and reproductive rights. Specifically, under what circumstances does Article 14(2)(c) require States Parties to authorize medical abortion?",
+      "idealResponse": "Article 14(2)(c) of the Protocol to the African Charter on Human and Peoples\" Rights on the Rights of Women in Africa (Maputo Protocol) states that States Parties shall take all appropriate measures to: \"protect the reproductive rights of women by authorising medical abortion in cases of sexual assault, rape, incest, and where the continued pregnancy endangers the mental and physical health of the mother or the life of the mother or the foetus.\"",
+      "points": [
+        "Correctly identifies Article 14(2)(c) of the Maputo Protocol.",
+        "Lists sexual assault, rape, and incest as grounds.",
+        "Lists endangerment to the mother\"s mental or physical health.",
+        "Lists endangerment to the life of the mother or the foetus."
+      ]
+    },
+    {
+      "id": "maputo-article5-elimination-harmful-practices",
+      "promptText": "Article 5 of the Maputo Protocol concerns the elimination of harmful practices. What are States Parties\" obligations regarding practices like female genital mutilation (FGM) and their medicalisation?",
+      "idealResponse": "Article 5 of the Maputo Protocol requires States Parties to \"prohibit and condemn all forms of harmful practices which negatively affect the human rights of women and which are contrary to recognised international standards.\" Specifically regarding FGM, Article 5(b) obligates States to take \"all necessary legislative and other measures to eliminate such practices, including: prohibition, through legislative measures backed by sanctions, of all forms of female genital mutilation, scarification, medicalisation and para-medicalisation of female genital mutilation and all other practices in order to eradicate them.\" Other obligations include public awareness, support for victims, and protection of women at risk.",
+      "points": [
+        "States obligation to prohibit and condemn all harmful practices.",
+        "Mentions legislative measures with sanctions against FGM.",
+        "Highlights the prohibition of medicalisation/para-medicalisation of FGM.",
+        "Notes other measures like awareness, victim support, or protection."
+      ]
+    },
+    {
+      "id": "maputo-article6-marriage-rights",
+      "promptText": "According to Article 6 of the Maputo Protocol, what are three key rights or protections States Parties must guarantee to women in relation to marriage?",
+      "idealResponse": "Article 6 of the Maputo Protocol requires States Parties to enact appropriate national legislative measures to ensure that women and men enjoy equal rights and are regarded as equal partners in marriage. Three key guarantees include: (a) \"no marriage shall take place without the free and full consent of both parties\"; (b) \"the minimum age of marriage for women shall be 18 years\"; and (c) \"monogamy is encouraged as the preferred form of marriage and that the rights of women in marriage and family, including in polygamous marital relationships are promoted and protected.\" Other examples are: (d) every marriage shall be recorded in writing and registered; (f) a married woman shall have the right to retain her maiden name; (j) during her marriage, a woman shall have the right to acquire her own property and to administer and manage it freely.",
+      "points": [
+        "Ensuring free and full consent of both parties to marry.",
+        "Setting the minimum age of marriage for women at 18 years.",
+        "Encouraging monogamy and protecting women\"s rights in all marital forms (including polygamous ones)."
+      ]
+    }
+  ]
+}
