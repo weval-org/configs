@@ -164,4 +164,8 @@ CivicEval maintainers will review your PR. We're looking for well-crafted bluepr
 *   **Content Hashing:** The CivicEval application hashes blueprint content (after resolving model collections) to track evaluation runs.
 *   **Model IDs:** All model identifiers **must** be prefixed with `openrouter:`. Refer to [OpenRouter.ai/models](https://openrouter.ai/models) for the official list.
 
+## License
+
+All content in this repository, including evaluation blueprints and model collections, is dedicated to the public domain worldwide under the [CC0 1.0 Universal Public Domain Dedication](LICENSE). By contributing to this repository, you agree to dedicate your contributions to the public domain under these same terms. Please see the [CONTRIBUTING.md](CONTRIBUTING.md) file for more details.
+
 Thank you for helping build a more transparent and accountable AI ecosystem!
