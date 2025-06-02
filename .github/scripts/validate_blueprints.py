@@ -40,13 +40,15 @@ def validate_blueprint(file_path):
             if not isinstance(prompt.get('idealResponse'), str) or not prompt.get('idealResponse'):
                 errors.append(f"Missing or invalid 'idealResponse' in prompt{prompt_id_text} (must be a non-empty string).")
             
-            points = prompt.get('points')
-            if not isinstance(points, list) or not points:
-                errors.append(f"Missing or empty 'points' array in prompt{prompt_id_text} (must be a non-empty list of strings).")
-            else:
-                for j, point_entry in enumerate(points):
-                    if not isinstance(point_entry, str) or not point_entry:
-                        errors.append(f"Point at index {j} in prompt{prompt_id_text} is not a non-empty string.")
+            # Check 'points' array (optional, but if present, must be a non-empty list of non-empty strings)
+            if 'points' in prompt: # Check if 'points' key exists
+                points = prompt.get('points')
+                if not isinstance(points, list) or not points:
+                    errors.append(f"Optional 'points' array in prompt{prompt_id_text} must be a non-empty list of strings if present.")
+                else:
+                    for j, point_entry in enumerate(points):
+                        if not isinstance(point_entry, str) or not point_entry:
+                            errors.append(f"Point at index {j} in prompt{prompt_id_text} is not a non-empty string.")
                         
     if errors:
         for error in errors:
