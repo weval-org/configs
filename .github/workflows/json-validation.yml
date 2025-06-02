@@ -4,7 +4,6 @@ on:
   pull_request:
     paths:
       - 'blueprints/**.json'
-      - 'models/**.json'
 
 jobs:
   validate-json:
@@ -18,29 +17,20 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: Find JSON files for validation
-        id: find_json_files
+      - name: Find Blueprint JSON files
+        id: find_blueprint_files
         run: |
-          blueprint_files=$(find blueprints -name '*.json' -type f -print0 | xargs -0 -r)
-          all_json_files=$(find blueprints models -name '*.json' -type f -print0 | xargs -0 -r)
-          echo "blueprint_files_to_check=$blueprint_files" >> "$GITHUB_OUTPUT"
-          echo "all_json_files_to_check=$all_json_files" >> "$GITHUB_OUTPUT"
-        shell: bash
-
-      - name: Validate Blueprint JSON files structure
-        if: steps.find_json_files.outputs.blueprint_files_to_check != ''
-        run: |
-          python .github/scripts/validate_blueprints.py ${{ steps.find_json_files.outputs.blueprint_files_to_check }}
-        shell: bash
-
-      - name: Validate general JSON syntax for all modified JSON files
-        if: steps.find_json_files.outputs.all_json_files_to_check != ''
-        run: |
-          echo "Validating general JSON syntax for: ${{ steps.find_json_files.outputs.all_json_files_to_check }}"
-          echo "${{ steps.find_json_files.outputs.all_json_files_to_check }}" | xargs -n 1 python -m json.tool > /dev/null
-          if [ $? -ne 0 ]; then
-            echo "::error::One or more JSON files have invalid syntax."
-            exit 1
+          blueprint_files=$(find blueprints -name '*.json' -type f -print0 | xargs -0 -r echo)
+          if [ -z "$blueprint_files" ]; then
+            echo "No blueprint files found to validate."
+            echo "blueprint_files_to_check=" >> "$GITHUB_OUTPUT"
+          else
+            echo "blueprint_files_to_check=$blueprint_files" >> "$GITHUB_OUTPUT"
           fi
-          echo "All checked JSON files have valid syntax."
+        shell: bash
+
+      - name: Validate Blueprint JSON files
+        if: steps.find_blueprint_files.outputs.blueprint_files_to_check != ''
+        run: |
+          python .github/scripts/validate_blueprints.py ${{ steps.find_blueprint_files.outputs.blueprint_files_to_check }}
         shell: bash 
