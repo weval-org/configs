@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - 'blueprints/**.json'
-      - 'models/**.json' # Also good to validate model collection files
+      - 'models/**.json'
 
 jobs:
   validate-json:
@@ -16,27 +16,31 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10' # Or your preferred Python version
+          python-version: '3.10'
 
-      - name: Find JSON files
+      - name: Find JSON files for validation
         id: find_json_files
         run: |
-          files=$(find blueprints models -name '*.json' -type f | tr '\n' ' ')
-          echo "files_to_check=$files" >> "$GITHUB_OUTPUT"
+          blueprint_files=$(find blueprints -name '*.json' -type f -print0 | xargs -0 -r)
+          all_json_files=$(find blueprints models -name '*.json' -type f -print0 | xargs -0 -r)
+          echo "blueprint_files_to_check=$blueprint_files" >> "$GITHUB_OUTPUT"
+          echo "all_json_files_to_check=$all_json_files" >> "$GITHUB_OUTPUT"
         shell: bash
 
-      - name: Validate Blueprint JSON files
-        if: steps.find_json_files.outputs.files_to_check != ''
+      - name: Validate Blueprint JSON files structure
+        if: steps.find_json_files.outputs.blueprint_files_to_check != ''
         run: |
-          python .github/scripts/validate_blueprints.py ${{ steps.find_json_files.outputs.files_to_check }}
+          python .github/scripts/validate_blueprints.py ${{ steps.find_json_files.outputs.blueprint_files_to_check }}
         shell: bash
 
-      - name: Validate general JSON syntax (for files not covered by blueprint script, e.g. model files)
-        if: steps.find_json_files.outputs.files_to_check != ''
+      - name: Validate general JSON syntax for all modified JSON files
+        if: steps.find_json_files.outputs.all_json_files_to_check != ''
         run: |
-          echo "${{ steps.find_json_files.outputs.files_to_check }}" | xargs -n 1 python -m json.tool > /dev/null
+          echo "Validating general JSON syntax for: ${{ steps.find_json_files.outputs.all_json_files_to_check }}"
+          echo "${{ steps.find_json_files.outputs.all_json_files_to_check }}" | xargs -n 1 python -m json.tool > /dev/null
           if [ $? -ne 0 ]; then
-            echo "::error::One or more JSON files are invalid."
+            echo "::error::One or more JSON files have invalid syntax."
             exit 1
           fi
+          echo "All checked JSON files have valid syntax."
         shell: bash 
