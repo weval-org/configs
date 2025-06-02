@@ -3,8 +3,11 @@
   "title": "Test",
   "description": "Testing...",
   "models": [
+    "CORE",
+    "openrouter:anthropic/claude-sonnet-4",
     "openrouter:mistralai/mistral-medium-3",
-    "openrouter:meta-llama/llama-4-maverick"
+    "openrouter:meta-llama/llama-4-maverick",
+    "openrouter:openai/gpt-4.1"
   ],
   "systemPrompt": null,
   "concurrency": 10,

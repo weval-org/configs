@@ -1,66 +1,84 @@
-# CivicEval Evaluation Configurations
+# CivicEval Evaluation Blueprints
 
-This repository serves as the central store for all evaluation configurations used by the [CivicEval application](https://github.com/civiceval/app). The automated CivicEval system, deployed via the main application, fetches configurations from this repository to perform periodic and on-demand evaluations of language models.
+This repository is the heart of CivicEval's evaluation content. It serves as the central, community-driven store for all **evaluation blueprints** (JSON configuration files) used by the [CivicEval platform](https://civiceval.org) and its [core application](https://github.com/civiceval/app). The automated CivicEval system fetches blueprints from this repository to perform periodic and on-demand evaluations of language models.
 
-## Purpose
+## Our Mission & Your Contribution
 
-The goal is to have a transparent and collaborative way to define and manage the test suites that assess language model capabilities. While initially focused on areas like civic-mindedness, understanding of human rights, and adherence to democratic principles, these configurations can be used for any general qualitative and semantic evaluation task supported by the CivicEval framework.
+CivicEval aims to be an independent, public-interest watchdog. We measure how accurately—and how consistently—language models understand topics vital to a healthy society. This includes:
+
+*   **Universal human-rights standards**
+*   **The rule of law and core democratic processes**
+*   **Anti-discrimination principles**
+*   **Other locale-specific or domain-specific topics where AI misrepresentations could cause public harm or erode civic values.**
+
+**We invite you to contribute blueprints that align with this mission.** While the underlying CivicEval framework can support a wide range of qualitative evaluations, the blueprints hosted in *this* repository should focus on these civic-minded areas. Your contributions help us build a comprehensive, open-source resource for understanding how AI models perform on issues that matter to us all.
 
 ## Repository Structure
 
 ```
 .
-├── blueprints/                # Main directory for ComparisonConfig JSON files
-│   ├── example-eval.json
-│   └── another-topic-eval.json
+├── blueprints/                # Main directory for evaluation blueprint JSON files
+│   ├── udhr-article19-eval-v1.json
+│   └── another-civic-topic-eval.json
 ├── models/                 # Directory for reusable Model Collection JSON files
-│   ├── CORE.json
-│   └── SMALL_PARAM.json
-└── README.md               # This file (you are here)
+│   ├── CORE_MODELS.json
+│   └── EMERGING_MODELS.json
+└── README.md               # This file
 ```
 
-*   **`/blueprints/`**: This directory contains the primary `ComparisonConfig` JSON files. Each file defines a specific evaluation suite, including the models to be tested (which can reference model collections), the prompts to use, and any associated metadata like descriptions or tags.
-*   **`/models/`**: This directory contains JSON files that define reusable "Model Collections." These allow you to define named sets of models (e.g., "CORE", "SMALL_PARAM", "OPEN_WEIGHTS") that can be easily referenced within the `models` array of your main configuration files in the `/blueprints/` directory. The names of these files (e.g., `CORE.json`) become the placeholders (e.g., `"CORE"`) used in the main blueprints.
+*   **`/blueprints/`**: This is where your evaluation blueprint JSON files live. Each file defines a specific evaluation suite.
+*   **`/models/`**: This directory contains JSON files defining reusable "Model Collections" (e.g., a standard set of core models to test against).
 
-## Defining Evaluation Configurations (`/blueprints/*.json`)
+## What Makes a Good CivicEval Blueprint?
 
-Each JSON file in the `/blueprints/` directory represents a unique evaluation setup and should adhere to the `ComparisonConfig` schema expected by the [CivicEval application](https://github.com/civiceval/app). 
+We encourage blueprints that are:
+
+*   **Relevant:** Address a clear civic issue, human right, legal principle, or area of potential societal impact from LLMs.
+*   **Well-Defined:** Have clear `title`, `description`, and `tags`.
+*   **Focused:** Test a specific aspect or capability related to the chosen topic.
+*   **High-Quality:** Prompts should be unambiguous. If using `idealResponse` or `points`, these should be accurate, comprehensive, and well-researched.
+*   **Impactful:** Help shed light on model capabilities or deficits in areas important for public trust and safety.
+
+## Defining Evaluation Blueprints (`/blueprints/*.json`)
+
+Each JSON file in `/blueprints/` is an evaluation blueprint.
 
 **Key Fields:**
 
-*   `id` (string, required): A unique identifier for this specific configuration (e.g., `human-rights-benchmark-v1.2`).
-*   `title` (string, required): A human-readable title for the evaluation (e.g., "Human Rights Understanding Benchmark v1.2").
-*   `description` (string, optional): A more detailed explanation of the evaluation's purpose, methodology, or scope.
-*   `tags` (array of strings, optional): Keywords to categorize the evaluation (e.g., `["ethics", "legal", "consistency"]`). These are used for filtering on the CivicEval dashboard.
-*   `models` (array of strings, required): A list of model identifiers to be evaluated. This list can include:
-    *   Specific model IDs, which must be prefixed with `openrouter:` (e.g., `"openrouter:anthropic/claude-3-sonnet"`, `"openrouter:deepseek/deepseek-chat"`, `"openrouter:openai/gpt-4o-mini"`). You can find a comprehensive list of available models and their full identifiers at [OpenRouter.ai/models](https://openrouter.ai/models). Ensure you use the complete identifier provided by OpenRouter, including the `openrouter:` prefix.
-    *   **Model Collection Placeholders**: Uppercase strings without colons (e.g., `"CORE"`, `"SMALL_PARAM"`). These refer to `.json` files in the `/models/` directory (e.g., `CORE` refers to `models/CORE.json`).
-*   `systemPrompt` (string | null, optional): A global system prompt to be used for all models and prompts in this configuration, unless overridden at the prompt level.
-*   `concurrency` (number, optional): The number of concurrent requests to make when generating model responses (default is usually 10, defined in the application).
-*   `temperature` (number, optional): A default temperature for model response generation. If `temperatures` array is also provided, `temperature` is usually ignored.
-*   `temperatures` (array of numbers, optional): An array of specific temperatures to run each model/prompt combination against. If provided, each model will be run for each temperature in this list.
-*   `prompts` (array of objects, required): A list of prompts to be used in the evaluation. Each prompt object includes:
-    *   `id` (string, required): A unique identifier for the prompt within this configuration.
-    *   `promptText` (string, required): The actual text of the prompt given to the language model.
-    *   `idealResponse` (string, optional): A benchmark or ideal answer against which model responses can be compared (used for semantic similarity and `llm-coverage` point extraction).
-    *   `system` (string | null, optional): A prompt-specific system prompt that overrides the global `systemPrompt` for this particular prompt.
-    *   `points` (array of strings, optional): A predefined list of key points that an ideal response should cover. If provided, these are used directly by the `llm-coverage` evaluation method, bypassing LLM-based key point extraction from `idealResponse`.
+*   `id` (string, required): A unique identifier (e.g., `udhr-article19-eval-v1.2`).
+*   `title` (string, required): A human-readable title (e.g., "UDHR Article 19: Freedom of Expression Benchmark v1.2").
+*   `description` (string, optional): Detailed explanation of the evaluation's purpose, methodology, or scope.
+*   `tags` (array of strings, optional): Keywords to categorize (e.g., `["human-rights", "free-speech", "udhr"]`). Used for filtering on the CivicEval dashboard.
+*   `models` (array of strings, required): Models to evaluate. Can include:
+    *   Specific model IDs from OpenRouter (e.g., `"openrouter:openai/gpt-4o-mini"`). **All model IDs MUST start with `openrouter:`**. See [OpenRouter.ai/models](https://openrouter.ai/models) for the full list.
+    *   Model Collection Placeholders (e.g., `"CORE_MODELS"`). These are uppercase strings referring to `.json` files in `/models/` (e.g., `CORE_MODELS` refers to `models/CORE_MODELS.json`).
+*   `systemPrompt` (string | null, optional): Global system prompt.
+*   `concurrency` (number, optional): Concurrent requests for model response generation.
+*   `temperature` (number, optional): Default temperature.
+*   `temperatures` (array of numbers, optional): Array of specific temperatures to run.
+*   `prompts` (array of objects, required): List of prompts. Each prompt object:
+    *   `id` (string, required): Unique ID within this blueprint.
+    *   `promptText` (string, required): The prompt text.
+    *   `idealResponse` (string, optional): Benchmark answer for semantic comparison and `llm-coverage` point extraction.
+    *   `system` (string | null, optional): Prompt-specific system prompt.
+    *   `points` (array of strings, optional): Predefined key points for `llm-coverage`. If provided, these are used directly.
 
 **Crafting Effective Prompts, Ideal Responses, and Key Points:**
 
-*   **`promptText`**: Should be clear, unambiguous, and precisely define the task or question for the LLM. Avoid leading questions unless specifically testing for biases.
-*   **`idealResponse`**: If provided, this should be a comprehensive and accurate "gold standard" answer. It serves as a benchmark for semantic comparison and helps evaluators understand the target output.
-*   **`points`**: These are **crucial** for the `llm-coverage` evaluation method. Each point should represent a distinct, essential piece of information or a specific criterion that a correct and complete response must address. Aim for atomic and verifiable statements. Collectively, the points should encapsulate the core requirements of what an ideal response should cover.
+*   **`promptText`**: Clear, unambiguous, and precisely defining the task.
+*   **`idealResponse`**: If used, a comprehensive, accurate "gold standard."
+*   **`points`**: **Crucial for `llm-coverage`**. Atomic, verifiable statements representing essential information a complete response must address.
 
-**Example (`/blueprints/udhr-article19-eval-v1.json`):**
+**Example Civic-Minded Blueprint (`/blueprints/udhr-article19-eval-v1.json`):**
+This is a good example because it tests understanding of a fundamental human right, is well-structured, and has clear points for evaluation.
 ```json
 {
   "id": "udhr-article19-eval-v1",
   "title": "UDHR Article 19: Freedom of Opinion and Expression",
   "description": "Tests model understanding of the key components of the right to freedom of opinion and expression as defined in Article 19 of the Universal Declaration of Human Rights.",
-  "tags": ["human-rights", "udhr", "freedom-of-expression"],
+  "tags": ["human-rights", "udhr", "freedom-of-expression", "free-speech"],
   "models": [
-    "CORE"
+    "CORE_MODELS"
   ],
   "prompts": [
     {
@@ -71,7 +89,7 @@ Each JSON file in the `/blueprints/` directory represents a unique evaluation se
         "Everyone has the right to freedom of opinion.",
         "Everyone has the right to freedom of expression.",
         "The right to freedom of opinion includes holding opinions without interference.",
-        "The right to freedom of expression includes freedom to seek information and ideas.",
+        "The right to freedom ofexpression includes freedom to seek information and ideas.",
         "The right to freedom of expression includes freedom to receive information and ideas.",
         "The right to freedom of expression includes freedom to impart information and ideas.",
         "These freedoms apply through any media.",
@@ -84,51 +102,66 @@ Each JSON file in the `/blueprints/` directory represents a unique evaluation se
 
 ## Defining Model Collections (`/models/*.json`)
 
-Files in the `/models/` directory define reusable sets of language model identifiers. Each file should be a simple JSON array of strings, where each string is a valid model ID recognized by the CivicEval application.
+Files in `/models/` define reusable sets of model identifiers.
 
-*   The **filename** (excluding `.json`) becomes the **placeholder** used in the `models` array of main configuration files. For example, `models/CORE.json` allows you to use `"CORE"` in your blueprints.
-*   Placeholders **must be uppercase** (e.g., `CORE`, `SMALL_MODELS`) to be recognized by the processing script.
+*   The **filename** (e.g., `CORE_MODELS.json`) becomes the **placeholder** (e.g., `"CORE_MODELS"`) used in blueprints.
+*   Placeholders **must be uppercase** (e.g., `CORE_MODELS`, `EMERGING_MODELS`).
+*   All model IDs within these files **MUST start with `openrouter:`**.
 
-**Example (`/models/CORE.json`):**
+**Example (`/models/CORE_MODELS.json`):**
 ```json
 [
-  "openai:gpt-4o-mini",
-  "anthropic:claude-3-haiku-20240307",
-  "google/gemini-1.5-flash-latest"
+  "openrouter:openai/gpt-4o-mini",
+  "openrouter:anthropic/claude-3-haiku-20240307",
+  "openrouter:google/gemini-1.5-flash-latest"
 ]
 ```
-
-**Example (`/models/EXPERIMENTAL.json`):**
-```json
-[
-  "openrouter:meta-llama/llama-3.1-405b-instruct",
-  "mistralai:mistral-large-latest"
-]
-```
-
-Using model collections helps keep your main blueprint files concise and allows for easier updates to standard sets of models across multiple evaluations.
 
 ## Contribution Workflow
 
-1.  **Fork this Repository:** Create your own fork of `civiceval/blueprints`.
-2.  **Create a New Branch:** For your changes (e.g., `add-new-evaluation-suite` or `update-core-models`).
-3.  **Add or Modify Files:**
-    *   To add a new evaluation: Create a new JSON file in the `/blueprints/` directory.
-    *   To define a new model collection: Create a new JSON file in the `/models/` directory.
-    *   To update existing ones: Edit the relevant files.
-    *   Ensure your JSON is valid.
-4.  **Commit Your Changes:** Use clear and descriptive commit messages.
-5.  **Push to Your Fork:** Push the changes to your branch on your fork.
-6.  **Submit a Pull Request:** Open a pull request from your branch to the `main` branch of `civiceval/blueprints`.
-    *   In your pull request description, briefly explain the purpose of your new configuration or changes.
-    *   If you are referencing model collections, ensure those collections exist or are part of the same PR.
+We welcome your contributions to expand CivicEval's coverage of important civic topics!
 
-Once a pull request is merged, the CivicEval automated system will pick up the new or updated configurations in its next scheduled run.
+**Option 1: Adding a New Blueprint via GitHub's Web Interface (Easiest for single files)**
+
+If you are primarily adding a new blueprint JSON file and are less familiar with Git, you can do so directly through the GitHub website:
+
+1.  **Consider CivicEval's Mission:** Before creating a new blueprint, please ensure the topic aligns with our focus (see "Our Mission & Your Contribution" above).
+2.  **Check Existing Blueprints:** See if a similar evaluation already exists in the `/blueprints/` directory.
+3.  **Navigate to the [blueprints/](https://github.com/civiceval/configs/tree/main/blueprints) directory**
+4.  **Click "Add file"** and then select "Create new file".
+5.  **Name your file** (e.g., `my-cool-civic-eval.json`) and paste or type your JSON content into the editor.
+6.  **Propose new file:** Scroll to the bottom, enter a short commit message (e.g., "Add blueprint for X topic"), and click "Propose new file". This will automatically create a fork and a new branch for you.
+7.  **Open a Pull Request:** GitHub will then guide you to create a pull request. Ensure it targets the `main` branch of `civiceval/configs`. In your PR description, please explain:
+    *   The purpose of your new blueprint.
+    *   **How it aligns with CivicEval's mission.**
+    *   Any specific considerations or context for the evaluation.
+
+**Option 2: Using Git (Fork, Branch, Commit, PR)**
+
+For more complex changes, multiple file additions, or if you prefer using Git locally:
+
+1.  **Consider CivicEval's Mission:** As above, ensure alignment.
+2.  **Check Existing Blueprints:** As above.
+3.  **Fork this Repository:** Create your fork of `civiceval/configs`.
+4.  **Create a New Branch:** For your changes (e.g., `feat/add-disinformation-eval` or `fix/update-model-collection`).
+5.  **Add or Modify Files:**
+    *   Add new blueprints to `/blueprints/`.
+    *   Add new model collections to `/models/`.
+    *   Ensure JSON is valid and model IDs are correct (prefixed with `openrouter:`).
+6.  **Commit Your Changes:** Use clear, descriptive commit messages.
+7.  **Push to Your Fork.**
+8.  **Submit a Pull Request (PR):** To the `main` branch of `civiceval/configs`.
+    *   **In your PR description, please explain:**
+        *   The purpose of your new blueprint or changes.
+        *   **How it aligns with CivicEval's mission.**
+        *   Any specific considerations or context for the evaluation.
+    *   Reference any related issues if applicable.
+
+CivicEval maintainers will review your PR. We're looking for well-crafted blueprints that meaningfully expand our understanding of LLM performance on civic issues.
 
 ## Important Notes
 
-*   **Content Hashing:** The CivicEval application generates a content hash for each configuration *after* resolving any model collection placeholders. This hash is used to determine if an evaluation for that exact set of models and prompts has been run recently.
-*   **Model ID Validity:** Ensure that all model IDs (whether directly in blueprints or within collection files) are valid and recognized by the [CivicEval application's](https://github.com/civiceval/app) underlying model interaction services. All model IDs must be prefixed with `openrouter:`. For a list of supported models and their full identifiers, refer to [OpenRouter.ai/models](https://openrouter.ai/models).
-*   **GitHub API Usage:** The `fetch-and-schedule-evals` function in the main application uses the GitHub API to read files from this repository. For optimal performance and to avoid rate limits, it's configured to use a `GITHUB_TOKEN`.
+*   **Content Hashing:** The CivicEval application hashes blueprint content (after resolving model collections) to track evaluation runs.
+*   **Model IDs:** All model identifiers **must** be prefixed with `openrouter:`. Refer to [OpenRouter.ai/models](https://openrouter.ai/models) for the official list.
 
-By maintaining configurations here, we aim for a robust and community-driven approach to language model evaluation. 
+Thank you for helping build a more transparent and accountable AI ecosystem!

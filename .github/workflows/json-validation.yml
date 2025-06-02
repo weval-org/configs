@@ -1,0 +1,42 @@
+name: Blueprint JSON Validation
+
+on:
+  pull_request:
+    paths:
+      - 'blueprints/**.json'
+      - 'models/**.json' # Also good to validate model collection files
+
+jobs:
+  validate-json:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10' # Or your preferred Python version
+
+      - name: Find JSON files
+        id: find_json_files
+        run: |
+          files=$(find blueprints models -name '*.json' -type f | tr '\n' ' ')
+          echo "files_to_check=$files" >> "$GITHUB_OUTPUT"
+        shell: bash
+
+      - name: Validate Blueprint JSON files
+        if: steps.find_json_files.outputs.files_to_check != ''
+        run: |
+          python .github/scripts/validate_blueprints.py ${{ steps.find_json_files.outputs.files_to_check }}
+        shell: bash
+
+      - name: Validate general JSON syntax (for files not covered by blueprint script, e.g. model files)
+        if: steps.find_json_files.outputs.files_to_check != ''
+        run: |
+          echo "${{ steps.find_json_files.outputs.files_to_check }}" | xargs -n 1 python -m json.tool > /dev/null
+          if [ $? -ne 0 ]; then
+            echo "::error::One or more JSON files are invalid."
+            exit 1
+          fi
+        shell: bash 
