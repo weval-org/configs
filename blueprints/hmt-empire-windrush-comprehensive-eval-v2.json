@@ -1,0 +1,77 @@
+{
+  "id": "hmt-empire-windrush-comprehensive-eval-v2",
+  "title": "HMT Empire Windrush: History and Legacy",
+  "description": "Evaluates understanding of the HMT Empire Windrush, covering its origins as MV Monte Rosa, WWII service, the significant 1948 voyage, the 'Windrush generation,' passenger details, government reactions, and its eventual loss.",
+  "tags": ["hmt-empire-windrush", "maritime-history", "windrush-generation", "post-war-migration", "uk-history"],
+  "models": ["CORE"],
+  "prompts": [
+    {
+      "id": "windrush-german-origin-wwii-service",
+      "promptText": "Describe the HMT Empire Windrush's origin as a German vessel and its key roles during World War II before being seized by the UK.",
+      "idealResponse": "Originally launched in Germany in 1930 as the MV Monte Rosa for the Hamburg Süd shipping company, she was designed to carry German emigrants to South America and also served as a cruise ship. During World War II, the German navy requisitioned the Monte Rosa and utilized her as a troopship. Notable WWII activities included her use in the deportation of Norwegian Jews in 1942, and her captain's alleged actions in 1943 to feign engine trouble to help prevent the deportation of Danish Jews. She also transported workers to repair the battleship Tirpitz and survived both an Allied air attack and a sabotage attempt by Norwegian resistance in 1944.",
+      "points": [
+        "The ship was originally launched in Germany in 1930 as MV Monte Rosa for Hamburg Süd, serving as an emigrant and cruise ship.",
+        "During WWII, the German navy used it as a troopship.",
+        "It was involved in the deportation of Norwegian Jews in 1942 and its captain reportedly tried to prevent the deportation of Danish Jews in 1943.",
+        "The vessel transported workers for the battleship Tirpitz and survived Allied air and sabotage attacks in 1944."
+      ]
+    },
+    {
+      "id": "windrush-1948-voyage-details-significance",
+      "promptText": "Detail the 1948 voyage of the HMT Empire Windrush to the UK, focusing on its passengers and why this particular voyage became historically significant.",
+      "idealResponse": "In 1948, HMT Empire Windrush arrived at Tilbury, UK, carrying 1,027 passengers and two stowaways who embarked at ports including Trinidad, Jamaica, Mexico, and Bermuda. A significant majority of these passengers were West Indian, with the ship's manifest indicating 802 individuals listed their last place of residence as a country in the Caribbean. Although not the first ship to bring West Indian migrants to the UK post-war (SS Ormonde and SS Almanzora arrived in 1947), this 1948 voyage of the Empire Windrush became a powerful and widely recognized symbol of post-war migration to Britain and the beginning of modern British multiracial society. The term 'Windrush generation' is closely associated with this voyage, though it broadly refers to Caribbean migrants of that era.",
+      "points": [
+        "In 1948, HMT Empire Windrush brought 1,027 passengers to Tilbury, UK, who had embarked at various ports including in the Caribbean and Mexico.",
+        "The majority were West Indian, with 802 passengers listing a Caribbean country as their last residence.",
+        "This specific 1948 voyage became a prominent symbol of post-war migration to Britain.",
+        "It significantly contributed to the narrative of the 'Windrush generation', referring to Caribbean migrants of that period.",
+        "The Empire Windrush was preceded by other ships like SS Ormonde (1947) in carrying West Indian migrants to the UK."
+      ]
+    },
+    {
+      "id": "windrush-final-voyage-sinking-cause",
+      "promptText": "Describe the circumstances of HMT Empire Windrush's final voyage in 1954, including the incident that led to its loss and the outcome for those aboard.",
+      "idealResponse": "In March 1954, while en route from Yokohama to the UK, HMT Empire Windrush suffered a catastrophic event in the western Mediterranean Sea. A sudden explosion and subsequent fire erupted in the engine room, killing four crew members (the Third, Seventh, and Eighth engineers, and the First Electrician). The fire rapidly became uncontrollable, necessitating the abandonment of the ship. All other 1,494 passengers and crew were successfully rescued. The vessel remained afloat and burning for nearly two days before sinking on March 30, 1954, while under tow by HMS Saintes. An official inquiry suggested the fire's most likely cause was either corrosion in an engine room uptake causing hot soot to ignite leaking oil, or a fractured fuel pipe depositing oil onto a hot exhaust.",
+      "points": [
+        "In March 1954, an engine room explosion and fire occurred on Empire Windrush in the Mediterranean, killing four crew members.",
+        "The ship was abandoned due to the uncontrollable fire, with all other 1,494 passengers and crew being rescued.",
+        "It sank two days later during a salvage attempt while being towed to Gibraltar.",
+        "The official inquiry pointed to a likely cause involving corroded parts and ignited oil or a fractured fuel pipe."
+      ]
+    },
+    {
+      "id": "windrush-generation-term-explanation",
+      "promptText": "Explain the meaning and scope of the term 'Windrush generation' in the context of British history.",
+      "idealResponse": "The term 'Windrush generation' primarily refers to people from Caribbean countries who migrated to the United Kingdom between 1948 and 1971. While the HMT Empire Windrush's arrival in Tilbury on June 22, 1948, is the most iconic event associated with this group, the term is not exclusive to passengers of that single ship. It encompasses a broader cohort of migrants who arrived on various vessels and by other means during that period, largely in response to post-war labour shortages in the UK and seeking new opportunities. They and their descendants have significantly shaped modern British society.",
+      "points": [
+        "The 'Windrush generation' refers to migrants from Caribbean countries who arrived in the UK mainly between 1948 and 1971.",
+        "The term is symbolically linked to the HMT Empire Windrush's 1948 voyage but includes a wider group of arrivals.",
+        "These individuals came to the UK to fill post-war labor needs and seek better prospects.",
+        "This migration played a significant role in shaping contemporary British multicultural society."
+      ]
+    },
+    {
+      "id": "windrush-1948-notable-passenger-groups",
+      "promptText": "Beyond the West Indian individuals seeking new lives, what other distinct groups or notable individuals were among the passengers on the Empire Windrush's landmark 1948 voyage to the UK?",
+      "idealResponse": "The 1948 voyage of the Empire Windrush to Tilbury included a diverse passenger list. Among the many Caribbean passengers were several individuals who later gained prominence, such as calypso musicians Lord Kitchener, Lord Beginner, and Lord Woodbine, jazz trumpeter Dizzy Reece, and singer Mona Baptiste. A notable and distinct group also on board consisted of 66 Polish women and children. These individuals were WWII refugees who had been deported by the Soviets to Siberia, later escaped via India and the Pacific to Mexico, and were then granted permission to settle in the UK under the Polish Resettlement Act 1947.",
+      "points": [
+        "The 1948 voyage included Caribbean individuals who became notable figures, such as musicians Lord Kitchener and Mona Baptiste.",
+        "A distinct group of 66 Polish women and children, who were WWII refugees, were also passengers.",
+        "These Polish passengers had a history of deportation to Siberia and displacement before arriving in Mexico.",
+        "Their settlement in the UK was facilitated by the Polish Resettlement Act 1947."
+      ]
+    },
+    {
+      "id": "windrush-1948-uk-government-initial-reaction",
+      "promptText": "What was the UK government's official stance and initial documented reaction to the arrival of the HMT Empire Windrush in 1948 with a large contingent of West Indian migrants?",
+      "idealResponse": "The UK government neither anticipated nor welcomed the arrival of a large number of civilian West Indian migrants on the Empire Windrush in 1948. Official documents, including a Cabinet memorandum by Arthur Creech Jones, the Secretary of State for the Colonies, indicate that the government was opposed to this migration. While it was acknowledged that these individuals, as British subjects, could not legally be prevented from landing, both the Colonial Office and the Jamaican government were advised to take all possible measures to discourage similar future migration. Several MPs also voiced concerns to the Prime Minister about the potential for social discord.",
+      "points": [
+        "The UK government did not expect and officially did not welcome the civilian West Indian migrants arriving in 1948.",
+        "Colonial Secretary Arthur Creech Jones documented the government's opposition to this migration.",
+        "It was recognized that the migrants could not legally be barred from entry as they were British subjects at the time.",
+        "Official channels were used to try and discourage further such migration from the Caribbean.",
+        "Some Members of Parliament expressed concerns about potential social unhappiness or discord."
+      ]
+    }
+  ]
+}

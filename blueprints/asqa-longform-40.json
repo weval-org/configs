@@ -1,9 +1,11 @@
 {
   "id": "asqa-longform-40",
   "title": "ASQA Longform 40",
-  "description": "ASQA benchmark with 40 selected long-form question/answer pairs (min 50 words for response).",
+  "description": "ASQA benchmark with 40 selected long-form question/answer pairs (min 50 words for response) from the [ASQA dataset here](https://huggingface.co/datasets/asqa).",
   "models": [
-    "CORE"
+    "CORE",
+    "openrouter:anthropic/claude-sonnet-4",
+    "openrouter:openai/gpt-4.1"
   ],
   "tags": ["test"],
   "prompts": [

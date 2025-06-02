@@ -1,0 +1,174 @@
+{
+  "id": "us-civil-rights-movement-1954-1968-eval-v1",
+  "title": "US Civil Rights Movement (1954-1968): Key Events and Concepts",
+  "description": "Tests comprehension of the primary causes, methods, pivotal events, legislative achievements, and differing tactical approaches within the US Civil Rights Movement (1954-1968) as detailed in the source document, through a series of focused questions.",
+  "tags": ["civil-rights-movement", "us-history", "social-justice", "1960s"],
+  "models": ["CORE"],
+  "prompts": [
+    {
+      "id": "crm-overview-summary",
+      "promptText": "What was the general timeframe of the Civil Rights Movement in the United States, its primary causes, main methods, and broad categories of results?",
+      "idealResponse": "The Civil Rights Movement in the United States is generally dated from May 17, 1954, to April 11, 1968. It was primarily caused by racism, racial segregation, disenfranchisement, Jim Crow laws, and socioeconomic inequality. The main methods used by the movement were nonviolence, nonviolent resistance, and civil disobedience. Key results included overturning the 'Separate but equal' doctrine (Brown v. Board of Education, 1954), the passage of major federal laws like the Civil Rights Act of 1964 and the Voting Rights Act of 1965, the ratification of the 24th Amendment, and the formation of federal civil rights enforcement agencies.",
+      "points": [
+        "The Civil Rights Movement is dated from May 17, 1954, to April 11, 1968.",
+        "Primary causes included racism, racial segregation, disenfranchisement, and Jim Crow laws.",
+        "The main methods employed were nonviolence, nonviolent resistance, and civil disobedience.",
+        "Key results involved landmark judicial rulings, significant federal legislation, a constitutional amendment, and new federal agencies."
+      ]
+    },
+    {
+      "id": "crm-birmingham-campaign-1963",
+      "promptText": "Describe the Birmingham campaign of 1963, including its primary goal, the tactics used by activists, the response of local authorities, and its outcome.",
+      "idealResponse": "The 1963 Birmingham campaign, planned by the SCLC, aimed to desegregate Birmingham's downtown merchants using nonviolent methods such as sit-ins and marches. Authorities under Public Safety Commissioner Eugene 'Bull' Connor responded with brutality, using police dogs and fire hoses, especially during the 'Children's Crusade' where young students participated. Martin Luther King Jr. was arrested and wrote his 'Letter from Birmingham Jail.' The televised violence led to national outrage, prompting federal intervention and an agreement to desegregate some public accommodations and address discriminatory hiring practices.",
+      "points": [
+        "The 1963 Birmingham campaign, planned by the SCLC, aimed to desegregate the city's downtown merchants using nonviolent methods.",
+        "Authorities under Eugene 'Bull' Connor responded with brutality, using police dogs and fire hoses, especially during the 'Children's Crusade'.",
+        "Martin Luther King Jr. was arrested and wrote 'Letter from Birmingham Jail' during this campaign.",
+        "National outrage from televised violence led to federal intervention and an agreement to desegregate some public accommodations and address discriminatory hiring."
+      ]
+    },
+    {
+      "id": "crm-evolution-tactics-ideologies",
+      "promptText": "Based on the document, discuss the differing approaches within the Civil Rights Movement regarding tactics, particularly concerning nonviolence, armed self-defense, and the emergence of 'Black Power'.",
+      "idealResponse": "While nonviolence was the predominant tactic, some activists like Robert F. Williams and organizations such as the Deacons for Defense advocated and practiced armed self-defense in response to supremacist violence. By the mid-1960s, frustration and a desire for greater self-determination led to the rise of the 'Black Power' slogan, championed by figures like Stokely Carmichael and groups such as SNCC and CORE. The Black Panther Party, founded by Huey Newton and Bobby Seale, exemplified this by advocating armed self-defense alongside community programs. Martin Luther King Jr. remained committed to nonviolence and expressed discomfort with the 'Black Power' slogan.",
+      "points": [
+        "While nonviolence was predominant, some activists like Robert F. Williams and organizations like the Deacons for Defense advocated and practiced armed self-defense.",
+        "By the mid-1960s, the 'Black Power' slogan, championed by figures like Stokely Carmichael and groups like SNCC and CORE, gained prominence, emphasizing self-reliance.",
+        "The Black Panther Party, founded by Huey Newton and Bobby Seale, exemplified Black Power by advocating armed self-defense and community programs.",
+        "Martin Luther King Jr. remained committed to nonviolence and was uncomfortable with the 'Black Power' slogan, fearing it implied black nationalism."
+      ]
+    },
+    {
+      "id": "crm-brown-v-board-education",
+      "promptText": "What was the central ruling of the Supreme Court in Brown v. Board of Education (1954), and what legal doctrine did it overturn regarding public education?",
+      "idealResponse": "In Brown v. Board of Education of Topeka (1954), the U.S. Supreme Court unanimously ruled that racial segregation in public schools was unconstitutional. This landmark decision overturned the 'separate but equal' doctrine established in Plessy v. Ferguson (1896) as it applied to public education, stating that 'separate educational facilities are inherently unequal.'",
+      "points": [
+        "Brown v. Board of Education (1954) ruled that racial segregation in public schools is unconstitutional.",
+        "The Supreme Court's decision in this case was unanimous.",
+        "This ruling overturned the 'separate but equal' doctrine from Plessy v. Ferguson (1896) in the context of public education.",
+        "The Court declared that 'separate educational facilities are inherently unequal.'"
+      ]
+    },
+    {
+      "id": "crm-emmett-till-murder",
+      "promptText": "How did the murder of Emmett Till in 1955 and his mother's subsequent actions affect the Civil Rights Movement?",
+      "idealResponse": "The brutal murder of 14-year-old Emmett Till in Mississippi in 1955, and the subsequent acquittal of his killers by an all-white jury, became a pivotal moment. His mother, Mamie Till, insisted on an open-casket funeral, and images of his mutilated body published in Jet magazine graphically exposed the extent of racist violence. This galvanized the Black community, mobilized support for the Civil Rights Movement, and reportedly influenced activists like Rosa Parks.",
+      "points": [
+        "Emmett Till, a 14-year-old African American, was brutally murdered in Mississippi in 1955 for allegedly offending a white woman.",
+        "His mother, Mamie Till, chose an open-casket funeral to expose the brutality he suffered.",
+        "Images of Till's body in Jet magazine and the acquittal of his killers highlighted the severe injustice and racism prevalent.",
+        "The event galvanized the Black community, mobilized support for the Civil Rights Movement, and served as a catalyst for many activists."
+      ]
+    },
+    {
+      "id": "crm-montgomery-bus-boycott",
+      "promptText": "What triggered the Montgomery Bus Boycott, who were its key organizers, and what was its ultimate judicial outcome?",
+      "idealResponse": "The Montgomery Bus Boycott was triggered on December 1, 1955, when Rosa Parks, secretary of the Montgomery NAACP chapter, was arrested for refusing to give up her seat to a white passenger on a segregated bus. Jo Ann Gibson Robinson of the Women's Political Council was a key initial organizer. The boycott, lasting 381 days, was led by the Montgomery Improvement Association, with Martin Luther King Jr. as its president. It ended when the Supreme Court upheld a district court ruling in Browder v. Gayle (1956), declaring bus segregation unconstitutional.",
+      "points": [
+        "The Montgomery Bus Boycott began after Rosa Parks' arrest on December 1, 1955, for refusing to give up her bus seat.",
+        "Jo Ann Gibson Robinson and the Women's Political Council played a crucial role in initiating the boycott.",
+        "The Montgomery Improvement Association, led by Martin Luther King Jr., organized and sustained the 381-day boycott.",
+        "The boycott concluded successfully with the Supreme Court ruling in Browder v. Gayle (1956), which desegregated Montgomery's buses."
+      ]
+    },
+    {
+      "id": "crm-little-rock-nine",
+      "promptText": "Who were the Little Rock Nine, what challenge did they face in 1957, and how was the federal government involved in this event?",
+      "idealResponse": "The Little Rock Nine were nine African American students who volunteered to integrate Little Rock Central High School in Arkansas in September 1957, following a federal court order. They faced intense harassment and opposition. Arkansas Governor Orval Faubus deployed the Arkansas National Guard to prevent their entry, defying the federal court. President Dwight D. Eisenhower intervened by federalizing the Arkansas National Guard and sending in U.S. Army troops to escort and protect the students.",
+      "points": [
+        "The Little Rock Nine were nine African American students who enrolled to integrate Little Rock Central High School in 1957.",
+        "They faced significant opposition, including being blocked by Arkansas Governor Orval Faubus using the National Guard.",
+        "President Dwight D. Eisenhower intervened by federalizing the National Guard and deploying U.S. Army troops.",
+        "This federal action aimed to enforce the court-ordered desegregation of the school."
+      ]
+    },
+    {
+      "id": "crm-greensboro-sit-ins",
+      "promptText": "What were the Greensboro sit-ins, what tactic did they popularize, and what student organization emerged from the activism of this period?",
+      "idealResponse": "The Greensboro sit-ins began on February 1, 1960, when four African American college students from North Carolina A&T College sat down at a segregated Woolworth's lunch counter and asked to be served. This nonviolent protest against segregationist policies quickly inspired similar sit-ins across the South, popularizing the sit-in as a direct action tactic. This wave of student activism led to the formation of the Student Nonviolent Coordinating Committee (SNCC) in April 1960.",
+      "points": [
+        "The Greensboro sit-ins started in February 1960 by four Black college students at a Woolworth's segregated lunch counter.",
+        "The students used the nonviolent tactic of 'sitting in' to protest segregation and demand service.",
+        "This action quickly spread, popularizing sit-ins as a widespread form of civil rights protest.",
+        "The student activism that grew from the sit-ins led to the formation of the Student Nonviolent Coordinating Committee (SNCC)."
+      ]
+    },
+    {
+      "id": "crm-freedom-rides-1961",
+      "promptText": "What was the main purpose of the 1961 Freedom Rides, which organization initiated them, and what kind of dangers did the participants face?",
+      "idealResponse": "The 1961 Freedom Rides were initiated by the Congress of Racial Equality (CORE) to test the Supreme Court decision in Boynton v. Virginia (1960), which outlawed segregation in interstate travel facilities. Interracial groups of activists rode buses into the segregated South to challenge non-compliance. The Freedom Riders encountered extreme violence, including the firebombing of a bus in Anniston, Alabama, and severe beatings by white mobs in cities like Birmingham and Montgomery.",
+      "points": [
+        "The 1961 Freedom Rides, initially organized by CORE, aimed to test compliance with the Supreme Court's ban on segregation in interstate travel.",
+        "Interracial groups of activists rode buses into the Deep South to challenge segregated bus terminals and seating.",
+        "Freedom Riders faced extreme violence, including a bus firebombing in Anniston and mob attacks in Birmingham.",
+        "Despite these dangers, the rides continued with SNCC's help, eventually prompting federal enforcement of desegregation."
+      ]
+    },
+    {
+      "id": "crm-march-on-washington-1963",
+      "promptText": "What were some of the key official goals of the 1963 March on Washington for Jobs and Freedom, and which historic speech was delivered there?",
+      "idealResponse": "The March on Washington for Jobs and Freedom, held on August 28, 1963, had six official goals: meaningful civil rights laws, a massive federal works program, full and fair employment, decent housing, the right to vote, and adequate integrated education. A major focus was the passage of the civil rights bill proposed by the Kennedy administration. During the march, Martin Luther King Jr. delivered his historic 'I Have a Dream' speech before the Lincoln Memorial to hundreds of thousands of demonstrators.",
+      "points": [
+        "The 1963 March on Washington had official goals including meaningful civil rights laws, fair employment, decent housing, and voting rights.",
+        "A primary aim was to pressure for the passage of the pending Civil Rights Act.",
+        "Organized by A. Philip Randolph and Bayard Rustin, it was a collaborative effort of major civil rights groups.",
+        "Martin Luther King Jr. delivered his iconic 'I Have a Dream' speech at this event."
+      ]
+    },
+    {
+      "id": "crm-civil-rights-act-1964",
+      "promptText": "What forms of discrimination did the Civil Rights Act of 1964 prohibit, and in what areas?",
+      "idealResponse": "The Civil Rights Act of 1964, signed by President Lyndon B. Johnson, was a comprehensive law that banned discrimination based on 'race, color, religion, sex or national origin'. This prohibition applied to employment practices and public accommodations. The Act also authorized the Attorney General to file lawsuits to enforce its provisions.",
+      "points": [
+        "The Civil Rights Act of 1964 banned discrimination based on race, color, religion, sex, or national origin.",
+        "This prohibition applied to discrimination in employment practices.",
+        "The Act also outlawed discrimination in public accommodations.",
+        "It empowered the Attorney General to file lawsuits to enforce the law's provisions."
+      ]
+    },
+    {
+      "id": "crm-freedom-summer-1964",
+      "promptText": "What were the primary objectives of the 1964 Freedom Summer project in Mississippi, and what tragic event underscored the risks involved?",
+      "idealResponse": "The 1964 Freedom Summer project, organized by COFO, aimed to register African American voters in Mississippi, establish 'Freedom Schools' to provide alternative education, and organize the Mississippi Freedom Democratic Party (MFDP). The project involved nearly 1,000 activists, many of whom were white college students. The severe risks were tragically highlighted by the murder of three civil rights workers: James Chaney, Andrew Goodman, and Michael Schwerner, by KKK members with local law enforcement collusion.",
+      "points": [
+        "Freedom Summer in 1964 aimed to register Black voters in Mississippi and establish 'Freedom Schools'.",
+        "It also sought to organize the Mississippi Freedom Democratic Party (MFDP) as an inclusive alternative.",
+        "The project brought nearly 1,000 activists, mostly white students, to join local Black activists.",
+        "The murder of civil rights workers Chaney, Goodman, and Schwerner underscored the extreme dangers faced by participants."
+      ]
+    },
+    {
+      "id": "crm-selma-bloody-sunday-1965",
+      "promptText": "What was the immediate purpose of the Selma to Montgomery march in 1965, and what characterized the events of 'Bloody Sunday'?",
+      "idealResponse": "The Selma to Montgomery marches in 1965 were organized to protest the suppression of Black voter registration in Selma, Alabama, and to demand federal voting rights legislation. On March 7, 1965, known as 'Bloody Sunday,' approximately 600 peaceful marchers led by Hosea Williams (SCLC) and John Lewis (SNCC) were violently attacked by state troopers and local possemen with billy clubs and tear gas as they attempted to cross the Edmund Pettus Bridge. The event was televised nationally, shocking many Americans.",
+      "points": [
+        "The Selma to Montgomery marches were intended to dramatize the denial of voting rights to Black citizens in Alabama.",
+        "A key goal was to pressure the federal government to enact comprehensive voting rights legislation.",
+        "'Bloody Sunday' (March 7, 1965) occurred when peaceful marchers were brutally attacked by state troopers and local lawmen at the Edmund Pettus Bridge.",
+        "The televised images of this violence provoked national outrage and increased support for the voting rights movement."
+      ]
+    },
+    {
+      "id": "crm-voting-rights-act-1965",
+      "promptText": "What key provisions of the Voting Rights Act of 1965 aimed to protect Black voting rights, and what was its general impact on voter registration?",
+      "idealResponse": "The Voting Rights Act of 1965 suspended literacy tests and other discriminatory voter registration tests. It authorized federal supervision of voter registration in states and districts with a history of voter discrimination and low African American turnout. The Act allowed the Attorney General to send federal examiners to register voters. This legislation led to a dramatic increase in Black voter registration and political participation across the South.",
+      "points": [
+        "The Voting Rights Act of 1965 suspended literacy tests and other subjective voter registration requirements.",
+        "It authorized federal oversight of voter registration in states with a history of discrimination.",
+        "The Act allowed for the appointment of federal examiners to register Black voters.",
+        "It resulted in a significant increase in Black voter registration and the election of Black officials in the South."
+      ]
+    },
+    {
+      "id": "crm-kerner-commission-report-1968",
+      "promptText": "What were the main findings of the Kerner Commission (1968) regarding the causes of urban riots, and what famous conclusion did it reach?",
+      "idealResponse": "The Kerner Commission, officially the National Advisory Commission on Civil Disorders, was established by President Johnson to investigate the causes of widespread urban riots in the mid-1960s. Its 1968 report identified police practices, unemployment/underemployment, and inadequate housing as the primary grievances. The report famously concluded that the nation was 'moving toward two societies, one black, one white—separate and unequal.'",
+      "points": [
+        "The Kerner Commission was formed to investigate the causes of urban riots in the mid-1960s.",
+        "Its 1968 report cited police practices, unemployment, and inadequate housing as major grievances.",
+        "The Commission concluded that the United States was 'moving toward two societies, one black, one white—separate and unequal'.",
+        "It recommended comprehensive federal action to address these deep-seated racial and economic disparities."
+      ]
+    }
+  ]
+}

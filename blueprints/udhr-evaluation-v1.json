@@ -1,6 +1,6 @@
 {
   "id": "udhr-evaluation-v1",
-  "title": "UDHR Evaluation",
+  "title": "Universal Declaration of Human Rights",
   "description": "Evaluates the models on the UDHR dataset (Universal Declaration of Human Rights).",
   "models": [
     "CORE"

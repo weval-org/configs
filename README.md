@@ -46,31 +46,36 @@ Each JSON file in the `/blueprints/` directory represents a unique evaluation se
     *   `system` (string | null, optional): A prompt-specific system prompt that overrides the global `systemPrompt` for this particular prompt.
     *   `points` (array of strings, optional): A predefined list of key points that an ideal response should cover. If provided, these are used directly by the `llm-coverage` evaluation method, bypassing LLM-based key point extraction from `idealResponse`.
 
-**Example (`/blueprints/my-custom-eval.json`):**
+**Crafting Effective Prompts, Ideal Responses, and Key Points:**
+
+*   **`promptText`**: Should be clear, unambiguous, and precisely define the task or question for the LLM. Avoid leading questions unless specifically testing for biases.
+*   **`idealResponse`**: If provided, this should be a comprehensive and accurate "gold standard" answer. It serves as a benchmark for semantic comparison and helps evaluators understand the target output.
+*   **`points`**: These are **crucial** for the `llm-coverage` evaluation method. Each point should represent a distinct, essential piece of information or a specific criterion that a correct and complete response must address. Aim for atomic and verifiable statements. Collectively, the points should encapsulate the core requirements of what an ideal response should cover.
+
+**Example (`/blueprints/udhr-article19-eval-v1.json`):**
 ```json
 {
-  "id": "my-custom-eval-v1",
-  "title": "My Custom Evaluation Suite v1",
-  "description": "Testing core models and one specific model on a custom task.",
-  "tags": ["custom-task", "pilot"],
+  "id": "udhr-article19-eval-v1",
+  "title": "UDHR Article 19: Freedom of Opinion and Expression",
+  "description": "Tests model understanding of the key components of the right to freedom of opinion and expression as defined in Article 19 of the Universal Declaration of Human Rights.",
+  "tags": ["human-rights", "udhr", "freedom-of-expression"],
   "models": [
-    "CORE", 
-    "google/gemini-1.5-pro-latest"
+    "CORE"
   ],
-  "systemPrompt": "You are a helpful assistant designed for this specific task.",
   "prompts": [
     {
-      "id": "task-prompt-001",
-      "promptText": "Explain the concept of X in simple terms.",
-      "idealResponse": "X is a multifaceted concept involving A, B, and C..."
-    },
-    {
-      "id": "task-prompt-002",
-      "promptText": "Summarize the provided document [document text would be here or implied].",
+      "id": "udhr-article-19-components",
+      "promptText": "What are the key components of the right to freedom of opinion and expression as defined in Article 19 of the UDHR?",
+      "idealResponse": "Everyone has the right to freedom of opinion and expression; this right includes freedom to hold opinions without interference and to seek, receive and impart information and ideas through any media and regardless of frontiers.",
       "points": [
-        "Identifies the main argument.",
-        "Highlights key supporting details.",
-        "Mentions the primary conclusion."
+        "Everyone has the right to freedom of opinion.",
+        "Everyone has the right to freedom of expression.",
+        "The right to freedom of opinion includes holding opinions without interference.",
+        "The right to freedom of expression includes freedom to seek information and ideas.",
+        "The right to freedom of expression includes freedom to receive information and ideas.",
+        "The right to freedom of expression includes freedom to impart information and ideas.",
+        "These freedoms apply through any media.",
+        "These freedoms apply regardless of frontiers."
       ]
     }
   ]
