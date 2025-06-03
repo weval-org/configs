@@ -9,6 +9,7 @@
     "openrouter:meta-llama/llama-4-maverick",
     "openrouter:openai/gpt-4.1"
   ],
+  "tags": ["test"],
   "systemPrompt": null,
   "concurrency": 10,
   "prompts": [
@@ -19,6 +20,20 @@
       "points": [
         "Unable to determine weather in Mars OR states it does not have access or ability to.",
         "Suggests generally checking weather app or websites for most accurate information"
+      ]
+    },
+    {
+      "id": "test-substring-with-intentionally-no-ideal-response",
+      "promptText": "What is the full spelling of Hippo?",
+      "points": [
+        ["contains", "Hippopotamus"]
+      ]
+    },
+    {
+      "id": "test-substring",
+      "promptText": "What is the full spelling of dogue?",
+      "points": [
+        ["matches", "[Dd]og\\b"]
       ]
     }
   ]

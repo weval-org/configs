@@ -21,8 +21,8 @@ CivicEval aims to be an independent, public-interest watchdog. We measure how ac
 │   ├── udhr-article19-eval-v1.json
 │   └── another-civic-topic-eval.json
 ├── models/                 # Directory for reusable Model Collection JSON files
-│   ├── CORE_MODELS.json
-│   └── EMERGING_MODELS.json
+│   ├── CORE.json # Core set of models we like to check
+│   └── EMERGING_MODELS.json # An example (not defined currently)
 └── README.md               # This file
 ```
 
@@ -61,13 +61,19 @@ Each JSON file in `/blueprints/` is an evaluation blueprint.
     *   `promptText` (string, required): The prompt text.
     *   `idealResponse` (string, optional): Benchmark answer for semantic comparison and `llm-coverage` point extraction.
     *   `system` (string | null, optional): Prompt-specific system prompt.
-    *   `points` (array of strings, optional): Predefined key points for `llm-coverage`. If provided, these are used directly.
+    *   `points` (array of strings or function definitions, optional): Defines specific criteria for `llm-coverage`.
+        *   **String points**: Traditional key points that are evaluated by an LLM judge for semantic coverage.
+        *   **Function points**: Defined as `["functionName", arguments]`, e.g., `["contains", "keyword"]` or `["matches", "^pattern"]`. These provide deterministic checks.
+        *   For detailed information on available point functions and their usage, please refer to the [main CivicEval application README](https://github.com/civiceval/app/blob/main/README.md#note-on-idealresponse-and-points).
 
 **Crafting Effective Prompts, Ideal Responses, and Key Points:**
 
 *   **`promptText`**: Clear, unambiguous, and precisely defining the task.
 *   **`idealResponse`**: If used, a comprehensive, accurate "gold standard."
-*   **`points`**: **Crucial for `llm-coverage`**. Atomic, verifiable statements representing essential information a complete response must address.
+*   **`points`**: **Crucial for `llm-coverage`**. These can be:
+    *   **String-based key points**: Atomic, verifiable statements representing essential information a complete response must address. These are evaluated by an LLM judge for semantic coverage (offering fuzzy matching and a reflection for explainability).
+    *   **Function-based checks**: Precise, programmatic checks for specific content or patterns (e.g., presence of a keyword, adherence to a regex). These are evaluated deterministically.
+    *   A mix of both types can be used within the same prompt.
 
 **Example Civic-Minded Blueprint (`/blueprints/udhr-article19-eval-v1.json`):**
 This is a good example because it tests understanding of a fundamental human right, is well-structured, and has clear points for evaluation.
@@ -78,7 +84,7 @@ This is a good example because it tests understanding of a fundamental human rig
   "description": "Tests model understanding of the key components of the right to freedom of opinion and expression as defined in Article 19 of the Universal Declaration of Human Rights.",
   "tags": ["human-rights", "udhr", "freedom-of-expression", "free-speech"],
   "models": [
-    "CORE"
+    "CORE_MODELS"
   ],
   "prompts": [
     {
@@ -89,11 +95,13 @@ This is a good example because it tests understanding of a fundamental human rig
         "Everyone has the right to freedom of opinion.",
         "Everyone has the right to freedom of expression.",
         "The right to freedom of opinion includes holding opinions without interference.",
-        "The right to freedom ofexpression includes freedom to seek information and ideas.",
+        "The right to freedom of expression includes freedom to seek information and ideas.",
         "The right to freedom of expression includes freedom to receive information and ideas.",
         "The right to freedom of expression includes freedom to impart information and ideas.",
         "These freedoms apply through any media.",
-        "These freedoms apply regardless of frontiers."
+        "These freedoms apply regardless of frontiers.",
+        ["contains", "frontiers"],
+        ["matches", "^Everyone has the right"]
       ]
     }
   ]
@@ -168,4 +176,4 @@ CivicEval maintainers will review your PR. We're looking for well-crafted bluepr
 
 All content in this repository, including evaluation blueprints and model collections, is dedicated to the public domain worldwide under the [CC0 1.0 Universal Public Domain Dedication](LICENSE). By contributing to this repository, you agree to dedicate your contributions to the public domain under these same terms. Please see the [CONTRIBUTING.md](CONTRIBUTING.md) file for more details.
 
-Thank you for helping build a more transparent and accountable AI ecosystem!
+Thank you for helping build a more transparent and accountable AI ecosystem! 
