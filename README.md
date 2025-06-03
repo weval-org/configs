@@ -78,7 +78,7 @@ This is a good example because it tests understanding of a fundamental human rig
   "description": "Tests model understanding of the key components of the right to freedom of opinion and expression as defined in Article 19 of the Universal Declaration of Human Rights.",
   "tags": ["human-rights", "udhr", "freedom-of-expression", "free-speech"],
   "models": [
-    "CORE_MODELS"
+    "CORE"
   ],
   "prompts": [
     {
@@ -104,11 +104,11 @@ This is a good example because it tests understanding of a fundamental human rig
 
 Files in `/models/` define reusable sets of model identifiers.
 
-*   The **filename** (e.g., `CORE_MODELS.json`) becomes the **placeholder** (e.g., `"CORE_MODELS"`) used in blueprints.
-*   Placeholders **must be uppercase** (e.g., `CORE_MODELS`, `EMERGING_MODELS`).
+*   The **filename** (e.g., `MY_FAV_MODELS.json`) becomes the **placeholder** (e.g., `"MY_FAV_MODELS"`) used in blueprints.
+*   Placeholders **must be uppercase** (e.g., `MY_FAV_MODELS`, `EMERGING_MODELS`).
 *   All model IDs within these files **MUST start with `openrouter:`**.
 
-**Example (`/models/CORE_MODELS.json`):**
+**Example (`/models/MY_FAV_MODELS.json`):**
 ```json
 [
   "openrouter:openai/gpt-4o-mini",
