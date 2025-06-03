@@ -51,7 +51,7 @@ Each JSON file in `/blueprints/` is an evaluation blueprint.
 *   `tags` (array of strings, optional): Keywords to categorize (e.g., `["human-rights", "free-speech", "udhr"]`). Used for filtering on the CivicEval dashboard.
 *   `models` (array of strings, required): Models to evaluate. Can include:
     *   Specific model IDs from OpenRouter (e.g., `"openrouter:openai/gpt-4o-mini"`). **All model IDs MUST start with `openrouter:`**. See [OpenRouter.ai/models](https://openrouter.ai/models) for the full list.
-    *   Model Collection Placeholders (e.g., `"CORE_MODELS"`). These are uppercase strings referring to `.json` files in `/models/` (e.g., `CORE_MODELS` refers to `models/CORE_MODELS.json`).
+    *   Model Collection Placeholders (e.g., `"CORE"`). These are uppercase strings referring to `.json` files in `/models/` (e.g., `CORE` refers to `models/CORE.json`).
 *   `systemPrompt` (string | null, optional): Global system prompt.
 *   `concurrency` (number, optional): Concurrent requests for model response generation.
 *   `temperature` (number, optional): Default temperature.
@@ -84,7 +84,7 @@ This is a good example because it tests understanding of a fundamental human rig
   "description": "Tests model understanding of the key components of the right to freedom of opinion and expression as defined in Article 19 of the Universal Declaration of Human Rights.",
   "tags": ["human-rights", "udhr", "freedom-of-expression", "free-speech"],
   "models": [
-    "CORE_MODELS"
+    "CORE"
   ],
   "prompts": [
     {
