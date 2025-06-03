@@ -3,7 +3,6 @@
   "title": "Escazú Agreement v1 Lite",
   "description": "Eight-prompt suite that probes an LLM's knowledge of the 2018 Regional Agreement on Access to Information, Public Participation and Justice in Environmental Matters in Latin America and the Caribbean (Escazú Agreement). Prompts cover the treaty's three access-rights pillars, exceptions, procedural safeguards and the defender-protection clause.",
   "tags": ["latin-america", "environment", "access-rights", "global-south"],
-  "systemPrompt": "You are being asked about the Escazú Agreement.",
   "prompts": [
     {
       "id": "escazu-objective-article1",
@@ -28,7 +27,7 @@
     },
     {
       "id": "escazu-info-request-duties",
-      "promptText": "Under Article 5, give two obligations a Party must meet when responding to a request for environmental information.",
+      "promptText": "Under Article 5 of the Escazú Agreement, give two obligations a Party must meet when responding to a request for environmental information.",
       "idealResponse": "A Party must respond in a timely manner without requiring the requester to state reasons, and make the information available free of charge or for no more than a reasonable reproduction cost (and, where feasible, in the format requested).",
       "points": [
         "Timely response obligation",
@@ -38,7 +37,7 @@
     },
     {
       "id": "escazu-info-exceptions",
-      "promptText": "List two legitimate grounds in Article 5(6) that allow a Party to refuse to disclose environmental information.",
+      "promptText": "List two legitimate grounds in Escazú Article 5(6) that allow a Party to refuse to disclose environmental information.",
       "idealResponse": "Disclosure may be refused, for example, (a) where it would adversely affect national defence or public security, or (b) where it would compromise the privacy or personal data of an individual. Other grounds include the protection of investigations, commercial confidentiality, or intellectual property, provided the public interest in disclosure does not prevail.",
       "points": [
         "National defence or public security ground",
@@ -47,7 +46,7 @@
     },
     {
       "id": "escazu-public-participation",
-      "promptText": "Before authorising an activity with significant environmental impact, name two procedural steps that Article 7 requires to ensure public participation.",
+      "promptText": "Before authorising an activity with significant environmental impact, name two procedural steps that Article 7 of the Escazú Agreement requires to ensure public participation.",
       "idealResponse": "The Party must provide the public with timely, complete and understandable information about the project and convene an early, inclusive participation process that allows submission of comments which are duly taken into account in the final decision, with reasons for the decision made public.",
       "points": [
         "Provide timely and complete information to the public",
