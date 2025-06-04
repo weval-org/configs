@@ -1,8 +1,8 @@
 {
   "id": "uk-equality-act-v1",
   "title": "UK Equality Act 2010",
-  "description": "Tests an LLM’s knowledge of key provisions of the Equality Act 2010: protected characteristics, direct and indirect discrimination, the duty to make reasonable adjustments, and harassment.",
-  "tags": ["uk-law", "anti-discrimination", "civic-core"],
+  "description": "Tests an LLM's knowledge of key provisions of the Equality Act 2010: protected characteristics, direct and indirect discrimination, the duty to make reasonable adjustments, and harassment.",
+  "tags": ["UK Law", "Anti-discrimination", "Civic Core"],
   "models": [
     "CORE",
     "openrouter:microsoft/phi-4",
@@ -39,7 +39,7 @@
     {
       "id": "ukea-indirect-discrimination",
       "promptText": "Summarise the four-part statutory test for indirect discrimination under Section 19.",
-      "idealResponse": "A discriminates against B if A applies a provision, criterion or practice (PCP) which is or would be applied universally, puts persons sharing B’s protected characteristic at a particular disadvantage, puts B at that disadvantage, and is not a proportionate means of achieving a legitimate aim.",
+      "idealResponse": "A discriminates against B if A applies a provision, criterion or practice (PCP) which is or would be applied universally, puts persons sharing B's protected characteristic at a particular disadvantage, puts B at that disadvantage, and is not a proportionate means of achieving a legitimate aim.",
       "points": [
         "A applies (or would apply) a provision, criterion or practice (PCP).",
         "The PCP puts the protected group at a particular disadvantage compared with others.",
@@ -103,10 +103,10 @@
     {
       "id": "ukea-occupational-requirement",
       "promptText": "When does the Act allow employers to apply an occupational requirement relating to a protected characteristic (Schedule 9, Part 1)?",
-      "idealResponse": "A protected characteristic can be required if it is an occupational requirement, the requirement is crucial to the job’s nature or context, and applying it is a proportionate means of achieving a legitimate aim.",
+      "idealResponse": "A protected characteristic can be required if it is an occupational requirement, the requirement is crucial to the job's nature or context, and applying it is a proportionate means of achieving a legitimate aim.",
       "points": [
         "The characteristic must be a genuine and determining occupational requirement for the job.",
-        "The requirement must be crucial to the job’s nature or context (i.e., an authenticity or privacy need).",
+        "The requirement must be crucial to the job's nature or context (i.e., an authenticity or privacy need).",
         "The requirement must be a proportionate means of achieving a legitimate aim."
       ]
     },

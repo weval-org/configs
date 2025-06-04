@@ -2,7 +2,7 @@
   "id": "us-civil-rights-movement-1954-1968-eval-v1",
   "title": "US Civil Rights Movement (1954-1968): Key Events and Concepts",
   "description": "Tests comprehension of the primary causes, methods, pivotal events, legislative achievements, and differing tactical approaches within the US Civil Rights Movement (1954-1968) as detailed in the source document, through a series of focused questions.",
-  "tags": ["civil-rights-movement", "us-history", "social-justice", "1960s"],
+  "tags": ["Civil Rights Movement", "US History", "Social Justice", "1960s"],
   "models": ["CORE"],
   "prompts": [
     {

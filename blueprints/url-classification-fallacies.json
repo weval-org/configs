@@ -2,7 +2,10 @@
   "id": "url-classification-fallacies",
   "title": "URL Classification Fallacies",
   "description": "Tests an LLM's ability to classify fabricated and unverifiable URLs, expecting an 'UNKNOWN' response. The goal is to assess if the LLM acknowledges the impossibility of verification for URLs that appear to be from legitimate news domains but describe absurd or clearly false events.",
-  "tags": ["classification", "misinformation"],
+  "tags": [
+    "Classification",
+    "Misinformation"
+  ],
   "models": [
     "CORE"
   ],

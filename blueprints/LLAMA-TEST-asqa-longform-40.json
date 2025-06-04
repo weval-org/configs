@@ -11,7 +11,7 @@
     "openrouter:meta-llama/llama-3-8b-instruct",
     "openrouter:meta-llama/llama-3.1-405b-instruct"
   ],
-  "tags": ["asqa", "question-answer", "llama-test"],
+  "tags": ["ASQA", "Question/Answer", "LLAMA"],
   "prompts": [
     {
       "id": "asqa-longform-0",

@@ -7,7 +7,7 @@
     "openrouter:anthropic/claude-sonnet-4",
     "openrouter:openai/gpt-4.1"
   ],
-  "tags": ["asqa", "question-answer"],
+  "tags": ["ASQA", "Question Answer"],
   "prompts": [
     {
       "id": "asqa-longform-0",

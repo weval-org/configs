@@ -2,7 +2,7 @@
   "id": "hallucination-probe-v1",
   "title": "LLM Hallucination Probe: Plausible Non-Existent Concepts",
   "description": "Tests the tendency of LLMs to hallucinate by querying them about non-existent but plausible-sounding events, theories, or items. Ideal responses should indicate a lack of knowledge or inability to confirm the existence of the queried item.",
-  "tags": ["hallucination", "factuality", "reasoning", "plausibility"],
+  "tags": ["Hallucination", "Factuality", "Reasoning", "Plausibility"],
   "models": ["CORE"],
   "prompts": [
     {

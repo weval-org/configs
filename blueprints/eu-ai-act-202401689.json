@@ -2,7 +2,7 @@
   "id": "eu-ai-act-202401689",
   "title": "EU Artificial Intelligence Act (Regulation (EU) 2024/1689)",
   "description": "Evaluates understanding of the core provisions, definitions, obligations, and prohibitions outlined in the EU Artificial Intelligence Act.",
-  "tags": ["eu-ai-act", "artificial-intelligence", "regulation", "compliance", "eu", "legislation", "ai"],
+  "tags": ["EU AI Act", "Artificial Intelligence", "Regulation", "Compliance", "EU", "Legislation", "AI"],
   "models": ["CORE", "openrouter:anthropic/claude-sonnet-4", "openrouter:openai/gpt-4.1"],
   "prompts": [
     {
@@ -34,10 +34,10 @@
     {
       "id": "ai-act-prohibited-practice-subliminal-3",
       "promptText": "Article 5 of the EU AI Act prohibits certain AI practices. Describe the prohibition related to AI systems that deploy subliminal techniques or purposefully manipulative or deceptive techniques.",
-      "idealResponse": "The placing on the market, the putting into service or the use of an AI system that deploys subliminal techniques beyond a person’s consciousness or purposefully manipulative or deceptive techniques, with the objective, or the effect of materially distorting the behaviour of a person or a group of persons by appreciably impairing their ability to make an informed decision, thereby causing them to take a decision that they would not have otherwise taken in a manner that causes or is reasonably likely to cause that person, another person or group of persons significant harm, is prohibited. [cite: 927, 928]",
+      "idealResponse": "The placing on the market, the putting into service or the use of an AI system that deploys subliminal techniques beyond a person's consciousness or purposefully manipulative or deceptive techniques, with the objective, or the effect of materially distorting the behaviour of a person or a group of persons by appreciably impairing their ability to make an informed decision, thereby causing them to take a decision that they would not have otherwise taken in a manner that causes or is reasonably likely to cause that person, another person or group of persons significant harm, is prohibited. [cite: 927, 928]",
       "points": [
         "The prohibition applies to placing on the market, putting into service, or use of such AI systems. [cite: 927]",
-        "It covers AI systems deploying subliminal techniques beyond a person’s consciousness. [cite: 927]",
+        "It covers AI systems deploying subliminal techniques beyond a person's consciousness. [cite: 927]",
         "It also covers purposefully manipulative or deceptive techniques. [cite: 927]",
         "These techniques must have the objective or effect of materially distorting behaviour by appreciably impairing the ability to make an informed decision. [cite: 927]",
         "This distortion must cause the person to take a decision they would not have otherwise taken. [cite: 927]",
@@ -135,12 +135,12 @@
     {
       "id": "ai-act-sandboxes-objectives-12",
       "promptText": "Article 57 of the EU AI Act concerns AI regulatory sandboxes. What are the stated objectives for establishing these sandboxes?",
-      "idealResponse": "The objectives of the AI regulatory sandboxes should be to foster AI innovation by establishing a controlled experimentation and testing environment in the development and pre-marketing phase with a view to ensuring compliance of the innovative AI systems with this Regulation and other relevant Union and national law. Moreover, the AI regulatory sandboxes should aim to enhance legal certainty for innovators and the competent authorities’ oversight and understanding of the opportunities, emerging risks and the impacts of AI use, to facilitate regulatory learning for authorities and undertakings, to support cooperation and the sharing of best practices with the authorities involved in the AI regulatory sandbox, and to accelerate access to markets, including by removing barriers for SMEs, including start-ups. [cite: 652, 653, 1495, 1496, 1497, 1498]",
+      "idealResponse": "The objectives of the AI regulatory sandboxes should be to foster AI innovation by establishing a controlled experimentation and testing environment in the development and pre-marketing phase with a view to ensuring compliance of the innovative AI systems with this Regulation and other relevant Union and national law. Moreover, the AI regulatory sandboxes should aim to enhance legal certainty for innovators and the competent authorities' oversight and understanding of the opportunities, emerging risks and the impacts of AI use, to facilitate regulatory learning for authorities and undertakings, to support cooperation and the sharing of best practices with the authorities involved in the AI regulatory sandbox, and to accelerate access to markets, including by removing barriers for SMEs, including start-ups. [cite: 652, 653, 1495, 1496, 1497, 1498]",
       "points": [
         "To foster AI innovation in a controlled environment before market placement. [cite: 1495]",
         "To ensure compliance of innovative AI systems with the Regulation and other laws. [cite: 652]",
         "To enhance legal certainty for innovators. [cite: 652, 1495]",
-        "To improve competent authorities’ oversight and understanding of AI's opportunities and risks. [cite: 652]",
+        "To improve competent authorities' oversight and understanding of AI's opportunities and risks. [cite: 652]",
         "To facilitate regulatory learning for authorities and undertakings. [cite: 652]",
         "To support cooperation and sharing of best practices among involved authorities. [cite: 652, 1496]",
         "To accelerate access to markets, especially for SMEs and start-ups. [cite: 652, 1498]"

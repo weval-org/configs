@@ -2,7 +2,7 @@
   "id": "escazu-agreement-v1-lite",
   "title": "Escazú Agreement v1 Lite",
   "description": "Eight-prompt suite that probes an LLM's knowledge of the 2018 Regional Agreement on Access to Information, Public Participation and Justice in Environmental Matters in Latin America and the Caribbean (Escazú Agreement). Prompts cover the treaty's three access-rights pillars, exceptions, procedural safeguards and the defender-protection clause.",
-  "tags": ["latin-america", "environment", "access-rights", "global-south"],
+  "tags": ["Latin America", "Environment", "Access Rights", "Global South"],
   "prompts": [
     {
       "id": "escazu-objective-article1",
