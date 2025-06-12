@@ -3,11 +3,8 @@
   "title": "Test",
   "description": "Testing...",
   "models": [
-    "CORE",
-    "openrouter:anthropic/claude-sonnet-4",
-    "openrouter:mistralai/mistral-medium-3",
-    "openrouter:meta-llama/llama-4-maverick",
-    "openrouter:openai/gpt-4.1"
+    "openrouter:openai/gpt-4.1",
+    "openai:gpt-4.1"
   ],
   "tags": ["test"],
   "systemPrompt": null,
@@ -34,6 +31,38 @@
       "promptText": "What is the full spelling of dogue?",
       "points": [
         ["matches", "[Dd]og\\b"]
+      ]
+    },
+    {
+      "id": "test-messages-simple",
+      "messages": [
+        {"role": "user", "content": "Hello there."},
+        {"role": "assistant", "content": "Hi! How can I help you today?"},
+        {"role": "user", "content": "Tell me a joke."}
+      ],
+      "points": [
+        ["contains", "joke"]
+      ]
+    },
+    {
+      "id": "test-point-objects",
+      "promptText": "Describe the key principles of good product design.",
+      "points": [
+        {
+          "text": "The response should mention that good design is user-centered or focuses on user needs.",
+          "multiplier": 2,
+          "citation": "Core UX Principles"
+        },
+        {
+          "fn": "contains",
+          "fnArgs": "simplicity",
+          "multiplier": 1.5
+        },
+        {
+          "fn": "matches",
+          "fnArgs": "[Aa]ccessibility",
+          "citation": "WCAG Guidelines"
+        }
       ]
     }
   ]

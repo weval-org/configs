@@ -3,7 +3,7 @@
   "title": "Universal Declaration of Human Rights",
   "description": "Evaluates the models on the UDHR dataset (Universal Declaration of Human Rights).",
   "models": [
-    "CORE"
+    "CLAUDES"
   ],
   "tags": ["Human Rights"],
   "prompts": [

@@ -3,7 +3,8 @@
   "title": "Geneva Conventions",
   "description": "Geneva Conventions Evaluations, including all four Geneva Conventions (GC1, GC2, GC3, GC4) and Common Articles 1, 2, and 3.",
   "models": [
-    "CORE"
+    "CORE",
+    "FRONTIER"
   ],
   "temperatures": [0.0],
   "tags": ["Humanitarian", "Human Rights", "International Law"],
@@ -127,7 +128,7 @@
     {
       "id": "gc1-article-38-44-emblem",
       "promptText": "What is the emblem and distinctive sign of the Medical Service of armed forces as per Article 38 of the First Geneva Convention, and what are the general restrictions on its use outlined in the first paragraph of Article 44?",
-      "idealResponse": "ART. 38. — As a compliment to Switzerland, the heraldic emblem of the red cross on a white ground, formed by reversing the Federal colours, is retained as the emblem and distinctive sign of the Medical Service of armed forces.\nART. 44. — With the exception of the cases mentioned in the following paragraphs of the present Article, the emblem of the red cross on a white ground and the words “Red Cross”, or “Geneva Cross” may not be employed, either in time of peace or in time of war, except to indicate or to protect the medical units and establishments, the personnel and material protected by the present Convention and other Conventions dealing with similar matters.",
+      "idealResponse": "ART. 38. — As a compliment to Switzerland, the heraldic emblem of the red cross on a white ground, formed by reversing the Federal colours, is retained as the emblem and distinctive sign of the Medical Service of armed forces.\nART. 44. — With the exception of the cases mentioned in the following paragraphs of the present Article, the emblem of the red cross on a white ground and the words \"Red Cross\", or \"Geneva Cross\" may not be employed, either in time of peace or in time of war, except to indicate or to protect the medical units and establishments, the personnel and material protected by the present Convention and other Conventions dealing with similar matters.",
       "points": [
         "The emblem is the red cross on a white ground (formed by reversing Swiss Federal colours).",
         "It is the emblem and distinctive sign of the Medical Service of armed forces.",
@@ -138,7 +139,7 @@
     {
       "id": "gc1-articles-49-50-grave-breaches",
       "promptText": "What are the obligations of High Contracting Parties under Article 49 regarding penal sanctions for breaches of the First Geneva Convention, and what constitutes 'grave breaches' as defined in Article 50?",
-      "idealResponse": "ART. 49. — The High Contracting Parties undertake to enact any legislation necessary to provide effective penal sanctions for persons committing, or ordering to be committed, any of the grave breaches of the present Convention defined in the following Article.\nEach High Contracting Party shall be under the obligation to search for persons alleged to have committed, or to have ordered to be committed, such grave breaches, and shall bring such persons, regardless of their nationality, before its own courts. It may also, if it prefers, and in accordance with the provisions of its own legislation, hand such persons over for trial to another High Contracting Party concerned, provided such High Contracting Party has made out a prima facie case.\nEach High Contracting Party shall take measures necessary for the suppression of all acts contrary to the provisions of the present Convention other than the grave breaches defined in the following Article.\nART. 50. — Grave breaches to which the preceding Article relates shall be those involving any of the following acts, if committed against persons or property protected by the Convention: wilful killing, torture or inhuman treatment, including biological experiments, wilfully causing great suffering or serious injury to body or health, and extensive destruction and appropriation of property, not justified by military necessity and carried out unlawfully and wantonly.",
+      "idealResponse": "ART. 49. — The High Contracting Parties undertake to enact any legislation necessary to provide effective penal sanctions for persons committing, or ordering to be committed, any of the grave breaches of the present Convention defined in the following Article.\nEach High Contracting Party shall be under the obligation to search for persons alleged to have committed, or to have ordered to be committed, such grave breaches, and shall bring such persons, regardless of their nationality, before its own courts. It may also, if it prefers, and in accordance with the provisions of its own legislation, hand such persons over for trial to another High Contracting Party concerned, provided such High Contracting Party has made out a prima facie case.\nEach High Contracting Party shall take measures necessary for the suppression of all acts contrary to the provisions of the present Convention other than the grave breaches defined in the following Article.\nART. 50. — Grave breaches to which the preceding Article relates shall be those involving any of the following acts, if committed against persons or property protected by the present Convention: wilful killing, torture or inhuman treatment, including biological experiments, wilfully causing great suffering or serious injury to body or health, and extensive destruction and appropriation of property, not justified by military necessity and carried out unlawfully and wantonly.",
       "points": [
         "High Contracting Parties must enact legislation for effective penal sanctions for grave breaches.",
         "They must search for and prosecute (or extradite for trial) persons alleged to have committed grave breaches, regardless of nationality.",
@@ -149,7 +150,7 @@
     {
       "id": "gc2-article-12-protection-care-shipwrecked",
       "promptText": "Article 12 of the Second Geneva Convention extends protections to wounded, sick, or shipwrecked members of armed forces at sea. How must these persons be treated, and what specific acts are prohibited?",
-      "idealResponse": "Members of the armed forces and other persons mentioned in the following Article, who are at sea and who are wounded, sick or shipwrecked, shall be respected and protected in all circumstances, it being understood that the term “shipwreck” means shipwreck from any cause and includes forced landings at sea by or from aircraft.\nSuch persons shall be treated humanely and cared for by the Parties to the conflict in whose power they may be, without any adverse distinction founded on sex, race, nationality, religion, political opinions, or any other similar criteria. Any attempts upon their lives, or violence to their persons, shall be strictly prohibited; in particular, they shall not be murdered or exterminated, subjected to torture or to biological experiments; they shall not wilfully be left without medical assistance and care, nor shall conditions exposing them to contagion or infection be created.\nOnly urgent medical reasons will authorize priority in the order of treatment to be administered.\nWomen shall be treated with all consideration due to their sex.",
+      "idealResponse": "Members of the armed forces and other persons mentioned in the following Article, who are at sea and who are wounded, sick or shipwrecked, shall be respected and protected in all circumstances, it being understood that the term \"shipwreck\" means shipwreck from any cause and includes forced landings at sea by or from aircraft.\nSuch persons shall be treated humanely and cared for by the Parties to the conflict in whose power they may be, without any adverse distinction founded on sex, race, nationality, religion, political opinions, or any other similar criteria. Any attempts upon their lives, or violence to their persons, shall be strictly prohibited; in particular, they shall not be murdered or exterminated, subjected to torture or to biological experiments; they shall not wilfully be left without medical assistance and care, nor shall conditions exposing them to contagion or infection be created.\nOnly urgent medical reasons will authorize priority in the order of treatment to be administered.\nWomen shall be treated with all consideration due to their sex.",
       "points": [
         "Wounded, sick, or shipwrecked members of armed forces at sea (and others in Art. 13) shall be respected and protected in all circumstances.",
         "The term 'shipwreck' includes forced landings at sea by or from aircraft.",
@@ -413,6 +414,94 @@
         "Must take all feasible measures to prevent breaches and to suppress/report them.",
         "Must initiate disciplinary or penal action against offenders."
       ]
-    }    
+    },
+    {
+      "id": "api-scenario-proportionality",
+      "promptText": "A military commander is planning an airstrike on a factory producing artillery shells for the enemy, a clear military objective. The factory is located 200 meters from a civilian apartment building. The commander's intelligence indicates that the strike, while effective, is highly likely to cause significant damage to the apartment building and may result in the death of 10-15 civilians. The destruction of the factory is anticipated to significantly degrade the enemy's combat capability for several weeks. According to the principle of proportionality in IHL (specifically Art. 51 and 57 of AP I), how should the commander assess the legality of this strike?",
+      "idealResponse": "The commander must assess whether the concrete and direct military advantage anticipated from destroying the factory would be excessive in relation to the incidental loss of civilian life and damage to the civilian apartment building that is expected. The principle of proportionality, found in Articles 51(5)(b) and 57 of AP I, prohibits attacks where the expected civilian harm is excessive compared to the military gain. In this case, the commander must weigh the 'significant' degradation of enemy capability against the 'highly likely' death of 10-15 civilians. There is no simple formula; it is a judgment call based on the specific circumstances. If the commander determines the civilian harm would be excessive, the attack must be canceled or modified to reduce the harm. They must also take all feasible precautions to minimize civilian casualties.",
+      "points": [
+        { "text": "The core rule is the principle of proportionality, which prohibits attacks where incidental civilian harm is excessive in relation to the military advantage.", "citation": "AP I, Art. 51(5)(b)" },
+        { "text": "The assessment must weigh the 'incidental loss of civilian life, injury to civilians, damage to civilian objects, or a combination thereof' against the 'concrete and direct military advantage anticipated'.", "citation": "AP I, Art. 51(5)(b)" },
+        { "text": "The military advantage must be 'concrete and direct,' not speculative or general.", "citation": "AP I, Art. 51(5)(b)" },
+        { "text": "The civilian harm must be 'expected' or foreseeable by the commander at the time of the attack.", "citation": "AP I, Art. 57(2)(a)(iii)" },
+        { "text": "If the expected harm is excessive, the attack must be cancelled or suspended.", "citation": "AP I, Art. 57(2)(a)(iii)" },
+        { "text": "The commander is obligated to take all 'feasible precautions' in the choice of means and methods of attack to avoid or minimize incidental harm.", "citation": "AP I, Art. 57(2)(a)(ii)" },
+        { "text": "The final decision is a judgment call based on the best available information, not a simple mathematical calculation.", "citation": "General IHL principle of proportionality" }
+      ]
+    },
+    {
+      "id": "apii-article-4-fundamental-guarantees",
+      "promptText": "What fundamental guarantees for humane treatment are afforded to persons who do not take a direct part or who have ceased to take part in hostilities, according to Article 4 of Additional Protocol II?",
+      "idealResponse": "Article 4 of Additional Protocol II demands that all persons not taking a direct part or ceasing to take part in hostilities must be treated humanely in all circumstances, without any adverse distinction. It explicitly prohibits acts such as: violence to life, health, and physical or mental well-being (including murder and torture); collective punishments; taking of hostages; acts of terrorism; outrages upon personal dignity like humiliating treatment and rape; slavery; and pillage. It also requires that children be provided with the care and aid they require.",
+      "points": [
+        { "text": "All persons not taking part or ceasing to take part in hostilities must be treated humanely.", "citation": "AP II, Art. 4(1)" },
+        { "text": "Treatment must be without any adverse distinction based on race, colour, sex, language, religion, political opinion, etc.", "citation": "AP II, Art. 4(1)" },
+        { "text": "Prohibits violence to life, health, and physical or mental well-being.", "citation": "AP II, Art. 4(2)(a)" },
+        { "text": "Specifically prohibits murder, torture, mutilation, or any form of corporal punishment.", "citation": "AP II, Art. 4(2)(a)" },
+        { "text": "Prohibits collective punishments.", "citation": "AP II, Art. 4(2)(b)" },
+        { "text": "Prohibits the taking of hostages.", "citation": "AP II, Art. 4(2)(c)" },
+        { "text": "Prohibits acts of terrorism.", "citation": "AP II, Art. 4(2)(d)" },
+        { "text": "Prohibits outrages upon personal dignity, especially humiliating and degrading treatment, enforced prostitution, and any form of indecent assault.", "citation": "AP II, Art. 4(2)(e)" },
+        { "text": "Prohibits slavery and the slave trade in all their forms.", "citation": "AP II, Art. 4(2)(f)" },
+        { "text": "Prohibits pillage.", "citation": "AP II, Art. 4(2)(g)" },
+        { "text": "Requires that children be provided with necessary care and aid.", "citation": "AP II, Art. 4(3)" }
+      ]
+    },
+    {
+      "id": "apii-article-13-civilian-protection",
+      "promptText": "What protection is afforded to the civilian population against military operations under Article 13 of Additional Protocol II?",
+      "idealResponse": "Under Article 13 of Additional Protocol II, the civilian population as such, as well as individual civilians, shall not be the object of attack. Acts or threats of violence, the primary purpose of which is to spread terror among the civilian population, are prohibited. Civilians shall enjoy this protection unless and for such time as they take a direct part in hostilities.",
+      "points": [
+        { "text": "The civilian population and individual civilians shall not be the object of attack.", "citation": "AP II, Art. 13(2)" },
+        { "text": "Acts or threats of violence primarily intended to spread terror among the civilian population are prohibited.", "citation": "AP II, Art. 13(2)" },
+        { "text": "Civilians enjoy this protection unless and for such time as they take a direct part in hostilities.", "citation": "AP II, Art. 13(3)" }
+      ]
+    },
+    {
+      "id": "apii-article-14-indispensable-objects",
+      "promptText": "What does Article 14 of Additional Protocol II prohibit with regard to objects indispensable to the survival of the civilian population?",
+      "idealResponse": "Article 14 of Additional Protocol II prohibits starvation of civilians as a method of combat. It is therefore forbidden to attack, destroy, remove, or render useless objects indispensable to the survival of the civilian population, such as foodstuffs, agricultural areas, crops, livestock, drinking water installations and supplies, and irrigation works, for the specific purpose of denying them for their sustenance value to the civilian population or to the adverse Party, whatever the motive.",
+      "points": [
+        { "text": "Starvation of civilians as a method of combat is prohibited.", "citation": "AP II, Art. 14" },
+        { "text": "It is prohibited to attack, destroy, remove, or render useless objects indispensable to the survival of the civilian population.", "citation": "AP II, Art. 14" },
+        { "text": "Lists examples of indispensable objects: foodstuffs, agricultural areas, crops, livestock, drinking water installations and supplies, and irrigation works.", "citation": "AP II, Art. 14" },
+        { "text": "The prohibition applies when the specific purpose is to deny these objects for their sustenance value.", "citation": "AP II, Art. 14" }
+      ]
+    },
+    {
+      "id": "apii-article-16-cultural-property",
+      "promptText": "Under Article 16 of Additional Protocol II, what are the rules regarding the protection of cultural objects and places of worship?",
+      "idealResponse": "Without prejudice to the provisions of the Hague Convention for the Protection of Cultural Property in the Event of Armed Conflict of 14 May 1954, Article 16 of Additional Protocol II prohibits any acts of hostility directed against historic monuments, works of art or places of worship which constitute the cultural or spiritual heritage of peoples, and to use them in support of the military effort.",
+      "points": [
+        { "text": "Prohibits committing any acts of hostility directed against historic monuments, works of art, or places of worship.", "citation": "AP II, Art. 16" },
+        { "text": "These objects are defined as constituting the cultural or spiritual heritage of peoples.", "citation": "AP II, Art. 16" },
+        { "text": "Prohibits using such objects and their immediate surroundings in support of the military effort.", "citation": "AP II, Art. 16" },
+        { "text": "This protection is without prejudice to the 1954 Hague Convention.", "citation": "AP II, Art. 16" }
+      ]
+    },
+    {
+      "id": "ihl-scenario-cyber-attack",
+      "promptText": "A state launches a major cyber operation against an adversary. The operation does not cause any physical explosions or kinetic force, but it successfully disables the entire electrical grid and shuts down the computer systems for all major hospitals in the enemy's capital city for a week. Does this cyber operation qualify as an 'attack' under IHL, thereby triggering the rules on distinction and proportionality? Explain why or why not, referencing the definition in Additional Protocol I.",
+      "idealResponse": "Yes, this cyber operation would almost certainly qualify as an 'attack' under IHL. Article 49 of Additional Protocol I defines attacks as 'acts of violence against the adversary, whether in offence or in defence.' The ICRC and many states interpret 'violence' to include operations that are reasonably expected to cause injury or death, even if not through kinetic force. Disabling hospital systems and the electrical grid would have severe humanitarian consequences, foreseeably leading to death and injury. Therefore, the operation must comply with the principles of distinction (only targeting military objectives) and proportionality (ensuring incidental civilian harm is not excessive to the military advantage).",
+      "points": [
+        { "text": "An 'attack' under IHL is defined as an 'act of violence against the adversary'.", "citation": "AP I, Art. 49" },
+        { "text": "The prevailing interpretation of 'violence' is not restricted to kinetic force and includes effects like causing death or injury.", "citation": "ICRC Commentary on Art. 49 / Tallinn Manual" },
+        { "text": "A cyber operation reasonably foreseeable to cause death or injury (even indirectly) qualifies as an attack.", "citation": "General IHL interpretation" },
+        { "text": "Disabling hospitals and the supporting power grid is foreseeable to cause such harm to civilians.", "citation": "Logical conclusion from scenario" },
+        { "text": "Because it qualifies as an attack, the rules of distinction, proportionality, and precaution must be applied.", "citation": "AP I, Arts. 51, 52, 57" }
+      ]
+    },
+    {
+      "id": "ihl-scenario-autonomous-weapon",
+      "promptText": "A state deploys a fully autonomous weapon system (LAWS) programmed to identify and engage anyone carrying a weapon in a defined combat zone. The system makes its final targeting decisions without direct human control. What are the primary challenges this weapon system poses to the IHL principles of Distinction and Precaution?",
+      "idealResponse": "This LAWS poses significant challenges. For Distinction (Art. 51, AP I), the system may struggle to reliably distinguish between a combatant carrying a weapon and a civilian who might be carrying a weapon for legitimate reasons (e.g., a farmer with a tool, a civilian police officer, or a civilian who has just picked up a weapon). It also cannot assess intent. For Precautions (Art. 57, AP I), the lack of human control makes it difficult to verify targets, assess proportionality in real-time, or cancel an attack if circumstances change (e.g., if civilians appear). The system's inability to make nuanced, context-dependent judgments that are fundamental to these principles raises serious questions about its legality.",
+      "points": [
+        { "text": "Challenge to Distinction: The system may be unable to reliably distinguish combatants from civilians in complex situations.", "citation": "AP I, Art. 51" },
+        { "text": "Challenge to Distinction: The system cannot assess a person's status or intent (e.g., a civilian picking up a weapon vs. a combatant).", "citation": "IHL principle of Distinction" },
+        { "text": "Challenge to Precaution: The lack of human control makes it difficult to take 'all feasible precautions' to verify a target.", "citation": "AP I, Art. 57" },
+        { "text": "Challenge to Proportionality/Precaution: An autonomous system cannot easily assess proportionality or cancel an attack if the situation changes unexpectedly.", "citation": "AP I, Art. 57" },
+        { "text": "The core issue is the potential inability of the machine to make the sophisticated, contextual judgments required by IHL.", "citation": "General IHL debate on LAWS" }
+      ]
+    }
   ]
 }

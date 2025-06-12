@@ -59,21 +59,52 @@ Each JSON file in `/blueprints/` is an evaluation blueprint.
 *   `prompts` (array of objects, required): List of prompts. Each prompt object:
     *   `id` (string, required): Unique ID within this blueprint.
     *   `promptText` (string, required): The prompt text.
+    *   `messages` (array of objects, optional): For multi-turn conversations, you can use an array of message objects instead of `promptText`. Each message object should have `role` ("user" or "assistant") and `content` (string) fields. If `messages` is provided, `promptText` will be ignored.
     *   `idealResponse` (string, optional): Benchmark answer for semantic comparison and `llm-coverage` point extraction.
     *   `system` (string | null, optional): Prompt-specific system prompt.
-    *   `points` (array of strings or function definitions, optional): Defines specific criteria for `llm-coverage`.
-        *   **String points**: Traditional key points that are evaluated by an LLM judge for semantic coverage.
-        *   **Function points**: Defined as `["functionName", arguments]`, e.g., `["contains", "keyword"]` or `["matches", "^pattern"]`. These provide deterministic checks.
-        *   For detailed information on available point functions and their usage, please refer to the [main CivicEval application README](https://github.com/civiceval/app/blob/main/README.md#note-on-idealresponse-and-points).
+    *   `points` (array, optional): Defines specific criteria for the `llm-coverage` evaluation method. Each item in the array is a "point" that defines a single evaluation criterion. A point can be defined in one of three formats:
+        *   **1. Simple String**: A conceptual key point for semantic ("fuzzy") evaluation by an LLM judge. This is the simplest way to define a point.
+            ```json
+            "points": ["The response should mention freedom of speech."]
+            ```
+        *   **2. Function Tuple (`[string, any]`)**: A shortcut for a deterministic (exact) check using a predefined function. The first element is the function name, and the second is its argument.
+            ```json
+            "points": [["contains", "human rights"]]
+            ```
+        *   **3. Point Object**: The most flexible format, allowing for weighting, citations, and an explicit choice between semantic or function-based evaluation.
+            ```json
+            "points": [
+              {
+                "text": "A very important conceptual point to be evaluated by an LLM judge.",
+                "multiplier": 2.0,
+                "citation": "UDHR Article 1"
+              },
+              {
+                "fn": "matches",
+                "fnArgs": "^The response must start with this",
+                "multiplier": 1.5,
+                "citation": "Internal style guide rule #4"
+              }
+            ]
+            ```
+            A Point Object can contain the following fields:
+            *   `text` (string): Defines a conceptual point for semantic evaluation (LLM-judged).
+            *   `fn` (string): The name of a built-in function for a deterministic check (e.g., `contains`, `matches`).
+            *   `fnArgs` (any): The argument(s) to pass to the function specified in `fn`.
+            *   `multiplier` (number, optional, defaults to 1): Weights the point's score when calculating the final average. A point with `multiplier: 2` is twice as important as a point with a default multiplier.
+            *   `citation` (string, optional): A reference or note for documentation purposes.
+
+        For detailed information on available point functions and their usage, please refer to the [main CivicEval application README](https://github.com/civiceval/app/blob/main/README.md#note-on-idealresponse-and-points).
 
 **Crafting Effective Prompts, Ideal Responses, and Key Points:**
 
 *   **`promptText`**: Clear, unambiguous, and precisely defining the task.
+*   **`messages`**: For multi-turn conversations, use an array of message objects instead of `promptText`. Each object needs `role` ("user" or "assistant") and `content`. `promptText` is ignored if `messages` is present.
 *   **`idealResponse`**: If used, a comprehensive, accurate "gold standard."
-*   **`points`**: **Crucial for `llm-coverage`**. These can be:
-    *   **String-based key points**: Atomic, verifiable statements representing essential information a complete response must address. These are evaluated by an LLM judge for semantic coverage (offering fuzzy matching and a reflection for explainability).
-    *   **Function-based checks**: Precise, programmatic checks for specific content or patterns (e.g., presence of a keyword, adherence to a regex). These are evaluated deterministically.
-    *   A mix of both types can be used within the same prompt.
+*   **`points`**: **Crucial for `llm-coverage`**. This system allows for a rich, rubric-based evaluation.
+    *   **Semantic (LLM-Judged) Points**: Use simple strings or `PointObject`s with the `text` field to define conceptual criteria. An LLM judge will evaluate whether the model's response covers these points, providing a score and a rationale. This is ideal for assessing understanding of complex ideas.
+    *   **Deterministic (Function-Based) Points**: Use function tuples or `PointObject`s with the `fn` and `fnArgs` fields for precise, programmatic checks. This is best for verifying the presence of keywords, matching specific patterns (with regex), or other exact criteria.
+    *   **Mixed Approach**: You can, and often should, use a mix of both semantic and deterministic points within the same prompt to create a robust evaluation. For example, you can check for key terminology with function points while using semantic points to assess the deeper meaning.
 
 **Example Civic-Minded Blueprint (`/blueprints/udhr-article19-eval-v1.json`):**
 This is a good example because it tests understanding of a fundamental human right, is well-structured, and has clear points for evaluation.
@@ -129,11 +160,42 @@ Files in `/models/` define reusable sets of model identifiers.
 
 We welcome your contributions to expand CivicEval's coverage of important civic topics!
 
+### The Evidence-Based Workflow (Gold Standard)
+
+For a blueprint to be truly robust, auditable, and free of author bias, we strongly encourage contributors to follow the evidence-based workflow. This process ensures that every evaluation point is grounded in and citable to a specific, authoritative source. This is the gold standard for quality.
+
+The workflow consists of five phases:
+
+1.  **Phase 1: Ideation & Scoping.**
+    *   Identify a critical, under-represented civic topic (e.g., digital financial safety in a specific region, a niche area of electoral law, a non-Western human rights framework).
+    *   Define the core questions you want to answer about an AI's capability in this area.
+
+2.  **Phase 2: Initial Research & Canonical Source Identification.**
+    *   Conduct broad research to identify the most authoritative sources for your topic. These must be primary sources, such as government bodies, central banks, legislatures, or official rights organizations.
+    *   Compile a list of these canonical sources.
+
+3.  **Phase 3: Focused, Verbatim Evidence Extraction.**
+    *   Create a specific research directive that asks for *verbatim quotes* from your canonical sources related to concrete, testable scenarios.
+    *   Execute this research to collect the precise, citable, ground-truth text that will form the foundation of your prompts.
+
+4.  **Phase 4: Evidence-First Blueprint Authoring.**
+    *   With the verbatim evidence in hand, begin writing the blueprint JSON.
+    *   **Crucially, write the `points` first.** Each point must correspond directly to a piece of verbatim evidence.
+    *   Use the `citation` field in each point object to link it directly to its source document.
+    *   Write the `promptText` and `idealResponse` last, ensuring they elicit and reflect the concepts defined in your evidence-based points.
+
+5.  **Phase 5: Documentation.**
+    *   Flesh out the `description` field in your blueprint. Use markdown to summarize the blueprint's purpose, the scenarios it tests, and list the primary canonical sources used. This provides transparency and context for all users.
+
+Following this workflow ensures your contribution is a high-quality, long-lasting asset to the CivicEval project.
+
+### Standard Contribution Methods
+
 **Option 1: Adding a New Blueprint via GitHub's Web Interface (Easiest for single files)**
 
 If you are primarily adding a new blueprint JSON file and are less familiar with Git, you can do so directly through the GitHub website:
 
-1.  **Consider CivicEval's Mission:** Before creating a new blueprint, please ensure the topic aligns with our focus (see "Our Mission & Your Contribution" above).
+1.  **Consider CivicEval's Mission:** Before creating a new blueprint, please ensure the topic aligns with our focus (see "Our Mission & Your Contribution" above). If possible, follow the **Evidence-Based Workflow** described above.
 2.  **Check Existing Blueprints:** See if a similar evaluation already exists in the `/blueprints/` directory.
 3.  **Navigate to the [blueprints/](https://github.com/civiceval/configs/tree/main/blueprints) directory**
 4.  **Click "Add file"** and then select "Create new file".
@@ -148,7 +210,7 @@ If you are primarily adding a new blueprint JSON file and are less familiar with
 
 For more complex changes, multiple file additions, or if you prefer using Git locally:
 
-1.  **Consider CivicEval's Mission:** As above, ensure alignment.
+1.  **Consider CivicEval's Mission:** As above, ensure alignment and preferably follow the **Evidence-Based Workflow**.
 2.  **Check Existing Blueprints:** As above.
 3.  **Fork this Repository:** Create your fork of `civiceval/configs`.
 4.  **Create a New Branch:** For your changes (e.g., `feat/add-disinformation-eval` or `fix/update-model-collection`).
