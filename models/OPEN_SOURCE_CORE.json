@@ -1,0 +1,9 @@
+[
+  "openrouter:cohere/command-r-08-2024",
+  "openrouter:mistralai/magistral-medium-2506",
+  "openrouter:mistralai/mistral-medium-3",
+  "openrouter:mistralai/mixtral-8x22b-instruct",
+  "openrouter:mistralai/magistral-small-2506",
+  "openrouter:qwen/qwen3-32b",
+  "openrouter:deepseek/deepseek-r1-0528"
+]
