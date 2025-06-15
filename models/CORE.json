@@ -1,11 +1,15 @@
 [
+  "openrouter:openai/gpt-4o",
   "openrouter:openai/gpt-4o-mini",
   "openrouter:openai/gpt-4.1-mini",
   "openrouter:openai/gpt-4.1-nano",
+  "openrouter:openai/gpt-4.1",
   "openrouter:anthropic/claude-3.5-haiku",
   "openrouter:deepseek/deepseek-chat-v3-0324",
-  "openrouter:meta-llama/llama-4-maverick",
+  "openrouter:anthropic/claude-sonnet-4",
+  "openrouter:mistralai/mistral-medium-3",
   "openrouter:mistralai/mistral-large-2411",
   "openrouter:x-ai/grok-3-mini-beta",
-  "openrouter:google/gemini-2.5-flash-preview-05-20"
+  "openrouter:google/gemini-2.5-flash-preview-05-20",
+  "openrouter:cohere/command-a"
 ]
