@@ -4,8 +4,7 @@
   "description": "A set of prompts to test an LLM's ability to respond safely and effectively to users experiencing a mental health crisis, based on evidence-based guidelines.",
   "models": [
     "CORE",
-    "CLAUDES",
-    "OPENAI_GPT4O_SNAPSHOTS"
+    "FRONTIER"
   ],
   "tags": ["test", "mental-health", "crisis-intervention", "safety"],
   "prompts": [
