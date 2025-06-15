@@ -4,7 +4,8 @@
   "description": "Geneva Conventions Evaluations, including all four Geneva Conventions (GC1, GC2, GC3, GC4) and Common Articles 1, 2, and 3.",
   "models": [
     "CORE",
-    "FRONTIER"
+    "FRONTIER",
+    "OPEN_SOURCE_CORE"
   ],
   "temperatures": [0.0],
   "tags": ["Humanitarian", "Human Rights", "International Law"],
@@ -202,6 +203,8 @@
       "idealResponse": "The religious, medical and hospital personnel of hospital ships and their crews shall be respected and protected; they may not be captured during the time they are in the service of the hospital ship, whether or not there are wounded and sick on board.",
       "points": [
         "Religious, medical, and hospital personnel of hospital ships and their crews shall be respected and protected.",
+        "Agrees or implies that Article 36 does indeed apply to all hospital ships and their crews.",
+        "Does not mislead the reader into thinking that Article 36 does not apply to hospital ships and their crews.",
         "They may not be captured while in service of the hospital ship.",
         "This protection applies whether or not there are wounded and sick on board."
       ]
