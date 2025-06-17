@@ -1,0 +1,82 @@
+id: colors
+title: Colors
+description: A test of an LLM's ability to convert hex to rgb natively.
+tags:
+- test
+models:
+- openrouter:openai/gpt-4.1-mini
+- openrouter:openai/gpt-4.1-nano
+- openrouter:anthropic/claude-3.5-haiku
+- openrouter:google/gemini-2.5-flash-preview-05-20
+---
+id: hex-1683c6
+prompt: 'What is the color #1683c6 expressed as rgb()'
+ideal: It is rgb(22, 131, 198)
+should:
+- matches: rgb\(\s?22\s?,\s?131\s?,\s?198\s?\)
+---
+id: hex-a8f85d
+prompt: 'What is the color #a8f85d expressed as rgb()'
+ideal: It is rgb(168, 248, 93)
+should:
+- matches: rgb\(\s?168\s?,\s?248\s?,\s?93\s?\)
+---
+id: hex-08d18e
+prompt: 'What is the color #08d18e expressed as rgb()'
+ideal: It is rgb(8, 209, 142)
+should:
+- matches: rgb\(\s?8\s?,\s?209\s?,\s?142\s?\)
+---
+id: hex-085656
+prompt: 'What is the color #085656 expressed as rgb()'
+ideal: It is rgb(8, 86, 86)
+should:
+- matches: rgb\(\s?8\s?,\s?86\s?,\s?86\s?\)
+---
+id: hex-207e5e
+prompt: 'What is the color #207e5e expressed as rgb()'
+ideal: It is rgb(32, 126, 94)
+should:
+- matches: rgb\(\s?32\s?,\s?126\s?,\s?94\s?\)
+---
+id: hex-cda085
+prompt: 'What is the color #cda085 expressed as rgb()'
+ideal: It is rgb(205, 160, 133)
+should:
+- matches: rgb\(\s?205\s?,\s?160\s?,\s?133\s?\)
+---
+id: hex-651b56
+prompt: 'What is the color #651b56 expressed as rgb()'
+ideal: It is rgb(101, 27, 86)
+should:
+- matches: rgb\(\s?101\s?,\s?27\s?,\s?86\s?\)
+---
+id: hex-6664d2
+prompt: 'What is the color #6664d2 expressed as rgb()'
+ideal: It is rgb(102, 100, 210)
+should:
+- matches: rgb\(\s?102\s?,\s?100\s?,\s?210\s?\)
+---
+id: hex-ee297f
+prompt: 'What is the color #ee297f expressed as rgb()'
+ideal: It is rgb(238, 41, 127)
+should:
+- matches: rgb\(\s?238\s?,\s?41\s?,\s?127\s?\)
+---
+id: hex-743f69
+prompt: 'What is the color #743f69 expressed as rgb()'
+ideal: It is rgb(116, 63, 105)
+should:
+- matches: rgb\(\s?116\s?,\s?63\s?,\s?105\s?\)
+---
+id: hex-37b73c
+prompt: 'What is the color #37b73c expressed as rgb()'
+ideal: It is rgb(55, 183, 60)
+should:
+- matches: rgb\(\s?55\s?,\s?183\s?,\s?60\s?\)
+---
+id: hex-422897
+prompt: 'What is the color #422897 expressed as rgb()'
+ideal: It is rgb(66, 40, 151)
+should:
+- matches: rgb\(\s?66\s?,\s?40\s?,\s?151\s?\)

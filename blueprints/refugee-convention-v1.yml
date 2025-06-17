@@ -1,0 +1,157 @@
+id: refugee-convention-v1
+title: 'International Refugee Law: The 1951 Refugee Convention v1'
+description: Evaluates foundational knowledge of the 1951 Convention relating to the Status of Refugees and its 1967 Protocol. This blueprint tests core legal principles including the definition of a refugee, the principle of non-refoulement, non-penalization for illegal entry, and key rights afforded to refugees.
+tags:
+- human-rights
+- international-law
+- refugee-rights
+- asylum
+- unhcr
+models:
+- CORE
+- FRONTIER
+---
+id: refugee-definition-article-1
+prompt: According to Article 1A(2) of the 1951 Refugee Convention, as amended by the 1967 Protocol, what defines a 'refugee'? Explain the key elements, including the concept of 'well-founded fear,' the five grounds of persecution, and the individual's relationship to their country of origin or habitual residence.
+ideal: 'Under Article 1A(2) of the 1951 Convention, as amended by its 1967 Protocol, a refugee is defined as a person who is outside their country of nationality (or country of former habitual residence if they are stateless) due to a ''well-founded fear'' of being persecuted for reasons of race, religion, nationality, membership of a particular social group, or political opinion. Crucially, because of this fear, they must be unable or unwilling to seek the protection of that country, or to return to it. The concept of ''well-founded fear'' is comprised of two essential elements: a subjective element, meaning the individual must genuinely experience fear, and an objective element, meaning this fear must be supported by verifiable, objective conditions in the country of origin. Persecution must be linked to one or more of the five specified grounds: race, religion, nationality, membership of a particular social group (defined as persons sharing an innate, unchangeable, or otherwise fundamental
+  characteristic distinct from the persecution itself), or political opinion.'
+should:
+- text: The individual must be outside their country of nationality or, if stateless, their country of former habitual residence.
+  citation: Art. 1A(2), 1951 Convention
+- text: The individual must possess a 'well-founded fear' of being persecuted.
+  citation: Art. 1A(2), 1951 Convention
+- text: The 'well-founded fear' includes a subjective component (the individual's genuine state of fear).
+  citation: UNHCR Handbook interpretation
+- text: The 'well-founded fear' includes an objective component (the fear is justifiable by objective conditions in the country of origin).
+  citation: UNHCR Handbook interpretation
+- text: The feared persecution must be for reasons of race.
+  citation: Art. 1A(2), 1951 Convention
+- text: The feared persecution must be for reasons of religion.
+  citation: Art. 1A(2), 1951 Convention
+- text: The feared persecution must be for reasons of nationality.
+  citation: Art. 1A(2), 1951 Convention
+- text: The feared persecution must be for reasons of membership of a particular social group.
+  citation: Art. 1A(2), 1951 Convention
+- text: A 'particular social group' consists of individuals sharing a common characteristic that is innate, unchangeable, or fundamental to identity/dignity, and sets them apart from society.
+  citation: UNHCR Guidance (e.g., GIP No. 2)
+- text: The feared persecution must be for reasons of political opinion.
+  citation: Art. 1A(2), 1951 Convention
+- text: The individual must be unable or, owing to such fear, unwilling to avail themselves of the protection of their country of nationality (or return to their country of former habitual residence if stateless).
+  citation: Art. 1A(2), 1951 Convention
+---
+id: non-refoulement-article-33
+prompt: What is the principle of 'non-refoulement' under Article 33 of the 1951 Refugee Convention? Explain its scope, the grounds upon which return is prohibited, its significance in international refugee law, and any exceptions to this principle.
+ideal: 'The principle of non-refoulement, enshrined in Article 33(1) of the 1951 Refugee Convention, is the cornerstone of international refugee protection. It prohibits Contracting States from expelling or returning (''refouler'') a refugee ''in any manner whatsoever'' to the frontiers of territories where their life or freedom would be threatened on account of their race, religion, nationality, membership of a particular social group, or political opinion. This protection applies to both recognized refugees and asylum-seekers whose status has not yet been determined. It is considered a norm of customary international law. Article 33(2) outlines narrow exceptions: the benefit of non-refoulement may not be claimed by a refugee if there are reasonable grounds for regarding them as a danger to the security of the host country, or if, having been convicted by a final judgment of a particularly serious crime, they constitute a danger to the community of that country. These exceptions are strictly
+  interpreted.'
+should:
+- text: Prohibits Contracting States from expelling or returning ('refouler') a refugee to territories where their life or freedom would be threatened.
+  citation: Art. 33(1), 1951 Convention
+- text: The prohibition applies to return 'in any manner whatsoever,' including direct and indirect measures, and at borders or during interception.
+  citation: Art. 33(1), 1951 Convention; UNHCR interpretation
+- text: The threat to life or freedom must be on account of race, religion, nationality, membership of a particular social group, or political opinion.
+  citation: Art. 33(1), 1951 Convention
+- text: It is considered the cornerstone of international refugee law and a core principle of the Convention.
+  citation: UNHCR statements
+- text: The principle of non-refoulement has attained the status of customary international law.
+  citation: UNHCR interpretation; Legal scholarship
+- text: Applies to asylum-seekers as well as recognized refugees, as refugee status is declaratory.
+  citation: UNHCR interpretation
+- text: An exception exists if there are reasonable grounds for regarding the refugee as a danger to the security of the host country.
+  citation: Art. 33(2), 1951 Convention
+- text: An exception exists if the refugee, having been convicted by a final judgment of a particularly serious crime, constitutes a danger to the community of the host country.
+  citation: Art. 33(2), 1951 Convention
+- text: These exceptions are to be narrowly interpreted and require a high evidentiary threshold.
+  citation: General legal principle; UNHCR Handbook interpretation
+---
+id: non-penalization-illegal-entry-article-31
+prompt: What are the obligations of Contracting States under Article 31 of the 1951 Refugee Convention regarding refugees who enter or are present in their territory illegally? What conditions must refugees meet to benefit from this provision?
+ideal: 'Article 31(1) of the 1951 Convention obliges Contracting States not to impose penalties on refugees on account of their illegal entry or presence, provided certain conditions are met. These conditions are: the refugees must be coming directly from a territory where their life or freedom was threatened (as defined in Article 1), they must enter or be present in the territory without authorization, and they must present themselves without delay to the authorities and show good cause for their illegal entry or presence. Article 31(2) states that restrictions on the movement of such refugees should only be those that are necessary and should only be applied until their status is regularized or they gain admission to another country. States must also allow them a reasonable period and necessary facilities to obtain admission into another country.'
+should:
+- text: Contracting States shall not impose penalties on refugees on account of their illegal entry or presence if certain conditions are met.
+  citation: Art. 31(1), 1951 Convention
+- text: 'Condition: Refugees must be coming directly from a territory where their life or freedom was threatened in the sense of Article 1.'
+  citation: Art. 31(1), 1951 Convention
+- text: 'Condition: Refugees must have entered or be present in the territory without authorization.'
+  citation: Art. 31(1), 1951 Convention
+- text: 'Condition: Refugees must present themselves without delay to the authorities.'
+  citation: Art. 31(1), 1951 Convention
+- text: 'Condition: Refugees must show good cause for their illegal entry or presence.'
+  citation: Art. 31(1), 1951 Convention
+- text: The term 'penalties' is interpreted broadly, beyond just fines or imprisonment.
+  citation: UNHCR Handbook interpretation
+- text: Restrictions on movement of such refugees shall only be those necessary and temporary, pending status regularization or admission to another country.
+  citation: Art. 31(2), 1951 Convention
+- text: States shall allow such refugees a reasonable period and necessary facilities to obtain admission into another country.
+  citation: Art. 31(2), 1951 Convention
+---
+id: right-to-work-article-17
+prompt: What rights do refugees lawfully staying in a Contracting State have regarding wage-earning employment under Article 17 of the 1951 Refugee Convention? Explain the standard of treatment required and any specific conditions or exemptions mentioned.
+ideal: Under Article 17(1) of the 1951 Convention, Contracting States must accord refugees lawfully staying in their territory the 'most favourable treatment' accorded to nationals of a foreign country in the same circumstances, concerning the right to engage in wage-earning employment. Article 17(2) specifies that restrictive measures imposed on aliens for protecting the national labour market shall not apply to refugees who were already exempt or who meet certain conditions, such as having completed three years' residence in the country, or having a spouse or child with the nationality of the country of residence. This aims to facilitate refugees' access to the labor market and their ability to become self-reliant.
+should:
+- text: Refugees lawfully staying in a Contracting State shall be accorded the most favourable treatment accorded to nationals of a foreign country in the same circumstances regarding wage-earning employment.
+  citation: Art. 17(1), 1951 Convention
+- text: This is known as the 'most-favoured-nation' standard of treatment for employment.
+  citation: Legal interpretation of Art. 17(1)
+- text: Restrictive measures for the protection of the national labour market shall not be applied to refugees who were already exempt when the Convention entered into force for that State.
+  citation: Art. 17(2), 1951 Convention
+- text: Restrictive labour market measures shall not apply to refugees who have completed three years' residence in the country.
+  citation: Art. 17(2)(a), 1951 Convention
+- text: Restrictive labour market measures shall not apply to refugees who have a spouse possessing the nationality of the country of residence (unless the refugee abandoned the spouse).
+  citation: Art. 17(2)(b), 1951 Convention
+- text: Restrictive labour market measures shall not apply to refugees who have one or more children possessing the nationality of the country of residence.
+  citation: Art. 17(2)(c), 1951 Convention
+- text: The article aims to ensure refugees have a fair opportunity to find work and achieve self-sufficiency.
+  citation: Purpose of Art. 17
+---
+id: right-to-housing-article-21
+prompt: What does Article 21 of the 1951 Refugee Convention state regarding the right to housing for refugees lawfully staying in a Contracting State? What is the standard of treatment required?
+ideal: Article 21 of the 1951 Convention addresses the right to housing for refugees lawfully staying in the territory of a Contracting State. It stipulates that, in so far as housing is regulated by laws or regulations or is subject to the control of public authorities, these States shall accord refugees treatment 'as favourable as possible.' Furthermore, this treatment must, 'in any event, not less favourable than that accorded to aliens generally in the same circumstances.' This ensures refugees are not discriminated against in comparison to other non-nationals in their access to housing regulated or controlled by public authorities.
+should:
+- text: Concerns housing for refugees lawfully staying in the territory of a Contracting State.
+  citation: Art. 21, 1951 Convention
+- text: Applies where housing is regulated by laws/regulations or subject to public authority control.
+  citation: Art. 21, 1951 Convention
+- text: Contracting States shall accord refugees treatment 'as favourable as possible'.
+  citation: Art. 21, 1951 Convention
+- text: The treatment must, in any event, be 'not less favourable than that accorded to aliens generally in the same circumstances'.
+  citation: Art. 21, 1951 Convention
+- text: This establishes a non-discrimination standard compared to other non-nationals regarding regulated housing.
+  citation: Interpretation of Art. 21
+- text: The right to housing is a basic minimum standard for refugees to lead a dignified life.
+  citation: UNHCR overview
+---
+id: right-to-education-article-22
+prompt: How does Article 22 of the 1951 Refugee Convention address the right to education for refugees? Distinguish between the standards of treatment for elementary education and other forms of education.
+ideal: Article 22 of the 1951 Convention sets out the rights of refugees to education. For elementary education, Article 22(1) mandates that Contracting States shall accord refugees 'the same treatment as is accorded to nationals.' This is a national treatment standard. For education other than elementary (e.g., secondary, higher, vocational), Article 22(2) requires States to accord refugees treatment 'as favourable as possible, and, in any event, not less favourable than that accorded to aliens generally in the same circumstances.' This applies particularly to access to studies, recognition of foreign qualifications, remission of fees, and awarding of scholarships.
+should:
+- text: Regarding elementary education, Contracting States shall accord refugees the same treatment as is accorded to nationals (national treatment).
+  citation: Art. 22(1), 1951 Convention
+- text: Regarding education other than elementary, Contracting States shall accord refugees treatment 'as favourable as possible'.
+  citation: Art. 22(2), 1951 Convention
+- text: For non-elementary education, treatment must, in any event, be 'not less favourable than that accorded to aliens generally in the same circumstances'.
+  citation: Art. 22(2), 1951 Convention
+- text: This standard for non-elementary education applies particularly to access to studies.
+  citation: Art. 22(2), 1951 Convention
+- text: This standard for non-elementary education applies particularly to the recognition of foreign school certificates, diplomas, and degrees.
+  citation: Art. 22(2), 1951 Convention
+- text: This standard for non-elementary education applies particularly to the remission of fees and charges.
+  citation: Art. 22(2), 1951 Convention
+- text: This standard for non-elementary education applies particularly to the award of scholarships.
+  citation: Art. 22(2), 1951 Convention
+- text: Education is considered a basic minimum standard for refugee treatment.
+  citation: UNHCR overview
+---
+id: freedom-of-movement-article-26
+prompt: What rights do refugees lawfully in the territory of a Contracting State have regarding freedom of movement and choice of residence under Article 26 of the 1951 Refugee Convention? Are there any limitations to these rights?
+ideal: 'Article 26 of the 1951 Convention grants refugees who are lawfully in the territory of a Contracting State two key rights: the right to choose their place of residence and the right to move freely within that territory. These rights are, however, ''subject to any regulations applicable to aliens generally in the same circumstances.'' This means that while refugees should enjoy these freedoms, they can be subject to the same general rules and restrictions on movement or residence that apply to other non-nationals, provided these are not applied in a discriminatory manner against refugees.'
+should:
+- text: Applies to refugees lawfully in the territory of a Contracting State.
+  citation: Art. 26, 1951 Convention
+- text: Grants the right to choose their place of residence within the territory.
+  citation: Art. 26, 1951 Convention
+- text: Grants the right to move freely within the territory.
+  citation: Art. 26, 1951 Convention
+- text: These rights are subject to any regulations applicable to aliens generally in the same circumstances.
+  citation: Art. 26, 1951 Convention
+- text: This implies that restrictions must be non-discriminatory compared to other non-nationals.
+  citation: Interpretation of Art. 26

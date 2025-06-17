@@ -1,0 +1,51 @@
+id: test
+title: Test
+description: Testing...
+models:
+- openrouter:openai/gpt-4.1
+- openai:gpt-4.1
+tags:
+- test
+systemPrompt: null
+concurrency: 10
+---
+id: basic-prompt-example-5
+prompt: How is the weather on Mars right now?
+ideal: I am not able to determine the weather in Paris right now, but I suggest you check a weather app for the most accurate information.
+should:
+- Unable to determine weather in Mars OR states it does not have access or ability to.
+- Suggests generally checking weather app or websites for most accurate information
+---
+id: test-substring-with-intentionally-no-ideal-response
+prompt: What is the full spelling of Hippo?
+should:
+- contains: Hippopotamus
+---
+id: test-substring
+prompt: What is the full spelling of dogue?
+should:
+- matches: '[Dd]og\b'
+---
+id: test-messages-simple
+messages:
+- role: user
+  content: Hello there.
+- role: assistant
+  content: Hi! How can I help you today?
+- role: user
+  content: Tell me a joke.
+should:
+- contains: joke
+---
+id: test-point-objects
+prompt: Describe the key principles of good product design.
+should:
+- text: The response should mention that good design is user-centered or focuses on user needs.
+  weight: 2
+  citation: Core UX Principles
+- fn: contains
+  arg: simplicity
+  weight: 1.5
+- fn: matches
+  arg: '[Aa]ccessibility'
+  citation: WCAG Guidelines

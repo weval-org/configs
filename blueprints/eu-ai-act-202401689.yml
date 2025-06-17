@@ -1,0 +1,228 @@
+id: eu-ai-act-202401689
+title: EU Artificial Intelligence Act (Regulation (EU) 2024/1689)
+description: Evaluates understanding of the core provisions, definitions, obligations, and prohibitions outlined in the EU Artificial Intelligence Act.
+tags:
+- EU AI Act
+- Artificial Intelligence
+- Regulation
+- Compliance
+- EU
+- Legislation
+- AI
+models:
+- CORE
+- openrouter:anthropic/claude-sonnet-4
+- openrouter:openai/gpt-4.1
+---
+id: ai-act-purpose-1
+prompt: According to Article 1 of the REGULATION (EU) 2024/1689 (Artificial Intelligence Act), what is the primary purpose of this Regulation?
+ideal: 'The purpose of this Regulation is to improve the functioning of the internal market and promote the uptake of human-centric and trustworthy artificial intelligence (AI), while ensuring a high level of protection of health, safety, fundamental rights enshrined in the Charter, including democracy, the rule of law and environmental protection, against the harmful effects of AI systems in the Union and supporting innovation. [cite: 817, 818]'
+should:
+- 'The Regulation aims to improve the functioning of the internal market. [cite: 817]'
+- 'It seeks to promote the uptake of human-centric and trustworthy AI. [cite: 817]'
+- 'It aims to ensure a high level of protection of health and safety. [cite: 817]'
+- 'It aims to ensure a high level of protection of fundamental rights enshrined in the Charter, including democracy, the rule of law, and environmental protection. [cite: 817]'
+- 'It aims to protect against the harmful effects of AI systems in the Union. [cite: 817]'
+- 'It supports innovation in the field of AI. [cite: 817, 818]'
+---
+id: ai-act-definition-ai-system-2
+prompt: Based on Article 3 of the EU Artificial Intelligence Act, what is the definition of an 'AI system'?
+ideal: 'An ''AI system'' means a machine-based system that is designed to operate with varying levels of autonomy and that may exhibit adaptiveness after deployment, and that, for explicit or implicit objectives, infers, from the input it receives, how to generate outputs such as predictions, content, recommendations, or decisions that can influence physical or virtual environments. [cite: 848, 849]'
+should:
+- 'An AI system is a machine-based system. [cite: 848]'
+- 'It is designed to operate with varying levels of autonomy. [cite: 848]'
+- 'It may exhibit adaptiveness after deployment. [cite: 848]'
+- 'For explicit or implicit objectives, it infers from the input it receives how to generate outputs. [cite: 848]'
+- 'These outputs can be predictions, content, recommendations, or decisions. [cite: 849]'
+- 'These outputs can influence physical or virtual environments. [cite: 849]'
+---
+id: ai-act-prohibited-practice-subliminal-3
+prompt: Article 5 of the EU AI Act prohibits certain AI practices. Describe the prohibition related to AI systems that deploy subliminal techniques or purposefully manipulative or deceptive techniques.
+ideal: 'The placing on the market, the putting into service or the use of an AI system that deploys subliminal techniques beyond a person''s consciousness or purposefully manipulative or deceptive techniques, with the objective, or the effect of materially distorting the behaviour of a person or a group of persons by appreciably impairing their ability to make an informed decision, thereby causing them to take a decision that they would not have otherwise taken in a manner that causes or is reasonably likely to cause that person, another person or group of persons significant harm, is prohibited. [cite: 927, 928]'
+should:
+- 'The prohibition applies to placing on the market, putting into service, or use of such AI systems. [cite: 927]'
+- 'It covers AI systems deploying subliminal techniques beyond a person''s consciousness. [cite: 927]'
+- 'It also covers purposefully manipulative or deceptive techniques. [cite: 927]'
+- 'These techniques must have the objective or effect of materially distorting behaviour by appreciably impairing the ability to make an informed decision. [cite: 927]'
+- 'This distortion must cause the person to take a decision they would not have otherwise taken. [cite: 927]'
+- 'The decision must cause or be reasonably likely to cause significant harm to that person, another person, or a group of persons. [cite: 927, 928]'
+---
+id: ai-act-high-risk-classification-product-safety-4
+prompt: According to Article 6(1) of the EU AI Act, under what two conditions is an AI system considered high-risk when it relates to products covered by Union harmonisation legislation listed in Annex I?
+ideal: 'Irrespective of whether an AI system is placed on the market or put into service independently of the products referred to in points (a) and (b), that AI system shall be considered to be high-risk where both of the following conditions are fulfilled: (a) the AI system is intended to be used as a safety component of a product, or the AI system is itself a product, covered by the Union harmonisation legislation listed in Annex I; and (b) the product whose safety component pursuant to point (a) is the AI system, or the AI system itself as a product, is required to undergo a third-party conformity assessment, with a view to the placing on the market or the putting into service of that product pursuant to the Union harmonisation legislation listed in Annex I. [cite: 960]'
+should:
+- 'The AI system is intended to be used as a safety component of a product, or is itself a product, covered by Union harmonisation legislation in Annex I. [cite: 960]'
+- 'The product (or the AI system itself as a product) requires a third-party conformity assessment under that Union harmonisation legislation. [cite: 960]'
+---
+id: ai-act-risk-management-system-requirements-5
+prompt: Article 9 of the EU AI Act outlines requirements for a risk management system for high-risk AI systems. What are the key steps involved in this continuous iterative process?
+ideal: 'The risk management system shall be a continuous iterative process planned and run throughout the entire lifecycle of a high-risk AI system, requiring regular systematic review and updating. It shall comprise the following steps: (a) the identification and analysis of the known and the reasonably foreseeable risks that the high-risk AI system can pose to health, safety or fundamental rights when the high-risk AI system is used in accordance with its intended purpose; (b) the estimation and evaluation of the risks that may emerge when the high-risk AI system is used in accordance with its intended purpose, and under conditions of reasonably foreseeable misuse; (c) the evaluation of other risks possibly arising, based on the analysis of data gathered from the post-market monitoring system referred to in Article 72; (d) the adoption of appropriate and targeted risk management measures designed to address the risks identified pursuant to point (a). [cite: 995, 996, 997, 998, 999]'
+should:
+- 'It''s a continuous iterative process throughout the AI system''s lifecycle, requiring regular review and updating. [cite: 995]'
+- 'It involves identifying and analyzing known and reasonably foreseeable risks to health, safety, or fundamental rights during intended use. [cite: 996]'
+- 'It includes estimating and evaluating risks from intended use and reasonably foreseeable misuse. [cite: 997]'
+- 'It requires evaluating other possibly arising risks based on post-market monitoring data. [cite: 998]'
+- 'It mandates adopting appropriate and targeted risk management measures for identified risks. [cite: 999]'
+---
+id: ai-act-data-governance-quality-criteria-6
+prompt: Article 10 of the EU AI Act specifies quality criteria for training, validation, and testing data sets for high-risk AI systems. What are the general requirements for these data sets concerning their characteristics and data governance practices?
+ideal: 'Training, validation and testing data sets shall be subject to data governance and management practices appropriate for the intended purpose of the high-risk AI system. These practices concern relevant design choices; data collection processes and origin; data preparation operations like annotation and cleaning; formulation of assumptions; assessment of data suitability; examination for possible biases affecting health, safety, fundamental rights or leading to discrimination; measures to mitigate biases; and identification of data gaps. The data sets must be relevant, sufficiently representative, and to the best extent possible, free of errors and complete for the intended purpose, possessing appropriate statistical properties, including for specific groups if applicable. They must also account for particular geographical, contextual, behavioural or functional settings. [cite: 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020, 1021, 1022, 1023, 1024, 1026]'
+should:
+- 'Data sets must undergo appropriate data governance and management practices. [cite: 1014]'
+- 'Practices include considerations of design choices, data collection, origin, and preparation. [cite: 1015, 1016, 1017]'
+- 'Examination for and mitigation of possible biases affecting rights or leading to discrimination is required. [cite: 1020, 1021]'
+- 'Data sets must be relevant, sufficiently representative, and as error-free and complete as possible for the intended purpose. [cite: 1023]'
+- 'Data sets must have appropriate statistical properties and consider specific operational settings. [cite: 1024, 1026]'
+---
+id: ai-act-human-oversight-high-risk-7
+prompt: What is the main objective of human oversight for high-risk AI systems as described in Article 14 of the EU AI Act, and what capabilities should natural persons assigned to this oversight possess?
+ideal: 'Human oversight for high-risk AI systems aims to prevent or minimise the risks to health, safety or fundamental rights that may emerge when a high-risk AI system is used as intended or under conditions of reasonably foreseeable misuse, especially if risks persist despite other requirements. [cite: 1066] Natural persons assigned to human oversight should be enabled to properly understand the system''s capacities and limitations, duly monitor its operation, remain aware of automation bias, correctly interpret the system''s output, decide not to use or to override the system, and intervene or stop the system. [cite: 1069, 1070, 1071, 1072, 1073]'
+should:
+- 'The main objective of human oversight is to prevent or minimize risks to health, safety, or fundamental rights from high-risk AI systems. [cite: 1066]'
+- 'This applies during intended use or reasonably foreseeable misuse, especially for persistent risks. [cite: 1066]'
+- 'Overseers must be able to understand the AI system''s capacities and limitations. [cite: 1069]'
+- 'They must be able to duly monitor its operation and detect anomalies. [cite: 1069]'
+- 'They should be aware of potential automation bias. [cite: 1070]'
+- 'They must be able to correctly interpret the system''s output, decide to override or not use it, and intervene or stop the system. [cite: 1071, 1072, 1073]'
+---
+id: ai-act-provider-obligations-conformity-8
+prompt: Article 16 of the EU AI Act lists several obligations for providers of high-risk AI systems. What must a provider do regarding conformity assessment, declaration, and marking before placing a system on the market or putting it into service?
+ideal: 'Providers of high-risk AI systems must ensure that the high-risk AI system undergoes the relevant conformity assessment procedure as referred to in Article 43, prior to its being placed on the market or put into service. They must draw up an EU declaration of conformity in accordance with Article 47. They must also affix the CE marking to the high-risk AI system or its documentation to indicate conformity with this Regulation, in accordance with Article 48. [cite: 1091, 1092, 1093]'
+should:
+- 'Providers must ensure the high-risk AI system undergoes the relevant conformity assessment procedure before market placement or service. [cite: 1091]'
+- 'Providers must draw up an EU declaration of conformity. [cite: 1092]'
+- 'Providers must affix the CE marking to the high-risk AI system (or its packaging/documentation) to indicate conformity. [cite: 1093]'
+---
+id: ai-act-deployer-obligations-instructions-9
+prompt: According to Article 26 of the EU AI Act, what are the primary obligations of deployers of high-risk AI systems regarding the use of such systems and monitoring their operation?
+ideal: 'Deployers of high-risk AI systems must take appropriate technical and organisational measures to ensure they use such systems in accordance with the instructions for use accompanying the systems. [cite: 26] Deployers shall monitor the operation of the high-risk AI system on the basis of the instructions for use and, where relevant, inform providers in accordance with Article 72. If deployers have reason to believe that using the system according to instructions might lead to a risk as defined in Article 79(1), they must inform the provider or distributor and the relevant market surveillance authority without undue delay, and suspend the system''s use. Serious incidents must be immediately reported to the provider, then importer/distributor and relevant authorities. [cite: 1177, 1178]'
+should:
+- 'Deployers must use high-risk AI systems in accordance with their instructions for use. [cite: 26]'
+- 'Deployers must monitor the operation of the high-risk AI system based on its instructions for use. [cite: 1177]'
+- 'If use according to instructions might present a risk, deployers must inform the provider/distributor and market surveillance authority, and suspend use. [cite: 1177]'
+- 'Deployers must report serious incidents immediately to the provider, and then to other relevant parties and authorities. [cite: 1178]'
+---
+id: ai-act-transparency-interaction-10
+prompt: Article 50(1) of the EU AI Act imposes transparency obligations on providers of AI systems intended to interact directly with natural persons. What is this obligation, and when does it not apply?
+ideal: 'Providers shall ensure that AI systems intended to interact directly with natural persons are designed and developed in such a way that the natural persons concerned are informed that they are interacting with an AI system, unless this is obvious from the point of view of a natural person who is reasonably well-informed, observant and circumspect, taking into account the circumstances and the context of use. This obligation shall not apply to AI systems authorised by law to detect, prevent, investigate or prosecute criminal offences, subject to appropriate safeguards for the rights and freedoms of third parties, unless those systems are available for the public to report a criminal offence. [cite: 1390, 1391]'
+should:
+- 'Providers must ensure natural persons are informed they are interacting with an AI system. [cite: 1390]'
+- 'This obligation applies unless it is obvious from the circumstances and context of use to a reasonably well-informed person. [cite: 1390]'
+- 'The obligation does not apply to AI systems authorized by law for law enforcement purposes (detect, prevent, investigate, prosecute criminal offences), with appropriate safeguards. [cite: 1391]'
+- 'The law enforcement exception does not apply if such systems are available for the public to report a criminal offence. [cite: 1391]'
+---
+id: ai-act-gpai-systemic-risk-classification-11
+prompt: Under Article 51 of the EU AI Act, when is a general-purpose AI model classified as a general-purpose AI model with systemic risk?
+ideal: 'A general-purpose AI model shall be classified as a general-purpose AI model with systemic risk if it meets any of the following conditions: (a) it has high impact capabilities evaluated on the basis of appropriate technical tools and methodologies, including indicators and benchmarks; or (b) based on a decision of the Commission, ex officio or following a qualified alert from the scientific panel, it has capabilities or an impact equivalent to those set out in point (a) having regard to the criteria set out in Annex XIII. A general-purpose AI model is presumed to have high impact capabilities if the cumulative amount of computation used for its training measured in floating point operations is greater than 10^25. [cite: 1407, 1408, 533]'
+should:
+- 'It has high impact capabilities evaluated using appropriate technical tools, methodologies, indicators, and benchmarks. [cite: 1407]'
+- 'The Commission decides, ex officio or after a scientific panel alert, that it has equivalent capabilities or impact based on Annex XIII criteria. [cite: 1408]'
+- 'There''s a presumption of high impact capabilities if its training computation exceeds 10^25 floating point operations. [cite: 533]'
+---
+id: ai-act-sandboxes-objectives-12
+prompt: Article 57 of the EU AI Act concerns AI regulatory sandboxes. What are the stated objectives for establishing these sandboxes?
+ideal: 'The objectives of the AI regulatory sandboxes should be to foster AI innovation by establishing a controlled experimentation and testing environment in the development and pre-marketing phase with a view to ensuring compliance of the innovative AI systems with this Regulation and other relevant Union and national law. Moreover, the AI regulatory sandboxes should aim to enhance legal certainty for innovators and the competent authorities'' oversight and understanding of the opportunities, emerging risks and the impacts of AI use, to facilitate regulatory learning for authorities and undertakings, to support cooperation and the sharing of best practices with the authorities involved in the AI regulatory sandbox, and to accelerate access to markets, including by removing barriers for SMEs, including start-ups. [cite: 652, 653, 1495, 1496, 1497, 1498]'
+should:
+- 'To foster AI innovation in a controlled environment before market placement. [cite: 1495]'
+- 'To ensure compliance of innovative AI systems with the Regulation and other laws. [cite: 652]'
+- 'To enhance legal certainty for innovators. [cite: 652, 1495]'
+- 'To improve competent authorities'' oversight and understanding of AI''s opportunities and risks. [cite: 652]'
+- 'To facilitate regulatory learning for authorities and undertakings. [cite: 652]'
+- 'To support cooperation and sharing of best practices among involved authorities. [cite: 652, 1496]'
+- 'To accelerate access to markets, especially for SMEs and start-ups. [cite: 652, 1498]'
+---
+id: ai-act-penalties-prohibited-practices-13
+prompt: What are the maximum administrative fines for non-compliance with the prohibition of AI practices referred to in Article 5 of the EU AI Act, according to Article 99?
+ideal: 'Non-compliance with the prohibition of the AI practices referred to in Article 5 shall be subject to administrative fines of up to EUR 35 000 000 or, if the offender is an undertaking, up to 7 % of its total worldwide annual turnover for the preceding financial year, whichever is higher. [cite: 1910]'
+should:
+- 'Fines can be up to EUR 35,000,000. [cite: 1910]'
+- 'Alternatively, if the offender is an undertaking, fines can be up to 7% of its total worldwide annual turnover for the preceding financial year. [cite: 1910]'
+- 'The higher of these two amounts will be applied. [cite: 1910]'
+---
+id: ai-act-entry-into-force-dates-14
+prompt: According to Article 113 of the EU AI Act, when does the Regulation generally apply, and are there different application dates for specific chapters or articles?
+ideal: 'The Regulation shall apply from 2 August 2026. [cite: 2010] However, Chapters I and II shall apply from 2 February 2025. [cite: 2011] Chapter III Section 4, Chapter V, Chapter VII and Chapter XII and Article 78 shall apply from 2 August 2025, with the exception of Article 101. [cite: 2012] Article 6(1) and the corresponding obligations in this Regulation shall apply from 2 August 2027. [cite: 2013]'
+should:
+- 'The Regulation generally applies from 2 August 2026. [cite: 2010]'
+- 'Chapters I (General Provisions) and II (Prohibited AI Practices) apply from 2 February 2025. [cite: 2011]'
+- 'Provisions on Notifying authorities and notified bodies (Chapter III Section 4), General-Purpose AI Models (Chapter V), Governance (Chapter VII), Penalties (Chapter XII, excluding Art 101), and Confidentiality (Article 78) apply from 2 August 2025. [cite: 2012]'
+- 'Article 6(1) (classification of high-risk AI systems related to products under Annex I) and corresponding obligations apply from 2 August 2027. [cite: 2013]'
+---
+id: ai-act-definition-deployer-15
+prompt: How does Article 3 of the EU AI Act define a 'deployer' of an AI system?
+ideal: '''Deployer'' means a natural or legal person, public authority, agency or other body using an AI system under its authority except where the AI system is used in the course of a personal non-professional activity. [cite: 852]'
+should:
+- 'A deployer can be a natural or legal person, public authority, agency or other body. [cite: 852]'
+- 'A deployer is defined as using an AI system under its authority. [cite: 852]'
+- 'An exception is made if the AI system is used in the course of a personal non-professional activity. [cite: 852]'
+---
+id: ai-act-rationale-prohibition-social-scoring-16
+prompt: The EU AI Act, in Article 5, prohibits AI systems for social scoring of natural persons. According to Whereas 31 of the Regulation (EU) 2024/1689, what is the rationale behind this prohibition?
+ideal: 'According to Whereas 31, AI systems providing social scoring of natural persons by public or private actors may lead to discriminatory outcomes and the exclusion of certain groups[cite: 158]. They may violate the right to dignity and non-discrimination and the values of equality and justice[cite: 159]. Such AI systems evaluate or classify natural persons or groups thereof on the basis of multiple data points related to their social behaviour in multiple contexts or known, inferred or predicted personal or personality characteristics over certain periods of time[cite: 160]. The social score obtained may lead to detrimental or unfavourable treatment in social contexts unrelated to the original data generation or to treatment that is disproportionate or unjustified to the gravity of their social behaviour[cite: 161]. Therefore, AI systems entailing such unacceptable scoring practices leading to such detrimental outcomes should be prohibited[cite: 162].'
+should:
+- 'Social scoring AI systems may lead to discriminatory outcomes and exclusion of certain groups[cite: 158].'
+- 'They may violate the right to dignity, non-discrimination, and the values of equality and justice[cite: 159].'
+- 'These systems evaluate persons based on social behavior or personal characteristics over time[cite: 160].'
+- 'The resulting social score can lead to detrimental treatment in unrelated contexts or disproportionate treatment relative to their social behaviour[cite: 161].'
+- 'Such unacceptable scoring practices leading to detrimental outcomes are therefore prohibited[cite: 162].'
+---
+id: ai-act-high-risk-classification-derogation-17
+prompt: Article 6(3) of the EU AI Act (Regulation (EU) 2024/1689) allows an AI system listed in Annex III not to be considered high-risk under certain conditions. Explain these conditions and what the implication of an AI system performing profiling of natural persons is in this context.
+ideal: 'By derogation from Article 6(2), an AI system referred to in Annex III shall not be considered to be high-risk where it does not pose a significant risk of harm to the health, safety or fundamental rights of natural persons, including by not materially influencing the outcome of decision making[cite: 962]. This applies if the AI system is intended to perform a narrow procedural task[cite: 963]; improve the result of a previously completed human activity[cite: 964]; detect decision-making patterns or deviations from prior decision-making patterns and is not meant to replace or influence the previously completed human assessment, without proper human review[cite: 965]; or perform a preparatory task to an assessment relevant for the purposes of the use cases listed in Annex III[cite: 966]. Notwithstanding these conditions, an AI system referred to in Annex III shall always be considered to be high-risk where the AI system performs profiling of natural persons[cite: 967].'
+should:
+- 'An Annex III AI system can be considered not high-risk if it doesn''t pose a significant risk of harm to health, safety, or fundamental rights, including by not materially influencing decision outcomes[cite: 962].'
+- 'One condition for this derogation is if the AI system is intended to perform a narrow procedural task[cite: 963].'
+- 'Another condition is if the AI system is intended to improve the result of a previously completed human activity[cite: 964].'
+- 'A third condition is if the AI system is intended to detect decision-making patterns or deviations from prior patterns and is not meant to replace or influence the previously completed human assessment without proper human review[cite: 965].'
+- 'A fourth condition is if the AI system is intended to perform a preparatory task to an assessment relevant for Annex III use cases[cite: 966].'
+- 'However, an AI system referred to in Annex III is always considered high-risk if it performs profiling of natural persons[cite: 967].'
+---
+id: ai-act-relationship-data-protection-laws-18
+prompt: How does the EU Artificial Intelligence Act (Regulation (EU) 2024/1689), according to its Article 2(7) and associated recitals like Whereas 10 and 34, state its relationship with existing Union laws on data protection such as GDPR (Regulation (EU) 2016/679) and the Law Enforcement Directive (Directive (EU) 2016/680)?
+ideal: 'Article 2(7) of the EU AI Act states that Union law on the protection of personal data, privacy and the confidentiality of communications applies to personal data processed in connection with the rights and obligations laid down in this Regulation[cite: 840]. This Regulation shall not affect Regulation (EU) 2016/679 or (EU) 2018/1725, or Directive 2002/58/EC or (EU) 2016/680, without prejudice to Article 10(5) and Article 59 of this Regulation[cite: 840, 841]. Whereas 10 further clarifies that the AI Act does not seek to affect the application of existing Union law governing the processing of personal data, including the tasks and powers of the independent supervisory authorities competent to monitor compliance[cite: 37]. It also states that the obligations of providers and deployers of AI systems in their role as data controllers or processors stemming from Union or national law on the protection of personal data remain, in so far as the design, the development or the use of AI
+  systems involves the processing of personal data[cite: 38]. Whereas 34 reiterates that the fundamental right to the protection of personal data is safeguarded in particular by these existing regulations[cite: 34].'
+should:
+- 'The AI Act applies alongside and generally does not affect existing Union data protection laws like GDPR and the Law Enforcement Directive, except for specific provisions (Article 10(5) and Article 59) within the AI Act itself[cite: 840, 841].'
+- 'Union law on personal data protection, privacy, and confidentiality applies to personal data processed under the AI Act[cite: 840].'
+- 'The AI Act does not affect the tasks and powers of independent data protection supervisory authorities under existing data protection law[cite: 37].'
+- 'Obligations on AI providers and deployers as data controllers or processors under existing data protection law remain if their AI activities involve personal data processing[cite: 38].'
+---
+id: ai-act-substantial-modification-provider-change-19
+prompt: According to Article 25 of the EU AI Act (Regulation (EU) 2024/1689), under what specific circumstances would a third party, such as a distributor, importer, or deployer, be considered a provider of a high-risk AI system and consequently assume the provider's obligations?
+ideal: 'Under Article 25(1) of the EU AI Act, any distributor, importer, deployer or other third-party shall be considered to be a provider of a high-risk AI system for the purposes of this Regulation and shall be subject to the obligations of the provider under Article 16, in any of the following circumstances: (a) they put their name or trademark on a high-risk AI system already placed on the market or put into service, without prejudice to contractual arrangements stipulating that the obligations are otherwise allocated[cite: 1161]; (b) they make a substantial modification to a high-risk AI system that has already been placed on the market or has already been put into service in such a way that it remains a high-risk AI system pursuant to Article 6[cite: 1162]; (c) they modify the intended purpose of an AI system, including a general-purpose AI system, which has not been classified as high-risk and has already been placed on the market or put into service in such a way that the AI system
+  concerned becomes a high-risk AI system in accordance with Article 6[cite: 1162].'
+should:
+- 'A third party is considered a provider if they put their name or trademark on a high-risk AI system already placed on the market or put into service[cite: 1161].'
+- 'They are also considered a provider if they make a substantial modification to a high-risk AI system already on the market or in service, such that it remains a high-risk AI system[cite: 1162].'
+- 'Modifying the intended purpose of an AI system (including a general-purpose AI system) not previously classified as high-risk, so that it becomes a high-risk AI system, also makes the third party a provider[cite: 1162].'
+---
+id: ai-act-transparency-deepfakes-exceptions-20
+prompt: Article 50(4) of the EU AI Act (Regulation (EU) 2024/1689) outlines transparency obligations for deployers using AI systems to generate deep fakes. What must deployers disclose regarding such content, and how does the Regulation address exceptions or limitations, particularly for artistic or creative works?
+ideal: 'Deployers of an AI system that generates or manipulates image, audio or video content constituting a deep fake, shall disclose that the content has been artificially generated or manipulated[cite: 1397]. This obligation shall not apply where the use is authorised by law to detect, prevent, investigate or prosecute criminal offences[cite: 1398]. Where the content forms part of an evidently artistic, creative, satirical, fictional or analogous work or programme, the transparency obligations set out in this paragraph are limited to disclosure of the existence of such generated or manipulated content in an appropriate manner that does not hamper the display or enjoyment of the work[cite: 1399].'
+should:
+- 'Deployers must disclose that image, audio, or video content constituting a deep fake has been artificially generated or manipulated[cite: 1397].'
+- 'This disclosure obligation does not apply if the use is authorized by law for specific law enforcement purposes[cite: 1398].'
+- 'For content that is part of an evidently artistic, creative, satirical, fictional, or analogous work, the transparency obligation is limited[cite: 1399].'
+- 'In such artistic cases, deployers only need to disclose the existence of the generated or manipulated content appropriately, without hampering the display or enjoyment of the work[cite: 1399].'
+---
+id: ai-act-balancing-innovation-protection-21
+prompt: The EU AI Act (Regulation (EU) 2024/1689) aims to balance promoting AI innovation with ensuring protection, as indicated in Article 1 and specific measures like those for SMEs in Article 62. Explain how the Act attempts to achieve this balance, citing relevant approaches or provisions.
+ideal: 'The purpose of the Regulation, stated in Article 1, is to improve the functioning of the internal market and promote the uptake of human-centric and trustworthy AI, while ensuring a high level of protection of health, safety, fundamental rights (including democracy, rule of law, environmental protection) against harmful effects of AI systems, and supporting innovation[cite: 817, 818]. The Act supports innovation, particularly for SMEs and start-ups (Article 62), by providing priority access to AI regulatory sandboxes[cite: 1587], organizing awareness and training activities tailored to their needs[cite: 1589], establishing dedicated communication channels for advice[cite: 1590], and taking their interests into account when setting conformity assessment fees, reducing them proportionately[cite: 1592]. This is balanced with a risk-based approach that prohibits certain AI practices (Article 5)[cite: 819], lays down specific requirements for high-risk AI systems (Chapter III, Section
+  2)[cite: 819], and transparency obligations for certain AI systems (Article 50) [cite: 820] to safeguard health, safety and fundamental rights.'
+should:
+- 'The Act''s dual purpose is to promote human-centric, trustworthy AI and support innovation, while ensuring high protection levels against AI''s harmful effects[cite: 817, 818].'
+- 'Innovation, especially for SMEs, is supported through measures like priority access to AI regulatory sandboxes, tailored training, and proportionately reduced conformity assessment fees[cite: 1587, 1589, 1590, 1592].'
+- 'Protection is achieved through a risk-based approach, which includes prohibiting certain AI practices listed in Article 5[cite: 819].'
+- 'Strict requirements are established for high-risk AI systems under Chapter III, Section 2[cite: 819].'
+- 'Transparency obligations for certain AI systems, as outlined in Article 50, also contribute to protecting rights and safety[cite: 820].'
+---
+id: ai-act-sandboxes-vs-real-world-testing-22
+prompt: Based on the EU AI Act (Regulation (EU) 2024/1689), compare and contrast AI regulatory sandboxes (Article 57) with the testing of high-risk AI systems in real-world conditions outside AI regulatory sandboxes (Article 60). What are the primary objectives and key operational differences between these two frameworks for AI testing and development?
+ideal: 'AI regulatory sandboxes, as per Article 57, are controlled environments established by competent authorities to foster innovation[cite: 1485]. They facilitate the development, training, testing, and validation of innovative AI systems for a limited time before market placement, under a specific sandbox plan and regulatory supervision[cite: 1485]. Their objectives include improving legal certainty, supporting best practice sharing, fostering the AI ecosystem, contributing to evidence-based regulatory learning, and accelerating market access, especially for SMEs[cite: 1495, 1496, 1497, 1498]. Testing in real-world conditions outside sandboxes (Article 60) can be conducted by providers or prospective providers of high-risk AI systems listed in Annex III, before placing them on the market, according to a submitted and authority-approved real-world testing plan[cite: 1553, 1557, 1558]. This framework is for gathering reliable and robust data and assessing/verifying conformity with the
+  Regulation''s requirements[cite: 911]. It has specific conditions, including informed consent (with exceptions for law enforcement), registration, time limits, and safeguards for vulnerable groups and data[cite: 1561, 1565, 1566, 1567, 1570]. While sandboxes may include real-world testing[cite: 1486], Article 60 provides a distinct path for it outside the sandbox structure.'
+should:
+- 'AI regulatory sandboxes (Article 57) are authority-established controlled environments for pre-market development and testing of *innovative* AI under supervision and a sandbox plan[cite: 1485].'
+- 'Key objectives of sandboxes include fostering innovation, enhancing legal certainty, regulatory learning, and accelerating market access[cite: 1495, 1496, 1497, 1498].'
+- 'Testing in real-world conditions outside sandboxes (Article 60) is for providers of *Annex III high-risk AI systems* to test pre-market for data gathering and conformity verification, based on an approved plan[cite: 1553, 1555, 911].'
+- 'Article 60 testing has stricter, more detailed conditions regarding aspects like informed consent, registration, and specific safeguards, operating independently of the broader sandbox innovation goals[cite: 1561, 1565, 1566, 1567, 1570].'
+- 'Sandboxes are more broadly about fostering innovation and can include real-world testing as a component[cite: 1486], whereas Article 60 specifically regulates real-world testing of certain high-risk AI systems as a standalone process.'

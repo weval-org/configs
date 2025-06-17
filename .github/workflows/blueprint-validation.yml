@@ -1,0 +1,41 @@
+name: Blueprint Validation
+
+on:
+  pull_request:
+    paths:
+      - 'blueprints/**.json'
+      - 'blueprints/**.yml'
+      - 'blueprints/**.yaml'
+
+jobs:
+  validate-blueprints:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Find Blueprint files
+        id: find_blueprint_files
+        run: |
+          blueprint_files=$(find blueprints -name '*.json' -o -name '*.yml' -o -name '*.yaml' | xargs -r echo)
+          if [ -z "$blueprint_files" ]; then
+            echo "No blueprint files found to validate."
+            echo "blueprint_files_to_check=" >> "$GITHUB_OUTPUT"
+          else
+            echo "blueprint_files_to_check=$blueprint_files" >> "$GITHUB_OUTPUT"
+          fi
+        shell: bash
+
+      - name: Validate Blueprint files
+        if: steps.find_blueprint_files.outputs.blueprint_files_to_check != ''
+        run: |
+          python .github/scripts/validate_blueprints.py ${{ steps.find_blueprint_files.outputs.blueprint_files_to_check }}
+        shell: bash 

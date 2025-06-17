@@ -1,55 +1,152 @@
 import json
 import sys
 import os
+import yaml # pyyaml
 
-def validate_blueprint(file_path):
-    try:
-        with open(file_path, 'r') as f:
-            data = json.load(f)
-    except json.JSONDecodeError as e:
-        print(f"::error file={file_path}::Invalid JSON: {e}")
-        return False
-    except Exception as e:
-        print(f"::error file={file_path}::Could not read file: {e}")
-        return False
-
+def validate_json_blueprint(file_path, data):
+    """Validates a blueprint in the legacy JSON format."""
     errors = []
-    
-    # Check top-level required fields
+
+    # In legacy JSON, id and title are considered mandatory.
     if not isinstance(data.get('id'), str) or not data.get('id'):
         errors.append(f"Missing or invalid 'id' (must be a non-empty string).")
     if not isinstance(data.get('title'), str) or not data.get('title'):
         errors.append(f"Missing or invalid 'title' (must be a non-empty string).")
-    if not isinstance(data.get('description'), str) or not data.get('description'): # Description is optional in README, but user requested it as required.
-        errors.append(f"Missing or invalid 'description' (must be a non-empty string).")
+    
+    # Description is optional
+    if 'description' in data and not isinstance(data.get('description'), str):
+        errors.append(f"Optional 'description' must be a string if present.")
 
-    # Check 'prompts' array
     prompts = data.get('prompts')
     if not isinstance(prompts, list) or not prompts:
-        errors.append(f"Missing or empty 'prompts' array (must be a non-empty list).")
+        errors.append(f"Missing or empty 'prompts' array.")
     else:
         for i, prompt in enumerate(prompts):
             if not isinstance(prompt, dict):
                 errors.append(f"Prompt at index {i} is not a valid object.")
                 continue
-
-            prompt_id_text = f" (prompt id: {prompt.get('id', 'N/A')})" if isinstance(prompt.get('id'), str) else f" (prompt index: {i})"
-
-            if not isinstance(prompt.get('promptText'), str) or not prompt.get('promptText'):
-                errors.append(f"Missing or invalid 'promptText' in prompt{prompt_id_text} (must be a non-empty string).")
-            if not isinstance(prompt.get('idealResponse'), str) or not prompt.get('idealResponse'):
-                errors.append(f"Missing or invalid 'idealResponse' in prompt{prompt_id_text} (must be a non-empty string).")
             
-            # Check 'points' array (optional, but if present, must be a non-empty list of non-empty strings)
-            if 'points' in prompt: # Check if 'points' key exists
+            # Prompt ID is also expected in legacy format
+            if not isinstance(prompt.get('id'), str) or not prompt.get('id'):
+                errors.append(f"Missing or invalid 'id' in prompt at index {i}.")
+
+            has_prompt_text = 'promptText' in prompt and isinstance(prompt.get('promptText'), str)
+            has_messages = 'messages' in prompt and isinstance(prompt.get('messages'), list)
+
+            if not has_prompt_text and not has_messages:
+                errors.append(f"Prompt at index {i} (id: {prompt.get('id', 'N/A')}) must contain 'promptText' or 'messages'.")
+            
+            if 'points' in prompt:
                 points = prompt.get('points')
-                if not isinstance(points, list) or not points:
-                    errors.append(f"Optional 'points' array in prompt{prompt_id_text} must be a non-empty list of strings if present.")
-                else:
-                    for j, point_entry in enumerate(points):
-                        if not isinstance(point_entry, str) or not point_entry:
-                            errors.append(f"Point at index {j} in prompt{prompt_id_text} is not a non-empty string.")
-                        
+                if not isinstance(points, list):
+                    errors.append(f"Optional 'points' in prompt{prompt_id_text} must be a list if present.")
+    return errors
+
+def validate_yaml_blueprint(file_path, docs):
+    """Validates a blueprint in any of the supported YAML formats."""
+    errors = []
+    
+    if not docs:
+        errors.append("YAML file is empty.")
+        return errors
+
+    header = {}
+    prompts = []
+    
+    first_doc = docs[0]
+
+    # Structure 1: Config Header + list of prompts in second doc
+    if len(docs) > 1 and isinstance(first_doc, dict) and isinstance(docs[1], list):
+        header = first_doc
+        prompts = docs[1]
+    # Structure 4: Single doc with 'prompts' key
+    elif len(docs) == 1 and isinstance(first_doc, dict) and 'prompts' in first_doc:
+        header = first_doc
+        prompts = header.get('prompts')
+        if not isinstance(prompts, list):
+             errors.append("The 'prompts' key must contain a list of prompts.")
+    # Structure 3: Single doc that is a list of prompts
+    elif len(docs) == 1 and isinstance(first_doc, list):
+        prompts = first_doc
+    # Structure 2: A stream of prompt documents
+    elif all(isinstance(d, dict) for d in docs):
+        # This could be a header + stream of prompts, or just a stream of prompts.
+        # The spec says: if first doc has config keys, it's a header.
+        is_header = any(k in first_doc for k in ['id', 'title', 'models', 'system', 'concurrency', 'temperatures', 'evaluationConfig'])
+        is_prompt = any(k in first_doc for k in ['prompt', 'messages', 'should', 'ideal'])
+        
+        # If it has config keys and no prompt keys, it is a header.
+        if is_header and not is_prompt:
+            header = first_doc
+            prompts = docs[1:]
+        else: # otherwise, all docs are prompts
+            prompts = docs
+    else:
+        errors.append(
+            "Invalid YAML structure. Supported structures are: \n"
+            "1. A dictionary (header) followed by '---' and a list of prompts.\n"
+            "2. A single YAML document with a 'prompts' key.\n"
+            "3. A single YAML document that is a list of prompts.\n"
+            "4. A stream of YAML documents, where each document is a prompt."
+        )
+        return errors
+
+    # --- Prompts Validation ---
+    if not isinstance(prompts, list):
+        errors.append(f"Could not identify a valid list of prompts.")
+    elif not prompts and not header:
+        errors.append("Blueprint must contain at least one prompt or a configuration header.")
+    else:
+        for i, prompt in enumerate(prompts):
+            if not isinstance(prompt, dict):
+                errors.append(f"Prompt at index {i} is not a valid object/dictionary.")
+                continue
+
+            prompt_id_text = f" (prompt id: {prompt.get('id', 'N/A')})"
+            
+            # Allow aliases
+            has_prompt = ('prompt' in prompt and isinstance(prompt.get('prompt'), str)) or \
+                         ('promptText' in prompt and isinstance(prompt.get('promptText'), str))
+            has_messages = 'messages' in prompt and isinstance(prompt.get('messages'), list)
+
+            if not has_prompt and not has_messages:
+                errors.append(f"Prompt at index {i}{prompt_id_text} must contain either 'prompt'/'promptText' or 'messages'.")
+            
+            # Check all possible rubric keys
+            for key in ['should', 'should_not', 'points', 'expect', 'expects', 'expectations']:
+                if key in prompt:
+                    rubric = prompt.get(key)
+                    if not isinstance(rubric, list):
+                        errors.append(f"Optional rubric ('{key}') in prompt{prompt_id_text} must be a list if present.")
+
+    return errors
+
+def validate_blueprint(file_path):
+    errors = []
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+            # Determine file type and parse accordingly
+            if file_path.endswith('.json'):
+                data = json.loads(content)
+                errors = validate_json_blueprint(file_path, data)
+            elif file_path.endswith(('.yml', '.yaml')):
+                docs = list(yaml.safe_load_all(content))
+                errors = validate_yaml_blueprint(file_path, docs)
+            else:
+                print(f"::warning file={file_path}::Skipping file with unrecognized extension.")
+                return True # Not a failure, just a skip
+
+    except json.JSONDecodeError as e:
+        print(f"::error file={file_path}::Invalid JSON: {e}")
+        return False
+    except yaml.YAMLError as e:
+        print(f"::error file={file_path}::Invalid YAML: {e}")
+        return False
+    except Exception as e:
+        print(f"::error file={file_path}::Could not read or parse file: {e}")
+        return False
+
     if errors:
         for error in errors:
             print(f"::error file={file_path}::{error}")

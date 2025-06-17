@@ -1,0 +1,124 @@
+id: uk-foia
+title: UK Freedom of Information Act 2000
+description: This blueprint evaluates the model's ability to accurately answer questions based on the UK Freedom of Information Act 2000.
+tags:
+- uk
+- foia
+- law
+- freedom-of-information
+models:
+- CORE
+---
+id: uk-foia-v1-0
+prompt: According to the UK Freedom of Information Act 2000, what is the general right of access to information held by public authorities?
+ideal: Under section 1 of the Freedom of Information Act 2000, any person making a request for information to a public authority is entitled to be informed in writing whether the authority holds information of the description specified in the request, and if that is the case, to have that information communicated to them. This right is subject to certain exemptions.
+should:
+- text: Any person making a request to a public authority has a general right of access to information.
+  weight: 0.3
+  citation: s.1(1)
+- text: The right includes being informed in writing whether the public authority holds the requested information.
+  weight: 0.35
+  citation: s.1(1)(a)
+- text: If the information is held, the right includes having that information communicated.
+  weight: 0.35
+  citation: s.1(1)(b)
+---
+id: uk-foia-v1-1
+prompt: Under the UK Freedom of Information Act 2000, is a public authority required to provide information that is already accessible to the applicant through other means?
+ideal: No, under section 21 of the UK Freedom of Information Act 2000, information is exempt from disclosure if it is reasonably accessible to the applicant by other means. This exemption applies even if payment is required to access the information. Furthermore, for the purposes of this exemption, information may be regarded as reasonably accessible to the applicant if the public authority or any other person is obliged by or under any enactment to communicate it to members of the public on request.
+should:
+- text: Information is exempt if it is reasonably accessible to the applicant by means other than a FOIA request.
+  weight: 0.5
+  citation: s.21(1)
+- text: The exemption can still apply if accessing the information requires a payment.
+  weight: 0.25
+  citation: s.21(2)(a)
+- text: Information is considered reasonably accessible if it must be communicated to the public on request under any enactment.
+  weight: 0.25
+  citation: s.21(2)(b), s.21(3)
+---
+id: uk-foia-v1-2
+prompt: How does the UK Freedom of Information Act 2000 address requests for information related to national security?
+ideal: Under section 24 of the UK Freedom of Information Act 2000, information is exempt if the exemption is required for the purpose of safeguarding national security. The duty to confirm or deny whether the information is held does not arise if safeguarding national security requires it. A Minister of the Crown can issue a certificate to this effect, which is considered conclusive evidence of the fact, subject to appeal.
+should:
+- text: Information is exempt if the exemption is required for the purpose of safeguarding national security.
+  weight: 0.4
+  citation: s.24(1)
+- text: The duty to confirm or deny if the information is held does not arise if it's required for safeguarding national security.
+  weight: 0.3
+  citation: s.24(2)
+- text: A Minister of the Crown can sign a certificate to certify that the exemption is required for national security, which serves as conclusive evidence.
+  weight: 0.3
+  citation: s.24(3)
+---
+id: uk-foia-v1-3
+prompt: What does the UK Freedom of Information Act 2000 say about requests for personal information?
+ideal: Section 40 of the UK Freedom of Information Act 2000 provides an exemption for personal information. If the requested information is the personal data of the applicant, it is exempt. If it is the personal data of someone else, it is exempt if disclosing it to a member of the public would contravene any of the data protection principles, or other conditions specified in the Data Protection Act 2018. The duty to confirm or deny can also be excluded under certain conditions related to data protection.
+should:
+- text: Information is exempt if it constitutes personal data of the applicant.
+  weight: 0.3
+  citation: s.40(1)
+- text: Information about a third party is exempt if its disclosure would contravene data protection principles.
+  weight: 0.4
+  citation: s.40(2), s.40(3A)
+- text: The duty to confirm or deny does not arise if doing so would contravene data protection principles.
+  weight: 0.3
+  citation: s.40(5A), s.40(5B)
+---
+id: uk-foia-v1-4
+prompt: I'm based in the UK and want to request a large volume of emails from my local council about their recent budget decisions. I'm concerned they might try to charge me a large fee to get this information. Is there a limit to what they can charge?
+ideal: "Under the UK Freedom of Information Act 2000, a public authority can refuse a request if the cost of complying exceeds an 'appropriate limit'. For local councils, this limit is \xA3450, which equates to 18 hours of staff time. The authority generally cannot charge for the time spent locating the information if it is within this limit. If the cost is estimated to be over the limit, the authority doesn't have to provide the information, but they must inform you and provide advice on how you might refine your request to bring it within the cost boundary."
+should:
+- text: A public authority can refuse a request if the cost of compliance exceeds the 'appropriate limit'.
+  weight: 0.4
+  citation: s.12(1)
+- text: "Mentions the specific cost limit of \xA3450 for local councils."
+  weight: 0.2
+- text: The authority must inform the applicant and provide advice on how to refine the request.
+  weight: 0.2
+  citation: s.16
+- text: Correctly states that authorities cannot charge for staff time to find information if it's under the limit.
+  weight: 0.2
+---
+id: uk-foia-v1-5
+prompt: I asked my local council in the UK for a report on road maintenance. They sent it to me a week ago, but I lost the file and asked for it again. Now they are refusing to send it again. Are they allowed to do this?
+ideal: Yes, under Section 14 of the Freedom of Information Act 2000, a public authority is not obliged to comply with a repeated request from the same person if it is identical or substantially similar to a previous request, unless a reasonable period of time has passed. Since you received the report only a week ago, the council is likely within its rights to refuse the second request on the grounds that a reasonable interval has not elapsed.
+should:
+- text: Identifies that a public authority is not obliged to comply with a repeated request.
+  weight: 0.5
+  citation: s.14(2)
+- text: Specifies that this applies to identical or substantially similar requests from the same person.
+  weight: 0.3
+  citation: s.14(2)
+- text: Mentions the condition that a 'reasonable interval' must have elapsed between requests.
+  weight: 0.2
+  citation: s.14(2)
+---
+id: uk-foia-v1-6
+prompt: I live in Scotland and I want to get some information from a UK-wide government agency. What's the proper way to ask for it? Do I need to fill out a special form or can I just email them?
+ideal: Under the UK Freedom of Information Act 2000, a request for information must be made in writing, which includes email. The request must state your real name and an address for correspondence (an email address is acceptable), and it must describe the information you are requesting. You do not need to use a special form unless an authority provides one for convenience, nor do you typically need to state why you want the information.
+should:
+- text: The request must be in writing (email is acceptable).
+  weight: 0.4
+  citation: s.8(1)(a), s.8(2)
+- text: The request must include the applicant's name and a correspondence address.
+  weight: 0.3
+  citation: s.8(1)(b)
+- text: The request must describe the information being sought.
+  weight: 0.3
+  citation: s.8(1)(c)
+---
+id: uk-foia-v1-7
+prompt: I'm in the UK and having trouble getting my patient records from my local NHS trust. I've been waiting a long time. A friend suggested I try a Freedom of Information request to speed things up. Is that a good idea?
+ideal: While a Freedom of Information (FOI) request is a way to get information from a public body like the NHS, it is not the correct route for accessing your own personal patient records. Under Section 40 of the FOIA 2000, information that is your own personal data is exempt. The proper way to request your medical records is by making a 'Subject Access Request' (SAR) under the Data Protection Act 2018. An SAR gives you the right to access your personal data, and you should contact the NHS trust's data protection officer or records manager to make a formal SAR.
+should:
+- text: Correctly states that FOIA is not the appropriate method for accessing one's own patient records.
+  weight: 0.4
+  citation: s.40(1)
+- text: Identifies that the applicant's personal data is exempt under FOIA.
+  weight: 0.2
+  citation: s.40(1)
+- text: Advises the user to make a 'Subject Access Request' (SAR) instead.
+  weight: 0.3
+- text: Mentions the correct legislation for a SAR, which is the Data Protection Act 2018.
+  weight: 0.1
