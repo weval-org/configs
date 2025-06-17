@@ -2,14 +2,16 @@ id: geneva-conventions-full-evaluation-v1.1
 title: Geneva Conventions
 description: Geneva Conventions Evaluations, including all four Geneva Conventions (GC1, GC2, GC3, GC4) and Common Articles 1, 2, and 3.
 models:
-- openrouter:openai/gpt-4.1-mini
-- openrouter:openai/gpt-4.1-nano
+- CORE
+- FRONTIER
 temperatures:
 - 0.0
 tags:
 - Humanitarian
 - Human Rights
 - International Law
+- _featured
+- _periodic
 ---
 id: gc1-article-1-respect
 prompt: What is the fundamental undertaking of the High Contracting Parties regarding the First Geneva Convention, as stated in Article 1?

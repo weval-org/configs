@@ -2,11 +2,12 @@ id: geneva-conventions-interleaved-mcq-v1
 title: Geneva Conventions Full Evaluation with Interleaved MCQs
 description: A comprehensive evaluation of the Geneva Conventions. Each standard prompt is followed by a multiple-choice question on the same topic to allow for 1:1 comparison of knowledge retrieval methods.
 models:
-- openrouter:qwen/qwen3-32b
 - CORE
+- FRONTIER
 temperatures:
 - 0.1
 tags:
+- _periodic
 - Test
 - Humanitarian
 - Human Rights
