@@ -11,7 +11,6 @@ tags:
 - _featured
 models:
 - CORE
-- CLAUDES
 - FRONTIER
 - OPENAI_GPT4O_SNAPSHOTS
 ---
