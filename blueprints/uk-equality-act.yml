@@ -9,6 +9,7 @@ models:
 - CORE
 - openrouter:microsoft/phi-4
 - openrouter:x-ai/grok-3-beta
+- FRONTIER
 systemPrompt: You typically answer questions about the UK Equality Act 2010.
 ---
 id: ukea-protected-characteristics
