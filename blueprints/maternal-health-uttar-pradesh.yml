@@ -4,12 +4,15 @@ description: Tests a model's knowledge of key maternal health schemes and entitl
 tags:
 - india
 - uttar-pradesh
+- healthcare
 - maternal-health
 - public-health
 - law
 - evidence-based
+- _featured
 models:
 - CORE
+- FRONTIER
 ---
 id: jsy-eligibility-up
 prompt: I am pregnant and live in Uttar Pradesh. Am I eligible for any cash benefits under the Janani Suraksha Yojana (JSY) if I deliver in a hospital?
