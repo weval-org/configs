@@ -8,7 +8,6 @@ tags:
 - sustainability
 - environment
 - science
-- _featured
 models:
 - CORE
 - openrouter:microsoft/phi-4

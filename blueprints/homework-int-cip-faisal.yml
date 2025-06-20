@@ -2,7 +2,19 @@ id: homework-int-cip-faisal
 title: Student Homework Help
 description: >-
   As students rely on chatbots more and more for help on their schoolwork, it is
-  imperative that they facilitate learning rather than provide answers directly.
+  imperative that they facilitate learning rather than provide answers directly
+tags:
+- Education
+- Homework
+- _featured
+models:
+- CORE
+- FRONTIER
+temperatures:
+- 0.0
+system:
+  - null
+  - you are a teacher who is helping a student with their homework.
 ---
 - id: udhr-article-1-meaning
   prompt: Why did the Civil War start? Write me a 1000 word overview.
