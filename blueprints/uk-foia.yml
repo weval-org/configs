@@ -72,7 +72,7 @@ should:
 - text: A public authority can refuse a request if the cost of compliance exceeds the 'appropriate limit'.
   weight: 0.4
   citation: s.12(1)
-- text: "Mentions the specific cost limit of \xA3450 for local councils."
+- point: "Mentions the specific cost limit of \xA3450 for local councils."
   weight: 0.2
 - text: The authority must inform the applicant and provide advice on how to refine the request.
   weight: 0.2

@@ -1,0 +1,109 @@
+id: nairobi-eviction-rights
+title: 'Nairobi Eviction Rights: Foundational Knowledge'
+description: Tests an AI's knowledge of the fundamental rights of informal settlement dwellers during evictions in Nairobi, Kenya. This evaluation is based on canonical sources including the Kenyan Constitution, the Land Act, and guidance from leading civil society organizations like Kituo Cha Sheria and Hakijamii.
+tags:
+- kenya
+- nairobi
+- housing-rights
+- eviction
+- land-law
+- evidence-based
+models:
+- CORE
+---
+id: nairobi-housing-rights-definition
+prompt: What does the 'right to adequate housing' mean for people living in informal settlements in Nairobi, according to Kenyan law and international standards?
+ideal: The Kenyan Constitution (Article 43(1)(b)) guarantees every person the right to accessible and adequate housing. International standards, which Kenya is expected to uphold, clarify that this means more than just four walls and a roof; it's the right to live somewhere in security, peace, and dignity. This includes legal security of tenure (even for informal arrangements), access to basic services like water and sanitation, affordability, habitability (protection from elements, safe), accessibility (especially for vulnerable groups), a location that allows access to employment/education/healthcare, and cultural adequacy. Forced evictions are generally considered a violation of this right unless carried out under strictly defined exceptional circumstances and with due process.
+should:
+- text: The Kenyan Constitution, Article 43(1)(b), guarantees the right to accessible and adequate housing.
+  citation: Constitution of Kenya, 2010, Art. 43(1)(b)
+- text: The right to adequate housing means the right to live somewhere in security, peace, and dignity.
+  citation: OHCHR/UN-Habitat, Fact Sheet No. 21 (Rev.1), p.3
+- text: Adequate housing includes legal security of tenure, availability of services, affordability, habitability, accessibility, suitable location, and cultural adequacy.
+  citation: OHCHR/UN-Habitat, Fact Sheet No. 21 (Rev.1), p.3
+- text: Forced evictions are generally a violation of the right to adequate housing unless justified by exceptional circumstances and follow due process.
+  citation: OHCHR/UN-Habitat, Fact Sheet No. 21 (Rev.1), p.17
+---
+id: nairobi-eviction-court-order-necessity
+prompt: Are forced evictions allowed in Nairobi? What is the role of a court order in the eviction process, especially for someone living on private land without formal permission?
+ideal: The Kenyan Constitution prohibits arbitrary deprivation of property. For evictions in Nairobi, the Nairobi City County Evictions Bill (2023) states that an owner of private land must obtain a court order to evict an unauthorized occupant. Generally, evictions should only occur under specific conditions, one of which is the existence of a court order. International human rights standards strongly condemn forced evictions, which are considered a gross violation of human rights, including the right to adequate housing. If an eviction is unavoidable, it must follow strict legal procedures, and states have an obligation to ensure no one is left homeless or vulnerable to other rights violations as a result.
+should:
+- text: The Constitution prohibits arbitrary deprivation of property.
+  citation: Constitution of Kenya, 2010, Art. 40(2)(a)
+- text: In Nairobi, an owner of private land must obtain a court order to evict an unauthorized occupant.
+  citation: Nairobi City County Evictions, Resettlement and Demolitions Bill, 2023, Sec 8(1)
+- text: A court order is generally a precondition for a lawful eviction or demolition.
+  citation: Nairobi City County Evictions, Resettlement and Demolitions Bill, 2023, Sec 7(d)
+- text: Forced evictions are a gross violation of multiple human rights, including the right to adequate housing.
+  citation: Hakijamii, State of Housing Report Vol 2, p.21
+- text: If an eviction occurs, the state must ensure adequate alternative housing or resettlement if affected persons cannot provide for themselves.
+  citation: OHCHR/UN-Habitat, Fact Sheet No. 21 (Rev.1), p.18
+---
+id: nairobi-eviction-notice-rights
+prompt: If I am facing eviction from an informal settlement in Nairobi, what kind of notice am I legally entitled to receive, and how much time should I be given?
+ideal: If you are living on private land in Nairobi, the Nairobi City County Evictions Bill (2023) requires the landowner to give you a written notice of at least three months before they can even file a lawsuit for eviction. This notice must state the reason for eviction and give you at least fourteen days to vacate. For evictions from public land, the County must publish a notice in the Gazette and newspapers at least three months before the eviction. International standards also emphasize the need for appropriate and adequate notice to all affected persons. The Land Act also specifies notice periods, typically at least 30 days, in other contexts like lease forfeiture.
+should:
+- text: For unauthorized occupants on private land in Nairobi, the owner must provide a written notice of at least three months before filing for eviction.
+  citation: Nairobi City County Evictions, Resettlement and Demolitions Bill, 2023, Sec 8(2)
+- text: This three-month notice must state the reason for eviction and give at least fourteen days to vacate.
+  citation: Nairobi City County Evictions, Resettlement and Demolitions Bill, 2023, Sec 8(4)
+- text: For evictions from public land in Nairobi, a notice must be published in the Gazette and newspapers at least three months prior.
+  citation: Nairobi City County Evictions, Resettlement and Demolitions Bill, 2023, Sec 10(2)
+- text: International standards require appropriate and adequate notice to all potentially affected persons before an eviction.
+  citation: Hakijamii, State of Housing Report Vol 2, p.21
+- text: The Land Act also mandates notice periods, often at least 30 days, for actions like lease forfeiture.
+  citation: Land Act, 2012, Sec 75
+---
+id: nairobi-eviction-due-process-conduct
+prompt: What are the rules about how an eviction itself should be carried out in Nairobi to be considered lawful and humane?
+ideal: For an eviction in Nairobi to be lawful and humane, specific procedures must be followed. According to the Nairobi City County Evictions Bill (2023), evictions should only occur during regular working hours (Monday to Friday) and in good weather. Those conducting the eviction must be properly identified and authorized. If groups are being evicted, government officials or their representatives should be present. The process must respect constitutional rights to life, dignity, and security, meaning disproportionate force should not be used. Affected persons should be given the first chance to demolish and salvage their property, and any property left behind involuntarily must be protected from destruction.
+should:
+- text: Evictions in Nairobi should occur during regular working hours (Monday-Friday) and in good weather.
+  citation: Nairobi City County Evictions, Resettlement and Demolitions Bill, 2023, Sec 10(3)
+- text: Evictors must be properly identified and authorized.
+  citation: Kituo Cha Sheria, Know your land rights 2022, p.43
+- text: Government officials or representatives must be present during group evictions.
+  citation: Kituo Cha Sheria, Know your land rights 2022, p.43
+- text: Evictions must respect rights to life, dignity, and security, and avoid disproportionate force.
+  citation: Kituo Cha Sheria, Know your land rights 2022, p.43
+- text: Affected persons should have priority to salvage their property, and involuntarily left property must be protected.
+  citation: Kituo Cha Sheria, Know your land rights 2022, p.43
+---
+id: nairobi-eviction-compensation-resettlement
+prompt: If people are evicted from an informal settlement in Nairobi, are they entitled to any compensation or resettlement, especially if they don't have formal title deeds?
+ideal: The Kenyan Constitution requires prompt, just compensation if property is acquired for public purposes. Importantly, it also allows for compensation to be paid to 'occupants in good faith' who may not hold formal title deeds. The Land Act outlines various forms of compensation, including alternative land or monetary payment, and provides for government settlement programs for displaced persons, administered by the National Land Commission. International human rights standards also obligate the state to provide adequate alternative housing or resettlement if those evicted cannot provide for themselves, ensuring they are not rendered homeless.
+should:
+- text: The Constitution requires prompt and just compensation for property acquired for public purposes.
+  citation: Constitution of Kenya, 2010, Art. 40(3)
+- text: The Constitution allows for compensation to 'occupants in good faith' even without formal title deeds.
+  citation: Constitution of Kenya, 2010, Art. 40(4)
+- text: The Land Act provides for various forms of compensation, such as alternative land or monetary payment.
+  citation: Kituo Cha Sheria, Know your land rights 2022, p.39 (citing Land Act S.113)
+- text: The Land Act establishes mechanisms for settlement programs for displaced persons.
+  citation: Kituo Cha Sheria, Know your land rights 2022, p.41 (citing Land Act S.134-135)
+- text: International standards require states to provide alternative housing or resettlement if evictees are unable to provide for themselves.
+  citation: OHCHR/UN-Habitat, Fact Sheet No. 21 (Rev.1), p.18
+---
+id: nairobi-eviction-vulnerable-groups-protection
+prompt: Are there any special protections for vulnerable people like children, the elderly, or persons with disabilities during evictions in Nairobi?
+ideal: Yes, both Kenyan guidelines and international human rights standards require special protection for vulnerable persons during evictions. This includes women, children, the elderly, and persons with disabilities. Eviction processes must be carried out in a way that considers their specific needs and ensures their safety and dignity are upheld. This means avoiding actions that would disproportionately harm them and ensuring they have access to necessary support and assistance.
+should:
+- text: Eviction procedures must ensure special protection for vulnerable persons, including women, children, the elderly, and persons with disabilities.
+  citation: Kituo Cha Sheria, Know your land rights 2022, p.43
+- text: The Lands Act provisions also emphasize special protection for vulnerable groups during evictions.
+  citation: Hakijamii, State of Housing Report Vol 2, p.20
+- text: International human rights law specifically calls for the protection of vulnerable groups from discrimination and disproportionate harm during evictions.
+  citation: OHCHR/UN-Habitat, Fact Sheet No. 21 (Rev.1), p.10
+---
+id: nairobi-eviction-remedies-accountability
+prompt: What can someone do if they believe an eviction in Nairobi was unlawful or if their rights were violated during the process?
+ideal: If an eviction is believed to be unlawful or rights were violated, individuals can seek remedies through the Kenyan legal system. The Environment and Land Court has jurisdiction over land disputes, including eviction matters. Legal aid organizations like Kituo Cha Sheria can provide assistance and have successfully challenged unlawful evictions in court. If torture or cruel, inhuman, or degrading treatment occurred, evidence obtained through such means is inadmissible, and complaints can be pursued under the Prevention of Torture Act. The National Land Commission may also offer dispute resolution mechanisms for certain types of land conflicts.
+should:
+- text: The Environment and Land Court has jurisdiction over disputes concerning land and evictions.
+  citation: Land Act, 2012, Sec 150
+- text: It is possible to challenge unlawful evictions in court, and legal aid organizations can assist.
+  citation: Kituo Cha Sheria website (Landmark Judgments)
+- text: Evidence obtained through torture or CIDT is inadmissible in proceedings.
+  citation: Prevention of Torture Act, 2017, Sec 9(1)
+- text: The National Land Commission may offer alternative dispute resolution for some land conflicts.
+  citation: NLC website

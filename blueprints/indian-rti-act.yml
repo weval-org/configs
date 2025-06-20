@@ -1,0 +1,175 @@
+id: indian-rti-act
+title: 'India''s Right to Information (RTI) Act: Core Concepts'
+description: Evaluates an AI's understanding of the core provisions of India's Right to Information Act, 2005. This blueprint tests knowledge of key citizen-facing procedures and concepts, including the filing process, response timelines and consequences of delays (deemed refusal), the scope of 'information', fee structures, key exemptions and the public interest override, the life and liberty clause, and the full, multi-stage appeal process. All evaluation criteria are based on and citable to the official text of the Act and guidance from the Department of Personnel and Training (DoPT).
+tags:
+- india
+- rti
+- transparency
+- law
+- civic-core
+- freedom-of-information
+- _featured
+models:
+- CORE
+- CLAUDES
+- FRONTIER
+- OPENAI_GPT4O_SNAPSHOTS
+---
+id: rti-filing-process
+prompt: Describe the basic process for filing a Right to Information (RTI) request in India, according to the RTI Act, 2005.
+ideal: To file an RTI request, a person must submit a request in writing or electronically in English, Hindi, or the local official language. The request, specifying the desired information, should be sent to the appropriate Public Information Officer (PIO) of the public authority and must be accompanied by the required fee.
+should:
+- text: A request for information must be made in writing or through electronic means.
+  citation: https://rti.gov.in/rticorner/studybypwc/annexures.pdf
+- text: The request can be in English, Hindi, or the official language of the area.
+  citation: https://rti.gov.in/rticorner/studybypwc/annexures.pdf
+- text: The request must be accompanied by the prescribed fee.
+  citation: https://rti.gov.in/rticorner/studybypwc/annexures.pdf
+- text: The request should be addressed to the Central Public Information Officer (CPIO) or State Public Information Officer (SPIO) of the concerned public authority.
+  citation: https://rti.gov.in/rticorner/studybypwc/annexures.pdf
+- text: The request should specify the particulars of the information being sought.
+  citation: https://rti.gov.in/rticorner/studybypwc/annexures.pdf
+---
+id: rti-filing-fee
+prompt: What is the prescribed fee for an RTI application in India?
+ideal: Under the RTI Act, 2005, a person requesting information is required to pay a prescribed fee. The exact fee varies by jurisdiction (central or state), with an example being Rs. 20 under Orissa's rules.
+should:
+- text: An applicant is required to pay a prescribed fee to obtain access to a record under the RTI Act.
+  citation: https://rti.gov.in/rticorner/studybypwc/annexures.pdf
+- text: The prescribed fee can vary; for example, the fee under Orissa's RTI rules is twenty rupees.
+  citation: https://rti.gov.in/rticorner/studybypwc/annexures.pdf
+---
+id: rti-response-timeline
+prompt: According to the RTI Act, 2005, what is the maximum time limit for a Public Information Officer (PIO) to respond to an information request?
+ideal: A Public Information Officer (PIO) must respond to an RTI request as expeditiously as possible, and in any case, the maximum time limit for a response is thirty days from the date of receipt of the request. Within this period, the PIO must either provide the requested information or issue a rejection.
+should:
+- text: The Public Information Officer must respond to an RTI request as expeditiously as possible.
+  citation: https://rti.gov.in/rticorner/studybypwc/annexures.pdf
+- text: The maximum time limit for a PIO to respond to an RTI request is thirty days from the receipt of the request.
+  citation: https://rti.gov.in/rticorner/studybypwc/annexures.pdf
+- text: Within the time limit, the PIO must either provide the information or reject the request.
+  citation: https://rti.gov.in/rticorner/studybypwc/annexures.pdf
+---
+id: rti-exemptions
+prompt: What are some key categories of information that are exempt from disclosure under Section 8 of the Indian RTI Act? Provide at least two examples.
+ideal: Section 8 of the RTI Act exempts several categories of information. For example, information held in a 'fiduciary relationship' is exempt. Additionally, personal information is exempt if its disclosure has no link to public interest or would be an unwarranted invasion of privacy. Both exemptions can be waived if disclosure is deemed to be in the larger public interest.
+should:
+- text: Information available to a person in their fiduciary relationship is exempt from disclosure.
+  citation: https://rti.gov.in/rticorner/studybypwc/annexures.pdf
+- text: The exemption for fiduciary information can be overridden if a competent authority determines that the larger public interest warrants disclosure.
+  citation: https://rti.gov.in/rticorner/studybypwc/annexures.pdf
+- text: Personal information is exempt if its disclosure has no relationship to any public activity or interest or would cause an unwarranted invasion of privacy.
+  citation: https://rti.gov.in/rticorner/studybypwc/annexures.pdf
+- text: The exemption for personal information can be overridden if the PIO is satisfied that the larger public interest justifies disclosure.
+  citation: https://rti.gov.in/rticorner/studybypwc/annexures.pdf
+---
+id: rti-life-liberty-clause
+prompt: What is the special timeline provision under the RTI Act for providing information that concerns the life or liberty of a person?
+ideal: Under the RTI Act, if an information request concerns the life or liberty of a person, the Public Information Officer must provide the information within forty-eight hours of receiving the request.
+should:
+- text: When information sought concerns the life or liberty of a person, it must be provided within a special, expedited timeline.
+  citation: https://rti.gov.in/rticorner/studybypwc/annexures.pdf
+- text: The timeline for providing information concerning the life or liberty of a person is within forty-eight hours of the receipt of the request.
+  citation: https://rti.gov.in/rticorner/studybypwc/annexures.pdf
+---
+id: rti-first-appeal
+prompt: Describe the procedure and timeline for filing a 'first appeal' under the RTI Act if a citizen is unsatisfied with a PIO's response or receives no response.
+ideal: If a citizen does not receive a response within the time limit or is unsatisfied with the decision, they can file a 'first appeal'. This appeal must be made to an officer senior in rank to the PIO within thirty days of the response deadline's expiry or the decision's receipt. The appeal must be resolved within thirty days of receipt, with a possible extension up to a total of forty-five days if reasons are recorded in writing.
+should:
+- text: A person can file a first appeal if they have been refused information or have not received a response within the specified time limit.
+  citation: https://rti.gov.in/rticorner/studybypwc/annexures.pdf
+- text: The first appeal must be filed within thirty days from the expiry of the response period or from the receipt of the PIO's decision.
+  citation: https://rti.gov.in/rticorner/studybypwc/annexures.pdf
+- text: The first appeal is made to an officer who is senior in rank to the PIO.
+  citation: https://rti.gov.in/rticorner/studybypwc/annexures.pdf
+- text: The first appeal must be disposed of within thirty days of its receipt.
+  citation: https://rti.gov.in/rticorner/studybypwc/annexures.pdf
+- text: The disposal period for a first appeal can be extended to a maximum of forty-five days from receipt, provided reasons are recorded in writing.
+  citation: https://rti.gov.in/rticorner/studybypwc/annexures.pdf
+- text: There is no fee for filing a first appeal.
+  citation: https://rtionline.goa.gov.in/FAQ.pdf
+---
+id: rti-second-appeal
+prompt: Describe the process and timeline for filing a 'second appeal' under the RTI Act.
+ideal: A second appeal can be filed with the Central or State Information Commission within 90 days of the date on which the decision from the first appeal was received or should have been made. The Commission has the discretion to accept an appeal after this period if the applicant can show sufficient cause for the delay.
+should:
+- text: A second appeal lies with the Central Information Commission or the State Information Commission.
+  citation: https://dgrindia.gov.in/writereaddata/media/documents/important_section_of_rti_en.pdf
+- text: The timeline for a second appeal is within ninety days from the date the decision was received or should have been made.
+  citation: https://dgrindia.gov.in/writereaddata/media/documents/important_section_of_rti_en.pdf
+- text: The Commission may admit an appeal after the ninety-day period if the applicant was prevented by sufficient cause from filing it in time.
+  citation: https://dgrindia.gov.in/writereaddata/media/documents/important_section_of_rti_en.pdf
+---
+id: rti-penalties
+prompt: What penalties can be imposed on a Public Information Officer (PIO) for non-compliance with the RTI Act, and under what circumstances?
+ideal: The Central or State Information Commission can impose a penalty of Rs. 250 per day, up to a maximum of Rs. 25,000, on a PIO for various violations. These include refusing an application without reasonable cause, failing to furnish information within the time limit, maliciously denying a request, or knowingly providing incorrect, incomplete, or misleading information. The burden of proof is on the PIO to demonstrate that they acted reasonably and diligently.
+should:
+- text: The Information Commission can impose a penalty on a PIO for non-compliance at the time of deciding a complaint or appeal.
+  citation: https://dgrindia.gov.in/writereaddata/media/documents/important_section_of_rti_en.pdf
+- text: Grounds for penalty include refusing to receive an application, not furnishing information on time, or providing incorrect or misleading information without reasonable cause.
+  citation: https://dgrindia.gov.in/writereaddata/media/documents/important_section_of_rti_en.pdf
+- text: The penalty is two hundred and fifty rupees for each day of delay or non-compliance.
+  citation: https://dgrindia.gov.in/writereaddata/media/documents/important_section_of_rti_en.pdf
+- text: The total amount of the penalty shall not exceed twenty-five thousand rupees.
+  citation: https://dgrindia.gov.in/writereaddata/media/documents/important_section_of_rti_en.pdf
+- text: The burden of proving that the PIO acted reasonably and diligently lies with the PIO.
+  citation: https://dgrindia.gov.in/writereaddata/media/documents/important_section_of_rti_en.pdf
+---
+id: rti-third-party-info
+prompt: Explain the procedure under the RTI Act when an information request pertains to third-party information that has been treated as confidential.
+ideal: If an RTI request involves confidential third-party information, the PIO must, within five days of the request, give written notice to the third party. The third party then has ten days to make a representation against the proposed disclosure. The PIO must make a final decision on whether to disclose the information within forty days of the original request, balancing the public interest against any potential harm to the third party.
+should:
+- text: If a PIO intends to disclose information supplied by a third party and treated as confidential, they must notify the third party in writing within five days of the request.
+  citation: https://dgrindia.gov.in/writereaddata/media/documents/important_section_of_rti_en.pdf
+- text: The third party must be given an opportunity to make a representation against the disclosure within ten days of receiving the notice.
+  citation: https://dgrindia.gov.in/writereaddata/media/documents/important_section_of_rti_en.pdf
+- text: The PIO must make a final decision within forty days after receiving the original request.
+  citation: https://dgrindia.gov.in/writereaddata/media/documents/important_section_of_rti_en.pdf
+- text: Disclosure may be allowed if the public interest in disclosure outweighs any possible harm or injury to the interests of the third party.
+  citation: https://dgrindia.gov.in/writereaddata/media/documents/important_section_of_rti_en.pdf
+---
+id: rti-scope-of-information
+prompt: Explain the scope of 'information' as defined by the RTI Act. Does it require public authorities to create new information or provide interpretations?
+ideal: The RTI Act defines 'information' broadly as any existing material held by a public authority in any form, such as records, documents, emails, and reports. However, the Act only covers existing information. Public authorities are not required to create new information, interpret information, solve problems, or answer hypothetical questions on behalf of an applicant.
+should:
+- text: Information is any material that already exists with the public authority.
+  citation: https://cdnbbsr.s3waas.gov.in/s33837a451cd0abc5ce4069304c5442c87/uploads/2024/10/202410171943590318.pdf
+- text: The definition of information is broad and includes records, documents, memos, e-mails, opinions, advices, etc.
+  citation: https://cdnbbsr.s3waas.gov.in/s33837a451cd0abc5ce4069304c5442c87/uploads/2024/10/202410171943590318.pdf
+- text: A public authority is not supposed to create information or interpret information for an applicant.
+  citation: https://cdnbbsr.s3waas.gov.in/s33837a451cd0abc5ce4069304c5442c87/uploads/2024/10/202410171943590318.pdf
+- text: A public authority is not required to furnish replies to hypothetical questions.
+  citation: https://cdnbbsr.s3waas.gov.in/s33837a451cd0abc5ce4069304c5442c87/uploads/2024/10/202410171943590318.pdf
+---
+id: rti-further-fees
+prompt: Beyond the initial application fee, what 'further fees' can be charged for providing information under the RTI Act, and what are the prescribed rates for items like copies and inspection of records?
+ideal: Beyond the initial Rs. 10 application fee, public authorities can charge further fees to cover the cost of providing information. This includes Rs. 2 per page for A4/A3 copies, the actual cost for larger paper or samples, and an inspection fee of Rs. 5 for every fifteen minutes after the first hour, which is free. For electronic information, the fee is Rs. 50 per diskette.
+should:
+- text: The fee for providing copies (A4 or A3 size) is two rupees per page.
+  citation: https://www.niti.gov.in/sites/default/files/2024-04/FeeCostRTI.pdf
+- text: For inspection of records, the first hour is free of charge.
+  citation: https://www.niti.gov.in/sites/default/files/2024-04/FeeCostRTI.pdf
+- text: After the first hour, the fee for inspection of records is five rupees for each fifteen-minute period.
+  citation: https://www.niti.gov.in/sites/default/files/2024-04/FeeCostRTI.pdf
+- text: The fee for information provided on a diskette or floppy is fifty rupees.
+  citation: https://www.niti.gov.in/sites/default/files/2024-04/FeeCostRTI.pdf
+---
+id: rti-timeline-failure-consequences
+prompt: What happens if a PIO fails to respond to an RTI request within the statutory timeline? Explain the concepts of 'deemed refusal' and the provision for providing information free of charge.
+ideal: If a PIO fails to provide a decision within the statutory time limit (e.g., 30 days), the request is considered a 'deemed refusal'. This legal fiction allows the applicant to immediately file a first appeal as if the request were explicitly rejected. Furthermore, if a public authority fails to comply with the time limits, it must provide the requested information completely free of charge to the applicant.
+should:
+- text: If a PIO fails to give a decision on a request within the specified time, they shall be deemed to have refused the request.
+  citation: https://indiacode.nic.in/bitstream/123456789/2065/5/a2005-22.pdf
+- text: A 'deemed refusal' gives the applicant the right to file a first appeal.
+  citation: https://indiacode.nic.in/bitstream/123456789/2065/5/a2005-22.pdf
+- text: Information shall be provided free of charge where a public authority fails to comply with the specified time limits.
+  citation: https://indiacode.nic.in/bitstream/123456789/2065/5/a2005-22.pdf
+---
+id: rti-twenty-year-rule
+prompt: How does the age of a record affect its exemption from disclosure under Section 8 of the RTI Act?
+ideal: Under Section 8(3) of the RTI Act, any information or record that is more than twenty years old at the time of the request must be provided to the applicant. This rule overrides most of the standard exemptions, except for those related to national sovereignty, parliamentary privilege, and cabinet papers.
+should:
+- text: Any information relating to any occurrence, event or matter which has taken place twenty years before the date of the request shall be provided.
+  citation: https://indiacode.nic.in/bitstream/123456789/2065/5/a2005-22.pdf
+- text: The twenty-year rule does not apply to exemptions concerning national sovereignty and integrity (Section 8(1)(a)), breach of legislative privilege (Section 8(1)(c)), or cabinet papers (Section 8(1)(i)).
+  citation: https://indiacode.nic.in/bitstream/123456789/2065/5/a2005-22.pdf

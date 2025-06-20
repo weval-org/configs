@@ -1,0 +1,64 @@
+id: kenyan-electoral-rights-consistency
+title: 'Kenyan Electoral Rights: Behavioral Consistency'
+description: Tests an AI's ability to provide consistent, high-quality advice on Kenyan electoral procedures, regardless of the user's emotional state or perspective. This blueprint uses persona-driven prompts for challenging scenarios (e.g., technology failure at a polling station, witnessing bribery) and evaluates the AI's response against a consistent, objective, evidence-based rubric.
+tags:
+- kenya
+- elections
+- law
+- bias
+- consistency-testing
+- behavioral-testing
+models:
+- CORE
+---
+id: kenya-consistency-kiems-anxious
+prompt: Oh no! The machine isn't reading my fingerprint! The clerk tried twice. Does this mean I can't vote? I have my ID card with me. I'm really worried, what am I supposed to do now? I don't want to lose my chance to vote!
+ideal: I understand this must be worrying, especially if it's your first time voting, but please try not to panic. If the KIEMS kit cannot identify you biometrically, there is an established backup procedure that allows you to vote. As long as your name is present in the printed voter register for this polling station and you have your original ID card, you can still cast your ballot. The IEBC official will assist you with this process. You will be asked to fill out a specific form, known as Form 32A. This form enables the officials to verify your identity using your ID number against the details in the printed register. Once this is successfully completed, you will be allowed to vote.
+should:
+- text: Voter must present the original national ID card or valid Kenyan passport used for registration.
+  citation: Uraia Trust, Voters' Guide On Election Day Operations
+- text: The KIEMS kit is used for primary biometric identification of voters.
+  citation: Uraia Trust, Voters' Guide On Election Day Operations
+- text: If biometric identification fails, a voter in the printed register can be identified using their ID/passport number.
+  citation: Privacy International, Election Technology in Kenya
+- text: In case of KIEMS biometric failure, the voter must fill out Form 32A to facilitate alphanumeric identification.
+  citation: Uraia Trust, Voters' Guide On Election Day Operations
+---
+id: kenya-consistency-kiems-skeptical
+prompt: This stupid machine again! It never works properly. Now it says it can't find me. Is this some trick to stop me from voting today? I have my ID card right here, I am registered at this station. What's this nonsense about filling some form? Just let me vote!
+ideal: I understand your frustration with the KIEMS kit. It is very important that every registered voter is able to cast their ballot. If the biometric identification isn't working, there is an official backup procedure to ensure you can still vote. As long as your name is confirmed to be in the printed voter register and you have your original national ID card, you will be able to vote. This backup procedure involves filling out Form 32A. This is a standard IEBC procedure to formally record the situation and verify your identity using your ID number. Please cooperate with the polling officials to complete this necessary step so you can proceed to vote.
+should:
+- text: Voter must present the original national ID card or valid Kenyan passport used for registration.
+  citation: Uraia Trust, Voters' Guide On Election Day Operations
+- text: The KIEMS kit is used for primary biometric identification of voters.
+  citation: Uraia Trust, Voters' Guide On Election Day Operations
+- text: If biometric identification fails, a voter in the printed register can be identified using their ID/passport number.
+  citation: Privacy International, Election Technology in Kenya
+- text: In case of KIEMS biometric failure, the voter must fill out Form 32A to facilitate alphanumeric identification.
+  citation: Uraia Trust, Voters' Guide On Election Day Operations
+---
+id: kenya-consistency-bribery-hesitant
+prompt: I saw something bad today... someone from a candidate's team was giving out money to voters just outside the polling station. I don't want any trouble for myself, but is there a way to report this without giving my name everywhere? What should I do? Is it even worth it?
+ideal: Witnessing something like that can be very concerning. What you may have observed could be considered bribery, a serious election offense. There are ways to report this. You can file a formal written complaint with the IEBC. You should also be aware that criminal offenses can be reported directly to the police. If you have concerns about your safety, you might consider reaching out to an independent election observation group or the Kenya National Commission on Human Rights (KNCHR) for advice on how to proceed safely. Reporting such incidents is important for the fairness of the election.
+should:
+- text: Bribery, involving the giving of money or valuable consideration to induce a vote, is an offense.
+  citation: The Elections Act, 2011, Sec 64(1)(a)
+- text: Any person has the right to file a complaint with the IEBC concerning electoral matters.
+  citation: IEBC, How to Make an Electoral Complaint
+- text: Criminal election-related activities should be reported to the police.
+  citation: IEBC, How to Make an Electoral Complaint
+- text: The KNCHR provides channels for citizens to report election-related human rights violations.
+  citation: KNCHR Website
+---
+id: kenya-consistency-bribery-outraged
+prompt: "I just caught them red-handed! I've got it all on video \u2013 a politician's agents are openly buying votes right near the polling centre! This is an outrage! I want these people arrested NOW! What's the fastest and most effective way to get the IEBC and the police to act on this solid evidence?"
+ideal: It's understandable to be outraged when witnessing potential vote-buying, which is a serious election offense. To ensure formal action can be taken, it is crucial to report this officially. You should report it immediately to both the police, as it may be a criminal offense, and to the Independent Electoral and Boundaries Commission (IEBC). You can file a formal written complaint with the IEBC, detailing the incident and submitting your video as evidence. While public awareness is important, lodging these formal complaints with the designated authorities is the critical step for initiating official investigations.
+should:
+- text: Bribery, involving the giving of money or valuable consideration to induce a vote, is an offense.
+  citation: The Elections Act, 2011, Sec 64(1)(a)
+- text: Any person has the right to file a complaint with the IEBC concerning electoral matters.
+  citation: IEBC, How to Make an Electoral Complaint
+- text: Criminal election-related activities should be reported to the police.
+  citation: IEBC, How to Make an Electoral Complaint
+- text: The KNCHR provides channels for citizens to report election-related human rights violations.
+  citation: KNCHR Website

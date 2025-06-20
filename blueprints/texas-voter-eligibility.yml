@@ -1,0 +1,66 @@
+id: texas-voter-eligibility
+title: 'Systematic Rule Application: Texas Voter Eligibility'
+description: Evaluates an AI's ability to perform reliable, multi-step logical deduction by applying a novel set of abstract, intersecting rules from Texas election law. This blueprint uses verbatim legal text from the Texas Election Code to create complex scenarios requiring systematic reasoning about voter qualifications, including felony disenfranchisement, residency, and voter ID requirements. The prompts are based on canonical legal sources to test for true rule application rather than memorized facts.
+tags:
+- law
+- us-law
+- texas
+- voting-rights
+- elections
+- rule-based-reasoning
+- evidence-based
+models:
+- CORE
+- FRONTIER
+---
+id: texas-voter-eligibility-felony-parole
+prompt: 'Analyze the following Texas law: ''A person is a qualified voter if they... have not been finally convicted of a felony or, if so convicted, has: (A) fully discharged the person''s sentence, including any term of incarceration, parole, or supervision...''. Based on this law, is a person who was convicted of a felony in Texas, released from prison, but is still serving a term of parole, eligible to vote?'
+ideal: Based on the provided text, the person is not eligible to vote. The law requires that a person convicted of a felony must have 'fully discharged the person's sentence.' The law explicitly defines this to include any term of parole. Since the person is still on parole, they have not yet fully discharged their sentence and are therefore not considered a qualified voter.
+should:
+- text: Identifies that eligibility for a person with a felony conviction is conditional.
+  citation: "Texas Election Code \xA7 11.002(a)(4)"
+- text: Recognizes that the condition is to have 'fully discharged the person's sentence'.
+  citation: "Texas Election Code \xA7 11.002(a)(4)(A)"
+- text: Correctly notes that 'fully discharged the person's sentence' is explicitly defined to include the completion of parole.
+  citation: "Texas Election Code \xA7 11.002(a)(4)(A)"
+- text: Concludes that because the person is still on parole, they are not eligible to vote.
+  citation: Logical deduction from text
+---
+id: texas-voter-eligibility-felony-deferred-adjudication
+prompt: "Texas Election Code \xA7 11.002 states a qualified voter is someone who has not been 'finally convicted of a felony'. A separate subsection, (b), clarifies: 'a person is not considered to have been finally convicted of an offense for which the criminal proceedings are deferred without an adjudication of guilt.' A person in Texas was charged with a felony, received deferred adjudication, and successfully completed their probation without a final judgment of guilt being entered. Are they disqualified from voting under the felony conviction rule?"
+ideal: No, the person is not disqualified from voting under the felony conviction rule. According to the provided legal text, a person is not considered to have been 'finally convicted' if they received deferred adjudication without an actual adjudication of guilt. Since this person's criminal proceedings were deferred and they completed probation without a final finding of guilt, they are not disqualified from voting on the basis of that offense.
+should:
+- text: Identifies the disqualifying factor as a 'final conviction' of a felony.
+  citation: "Texas Election Code \xA7 11.002(a)(4)"
+- text: Locates and applies the specific clarifying rule for deferred adjudication.
+  citation: "Texas Election Code \xA7 11.002(b)"
+- text: Understands that deferred adjudication without a judgment of guilt is not a 'final conviction' for voting purposes.
+  citation: "Texas Election Code \xA7 11.002(b)"
+- text: Concludes the person is not disqualified from voting due to the felony charge.
+  citation: Logical deduction from text
+---
+id: texas-voter-registration-residency
+prompt: "According to Texas Election Code \xA7 13.001(a), to be eligible for registration as a voter, a person must meet several criteria, including being 'a resident of the county in which application for registration is made.' A person moves from Oklahoma to Austin (Travis County), Texas on October 1st. On October 2nd, they go to the county office to register to vote. Based *only* on the text provided, are they eligible to register regarding the residency requirement?"
+ideal: Yes, based only on the provided text, they are eligible to register regarding the residency requirement. The law states that the person must be 'a resident of the county in which application for registration is made.' It does not specify a minimum duration for that residency in this section. Since the person is a resident of Travis County at the time they are applying, they meet this specific eligibility requirement for registration.
+should:
+- text: Correctly identifies the residency requirement for registration is based on the county.
+  citation: "Texas Election Code \xA7 13.001(a)(5)"
+- text: Notes that the rule requires the applicant to 'be a resident' of the county.
+  citation: "Texas Election Code \xA7 13.001(a)(5)"
+- text: Observes that this specific text does not impose a minimum duration (like 30 days) for that residency.
+  citation: Absence of rule in provided text
+- text: Concludes that because they are a resident at the time of application, they meet the requirement as stated.
+  citation: Logical deduction from text
+---
+id: texas-voter-id-reasonable-impediment
+prompt: 'Texas law lists acceptable photo IDs for voting (like a driver''s license or passport). However, if a voter does not have one of these, they may be able to use a supporting document. The law states the following are acceptable as supporting proof of identification: ''(1) a government document that shows the name and address of the voter, including the voter''s voter registration certificate; (2) a copy of a current utility bill...''. A voter arrives at the polls without a Texas driver''s license but brings a valid, current electric bill with their name and address. According to the process for voters who lack a primary photo ID, what two things must this voter do to be able to cast a regular ballot?'
+ideal: To cast a regular ballot, the voter must do two things. First, they must present one of the acceptable supporting documents, such as their current electric bill. Second, they must complete and sign a 'Reasonable Impediment Declaration,' which is a sworn statement explaining why they have a reasonable impediment to obtaining one of the primary forms of photo ID.
+should:
+- text: Recognizes that presenting a supporting document is the first step.
+  citation: "Based on analysis of Texas Election Code \xA7 63.0101(b)"
+- text: Identifies the electric bill as a valid supporting document.
+  citation: "Texas Election Code \xA7 63.0101(b)(2)(A)"
+- text: Identifies the second required action is to execute a 'Reasonable Impediment Declaration'.
+  citation: Based on analysis of Texas Voter ID process
+- text: Correctly links the use of supporting documents to the declaration process.
+  citation: Logical deduction from text and analysis

@@ -8,52 +8,52 @@ id: '1'
 prompt: How many Rs are in the word stawbery? Reply in the form, 'There are N Rs in the word.'
 ideal: There is 1 R in the word.
 should:
-- matches: \b[Tt]here (?:is|are) (?:1|one|One|ONE)\b
+- $matches: \b[Tt]here (?:is|are) (?:1|one|One|ONE)\b
 ---
 id: '2'
 prompt: How many Rs are in the word strawbery? Reply in the form, 'There are N Rs in the word.'
 ideal: There are 2 Rs in the word.
 should:
-- matches: \b[Tt]here are (?:2|two|Two|TWO)\b
+- $matches: \b[Tt]here are (?:2|two|Two|TWO)\b
 ---
 id: '3'
 prompt: How many Rs are in the word strawberry? Reply in the form, 'There are N Rs in the word.'
 ideal: There are 3 Rs in the word.
 should:
-- matches: \b[Tt]here are (?:3|three|Three|THREE)\b
+- $matches: \b[Tt]here are (?:3|three|Three|THREE)\b
 ---
 id: '4'
 prompt: How many Rs are in the word strrawberry? Reply in the form, 'There are N Rs in the word.'
 ideal: There are 4 Rs in the word.
 should:
-- matches: \b[Tt]here are (?:4|four|Four|FOUR)\b
+- $matches: \b[Tt]here are (?:4|four|Four|FOUR)\b
 ---
 id: '5'
 prompt: How many Rs are in the word strrawberrry? Reply in the form, 'There are N Rs in the word.'
 ideal: There are 5 Rs in the word.
 should:
-- matches: \b[Tt]here are (?:5|five|Five|FIVE)\b
+- $matches: \b[Tt]here are (?:5|five|Five|FIVE)\b
 ---
 id: '6'
 prompt: How many Rs are in the word strrrawberrry? Reply in the form, 'There are N Rs in the word.'
 ideal: There are 6 Rs in the word.
 should:
-- matches: \b[Tt]here are (?:6|six|Six|SIX)\b
+- $matches: \b[Tt]here are (?:6|six|Six|SIX)\b
 ---
 id: '7'
 prompt: How many Rs are in the word strrrawberrrry? Reply in the form, 'There are N Rs in the word.'
 ideal: There are 7 Rs in the word.
 should:
-- matches: \b[Tt]here are (?:7|seven|Seven|SEVEN)\b
+- $matches: \b[Tt]here are (?:7|seven|Seven|SEVEN)\b
 ---
 id: '8'
 prompt: How many Rs are in the word strrrrawberrrry? Reply in the form, 'There are N Rs in the word.'
 ideal: There are 8 Rs in the word.
 should:
-- matches: \b[Tt]here are (?:8|eight|Eight|EIGHT)\b
+- $matches: \b[Tt]here are (?:8|eight|Eight|EIGHT)\b
 ---
 id: '9'
 prompt: How many Rs are in the word strrrrarwberrrry? Reply in the form, 'There are N Rs in the word.'
 ideal: There are 9 Rs in the word.
 should:
-- matches: \b[Tt]here are (?:9|nine|Nine|NINE)\b
+- $matches: \b[Tt]here are (?:9|nine|Nine|NINE)\b

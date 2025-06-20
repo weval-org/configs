@@ -37,7 +37,7 @@ This is the recommended structure for most blueprints. The first YAML document c
 
 ```yaml
 # Configuration Header (First YAML Document)
-id: my-blueprint-v1
+id: my-blueprint
 title: "My First Blueprint"
 models:
   - openai:gpt-4o-mini
@@ -82,7 +82,7 @@ For consistency with the JSON format, you can define the entire blueprint as a s
 
 ```yaml
 # Single YAML document with a 'prompts' key
-id: my-blueprint-v1
+id: my-blueprint
 title: "My First Blueprint"
 models:
   - openai:gpt-4o-mini
@@ -151,32 +151,32 @@ Each item in these arrays is a point definition.
     ```yaml
     should:
       # Simple presence
-      - contains: "fiduciary duty"  # Case-sensitive check
-      - icontains: "fiduciary duty" # Case-insensitive
-      - ends_with: "."
+      - $contains: "fiduciary duty"  # Case-sensitive check
+      - $icontains: "fiduciary duty" # Case-insensitive
+      - $ends_with: "."
 
       # List-based checks
-      - contains_any_of: ["fiduciary", "duty"]  # True if any are found
-      - contains_all_of: ["fiduciary", "duty"]  # Graded score (0.5 if 1 of 2 is found)
-      - contains_at_least_n_of: [2, ["apples", "oranges", "pears"]]
+      - $contains_any_of: ["fiduciary", "duty"]  # True if any are found
+      - $contains_all_of: ["fiduciary", "duty"]  # Graded score (0.5 if 1 of 2 is found)
+      - $contains_at_least_n_of: [2, ["apples", "oranges", "pears"]]
 
       # Regex checks
-      - match: "^The ruling states" # Case-sensitive regex
-      - imatch: "^the ruling"       # Case-insensitive regex
-      - match_all_of: ["^The ruling", "states that$"] # Graded regex
-      - imatch_all_of: ["^the ruling", "states that$"] # Case-insensitive graded regex
+      - $match: "^The ruling states" # Case-sensitive regex
+      - $imatch: "^the ruling"       # Case-insensitive regex
+      - $match_all_of: ["^The ruling", "states that$"] # Graded regex
+      - $imatch_all_of: ["^the ruling", "states that$"] # Case-insensitive graded regex
 
       # Other checks
-      - word_count_between: [50, 100]
+      - $word_count_between: [50, 100]
 
     should_not:
-      - contains_any_of: ["I feel", "I believe", "As an AI"]
-      - contains: "guaranteed returns"
+      - $contains_any_of: ["I feel", "I believe", "As an AI"]
+      - $contains: "guaranteed returns"
     ```
 3.  **Full Object (Maximum Control)**: For weighting points or adding citations.
     ```yaml
     should:
-      - text: "Covers the principle of 'prudent man' rule."
+      - point: "Covers the principle of 'prudent man' rule."
         weight: 3.0 # This point is 3x as important
       - fn: contains
         arg: "fiduciary duty"
@@ -196,7 +196,7 @@ The system remains backwardly compatible with the original JSON format.
 
 ```json
 {
-  "id": "legacy-json-test-v1",
+  "id": "legacy-json-test",
   "title": "Legacy JSON Test",
   "models": [
     "openai:gpt-4o-mini"
@@ -210,7 +210,7 @@ The system remains backwardly compatible with the original JSON format.
         { "text": "It is a data-interchange format", "multiplier": 1.0 }
       ],
       "should_not": [
-          { "contains": "YAML" }
+          { "$contains": "YAML" }
       ]
     }
   ]
@@ -292,7 +292,7 @@ That's it! By creating even a simple blueprint, you're helping us all better und
 ```
 .
 ├── blueprints/                # Main directory for evaluation blueprint files
-│   ├── udhr-article19-eval-v1.yml
+│   ├── udhr-article19-eval.yml
 │   └── another-civic-topic-eval.yaml
 ├── models/                 # Directory for reusable Model Collection JSON files
 │   ├── CORE.json # Core set of models we like to check
@@ -305,13 +305,21 @@ That's it! By creating even a simple blueprint, you're helping us all better und
 
 ## What Makes a Good CivicEval Blueprint?
 
-We encourage blueprints that are:
+A high-signal blueprint is a precise diagnostic instrument, not a simple trivia quiz. To construct one, we encourage contributors to follow these core principles, which are specifically tailored to the unique nature of modern LLMs:
 
-*   **Relevant:** Address a clear civic issue, human right, legal principle, or area of potential societal impact from LLMs.
-*   **Well-Defined:** Have clear `title`, `description`, and `tags`.
-*   **Focused:** Test a specific aspect or capability related to the chosen topic.
-*   **High-Quality:** Prompts should be unambiguous. If using `ideal` or `should`, these should be accurate, comprehensive, and well-researched.
-*   **Impactful:** Help shed light on model capabilities or deficits in areas important for public trust and safety.
+*   **Test Reasoning, Not Recall.** LLMs have memorized vast amounts of text. A valuable test is one that requires judgment in ambiguous or novel scenarios, revealing how the model synthesizes information, not just if it can retrieve a fact.
+
+*   **Prioritize Qualitative Rubrics.** Chat models are masters of paraphrase and can easily bypass simple keyword checks (`$contains`). It is far more robust to test the *concept* of a correct response. Define abstract success criteria in the `should` and `should_not` blocks (e.g., `"The response acknowledges the user's distress without offering medical advice"`).
+
+*   **Isolate Variables.** To create a rigorous test, treat it like a scientific experiment. If you are testing for a specific bias, create multiple probes that change only one key detail at a time (e.g., a name, a location, the order of presentation). This allows you to be confident that you are measuring what you intend to.
+
+*   **Think Adversarially.** The most insightful tests often try to find the model's breaking points. Craft prompts that might lure a poorly-aligned model into a known failure mode. Use loaded questions, subtle framing, or false premises to see if the model takes the bait or if its safety training holds up.
+
+#### The Most Important Principle: Ground Your Rubric in Evidence
+
+A blueprint's power and credibility come from its objectivity. The goal is not to test if a model agrees with a personal opinion, but to measure its adherence to an established, authoritative standard.
+
+**A high-quality blueprint is evidence-grounded.** Before writing, identify a canonical source for your topic (e.g., a legal statute, a human rights charter, an industry best practice). Build your `should` rubric directly from the principles articulated in that source. Use the `citation` field to link your test back to its evidence. This transforms your evaluation from a subjective list of questions into a rigorous, auditable measurement tool.
 
 ## Defining Model Collections (`/models/*.json`)
 
@@ -402,49 +410,6 @@ For more complex changes, multiple file additions, or if you prefer using Git lo
     *   Reference any related issues if applicable.
 
 CivicEval maintainers will review your PR. We're looking for well-crafted blueprints that meaningfully expand our understanding of LLM performance on civic issues.
-
-## Repository Structure
-
-```
-.
-├── blueprints/                # Main directory for evaluation blueprint files
-│   ├── udhr-article19-eval-v1.yml
-│   └── another-civic-topic-eval.yaml
-├── models/                 # Directory for reusable Model Collection JSON files
-│   ├── CORE.json # Core set of models we like to check
-│   └── EMERGING_MODELS.json # An example (not defined currently)
-└── README.md               # This file
-```
-
-*   **`/blueprints/`**: This is where your evaluation blueprint files live. Each file defines a specific evaluation suite. We recommend the new YAML format (`.yml` or `.yaml`).
-*   **`/models/`**: This directory contains JSON files defining reusable "Model Collections" (e.g., a standard set of core models to test against).
-
-## What Makes a Good CivicEval Blueprint?
-
-We encourage blueprints that are:
-
-*   **Relevant:** Address a clear civic issue, human right, legal principle, or area of potential societal impact from LLMs.
-*   **Well-Defined:** Have clear `title`, `description`, and `tags`.
-*   **Focused:** Test a specific aspect or capability related to the chosen topic.
-*   **High-Quality:** Prompts should be unambiguous. If using `ideal` or `should`, these should be accurate, comprehensive, and well-researched.
-*   **Impactful:** Help shed light on model capabilities or deficits in areas important for public trust and safety.
-
-## Defining Model Collections (`/models/*.json`)
-
-Files in `/models/` define reusable sets of model identifiers.
-
-*   The **filename** (e.g., `MY_FAV_MODELS.json`) becomes the **placeholder** (e.g., `"MY_FAV_MODELS"`) used in blueprints.
-*   Placeholders **must be uppercase** (e.g., `MY_FAV_MODELS`, `EMERGING_MODELS`).
-*   All model IDs within these files **must be in `provider:model` format** (e.g. `openai:gpt-4o-mini`).
-
-**Example (`/models/MY_FAV_MODELS.json`):**
-```json
-[
-  "openai:gpt-4o-mini",
-  "anthropic:claude-3-haiku-20240307",
-  "google:gemini-1.5-flash-latest"
-]
-```
 
 ## Important Notes
 

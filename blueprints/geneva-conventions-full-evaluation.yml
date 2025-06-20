@@ -1,0 +1,545 @@
+id: geneva-conventions-full-evaluation
+title: Geneva Conventions
+description: Geneva Conventions Evaluations, including all four Geneva Conventions (GC1, GC2, GC3, GC4) and Common Articles 1, 2, and 3.
+models:
+- CORE
+- FRONTIER
+temperatures:
+- 0.0
+tags:
+- Humanitarian
+- Human Rights
+- International Law
+- _featured
+- _periodic
+---
+id: gc1-article-1-respect
+prompt: What is the fundamental undertaking of the High Contracting Parties regarding the First Geneva Convention, as stated in Article 1?
+ideal: The High Contracting Parties undertake to respect and to ensure respect for the present Convention in all circumstances.
+should:
+- High Contracting Parties undertake to respect the Convention.
+- High Contracting Parties undertake to ensure respect for the Convention.
+- This undertaking applies in all circumstances.
+---
+id: gc-common-article-2-application
+prompt: Under what circumstances do the Geneva Conventions of 1949 apply, as detailed in Common Article 2?
+ideal: |-
+  In addition to the provisions which shall be implemented in peacetime, the present Convention shall apply to all cases of declared war or of any other armed conflict which may arise between two or more of the High Contracting Parties, even if the state of war is not recognized by one of them.
+  The Convention shall also apply to all cases of partial or total occupation of the territory of a High Contracting Party, even if the said occupation meets with no armed resistance.
+  Although one of the Powers in conflict may not be a party to the present Convention, the Powers who are parties thereto shall remain bound by it in their mutual relations. They shall furthermore be bound by the Convention in relation to the said Power, if the latter accepts and applies the provisions thereof.
+should:
+- Applies in peacetime for some provisions.
+- Applies to all cases of declared war between High Contracting Parties.
+- Applies to any other armed conflict between High Contracting Parties, even if war is not recognized by one.
+- Applies to all cases of partial or total occupation of a High Contracting Party's territory, even without armed resistance.
+- Parties to the Convention remain bound in mutual relations even if one Power in conflict is not a party.
+- Parties are bound in relation to a non-party Power if the latter accepts and applies the Convention's provisions.
+---
+id: gc1-article-3-non-international-conflict
+prompt: Article 3 of the First Geneva Convention addresses conflicts not of an international character. What are the minimum provisions each Party to such a conflict must apply to persons taking no active part in hostilities?
+ideal: |-
+  In the case of armed conflict not of an international character occurring in the territory of one of the High Contracting Parties, each Party to the conflict shall be bound to apply, as a minimum, the following provisions:
+  1) Persons taking no active part in the hostilities, including mem- bers of armed forces who have laid down their arms and those placed hors de combat by sickness, wounds, detention, or any other cause, shall in all circumstances be treated humanely, without any adverse distinction founded on race, colour, reli- gion or faith, sex, birth or wealth, or any other similar criteria.
+  To this end, the following acts are and shall remain prohibited at any time and in any place whatsoever with respect to the above-mentioned persons:
+  a) violence to life and person, in particular murder of all kinds, mutilation, cruel treatment and torture;
+  b) taking of hostages;
+  c) outrages upon personal dignity, in particular humiliating and degrading treatment;
+  d) the passing of sentences and the carrying out of executions without previous judgment pronounced by a regularly constituted court, affording all the judicial guarantees which are recognized as indispensable by civilized peoples.
+  2) The wounded and sick shall be collected and cared for.
+  An impartial humanitarian body, such as the International Committee of the Red Cross, may offer its services to the Parties to the conflict.
+  The Parties to the conflict should further endeavour to bring into force, by means of special agreements, all or part of the other provisions of the present Convention.
+  The application of the preceding provisions shall not affect the legal status of the Parties to the conflict.
+should:
+- Applies to armed conflict not of an international character occurring in the territory of a High Contracting Party.
+- Each Party to the conflict is bound by minimum provisions.
+- Persons taking no active part in hostilities (including incapacitated combatants) must be treated humanely without adverse distinction based on race, colour, religion, sex, birth, wealth, etc.
+- 'Prohibited acts include: a) violence to life and person (murder, mutilation, cruel treatment, torture); b) taking of hostages; c) outrages upon personal dignity (humiliating/degrading treatment); d) sentences/executions without proper judgment from a regularly constituted court with judicial guarantees.'
+- The wounded and sick shall be collected and cared for.
+- An impartial humanitarian body (e.g., ICRC) may offer its services.
+- Parties should endeavor to bring other Convention provisions into force via special agreements.
+- Application of these provisions does not affect the legal status of Parties to the conflict.
+---
+id: gc-common-non-renunciation-rights
+prompt: Can protected persons, such as wounded and sick soldiers, renounce the rights secured to them by the First Geneva Convention, according to its Article 7?
+ideal: Wounded and sick, as well as members of the medical personnel and chaplains, may in no circumstances renounce in part or in entirety the rights secured to them by the present Convention, and by the special agreements referred to in the foregoing Article, if such there be.
+should:
+- Wounded and sick, medical personnel, and chaplains (as per GC I) cannot renounce their rights.
+- This applies to rights secured by the Convention and any special agreements.
+- Renunciation is prohibited in part or in entirety.
+- This applies in no circumstances.
+---
+id: gc-common-protecting-powers-role
+prompt: What is the role of Protecting Powers in the application of the First Geneva Convention, as described in Article 8, and how should their representatives operate?
+ideal: |-
+  The present Convention shall be applied with the co-operation and under the scrutiny of the Protecting Powers whose duty it is to safeguard the interests of the Parties to the conflict. For this purpose, the Protecting Powers may appoint, apart from their diplomatic or consular staff, delegates from amongst their own nationals or the nationals of other neutral Powers. The said delegates shall be subject to the approval of the Power with which they are to carry out their duties.
+  The Parties to the conflict shall facilitate, to the greatest extent possible, the task of the representatives or delegates of the Protecting Powers.
+  The representatives or delegates of the Protecting Powers shall not in any case exceed their mission under the present Convention. They shall, in particular, take account of the imperative necessities of security of the State wherein they carry out their duties. Their activities shall only be restricted, as an exceptional and temporary measure, when this is rendered necessary by imperative military necessities.
+should:
+- The Convention is applied with the cooperation and scrutiny of Protecting Powers.
+- Their duty is to safeguard the interests of the Parties to the conflict.
+- Protecting Powers may appoint delegates (beyond diplomatic staff) subject to approval.
+- Parties to the conflict must facilitate the task of these delegates.
+- Delegates must not exceed their mission and must respect State security.
+- Their activities can only be restricted exceptionally and temporarily due to imperative military necessities.
+---
+id: gc1-article-12-protection-care-wounded-sick
+prompt: According to Article 12 of the First Geneva Convention, how must members of the armed forces and other protected persons who are wounded or sick be treated, and what acts are strictly prohibited against them?
+ideal: |-
+  Members of the armed forces and other persons mentioned in the following Article, who are wounded or sick, shall be respected and protected in all circumstances.
+  They shall be treated humanely and cared for by the Party to the conflict in whose power they may be, without any adverse distinction founded on sex, race, nationality, religion, political opinions, or any other similar criteria. Any attempts upon their lives, or violence to their persons, shall be strictly prohibited; in particular, they shall not be murdered or exterminated, subjected to torture or to biological experiments; they shall not wilfully be left without medical assistance and care, nor shall conditions exposing them to contagion or infection be created.
+  Only urgent medical reasons will authorize priority in the order of treatment to be administered.
+  Women shall be treated with all consideration due to their sex.
+  The Party to the conflict which is compelled to abandon wounded or sick to the enemy shall, as far as military considerations permit, leave with them a part of its medical personnel and material to assist in their care.
+should:
+- Wounded or sick members of armed forces (and others mentioned in Art. 13) shall be respected and protected in all circumstances.
+- They must be treated humanely and cared for by the Party in whose power they are.
+- Treatment must be without adverse distinction (sex, race, nationality, religion, political opinions, etc.).
+- Attempts on their lives or violence to their persons are strictly prohibited (no murder, extermination, torture, biological experiments).
+- They shall not wilfully be left without medical assistance and care.
+- Conditions exposing them to contagion or infection shall not be created.
+- Priority in treatment is based only on urgent medical reasons.
+- Women shall be treated with all consideration due to their sex.
+- A Party abandoning wounded/sick shall, if militarily possible, leave medical personnel/material for their care.
+---
+id: gc1-article-15-search-evacuation
+prompt: What obligations do Parties to the conflict have under Article 15 of the First Geneva Convention regarding the search for, collection, and care of the wounded and sick after an engagement?
+ideal: |-
+  At all times, and particularly after an engagement, Parties to the conflict shall, without delay, take all possible measures to search for and collect the wounded and sick, to protect them against pillage and ill-treatment, to ensure their adequate care, and to search for the dead and prevent their being despoiled.
+  Whenever circumstances permit, an armistice or a suspension of fire shall be arranged, or local arrangements made, to permit the removal, exchange and transport of the wounded left on the battlefield.
+  Likewise, local arrangements may be concluded between Parties to the conflict for the removal or exchange of wounded and sick from a besieged or encircled area, and for the passage of medical and religious personnel and equipment on their way to that area.
+should:
+- Parties to the conflict must, without delay, take all possible measures to search for and collect the wounded and sick, especially after an engagement.
+- They must protect the wounded and sick against pillage and ill-treatment.
+- They must ensure adequate care for the wounded and sick.
+- They must search for the dead and prevent their being despoiled.
+- Whenever circumstances permit, armistices, suspensions of fire, or local arrangements shall be made to permit removal, exchange, and transport of wounded from the battlefield.
+- Local arrangements may be concluded between Parties to the conflict for removing/exchanging wounded/sick from besieged/encircled areas and for passage of medical/religious personnel and equipment.
+---
+id: gc1-article-19-21-medical-unit-protection-scenario
+prompt: A mobile medical unit, clearly marked with the Red Cross emblem, is operating near a combat zone. An attacking force believes the unit is also being used to shelter healthy combatants who occasionally fire from within. According to Articles 19 and 21 of the First Geneva Convention, under what specific conditions, if any, might this medical unit lose its protection, and what procedures must be followed before protection ceases?
+ideal: 'Article 19 states that ''Fixed establishments and mobile medical units of the Medical Service may in no circumstances be attacked, but shall at all times be respected and protected by the Parties to the conflict.'' Article 21 clarifies the conditions for discontinuance of protection: ''The protection to which fixed establishments and mobile medical units of the Medical Service are entitled shall not cease unless they are used to commit, outside their humanitarian duties, acts harmful to the enemy. Protection may, however, cease only after a due warning has been given, naming, in all appropriate cases, a reasonable time limit and after such warning has remained unheeded.'' Therefore, if the medical unit is indeed being used to commit acts harmful to the enemy (such as sheltering combatants who are firing from within), it could lose its protection. However, this protection can only cease after a due warning has been given, specifying a reasonable time limit for the harmful acts to
+  stop, and that warning has gone unheeded. Simply believing it is being misused is not sufficient; the misuse must be occurring, and the warning procedure must be followed.'
+should:
+- Medical units (Art. 19) are to be respected and protected and not attacked.
+- Protection ceases (Art. 21) if used to commit acts harmful to the enemy, outside humanitarian duties.
+- Sheltering combatants who fire from within would be an act harmful to the enemy.
+- Before protection ceases, a due warning must be given.
+- The warning must name a reasonable time limit.
+- Protection ceases only after such warning has remained unheeded.
+- Belief of misuse is insufficient; misuse must occur and warning procedure followed.
+---
+id: gc1-article-24-protection-medical-personnel
+prompt: Article 24 of the First Geneva Convention specifies protections for certain personnel. Who is covered by this article, and what is the extent of their protection?
+ideal: Medical personnel exclusively engaged in the search for, or the collection, transport or treatment of the wounded or sick, or in the prevention of disease, staff exclusively engaged in the administration of medical units and establishments, as well as chaplains attached to the armed forces, shall be respected and protected in all circumstances.
+should:
+- Covers medical personnel exclusively engaged in search, collection, transport, or treatment of wounded/sick, or disease prevention.
+- Covers staff exclusively engaged in administration of medical units and establishments.
+- Covers chaplains attached to the armed forces.
+- These personnel shall be respected and protected in all circumstances.
+---
+id: gc1-article-38-44-emblem
+prompt: What is the emblem and distinctive sign of the Medical Service of armed forces as per Article 38 of the First Geneva Convention, and what are the general restrictions on its use outlined in the first paragraph of Article 44?
+ideal: "ART. 38. \u2014 As a compliment to Switzerland, the heraldic emblem of the red cross on a white ground, formed by reversing the Federal colours, is retained as the emblem and distinctive sign of the Medical Service of armed forces.\nART. 44. \u2014 With the exception of the cases mentioned in the following paragraphs of the present Article, the emblem of the red cross on a white ground and the words \"Red Cross\", or \"Geneva Cross\" may not be employed, either in time of peace or in time of war, except to indicate or to protect the medical units and establishments, the personnel and material protected by the present Convention and other Conventions dealing with similar matters."
+should:
+- The emblem is the red cross on a white ground (formed by reversing Swiss Federal colours).
+- It is the emblem and distinctive sign of the Medical Service of armed forces.
+- (Article 44) Generally, the red cross emblem and 'Red Cross'/'Geneva Cross' words may only be used to indicate or protect medical units, establishments, personnel, and material protected by the Convention.
+- This applies in both peace and war, with specific exceptions outlined elsewhere in Article 44.
+---
+id: gc1-articles-49-50-grave-breaches
+prompt: What are the obligations of High Contracting Parties under Article 49 regarding penal sanctions for breaches of the First Geneva Convention, and what constitutes 'grave breaches' as defined in Article 50?
+ideal: "ART. 49. \u2014 The High Contracting Parties undertake to enact any legislation necessary to provide effective penal sanctions for persons committing, or ordering to be committed, any of the grave breaches of the present Convention defined in the following Article.\nEach High Contracting Party shall be under the obligation to search for persons alleged to have committed, or to have ordered to be committed, such grave breaches, and shall bring such persons, regardless of their nationality, before its own courts. It may also, if it prefers, and in accordance with the provisions of its own legislation, hand such persons over for trial to another High Contracting Party concerned, provided such High Contracting Party has made out a prima facie case.\nEach High Contracting Party shall take measures necessary for the suppression of all acts contrary to the provisions of the present Convention other than the grave breaches defined in the following Article.\nART. 50. \u2014 Grave breaches\
+  \ to which the preceding Article relates shall be those involving any of the following acts, if committed against persons or property protected by the present Convention: wilful killing, torture or inhuman treatment, including biological experiments, wilfully causing great suffering or serious injury to body or health, and extensive destruction and appropriation of property, not justified by military necessity and carried out unlawfully and wantonly."
+should:
+- High Contracting Parties must enact legislation for effective penal sanctions for grave breaches.
+- They must search for and prosecute (or extradite for trial) persons alleged to have committed grave breaches, regardless of nationality.
+- They must suppress all acts contrary to the Convention, other than grave breaches.
+- 'Grave breaches (Art. 50) include: wilful killing, torture or inhuman treatment (including biological experiments), wilfully causing great suffering or serious injury to body or health, and extensive destruction/appropriation of property not justified by military necessity and carried out unlawfully/wantonly, against protected persons/property.'
+---
+id: gc2-article-12-protection-care-shipwrecked
+prompt: Article 12 of the Second Geneva Convention extends protections to wounded, sick, or shipwrecked members of armed forces at sea. How must these persons be treated, and what specific acts are prohibited?
+ideal: |-
+  Members of the armed forces and other persons mentioned in the following Article, who are at sea and who are wounded, sick or shipwrecked, shall be respected and protected in all circumstances, it being understood that the term "shipwreck" means shipwreck from any cause and includes forced landings at sea by or from aircraft.
+  Such persons shall be treated humanely and cared for by the Parties to the conflict in whose power they may be, without any adverse distinction founded on sex, race, nationality, religion, political opinions, or any other similar criteria. Any attempts upon their lives, or violence to their persons, shall be strictly prohibited; in particular, they shall not be murdered or exterminated, subjected to torture or to biological experiments; they shall not wilfully be left without medical assistance and care, nor shall conditions exposing them to contagion or infection be created.
+  Only urgent medical reasons will authorize priority in the order of treatment to be administered.
+  Women shall be treated with all consideration due to their sex.
+should:
+- Wounded, sick, or shipwrecked members of armed forces at sea (and others in Art. 13) shall be respected and protected in all circumstances.
+- The term 'shipwreck' includes forced landings at sea by or from aircraft.
+- They must be treated humanely and cared for by the Party in whose power they are, without adverse distinction (sex, race, nationality, religion, political opinions, etc.).
+- Attempts on their lives or violence to their persons are strictly prohibited (no murder, extermination, torture, biological experiments).
+- They shall not wilfully be left without medical assistance and care.
+- Conditions exposing them to contagion or infection shall not be created.
+- Priority in treatment is based only on urgent medical reasons.
+- Women shall be treated with all consideration due to their sex.
+---
+id: gc2-article-20-dead-at-sea
+prompt: What are the prescriptions regarding the dead at sea, particularly concerning examination and burial, as outlined in Article 20 of the Second Geneva Convention?
+ideal: |-
+  Parties to the conflict shall ensure that burial at sea of the dead, carried out individually as far as circumstances permit, is preceded by a careful examination, if possible by a medical examination, of the bodies, with a view to confirming death, establishing identity and enabling a report to be made. Where a double identity disc is used, one half of the disc should remain on the body.
+  If dead persons are landed, the provisions of the Geneva Convention for the Amelioration of the Condition of the Wounded and Sick in Armed Forces in the Field of August 12, 1949, shall be applicable.
+should:
+- Parties to the conflict shall ensure that burial at sea of the dead is carried out individually, as far as circumstances permit.
+- Burial must be preceded by a careful examination (medical if possible) to confirm death, establish identity, and enable a report.
+- If a double identity disc is used, one half should remain on the body.
+- If dead persons are landed, the provisions of the First Geneva Convention apply.
+---
+id: gc2-article-22-military-hospital-ships
+prompt: How are military hospital ships defined and protected under Article 22 of the Second Geneva Convention, and what condition must be met for this protection to apply?
+ideal: |-
+  Military hospital ships, that is to say, ships built or equipped by the Powers specially and solely with a view to assisting the wounded, sick and shipwrecked, to treating them and to transporting them, may in no circumstances be attacked or captured, but shall at all times be respected and protected, on condition that their names and descriptions have been notified to the Parties to the conflict ten days before those ships are employed.
+  The characteristics which must appear in the notification shall include registered gross tonnage, the length from stem to stern and the number of masts and funnels.
+should:
+- Military hospital ships are those specially built/equipped solely for assisting, treating, and transporting wounded, sick, and shipwrecked.
+- They may not be attacked or captured; they must be respected and protected at all times.
+- 'Condition for protection: their names and descriptions must have been notified to Parties to the conflict ten days before employment.'
+- Notification must include gross tonnage, length, and number of masts/funnels.
+---
+id: gc2-article-34-discontinuance-protection-hospital-ships
+prompt: Under what conditions does the protection for hospital ships and sick-bays cease according to Article 34 of the Second Geneva Convention, and what procedure must be followed?
+ideal: |-
+  The protection to which hospital ships and sick-bays are entitled shall not cease unless they are used to commit, outside their humanitarian duties, acts harmful to the enemy. Protection may, however, cease only after due warning has been given, naming in all appropriate cases a reasonable time limit, and after such warning has remained unheeded.
+  In particular, hospital ships may not possess or use a secret code for their wireless or other means of communication.
+should:
+- Protection ceases if hospital ships/sick-bays are used to commit acts harmful to the enemy, outside their humanitarian duties.
+- Protection may only cease after a due warning has been given.
+- The warning must name a reasonable time limit in appropriate cases.
+- Protection ceases only after such warning has remained unheeded.
+- Hospital ships may not possess or use a secret code for communication.
+---
+id: gc2-article-36-personnel-hospital-ships
+prompt: How are the religious, medical, and hospital personnel of hospital ships and their crews protected under Article 36 of the Second Geneva Convention?
+ideal: The religious, medical and hospital personnel of hospital ships and their crews shall be respected and protected; they may not be captured during the time they are in the service of the hospital ship, whether or not there are wounded and sick on board.
+should:
+- Religious, medical, and hospital personnel of hospital ships and their crews shall be respected and protected.
+- Agrees or implies that Article 36 does indeed apply to all hospital ships and their crews.
+- Does not mislead the reader into thinking that Article 36 does not apply to hospital ships and their crews.
+- They may not be captured while in service of the hospital ship.
+- This protection applies whether or not there are wounded and sick on board.
+---
+id: gc3-article-4-definition-pow
+prompt: According to Article 4.A of the Third Geneva Convention, who qualifies as a prisoner of war upon falling into the power of the enemy?
+ideal: |-
+  A. Prisoners of war, in the sense of the present Convention, are persons belonging to one of the following categories, who have fallen into the power of the enemy:
+  1) Members of the armed forces of a Party to the conflict as well as members of militias or volunteer corps forming part of such armed forces.
+  2) Members of other militias and members of other volunteer corps, including those of organized resistance movements, belonging to a Party to the conflict and operating in or outside their own territory, even if this territory is occupied, provided that such militias or volunteer corps, including such organized resistance movements, fulfil the following conditions:
+  a) that of being commanded by a person responsible for his subordinates;
+  b) that of having a fixed distinctive sign recognizable at a distance;
+  c) that of carrying arms openly;
+  d) that of conducting their operations in accordance with the laws and customs of war.
+  3) Members of regular armed forces who profess allegiance to a government or an authority not recognized by the Detaining Power.
+  4) Persons who accompany the armed forces without actually being members thereof, such as civilian members of military aircraft crews, war correspondents, supply contractors, members of labour units or of services responsible for the welfare of the armed forces, provided that they have received authorization from the armed forces which they accompany, who shall provide them for that purpose with an identity card similar to the annexed model.
+  5) Members of crews, including masters, pilots and apprentices of the merchant marine and the crews of civil aircraft of the Parties to the conflict, who do not benefit by more favourable treatment under any other provisions of international law.
+  6) Inhabitants of a non-occupied territory who, on the approach of the enemy, spontaneously take up arms to resist the invading forces, without having had time to form themselves into regular armed units, provided they carry arms openly and respect the laws and customs of war.
+should:
+- Members of armed forces, militias, or volunteer corps forming part of armed forces.
+- Other militias/volunteer corps (including organized resistance) meeting specific conditions (command, sign, open arms, laws of war).
+- Members of regular armed forces loyal to an unrecognized government/authority.
+- Authorized persons accompanying armed forces (e.g., war correspondents, supply contractors) with identity cards.
+- Crews of merchant marine and civil aircraft not benefiting from more favorable treatment.
+- "Inhabitants of non-occupied territory spontaneously taking up arms (lev\xE9e en masse) if they carry arms openly and respect laws of war."
+---
+id: gc3-article-5-doubtful-pow-status
+prompt: If there is any doubt whether persons who have committed a belligerent act and fallen into enemy hands belong to any of the categories of prisoners of war (as defined in Article 4 of the Third Geneva Convention), how should their status be determined according to Article 5 of the Third Geneva Convention?
+ideal: Should any doubt arise as to whether persons having committed a belligerent act and having fallen into the hands of the enemy belong to any of the categories enumerated in Article 4, such persons shall enjoy the protection of the present Convention until such time as their status has been determined by a competent tribunal.
+should:
+- Applies when doubt arises if a captured person who committed a belligerent act qualifies as a POW under Article 4.
+- Such persons shall enjoy the protection of the Third Geneva Convention.
+- This protection continues until their status is determined by a competent tribunal.
+---
+id: gc3-article-13-humane-treatment
+prompt: What are the fundamental requirements for the treatment of prisoners of war as outlined in Article 13 of the Third Geneva Convention, and what acts are specifically prohibited?
+ideal: |-
+  Prisoners of war must at all times be humanely treated. Any unlawful act or omission by the Detaining Power causing death or seriously endangering the health of a prisoner of war in its custody is prohibited, and will be regarded as a serious breach of the present Convention. In particular, no prisoner of war may be subjected to physical mutilation or to medical or scientific experiments of any kind which are not justified by the medical, dental or hospital treatment of the prisoner concerned and carried out in his interest.
+  Likewise, prisoners of war must at all times be protected, particularly against acts of violence or intimidation and against insults and public curiosity.
+  Measures of reprisal against prisoners of war are prohibited.
+should:
+- Prisoners of war must always be treated humanely.
+- Unlawful acts/omissions by the Detaining Power causing death or seriously endangering health are prohibited and are serious breaches.
+- Physical mutilation or non-therapeutic medical/scientific experiments are prohibited.
+- Prisoners must be protected against violence, intimidation, insults, and public curiosity.
+- Measures of reprisal against prisoners of war are prohibited.
+---
+id: gc3-article-17-questioning-pow
+prompt: What information is a prisoner of war bound to give when questioned, according to Article 17 of the Third Geneva Convention, and what forms of coercion are forbidden to obtain information?
+ideal: |-
+  Every prisoner of war, when questioned on the subject, is bound to give only his surname, first names and rank, date of birth, and army, regimental, personal or serial number, or failing this, equivalent information.
+  If he wilfully infringes this rule, he may render himself liable to a restriction of the privileges accorded to his rank or status.
+  No physical or mental torture, nor any other form of coercion, may be inflicted on prisoners of war to secure from them information of any kind whatever. Prisoners of war who refuse to answer may not be threatened, insulted, or exposed to any unpleasant or disadvantageous treatment of any kind.
+should:
+- 'POW is bound to give only: surname, first names, rank, date of birth, and army/regimental/personal/serial number (or equivalent).'
+- Wilful infringement may lead to restriction of privileges.
+- No physical or mental torture, nor any other form of coercion, may be inflicted to secure information.
+- POWs refusing to answer may not be threatened, insulted, or exposed to unpleasant/disadvantageous treatment.
+---
+id: gc3-article-25-26-quarters-food
+prompt: Summarize the requirements under Articles 25 and 26 of the Third Geneva Convention regarding the quartering and feeding of prisoners of war.
+ideal: |-
+  Article 25: Prisoners of war shall be quartered under conditions as favourable as those for the forces of the Detaining Power who are billeted in the same area. The said conditions shall make allowance for the habits and customs of the prisoners and shall in no case be prejudicial to their health. The foregoing provisions shall apply in particular to the dormitories of prisoners of war as regards both total surface and minimum cubic space, and the general installations, bedding and blankets. The premises provided for the use of prisoners of war individually or collectively, shall be entirely protected from dampness and adequately heated and lighted, in particular between dusk and lights out. All precautions must be taken against the danger of fire. In any camps in which women prisoners of war, as well as men, are accommodated, separate dormitories shall be provided for them.
+  Article 26: The basic daily food rations shall be sufficient in quantity, quality and variety to keep prisoners of war in good health and to prevent loss of weight or the development of nutritional deficiencies. Account shall also be taken of the habitual diet of the prisoners. The Detaining Power shall supply prisoners of war who work with such additional rations as are necessary for the labour on which they are employed. Sufficient drinking water shall be supplied to prisoners of war. The use of tobacco shall be permitted. Prisoners of war shall, as far as possible, be associated with the preparation of their meals; they may be employed for that purpose in the kitchens. Furthermore, they shall be given the means of preparing, themselves, the additional food in their possession. Adequate premises shall be provided for messing. Collective disciplinary measures affecting food are prohibited.
+should:
+- Quarters (Art. 25) must be as favourable as those for the Detaining Power's forces in the area, considering POW habits/customs, and not prejudicial to health.
+- 'Specifics for dormitories: surface, space, bedding, blankets, protection from damp, adequate heating/lighting, fire precautions.'
+- Separate dormitories for women POWs if accommodated with men.
+- Food rations (Art. 26) must be sufficient in quantity, quality, and variety for good health, preventing weight loss/nutritional deficiencies, considering habitual diet.
+- Working POWs get additional rations.
+- Sufficient drinking water and permission for tobacco use.
+- POWs may be involved in meal preparation and have means to prepare additional food.
+- Adequate messing premises.
+- Collective disciplinary measures affecting food are prohibited.
+---
+id: gc3-article-84-105-pow-trial-guarantees
+prompt: What are the essential guarantees regarding the courts that may try a prisoner of war and their rights to defense, as outlined in Articles 84 and specified sections of Article 105 of the Third Geneva Convention?
+ideal: |-
+  Article 84:
+  A prisoner of war shall be tried only by a military court, unless the existing laws of the Detaining Power expressly permit the civil courts to try a member of the armed forces of the Detaining Power in respect of the particular offence alleged to have been committed by the prisoner of war.
+  In no circumstances whatever shall a prisoner of war be tried by a court of any kind which does not offer the essential guarantees of independence and impartiality as generally recognized, and, in particular, the procedure of which does not afford the accused the rights and means of defence provided for in Article 105.
+  Article 105 (Paragraphs 1, 2, 3, and 5):
+  The prisoner of war shall be entitled to assistance by one of his prisoner comrades, to defence by a qualified advocate or counsel of his own choice, to the calling of witnesses and, if he deems necessary, to the services of a competent interpreter. He shall be advised of these rights by the Detaining Power in due time before the trial.
+  Failing a choice by the prisoner of war, the Protecting Power shall find him an advocate or counsel, and shall have at least one week at its disposal for the purpose. The Detaining Power shall deliver to the said Power, on request, a list of persons qualified to present the defence. Failing a choice of an advocate or counsel by the prisoner of war or the Protecting Power, the Detaining Power shall appoint a competent advocate or counsel to conduct the defence.
+  The advocate or counsel conducting the defence on behalf of the prisoner of war shall have at his disposal a period of two weeks at least before the opening of the trial, as well as the necessary facilities to prepare the defence of the accused. He may, in particular, freely visit the accused and interview him in private. He may also confer with any witnesses for the defence, including prisoners of war. He shall have the benefit of these facilities until the term of appeal or petition has expired.
+  The representatives of the Protecting Power shall be entitled to attend the trial of the case, unless, exceptionally, this is held in camera in the interest of State security. In such a case the Detaining Power shall advise the Protecting Power accordingly.
+should:
+- POWs shall generally be tried only by military courts (Art. 84).
+- Civil courts may try POWs only if they can try members of the Detaining Power's armed forces for the same offense (Art. 84).
+- Courts trying POWs must offer essential guarantees of independence and impartiality and afford rights/means of defense per Art. 105 (Art. 84).
+- A POW is entitled to assistance from a fellow POW, defense by chosen qualified counsel, calling witnesses, and a competent interpreter if necessary (Art. 105, Para 1).
+- The POW must be advised of these rights by the Detaining Power before the trial (Art. 105, Para 1).
+- If the POW does not choose counsel, the Protecting Power or, failing that, the Detaining Power shall appoint one (Art. 105, Para 2).
+- Defense counsel must have at least two weeks before trial and necessary facilities (e.g., private visits, witness interviews) to prepare the defense (Art. 105, Para 3).
+- Representatives of the Protecting Power are entitled to attend the trial, with limited exceptions for state security (Art. 105, Para 5).
+---
+id: gc3-article-118-release-repatriation
+prompt: According to Article 118 of the Third Geneva Convention, what is the primary obligation regarding prisoners of war at the cessation of active hostilities, and how should repatriation be managed?
+ideal: |-
+  Prisoners of war shall be released and repatriated without delay after the cessation of active hostilities.
+  In the absence of stipulations to the above effect in any agreement concluded between the Parties to the conflict with a view to the cessation of hostilities, or failing any such agreement, each of the Detaining Powers shall itself establish and execute without delay a plan of repatriation in conformity with the principle laid down in the foregoing paragraph.
+  In either case, the measures adopted shall be brought to the knowledge of the prisoners of war.
+should:
+- Prisoners of war shall be released and repatriated without delay after active hostilities cease.
+- If no agreement exists, each Detaining Power must establish and execute a repatriation plan promptly.
+- Measures adopted for repatriation must be communicated to the prisoners of war.
+---
+id: gc4-article-4-definition-protected-persons
+prompt: Who are considered 'protected persons' under Article 4 of the Fourth Geneva Convention?
+ideal: |-
+  Persons protected by the Convention are those who at a given moment and in any manner whatsoever, find themselves, in case of a conflict or occupation, in the hands of persons a Party to the conflict or Occupying Power of which they are not nationals.
+  Nationals of a State which is not bound by the Convention are not protected by it. Nationals of a neutral State who find themselves in the territory of a belligerent State, and nationals of a co-belligerent State, shall not be regarded as protected persons while the State of which they are nationals has normal diplomatic representation in the State in whose hands they are.
+should:
+- Protected persons are those in the hands of a Party to the conflict or Occupying Power of which they are not nationals, during conflict or occupation.
+- Nationals of a State not bound by the Convention are not protected.
+- Nationals of a neutral or co-belligerent State with normal diplomatic representation in the detaining State are not considered protected persons under this definition.
+---
+id: gc4-article-27-treatment-civilians
+prompt: What fundamental rights and treatment are protected persons entitled to under Article 27 of the Fourth Geneva Convention?
+ideal: |-
+  Protected persons are entitled, in all circumstances, to respect for their persons, their honour, their family rights, their religious convictions and practices, and their manners and customs. They shall at all times be humanely treated, and shall be protected especially against all acts of violence or threats thereof and against insults and public curiosity.
+  Women shall be especially protected against any attack on their honour, in particular against rape, enforced prostitution, or any form of indecent assault.
+  Without prejudice to the provisions relating to their state of health, age and sex, all protected persons shall be treated with the same consideration by the Party to the conflict in whose power they are, without any adverse distinction based, in particular, on race, religion or political opinion.
+should:
+- Entitled to respect for their persons, honour, family rights, religious convictions/practices, manners/customs.
+- Must be humanely treated at all times.
+- Protected against all acts of violence or threats, insults, and public curiosity.
+- Women are specially protected against attacks on their honour (rape, enforced prostitution, indecent assault).
+- All protected persons treated with the same consideration without adverse distinction (race, religion, political opinion), subject to provisions on health, age, sex.
+---
+id: gc4-article-33-collective-penalties-reprisals
+prompt: What does Article 33 of the Fourth Geneva Convention prohibit regarding punishment and intimidation of protected persons?
+ideal: |-
+  No protected person may be punished for an offence he or she has not personally committed. Collective penalties and likewise all measures of intimidation or of terrorism are prohibited.
+  Pillage is prohibited.
+  Reprisals against protected persons and their property are prohibited.
+should:
+- No protected person may be punished for an offence not personally committed.
+- Collective penalties are prohibited.
+- All measures of intimidation or terrorism are prohibited.
+- Pillage is prohibited.
+- Reprisals against protected persons and their property are prohibited.
+---
+id: gc4-article-49-deportations-transfers
+prompt: What prohibitions are established by Article 49 of the Fourth Geneva Convention concerning the movement of protected persons from occupied territory and the movement of the Occupying Power's own population?
+ideal: |-
+  Individual or mass forcible transfers, as well as deportations of protected persons from occupied territory to the territory of the Occupying Power or to that of any other country, occupied or not, are prohibited, regardless of their motive.
+  The Occupying Power shall not deport or transfer parts of its own civilian population into the territory it occupies.
+should:
+- Individual or mass forcible transfers and deportations of protected persons from occupied territory are prohibited, regardless of motive.
+- This includes transfers/deportations to the Occupying Power's territory or any other country.
+- The Occupying Power shall not deport or transfer parts of its own civilian population into the territory it occupies.
+---
+id: gc4-article-55-food-medical-supplies-occupied
+prompt: What is the duty of the Occupying Power regarding the food and medical supplies of the population in occupied territory, according to Article 55 of the Fourth Geneva Convention?
+ideal: To the fullest extent of the means available to it, the Occupying Power has the duty of ensuring the food and medical supplies of the population; it should, in particular, bring in the necessary foodstuffs, medical stores and other articles if the resources of the occupied territory are inadequate.
+should:
+- The Occupying Power has the duty of ensuring food and medical supplies for the population to the fullest extent of available means.
+- It must bring in necessary foodstuffs, medical stores, and other articles if the occupied territory's resources are inadequate.
+---
+id: gc4-articles-146-147-grave-breaches
+prompt: What are the obligations of High Contracting Parties under Article 146 of the Fourth Geneva Convention regarding penal sanctions, and what acts constitute 'grave breaches' specific to this Convention as defined in Article 147?
+ideal: "ART. 146. \u2014 The High Contracting Parties undertake to enact any legislation necessary to provide effective penal sanctions for persons committing, or ordering to be committed, any of the grave breaches of the present Convention defined in the following Article.\nEach High Contracting Party shall be under the obligation to search for persons alleged to have committed, or to have ordered to be committed, such grave breaches, and shall bring such persons, regardless of their nationality, before its own courts. It may also, if it prefers, and in accordance with the provisions of its own legislation, hand such persons over for trial to another High Contracting Party concerned, provided such High Contracting Party has made out a prima facie case.\nEach High Contracting Party shall take measures necessary for the suppression of all acts contrary to the provisions of the present Convention other than the grave breaches defined in the following Article.\nART. 147. \u2014 Grave breaches\
+  \ to which the preceding Article relates shall be those involving any of the following acts, if committed against persons or property protected by the present Convention: wilful killing, torture or inhuman treatment, including biological experiments, wilfully causing great suffering or serious injury to body or health, unlawful deportation or transfer or unlawful confinement of a protected person, compelling a protected person to serve in the forces of a hostile Power, or wilfully depriving a protected person of the rights of fair and regular trial prescribed in the present Convention, taking of hostages and extensive destruction and appropriation of property, not justified by military necessity and carried out unlawfully and wantonly."
+should:
+- High Contracting Parties must enact legislation for effective penal sanctions for grave breaches of GC IV.
+- They must search for and prosecute (or extradite) alleged perpetrators of grave breaches, regardless of nationality.
+- They must suppress all acts contrary to GC IV, other than grave breaches.
+- 'Grave breaches (Art. 147) specific to GC IV include: wilful killing, torture/inhuman treatment (incl. biological experiments), wilfully causing great suffering/serious injury to body/health, unlawful deportation/transfer, unlawful confinement of a protected person, compelling a protected person to serve in hostile forces, wilfully depriving a protected person of fair trial rights, taking of hostages, and extensive destruction/appropriation of property not justified by military necessity and carried out unlawfully/wantonly, against persons/property protected by GC IV.'
+---
+id: api-article-51-57-civilian-protection
+prompt: Explain the key protections for civilians against the effects of hostilities contained in Articles 51 and 57 of Additional Protocol I to the Geneva Conventions.
+ideal: 'Article 51 affirms that the civilian population and individual civilians shall enjoy general protection against the dangers arising from military operations. Attacks directed against civilians and indiscriminate attacks are prohibited, as are acts or threats of violence the primary purpose of which is to spread terror among the civilian population. Article 57 requires those who plan or decide upon an attack to take all feasible precautions: (a) do everything feasible to verify that targets are military objectives; (b) choose means and methods with a view to avoiding, and in any event minimizing, incidental civilian loss and damage; (c) refrain from attack if the expected incidental loss of civilian life, injury to civilians, or damage to civilian objects would be excessive in relation to the concrete and direct military advantage anticipated; and (d) give effective advance warning when circumstances permit.'
+should:
+- Civilian population and civilians enjoy general protection.
+- Attacks directed against civilians prohibited.
+- Indiscriminate attacks prohibited.
+- Spreading terror among civilians prohibited.
+- 'Precaution obligations: verify military objectives, choose means to minimize civilian harm, cancel/refrain if collateral damage excessive (proportionality).'
+- Give advance warning when feasible.
+---
+id: gc4-article-59-relief-consignments
+prompt: According to Article 59 of the Fourth Geneva Convention, what obligations arise when the whole or part of the population of an occupied territory is inadequately supplied?
+ideal: When the whole or part of the population of an occupied territory is inadequately supplied, the Occupying Power shall agree to relief schemes on behalf of the population and shall facilitate and protect them by all the means at its disposal. Such schemes may be undertaken either by States or by impartial humanitarian organizations such as the International Committee of the Red Cross. All Contracting Parties shall permit the free passage of the consignments, guarantee their protection, and likewise permit the free passage of essential personnel and equipment.
+should:
+- Occupying Power must agree to relief schemes if population inadequately supplied.
+- Must facilitate and protect relief schemes by all means available.
+- Relief may be undertaken by States or impartial humanitarian organizations (e.g., ICRC).
+- All Contracting Parties must allow free passage and guarantee protection of relief consignments, personnel, and equipment.
+---
+id: gc3-article-109-110-repatriation-sick-wounded
+prompt: What do Articles 109 and 110 of the Third Geneva Convention require regarding the repatriation or accommodation of seriously wounded or sick prisoners of war?
+ideal: Parties to the conflict are bound to repatriate directly to their own country, after rendering them fit for travel, seriously wounded and seriously sick prisoners of war, regardless of number or rank. They may, with the consent of the Powers concerned, accommodate such prisoners in neutral countries. Article 110 lists the medical categories considered seriously wounded or sick and establishes that Mixed Medical Commissions shall decide all doubtful cases. No prisoner of war may be repatriated against his will during hostilities.
+should:
+- Seriously wounded or sick POWs must be repatriated once fit to travel.
+- Neutral accommodation is permissible with consent of relevant Powers.
+- Article 110 defines medical categories for repatriation/neutral accommodation.
+- Mixed Medical Commissions decide doubtful cases.
+- POWs cannot be repatriated against their will.
+---
+id: api-article-36-new-weapons-review
+prompt: What obligation does Article 36 of Additional Protocol I impose on States when they study, develop, acquire, or adopt a new weapon, means, or method of warfare?
+ideal: In the study, development, acquisition or adoption of a new weapon, means or method of warfare, a High Contracting Party is obliged to determine whether its employment would, in some or in all circumstances, be prohibited by international law applicable to it, including Protocol I.
+should:
+- States must conduct a legal review of new weapons, means, or methods of warfare.
+- Review must occur during study, development, acquisition, or adoption phases.
+- Purpose is to determine if use would be prohibited by any applicable rule of international law, including Protocol I.
+---
+id: api-article-86-87-command-responsibility
+prompt: Summarize the responsibilities of commanders and other superiors under Articles 86 and 87 of Additional Protocol I for preventing and repressing breaches of the Geneva Conventions and the Protocol.
+ideal: Article 86 provides that parties and individuals are responsible for breaches if they fail to act when under a duty to do so; commanders and superiors are responsible for violations committed by subordinates if they knew, or had information that should have made them realise, that violations were being or would be committed and did not take all feasible measures to prevent or repress them. Article 87 obliges military commanders to prevent, suppress, and report breaches; to ensure subordinates know their obligations; and to take disciplinary or penal action against subordinates who commit or are about to commit violations.
+should:
+- "Failure to act when duty\u2011bound entails responsibility (Art\u202F86)."
+- Commanders/superiors responsible if they knew or should have known of violations and failed to prevent, repress, or report.
+- Commanders must ensure subordinates are aware of their IHL obligations.
+- Must take all feasible measures to prevent breaches and to suppress/report them.
+- Must initiate disciplinary or penal action against offenders.
+---
+id: api-scenario-proportionality
+prompt: A military commander is planning an airstrike on a factory producing artillery shells for the enemy, a clear military objective. The factory is located 200 meters from a civilian apartment building. The commander's intelligence indicates that the strike, while effective, is highly likely to cause significant damage to the apartment building and may result in the death of 10-15 civilians. The destruction of the factory is anticipated to significantly degrade the enemy's combat capability for several weeks. According to the principle of proportionality in IHL (specifically Art. 51 and 57 of AP I), how should the commander assess the legality of this strike?
+ideal: The commander must assess whether the concrete and direct military advantage anticipated from destroying the factory would be excessive in relation to the incidental loss of civilian life and damage to the civilian apartment building that is expected. The principle of proportionality, found in Articles 51(5)(b) and 57 of AP I, prohibits attacks where the expected civilian harm is excessive compared to the military gain. In this case, the commander must weigh the 'significant' degradation of enemy capability against the 'highly likely' death of 10-15 civilians. There is no simple formula; it is a judgment call based on the specific circumstances. If the commander determines the civilian harm would be excessive, the attack must be canceled or modified to reduce the harm. They must also take all feasible precautions to minimize civilian casualties.
+should:
+- text: The core rule is the principle of proportionality, which prohibits attacks where incidental civilian harm is excessive in relation to the military advantage.
+  citation: AP I, Art. 51(5)(b)
+- text: The assessment must weigh the 'incidental loss of civilian life, injury to civilians, damage to civilian objects, or a combination thereof' against the 'concrete and direct military advantage anticipated'.
+  citation: AP I, Art. 51(5)(b)
+- text: The military advantage must be 'concrete and direct,' not speculative or general.
+  citation: AP I, Art. 51(5)(b)
+- text: The civilian harm must be 'expected' or foreseeable by the commander at the time of the attack.
+  citation: AP I, Art. 57(2)(a)(iii)
+- text: If the expected harm is excessive, the attack must be cancelled or suspended.
+  citation: AP I, Art. 57(2)(a)(iii)
+- text: The commander is obligated to take all 'feasible precautions' in the choice of means and methods of attack to avoid or minimize incidental harm.
+  citation: AP I, Art. 57(2)(a)(ii)
+- text: The final decision is a judgment call based on the best available information, not a simple mathematical calculation.
+  citation: General IHL principle of proportionality
+---
+id: apii-article-4-fundamental-guarantees
+prompt: What fundamental guarantees for humane treatment are afforded to persons who do not take a direct part or who have ceased to take part in hostilities, according to Article 4 of Additional Protocol II?
+ideal: 'Article 4 of Additional Protocol II demands that all persons not taking a direct part or ceasing to take part in hostilities must be treated humanely in all circumstances, without any adverse distinction. It explicitly prohibits acts such as: violence to life, health, and physical or mental well-being (including murder and torture); collective punishments; taking of hostages; acts of terrorism; outrages upon personal dignity like humiliating treatment and rape; slavery; and pillage. It also requires that children be provided with the care and aid they require.'
+should:
+- text: All persons not taking part or ceasing to take part in hostilities must be treated humanely.
+  citation: AP II, Art. 4(1)
+- text: Treatment must be without any adverse distinction based on race, colour, sex, language, religion, political opinion, etc.
+  citation: AP II, Art. 4(1)
+- text: Prohibits violence to life, health, and physical or mental well-being.
+  citation: AP II, Art. 4(2)(a)
+- text: Specifically prohibits murder, torture, mutilation, or any form of corporal punishment.
+  citation: AP II, Art. 4(2)(a)
+- text: Prohibits collective punishments.
+  citation: AP II, Art. 4(2)(b)
+- text: Prohibits the taking of hostages.
+  citation: AP II, Art. 4(2)(c)
+- text: Prohibits acts of terrorism.
+  citation: AP II, Art. 4(2)(d)
+- text: Prohibits outrages upon personal dignity, especially humiliating and degrading treatment, enforced prostitution, and any form of indecent assault.
+  citation: AP II, Art. 4(2)(e)
+- text: Prohibits slavery and the slave trade in all their forms.
+  citation: AP II, Art. 4(2)(f)
+- text: Prohibits pillage.
+  citation: AP II, Art. 4(2)(g)
+- text: Requires that children be provided with necessary care and aid.
+  citation: AP II, Art. 4(3)
+---
+id: apii-article-13-civilian-protection
+prompt: What protection is afforded to the civilian population against military operations under Article 13 of Additional Protocol II?
+ideal: Under Article 13 of Additional Protocol II, the civilian population as such, as well as individual civilians, shall not be the object of attack. Acts or threats of violence, the primary purpose of which is to spread terror among the civilian population, are prohibited. Civilians shall enjoy this protection unless and for such time as they take a direct part in hostilities.
+should:
+- text: The civilian population and individual civilians shall not be the object of attack.
+  citation: AP II, Art. 13(2)
+- text: Acts or threats of violence primarily intended to spread terror among the civilian population are prohibited.
+  citation: AP II, Art. 13(2)
+- text: Civilians enjoy this protection unless and for such time as they take a direct part in hostilities.
+  citation: AP II, Art. 13(3)
+---
+id: apii-article-14-indispensable-objects
+prompt: What does Article 14 of Additional Protocol II prohibit with regard to objects indispensable to the survival of the civilian population?
+ideal: Article 14 of Additional Protocol II prohibits starvation of civilians as a method of combat. It is therefore forbidden to attack, destroy, remove, or render useless objects indispensable to the survival of the civilian population, such as foodstuffs, agricultural areas, crops, livestock, drinking water installations and supplies, and irrigation works, for the specific purpose of denying them for their sustenance value to the civilian population or to the adverse Party, whatever the motive.
+should:
+- text: Starvation of civilians as a method of combat is prohibited.
+  citation: AP II, Art. 14
+- text: It is prohibited to attack, destroy, remove, or render useless objects indispensable to the survival of the civilian population.
+  citation: AP II, Art. 14
+- text: 'Lists examples of indispensable objects: foodstuffs, agricultural areas, crops, livestock, drinking water installations and supplies, and irrigation works.'
+  citation: AP II, Art. 14
+- text: The prohibition applies when the specific purpose is to deny these objects for their sustenance value.
+  citation: AP II, Art. 14
+---
+id: apii-article-16-cultural-property
+prompt: Under Article 16 of Additional Protocol II, what are the rules regarding the protection of cultural objects and places of worship?
+ideal: Without prejudice to the provisions of the Hague Convention for the Protection of Cultural Property in the Event of Armed Conflict of 14 May 1954, Article 16 of Additional Protocol II prohibits any acts of hostility directed against historic monuments, works of art or places of worship which constitute the cultural or spiritual heritage of peoples, and to use them in support of the military effort.
+should:
+- text: Prohibits committing any acts of hostility directed against historic monuments, works of art, or places of worship.
+  citation: AP II, Art. 16
+- text: These objects are defined as constituting the cultural or spiritual heritage of peoples.
+  citation: AP II, Art. 16
+- text: Prohibits using such objects and their immediate surroundings in support of the military effort.
+  citation: AP II, Art. 16
+- text: This protection is without prejudice to the 1954 Hague Convention.
+  citation: AP II, Art. 16
+---
+id: ihl-scenario-cyber-attack
+prompt: A state launches a major cyber operation against an adversary. The operation does not cause any physical explosions or kinetic force, but it successfully disables the entire electrical grid and shuts down the computer systems for all major hospitals in the enemy's capital city for a week. Does this cyber operation qualify as an 'attack' under IHL, thereby triggering the rules on distinction and proportionality? Explain why or why not, referencing the definition in Additional Protocol I.
+ideal: Yes, this cyber operation would almost certainly qualify as an 'attack' under IHL. Article 49 of Additional Protocol I defines attacks as 'acts of violence against the adversary, whether in offence or in defence.' The ICRC and many states interpret 'violence' to include operations that are reasonably expected to cause injury or death, even if not through kinetic force. Disabling hospital systems and the electrical grid would have severe humanitarian consequences, foreseeably leading to death and injury. Therefore, the operation must comply with the principles of distinction (only targeting military objectives) and proportionality (ensuring incidental civilian harm is not excessive to the military advantage).
+should:
+- text: An 'attack' under IHL is defined as an 'act of violence against the adversary'.
+  citation: AP I, Art. 49
+- text: The prevailing interpretation of 'violence' is not restricted to kinetic force and includes effects like causing death or injury.
+  citation: ICRC Commentary on Art. 49 / Tallinn Manual
+- text: A cyber operation reasonably foreseeable to cause death or injury (even indirectly) qualifies as an attack.
+  citation: General IHL interpretation
+- text: Disabling hospitals and the supporting power grid is foreseeable to cause such harm to civilians.
+  citation: Logical conclusion from scenario
+- text: Because it qualifies as an attack, the rules of distinction, proportionality, and precaution must be applied.
+  citation: AP I, Arts. 51, 52, 57
+---
+id: ihl-scenario-autonomous-weapon
+prompt: A state deploys a fully autonomous weapon system (LAWS) programmed to identify and engage anyone carrying a weapon in a defined combat zone. The system makes its final targeting decisions without direct human control. What are the primary challenges this weapon system poses to the IHL principles of Distinction and Precaution?
+ideal: This LAWS poses significant challenges. For Distinction (Art. 51, AP I), the system may struggle to reliably distinguish between a combatant carrying a weapon and a civilian who might be carrying a weapon for legitimate reasons (e.g., a farmer with a tool, a civilian police officer, or a civilian who has just picked up a weapon). It also cannot assess intent. For Precautions (Art. 57, AP I), the lack of human control makes it difficult to verify targets, assess proportionality in real-time, or cancel an attack if circumstances change (e.g., if civilians appear). The system's inability to make nuanced, context-dependent judgments that are fundamental to these principles raises serious questions about its legality.
+should:
+- text: 'Challenge to Distinction: The system may be unable to reliably distinguish combatants from civilians in complex situations.'
+  citation: AP I, Art. 51
+- text: 'Challenge to Distinction: The system cannot assess a person''s status or intent (e.g., a civilian picking up a weapon vs. a combatant).'
+  citation: IHL principle of Distinction
+- text: 'Challenge to Precaution: The lack of human control makes it difficult to take ''all feasible precautions'' to verify a target.'
+  citation: AP I, Art. 57
+- text: 'Challenge to Proportionality/Precaution: An autonomous system cannot easily assess proportionality or cancel an attack if the situation changes unexpectedly.'
+  citation: AP I, Art. 57
+- text: The core issue is the potential inability of the machine to make the sophisticated, contextual judgments required by IHL.
+  citation: General IHL debate on LAWS

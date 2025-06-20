@@ -1,0 +1,116 @@
+id: asean-charter-evaluation
+title: ASEAN Charter Understanding Evaluation
+description: A configuration to assess LLM understanding of the ASEAN Charter, covering its purposes, principles, organs, decision-making, and other key aspects with a mix of recall and nuanced questions.
+models:
+- CORE
+tags:
+- Asia
+- International Law
+---
+id: asean-preamble-aspirations
+prompt: According to its Preamble, what are some of the core aspirations and commitments that unite the Member States of ASEAN and guide their community building process?
+ideal: The Preamble of the ASEAN Charter states that Member States are united by a common desire to live in a region of lasting peace, security and stability, sustained economic growth, shared prosperity and social progress. They are committed to promoting their vital interests, ideals, and aspirations. They also respect the fundamental importance of amity and cooperation, and the principles of sovereignty, equality, territorial integrity, non-interference, consensus, and unity in diversity. Furthermore, they adhere to democracy, the rule of law, good governance, and the protection of human rights and fundamental freedoms. They are resolved to ensure sustainable development and place the well-being of their peoples at the center of community building. They are convinced of the need to strengthen regional solidarity for a politically cohesive, economically integrated, and socially responsible ASEAN Community.
+should:
+- Desire for lasting peace, security, and stability.
+- Commitment to sustained economic growth, shared prosperity, and social progress.
+- Respect for amity, cooperation, sovereignty, equality, territorial integrity, non-interference, consensus, and unity in diversity.
+- Adherence to democracy, rule of law, good governance, and protection of human rights.
+- Resolution for sustainable development with peoples' well-being at the center.
+- Strengthening regional solidarity for a politically cohesive, economically integrated, and socially responsible Community.
+---
+id: asean-article1-five-purposes
+prompt: ASEAN as outlined in Article 1 of its Charter.
+ideal: 'Article 1 of the ASEAN Charter lists several purposes. Five distinct purposes include: 1. To maintain and enhance peace, security and stability and further strengthen peace-oriented values in the region; 2. To preserve Southeast Asia as a Nuclear Weapon-Free Zone and free of all other weapons of mass destruction; 3. To create a single market and production base with free flow of goods, services, investment, and freer flow of capital; 4. To alleviate poverty and narrow the development gap within ASEAN; 5. To promote an ASEAN identity through the fostering of greater awareness of the diverse culture and heritage of the region.'
+should:
+- Maintain/enhance peace, security, stability, and peace-oriented values.
+- Preserve Southeast Asia as a Nuclear Weapon-Free Zone and free of WMDs.
+- Create a single market and production base (free flow of goods, services, investment, capital).
+- Alleviate poverty and narrow the development gap.
+- Promote an ASEAN identity through awareness of diverse culture/heritage.
+---
+id: asean-article1-human-rights-balance
+prompt: Article 1, Purpose 7 of the ASEAN Charter aims to strengthen democracy and promote human rights. How does it state this should be balanced or considered?
+ideal: 'Article 1, Purpose 7 states that ASEAN aims: ''To strengthen democracy, enhance good governance and the rule of law, and to promote and protect human rights and fundamental freedoms, with due regard to the rights and responsibilities of the Member States of ASEAN.'' This indicates that the promotion and protection of human rights and fundamental freedoms should be pursued while giving due regard to the rights and responsibilities of the Member States.'
+should:
+- Purpose is to strengthen democracy, good governance, rule of law, and promote/protect human rights and fundamental freedoms.
+- This is to be done 'with due regard to the rights and responsibilities of the Member States of ASEAN'.
+- Implies a balance or consideration of Member State prerogatives in the approach to human rights.
+---
+id: asean-article2-non-interference
+prompt: Explain the principle of 'non-interference in the internal affairs of ASEAN Member States' as found in Article 2.2(e) of the ASEAN Charter. What could be a potential challenge this principle poses for regional action on certain issues?
+ideal: The principle of 'non-interference in the internal affairs of ASEAN Member States,' as stated in Article 2.2(e), means that Member States agree not to meddle in each other's domestic matters. This principle upholds national sovereignty. A potential challenge is that it can make it difficult for ASEAN as a collective to address issues within a Member State that might have regional implications or raise concerns (e.g., human rights violations, internal conflicts) if intervention is perceived as interfering in that state's internal affairs, potentially limiting ASEAN's ability to act decisively in such situations.
+should:
+- Defines non-interference as Member States not meddling in each other's domestic matters.
+- Connects non-interference to upholding national sovereignty.
+- 'Identifies a potential challenge: difficulty in addressing internal issues of a Member State even with regional implications.'
+- Suggests it can limit collective ASEAN action on sensitive domestic issues within a member state.
+---
+id: asean-article6-membership-criteria
+prompt: What are the four primary criteria for the admission of new members into ASEAN, according to Article 6 of the Charter?
+ideal: 'According to Article 6.2 of the ASEAN Charter, admission shall be based on the following criteria: (a) location in the recognised geographical region of Southeast Asia; (b) recognition by all ASEAN Member States; (c) agreement to be bound and to abide by the Charter; and (d) ability and willingness to carry out the obligations of Membership.'
+should:
+- Location in the recognised geographical region of Southeast Asia.
+- Recognition by all existing ASEAN Member States.
+- Agreement to be bound by and abide by the Charter.
+- Ability and willingness to carry out the obligations of Membership.
+---
+id: asean-article7-summit-functions
+prompt: Describe three key functions of the ASEAN Summit as outlined in Article 7 of the Charter.
+ideal: 'Article 7 of the ASEAN Charter outlines several functions for the ASEAN Summit. Three key functions are: 1. It is the supreme policy-making body of ASEAN. 2. It deliberates, provides policy guidance, and takes decisions on key issues pertaining to the realisation of ASEAN''s objectives and important matters of interest to Member States. 3. It can address emergency situations affecting ASEAN by taking appropriate actions.'
+should:
+- Serves as the supreme policy-making body of ASEAN.
+- Deliberates, provides policy guidance, and takes decisions on key issues and objectives.
+- Addresses emergency situations affecting ASEAN by taking appropriate actions.
+- '(Optional: Appoints the Secretary-General / Authorises establishment/dissolution of Sectoral Ministerial Bodies).'
+---
+id: asean-article11-secgen-selection-duties
+prompt: How is the Secretary-General of ASEAN selected, and what are two of their key duties according to Article 11 of the Charter?
+ideal: 'According to Article 11, the Secretary-General of ASEAN is appointed by the ASEAN Summit for a non-renewable five-year term, selected from among nationals of ASEAN Member States based on alphabetical rotation, with due consideration to integrity, capability, professional experience, and gender equality. Two key duties include: (a) facilitating and monitoring progress in the implementation of ASEAN agreements and decisions, and submitting an annual report on the work of ASEAN to the ASEAN Summit; and (b) participating in meetings of the ASEAN Summit, Community Councils, Coordinating Council, and other relevant ASEAN meetings.'
+should:
+- Appointed by ASEAN Summit for a non-renewable five-year term.
+- Selected from nationals of Member States by alphabetical rotation, considering integrity, capability, experience, gender equality.
+- 'Duty: Facilitate and monitor implementation of ASEAN agreements/decisions and report annually to the Summit.'
+- 'Duty: Participate in various high-level ASEAN meetings (Summit, Councils, etc.).'
+---
+id: asean-article14-hr-body-purpose
+prompt: What is the stated purpose of the ASEAN human rights body to be established under Article 14 of the Charter?
+ideal: 'Article 14 states: ''In conformity with the purposes and principles of the ASEAN Charter relating to the promotion and protection of human rights and fundamental freedoms, ASEAN shall establish an ASEAN human rights body.'' The article further states this body ''shall operate in accordance with the terms of reference to be determined by the ASEAN Foreign Ministers Meeting.'' Therefore, its purpose is to promote and protect human rights and fundamental freedoms within ASEAN, in line with the Charter''s overall aims.'
+should:
+- To be established in conformity with the Charter's purposes/principles on human rights.
+- 'Primary purpose: promotion and protection of human rights and fundamental freedoms.'
+- Its operation will be guided by terms of reference from the ASEAN Foreign Ministers Meeting.
+---
+id: asean-article20-decision-making
+prompt: What is the basic principle for decision-making in ASEAN as per Article 20, and what procedure is outlined if consensus cannot be achieved?
+ideal: Article 20.1 states that 'As a basic principle, decision-making in ASEAN shall be based on consultation and consensus.' Article 20.2 further clarifies that 'Where consensus cannot be achieved, the ASEAN Summit may decide how a specific decision can be made.'
+should:
+- 'Basic principle: Decision-making based on consultation and consensus.'
+- If consensus cannot be achieved, the ASEAN Summit may decide how a specific decision can be made.
+---
+id: asean-article21-asean-minus-x
+prompt: Explain the 'ASEAN Minus X' formula mentioned in Article 21 of the Charter. Under what specific conditions or area can it be applied?
+ideal: 'Article 21.2 states: ''In the implementation of economic commitments, a formula for flexible participation, including the ASEAN Minus X formula, may be applied where there is a consensus to do so.'' This means that for economic commitments, if all Member States agree (consensus), a smaller group of willing Member States (X being the number of states not participating initially) can proceed with an initiative, allowing for progress even if not all members are ready to join at the same time.'
+should:
+- It's a formula for flexible participation.
+- Applies specifically to the implementation of economic commitments.
+- Can only be applied if there is a consensus among all Member States to do so.
+- Allows a sub-group of Member States to proceed with an economic initiative.
+---
+id: asean-charter-balancing-unity-diversity
+prompt: The ASEAN Charter emphasizes both 'unity in diversity' (Preamble, Art 2.2.l) and the ASEAN motto 'One Vision, One Identity, One Community' (Article 36). How might these two ideals be reconciled in practice within ASEAN?
+ideal: "Reconciling 'unity in diversity' with 'One Vision, One Identity, One Community' in ASEAN practice involves fostering a shared regional identity and common goals while respecting and preserving the unique national identities, cultures, languages, and religions of its diverse Member States. In practice, this could mean developing common regional standards or policies on shared interests (like economic integration or environmental protection \u2013 the 'One Community' aspect) through consensus, while allowing Member States flexibility in how they implement these nationally, reflecting their diverse contexts. It also involves promoting cross-cultural understanding and interaction to build a sense of shared regional belonging ('One Identity') without erasing national distinctiveness ('diversity'). The 'One Vision' would guide the overall direction, acknowledging that the paths taken by individual members may vary."
+should:
+- Acknowledges the apparent tension or need for balance.
+- Suggests fostering shared regional identity/goals while respecting national uniqueness.
+- Proposes common regional policies with flexible national implementation to reflect diversity.
+- Highlights promoting cross-cultural understanding for a shared identity without erasing differences.
+- Connects 'One Vision' to guiding overall direction while allowing varied paths.
+---
+id: asean-charter-external-relations-centrality
+prompt: According to Article 41, how does ASEAN aim to maintain its 'centrality' and role as the 'primary driving force' in its external relations and regional cooperation?
+ideal: 'Article 41.3 states: ''ASEAN shall be the primary driving force in regional arrangements that it initiates and maintain its centrality in regional cooperation and community building.'' Article 41.4 adds that ''Member States shall, on the basis of unity and solidarity, coordinate and endeavour to develop common positions and pursue joint actions.'' This suggests ASEAN maintains centrality by initiating regional arrangements, acting cohesively with external partners, and by Member States coordinating to develop common positions and joint actions, thereby ensuring ASEAN itself, rather than external powers, leads regional initiatives and architecture.'
+should:
+- ASEAN acts as the primary driving force in regional arrangements it initiates.
+- ASEAN maintains its centrality in regional cooperation and community building.
+- Member States coordinate and develop common positions and pursue joint actions in external relations.
+- This unity and proactive stance ensure ASEAN leads regional initiatives.

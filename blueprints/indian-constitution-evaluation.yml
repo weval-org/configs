@@ -1,0 +1,326 @@
+id: indian-constitution-evaluation
+title: Indian Constitution (Limited)
+description: A configuration to assess LLM understanding of the Constitution of India, covering its Preamble, fundamental rights, directive principles, governmental structure, judicial system, local governance and more, based on the text as it stood on 9 December 2020.
+models:
+- CORE
+tags:
+- India
+- Constitution
+---
+id: indian-constitution-preamble-objectives
+prompt: According to the Preamble of the Constitution of India, what are the primary objectives that the people of India resolved to constitute India into and what ideals did they aim to secure for all its citizens?
+ideal: 'The Preamble of the Constitution of India states that the people of India solemnly resolved to constitute India into a SOVEREIGN SOCIALIST SECULAR DEMOCRATIC REPUBLIC. It aims to secure to all its citizens: JUSTICE, social, economic and political; LIBERTY of thought, expression, belief, faith and worship; EQUALITY of status and of opportunity; and to promote FRATERNITY assuring the dignity of the individual and the unity and integrity of the Nation. This was adopted, enacted and given to themselves in their Constituent Assembly on 26 November 1949.'
+should:
+- Resolve to constitute India into a SOVEREIGN SOCIALIST SECULAR DEMOCRATIC REPUBLIC.
+- 'Secure JUSTICE: social, economic and political.'
+- 'Secure LIBERTY: of thought, expression, belief, faith and worship.'
+- 'Secure EQUALITY: of status and of opportunity.'
+- Promote FRATERNITY assuring the dignity of the individual.
+- Promote FRATERNITY assuring the unity and integrity of the Nation.
+- Adopted and enacted on 26 November 1949.
+---
+id: indian-constitution-article1-name-territory
+prompt: What does Article 1 of the Constitution of India state about the name and territory of the Union?
+ideal: 'Article 1 states that: (1) India, that is Bharat, shall be a Union of States. (2) The States and their territories shall be as specified in the First Schedule. (3) The territory of India shall comprise: (a) the territories of the States; (b) the Union territories specified in the First Schedule; and (c) such other territories as may be acquired.'
+should:
+- India, that is Bharat, is a Union of States.
+- States and their territories listed in the First Schedule.
+- Territory comprises States, listed Union territories and any other acquired territory.
+---
+id: indian-constitution-article5-citizenship-commencement
+prompt: According to Article 5 of the Constitution of India, who was considered a citizen of India at the commencement of the Constitution?
+ideal: At commencement, every person having a domicile in the territory of India and who (a) was born in the territory of India, or (b) either of whose parents was born in the territory of India, or (c) had been ordinarily resident in the territory of India for not less than five years immediately preceding such commencement, was deemed a citizen of India.
+should:
+- 'Must have domicile in India and satisfy ONE of:'
+- Born in the territory; OR
+- Either parent born in the territory; OR
+- "Ordinarily resident for \u22655 years immediately before commencement."
+---
+id: indian-constitution-article14-equality-before-law
+prompt: What protection is guaranteed by Article 14 of the Constitution of India regarding equality?
+ideal: Article 14 guarantees that the State shall not deny to any person equality before the law or the equal protection of the laws within the territory of India.
+should:
+- Guarantees equality before the law.
+- Guarantees equal protection of the laws.
+- Applies to all persons within India.
+---
+id: indian-constitution-article19-freedom-of-speech-restrictions
+prompt: Article 19(1)(a) of the Constitution of India guarantees a fundamental right. What is this right, and what reasonable restrictions can be imposed on it as per Article 19(2)?
+ideal: Article 19(1)(a) guarantees to all citizens the right to freedom of speech and expression. Under Article 19(2) the State may impose reasonable restrictions in the interests of the sovereignty and integrity of India, the security of the State, friendly relations with foreign States, public order, decency or morality, or in relation to contempt of court, defamation or incitement to an offence.
+should:
+- 'Right: freedom of speech and expression.'
+- Restrictions must be 'reasonable' and by law.
+- 'Grounds: sovereignty & integrity, State security, friendly relations, public order, decency or morality, contempt of court, defamation, incitement to offence.'
+---
+id: indian-constitution-article21-life-personal-liberty
+prompt: How does Article 21 of the Constitution of India protect life and personal liberty?
+ideal: 'Article 21 provides: ''No person shall be deprived of his life or personal liberty except according to procedure established by law.'' The procedure must be fair, just and reasonable, ensuring protection against arbitrary State action.'
+should:
+- No deprivation of life or personal liberty except by law.
+- Procedure must be fair, just and reasonable.
+---
+id: indian-constitution-article23-forced-labour
+prompt: What does Article 23 of the Constitution of India prohibit, and are there any exceptions?
+ideal: Article 23(1) prohibits traffic in human beings, begar and other similar forms of forced labour, making contravention an offence. Article 23(2) allows the State to impose compulsory service for public purposes, provided it does not discriminate solely on religion, race, caste or class.
+should:
+- Bans traffic in human beings.
+- Bans begar/forced labour.
+- Contravention is punishable.
+- 'Exception: compulsory public service without discriminatory grounds.'
+---
+id: indian-constitution-article32-constitutional-remedies
+prompt: What is the significance of Article 32 regarding enforcement of Fundamental Rights, and what powers does it grant to the Supreme Court?
+ideal: "Article 32 itself is a Fundamental Right, guaranteeing the right to move the Supreme Court for enforcement of rights in Part III. The Court may issue directions, orders or writs\u2014including habeas corpus, mandamus, prohibition, quo warranto and certiorari\u2014for that purpose."
+should:
+- Right to approach Supreme Court for Fundamental Rights enforcement.
+- Supreme Court may issue five classic writs and other orders.
+- Article 32 is deemed the 'heart and soul' of the Constitution.
+---
+id: indian-constitution-article37-application-dpsp
+prompt: What is the nature of the Directive Principles of State Policy under Article 37?
+ideal: Article 37 says the Directive Principles in Part IV are not enforceable by any court, yet they are fundamental in the governance of the country, and it is the duty of the State to apply them in making laws.
+should:
+- Not judicially enforceable.
+- Fundamental in governance.
+- State must apply them in legislation.
+---
+id: indian-constitution-article44-uniform-civil-code
+prompt: What does Article 44 direct the State to endeavour to secure?
+ideal: Article 44 directs the State to endeavour to secure for the citizens a uniform civil code throughout the territory of India.
+should:
+- State should strive for a uniform civil code for all citizens.
+- Applies across India.
+---
+id: indian-constitution-article51a-fundamental-duties-examples
+prompt: Article 51A of the Constitution of India lists Fundamental Duties. Give three distinct examples.
+ideal: 'Examples: (a) to abide by the Constitution and respect its ideals, institutions, the National Flag and the National Anthem; (g) to protect and improve the natural environment and have compassion for living creatures; (i) to safeguard public property and abjure violence.'
+should:
+- At least three distinct duties from Article 51A mentioned.
+- E.g. respect Constitution & Flag; protect environment; safeguard public property & abjure violence.
+---
+id: indian-constitution-article53-executive-power-union
+prompt: According to Article 53 of the Constitution of India, in whom is the executive power of the Union vested and how is it exercised?
+ideal: Article 53(1) vests the Union's executive power in the President, exercisable by him directly or through subordinate officers in accordance with the Constitution. Article 53(2) vests the supreme command of the Defence Forces in the President, exercisable as regulated by law.
+should:
+- Executive power vested in President.
+- Exercised directly or via subordinates per Constitution.
+- President holds supreme command of Defence Forces.
+---
+id: indian-constitution-article74-council-of-ministers-president
+prompt: What does Article 74 of the Constitution of India state about the Council of Ministers and the President?
+ideal: 'Article 74(1): there shall be a Council of Ministers with the Prime Minister at its head to aid and advise the President, who shall act in accordance with that advice. The President may once require the Council to reconsider, but must act on the reconsidered advice. Article 74(2) bars judicial inquiry into the advice.'
+should:
+- Council of Ministers headed by PM aids and advises President.
+- President bound by advice (after any one reconsideration).
+- Advice is non-justiciable.
+---
+id: indian-constitution-article79-constitution-of-parliament
+prompt: According to Article 79 of the Constitution of India, what constitutes the Parliament of the Union?
+ideal: 'Parliament consists of the President and two Houses: the Council of States (Rajya Sabha) and the House of the People (Lok Sabha).'
+should:
+- President + Rajya Sabha + Lok Sabha.
+---
+id: indian-constitution-article124-supreme-court-establishment-appointment
+prompt: What does Article 124 of the Constitution of India provide about establishing the Supreme Court and appointing its Judges (including the post-2014 NJAC episode)?
+ideal: Article 124(1) establishes a Supreme Court of India with a Chief Justice and, until Parliament provides otherwise, up to seven other Judges (since increased to 33 plus the CJI by statute). Article 124(2) (as amended by the 99th Amendment) required appointment on the recommendation of the National Judicial Appointments Commission; that Amendment was struck down in 2015, so the collegium system continues. Judges are appointed by the President by warrant under his hand and seal and hold office until 65 years of age.
+should:
+- Supreme Court established with CJI + other Judges (number modifiable by Parliament).
+- Judges appointed by President by warrant.
+- 99th Amendment introduced NJAC but was invalidated; collegium restored.
+- 'Retirement age: 65.'
+---
+id: indian-constitution-article141-law-binding-nature
+prompt: What does Article 141 of the Constitution of India state regarding the law declared by the Supreme Court?
+ideal: The law declared by the Supreme Court is binding on all courts within the territory of India.
+should:
+- Supreme Court precedent binds all courts in India.
+---
+id: indian-constitution-article153-155-governor
+prompt: What do Articles 153 and 155 of the Constitution of India provide about State Governors?
+ideal: 'Article 153: there shall be a Governor for each State (the same person may be Governor for two or more States). Article 155: the Governor is appointed by the President by warrant under his hand and seal.'
+should:
+- Each State has a Governor; same person can serve multiple States.
+- Governor appointed by President by warrant.
+---
+id: indian-constitution-article108-joint-sitting
+prompt: Under Article 108 of the Constitution of India, when may the President summon a joint sitting of Parliament, and to which Bills does the provision not apply?
+ideal: If, after a Bill has been passed by one House and sent to the other, (a) the other House rejects it; or (b) the Houses finally disagree on amendments; or (c) more than six months elapse without the second House passing it, the President may notify intention to summon a joint sitting (unless the Bill has lapsed due to Lok Sabha dissolution). The provision does not apply to Money Bills.
+should:
+- 'Three trigger conditions: rejection, disagreement on amendments, six-month inaction.'
+- President issues notification of intention to summon.
+- Not applicable to Money Bills.
+---
+id: indian-constitution-article17-untouchability
+prompt: What does Article 17 of the Constitution of India provide with respect to untouchability?
+ideal: It abolishes 'untouchability' and forbids its practice in any form, declaring that enforcement of any disability arising from it shall be an offence punishable by law.
+should:
+- Abolishes untouchability.
+- Forbids practice in any form.
+- Enforcement of related disability is a punishable offence.
+---
+id: indian-constitution-article24-child-labour
+prompt: What prohibition is laid down by Article 24 of the Constitution of India regarding employment of children?
+ideal: No child below 14 years shall be employed to work in any factory or mine or engaged in any other hazardous employment.
+should:
+- Applies to children under 14.
+- Bans employment in factories, mines, hazardous work.
+---
+id: indian-constitution-article15-prohibition-discrimination
+prompt: Article 15 of the Constitution of India prohibits certain discrimination. List the barred grounds and the additional protection in Article 15(2).
+ideal: "Article 15(1) bars State discrimination solely on grounds of religion, race, caste, sex or place of birth. Article 15(2) extends the ban\u2014even against private actors\u2014to denying access to shops, public restaurants, hotels, places of public entertainment, or the use of wells, tanks, roads and public resorts funded or dedicated for the public."
+should:
+- 'Barred grounds: religion, race, caste, sex, place of birth.'
+- Clause (2) covers private as well as State action.
+- Protects access to specified public places/facilities.
+---
+id: indian-constitution-article25-freedom-of-religion-scope-limits
+prompt: What freedoms does Article 25 guarantee and what limits may the State impose?
+ideal: Article 25(1) guarantees freedom of conscience and the right to profess, practise and propagate religion, subject to public order, morality, health and the other Fundamental Rights. Article 25(2) lets the State regulate or restrict secular activities associated with religion and legislate for social welfare and reform, including opening Hindu institutions to all classes of Hindus.
+should:
+- Freedom of conscience; profess, practise, propagate religion.
+- Subject to public order, morality, health, other FRs.
+- State may regulate secular activities and enact social-reform laws.
+---
+id: indian-constitution-article110-definition-money-bill
+prompt: According to Article 110 of the Constitution of India, what criteria make a Bill a Money Bill?
+ideal: 'A Bill is a Money Bill if it contains ONLY provisions dealing with matters in Article 110(1)(a)-(g): taxation, government borrowing, Consolidated/Contingency Fund custody or withdrawal, appropriation, charged expenditure, receipt/audit of public funds, and incidental matters. It is not a Money Bill merely because it imposes fines, fees or local taxes. The Speaker''s certificate is final.'
+should:
+- Must deal solely with Art 110(1)(a)-(g) matters.
+- Includes taxation, borrowing, Consolidated/Contingency Fund, appropriation, charged expenditure, audit, incidental.
+- Excludes fines/fees/local taxes alone.
+- Speaker certifies conclusively.
+---
+id: indian-constitution-article265-authority-for-taxation
+prompt: What fundamental principle regarding taxation is laid down in Article 265 of the Constitution of India?
+ideal: '''No tax shall be levied or collected except by authority of law,'' ensuring legislative sanction for all taxation.'
+should:
+- Tax requires a valid law.
+- Establishes legislative supremacy in taxation.
+---
+id: indian-constitution-article239aa-delhi-provisions
+prompt: Article 239AA of the Constitution of India makes special provisions for the NCT of Delhi. Mention two key institutional arrangements.
+ideal: It redesignates Delhi as the National Capital Territory with a Lieutenant-Governor and establishes (i) a directly elected Legislative Assembly and (ii) a Council of Ministers headed by a Chief Minister to aid and advise the LG on matters the Assembly may legislate (excluding public order, police and land).
+should:
+- Lieutenant-Governor as Administrator.
+- Elected Legislative Assembly.
+- Council of Ministers led by Chief Minister (subject exclusions apply).
+---
+id: indian-constitution-article280-finance-commission
+prompt: What does Article 280 of the Constitution of India provide regarding the Finance Commission?
+ideal: 'The President must constitute a Finance Commission within two years of commencement and thereafter every five years (or earlier). It comprises a Chairman and four other members appointed by the President. Parliament may prescribe qualifications. The Commission recommends: distribution of net tax proceeds between Union and States; principles for grants-in-aid to States; measures to augment State Consolidated Funds for Panchayats and Municipalities; and any other matter referred for sound finance.'
+should:
+- Constituted within two years, then every five years/earlier.
+- Chairman + four members appointed by President.
+- Qualifications set by Parliament or President.
+- Recommends tax-share, grants-in-aid, augmentation of local-body funds, and other referred matters.
+---
+id: indian-constitution-article300a-property-rights
+prompt: What does Article 300A of the Constitution of India state about property rights and how did it arise?
+ideal: 'Inserted by the 44th Amendment (1978), Article 300A says: ''No person shall be deprived of his property save by authority of law.'' It converted the right to property from a Fundamental Right (Arts 19(1)(f) & 31) to a constitutional/statutory right following conflicts over land reforms and judgments like Golaknath and Kesavananda Bharati. It is no longer enforceable under Article 32.'
+should:
+- No deprivation of property except by law.
+- Added by 44th Amendment, 1978.
+- Right downgraded from Fundamental to constitutional right.
+- Not enforceable via Article 32.
+---
+id: indian-constitution-article123-presidential-ordinances
+prompt: Under Article 123 of the Constitution of India, what ordinance-making power does the President have and what are its limits?
+ideal: When one or both Houses are not in session and immediate action is needed, the President may promulgate an ordinance. It has the force of an Act but must lie within Parliament's legislative competence and cannot amend the Constitution. It is subject to the same constitutional limits as legislation. It must be laid before Parliament on reassembly and lapses six weeks thereafter unless earlier disapproved or replaced by an Act.
+should:
+- Promulgation only when Parliament not in session & urgent need exists.
+- Same force as an Act.
+- Must stay within Parliament's competence; cannot amend Constitution.
+- Subject to constitutional limits incl. Fundamental Rights.
+- Laid before both Houses; ceases after six weeks unless approved/replaced.
+- May lapse sooner if both Houses disapprove.
+---
+id: indian-constitution-article226-high-court-writ-jurisdiction
+prompt: Explain the jurisdiction conferred on High Courts by Article 226 of the Constitution of India.
+ideal: "Article 226 empowers High Courts to issue directions, orders or writs\u2014including habeas corpus, mandamus, prohibition, quo warranto and certiorari\u2014for enforcement of Fundamental Rights and for 'any other purpose'. They may act against any person or authority within territorial jurisdiction and, under Art 226(2), even outside it if the cause of action arises inside. The scope is broader than the Supreme Court's Article 32 jurisdiction."
+should:
+- Writs for FRs and other legal rights.
+- Five classic writs + directions/orders.
+- Territorial extension via cause-of-action clause.
+- Broader than Art 32.
+---
+id: indian-constitution-article324-election-commission-powers
+prompt: Describe the powers and composition of the Election Commission under Article 324 of the Constitution of India.
+ideal: Article 324(1) vests in the Election Commission the superintendence, direction and control of electoral rolls preparation and conduct of elections to Parliament, State Legislatures and the offices of President and Vice-President. The Commission comprises the Chief Election Commissioner (CEC) and such other Election Commissioners as the President may determine. The CEC is removable like a Supreme Court Judge; other Election Commissioners are removable only on the CEC's recommendation. The Commission may requisition staff from Union/State authorities.
+should:
+- Controls elections & electoral rolls (Parl., State, President, VP).
+- 'Composition: CEC + other ECs as decided by President.'
+- CEC removal procedure mirrors SC Judge; others need CEC recommendation.
+- May call on staff from governments.
+---
+id: indian-constitution-article352-national-emergency
+prompt: Under Article 352 of the Constitution of India, when can the President proclaim a national emergency and what controls apply?
+ideal: If satisfied that war, external aggression or armed rebellion (or imminent danger) threatens India's security, the President may proclaim emergency. It must be approved by both Houses within one month. Approval lasts six months and further six-month extensions need special majorities (total-membership majority + two-thirds present and voting). Lok Sabha may revoke it earlier by simple-majority resolution; one-tenth of LS members can demand a special sitting. Cabinet advice must be in writing (44th Amendment).
+should:
+- 'Grounds: war, external aggression, armed rebellion.'
+- Parliamentary approval within one month.
+- Six-month duration, extendable with special majority.
+- Lok Sabha revocation mechanism; 10 % members trigger sitting.
+- Written Cabinet advice mandatory.
+---
+id: indian-constitution-article356-presidents-rule
+prompt: Under Article 356 of the Constitution of India, what conditions allow President's Rule and what time-limits govern it?
+ideal: If the President is satisfied that the State government cannot be carried on in accordance with the Constitution (based on Governor's report or otherwise), he may proclaim President's Rule, assuming State executive functions and Parliament assuming legislative powers. The proclamation ceases after two months unless both Houses approve it. With six-monthly parliamentary renewals, it can run for at most three years; extensions beyond one year require (a) a national Emergency in force or (b) Election Commission certification that elections cannot be held.
+should:
+- President must be satisfied State cannot be run per Constitution.
+- May act on Governor's report or otherwise.
+- Parliament may exercise State legislative powers.
+- Expires in two months unless approved by both Houses.
+- Renewable every six months, maximum three years.
+- Post-one-year extension needs National Emergency or EC certification.
+---
+id: indian-constitution-article360-financial-emergency
+prompt: What circumstances permit a Financial Emergency under Article 360 of the Constitution of India and what are its effects?
+ideal: If the President is satisfied that the financial stability or credit of India (or part thereof) is threatened, he may proclaim a Financial Emergency. Parliament must approve within two months. While in force, the Union may issue directions to States concerning financial matters, reduce salaries of Union or State employees (including judges), and require that State Money Bills be reserved for the President. It continues indefinitely until revoked.
+should:
+- 'Trigger: threat to financial stability/credit.'
+- Parliamentary approval within two months.
+- Union directions to States on financial canons.
+- Possible salary reductions and reservation of State Money Bills.
+- No fixed outer limit; remains until revoked.
+---
+id: indian-constitution-article368-amendment-procedure
+prompt: According to Article 368 of the Constitution of India, what is the amendment procedure and which matters need State ratification?
+ideal: 'A Constitution-amendment Bill may be introduced in either House. It must pass each House by (i) a majority of total membership and (ii) two-thirds of members present and voting. Amendments affecting entrenched federal features must also be ratified by at least half of State Legislatures. These include changes concerning: the election of the President (Arts 54, 55); executive power of Union & States (Arts 73, 162); the Union judiciary & State High Courts (Part V Ch IV, Part VI Ch V) and High Courts for UTs (Art 241); distribution of legislative powers (Part XI Ch I & Seventh Schedule); representation of States in Parliament; and Article 368 itself. The Bill becomes law upon the President''s assent.'
+should:
+- Bill may originate in either House.
+- 'Special majority: total-membership majority + two-thirds present & voting.'
+- "Entrenched matters need \u2265\xBD State ratification."
+- 'Entrenched list: Arts 54-55, 73, 162, 241, Union/State judiciary chapters, Part XI Ch I & Seventh Schedule, State representation in Parliament, Art 368.'
+- Takes effect on Presidential assent.
+---
+id: indian-constitution-article370-special-provisions-kashmir
+prompt: What special provisions did Article 370 of the Constitution of India contain for Jammu & Kashmir before August 2019?
+ideal: 'Article 370 conferred autonomous status: Parliament could legislate for J-&-K only on defence, foreign affairs, finance and communications without State concurrence; other Union/Concurrent matters needed State concurrence. The State had its own Constitution and flag; fundamental rights and other provisions applied with exceptions/modifications. Article 370 could be abrogated only with the State Constituent Assembly''s recommendation. The special status ended with Presidential Order 272 (5 Aug 2019) which read down the Article.'
+should:
+- Autonomous status to J-&-K.
+- Parliament's power limited without State concurrence (except four subjects).
+- Own Constitution & flag.
+- Modified application of fundamental rights and other provisions.
+- Abrogation required State Constituent Assembly recommendation.
+- Effectively abrogated 5 Aug 2019 via Order 272.
+---
+id: indian-constitution-article243-panchayati-raj
+prompt: Outline key constitutional provisions on Panchayati Raj (Part IX of the Constitution of India).
+ideal: "Part IX (Arts 243-243O): Article 243B mandates a three-tier system\u2014Gram Panchayat, Panchayat Samiti (intermediate; not mandatory for States \u226420 lakh population) and Zilla Panchayat. Article 243C provides composition with SC/ST reservation proportional to population and \u2265\u2153 seats reserved for women. Article 243E sets five-year terms with timely elections. Article 243G empowers State Legislatures to devolve functions incl. Eleventh Schedule subjects. Article 243K vests Panchayat election control in the State Election Commission."
+should:
+- Three-tier structure (village/intermediate/district).
+- Intermediate tier optional for small States.
+- "SC/ST reservation + \u2265\u2153 seats for women."
+- Five-year term; elections before expiry.
+- State Legislatures may devolve powers (Eleventh Schedule).
+- State Election Commission conducts polls.
+---
+id: indian-constitution-ninth-schedule
+prompt: What is the Ninth Schedule's significance in the Constitution of India and what protection does it offer?
+ideal: Added by the First Amendment (1951), the Ninth Schedule lists laws protected by Article 31B from challenge for violating Fundamental Rights in Articles 14, 19 and 31. Intended mainly to shield land-reform statutes. Post-I.R. Coelho (2007), laws inserted after 24 Apr 1973 (Kesavananda date) remain subject to judicial review if they damage the Constitution's basic structure.
+should:
+- Created 1951 (First Amendment).
+- Article 31B immunises listed laws from Arts 14/19/31 challenges.
+- Primarily for land-reform/agrarian statutes.
+- 'I.R. Coelho: post-1973 entries reviewable for basic-structure violation.'
+- Immunity is qualified, not absolute.

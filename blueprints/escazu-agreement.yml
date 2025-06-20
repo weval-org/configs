@@ -1,0 +1,70 @@
+id: escazu-agreement
+title: "Escaz\xFA Agreement"
+description: "Eight-prompt suite that probes an LLM's knowledge of the 2018 Regional Agreement on Access to Information, Public Participation and Justice in Environmental Matters in Latin America and the Caribbean (Escaz\xFA Agreement). Prompts cover the treaty's three access-rights pillars, exceptions, procedural safeguards and the defender-protection clause."
+tags:
+- Latin America
+- Environment
+- Access Rights
+- Global South
+---
+id: escazu-objective-article1
+prompt: "State the primary objective of the Escaz\xFA Agreement, as established in Article 1."
+ideal: The objective is to guarantee the full and effective implementation in Latin America and the Caribbean of the rights of (a) access to environmental information, (b) public participation in environmental decision-making and (c) access to justice in environmental matters, in order to contribute to the right of every person to live in a healthy environment and to sustainable development.
+should:
+- Guarantee access to environmental information
+- Guarantee public participation in environmental decision-making
+- Guarantee access to justice in environmental matters
+- Link to the right to a healthy environment / sustainable development
+---
+id: escazu-three-access-rights
+prompt: "Name the three \"access rights\" that form the core of the Escaz\xFA Agreement."
+ideal: Access to environmental information, public participation in environmental decision-making, and access to justice in environmental matters.
+should:
+- Access to environmental information
+- Public participation in environmental decision-making
+- Access to justice in environmental matters
+---
+id: escazu-info-request-duties
+prompt: "Under Article 5 of the Escaz\xFA Agreement, give two obligations a Party must meet when responding to a request for environmental information."
+ideal: A Party must respond in a timely manner without requiring the requester to state reasons, and make the information available free of charge or for no more than a reasonable reproduction cost (and, where feasible, in the format requested).
+should:
+- Timely response obligation
+- No requirement to state reasons for the request
+- Information provided free or at only reasonable reproduction cost
+---
+id: escazu-info-exceptions
+prompt: "List two legitimate grounds in Escaz\xFA Article 5(6) that allow a Party to refuse to disclose environmental information."
+ideal: Disclosure may be refused, for example, (a) where it would adversely affect national defence or public security, or (b) where it would compromise the privacy or personal data of an individual. Other grounds include the protection of investigations, commercial confidentiality, or intellectual property, provided the public interest in disclosure does not prevail.
+should:
+- National defence or public security ground
+- Protection of privacy / personal data ground
+---
+id: escazu-public-participation
+prompt: "Before authorising an activity with significant environmental impact, name two procedural steps that Article 7 of the Escaz\xFA Agreement requires to ensure public participation."
+ideal: The Party must provide the public with timely, complete and understandable information about the project and convene an early, inclusive participation process that allows submission of comments which are duly taken into account in the final decision, with reasons for the decision made public.
+should:
+- Provide timely and complete information to the public
+- Hold an early, inclusive participation process (opportunity to submit comments)
+- Take public comments into account and publish the reasoned decision
+---
+id: escazu-access-to-justice
+prompt: "Article 8 sets standards for review procedures. State two characteristics such procedures must have to be considered adequate under the Escaz\xFA Agreement."
+ideal: Procedures must be timely, transparent and fair, conducted by competent, independent and impartial authorities, and must not be prohibitively expensive for participants.
+should:
+- Timely / prompt resolution
+- Competent, independent and impartial authority
+- Not prohibitively expensive / affordable access
+---
+id: escazu-defenders-protection
+prompt: "Describe one protective measure that Article 9 of the Escaz\xFA Agreement requires States to adopt for environmental human-rights defenders."
+ideal: States must guarantee a safe and enabling environment for persons, groups and organisations that promote and defend environmental rights, including measures to prevent, investigate and punish threats, intimidation or violence against them.
+should:
+- Guarantee a safe and enabling environment for defenders
+- Prevent, investigate and punish threats or violence against defenders
+---
+id: escazu-authentic-languages
+prompt: "Which languages are equally authentic for the Escaz\xFA Agreement, according to its final provisions?"
+ideal: "Spanish and English are the two equally authentic language versions of the Escaz\xFA Agreement."
+should:
+- Spanish
+- English

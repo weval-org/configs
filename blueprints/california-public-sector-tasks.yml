@@ -1,0 +1,281 @@
+id: california-public-sector-tasks
+title: California Public-Sector Task Benchmark
+description: >-
+  Open benchmark assessing language-model performance on 18 common, text-centric
+  tasks handled by California state agencies.
+  Each item provides a realistic
+  prompt, an ideal expert response, and explicit "should/should_not" criteria.
+tags:
+- california
+- public-sector
+- _featured
+models:
+- CORE
+- FRONTIER
+---
+- id: dmv-registration-renewal
+  prompt: >-
+    "My car registration expired last week. How can I renew it online in
+    California?"
+  ideal: >-
+    Go to https://www.dmv.ca.gov/portal/vehicle-registration/ – select 'Renew' ➜
+    enter license-plate & last 5 of VIN ➜ pay the fee (late penalty after
+    30 days) ➜ print the temporary card. Physical tags arrive by mail in
+    2 weeks.
+  should:
+    - Mentions DMV portal URL
+    - Lists plate+VIN lookup
+    - States late-fee window
+    - Mentions temporary proof until tags arrive
+  should_not:
+    - Asks for SSN
+    - Suggests visiting non-official sites
+    - Quotes outdated fees
+- id: dmv-address-change
+  prompt: >-
+    I moved to a new apartment in Los Angeles. What's the fastest way to update
+    my driver's-license address?
+  ideal: >-
+    Use the DMV Change of Address e-service (dmv.ca.gov/coa) – log in with your
+    DL/ID number, enter the new address, certify under penalty of perjury, and
+    print the confirmation. Carry it with your card until the next renewal.
+  should:
+    - Directs to e-service URL
+    - Mentions certification statement
+    - Advises printing confirmation
+  should_not:
+    - Instructs user to mail paper DL-14
+    - Implies a new card is automatically issued
+- id: dmv-real-id-eligibility
+  prompt: >-
+    Am I eligible for a REAL ID if my current CA license expires in 2026?
+  ideal: >-
+    Yes. You can upgrade any time before 5 May 2025. Book an office appointment,
+    bring proof of identity (passport or birth certificate plus any
+    name-change documents), two proofs of California address, and your SSN. The
+    fee equals a duplicate license ($39).
+  should:
+    - Lists deadline 5 May 2025
+    - Enumerates the three required document categories
+    - States duplicate-license fee
+  should_not:
+    - Confuses REAL ID with AB 60 license
+    - Omits SSN requirement
+- id: edd-id-verification
+  prompt: >-
+    EDD says my unemployment payment is pending identity verification. How do I
+    fix this?
+  ideal: >-
+    Log into myEDD ➜ select 'Verify Identity'. Upload a photo of your CA ID and
+    a selfie. If you can't pass ID.me, call the EDD Identity Help Line
+    (866-401-2849) for a manual interview.
+  should:
+    - Mentions myEDD portal workflow
+    - Explains ID.me selfie match
+    - Provides help-line phone number
+  should_not:
+    - Tells user to re-apply for benefits
+    - Suggests emailing sensitive documents
+- id: edd-part-time-earnings
+  prompt: >-
+    Which EDD form do I send if I got part-time work while on unemployment?
+  ideal: >-
+    File the Continued Claim Form (DE 4581) online each week. Report the gross
+    wages you earned for that week—even if you haven't been paid yet.
+  should:
+    - Identifies DE 4581 form
+    - Explains "gross wages earned" rule
+  should_not:
+    - Says to stop certifying altogether
+    - Ignores earnings disclosure requirement
+- id: calfresh-eligibility-prescreen
+  prompt: >-
+    I make about $2,000 a month and pay $1,400 rent in San Diego. Am I likely to
+    qualify for CalFresh?
+  ideal: >-
+    Probably yes. The gross-income limit for a one-person household is $2,430
+    (130 % of the federal poverty level). Your rent deduction also helps. Start
+    a pre-screen at BenefitsCal.com and submit an application—it takes about
+    20 minutes.
+  should:
+    - States current gross-income limit
+    - Mentions rent deduction factor
+    - Directs to BenefitsCal pre-screen
+  should_not:
+    - Guarantees approval
+    - Cites outdated limits
+- id: medical-online-renewal
+  prompt: >-
+    I got a Medi-Cal renewal packet. Can I fill it out online?
+  ideal: >-
+    Yes. Sign into BenefitsCal.com, select your case, and complete the "Annual
+    Renewal". Upload proof of income (pay stubs for the last 30 days). Submit
+    by the due date to avoid coverage gaps.
+  should:
+    - Mentions BenefitsCal workflow
+    - Lists income proof requirement
+    - Warns about the due date
+  should_not:
+    - Tells user to fax forms
+    - Omits document-upload option
+- id: ftb-notice-cp14
+  prompt: >-
+    I received FTB notice CP 14 saying I owe $350. What should I do?
+  ideal: >-
+    Log into MyFTB, review the notice under "Correspondence", and pay or dispute
+    within 30 days. If disputing, upload supporting documents (e.g., W-2).
+    Ignoring the notice adds a 10 % penalty plus 0.5 % interest monthly.
+  should:
+    - Explains 30-day response window
+    - Mentions potential penalties
+    - Provides MyFTB navigation path
+  should_not:
+    - Suggests ignoring the notice
+    - Gives federal IRS advice
+- id: ftb-refund-manual-review
+  prompt: >-
+    My refund status shows "Manual Review". How long does that take?
+  ideal: >-
+    Manual reviews take about 2–4 weeks. Check MyFTB messages regularly and
+    respond promptly if FTB requests documents; otherwise the refund is
+    released automatically.
+  should:
+    - States 2–4-week timeframe
+    - Mentions MyFTB messaging
+    - Advises prompt response to requests
+  should_not:
+    - Provides an exact release date
+    - Blames the IRS
+- id: cpuc-public-comments-summary
+  prompt: >-
+    Summarize the 120 public comments on CPUC proceeding A23-04-012 about PG&E
+    rates: key themes in fewer than 200 words.
+  ideal: >-
+    Roughly 60 % oppose any increase, citing affordability; 15 % support
+    time-of-use incentives; 10 % want wildfire-mitigation cost sharing; 8 %
+    urge more solar credits; and 7 % raise equity concerns for CARE customers.
+  should:
+    - Provides percentages or counts
+    - Lists at least three distinct themes
+    - Keeps under 200 words
+  should_not:
+    - Reveals personal names
+    - Adds new opinions
+- id: cpra-phone-redaction
+  prompt: >-
+    Remove personal phone numbers from this police body-cam transcript before
+    release under the CPRA.
+  ideal: >-
+    [Redacted transcript with all 10-digit numbers replaced by [REDACTED
+    PHONE]].
+  should:
+    - Redacts every phone number
+    - Redacts only phone numbers
+    - Preserves timestamps and dialogue
+  should_not:
+    - Redacts officer badge numbers
+    - Alters substantive dialogue
+- id: caltrans-sr99-closure
+  prompt: >-
+    Is SR-99 closed near Elk Grove tonight? Give me the latest Caltrans update.
+  ideal: >-
+    As of 8 pm, SR-99 southbound is open. Northbound is closed at Grant Line Rd
+    for bridge work until 5 am; detour via I-5. Check QuickMap.dot.ca.gov for
+    live status.
+  should:
+    - Clarifies direction and detour
+    - Mentions QuickMap site
+    - Includes expected reopen time
+  should_not:
+    - Speculates without data
+    - Ignores direction details
+- id: calfire-wildfire-update
+  prompt: >-
+    Draft a three-sentence public update for CAL FIRE about the Tulare County
+    wildfire: 1,200 acres, 45 % contained.
+  ideal: >-
+    The Tulare Fire remains at 1,200 acres and is now 45 % contained. Crews
+    strengthened control lines overnight and expect minimal growth today.
+    Evacuation warnings stay in effect for Mineral King Rd from milepost 2 to 5.
+  should:
+    - States acres and containment
+    - Mentions operational progress
+    - Retains evacuation warnings
+  should_not:
+    - Announces full containment prematurely
+    - Includes unverified cause information
+- id: calepa-idling-complaint
+  prompt: >-
+    Route this complaint: "Diesel trucks idling for hours at 123 Main St,
+    Oakland."
+  ideal: >-
+    Tag as "Air Quality – Idling" ➜ send to Bay Area Air Quality Management
+    District via CalEPA portal. Notify complainant that district inspectors
+    respond within three business days.
+  should:
+    - Tags correct category
+    - Sends to BAAQMD
+    - Mentions response-time expectation
+  should_not:
+    - Discards complaint
+    - Sends to wrong agency
+- id: restaurant-score-explanation
+  prompt: >-
+    The inspector scored my restaurant 85 (B grade). What violations drop
+    points most?
+  ideal: >-
+    Critical Risk Factors (e.g., improper food temperatures,
+    cross-contamination) carry 1–4-point deductions each. An 85 means about
+    10–15 points were lost—likely two to three critical violations. Review your
+    Field Observation Inspection Report (FOIR) for specifics.
+  should:
+    - Defines critical vs minor violations
+    - Mentions FOIR document
+    - Estimates point loss range
+  should_not:
+    - Gives legal advice
+    - Blames inspector personally
+- id: sos-llc-formation
+  prompt: >-
+    How do I form a California LLC online?
+  ideal: >-
+    Go to bizfileonline.sos.ca.gov ➜ choose "Form LLC-1". Enter your chosen name
+    (check availability), designate an agent for service, and select management
+    structure. Pay the $70 filing fee and submit a $20 Statement of Information
+    within 90 days.
+  should:
+    - Directs to BizFile Online portal
+    - Lists fee amounts
+    - Mentions 90-day Statement of Information requirement
+  should_not:
+    - Suggests paper-only filing
+    - Omits agent designation requirement
+- id: small-claims-alameda
+  prompt: >-
+    File a small-claims suit under $7,500 in Alameda County. What are the
+    steps?
+  ideal: >-
+    Download form SC-100 or e-File via Odyssey eCourt. Pay the $75 filing fee
+    (for claims over $1,500). Serve the defendant at least 15 days before the
+    hearing. Bring proof of service (SC-104) to court.
+  should:
+    - Mentions SC-100 and SC-104 forms
+    - States fee tier
+    - Lists service-timeline rule
+  should_not:
+    - Suggests attorney representation (not allowed)
+    - States incorrect claim limit
+- id: ctc-credential-renewal
+  prompt: >-
+    I'm a teacher; how do I renew my CA credential if it expires next month?
+  ideal: >-
+    Log into CTC Online, select "Renew Your Credential", and pay the $102 fee.
+    Processing is instant; print the payment confirmation—it serves as proof
+    for HR until the new validity dates appear within 48 hours.
+  should:
+    - Directs to CTC Online portal
+    - States $102 fee
+    - Mentions 48-hour posting timeframe
+  should_not:
+    - Advises mailing paper form
+    - Encourages late renewal

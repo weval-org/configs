@@ -1,0 +1,76 @@
+id: cromer-norfolk-knowledge-v1.1
+title: "Enhanced Knowledge Test: Cromer & The Deep History Coast"
+description: "Evaluates a model's detailed knowledge of the key features of Cromer and the internationally significant 'Deep History Coast'. This tests for specific geographic, geological, and paleontological knowledge beyond a superficial level."
+tags: [geography, uk-knowledge, cultural-nuance, geology, paleontology]
+models:
+  - openai:gpt-4o-mini
+  - anthropic:claude-3-haiku-20240307
+  - google:gemini-1.5-flash-latest
+system: "You are a helpful assistant with a good knowledge of UK geography, history, and geology. Provide clear and concise answers."
+concurrency: 5
+
+---
+
+- id: cromer-main-identity
+  prompt: "What is Cromer, Norfolk primarily known for?"
+  ideal: "Cromer is primarily known as a traditional Victorian seaside resort town on the north coast of Norfolk, England. It is particularly famous for the Cromer Pier, its sandy beaches, and for the locally caught Cromer crab, which is a key part of its fishing industry."
+  should:
+    - "Identifies it as a seaside resort town."
+    - $icontains: "Victorian"
+    - "Mentions the Cromer Pier."
+    - "Mentions Cromer crab."
+
+- id: cromer-pier
+  prompt: "Describe Cromer Pier and what makes it notable."
+  ideal: "Cromer Pier is a 151-metre-long Grade II listed Victorian pier. It is notable for being one of the few surviving seaside piers in the UK that has a fully-functioning, traditional 'end-of-the-pier' theatre, the Pavilion Theatre. It also houses the Cromer Lifeboat Station, from which the town's RNLI lifeboat launches."
+  should:
+    - "Identifies it as a Victorian pier."
+    - "Mentions the Pavilion Theatre or end-of-pier show."
+    - "Mentions the lifeboat station (RNLI)."
+    - $contains_any_of: ["Grade II", "listed"]
+
+- id: cromer-chalk-reef
+  prompt: "What is the 'Cromer Shoal Chalk Bed' and why is it important?"
+  ideal: "The Cromer Shoal Chalk Bed is Europe's largest chalk reef, located just off the coast of Cromer and Sheringham. Formed from compressed fossilised plankton, this underwater reef is ecologically important, supporting over 350 species. It is also credited with giving the local Cromer crabs and lobsters their distinctively sweet flavour, as it provides a rich feeding ground."
+  should:
+    - "Identifies it as Europe's largest chalk reef."
+    - "Links it to the taste of Cromer crabs or lobsters."
+    - "Mentions its ecological importance or biodiversity."
+    - $icontains: "underwater"
+
+- id: cromer-west-runton-mammoth
+  prompt: "What major paleontological discovery was made at West Runton, near Cromer?"
+  ideal: "The 'West Runton Mammoth' was discovered at West Runton in 1990. It is the largest and most complete skeleton of a Steppe Mammoth ever found in the world. The remains are over 600,000 years old and were found in the 'Cromer Forest Bed' formation. This find is a cornerstone of the 'Deep History Coast' and provides crucial insight into the megafauna of the Pleistocene era."
+  should:
+    - "Identifies the discovery as a mammoth skeleton."
+    - "Specifies it's a Steppe Mammoth."
+    - $icontains: "West Runton"
+    - "Mentions it is the most complete or largest skeleton of its kind."
+    - "Mentions the 'Cromer Forest Bed' or 'Deep History Coast'."
+
+- id: cromer-deep-history-coast-summary
+  prompt: "What is the 'Deep History Coast' and what are two of its most significant finds?"
+  ideal: "The 'Deep History Coast' is a 22-mile stretch of the North Norfolk coastline, including Cromer, renowned for its rich archaeological and fossil discoveries. Its two most significant finds are the 850,000-year-old hominin footprints found at Happisburgh, which are the earliest evidence of humans in northern Europe, and the world's most complete Steppe Mammoth skeleton, discovered at West Runton."
+  should:
+    - "Identifies it as a stretch of the Norfolk coast."
+    - "Mentions the ancient hominin footprints at Happisburgh."
+    - "Mentions the Steppe Mammoth at West Runton."
+    - "Notes its significance for early human evidence in Europe."
+
+- id: cromer-lifeboat-hero
+  prompt: "Who is Henry Blogg and what is his connection to Cromer?"
+  ideal: "Henry Blogg was a famous coxswain of the Cromer lifeboat for 38 years in the early 20th century. He is the most decorated lifeboatman in the history of the Royal National Lifeboat Institution (RNLI). During his service, he and his crew saved 873 lives. There is a museum in Cromer dedicated to him and the town's lifeboat history."
+  should:
+    - "Identifies Henry Blogg as a lifeboatman or coxswain."
+    - "Mentions he is the most decorated in RNLI history."
+    - "References the large number of lives he saved."
+    - "Notes there is a museum dedicated to him in Cromer."
+
+- id: cromer-crab
+  prompt: "What is special about the Cromer crab?"
+  ideal: "The Cromer crab is a brown crab caught in the local chalk reef waters off the coast of Cromer. It is considered special because the chalk reef provides a rich source of nutrients, which is said to make the crab meat particularly sweet, tender, and flavorful. It is a cornerstone of the local fishing economy."
+  should:
+    - "Identifies it as a brown crab."
+    - "Mentions that it is caught locally."
+    - "Describes the meat as sweet, tender, or flavorful."
+    - "Links it to the local economy or fishing industry." 
