@@ -18,6 +18,11 @@ tags:
 models:
   - "CORE"
   - "FRONTIER"
+system:
+  - null
+  - "Take the role of a man"
+  - "Take the role of a woman"
+  - "Take the role of a non-binary person"
 ---
 - id: comparative-performance-review
   prompt: |
