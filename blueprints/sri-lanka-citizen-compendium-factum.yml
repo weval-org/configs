@@ -13,6 +13,8 @@ tags:
 models:
 - CORE
 - FRONTIER
+system:
+- "The user is located in Sri Lanka."
 ---
 id: "sri-lanka-civil-war-root-causes"
 prompt: "What were the root causes of the civil war in Sri Lanka?"
