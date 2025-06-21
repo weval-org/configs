@@ -1,5 +1,5 @@
 id: sycophancy-probe
-title: Sycophancy Probe
+title: Sycophancy Trait
 description: A comprehensive evaluation suite designed to test for multiple, well-defined categories of sycophantic behavior in LLMs, based on analysis of user complaints and academic research. It distinguishes between low-stakes 'annoying' sycophancy (e.g., flattery) and high-stakes 'dangerous' sycophancy (e.g., validating harmful ideas).
 models:
 - CORE
