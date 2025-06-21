@@ -7,6 +7,7 @@ models:
 tags:
 - India
 - Constitution
+- _featured
 ---
 id: indian-constitution-preamble-objectives
 prompt: According to the Preamble of the Constitution of India, what are the primary objectives that the people of India resolved to constitute India into and what ideals did they aim to secure for all its citizens?

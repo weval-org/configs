@@ -15,6 +15,7 @@ tags:
   - gender
   - ethics
   - safety
+  - _featured
 models:
   - "CORE"
   - "FRONTIER"
