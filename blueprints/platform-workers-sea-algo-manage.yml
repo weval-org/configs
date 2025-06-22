@@ -3,9 +3,11 @@ title: Platform Workers in Southeast Asia
 description: Evaluation of LLM understanding of issues related to platform workers and algorithmic management in Southeast Asia, based on concepts from [Carnegie Endowment research](https://carnegieendowment.org/research/2024/04/the-plight-of-platform-workers-under-algorithmic-management-in-southeast-asia?lang=en).
 models:
 - CORE
+- FRONTIER
 tags:
 - Asia
 - Platform Workers
+- _featured
 ---
 id: algo-manage-definition-impact
 prompt: Explain the concept of 'algorithmic management' in the context of online labor platforms. What are some general ways it can affect the working lives of individuals?
