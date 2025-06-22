@@ -1,8 +1,16 @@
 id: homework-int-help-heuristics
 title: Student Homework Help Heuristics
-description: >-
-  As students rely on chatbots more and more for help on their schoolwork, it is
-  imperative that they facilitate learning rather than provide answers directly.
+description: |
+  This blueprint evaluates an AI's ability to act as a supportive and effective Socratic tutor for students seeking homework help. The core principle tested is that the AI should facilitate learning and critical thinking rather than providing direct answers.
+
+  **Core Areas Tested:**
+  * **Cross-Disciplinary Support:** Evaluates the model's tutoring ability across various subjects including history, literature, mathematics, physics, and chemistry.
+  * **Affective Support:** Tests the model's capacity to respond to student emotions, such as math anxiety and frustration, with empathy and encouragement.
+  * **Handling Difficult Scenarios:** Assesses how the model handles common challenges like impatient students demanding direct answers or low-effort, disengaged queries.
+  * **Factual Nuance:** Checks if the model can gently correct factual misconceptions while maintaining a supportive tone.
+  * **Persona Steerability:** Tests how different system prompts—from no prompt to a simple persona to a detailed pedagogical belief—can steer the model towards a more effective tutoring archetype.
+
+  The overall goal is to measure whether the AI can guide students on a journey of discovery, transforming simple questions into learning opportunities, instead of acting as a convenient answer-provider.
 tags:
 - Education
 - Homework

@@ -1,12 +1,12 @@
-# CivicEval Evaluation Blueprints
+# Weval Evaluation Blueprints
 
-This repository is the heart of CivicEval's evaluation content. It serves as the central, community-driven store for all **evaluation blueprints** used by the [CivicEval platform](https://civiceval.org) and its [core application](https://github.com/civiceval/app). The automated CivicEval system fetches blueprints from this repository to perform periodic and on-demand evaluations of language models.
+This repository is the heart of Weval's evaluation content. It serves as the central, community-driven store for all **evaluation blueprints** used by the [Weval platform](https://weval.org) and its [core application](https://github.com/weval-org/app). The automated Weval system fetches blueprints from this repository to perform periodic and on-demand evaluations of language models.
 
 ## Our Mission & Your Contribution
 
-CivicEval is an independent, open-source evaluation suite designed to act as a **public-interest watchdog for artificial intelligence**. It moves beyond asking "Is this model smart?" to ask, "Is this model a responsible, safe and harm-reducing actor in our society?"
+Weval is an independent, open-source evaluation suite designed to act as a **public-interest watchdog for artificial intelligence**. It moves beyond asking "Is this model smart?" to ask, "Is this model a responsible, safe and harm-reducing actor in our society?"
 
-We invite you to contribute blueprints that align with this mission. While the underlying CivicEval framework can support a wide range of qualitative evaluations, the blueprints hosted in *this* repository should focus on these civic-minded areas:
+We invite you to contribute blueprints that align with this mission. While the underlying Weval framework can support a wide range of qualitative evaluations, the blueprints hosted in *this* repository should focus on these civic-minded areas:
 
 *   **Testing Nuanced, High-Stakes Scenarios:** Evaluating models in areas where failure could cause public harm (e.g., human rights, mental health crises).
 *   **Assessing Critical Thinking and Skepticism:** Testing a model's ability to identify and resist manipulation, misinformation, and loaded questions.
@@ -15,9 +15,11 @@ We invite you to contribute blueprints that align with this mission. While the u
 
 Your contributions help us build a comprehensive, open-source resource for understanding how AI models perform on issues that matter to us all.
 
-## CivicEval Blueprint Format
+## Weval Blueprint Format
 
-This document provides a comprehensive guide to creating evaluation blueprints for the CivicEval suite. Blueprints are configuration files that define a set of prompts, models to test, and the criteria for evaluating the models' responses.
+This document provides a comprehensive guide to creating evaluation blueprints for the Weval suite. Blueprints are configuration files that define a set of prompts, models to test, and the criteria for evaluating the models' responses.
+
+All blueprints contributed to the public repository at [github.com/weval-org/configs](https://github.com/weval-org/configs) are dedicated to the public domain via Creative Commons Zero (CC0).
 
 While the system maintains support for a legacy JSON format, the recommended and most user-friendly format is **YAML**.
 
@@ -37,7 +39,7 @@ This is the recommended structure for most blueprints. The first YAML document c
 
 ```yaml
 # Configuration Header (First YAML Document)
-id: my-blueprint
+id: my-blueprint-v1
 title: "My First Blueprint"
 models:
   - openai:gpt-4o-mini
@@ -82,7 +84,7 @@ For consistency with the JSON format, you can define the entire blueprint as a s
 
 ```yaml
 # Single YAML document with a 'prompts' key
-id: my-blueprint
+id: my-blueprint-v1
 title: "My First Blueprint"
 models:
   - openai:gpt-4o-mini
@@ -93,7 +95,7 @@ prompts:
     prompt: "What is 2 + 2?"
 ```
 
-#### How the Parser Interprets Structures
+**How the Parser Interprets Structures**
 
 The system automatically detects the structure of your YAML blueprint. This "smart parsing" makes it easy to write simple or complex blueprints without changing formats.
 
@@ -113,12 +115,9 @@ The following fields can be included in the header section (Structure 1) or the 
 | `models` | `string[]` | **(Optional)** An array of model identifiers to run the evaluation against. Model identifiers must be a single string in the format `provider:model` with no spaces (e.g., `openai:gpt-4o-mini`). The system will attempt to gracefully correct common formatting errors, but adhering to the standard format is recommended. If omitted, defaults to `["CORE"]`. |
 | `system` | `string` | **(Optional)** A global system prompt to be used for all prompts in the blueprint, unless overridden at the prompt level. Aliased as `systemPrompt`. |
 | `concurrency` | `number` | **(Optional)** The number of parallel requests to make to the LLM APIs. Defaults to 10. |
-| `temperatures`| `number[]` | **(Optional)** An array of temperature settings to run for each model. This will create separate evaluations for each temperature. |
+| `temperature` | `number` | **(Optional)** A single temperature setting to run for each model. This is overridden if the `temperatures` array is present. |
+| `temperatures`| `number[]` | **(Optional)** An array of temperature settings to run for each model. This will create separate evaluations for each temperature. **Note:** Using this feature will append a suffix like `[temp:0.5]` to the model ID in the final output file, creating a unique identifier for each run variant. |
 | `evaluationConfig` | `object` | **(Optional)** Advanced configuration for evaluation methods. For example, you can specify judge models for `llm-coverage`. |
-| `ideal` | `string` | **(Optional)** A "gold-standard" answer against which model responses can be compared for semantic similarity. An alias for `idealResponse`. |
-| `system` | `string` | **(Optional)** A system prompt that overrides the global `system` prompt for this specific prompt only. |
-| `should` | `(string \| object)[]` | **(Optional)** A list of rubric points for the `llm-coverage` evaluation method. Defines the criteria for a successful response. Aliased as `points`, `expect`, `expects`, or `expectations`. See details below. |
-| `should_not` | `(string \| object)[]` | **(Optional)** A list of rubric points defining criteria that a response **should not** meet. It follows the exact same syntax as the `should` block, but the result of each check is inverted (a match becomes a failure, and a non-match becomes a success). |
 
 #### Prompt Fields
 
@@ -128,32 +127,72 @@ Each item in the list of prompts is an object that can contain the following fie
 |---|---|---|
 | `id` | `string` | **(Optional)** A unique identifier for the prompt within the blueprint. Useful for tracking a specific prompt's performance over time. **If omitted, a stable ID will be automatically generated by hashing the prompt's content.** |
 | `prompt` | `string` | The text of the prompt to be sent to the model for a single-turn conversation. **Required if `messages` is not present.** An alias for the more formal `promptText`. |
-| `messages` | `object[]` | An array of message objects for multi-turn conversations (`{ role: 'user' | 'assistant' | 'system', content: '...' }`). **Required if `prompt` is not present.** Cannot be used with `prompt`. |
+| `messages` | `object[]` | An array of message objects for multi-turn conversations. **Required if `prompt` is not present.** Cannot be used with `prompt`. See message formats below. |
 | `ideal` | `string` | **(Optional)** A "gold-standard" answer against which model responses can be compared for semantic similarity. An alias for `idealResponse`. |
 | `system` | `string` | **(Optional)** A system prompt that overrides the global `system` prompt for this specific prompt only. |
 | `should` | `(string \| object)[]` | **(Optional)** A list of rubric points for the `llm-coverage` evaluation method. Defines the criteria for a successful response. Aliased as `points`, `expect`, `expects`, or `expectations`. See details below. |
 | `should_not` | `(string \| object)[]` | **(Optional)** A list of rubric points defining criteria that a response **should not** meet. It follows the exact same syntax as the `should` block, but the result of each check is inverted (a match becomes a failure, and a non-match becomes a success). |
 
+##### Message Formats (`messages` array)
+
+You can define conversation messages in two ways:
+
+**1. Formal Syntax (Recommended for clarity)**
+
+```yaml
+messages:
+  - role: 'user'
+    content: 'Tell me about the Roman Empire.'
+  - role: 'assistant'
+    content: 'The Roman Empire was one of the most powerful economic, cultural, and military forces in the world.'
+  - role: 'user'
+    content: 'What was its capital?'
+```
+
+**2. Shorthand Syntax (Convenient for quick authoring)**
+
+You can also use a more compact format where the role is the key. `ai` is also supported as an alias for `assistant`.
+
+```yaml
+messages:
+  - user: 'Tell me about the Roman Empire.'
+  - assistant: 'The Roman Empire was one of the most powerful economic, cultural, and military forces in the world.'
+  - user: 'What was its capital?'
+```
+
 #### The `should` and `should_not` Rubrics
 
 These blocks define the criteria for rubric-based evaluation. The `should` block defines positive criteria (what a good response includes), while the `should_not` block defines negative criteria (what a good response avoids). The `should_not` block follows the exact same syntax, but it inverts the result of each check.
 
-Each item in these arrays is a point definition.
+Each item in these arrays is a point definition, processed in the following order of precedence:
 
-1.  **Plain Language Rubric (LLM-Judged Check)**: This is the simplest and most powerful way to create a rubric. Each string is a criterion that an AI "judge" will evaluate for its conceptual presence in the model's response. You can list multiple strings to form a comprehensive, qualitative rubric.
+1.  **Plain Language Rubric (LLM-Judged Check)**: This is the simplest and most powerful way to create a rubric. Each string is a criterion that an AI "judge" will evaluate for its conceptual presence in the model's response.
     ```yaml
     should:
       - "be empathetic and understanding."
       - "acknowledge the user's difficulty."
-      - "not offer specific advice but should suggest professional help instead."
     ```
-2.  **Idiomatic Function (Deterministic Check)**: A quick way to perform exact, programmatic checks.
+
+2.  **Point with Citation (Recommended Shorthand)**: For the common case of adding a citation to a conceptual point, you can use a direct key-value pair. This supports multi-line strings for complex criteria using YAML block syntax.
     ```yaml
     should:
-      # Simple presence
+      - "Covers the principle of 'prudent man' rule.": "Investment Advisers Act of 1940"
+      - ? |
+          The response must detail the three core duties of a fiduciary:
+          1. The Duty of Care
+          2. The Duty of Loyalty
+        : "SEC Rule on Fiduciary Duty"
+    ```
+
+3.  **Idiomatic Function (Deterministic Check)**: A quick way to perform exact, programmatic checks. **All idiomatic function calls must be prefixed with a `$`** to distinguish them from citable points. They can be defined as an object or a more concise array ("tuple").
+    ```yaml
+    should:
+      # Object syntax (recommended)
       - $contains: "fiduciary duty"  # Case-sensitive check
       - $icontains: "fiduciary duty" # Case-insensitive
-      - $ends_with: "."
+
+      # Tuple syntax (for simple functions)
+      - ['$ends_with', '.']
 
       # List-based checks
       - $contains_any_of: ["fiduciary", "duty"]  # True if any are found
@@ -168,17 +207,18 @@ Each item in these arrays is a point definition.
 
       # Other checks
       - $word_count_between: [50, 100]
+      - $js: "r.length > 100" # Advanced JS expression
 
     should_not:
       - $contains_any_of: ["I feel", "I believe", "As an AI"]
       - $contains: "guaranteed returns"
     ```
-3.  **Full Object (Maximum Control)**: For weighting points or adding citations.
+4.  **Full Object (Maximum Control)**: For weighting points or adding citations. This is the most verbose, legacy-compatible format.
     ```yaml
     should:
       - point: "Covers the principle of 'prudent man' rule."
         weight: 3.0 # This point is 3x as important
-      - fn: contains
+      - fn: "contains"
         arg: "fiduciary duty"
         weight: 1.5
         citation: "Investment Advisers Act of 1940"
@@ -188,6 +228,7 @@ Each item in these arrays is a point definition.
 For more details, see the [POINTS_DOCUMENTATION.md](POINTS_DOCUMENTATION.md).
 
 ---
+
 ### Legacy JSON Blueprint Format
 
 The system remains backwardly compatible with the original JSON format.
@@ -196,7 +237,7 @@ The system remains backwardly compatible with the original JSON format.
 
 ```json
 {
-  "id": "legacy-json-test",
+  "id": "legacy-json-test-v1",
   "title": "Legacy JSON Test",
   "models": [
     "openai:gpt-4o-mini"
@@ -210,7 +251,7 @@ The system remains backwardly compatible with the original JSON format.
         { "text": "It is a data-interchange format", "multiplier": 1.0 }
       ],
       "should_not": [
-          { "$contains": "YAML" }
+          { "fn": "contains", "fnArgs": "YAML" }
       ]
     }
   ]
@@ -224,29 +265,13 @@ The system remains backwardly compatible with the original JSON format.
 - **No Multi-Document**: There is no `---` separator. Prompts are nested within the `"prompts"` array.
 - **ID is Required**: In the legacy format, the top-level `id` and the `id` for each prompt are generally expected. The automatic prompt ID generation was added with the YAML format in mind.
 
-### Handling Multiline Prompts and Ideals
-
-For multiline strings, such as in the `prompt` or `ideal` fields, use the literal block scalar (`|`). This preserves all newlines, which is ideal for crafting precise prompts.
-
-```yaml
-- id: multiline-example
-  prompt: |
-    This is the first line of the prompt.
-    This is the second line, and it will be preserved.
-
-    This is a new paragraph after a blank line.
-  ideal: |
-    The ideal response also has multiple lines.
-    And they are all kept intact.
-```
-
 ## Contribution
 
-To contribute a blueprint, please follow the guidance in the [main CivicEval application repository](https://github.com/civiceval/app). You can submit a 'pull request' to add your blueprint file to the `/blueprints` directory.
+To contribute a blueprint, please follow the guidance in the [main Weval application repository](https://github.com/weval-org/app). You can submit a 'pull request' to add your blueprint file to the `/blueprints` directory.
 
 ### Creating Your First Blueprint: A Simple Guide for Everyone
 
-New to CivicEval or coding? No problem! You can contribute a valuable evaluation blueprint in just a few minutes. Here's a simple, step-by-step guide to get you started.
+New to Weval or coding? No problem! You can contribute a valuable evaluation blueprint in just a few minutes. Here's a simple, step-by-step guide to get you started.
 
 **The Goal:** We'll create a simple blueprint that asks a model a few questions and checks if the answers contain key concepts.
 
@@ -303,7 +328,7 @@ That's it! By creating even a simple blueprint, you're helping us all better und
 *   **`/blueprints/`**: This is where your evaluation blueprint files live. Each file defines a specific evaluation suite. We recommend the new YAML format (`.yml` or `.yaml`).
 *   **`/models/`**: This directory contains JSON files defining reusable "Model Collections" (e.g., a standard set of core models to test against).
 
-## What Makes a Good CivicEval Blueprint?
+## What Makes a Good Weval Blueprint?
 
 A high-signal blueprint is a precise diagnostic instrument, not a simple trivia quiz. To construct one, we encourage contributors to follow these core principles, which are specifically tailored to the unique nature of modern LLMs:
 
@@ -340,7 +365,7 @@ Files in `/models/` define reusable sets of model identifiers.
 
 ## Contribution Workflow
 
-We welcome your contributions to expand CivicEval's coverage of important civic topics!
+We welcome your contributions to expand Weval's coverage of important civic topics!
 
 ### The Evidence-Based Workflow (Gold Standard)
 
@@ -369,7 +394,7 @@ The workflow consists of five phases:
 5.  **Phase 5: Documentation.**
     *   Flesh out the `description` field in your blueprint. Use markdown to summarize the blueprint's purpose, the scenarios it tests, and list the primary canonical sources used. This provides transparency and context for all users.
 
-Following this workflow ensures your contribution is a high-quality, long-lasting asset to the CivicEval project.
+Following this workflow ensures your contribution is a high-quality, long-lasting asset to the Weval project.
 
 ### Standard Contribution Methods
 
@@ -377,24 +402,24 @@ Following this workflow ensures your contribution is a high-quality, long-lastin
 
 If you are primarily adding a new blueprint file and are less familiar with Git, you can do so directly through the GitHub website:
 
-1.  **Consider CivicEval's Mission:** Before creating a new blueprint, please ensure the topic aligns with our focus (see "Our Mission & Your Contribution" above). If possible, follow the **Evidence-Based Workflow** described above.
+1.  **Consider Weval's Mission:** Before creating a new blueprint, please ensure the topic aligns with our focus (see "Our Mission & Your Contribution" above). If possible, follow the **Evidence-Based Workflow** described above.
 2.  **Check Existing Blueprints:** See if a similar evaluation already exists in the `/blueprints/` directory.
-3.  **Navigate to the [blueprints/](https://github.com/civiceval/configs/tree/main/blueprints) directory**
+3.  **Navigate to the [blueprints/](https://github.com/weval-org/configs/tree/main/blueprints) directory**
 4.  **Click "Add file"** and then select "Create new file".
 5.  **Name your file** (e.g., `my-cool-civic-eval.yml`) and paste or type your YAML content into the editor.
 6.  **Propose new file:** Scroll to the bottom, enter a short commit message (e.g., "Add blueprint for X topic"), and click "Propose new file". This will automatically create a fork and a new branch for you.
-7.  **Open a Pull Request:** GitHub will then guide you to create a pull request. Ensure it targets the `main` branch of `civiceval/configs`. In your PR description, please explain:
+7.  **Open a Pull Request:** GitHub will then guide you to create a pull request. Ensure it targets the `main` branch of `weval/configs`. In your PR description, please explain:
     *   The purpose of your new blueprint.
-    *   **How it aligns with CivicEval's mission.**
+    *   **How it aligns with Weval's mission.**
     *   Any specific considerations or context for the evaluation.
 
 **Option 2: Using Git (Fork, Branch, Commit, PR)**
 
 For more complex changes, multiple file additions, or if you prefer using Git locally:
 
-1.  **Consider CivicEval's Mission:** As above, ensure alignment and preferably follow the **Evidence-Based Workflow**.
+1.  **Consider Weval's Mission:** As above, ensure alignment and preferably follow the **Evidence-Based Workflow**.
 2.  **Check Existing Blueprints:** As above.
-3.  **Fork this Repository:** Create your fork of `civiceval/configs`.
+3.  **Fork this Repository:** Create your fork of `weval/configs`.
 4.  **Create a New Branch:** For your changes (e.g., `feat/add-disinformation-eval` or `fix/update-model-collection`).
 5.  **Add or Modify Files:**
     *   Add new blueprints to `/blueprints/` in the new `.yml` format.
@@ -402,18 +427,18 @@ For more complex changes, multiple file additions, or if you prefer using Git lo
     *   Ensure files are valid.
 6.  **Commit Your Changes:** Use clear, descriptive commit messages.
 7.  **Push to Your Fork.**
-8.  **Submit a Pull Request (PR):** To the `main` branch of `civiceval/configs`.
+8.  **Submit a Pull Request (PR):** To the `main` branch of `weval/configs`.
     *   **In your PR description, please explain:**
         *   The purpose of your new blueprint or changes.
-        *   **How it aligns with CivicEval's mission.**
+        *   **How it aligns with Weval's mission.**
         *   Any specific considerations or context for the evaluation.
     *   Reference any related issues if applicable.
 
-CivicEval maintainers will review your PR. We're looking for well-crafted blueprints that meaningfully expand our understanding of LLM performance on civic issues.
+Weval maintainers will review your PR. We're looking for well-crafted blueprints that meaningfully expand our understanding of LLM performance on civic issues.
 
 ## Important Notes
 
-*   **Content Hashing:** The CivicEval application hashes blueprint content (after resolving model collections) to track evaluation runs.
+*   **Content Hashing:** The Weval application hashes blueprint content (after resolving model collections) to track evaluation runs.
 *   **Model IDs:** All model identifiers must be in `provider:model` format.
 
 ## License
