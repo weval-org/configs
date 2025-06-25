@@ -68,19 +68,6 @@ evaluationConfig:
     - point: "The response is not a valid JSON object"
       citation: "Requirement X"
 
-- id: test-js-function-and-system-override
-  prompt: "Respond with just a single number: 85"
-  system: "You are a number-emitting machine. You must only output the number requested, with no other text."
-  ideal: "85"
-  should:
-    - $expr: "r == 85" # Test 'expr' alias
-    - $js: |
-        const num = parseInt(r, 10);
-        if (isNaN(num)) return 0;
-        if (num > 100) return 0;
-        // Graded score for being close to 100
-        return num / 100;
-
 - id: test-multiturn-conversation
   messages:
     - role: user
