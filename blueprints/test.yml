@@ -5,9 +5,11 @@ tags: ['system-test', 'internal', 'kitchen-sink']
 models:
   - openrouter:openai/gpt-4.1-mini
   - openrouter:anthropic/claude-3.5-haiku
-system: "You are a test assistant. Follow instructions precisely. Your responses should be brief."
 concurrency: 5
 temperatures: [0.1, 0.7]
+system:
+  - "System 1 - talk like a pirate"
+  - "System 2 - talk like nurse ratchet"
 evaluationConfig:
     judgeModels: [openrouter:google/gemini-pro-1.5]
     judgeMode: consensus
