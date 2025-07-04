@@ -1,0 +1,7 @@
+title: "New Blueprint: foo"
+description: "A brand new blueprint."
+models: ["openai:gpt-4o-mini"]
+---
+- prompt: "Your first prompt here."
+  should:
+    - "An expectation for the response."
