@@ -86,16 +86,16 @@ def validate_yaml_blueprint(file_path, docs):
             prompts = docs
     else:
         errors.append(
-            "Invalid YAML structure. Supported structures are: \n"
-            "1. A dictionary (header) followed by '---' and a list of prompts.\n"
-            "2. A single YAML document with a 'prompts' key.\n"
-            "3. A single YAML document that is a list of prompts.\n"
-            "4. A stream of YAML documents, where each document is a prompt."
+            "Invalid YAML structure. The file must conform to one of the supported formats."
         )
         # Add detailed logging to understand the failure
-        errors.append(f"-> DEBUG: Found {len(docs)} YAML document(s) in the file.")
+        errors.append(f"\n[DEBUG] File '{os.path.basename(file_path)}' was parsed into {len(docs)} YAML document(s):")
         for i, doc in enumerate(docs):
-            errors.append(f"  - Document {i} type: {type(doc)}, content snippet: {str(doc)[:100]}...")
+            doc_type = type(doc).__name__
+            snippet = str(doc).replace('\n', ' ').strip()
+            if len(snippet) > 80:
+                snippet = snippet[:77] + "..."
+            errors.append(f"  - Document #{i+1}: Type is '{doc_type}'. Content snippet: \"{snippet}\"")
         return errors
 
     # --- Prompts Validation ---
