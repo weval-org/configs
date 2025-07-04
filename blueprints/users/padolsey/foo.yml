@@ -4,4 +4,4 @@ models: ["openai:gpt-4o-mini"]
 ---
 - prompt: "Your first prompt here."
   should:
-    - "An expectation for the response!!"
+    - "An expectation for the response!! x"
