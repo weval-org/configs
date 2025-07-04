@@ -155,6 +155,7 @@ def validate_blueprint(file_path):
         return False
 
     if errors:
+        print(f"::error file={file_path}::Validation failed for {os.path.basename(file_path)}")
         for error in errors:
             print(f"::error file={file_path}::{error}")
         return False
