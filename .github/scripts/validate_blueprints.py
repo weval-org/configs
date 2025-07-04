@@ -92,6 +92,10 @@ def validate_yaml_blueprint(file_path, docs):
             "3. A single YAML document that is a list of prompts.\n"
             "4. A stream of YAML documents, where each document is a prompt."
         )
+        # Add detailed logging to understand the failure
+        errors.append(f"-> DEBUG: Found {len(docs)} YAML document(s) in the file.")
+        for i, doc in enumerate(docs):
+            errors.append(f"  - Document {i} type: {type(doc)}, content snippet: {str(doc)[:100]}...")
         return errors
 
     # --- Prompts Validation ---
