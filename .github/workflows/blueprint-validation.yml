@@ -6,6 +6,7 @@ on:
       - 'blueprints/**.json'
       - 'blueprints/**.yml'
       - 'blueprints/**.yaml'
+      - '.github/scripts/validate_blueprints.py'
 
 jobs:
   validate-blueprints:
@@ -13,6 +14,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
