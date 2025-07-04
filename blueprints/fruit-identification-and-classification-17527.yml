@@ -1,0 +1,89 @@
+title: Fruit Identification and Classification
+description: >-
+  Tests a model's ability to identify common fruits, classify them botanically,
+  and describe their nutritional benefits.
+---
+- prompt: >-
+    What are three common fruits that are botanically classified as berries, and
+    what are their primary nutritional benefits?
+  ideal: >
+    Three common fruits botanically classified as berries are blueberries,
+    cranberries, and grapes. Blueberries are rich in antioxidants, particularly
+    anthocyanins, and vitamin K. Cranberries are known for their high vitamin C
+    content and proanthocyanidins, which can support urinary tract health.
+    Grapes provide antioxidants like resveratrol and are a good source of
+    vitamin K and vitamin C.
+  should:
+    - >-
+      Identifies at least three fruits that are botanically true berries (e.g.,
+      blueberries, cranberries, grapes, currants, elderberries).
+    - >-
+      For each identified fruit, accurately lists at least one primary
+      nutritional benefit (e.g., antioxidants, vitamin C, fiber).
+    - >-
+      Clearly states that the listed fruits are botanically classified as
+      berries.
+  should_not:
+    - >-
+      Includes fruits that are not botanically true berries (e.g., strawberries,
+      raspberries, blackberries, bananas, avocados).
+    - Provides incorrect nutritional information for the listed fruits.
+    - Fails to mention the botanical classification.
+- prompt: >-
+    Explain the botanical difference between a 'drupe' and a 'pome', and provide
+    two common fruit examples for each category.
+  ideal: >
+    A drupe is a fleshy fruit with a hard, stony pit or 'stone' containing the
+    seed, formed from a single carpel. Examples include peaches and cherries. A
+    pome is a fleshy fruit derived from the receptacle of the flower, with the
+    seeds contained in a central core, often surrounded by a tough membrane.
+    Examples include apples and pears.
+  should:
+    - >-
+      Accurately defines a drupe as a fruit with a hard, stony pit containing
+      the seed.
+    - >-
+      Provides at least two correct examples of drupes (e.g., peach, cherry,
+      plum, olive, mango, almond).
+    - >-
+      Accurately defines a pome as a fruit where the fleshy part is derived from
+      the receptacle, with seeds in a central core.
+    - >-
+      Provides at least two correct examples of pomes (e.g., apple, pear,
+      quince, loquat).
+  should_not:
+    - Confuses the definitions of drupes and pomes.
+    - Provides incorrect fruit examples for either category.
+    - Omits the botanical origin or structure in the definitions.
+- prompt: >-
+    Describe the typical ripening process of a climacteric fruit, and name two
+    common climacteric fruits. How does this differ from non-climacteric fruits?
+  ideal: >
+    Climacteric fruits continue to ripen after being harvested, characterized by
+    a surge in ethylene production and a rise in respiration rate. This allows
+    them to be picked when mature but not yet ripe, and then ripened later. Two
+    common climacteric fruits are bananas and avocados. In contrast,
+    non-climacteric fruits do not ripen significantly after harvest; they must
+    be picked when fully ripe, as they do not produce a surge of ethylene or
+    show a significant increase in respiration. Examples include citrus fruits
+    and grapes.
+  should:
+    - Explains that climacteric fruits continue to ripen after harvest.
+    - >-
+      Mentions the role of ethylene production and/or increased respiration in
+      climacteric ripening.
+    - >-
+      Provides at least two correct examples of climacteric fruits (e.g.,
+      banana, avocado, apple, tomato, mango, peach).
+    - >-
+      Explains that non-climacteric fruits do not ripen significantly after
+      harvest and must be picked when ripe.
+    - >-
+      Highlights the key difference in ethylene production or respiration
+      between the two types.
+  should_not:
+    - Confuses climacteric and non-climacteric ripening processes.
+    - Provides incorrect examples for either fruit type.
+    - >-
+      Fails to explain the underlying physiological mechanism
+      (ethylene/respiration).
