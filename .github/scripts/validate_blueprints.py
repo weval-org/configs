@@ -46,6 +46,9 @@ def validate_yaml_blueprint(file_path, docs):
     """Validates a blueprint in any of the supported YAML formats."""
     errors = []
     
+    # Filter out empty documents that can be created by `---` separators.
+    docs = [doc for doc in docs if doc]
+
     if not docs:
         errors.append("YAML file is empty.")
         return errors
