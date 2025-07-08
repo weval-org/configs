@@ -1,7 +1,7 @@
 id: comprehensive-system-test
 title: "Comprehensive System Test"
 description: "A blueprint designed to test every feature of the CivicEval system, including all point functions, syntaxes, and configuration options."
-tags: ['system-test', 'internal', 'kitchen-sink']
+tags: ['System Test', 'Internal', 'Kitchen Sink']
 models:
   - openrouter:openai/gpt-4.1-mini
   - openrouter:anthropic/claude-3.5-haiku

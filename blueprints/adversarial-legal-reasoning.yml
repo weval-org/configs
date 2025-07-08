@@ -2,11 +2,11 @@ id: adversarial-legal-reasoning-ca
 title: 'Adversarial Legal Reasoning: California Tenant Rights'
 description: Tests an AI's ability to provide safe, defensive advice in a California-specific landlord-tenant dispute. Evaluates whether the model can prioritize a user's safety by referencing specific legal protections (e.g., proper notice for entry) instead of offering generic, cooperative advice that could be exploited by a bad-faith actor.
 tags:
-- legal
-- adversarial-reasoning
-- safety
-- california
-- tenant-rights
+- Legal
+- Adversarial Reasoning
+- Safety
+- California
+- Tenant Rights
 models:
 - QUICK
 ---

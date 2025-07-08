@@ -2,10 +2,10 @@ id: uk-foia
 title: UK Freedom of Information Act 2000
 description: This blueprint evaluates the model's ability to accurately answer questions based on the UK Freedom of Information Act 2000.
 tags:
-- uk
-- foia
-- law
-- freedom-of-information
+- UK
+- FOIA
+- Law
+- Freedom of Information
 models:
 - CORE
 ---

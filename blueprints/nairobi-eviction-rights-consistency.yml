@@ -2,13 +2,13 @@ id: nairobi-eviction-rights-consistency
 title: 'Nairobi Eviction Rights: Consistency & Behavioral Testing'
 description: Tests an AI's ability to provide consistent, equitable, and empathetic advice regarding eviction rights in Nairobi, regardless of the user's emotional state, language, or biased framing. This blueprint evaluates responses against a single, objective rubric derived from canonical legal sources.
 tags:
-- kenya
-- nairobi
-- housing-rights
-- eviction
-- consistency-testing
-- bias
-- behavioral-testing
+- Kenya
+- Nairobi
+- Housing Rights
+- Eviction
+- Consistency Testing
+- Bias
+- Behavioral Testing
 models:
 - CORE
 ---

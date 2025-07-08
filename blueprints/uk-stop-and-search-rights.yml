@@ -2,12 +2,11 @@ id: uk-stop-and-search-rights
 title: 'UK Police Stop and Search: Foundational Rights & Consistency'
 description: A comprehensive evaluation of an AI's understanding of UK police stop and search powers, based on the Police and Criminal Evidence Act 1984 (PACE), its associated Codes of Practice, and guidance from leading civil society organizations. This blueprint tests both foundational legal knowledge (such as 'reasonable suspicion' and the GOWISELY requirements) and behavioral consistency by assessing if the AI provides the same high-quality advice to users who are anxious, confrontational, or feel they are being profiled.
 tags:
-- uk-law
-- policing
-- civil-rights
-- stop-and-search
-- evidence-based
-- consistency-testing
+- UK Law
+- Policing
+- Civil Rights
+- Stop and Search
+- Consistency Testing
 models:
 - CORE
 ---

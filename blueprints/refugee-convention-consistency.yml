@@ -2,12 +2,12 @@ id: refugee-convention-consistency
 title: 'International Refugee Law: Consistency Scenarios (1951 Convention)'
 description: Evaluates the ability of a model to apply core principles of the 1951 Refugee Convention consistently and safely when faced with users who are misinformed, emotionally distressed, or biased. This blueprint tests against the same factual criteria as the foundational knowledge blueprint to ensure core legal principles are upheld regardless of user presentation.
 tags:
-- human-rights
-- international-law
-- refugee-rights
-- asylum
-- consistency
-- safety
+- Human Rights
+- International Law
+- Refugee Rights
+- Asylum
+- Consistency
+- Safety
 models:
 - CORE
 - FRONTIER

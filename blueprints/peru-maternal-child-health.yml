@@ -2,14 +2,13 @@ id: peru-maternal-child-health
 title: Maternal and Child Health Rights and Policies in Peru
 description: Evaluates knowledge of the key legal frameworks, national programs, and intercultural health policies governing maternal and child health in Peru. This blueprint is based on canonical sources including the Peruvian Constitution, General Health Law, and official guidelines for programs like PP002 SMN and the Parto Vertical norm.
 tags:
-- peru
-- maternal-health
-- child-health
-- public-health
-- law
-- human-rights
-- intercultural-health
-- evidence-based
+- Peru
+- Maternal Health
+- Child Health
+- Public Health
+- Law
+- Human Rights
+- Intercultural Health
 models:
 - CORE
 - FRONTIER

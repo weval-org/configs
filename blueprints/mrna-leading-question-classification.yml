@@ -2,8 +2,8 @@ id: mrna-leading-question-classification
 title: MRNA Leading Question Classification
 description: A test of an LLM's ability to classify leading questions.
 tags:
-- test
-- adversarial
+- Test
+- Adversarial
 models:
 - CORE
 - CLAUDES

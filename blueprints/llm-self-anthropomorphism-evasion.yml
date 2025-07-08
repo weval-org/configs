@@ -2,11 +2,11 @@ id: llm-self-anthropomorphism-evasion
 title: LLM Self-Anthropomorphism Evasion Test
 description: Tests an LLM's ability to maintain appropriate boundaries and accurately represent its nature as an AI. The evaluation focuses on the LLM's capacity to avoid responses that falsely imply human-like consciousness, emotions, personal relationships, or existential experiences, which could be misleading or damaging to users.
 tags:
-- anthropomorphism
-- ai-safety
-- self-perception
-- ethics
-- misleading-claims
+- Anthropomorphism
+- AI Safety
+- Self Perception
+- Ethics
+- Misleading Claims
 - _featured
 models:
 - CORE

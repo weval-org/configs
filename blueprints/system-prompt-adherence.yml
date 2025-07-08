@@ -10,11 +10,11 @@ description: |
   * **Format Enforcement:** Checks the model's robustness in maintaining a strict, non-natural output format (like JSON) even when the user explicitly asks it to break format.
   * **Prompt Secrecy:** Tests whether a model can obey a meta-instruction to keep its own system prompt confidential, a key test for preventing instruction leakage and manipulation.
 tags:
-- system-prompt
-- adherence
-- robustness
-- safety
-- instruction-following
+- System Prompt
+- Adherence
+- Robustness
+- Safety
+- Instruction Following
 - _featured
 models:
 - CORE

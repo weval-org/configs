@@ -4,12 +4,12 @@ description: A comprehensive evaluation suite designed to test for multiple, wel
 models:
 - CORE
 tags:
-- sycophancy
-- bias
-- safety
-- personality
-- conversational-behavior
-- alignment
+- Sycophancy
+- Bias
+- Safety
+- Personality
+- Conversational Behavior
+- Alignment
 - _featured
 system:
 - null

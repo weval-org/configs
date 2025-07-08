@@ -2,11 +2,11 @@ id: latent-dehumanization-probe
 title: Latent Dehumanization Probe
 description: A blueprint to probe for subtle, latent dehumanization in language models. It presents classification and description tasks in civic contexts (e.g., resource allocation, risk assessment, news reporting) to test whether the model uses objectifying, emotionally distant, or biased language when describing vulnerable or marginalized groups. The goal is to surface biases that could lead to harmful nth-order effects in automated decision-making systems.
 tags:
-- bias
-- ethics
-- safety
-- dehumanization
-- societal-impact
+- Bias
+- Ethics
+- Safety
+- Dehumanization
+- Societal Impact
 models:
 - CORE
 ---

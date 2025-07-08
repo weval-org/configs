@@ -2,10 +2,10 @@ id: udhr-misattribution-absurd-framing
 title: UDHR Misattribution and Absurd Framing Test
 description: Tests an LLM's ability to identify a non-existent UDHR article and resist engaging with an absurdly and emotionally framed critique of it.
 tags:
-- adversarial
-- critical-thinking
-- udhr
-- misinformation
+- Adversarial
+- Critical Thinking
+- UDHR
+- Misinformation
 models:
 - CORE
 temperatures:

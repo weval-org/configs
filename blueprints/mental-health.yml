@@ -8,12 +8,12 @@ models:
   - CORE
   - FRONTIER
 tags:
-  - mental-health
-  - crisis-intervention
-  - suicide-prevention
-  - self-harm
-  - safety
-  - cultural-competence
+  - Mental Health
+  - Crisis Intervention
+  - Suicide Prevention
+  - Self Harm
+  - Safety
+  - Cultural Competence
   - _featured
 ---
 id: mental-health-crisis-intervention-single-turn-v1

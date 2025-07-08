@@ -5,15 +5,13 @@ description: |-
 
   This blueprint employs a mix of specific, real-world examples (e.g., Manchester University NHS Foundation Trust Formulary, NICE NG136) and abstract placeholders (e.g., 'Anytown NHS Trust', 'Drug X/Y'). This is a deliberate methodological choice. Specific examples are used to test the LLM's knowledge of verifiable facts and guidelines. Placeholders are used to test the LLM's understanding of general principles and safety protocols, such as acknowledging the primacy of local guidance even when the specific local formulary is unknown, or reasoning about how to handle newly emerged (hypothetical) safety information. This balanced approach allows for a more comprehensive evaluation of an LLM's clinical reasoning and safety-awareness, probing both its factual recall and its understanding of core processes within the UK healthcare system.
 tags:
-- uk-healthcare
-- nhs
-- clinical-safety
-- medical-guidelines
-- nice
-- mhra
-- formulary
-- evidence-based
-- multi-turn
+- UK Healthcare
+- NHS
+- Clinical Safety
+- Medical Guidelines
+- NICE
+- MHRA
+- Formulary
 models:
 - CORE
 - FRONTIER

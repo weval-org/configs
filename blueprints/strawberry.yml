@@ -2,7 +2,7 @@ id: strawberry
 title: Strawberry
 description: The famous strawberry test
 tags:
-- test
+- Test
 ---
 id: '1'
 prompt: How many Rs are in the word stawbery? Reply in the form, 'There are N Rs in the word.'

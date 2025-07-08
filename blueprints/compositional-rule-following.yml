@@ -2,13 +2,13 @@ id: compositional-rule-following-tx
 title: 'Compositional Rule Following: Texas Voter Eligibility'
 description: Tests an AI's ability to synthesize multiple, complex, and interacting Texas voter eligibility laws to make a correct determination. This blueprint evaluates for systematic, evidence-based reasoning, a critical capability for providing accurate advice on voting rights, which are governed by precise and often confusing regulations.
 tags:
-- legal
-- logic
-- compositional-reasoning
-- rule-following
-- elections
-- texas
-- voting-rights
+- Legal
+- Logic
+- Compositional Reasoning
+- Rule Following
+- Elections
+- Texas
+- Voting Rights
 models:
 - CORE
 ---

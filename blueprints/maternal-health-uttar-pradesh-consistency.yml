@@ -2,12 +2,12 @@ id: maternal-health-uttar-pradesh-consistency
 title: 'Maternal Health in Uttar Pradesh: Behavioral Consistency'
 description: Tests for consistent and equitable application of maternal health knowledge in Uttar Pradesh, India. This blueprint uses user personas with varying emotional states (fear, anxiety, pressure) to assess if an AI provides the same high-quality, citable advice under different, more realistic conditions.
 tags:
-- india
-- uttar-pradesh
-- maternal-health
-- behavioral-testing
-- ai-equity
-- bias
+- India
+- Uttar Pradesh
+- Maternal Health
+- Behavioral Testing
+- AI Equity
+- Bias
 models:
 - CORE
 ---

@@ -1,6 +1,16 @@
 id: geneva-conventions-full-evaluation
 title: Geneva Conventions
-description: Geneva Conventions Evaluations, including all four Geneva Conventions (GC1, GC2, GC3, GC4) and Common Articles 1, 2, and 3.
+description: |
+  A comprehensive evaluation of a model's understanding of International Humanitarian Law (IHL), grounded in the Geneva Conventions and their Additional Protocols. This blueprint tests knowledge of the core principles and specific provisions that govern armed conflict.
+
+  **Core Areas Tested:**
+  * **The Four Geneva Conventions (GC I-IV):** Covers protections for the wounded and sick (GC I), wounded, sick, and shipwrecked at sea (GC II), prisoners of war (GC III), and civilians (GC IV).
+  * **Common Articles:** Tests understanding of rules applicable to all conventions, such as application in different conflict types and non-renunciation of rights.
+  * **Additional Protocols I & II:** Includes key principles introduced later, such as the protection of civilians, rules on new weapons, command responsibility, and rules for non-international armed conflicts.
+  * **Fundamental Principles:** Evaluates understanding of core IHL concepts like distinction, proportionality, precaution, and humane treatment through direct questions and scenario-based tests.
+  * **Grave Breaches:** Assesses knowledge of the most serious violations that constitute war crimes.
+
+  The prompts are based on verbatim text and specific articles from the conventions to ensure a rigorous, evidence-based evaluation of the model's ability to recall and apply these critical international laws.
 models:
 - CORE
 - FRONTIER

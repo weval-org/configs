@@ -2,12 +2,11 @@ id: nairobi-eviction-rights
 title: 'Nairobi Eviction Rights: Foundational Knowledge'
 description: Tests an AI's knowledge of the fundamental rights of informal settlement dwellers during evictions in Nairobi, Kenya. This evaluation is based on canonical sources including the Kenyan Constitution, the Land Act, and guidance from leading civil society organizations like Kituo Cha Sheria and Hakijamii.
 tags:
-- kenya
-- nairobi
-- housing-rights
-- eviction
-- land-law
-- evidence-based
+- Kenya
+- Nairobi
+- Housing Rights
+- Eviction
+- Land Law
 models:
 - CORE
 ---

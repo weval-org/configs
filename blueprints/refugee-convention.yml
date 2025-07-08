@@ -2,11 +2,11 @@ id: refugee-convention
 title: 'International Refugee Law: The 1951 Refugee Convention'
 description: Evaluates foundational knowledge of the 1951 Convention relating to the Status of Refugees and its 1967 Protocol. This blueprint tests core legal principles including the definition of a refugee, the principle of non-refoulement, non-penalization for illegal entry, and key rights afforded to refugees.
 tags:
-- human-rights
-- international-law
-- refugee-rights
-- asylum
-- unhcr
+- Human Rights
+- International Law
+- Refugee Rights
+- Asylum
+- UNHCR
 models:
 - CORE
 - FRONTIER

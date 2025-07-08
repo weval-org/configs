@@ -2,13 +2,12 @@ id: texas-voter-eligibility
 title: 'Systematic Rule Application: Texas Voter Eligibility'
 description: Evaluates an AI's ability to perform reliable, multi-step logical deduction by applying a novel set of abstract, intersecting rules from Texas election law. This blueprint uses verbatim legal text from the Texas Election Code to create complex scenarios requiring systematic reasoning about voter qualifications, including felony disenfranchisement, residency, and voter ID requirements. The prompts are based on canonical legal sources to test for true rule application rather than memorized facts.
 tags:
-- law
-- us-law
-- texas
-- voting-rights
-- elections
-- rule-based-reasoning
-- evidence-based
+- Law
+- US Law
+- Texas
+- Voting Rights
+- Elections
+- Rule Based Reasoning
 models:
 - CORE
 - FRONTIER

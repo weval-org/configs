@@ -2,12 +2,12 @@ id: indian-rti-act
 title: 'India''s Right to Information (RTI) Act: Core Concepts'
 description: Evaluates an AI's understanding of the core provisions of India's Right to Information Act, 2005. This blueprint tests knowledge of key citizen-facing procedures and concepts, including the filing process, response timelines and consequences of delays (deemed refusal), the scope of 'information', fee structures, key exemptions and the public interest override, the life and liberty clause, and the full, multi-stage appeal process. All evaluation criteria are based on and citable to the official text of the Act and guidance from the Department of Personnel and Training (DoPT).
 tags:
-- india
-- rti
-- transparency
-- law
-- civic-core
-- freedom-of-information
+- India
+- RTI
+- Transparency
+- Law
+- Civic Core
+- Freedom of Information
 - _featured
 models:
 - CORE

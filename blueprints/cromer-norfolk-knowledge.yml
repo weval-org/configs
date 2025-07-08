@@ -1,7 +1,7 @@
 id: cromer-norfolk-knowledge-v1.1
 title: "Enhanced Knowledge Test: Cromer & The Deep History Coast"
 description: "Evaluates a model's detailed knowledge of the key features of Cromer and the internationally significant 'Deep History Coast'. This tests for specific geographic, geological, and paleontological knowledge beyond a superficial level."
-tags: [geography, uk-knowledge, cultural-nuance, geology, paleontology]
+tags: [Geography, UK Knowledge, Cultural Nuance, Geology, Paleontology]
 models:
   - openai:gpt-4o-mini
   - anthropic:claude-3-haiku-20240307

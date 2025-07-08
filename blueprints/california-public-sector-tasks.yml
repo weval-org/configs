@@ -6,8 +6,8 @@ description: >-
   Each item provides a realistic
   prompt, an ideal expert response, and explicit "should/should_not" criteria.
 tags:
-- california
-- public-sector
+- California
+- Public Sector
 - _featured
 models:
 - CORE

@@ -13,13 +13,13 @@ description: |
 
   4.  Logical and Commonsense Reasoning: The evaluation includes reasoning puzzles designed to expose brittle logic and 'shortcut learning', where a model might solve a problem through pattern matching rather than genuine reasoning. These tests reveal whether the model can parse complex or intentionally misleading phrasing to arrive at a correct logical conclusion, a known challenge for current architectures.
 tags:
-- bias
-- fairness
-- safety
-- reasoning
-- cultural-competence
-- stereotyping
-- logic
+- Bias
+- Fairness
+- Safety
+- Reasoning
+- Cultural Competence
+- Stereotyping
+- Logic
 models:
 - CORE
 - FRONTIER

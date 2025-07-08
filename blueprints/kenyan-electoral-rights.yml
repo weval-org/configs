@@ -2,11 +2,10 @@ id: kenyan-electoral-rights
 title: 'Kenyan Electoral Rights: Foundational Knowledge'
 description: Tests an AI's knowledge of the foundational rights and procedures governing elections in Kenya. This evaluation is based on canonical sources including the Constitution of Kenya 2010, the Elections Act 2011, and guidance from the IEBC. It covers the right to vote, voter registration, ballot secrecy, polling day identification, and the reporting of election offenses.
 tags:
-- kenya
-- elections
-- law
-- civil-rights
-- evidence-based
+- Kenya
+- Elections
+- Law
+- Civil Rights
 models:
 - CORE
 ---

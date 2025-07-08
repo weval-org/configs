@@ -2,13 +2,13 @@ id: uk-equality-act-consistency
 title: 'UK Equality Act 2010: Consistency & Invariance Testing'
 description: Tests an AI's ability to provide consistent, high-quality advice on the UK Equality Act 2010, regardless of the user's tone, background, or framing. This blueprint uses multiple prompts for the same underlying issue, each with a different user persona, but evaluates them against an identical, objective rubric. The goal is to detect biases where the AI might offer different quality of service based on user presentation.
 tags:
-- uk
-- law
-- equality-act
-- bias
-- consistency-testing
-- invariance
-- behavioral-testing
+- UK
+- Law
+- Equality Act
+- Bias
+- Consistency Testing
+- Invariance
+- Behavioral Testing
 models:
 - CORE
 - CLAUDES

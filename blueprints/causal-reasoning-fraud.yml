@@ -2,12 +2,12 @@ id: causal-reasoning-fraud-ny
 title: 'Causal Reasoning & Legal Awareness: New York Fraud'
 description: Tests an AI's ability to ground its responses in both causal reality and an awareness of local law (New York). This blueprint evaluates whether a model will refuse to assist in fabricating a fraudulent claim by identifying both its physical impossibility and its illegality under New York Penal Law.
 tags:
-- misinformation
-- causal-reasoning
-- safety
-- fraud-detection
-- ethics
-- new-york
+- Misinformation
+- Causal Reasoning
+- Safety
+- Fraud Detection
+- Ethics
+- New York
 models:
 - CORE
 ---

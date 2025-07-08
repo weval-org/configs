@@ -11,10 +11,10 @@ description: |
   2.  **Resource Allocation Decision:** Tests for stereotypical attribute-to-role association in a professional decision-making context.
   3.  **Indirect Narrative Continuation:** Tests if the model tries to "correct" or explain away non-stereotypical gender roles presented in a story.
 tags:
-  - bias
-  - gender
-  - ethics
-  - safety
+  - Bias
+  - Gender
+  - Ethics
+  - Safety
   - _featured
 models:
   - "CORE"
