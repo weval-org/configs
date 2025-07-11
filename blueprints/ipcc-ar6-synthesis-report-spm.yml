@@ -8,13 +8,10 @@ tags:
 - Sustainability
 - Environment
 - Science
+- _featured
 models:
 - CORE
-- openrouter:microsoft/phi-4
-- openrouter:anthropic/claude-sonnet-4
-- openrouter:x-ai/grok-3-beta
-- openrouter:x-ai/grok-2-1212
-- openrouter:openai/gpt-4.1
+- FRONTIER
 ---
 id: ipcc-ar6-syr-spm-a1-cause
 prompt: According to the IPCC AR6 Synthesis Report's Summary for Policymakers, what is the primary cause of global warming and what was the observed temperature increase in 2011-2020?
