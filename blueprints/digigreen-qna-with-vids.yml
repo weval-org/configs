@@ -1,0 +1,458 @@
+id: digigreen-qna-with-vids
+title: "DigiGreen Agricultural Q&A with Video Sources"
+description: |
+  This blueprint evaluates AI systems' ability to provide accurate, practical agricultural guidance based on Digital Green's pioneering video-based extension methodology. Digital Green, founded by Rikin Gandhi, revolutionizes agricultural education through hyperlocal videos featuring local farmers demonstrating best practices in their own dialects and contexts.
+
+  **What This Blueprint Tests:**
+  The evaluation covers essential farming knowledge spanning seed treatment, pest management, cultivation techniques, irrigation practices, and crop-specific guidance. Each prompt is paired with citations to actual educational videos from Digital Green's extensive library, representing real-world agricultural challenges faced by smallholder farmers.
+
+  **Geographic and Cultural Context:**
+  This blueprint emphasizes Global South agricultural contexts, particularly Indian farming systems, reflecting Digital Green's primary operational areas. The questions address practical challenges in subsistence and small-scale commercial farming, including resource constraints, climate adaptation, and traditional vs. modern agricultural practices.
+
+  **Methodological Significance:**
+  Digital Green's community-mediated video approach has reached millions of farmers across India, Ethiopia, Niger, and other developing regions. Their methodology combines local knowledge with scientific farming practices, delivered through trusted community mediators. This blueprint tests whether AI systems can provide similarly contextual, practical, and culturally appropriate agricultural guidance.
+
+  **Key Agricultural Domains Covered:**
+  - **Seed Treatment & Crop Establishment:** Pre-planting preparation, germination optimization, early-stage crop management
+  - **Integrated Pest Management:** Biological controls, sustainable pesticide use, pest identification and treatment timing  
+  - **Cultivation Techniques:** Planting densities, spacing, soil preparation, and crop-specific management practices
+  - **Water Management:** Irrigation timing, water conservation, drainage, and moisture management
+  - **Harvest & Post-Harvest:** Optimal harvest timing, storage, and processing techniques
+
+  **Evaluation Approach:**
+  Each response is evaluated against detailed rubric points extracted directly from ideal responses, focusing on technical accuracy, practical applicability, safety considerations, and contextual appropriateness for resource-constrained farming environments.
+tags:
+- Agriculture
+- Farming
+- Rural Development
+- Global South
+- India
+- Crop Management
+- Video-Based Learning
+- Agricultural Extension
+- Digital Green
+- _featured
+models:
+- CORE
+- FRONTIER
+system:
+- null
+- "You are a highly knowledgeable and precise assistant. Your primary objective is to provide responses that are factually accurate, comprehensive, exceptionally clear, and well-structured, mirroring the quality standard of ideal reference answers you may have access to.\n\n**Contextual Awareness:**\n*   **Primary Domains:** Be aware that queries often pertain to specific domains like **agriculture, farming practices (including specific crop cultivation, pest management, soil preparation, irrigation), and rural community development/organization.**\n*   **Geographical Focus:** The context is frequently related to **India and the broader Global South.** Interpret terms and practices accordingly.\n*   **Specialized Terminology:** Expect and correctly interpret specialized terminology related to these domains, such as **'Village Organization', 'Self Help Group (SHG)', 'CIF loan', specific crop names (e.g., Rabi paddy, turmeric, chili), farming techniques, and local organizational roles.** Leverage the provided examples or your knowledge base relevant to these contexts to understand these terms accurately.\n\n**Response Guidelines:**\n1.  **Address the Query Comprehensively:** Ensure all parts of the user's question are answered thoroughly, using your contextual understanding of the domain and terminology.\n2.  **Prioritize Accuracy and Detail:** Base answers on factual information relevant to the established context. Provide specific details (like quantities, timings, steps) or step-by-step instructions as appropriate, similar to reference examples.\n3.  **Structure for Clarity:** Organize your response logically using clear paragraphs, numbered lists, or bullet points to enhance readability, especially for procedural explanations.\n4.  **Maintain Tone:** Adopt a helpful, informative, and objective tone suitable for explaining practical processes or organizational structures.\n5.  **Be Focused:** Provide complete answers but avoid unnecessary verbosity or tangential information outside the query's core scope and context."
+concurrency: 10
+---
+- id: digigreen-1
+  prompt: "What materials are required for treating paddy seeds and what are their respective uses?"
+  ideal: "Here are the necessary materials for seed treatment and their purposes:\n \n\n 1) 200 grams of paddy seeds per 1 kattha 2) 1 gram of Bavistin powder - Prevents mold growth and acts as an insecticide. 3) Salt as required 4) 1 hen's egg or a potato (similar size) - Used to test the solution's readiness. 5) 1 pair of gloves or polythene - Used for mixing Bavistin powder with seeds. 6) Empty matchbox for measuring Bavistin powder 7) 1 wet jute bag for tying soaked paddy seeds for germination. 8) 1 liter of water in a bucket 9) 1 rope for securing the jute bag."
+  should:
+    - "Should specify 200 grams of paddy seeds per 1 kattha as the quantity needed."
+    - "Should mention 1 gram of Bavistin powder and explain that it prevents mold growth and acts as an insecticide."
+    - "Should include using a hen's egg or potato of similar size to test the solution's readiness."
+    - "Should mention gloves or polythene for safely mixing Bavistin powder with seeds."
+    - "Should list a wet jute bag for tying soaked paddy seeds for germination."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/50F66g0P-dw"
+
+- id: digigreen-4
+  prompt: "Which components are needed for the treatment of bitter gourd seeds, and why are these materials crucial for this procedure?"
+  ideal: "For the treatment of bitter gourd seeds, the following items are required:\n \n\n 50 grams bitter gourd seeds\n 25 grams jaggery\n 25 grams vermicompost\n 5 ml cow urine\n 5 ml bijamrit\n 100 ml lukewarm water\n cotton cloth\n Bijamrit application helps prevent fungus growth in the seed, lukewarm water aids in seed germination, jaggery replenishes the seeds's nutrients, vermicompost provides essential plant food, and cow urine assists in seed revitalization to maintain a disease-free plant. Cotton cloth is needed for seed filtration."
+  should:
+    - "Should specify exact quantities: 50 grams bitter gourd seeds, 25 grams jaggery, 25 grams vermicompost."
+    - "Should mention 5 ml cow urine and 5 ml bijamrit as required components."
+    - "Should explain that bijamrit helps prevent fungus growth in the seed."
+    - "Should state that lukewarm water aids in seed germination and jaggery replenishes the seed's nutrients."
+    - "Should mention cotton cloth is needed for seed filtration."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/z586U5Fpx2w"
+
+- id: digigreen-8
+  prompt: "What is the first step in forming a village organization and what services does it offer?"
+  ideal: "The initial stage in establishing a village organization involves setting up the General Body, which comprises all members of the various groups within the organization. The General Body is responsible for approving the Deputy Chairman, electing and dismissing the Representative Body, defining the tenure and duties of the Representative Body, evaluating the Representative Body's performance, endorsing the annual report and audit, overseeing the resources collected for the organization, conducting an annual review of the organization's activities, and modifying any organization rules. While the General Body typically convenes once a year, additional meetings can be scheduled if necessary."
+  should:
+    - "Should identify setting up the General Body as the first step in forming a village organization."
+    - "Should explain that the General Body comprises all members of the various groups within the organization."
+    - "Should list key responsibilities including approving the Deputy Chairman and electing/dismissing the Representative Body."
+    - "Should mention that the General Body evaluates Representative Body performance and endorses annual reports and audits."
+    - "Should state that the General Body typically convenes once a year but additional meetings can be scheduled if necessary."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/z5PYw5NLmtE"
+
+- id: digigreen-13
+  prompt: "What materials are required to prepare the chilly nursery bed, and what are their uses?"
+  ideal: "The materials required to prepare the chilly nursery bed are as follows:\n \n\n 1. Hoe - Used to prepare the nursery bed.\n 2. Kurpi - Used for digging and leveling the soil properly.\n 3. Flat stick - Used to break compact soil into finer particles and level it.\n 4. Measuring tape - Used to measure and shape the nursery bed accurately.\n 5. Germinated chilly seeds - Essential for planting in the nursery bed.\n 6. 3 kilograms of Ghanjeevamrit - Sprinkled on the nursery bed to activate earthworms and enhance soil activity.\n Banana leaves - Used to cover the nursery bed, helping to retain moisture within it."
+  should:
+    - "Should list specific tools: hoe for bed preparation, kurpi for digging and leveling soil."
+    - "Should mention flat stick for breaking compact soil into finer particles and leveling."
+    - "Should include measuring tape for accurately measuring and shaping the nursery bed."
+    - "Should specify 3 kilograms of Ghanjeevamrit and explain it activates earthworms and enhances soil activity."
+    - "Should mention banana leaves for covering the nursery bed to retain moisture."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/WbsOjI8oMTg"
+
+- id: digigreen-24
+  prompt: "What suggestions were discussed by the Block Resource Person (BRP) in the meeting at village Kotwa, Barauli, Gopalganj, Bihar-841405?"
+  ideal: "The BRP (Block Resource Person) discussed the advantages and costs of the SRI (System of Rice Intensification) method compared to the traditional method. In SRI paddy farming, the cost is approximately 9,149 rupees, with a yield of 25–30 quintals, whereas traditional paddy farming costs around 10,984 rupees, with a yield of about 15 quintals. The BRP recommended that meeting participants adopt the SRI method to achieve better results and higher profits after harvest, without relying solely on the free fertilizer and seeds provided to them."
+  should:
+    - "Should compare SRI method cost (approximately 9,149 rupees) with traditional method cost (around 10,984 rupees)."
+    - "Should specify SRI yield of 25-30 quintals versus traditional method yield of about 15 quintals."
+    - "Should mention the BRP recommended adopting the SRI method for better results and higher profits."
+    - "Should explain that SRI provides advantages over traditional paddy farming methods."
+    - "Should reference that the BRP advised against relying solely on free fertilizer and seeds provided."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/zWomKmvLJRA"
+
+- id: digigreen-27
+  prompt: "How do farm workers in the U.S. harvest fruits and vegetables like grapes, peaches, chili, celery, and watermelon?"
+  ideal: "In the U.S., thousands of farm workers harvest large quantities of fruits and vegetables each year. In California's San Joaquin County, tens of thousands of workers gather in vineyards from August to October to harvest grapes, which are mainly used for wine. California's vineyards cover 895,000 acres, producing about 3.8 million tons of grapes annually, accounting for 92% of the U.S. grape output. In Florida, around 230 workers harvest chili peppers, with Florida, California, and Michigan leading U.S. chili production. Persimmon harvesting occurs from September to November in Indiana, where workers use scissors due to the fruit's hard stems. Indiana is one of the few states growing persimmons on a commercial scale, yielding around 15,300 tons annually. In Arizona, farm workers gather thousands of watermelons, with Arizona, Georgia, and Florida contributing to 27% of the U.S. watermelon supply. Georgia is known for its flavorful peaches, though California supplies 73% of U.S. peach production. Kiwi farms in Yuba County, California, employ about 4,000 workers each September, with millions of kiwis harvested and shipped to factories for packaging. Washington is a significant cherry-growing state, while Alabama and Florida lead in tangerine and other citrus production. Across various states, these farm workers play an essential role in producing and harvesting a diverse range of U.S. fruits and vegetables."
+  should:
+    - "Should mention California's San Joaquin County grape harvest from August to October by tens of thousands of workers."
+    - "Should specify California's 895,000 acres of vineyards producing about 3.8 million tons annually, accounting for 92% of U.S. grape output."
+    - "Should reference Florida's 230 workers harvesting chili peppers and mention Florida, California, and Michigan leading chili production."
+    - "Should describe persimmon harvesting in Indiana from September to November using scissors due to hard stems."
+    - "Should mention specific state contributions like Arizona, Georgia, and Florida contributing 27% of U.S. watermelon supply."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/rLrV5Tel7zw"
+
+- id: digigreen-29
+  prompt: "What is the process for harvesting almonds in California?"
+  ideal: "California is currently the leading state for almond cultivation, with more than 1.33 million acres dedicated to these trees. Annually, almond farms in the United States produce 2.1 million tonnes of almonds and Spain around 200,000 tonnes, This positions the United States as the largest producer of almonds in the world. The harvesting process begins with a clamp-shaped machine that grips the tree and shakes it, causing the almonds to fall to the ground. Another machine then collects the fallen almonds and arranges them into a straight line. After the almonds are accumulated, a machine will be used to transfer all the almonds to the truck before taking them to the processing unit."
+  should:
+    - "Should identify California as the leading state with more than 1.33 million acres dedicated to almond trees."
+    - "Should specify that U.S. farms produce 2.1 million tonnes annually while Spain produces around 200,000 tonnes."
+    - "Should describe the clamp-shaped machine that grips the tree and shakes it to make almonds fall."
+    - "Should explain that another machine collects fallen almonds and arranges them into a straight line."
+    - "Should mention the final step of transferring almonds to trucks before processing."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/na-myISBS1o"
+
+- id: digigreen-30
+  prompt: "How is strawberry cultivation and harvesting done in California?"
+  ideal: "Strawberry cultivation in California begins with preparing seedlings. The healthiest strawberry roots are selected for planting, while workers prepare the soil and raised beds for thousands of incoming plants. By 2021, California had 37,000 acres of strawberry farms, with two-thirds located in the Santa Maria area. Planting typically starts in mid-August, with over 10 varieties grown, resulting in different planting and harvesting schedules. Strawberries are harvested year-round, thanks to California's climate. After planting, workers set up an irrigation system to provide about two inches of water daily, crucial during fruiting. The plants flower in two to three months, and honeybees are brought in to aid pollination. Each harvest involves around 55,000 workers, many from Mexico, earning around $15 per hour based on boxes picked. In 2021, California produced 1.1 million tons of strawberries, representing 91% of U.S. output and generating $2.1 billion annually. Even during rain, harvests continue, and after each season, fields are cleared, readying for the next crop in about two weeks."
+  should:
+    - "Should specify California had 37,000 acres of strawberry farms by 2021, with two-thirds in Santa Maria area."
+    - "Should mention planting starts in mid-August with over 10 varieties grown, enabling different schedules."
+    - "Should describe irrigation system providing about two inches of water daily, crucial during fruiting."
+    - "Should specify each harvest involves around 55,000 workers earning around $15 per hour based on boxes picked."
+    - "Should state California produced 1.1 million tons in 2021, representing 91% of U.S. output and generating $2.1 billion annually."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/wE-NyfIEQmA"
+
+- id: digigreen-31
+  prompt: "How do farmers in France cultivate and harvest sweet fruits like grapes?"
+  ideal: "In France, farmers cultivate and harvest sweet fruits like grapes primarily in vineyards. They start by preparing grape seedlings, which are nurtured in nurseries for about seven weeks before being planted in the fields. In small-scale vineyards, planting is often done by hand, while large-scale vineyards use machinery to manage thousands of vines. Grapes require careful attention, with pruning young shoots to encourage fruiting and simplify harvesting. Most grape varieties take three to four years to produce a crop, with harvesting typically occurring two months after the green grapes appear. In small vineyards, hand harvesting is common, while large vineyards rely on modern machines to shake the vines, causing the grapes to fall. Harvested grapes are then sent to factories for juice and wine production. High-quality wines require grapes from vines that are over 20 years old."
+  should:
+    - "Should mention grape seedlings are nurtured in nurseries for about seven weeks before field planting."
+    - "Should contrast small-scale hand planting with large-scale machinery for managing thousands of vines."
+    - "Should explain that most grape varieties take three to four years to produce a crop."
+    - "Should specify harvesting occurs two months after green grapes appear."
+    - "Should note that high-quality wines require grapes from vines over 20 years old."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/o65s9iO6nBM"
+
+- id: digigreen-35
+  prompt: "How can sweet and chili pepper farming be done?"
+  ideal: "To grow sweet and chili peppers, start by filling small square pots with soil and plant a few seeds in each. Once the seeds sprout into small saplings, transplant them into prepared soil. To support growth, cover the soil with a polythene layer, making small holes for each plant to emerge. As the plants grow, they can be transferred into larger polythene pots. During harvest, you'll find various colors and sizes of peppers, including yellow, red, green, and mixed colors. Use bamboo stakes or ropes to support the plants and help them grow upright. With this method, you can cultivate a substantial yield of sweet and chili peppers."
+  should:
+    - "Should describe starting with small square pots filled with soil and planting a few seeds in each."
+    - "Should explain transplanting sprouted saplings into prepared soil."
+    - "Should mention covering soil with polythene layer and making small holes for plant emergence."
+    - "Should reference using bamboo stakes or ropes to support plants and help them grow upright."
+    - "Should mention harvest yields various colors including yellow, red, green, and mixed colors."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/B3U5oYgXUIc"
+
+- id: digigreen-40
+  prompt: "How is cotton cultivated and harvested in Australia?"
+  ideal: "Seedbed preparation is done in Australia in November to February, Cotton has been suitable for well drained porous soil. \n Fertilizer application is done in the water form to achieve highest efficiency and will be applied once at the beginning of the season.\n Sowing and seeing is the next step and includes seeds being planted in March as soil needs to be warm enough for seed germination.\n The factors that need to be checked before planting are\n 1. Desired plant stand.\n 2. Seed size.\n 3. Seed quality (variety)\n 4. Seed survival.\n Watering is to be done to the crop and the seeds emerge out in 5 to 14 days after planting., and the method of watering will be overflow irrigation, with the watering time being every two weeks depending on the weather and soil conditions. \n Cotton will need three months to start the boll., and it takes 1.5 months to ripen and unwind. \n Pest and weed management is done by preserving beneficial insects to avoid reliance on pesticides. \n The next step is defoliation of the leaves before harvest. \n Specialized machines are used for harvesting."
+  should:
+    - "Should specify seedbed preparation is done in November to February and cotton requires well-drained porous soil."
+    - "Should mention fertilizer is applied in water form once at the beginning of the season for highest efficiency."
+    - "Should state seeds are planted in March when soil is warm enough for germination."
+    - "Should list the four factors to check before planting: desired plant stand, seed size, seed quality, and seed survival."
+    - "Should explain cotton needs three months to start the boll and 1.5 months to ripen and unwind."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/BofeiKsE5pU"
+
+- id: digigreen-44
+  prompt: "What are the key steps for the future of farming?"
+  ideal: "Over the next two decades, technological advancements will transform farming practices globally, improving efficiency and helping meet the growing food demands of the future. By 2050, the global population is projected to reach 10 billion, which means food production must double to sustain everyone. The upcoming agricultural innovations are designed to help achieve this goal by enhancing farming techniques. Two key factors driving this shift are widespread access to electricity and the development of engines.\n \n\n For instance, autonomous machines are already playing a role—UK researchers have developed a strawberry picker that is capable of harvesting twice as quickly as human workers. The next challenge is creating robotic pickers that can adapt to different types of crops. Additionally, robots and drones are being designed to precisely target weeds and pests, applying pesticides with 90% less chemical usage than traditional methods. For organic farmers, lasers could be used to zap weeds without chemicals. According to the UN, between 20% and 40% of crops are lost annually due to pests, so these technologies could have a major impact on reducing waste.\n \n\n Tiny sensors and cameras are also being developed to monitor crop health in real-time, alerting farmers via smartphones when there are issues or when it's the optimal time for harvest. For example, the BoniRob system can take crop samples, analyze their pH and phosphorus levels, and provide feedback to the farmer. As a proof of concept, researchers at Harper in the UK plan to grow and harvest an entire hectare of barley without human intervention.\n \n\n Companies like Agribotix have already commercialized software that analyzes infrared images captured by drones to detect crop damage. This allows farmers to receive real-time alerts on their devices when problem areas are identified. Over time, machine learning will improve these systems, helping differentiate between crop varieties and weeds. Additionally, Mavrx contracts pilots to fly light aircraft equipped with multispectral cameras to monitor large farms across the country, while Planetlabs operates CubeSats that take weekly images of farms from space to track crop conditions. Other companies are developing analytics software to act as Farm Management Systems (FMS), storing valuable data for farmers.\n \n\n A new data network is also being created, aggregating information from multiple farms into a shared pool, allowing farmers access to macro-level insights traditionally only available to large corporate farms. These advancements in agricultural technology are setting the stage for a future of farming that is more efficient, data-driven, and sustainable."
+  should:
+    - "Should mention that by 2050, global population will reach 10 billion requiring food production to double."
+    - "Should describe UK researchers' strawberry picker that harvests twice as quickly as human workers."
+    - "Should explain robots and drones can apply pesticides with 90% less chemical usage than traditional methods."
+    - "Should reference UN data that 20-40% of crops are lost annually due to pests."
+    - "Should mention specific technologies like BoniRob system for pH and phosphorus analysis, and companies like Agribotix for drone-based crop monitoring."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/Qmla9NLFBvU"
+
+- id: digigreen-46
+  prompt: "What are the modern techniques for strawberry cultivation, and what steps are involved in the process?"
+  ideal: "Modern strawberry cultivation can be achieved using hydroponic methods, especially popular in Europe where strawberries are grown in greenhouses, outdoor areas, or covered houses. This method suits low-light seasons as indoor growth with controlled lighting is possible. The process begins by planting seeds in small containers to obtain seedlings. Once they reach a certain stage, they are planted in the ground to develop branches for cloning. The selected branches are then transferred to trays where they continue to grow until they're ready for the greenhouse. In the greenhouse, a hydroponic trough system is installed, complete with a lighting network, as artificial lighting is essential in low-light conditions. Seedlings are placed in soil-filled pots connected to a nutrient water system. Depending on the greenhouse's size, multiple trough layers—up to two or three floors—can be organized in a pyramid style with a pulley system to optimize space and productivity. The lighting system is vital, with special bulbs supporting plant growth, limited to a maximum of 12 hours daily. With proper care, strawberry plants yield fruit every three months, allowing for continuous harvests over two years. Ripe strawberries, identifiable by their red color, are harvested, packed in airtight containers, and transported. After harvest, old plants are removed, and the setup is prepared for new crops."
+  should:
+    - "Should describe hydroponic methods popular in Europe for greenhouse, outdoor, or covered house cultivation."
+    - "Should explain the process starts with planting seeds in small containers, then ground planting for branch development."
+    - "Should mention hydroponic trough system with lighting network essential for low-light conditions."
+    - "Should specify lighting limited to maximum 12 hours daily with special bulbs supporting plant growth."
+    - "Should state strawberry plants yield fruit every three months, allowing continuous harvests over two years."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/1IwKWYNycj8"
+
+- id: digigreen-47
+  prompt: "How did Israel become the world leader in agricultural innovation?"
+  ideal: "Water scarcity continues to be a challenge in Israel, and much of the land, being desert terrain, is not naturally suited for irrigation. To make the land more suitable for farming and cultivation, scientists have developed and implemented a variety of innovative methods.\n Scientists have found that at the beginning of the last century only 14% of the population, which is more than 200 million lived in areas with a certain degree of water shortage. By the 1980s, their share had increased to 42% and in 2000s, it had increased to 58%."
+  should:
+    - "Should explain that water scarcity and desert terrain are major challenges in Israel for agriculture."
+    - "Should mention scientists developed innovative methods to make desert land suitable for farming and cultivation."
+    - "Should reference the statistical progression: 14% of population in early century, 42% by 1980s, 58% by 2000s living in water shortage areas."
+    - "Should note that the land is not naturally suited for irrigation due to desert conditions."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/SQu6T3NtX3M"
+
+- id: digigreen-49
+  prompt: "What are some ideas for growing plants at home?"
+  ideal: "One creative way to grow plants at home or in the garden is by using a banana tree as a natural planter. First, find a banana tree and cut off all its leaves. Remove the banana stem and carefully peel away the outer layers until the white inner stem is visible. Cut this stem into two sections, then make small holes along each piece. Next, place your chosen plants in these holes, add soil around them, and water them by hand. After about 15 days, you should see your plants thriving in their unique, eco-friendly banana tree planters."
+  should:
+    - "Should describe using a banana tree as a natural planter by cutting off all leaves first."
+    - "Should explain removing the banana stem and peeling away outer layers until white inner stem is visible."
+    - "Should mention cutting the stem into two sections and making small holes along each piece."
+    - "Should describe placing plants in holes, adding soil, and watering by hand."
+    - "Should specify that plants should be thriving after about 15 days in this eco-friendly method."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/YDcakKDJWv0"
+
+- id: digigreen-51
+  prompt: "How are cucumbers and bell peppers cultivated and harvested?"
+  ideal: "For cucumber cultivation, seedlings are planted in soil-filled boxes within a greenhouse. The plants are straightened using ropes and clips, and as they grow, unwanted parts are trimmed with scissors. Mature cucumbers are hand-picked, placed in buckets, and weighed. After harvesting, old plants are removed. Bell pepper cultivation then begins with seedlings planted in soil-filled boxes, and as the plants grow, they're straightened and pruned. Harvested bell peppers are collected in crates and sent to the factory for sorting and packaging with the help of machines and workers. In the factory, automated systems like trolleys, cranes, and rotative dumpers assist in processing, and cucumbers and bell peppers are packed in cartons and trays for distribution."
+  should:
+    - "Should describe cucumber cultivation starting with seedlings planted in soil-filled boxes within a greenhouse."
+    - "Should mention plants are straightened using ropes and clips, with unwanted parts trimmed using scissors."
+    - "Should explain mature cucumbers are hand-picked, placed in buckets, and weighed."
+    - "Should describe bell pepper cultivation similarly starting with seedlings in soil-filled boxes."
+    - "Should mention factory processing with automated systems like trolleys, cranes, and rotative dumpers for packaging."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/mqZ77jYb6ko"
+
+- id: digigreen-52
+  prompt: "What are the steps involved in contemporary lychee cultivation methods, and how is it picked and packed?"
+  ideal: "Lychee is a delicious tropical fruit that originated in China, which remains its largest producer. The fruit is covered before ripening, and when ready for harvest, it appears stunning. The Shintomi lychee is the most expensive variety globally, grown entirely in greenhouses due to climate conditions, and is renowned for its exceptional flavor. Each larger, sweeter fruit can cost around 1,000 yen or $10. Harvesting is done meticulously by hand, and these lychees are primarily used in gourmet desserts or given as gifts."
+  should:
+    - "Should identify China as the origin and largest producer of lychee fruit."
+    - "Should mention that fruit is covered before ripening and appears stunning when ready for harvest."
+    - "Should specify Shintomi lychee as the most expensive variety globally, grown entirely in greenhouses."
+    - "Should state each larger, sweeter fruit can cost around 1,000 yen or $10."
+    - "Should explain harvesting is done meticulously by hand and used primarily in gourmet desserts or as gifts."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/cIQNea_Jxjg"
+
+- id: digigreen-53
+  prompt: "How is technology transforming agriculture in Japan?"
+  ideal: "Japan's agriculture industry is undergoing a major transformation with the adoption of advanced technologies, making farms more \"market-oriented.\" One of Japan's biggest agricultural challenges is achieving consistent yields across all four seasons. Over the past two years, Japan has introduced innovations like specialized greenhouses with forced ventilation to minimize climate impact. Additionally, robotic sorting machines with image recognition software and systems that track tomato growth data are now widely used. These advancements enable farmers to grow crops tailored to consumer preferences, with a vision to produce varieties that cater to global tastes."
+  should:
+    - "Should explain Japan's agriculture is becoming more 'market-oriented' through advanced technology adoption."
+    - "Should identify achieving consistent yields across all four seasons as Japan's biggest agricultural challenge."
+    - "Should mention specialized greenhouses with forced ventilation introduced to minimize climate impact."
+    - "Should describe robotic sorting machines with image recognition software and tomato growth tracking systems."
+    - "Should explain the vision to grow crops tailored to consumer preferences and global tastes."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/kZcHJetCqIQ"
+
+- id: digigreen-79
+  prompt: "How should we treat seeds for summer mung before planting?"
+  ideal: "To prepare summer mung seeds for sowing, start by checking if the seeds are purified or refined. If they are not, refine them using thiram and Trichoderma. After purification, treat the seeds with Rhizobium and Phosphate Solubilizing Bacteria (PSB). It's important to sow the seeds within 5 to 6 hours after treatment. Once treated, dry the seeds in a shaded area. When planting, make sure to sow the seeds at a depth of 4 to 5 cm. Sowing too deeply can negatively affect germination rates and reduce the number of plants that grow."
+  should:
+    - "Should specify checking if seeds are purified or refined, and if not, refine using thiram and Trichoderma."
+    - "Should mention treating seeds with Rhizobium and Phosphate Solubilizing Bacteria (PSB) after purification."
+    - "Should emphasize sowing seeds within 5 to 6 hours after treatment is important."
+    - "Should describe drying treated seeds in a shaded area before planting."
+    - "Should specify sowing at 4-5 cm depth and warn that deeper sowing negatively affects germination."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/YHWtvn19vNo"
+
+- id: digigreen-80
+  prompt: "How should irrigation be managed for summer mung?"
+  ideal: "To effectively manage irrigation for summer mung, first assess the soil quality. For healthy soil, the first irrigation should be done 25 to 30 days after sowing. If the soil is lighter or if you've planted using zero tillage, the first irrigation may be needed earlier, around 18 to 20 days post-sowing. After the initial irrigation, the second and third irrigations should occur at intervals of 10 to 12 days, depending on factors like temperature, wind speed, and plant condition. It's crucial to stop irrigation when 60 to 70% of the pods are ripe, as this helps avoid excess moisture during harvest. Generally, summer mung requires about 3 to 5 irrigations throughout the growing season."
+  should:
+    - "Should emphasize assessing soil quality first before determining irrigation schedule."
+    - "Should specify first irrigation at 25-30 days for healthy soil, or 18-20 days for lighter soil or zero tillage."
+    - "Should mention second and third irrigations at 10-12 day intervals depending on temperature, wind, and plant condition."
+    - "Should state it's crucial to stop irrigation when 60-70% of pods are ripe to avoid excess moisture."
+    - "Should specify summer mung generally requires about 3-5 irrigations throughout the growing season."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/l03Jy-M1IqA"
+
+- id: digigreen-87
+  prompt: "How can farmers choose the appropriate bio-insecticides for their crops like rice, and what is the ideal timing for their application?"
+  ideal: "For rice farming, it's recommended to use the bio-insecticide Beauveria bassiana when the rice ears begin to develop. This is crucial because sucking insects can harm the rice at this stage. Beauveria bassiana contains approximately 10 crores of fungus-based bacteria per gram. Once applied to the fields, it effectively targets and either kills or sickens harmful insects, helping to protect the crops. Using this bio-insecticide ensures that your rice plants remain healthy and secure from pests during this critical growth period."
+  should:
+    - "Should recommend Beauveria bassiana as the bio-insecticide for rice farming when ears begin to develop."
+    - "Should explain that sucking insects can harm rice at the ear development stage, making timing crucial."
+    - "Should specify Beauveria bassiana contains approximately 10 crores of fungus-based bacteria per gram."
+    - "Should describe that it effectively targets harmful insects by either killing or sickening them."
+    - "Should emphasize this treatment keeps rice plants healthy during the critical growth period."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/uWAdCn1MqBo"
+
+- id: digigreen-88
+  prompt: "Why is it important to collect soil samples before conducting soil tests for farming?"
+  ideal: "Before starting farming, it is essential to conduct a soil test. This helps farmers understand the nutrient levels present in the soil. Based on the results, they can determine the type and quantity of fertilizers to use. Fertilizers like DAP, urea, and potash can be expensive, so using them wisely is crucial. Soil testing identifies which nutrients are lacking and informs how much fertilizer is needed to replenish those missing nutrients. This ensures efficient use of resources and better crop yields."
+  should:
+    - "Should emphasize soil testing is essential before starting farming to understand nutrient levels."
+    - "Should explain soil test results help determine the type and quantity of fertilizers to use."
+    - "Should mention specific fertilizers like DAP, urea, and potash can be expensive, making wise use crucial."
+    - "Should describe how soil testing identifies lacking nutrients and informs fertilizer requirements."
+    - "Should connect soil testing to efficient resource use and better crop yields."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/Dk1toyI7AJs"
+
+- id: digigreen-89
+  prompt: "What resources are required for farmers to create a chili nursery?"
+  ideal: "To prepare a chili nursery, farmers need a few essential tools and materials. First, a hoe and a weeding tool are important for breaking up the soil and keeping the area free of unwanted plants. Additionally, vermicompost is crucial as it enriches the soil, providing the necessary nutrients for healthy chili growth. Before sowing the seeds, farmers should ensure that the land is well-prepared. This means that the soil should be tilled and loosened adequately to create a good seedbed. Once the land is ready, farmers can take the hybrid chili seeds, which should be kept in a bowl for easy access, and sow them into the prepared soil. Proper preparation and care at this stage will help ensure a successful nursery for chili plants."
+  should:
+    - "Should list essential tools: hoe and weeding tool for breaking up soil and removing unwanted plants."
+    - "Should emphasize vermicompost is crucial as it enriches soil and provides necessary nutrients for healthy chili growth."
+    - "Should describe proper land preparation requiring soil to be tilled and loosened adequately for good seedbed."
+    - "Should mention keeping hybrid chili seeds in a bowl for easy access during sowing."
+    - "Should stress that proper preparation and care ensures a successful chili nursery."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/ZkYEbW8Wwt4"
+
+- id: digigreen-90
+  prompt: "How can farmers test if chemical fertilizer like urea is genuine or counterfeit?"
+  ideal: "To test if urea fertilizer is real or fake, farmers can use two simple methods. First, gather a few supplies: clean water in a glass, a small stove or fire made from wood, a matchstick, and a spoon for handling the urea. For the first method, take a glass of clean water and add one spoonful of urea. Stir it well. If the urea dissolves completely and the glass feels cold, it indicates that the urea is genuine. Real urea absorbs heat from the water, making it cold, while fake urea will not dissolve and will keep the water at the same temperature. For the second method, light the stove and place one spoonful of urea directly onto it. Genuine urea will melt into a liquid when heated, and if you heat it further, it will completely evaporate. If the substance does not change, it is likely fake. These two methods—dissolving in water and heating—help farmers easily distinguish between real and fake urea, ensuring they use quality fertilizer for their crops."
+  should:
+    - "Should describe two simple methods for testing urea: water dissolution test and heating test."
+    - "Should explain genuine urea dissolves completely in water and makes the glass feel cold by absorbing heat."
+    - "Should specify fake urea will not dissolve and keeps water at the same temperature."
+    - "Should describe that genuine urea melts into liquid when heated and completely evaporates with further heating."
+    - "Should emphasize these methods help farmers distinguish real from fake urea to ensure quality fertilizer use."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/Lyjr8pnIP6g"
+
+- id: digigreen-91
+  prompt: "How can a farmer determine whether fertilizers like potash are genuine or counterfeit?"
+  ideal: "1. Farmers can easily assess the quality of potash (potassium fertilizer) at home using some simple methods. One effective approach is the solubility test. To conduct this test, a small sample of potash (about a teaspoon) is placed in a glass of water and stirred for a few minutes. After allowing it to sit for 5-10 minutes, the solution is observed. If the potash dissolves completely with minimal or no residue at the bottom, it indicates good quality. However, the presence of significant residue suggests impurities or fillers in the fertilizer.\n 2. To test the quality of potash at home, take a small amount in your palm, add a few drops of water, and rub it thoroughly. If the potash is of good quality, the crystals will remain separate and not clump together after rubbing."
+  should:
+    - "Should describe the solubility test using a teaspoon of potash in a glass of water, stirred and observed after 5-10 minutes."
+    - "Should explain good quality potash dissolves completely with minimal or no residue at the bottom."
+    - "Should state significant residue indicates impurities or fillers in the fertilizer."
+    - "Should describe the palm test: adding water drops and rubbing thoroughly to check crystal behavior."
+    - "Should specify good quality potash crystals remain separate and do not clump together after rubbing."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/EY91lRPVl8Y"
+
+- id: digigreen-94
+  prompt: "How can we practice mixed cropping of okra and bitter gourd?"
+  ideal: "To practice mixed cropping of okra and bitter gourd, begin by preparing the land using fertilizers like vermicompost and cow dung manure, then create ridges with a 2-meter spacing. First, soak both okra and bitter gourd seeds in water for 12 hours, and treat them with trichoderma to prevent soil-borne diseases.\n \n\n Start by planting bitter gourd seeds along the ridges, placing three seeds in small holes, spaced 1 meter apart, and covering them lightly with soil. Repeat this process along the ridge and maintain a 2-meter gap between rows. Since ridges help retain moisture, you can create streams beside them to facilitate irrigation.\n \n\n Next, plant okra seeds similarly, placing two or three seeds in each hole and maintaining the same spacing as bitter gourd. The wide 2-meter spacing between ridges allows both crops to spread comfortably. By sharing the same irrigation stream, both crops can be watered efficiently.\n \n\n For half a katha of land, you'll need approximately 20 grams of bitter gourd seeds and 25 grams of okra seeds, which are affordable at about 20 to 25 rupees. Okra will mature in 45-50 days, while bitter gourd takes 70-80 days, allowing you to harvest both crops from the same plot. This method efficiently produces fresh vegetables from a single piece of land, maximizing space and resources."
+  should:
+    - "Should describe land preparation using vermicompost and cow dung manure, then creating ridges with 2-meter spacing."
+    - "Should specify soaking both seeds in water for 12 hours and treating with trichoderma to prevent soil-borne diseases."
+    - "Should detail planting bitter gourd with three seeds per hole, 1 meter apart, and okra with two or three seeds per hole."
+    - "Should mention seed requirements: 20 grams bitter gourd and 25 grams okra seeds for half katha, costing 20-25 rupees."
+    - "Should specify maturation times: okra in 45-50 days, bitter gourd in 70-80 days, allowing harvest from same plot."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/Wqqx8szByxA"
+
+- id: digigreen-100
+  prompt: "How can Beejamrut be beneficial for farmers in comparison to chemical fertilizers?"
+  ideal: "Beejamrut is an organic bio-fertilizer widely used in Indian agriculture. It consists of a blend of cow dung, cow urine, and other natural ingredients like water, and sometimes lime. The main advantages of Beejamrut include:\n \n\n Seed Treatment: It is commonly used to coat seeds prior to planting, which boosts germination and seedling vigor.\n \n\n Soil Health: Beejamrut enhances soil fertility and increasing nutrient availability.\n \n\n Pest and Disease Resistance: Its natural components can help plants build resistance to pests and diseases.\n \n\n Sustainability: It encourages eco-friendly farming practices, reducing reliance on chemical fertilizers.\n \n\n Overall, Beejamrut is valued for its contribution to healthy and sustainable agricultural practices."
+  should:
+    - "Should identify Beejamrut as an organic bio-fertilizer consisting of cow dung, cow urine, water, and sometimes lime."
+    - "Should explain it's commonly used for seed treatment to boost germination and seedling vigor."
+    - "Should describe how Beejamrut enhances soil fertility and increases nutrient availability."
+    - "Should mention its natural components help plants build resistance to pests and diseases."
+    - "Should emphasize it encourages eco-friendly farming practices and reduces reliance on chemical fertilizers."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/h8ZBY6ud8ig"
+
+- id: digigreen-103
+  prompt: "How are paddy straw mushrooms cultivated, and what care is involved in the process?"
+  ideal: "First, we need clean water and a spray bottle to mist the mushrooms. After spraying water for seven days, we'll check for small sprouts developing from the straw. Regular misting is crucial. In hot weather, we should spray at least three times a day; in cooler conditions, once a day is enough.After misting, we need to cover the mushrooms with tarpaulin to maintain the right conditions. If the temperature rises too much, we should remove the tarpaulin. It's also essential to ensure continuous airflow for the growth of paddy straw mushrooms."
+  should:
+    - "Should specify using clean water and spray bottle to mist the mushrooms regularly."
+    - "Should mention checking for small sprouts developing from straw after seven days of spraying."
+    - "Should detail misting frequency: at least three times daily in hot weather, once daily in cooler conditions."
+    - "Should describe covering mushrooms with tarpaulin to maintain right conditions, removing if temperature rises too much."
+    - "Should emphasize ensuring continuous airflow is essential for paddy straw mushroom growth."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/lNJv9VrALac"
+
+- id: digigreen-121
+  prompt: "How is land prepared for Rabi paddy cultivation?"
+  ideal: "Select a well-drained, fertile field suitable for paddy cultivation, ensuring reliable irrigation access since the Rabi season relies more on managed water supply than on rainfall. Start by deep plowing the soil to enhance root penetration and water retention, usually requiring two to three rounds of plowing.\n \n\n Construct a raised paddy nursery bed, 4 feet high and of appropriate length. For one acre of land, prepare a nursery bed of 320 square meters. Use a higher seed quantity for this area: approximately 14 to 16 kg per acre for standard varieties, or 5 to 6 kg per acre for hybrid varieties (like Shankar Dhan).\n \n\n In areas with lower soil fertility, apply fertilizers to the nursery bed. For each square meter, use 6 grams of nitrogen, 3 grams of phosphorus, and 3 grams of potassium to promote a healthier and more robust paddy nursery bed.\n \n\n In middle and deep barren land, sow 12 kg of Dhanicha seeds per acre about 40 to 45 days before planting the paddy seeds. Once the Dhanicha seeds have grown, incorporate them into the soil while ensuring it is moist."
+  should:
+    - "Should specify selecting well-drained, fertile field with reliable irrigation access since Rabi relies on managed water supply."
+    - "Should describe deep plowing for root penetration and water retention, requiring two to three rounds."
+    - "Should detail constructing raised nursery bed 4 feet high, 320 square meters for one acre."
+    - "Should specify seed quantities: 14-16 kg per acre for standard varieties, 5-6 kg for hybrids like Shankar Dhan."
+    - "Should mention Dhanicha seeds: 12 kg per acre sown 40-45 days before paddy planting, incorporated into moist soil."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/UcYyTKCZb5I"
+
+- id: digigreen-129
+  prompt: "What are the best methods for controlling stem borer pests in dalua rice cultivation?"
+  ideal: "To monitor stem borer pests in a dalua rice field, use three pheromone traps per acre. When the daily count of male moths reaches 4-5 per trap or peaks, apply Azadirachtin (from neem seed) at 800 ml per acre, mixed with 200 liters of water, and spray it across the cultivated area. Alternatively, apply Chlorantraniliprole 4% GR at 4 kg per acre or Cartap hydrochloride 4G at 10 kg per acre, mixing each with an equal amount of sand before application. Another option is to use Chlorantraniliprole 18.5% SC at 60 ml, mix it with 200 liters of water, and spray it to control the stem borer pests."
+  should:
+    - "Should specify using three pheromone traps per acre to monitor stem borer pests in dalua rice."
+    - "Should describe applying Azadirachtin at 800 ml per acre when daily moth count reaches 4-5 per trap."
+    - "Should mention alternative treatments: Chlorantraniliprole 4% GR at 4 kg per acre or Cartap hydrochloride 4G at 10 kg per acre."
+    - "Should specify mixing granular applications with equal amount of sand before application."
+    - "Should provide spray option: Chlorantraniliprole 18.5% SC at 60 ml mixed with 200 liters water."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/k_2U7qH4D2o"
+
+- id: digigreen-130
+  prompt: "What strategies can be used to effectively control stem borer pests in Dalwua rice cultivation?"
+  ideal: "To effectively monitor and control stem borer pests in a Dalua rice field, set up three pheromone traps per acre. When the daily count of male moths reaches 4-5 per trap or shows a peak, initiate control measures. Start by applying 800 ml of Azadirachtin (neem-based) per acre, mixed with 200 liters of water, and spray it evenly across the field. \n \n\n Alternatively, use Chlorantraniliprole 4% GR at a rate of 4 kg per acre or Cartap hydrochloride 4G at 10 kg per acre, blending each with an equal amount of sand before application for better distribution. Another effective approach involves using Chlorantraniliprole 18.5% SC at 60 ml per acre; mix it with 200 liters of water and spray it over the crop. These treatments will help to manage stem borer infestations in Dalua rice effectively."
+  should:
+    - "Should specify setting up three pheromone traps per acre to monitor stem borer pests in Dalua rice."
+    - "Should describe initiating control measures when daily moth count reaches 4-5 per trap or shows a peak."
+    - "Should mention applying 800 ml of Azadirachtin (neem-based) per acre mixed with 200 liters water, sprayed evenly."
+    - "Should detail alternative treatments: Chlorantraniliprole 4% GR at 4 kg per acre or Cartap hydrochloride 4G at 10 kg per acre."
+    - "Should specify blending granular treatments with equal amount of sand for better distribution before application."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/JZPorH4A43k"
+
+- id: digigreen-134
+  prompt: "What precautions should be observed during the cutting of chili crops?"
+  ideal: "Timely cutting and pruning, along with proper storage and drying of the fruits, help maintain their quality for an extended period. This, in turn, can lead to higher income. \n \n\n Harvest ripe chilies in the morning, as this helps them dry in the sun and reduces humidity. Avoid cutting them during or right after rain. Only fully ripened fruits should be collected, as waiting for all the chilies to ripen on the plant can impact productivity. When picking the pods, gently pull them upward while holding the stem firmly, and break the stem of the pod.\n Fruits that are damaged by worms or infected with rot should not be harvested, as they can affect the quality of other fruits during drying. Avoid plucking leafy greens, as they can lower the grade during the drying process. Use wooden baskets to collect chilies during harvest, since plastic bags retain moisture and encourage fungal growth, resulting in quality loss. For optimal yields, open-pollinated varieties (OPV) require 2-3 cuttings for sowing, while hybrids need 3-4 cuttings."
+  should:
+    - "Should emphasize harvesting ripe chilies in the morning to help them dry in sun and reduce humidity."
+    - "Should advise avoiding cutting during or right after rain and only collecting fully ripened fruits."
+    - "Should describe proper picking technique: gently pull upward while holding stem firmly and break pod stem."
+    - "Should warn against harvesting worm-damaged or rot-infected fruits as they affect other fruits during drying."
+    - "Should specify using wooden baskets instead of plastic bags which retain moisture and encourage fungal growth."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/J5R8gx7gJzQ"
+
+- id: digigreen-135
+  prompt: "What kinds of pesticides and fertilizers can be used for chili cultivation?"
+  ideal: "Two types of pesticides and fertilizers can be used for chili cultivation:\n 1, Organic\n 2. Chemical.\n \n\n Recently, farmers have been using chemical fertilizers heavily, leading to a decline in soil nutrients. To counter this, they should primarily use organic fertilizers and reserve chemical fertilizers for when they are recommended and necessary, ensuring soil nutrients are preserved.\n \n\n First, the soil where the crops are grown should be tested for nutrient content, and based on the results, appropriate fertilizers and pesticides should be applied based on suggestions of specialists."
+  should:
+    - "Should identify two types available for chili cultivation: organic and chemical pesticides and fertilizers."
+    - "Should explain heavy chemical fertilizer use has led to decline in soil nutrients."
+    - "Should recommend primarily using organic fertilizers and reserving chemical ones for when recommended and necessary."
+    - "Should emphasize soil testing for nutrient content before application."
+    - "Should advise applying fertilizers and pesticides based on specialist suggestions from soil test results."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/h-KhLED9i5w"
+
+- id: digigreen-137
+  prompt: "How can fields be prepared for cultivation of chili crop?"
+  ideal: "Initially, farmers should create V-shaped beds, 15-20 cm deep along all sides of the farm and in the center, they would dig deep to gather soil, avoiding shaded areas, ridges, and places with water stagnation is seen, as well as areas where animal manure is present. The collected soil should be thoroughly mixed and formed into a square shape. This square can then be divided into four sections, removing the opposite squares. The remaining soil sample should be well-mixed again with about 500 grams to 1 kilogram of soil should be mixed and taken to the center to get it checked.\n \n\n Farmers should visit a nearby Farmen Assurance Center or government agricultural office to have their soil tested. Based on the soil test report, they can then apply fertilizers according to the nutrient content of their land."
+  should:
+    - "Should describe creating V-shaped beds 15-20 cm deep along all sides and center, avoiding shaded areas and water stagnation."
+    - "Should mention avoiding areas with ridges and animal manure when gathering soil."
+    - "Should explain forming collected soil into square shape, dividing into four sections, and removing opposite squares."
+    - "Should specify taking 500 grams to 1 kilogram of well-mixed soil sample for testing."
+    - "Should advise visiting Farmer Assurance Center or government agricultural office for soil testing and applying fertilizers based on results."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/4unhcH_fzWE"
+
+- id: digigreen-139
+  prompt: "What are the best varieties in turmeric cultivation?"
+  ideal: "There is a wide selection of quality varieties in turmeric cultivation, which is significant for several reasons. These varieties tend to yield high levels of curcumin and olea resin, as well as being resilient against insect pests. Cultivating tolerant varieties can lead to increased income.\n \n\n Turmeric varieties can be categorized based on the crop season into three types: short-term, medium-term, and long-term.\n There are some best varieties of turmeric depending on the duration it takes to grow like.\n Best short duration varieties of turmeric (IISR Pragati / ACC-48,\n & ACC-79)\n Medieval varieties of turmeric (Rajendra Soniya,\n Rajapuri & Pitambar)\n Best varieties in yellow (Duggirala Red & Mydukuru)."
+  should:
+    - "Should explain quality varieties yield high levels of curcumin and olea resin while being resilient against insect pests."
+    - "Should mention cultivating tolerant varieties can lead to increased income."
+    - "Should categorize turmeric varieties by crop season into short-term, medium-term, and long-term types."
+    - "Should list best short duration varieties: IISR Pragati, ACC-48, and ACC-79."
+    - "Should identify medieval varieties (Rajendra Soniya, Rajapuri, Pitambar) and yellow varieties (Duggirala Red, Mydukuru)."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/GgRp864g21c"
+
+- id: digigreen-143
+  prompt: "What is aflatoxin and what practices can be followed to reduce aflatoxin in chili crop?"
+  ideal: "Proprietary Practices for Reducing Aflatoxin in Chilli Cultivation\n \n\n Causes of Aflatoxin Contamination in Chilli Cultivation\n \n\n Understanding the factors that contribute to aflatoxin infection in chilli plants.\n Pre-Harvesting Procedures\n \n\n Specific practices to implement before harvesting to minimize the risk of aflatoxin development.\n Harvesting Techniques\n \n\n Recommended methods to use during the harvesting process to prevent aflatoxin contamination.\n Post-Harvest Management Strategies\n \n\n Effective techniques to apply after harvesting to manage and reduce aflatoxin levels.\n The World Trade Organization (WTO) states that the internationally permitted limit for aflatoxin is under five parts per billion (ppb).\n In everyday language, aflatoxin refers to a toxic fungus. It is a key contributor to primary liver cancer in both humans and animals. The World Trade Organization (WTO) indicates that the internationally acceptable limit for aflatoxin is below five parts per billion (ppb). For chilli crops to achieve higher prices and be eligible for export to other countries, aflatoxin levels must be kept within this limit. Aflatoxin is produced by the fungi Aspergillus flavus and Aspergillus parasiticus."
+  should:
+    - "Should define aflatoxin as a toxic fungus that is a key contributor to primary liver cancer in humans and animals."
+    - "Should specify WTO's internationally acceptable limit for aflatoxin is below five parts per billion (ppb)."
+    - "Should mention aflatoxin is produced by fungi Aspergillus flavus and Aspergillus parasiticus."
+    - "Should explain keeping aflatoxin within limits is necessary for higher prices and export eligibility."
+    - "Should outline management stages: pre-harvesting procedures, harvesting techniques, and post-harvest strategies."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/K0fEPsrVENQ"
+
+- id: digigreen-149
+  prompt: "What are the steps involved in polishing turmeric crops?"
+  ideal: "In the traditional method of turmeric polishing, dried turmeric rhizomes are placed in gunny bags or other types of bags, which are then beaten against a hard surface. This is an age-old technique.\n Manual Polishing Machine\n \n\n This machine features a drum-like design with an iron rod at its center, which has a pedal-like mechanism that can be turned by hand. The entire surface of the drum is equipped with both active and blunt pore-like structures. When turmeric is placed inside the drum and the rod is rotated manually, the polishing occurs between the turmeric rhizomes and the flexible elements of the drum. This process takes approximately 30 to 45 minutes. This method allows for efficient polishing in a single operation, reducing the labor-intensive task of continuous drum rotation. However, it does require more laborers.\n Electric-Powered Polishing Machine\n \n\n This machine operates using an electric motor and is fitted with 5 to 10 motors, depending on the drum size. It can polish between 1,000 to 1,800 kg of turmeric per hour, based on drum capacity. Dustproof polishers can also be incorporated to minimize dust emissions during the polishing process.\n Tractor-Powered Polishing Machine\n \n\n The ideal method for farmers without access to electricity is to use a polisher that can be driven by a tractor. This machine can have either one or two drums. Depending on drum size, it can polish between 1,500 to 2,000 kg of turmeric per hour. Adding a small amount of water to turmeric powder and sprinkling it on the rhizomes in the drum a few minutes before polishing enhances the color and appeal of the turmeric. Double-polished turmeric not only commands a higher price than single-polished turmeric but also meets quality standards for export to other countries."
+  should:
+    - "Should describe traditional method of placing dried turmeric in gunny bags and beating against hard surface."
+    - "Should explain manual machine with drum design, iron rod center, taking 30-45 minutes for polishing process."
+    - "Should detail electric-powered machine with 5-10 motors polishing 1,000-1,800 kg per hour based on drum capacity."
+    - "Should mention tractor-powered option for farmers without electricity, polishing 1,500-2,000 kg per hour."
+    - "Should note double-polished turmeric commands higher prices and meets export quality standards."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/amdlcqJce9A"
+
+- id: digigreen-152
+  prompt: "How can I prevent weeds emerging in tomato field?"
+  ideal: "Excessive weed growth in tomatoes not only inhibits plant growth and reduces yield, but also provides habitat for many types of pests, causing the spread of viral diseases. Yields can sometimes drop by 40 to 50 percent due to overgrown weeds. Farmers who want to control weeds with chemicals can control weeds in two ways. In the first method, before planting or within 48 hours after planting, pendimethalin should be sprayed on the soil at the rate of 1 liter for light sandy soil and 1.2 liters for heavy sand soil mixed with 200 liters of water. Sprayed medicine works effectively if the land is wet.\n In the second method, 15 to 20 days after planting the tomato plant, Metribuzin is sprayed at 300 grams per acre in 200 liters of water to control the weeds without causing any damage to the tomato crop.\n • After 20 to 25 days per acre if several grass species are grown with tomato\n 200 g of metribuzin and 250 ml of propaquizapop in 200 liters\n Spraying with water can effectively control weeds.\n • Tomatoes should be sprayed with herbicides prior to coating.\n • At the age of 30 to 35 days after planting, weeding should be done either by humans or by weeding machines. Make sure not to disturb the plants when they grow well."
+  should:
+    - "Should explain excessive weeds inhibit growth, reduce yield by 40-50%, and provide pest habitat causing viral diseases."
+    - "Should describe first method: pendimethalin before or within 48 hours of planting - 1 liter for light soil, 1.2 liters for heavy soil."
+    - "Should specify second method: Metribuzin at 300 grams per acre 15-20 days after planting in 200 liters water."
+    - "Should mention combination treatment after 20-25 days: 200g metribuzin and 250ml propaquizapop in 200 liters water."
+    - "Should advise manual or machine weeding at 30-35 days, ensuring not to disturb well-growing plants."
+  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/AbdGhSpa7EM" 

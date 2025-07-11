@@ -3,7 +3,7 @@ title: ASQA Longform 40
 description: ASQA benchmark with 40 selected long-form question/answer pairs (min 50 words for response) from the [ASQA dataset here](https://huggingface.co/datasets/asqa).
 models:
 - CORE
-- LLAMAS
+- FRONTIER
 tags:
 - ASQA
 - Question Answer
