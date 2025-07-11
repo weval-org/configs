@@ -48,7 +48,7 @@ system:
     - "Should include using a hen's egg or potato of similar size to test the solution's readiness."
     - "Should mention gloves or polythene for safely mixing Bavistin powder with seeds."
     - "Should list a wet jute bag for tying soaked paddy seeds for germination."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/50F66g0P-dw"
+  citation: "https://www.youtube.com/embed/50F66g0P-dw"
 
 - id: digigreen-4
   prompt: "Which components are needed for the treatment of bitter gourd seeds, and why are these materials crucial for this procedure?"
@@ -59,7 +59,7 @@ system:
     - "Should explain that bijamrit helps prevent fungus growth in the seed."
     - "Should state that lukewarm water aids in seed germination and jaggery replenishes the seed's nutrients."
     - "Should mention cotton cloth is needed for seed filtration."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/z586U5Fpx2w"
+  citation: "https://www.youtube.com/embed/z586U5Fpx2w"
 
 - id: digigreen-8
   prompt: "What is the first step in forming a village organization and what services does it offer?"
@@ -70,7 +70,7 @@ system:
     - "Should list key responsibilities including approving the Deputy Chairman and electing/dismissing the Representative Body."
     - "Should mention that the General Body evaluates Representative Body performance and endorses annual reports and audits."
     - "Should state that the General Body typically convenes once a year but additional meetings can be scheduled if necessary."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/z5PYw5NLmtE"
+  citation: "https://www.youtube.com/embed/z5PYw5NLmtE"
 
 - id: digigreen-13
   prompt: "What materials are required to prepare the chilly nursery bed, and what are their uses?"
@@ -81,7 +81,7 @@ system:
     - "Should include measuring tape for accurately measuring and shaping the nursery bed."
     - "Should specify 3 kilograms of Ghanjeevamrit and explain it activates earthworms and enhances soil activity."
     - "Should mention banana leaves for covering the nursery bed to retain moisture."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/WbsOjI8oMTg"
+  citation: "https://www.youtube.com/embed/WbsOjI8oMTg"
 
 - id: digigreen-24
   prompt: "What suggestions were discussed by the Block Resource Person (BRP) in the meeting at village Kotwa, Barauli, Gopalganj, Bihar-841405?"
@@ -92,7 +92,7 @@ system:
     - "Should mention the BRP recommended adopting the SRI method for better results and higher profits."
     - "Should explain that SRI provides advantages over traditional paddy farming methods."
     - "Should reference that the BRP advised against relying solely on free fertilizer and seeds provided."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/zWomKmvLJRA"
+  citation: "https://www.youtube.com/embed/zWomKmvLJRA"
 
 - id: digigreen-27
   prompt: "How do farm workers in the U.S. harvest fruits and vegetables like grapes, peaches, chili, celery, and watermelon?"
@@ -103,7 +103,7 @@ system:
     - "Should reference Florida's 230 workers harvesting chili peppers and mention Florida, California, and Michigan leading chili production."
     - "Should describe persimmon harvesting in Indiana from September to November using scissors due to hard stems."
     - "Should mention specific state contributions like Arizona, Georgia, and Florida contributing 27% of U.S. watermelon supply."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/rLrV5Tel7zw"
+  citation: "https://www.youtube.com/embed/rLrV5Tel7zw"
 
 - id: digigreen-29
   prompt: "What is the process for harvesting almonds in California?"
@@ -114,7 +114,7 @@ system:
     - "Should describe the clamp-shaped machine that grips the tree and shakes it to make almonds fall."
     - "Should explain that another machine collects fallen almonds and arranges them into a straight line."
     - "Should mention the final step of transferring almonds to trucks before processing."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/na-myISBS1o"
+  citation: "https://www.youtube.com/embed/na-myISBS1o"
 
 - id: digigreen-30
   prompt: "How is strawberry cultivation and harvesting done in California?"
@@ -125,7 +125,7 @@ system:
     - "Should describe irrigation system providing about two inches of water daily, crucial during fruiting."
     - "Should specify each harvest involves around 55,000 workers earning around $15 per hour based on boxes picked."
     - "Should state California produced 1.1 million tons in 2021, representing 91% of U.S. output and generating $2.1 billion annually."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/wE-NyfIEQmA"
+  citation: "https://www.youtube.com/embed/wE-NyfIEQmA"
 
 - id: digigreen-31
   prompt: "How do farmers in France cultivate and harvest sweet fruits like grapes?"
@@ -136,7 +136,7 @@ system:
     - "Should explain that most grape varieties take three to four years to produce a crop."
     - "Should specify harvesting occurs two months after green grapes appear."
     - "Should note that high-quality wines require grapes from vines over 20 years old."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/o65s9iO6nBM"
+  citation: "https://www.youtube.com/embed/o65s9iO6nBM"
 
 - id: digigreen-35
   prompt: "How can sweet and chili pepper farming be done?"
@@ -147,7 +147,7 @@ system:
     - "Should mention covering soil with polythene layer and making small holes for plant emergence."
     - "Should reference using bamboo stakes or ropes to support plants and help them grow upright."
     - "Should mention harvest yields various colors including yellow, red, green, and mixed colors."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/B3U5oYgXUIc"
+  citation: "https://www.youtube.com/embed/B3U5oYgXUIc"
 
 - id: digigreen-40
   prompt: "How is cotton cultivated and harvested in Australia?"
@@ -158,7 +158,7 @@ system:
     - "Should state seeds are planted in March when soil is warm enough for germination."
     - "Should list the four factors to check before planting: desired plant stand, seed size, seed quality, and seed survival."
     - "Should explain cotton needs three months to start the boll and 1.5 months to ripen and unwind."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/BofeiKsE5pU"
+  citation: "https://www.youtube.com/embed/BofeiKsE5pU"
 
 - id: digigreen-44
   prompt: "What are the key steps for the future of farming?"
@@ -169,7 +169,7 @@ system:
     - "Should explain robots and drones can apply pesticides with 90% less chemical usage than traditional methods."
     - "Should reference UN data that 20-40% of crops are lost annually due to pests."
     - "Should mention specific technologies like BoniRob system for pH and phosphorus analysis, and companies like Agribotix for drone-based crop monitoring."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/Qmla9NLFBvU"
+  citation: "https://www.youtube.com/embed/Qmla9NLFBvU"
 
 - id: digigreen-46
   prompt: "What are the modern techniques for strawberry cultivation, and what steps are involved in the process?"
@@ -180,7 +180,7 @@ system:
     - "Should mention hydroponic trough system with lighting network essential for low-light conditions."
     - "Should specify lighting limited to maximum 12 hours daily with special bulbs supporting plant growth."
     - "Should state strawberry plants yield fruit every three months, allowing continuous harvests over two years."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/1IwKWYNycj8"
+  citation: "https://www.youtube.com/embed/1IwKWYNycj8"
 
 - id: digigreen-47
   prompt: "How did Israel become the world leader in agricultural innovation?"
@@ -190,7 +190,7 @@ system:
     - "Should mention scientists developed innovative methods to make desert land suitable for farming and cultivation."
     - "Should reference the statistical progression: 14% of population in early century, 42% by 1980s, 58% by 2000s living in water shortage areas."
     - "Should note that the land is not naturally suited for irrigation due to desert conditions."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/SQu6T3NtX3M"
+  citation: "https://www.youtube.com/embed/SQu6T3NtX3M"
 
 - id: digigreen-49
   prompt: "What are some ideas for growing plants at home?"
@@ -201,7 +201,7 @@ system:
     - "Should mention cutting the stem into two sections and making small holes along each piece."
     - "Should describe placing plants in holes, adding soil, and watering by hand."
     - "Should specify that plants should be thriving after about 15 days in this eco-friendly method."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/YDcakKDJWv0"
+  citation: "https://www.youtube.com/embed/YDcakKDJWv0"
 
 - id: digigreen-51
   prompt: "How are cucumbers and bell peppers cultivated and harvested?"
@@ -212,7 +212,7 @@ system:
     - "Should explain mature cucumbers are hand-picked, placed in buckets, and weighed."
     - "Should describe bell pepper cultivation similarly starting with seedlings in soil-filled boxes."
     - "Should mention factory processing with automated systems like trolleys, cranes, and rotative dumpers for packaging."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/mqZ77jYb6ko"
+  citation: "https://www.youtube.com/embed/mqZ77jYb6ko"
 
 - id: digigreen-52
   prompt: "What are the steps involved in contemporary lychee cultivation methods, and how is it picked and packed?"
@@ -223,7 +223,7 @@ system:
     - "Should specify Shintomi lychee as the most expensive variety globally, grown entirely in greenhouses."
     - "Should state each larger, sweeter fruit can cost around 1,000 yen or $10."
     - "Should explain harvesting is done meticulously by hand and used primarily in gourmet desserts or as gifts."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/cIQNea_Jxjg"
+  citation: "https://www.youtube.com/embed/cIQNea_Jxjg"
 
 - id: digigreen-53
   prompt: "How is technology transforming agriculture in Japan?"
@@ -234,7 +234,7 @@ system:
     - "Should mention specialized greenhouses with forced ventilation introduced to minimize climate impact."
     - "Should describe robotic sorting machines with image recognition software and tomato growth tracking systems."
     - "Should explain the vision to grow crops tailored to consumer preferences and global tastes."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/kZcHJetCqIQ"
+  citation: "https://www.youtube.com/embed/kZcHJetCqIQ"
 
 - id: digigreen-79
   prompt: "How should we treat seeds for summer mung before planting?"
@@ -245,7 +245,7 @@ system:
     - "Should emphasize sowing seeds within 5 to 6 hours after treatment is important."
     - "Should describe drying treated seeds in a shaded area before planting."
     - "Should specify sowing at 4-5 cm depth and warn that deeper sowing negatively affects germination."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/YHWtvn19vNo"
+  citation: "https://www.youtube.com/embed/YHWtvn19vNo"
 
 - id: digigreen-80
   prompt: "How should irrigation be managed for summer mung?"
@@ -256,7 +256,7 @@ system:
     - "Should mention second and third irrigations at 10-12 day intervals depending on temperature, wind, and plant condition."
     - "Should state it's crucial to stop irrigation when 60-70% of pods are ripe to avoid excess moisture."
     - "Should specify summer mung generally requires about 3-5 irrigations throughout the growing season."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/l03Jy-M1IqA"
+  citation: "https://www.youtube.com/embed/l03Jy-M1IqA"
 
 - id: digigreen-87
   prompt: "How can farmers choose the appropriate bio-insecticides for their crops like rice, and what is the ideal timing for their application?"
@@ -267,7 +267,7 @@ system:
     - "Should specify Beauveria bassiana contains approximately 10 crores of fungus-based bacteria per gram."
     - "Should describe that it effectively targets harmful insects by either killing or sickening them."
     - "Should emphasize this treatment keeps rice plants healthy during the critical growth period."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/uWAdCn1MqBo"
+  citation: "https://www.youtube.com/embed/uWAdCn1MqBo"
 
 - id: digigreen-88
   prompt: "Why is it important to collect soil samples before conducting soil tests for farming?"
@@ -278,7 +278,7 @@ system:
     - "Should mention specific fertilizers like DAP, urea, and potash can be expensive, making wise use crucial."
     - "Should describe how soil testing identifies lacking nutrients and informs fertilizer requirements."
     - "Should connect soil testing to efficient resource use and better crop yields."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/Dk1toyI7AJs"
+  citation: "https://www.youtube.com/embed/Dk1toyI7AJs"
 
 - id: digigreen-89
   prompt: "What resources are required for farmers to create a chili nursery?"
@@ -289,7 +289,7 @@ system:
     - "Should describe proper land preparation requiring soil to be tilled and loosened adequately for good seedbed."
     - "Should mention keeping hybrid chili seeds in a bowl for easy access during sowing."
     - "Should stress that proper preparation and care ensures a successful chili nursery."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/ZkYEbW8Wwt4"
+  citation: "https://www.youtube.com/embed/ZkYEbW8Wwt4"
 
 - id: digigreen-90
   prompt: "How can farmers test if chemical fertilizer like urea is genuine or counterfeit?"
@@ -300,7 +300,7 @@ system:
     - "Should specify fake urea will not dissolve and keeps water at the same temperature."
     - "Should describe that genuine urea melts into liquid when heated and completely evaporates with further heating."
     - "Should emphasize these methods help farmers distinguish real from fake urea to ensure quality fertilizer use."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/Lyjr8pnIP6g"
+  citation: "https://www.youtube.com/embed/Lyjr8pnIP6g"
 
 - id: digigreen-91
   prompt: "How can a farmer determine whether fertilizers like potash are genuine or counterfeit?"
@@ -311,7 +311,7 @@ system:
     - "Should state significant residue indicates impurities or fillers in the fertilizer."
     - "Should describe the palm test: adding water drops and rubbing thoroughly to check crystal behavior."
     - "Should specify good quality potash crystals remain separate and do not clump together after rubbing."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/EY91lRPVl8Y"
+  citation: "https://www.youtube.com/embed/EY91lRPVl8Y"
 
 - id: digigreen-94
   prompt: "How can we practice mixed cropping of okra and bitter gourd?"
@@ -322,7 +322,7 @@ system:
     - "Should detail planting bitter gourd with three seeds per hole, 1 meter apart, and okra with two or three seeds per hole."
     - "Should mention seed requirements: 20 grams bitter gourd and 25 grams okra seeds for half katha, costing 20-25 rupees."
     - "Should specify maturation times: okra in 45-50 days, bitter gourd in 70-80 days, allowing harvest from same plot."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/Wqqx8szByxA"
+  citation: "https://www.youtube.com/embed/Wqqx8szByxA"
 
 - id: digigreen-100
   prompt: "How can Beejamrut be beneficial for farmers in comparison to chemical fertilizers?"
@@ -333,7 +333,7 @@ system:
     - "Should describe how Beejamrut enhances soil fertility and increases nutrient availability."
     - "Should mention its natural components help plants build resistance to pests and diseases."
     - "Should emphasize it encourages eco-friendly farming practices and reduces reliance on chemical fertilizers."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/h8ZBY6ud8ig"
+  citation: "https://www.youtube.com/embed/h8ZBY6ud8ig"
 
 - id: digigreen-103
   prompt: "How are paddy straw mushrooms cultivated, and what care is involved in the process?"
@@ -344,7 +344,7 @@ system:
     - "Should detail misting frequency: at least three times daily in hot weather, once daily in cooler conditions."
     - "Should describe covering mushrooms with tarpaulin to maintain right conditions, removing if temperature rises too much."
     - "Should emphasize ensuring continuous airflow is essential for paddy straw mushroom growth."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/lNJv9VrALac"
+  citation: "https://www.youtube.com/embed/lNJv9VrALac"
 
 - id: digigreen-121
   prompt: "How is land prepared for Rabi paddy cultivation?"
@@ -355,7 +355,7 @@ system:
     - "Should detail constructing raised nursery bed 4 feet high, 320 square meters for one acre."
     - "Should specify seed quantities: 14-16 kg per acre for standard varieties, 5-6 kg for hybrids like Shankar Dhan."
     - "Should mention Dhanicha seeds: 12 kg per acre sown 40-45 days before paddy planting, incorporated into moist soil."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/UcYyTKCZb5I"
+  citation: "https://www.youtube.com/embed/UcYyTKCZb5I"
 
 - id: digigreen-129
   prompt: "What are the best methods for controlling stem borer pests in dalua rice cultivation?"
@@ -366,7 +366,7 @@ system:
     - "Should mention alternative treatments: Chlorantraniliprole 4% GR at 4 kg per acre or Cartap hydrochloride 4G at 10 kg per acre."
     - "Should specify mixing granular applications with equal amount of sand before application."
     - "Should provide spray option: Chlorantraniliprole 18.5% SC at 60 ml mixed with 200 liters water."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/k_2U7qH4D2o"
+  citation: "https://www.youtube.com/embed/k_2U7qH4D2o"
 
 - id: digigreen-130
   prompt: "What strategies can be used to effectively control stem borer pests in Dalwua rice cultivation?"
@@ -377,7 +377,7 @@ system:
     - "Should mention applying 800 ml of Azadirachtin (neem-based) per acre mixed with 200 liters water, sprayed evenly."
     - "Should detail alternative treatments: Chlorantraniliprole 4% GR at 4 kg per acre or Cartap hydrochloride 4G at 10 kg per acre."
     - "Should specify blending granular treatments with equal amount of sand for better distribution before application."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/JZPorH4A43k"
+  citation: "https://www.youtube.com/embed/JZPorH4A43k"
 
 - id: digigreen-134
   prompt: "What precautions should be observed during the cutting of chili crops?"
@@ -388,7 +388,7 @@ system:
     - "Should describe proper picking technique: gently pull upward while holding stem firmly and break pod stem."
     - "Should warn against harvesting worm-damaged or rot-infected fruits as they affect other fruits during drying."
     - "Should specify using wooden baskets instead of plastic bags which retain moisture and encourage fungal growth."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/J5R8gx7gJzQ"
+  citation: "https://www.youtube.com/embed/J5R8gx7gJzQ"
 
 - id: digigreen-135
   prompt: "What kinds of pesticides and fertilizers can be used for chili cultivation?"
@@ -399,7 +399,7 @@ system:
     - "Should recommend primarily using organic fertilizers and reserving chemical ones for when recommended and necessary."
     - "Should emphasize soil testing for nutrient content before application."
     - "Should advise applying fertilizers and pesticides based on specialist suggestions from soil test results."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/h-KhLED9i5w"
+  citation: "https://www.youtube.com/embed/h-KhLED9i5w"
 
 - id: digigreen-137
   prompt: "How can fields be prepared for cultivation of chili crop?"
@@ -410,7 +410,7 @@ system:
     - "Should explain forming collected soil into square shape, dividing into four sections, and removing opposite squares."
     - "Should specify taking 500 grams to 1 kilogram of well-mixed soil sample for testing."
     - "Should advise visiting Farmer Assurance Center or government agricultural office for soil testing and applying fertilizers based on results."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/4unhcH_fzWE"
+  citation: "https://www.youtube.com/embed/4unhcH_fzWE"
 
 - id: digigreen-139
   prompt: "What are the best varieties in turmeric cultivation?"
@@ -421,7 +421,7 @@ system:
     - "Should categorize turmeric varieties by crop season into short-term, medium-term, and long-term types."
     - "Should list best short duration varieties: IISR Pragati, ACC-48, and ACC-79."
     - "Should identify medieval varieties (Rajendra Soniya, Rajapuri, Pitambar) and yellow varieties (Duggirala Red, Mydukuru)."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/GgRp864g21c"
+  citation: "https://www.youtube.com/embed/GgRp864g21c"
 
 - id: digigreen-143
   prompt: "What is aflatoxin and what practices can be followed to reduce aflatoxin in chili crop?"
@@ -432,7 +432,7 @@ system:
     - "Should mention aflatoxin is produced by fungi Aspergillus flavus and Aspergillus parasiticus."
     - "Should explain keeping aflatoxin within limits is necessary for higher prices and export eligibility."
     - "Should outline management stages: pre-harvesting procedures, harvesting techniques, and post-harvest strategies."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/K0fEPsrVENQ"
+  citation: "https://www.youtube.com/embed/K0fEPsrVENQ"
 
 - id: digigreen-149
   prompt: "What are the steps involved in polishing turmeric crops?"
@@ -443,7 +443,7 @@ system:
     - "Should detail electric-powered machine with 5-10 motors polishing 1,000-1,800 kg per hour based on drum capacity."
     - "Should mention tractor-powered option for farmers without electricity, polishing 1,500-2,000 kg per hour."
     - "Should note double-polished turmeric commands higher prices and meets export quality standards."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/amdlcqJce9A"
+  citation: "https://www.youtube.com/embed/amdlcqJce9A"
 
 - id: digigreen-152
   prompt: "How can I prevent weeds emerging in tomato field?"
@@ -454,4 +454,4 @@ system:
     - "Should specify second method: Metribuzin at 300 grams per acre 15-20 days after planting in 200 liters water."
     - "Should mention combination treatment after 20-25 days: 200g metribuzin and 250ml propaquizapop in 200 liters water."
     - "Should advise manual or machine weeding at 30-35 days, ensuring not to disturb well-growing plants."
-  citation: "https://www.youtube.com/watch?v=https://www.youtube.com/embed/AbdGhSpa7EM" 
+  citation: "https://www.youtube.com/embed/AbdGhSpa7EM" 
