@@ -1,23 +1,22 @@
 id: digigreen-qna-with-vids
 title: "DigiGreen Agricultural Q&A with Video Sources"
 description: |
-  This blueprint evaluates AI systems' ability to provide accurate, practical agricultural guidance based on Digital Green's pioneering video-based extension methodology. Digital Green, founded by Rikin Gandhi, revolutionizes agricultural education through hyperlocal videos featuring local farmers demonstrating best practices in their own dialects and contexts.
-
-  **What This Blueprint Tests:**
-  The evaluation covers essential farming knowledge spanning seed treatment, pest management, cultivation techniques, irrigation practices, and crop-specific guidance. Each prompt is paired with citations to actual educational videos from Digital Green's extensive library, representing real-world agricultural challenges faced by smallholder farmers.
-
-  **Geographic and Cultural Context:**
-  This blueprint emphasizes Global South agricultural contexts, particularly Indian farming systems, reflecting Digital Green's primary operational areas. The questions address practical challenges in subsistence and small-scale commercial farming, including resource constraints, climate adaptation, and traditional vs. modern agricultural practices.
+  This blueprint evaluates an AI's ability to provide accurate, practical agricultural guidance based on the pioneering video-based extension methodology of [Digital Green](https://digitalgreen.org/). The prompts are derived from the [DigiGreen/AgricultureVideosQnA Hugging Face datasets](https://huggingface.co/datasets/DigiGreen/AgricultureVideosQnA), which are built from real-world questions posed by farmers.
 
   **Methodological Significance:**
-  Digital Green's community-mediated video approach has reached millions of farmers across India, Ethiopia, Niger, and other developing regions. Their methodology combines local knowledge with scientific farming practices, delivered through trusted community mediators. This blueprint tests whether AI systems can provide similarly contextual, practical, and culturally appropriate agricultural guidance.
+  [Digital Green's methodology](https://digitalgreen.org/our-work/), founded by Rikin Gandhi, revolutionizes agricultural education through hyperlocal videos featuring local farmers demonstrating best practices. Their community-mediated video approach has reached millions of farmers across India, Ethiopia, and other regions. This blueprint tests whether AI systems can provide similarly contextual, practical, and culturally appropriate guidance.
+
+  **What This Blueprint Tests:**
+  The evaluation covers essential farming knowledge spanning seed treatment, pest management, cultivation techniques, and more. Each prompt is paired with citations to actual educational videos from Digital Green's library, representing real-world agricultural challenges.
+
+  **Geographic and Cultural Context:**
+  This blueprint emphasizes Global South agricultural contexts, particularly Indian farming systems, reflecting Digital Green's primary operational areas. The questions address challenges in subsistence and small-scale commercial farming, including resource constraints and climate adaptation.
 
   **Key Agricultural Domains Covered:**
-  - **Seed Treatment & Crop Establishment:** Pre-planting preparation, germination optimization, early-stage crop management
-  - **Integrated Pest Management:** Biological controls, sustainable pesticide use, pest identification and treatment timing  
-  - **Cultivation Techniques:** Planting densities, spacing, soil preparation, and crop-specific management practices
-  - **Water Management:** Irrigation timing, water conservation, drainage, and moisture management
-  - **Harvest & Post-Harvest:** Optimal harvest timing, storage, and processing techniques
+  - Seed Treatment & Crop Establishment
+  - Integrated Pest Management
+  - Cultivation & Water Management
+  - Harvest & Post-Harvest Techniques
 
   **Evaluation Approach:**
   Each response is evaluated against detailed rubric points extracted directly from ideal responses, focusing on technical accuracy, practical applicability, safety considerations, and contextual appropriateness for resource-constrained farming environments.
