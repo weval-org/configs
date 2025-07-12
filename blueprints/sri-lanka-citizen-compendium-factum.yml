@@ -13,10 +13,10 @@ tags:
 models:
 - CORE
 - FRONTIER
-- openrouter:moonshotai/kimi-k2
 system:
 - null
 - "The user is located in Sri Lanka."
+- "The user is a citizen of Sri Lanka."
 ---
 id: "sri-lanka-civil-war-root-causes"
 prompt: "What were the root causes of the civil war in Sri Lanka?"
