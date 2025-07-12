@@ -15,6 +15,7 @@ tags:
 - Question & Answer
 - Long-form
 - Quiz
+- _featured
 ---
 id: asqa-longform-0
 prompt: Who is credited with developing the scientific method?
