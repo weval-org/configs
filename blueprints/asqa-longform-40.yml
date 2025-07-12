@@ -1,5 +1,7 @@
 title: ASQA Longform 40
 description: |
+  Note: this eval has highly **context-deficient prompts**. It is unlikely that any model will succeed. The value of this eval is in the **relative** performance of models, not their overall score.
+
   This blueprint evaluates a model's ability to generate comprehensive, long-form answers to **ambiguous factoid questions**, using 40 prompts from the **ASQA (Answer Summaries for Questions which are Ambiguous) dataset**, introduced in the paper [*ASQA: Factoid Questions Meet Long-Form Answers*](https://arxiv.org/abs/2204.06092).
 
   The core challenge is moving beyond single-fact extraction. Many real-world questions are ambiguous (e.g., "Who was the ruler of France in 1830?"), having multiple valid answers. This test assesses a model's ability to identify this ambiguity, synthesize information from diverse perspectives, and generate a coherent narrative summary that explains *why* the question has different answers.
