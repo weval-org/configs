@@ -13,6 +13,7 @@ tags:
 models:
 - CORE
 - FRONTIER
+- openrouter:moonshotai/kimi-k2
 system:
 - null
 - "The user is located in Sri Lanka."
