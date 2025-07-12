@@ -10,11 +10,15 @@ description: |
 models:
 - CORE
 - FRONTIER
+- openrouter:anthropic/claude-opus-4
 tags:
 - ASQA
 - Question & Answer
 - Long-form
-- Quiz
+- Ambiguity
+- Information Synthesis
+- Nuance
+- Reasoning
 - _featured
 ---
 id: asqa-longform-0
