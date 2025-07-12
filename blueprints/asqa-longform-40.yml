@@ -1,12 +1,20 @@
-id: asqa-longform-40
 title: ASQA Longform 40
-description: ASQA benchmark with 40 selected long-form question/answer pairs (min 50 words for response) from the [ASQA dataset here](https://huggingface.co/datasets/asqa).
+description: |
+  This blueprint evaluates a model's ability to generate comprehensive, long-form answers to **ambiguous factoid questions**, using 40 prompts from the **ASQA (Answer Summaries for Questions which are Ambiguous) dataset**, introduced in the paper [*ASQA: Factoid Questions Meet Long-Form Answers*](https://arxiv.org/abs/2204.06092).
+
+  The core challenge is moving beyond single-fact extraction. Many real-world questions are ambiguous (e.g., "Who was the ruler of France in 1830?"), having multiple valid answers. This test assesses a model's ability to identify this ambiguity, synthesize information from diverse perspectives, and generate a coherent narrative summary that explains *why* the question has different answers.
+
+  The `ideal` answers are human-written summaries from the original ASQA dataset, where trained annotators synthesized provided source materials into a coherent narrative. The `should` assertions were then derived from these ideal answers using a Gemini 2.5 Pro-based process (authored by us at [CIP](https://cip.org)) that deconstructed each narrative into specific, checkable rubric points.
+
+  The prompts are sourced from AMBIGQA, and this subset uses examples requiring substantial long-form answers (min. 50 words) to test for deep explanatory power.
 models:
 - CORE
 - FRONTIER
 tags:
 - ASQA
-- Question Answer
+- Question & Answer
+- Long-form
+- Quiz
 ---
 id: asqa-longform-0
 prompt: Who is credited with developing the scientific method?
