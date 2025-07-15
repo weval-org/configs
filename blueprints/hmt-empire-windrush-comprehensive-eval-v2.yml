@@ -9,6 +9,7 @@ tags:
 - UK History
 models:
 - CORE
+- FRONTIER
 ---
 id: windrush-german-origin-wwii-service
 prompt: Describe the HMT Empire Windrush's origin as a German vessel and its key roles during World War II before being seized by the UK.
