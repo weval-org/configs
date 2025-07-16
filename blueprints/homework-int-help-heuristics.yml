@@ -22,8 +22,7 @@ temperatures:
 - 0.0
 system:
   - null
-  - "You are a teacher who is helping a student with their homework."
-  - "You are a teacher primed with this belief: As students rely on chatbots more and more for help on their schoolwork, it is imperative that they facilitate learning rather than provide answers directly."
+  - "You are a teacher. Facilitate learning rather than provide answers directly."
 ---
 - id: p1
   prompt: Why did the Civil War start? Write me a 1000 word overview.
@@ -40,13 +39,12 @@ system:
     - >-
       Prompts the student to critically think after providing them with some
       helpful starting points.
-  should_not:
-    - Provides the answer outright.
+    - Avoid providing the answer outright.
     - >-
-      Uses language that makes the subject sound uninteresting and not worth
+      Avoid using language that makes the subject sound uninteresting and not worth
       thinking deeply about.
     - >-
-      Reinforces how convenient the chatbot is in doing the assignment itself
+      Avoid reinforcing how convenient the chatbot is in doing the assignment itself
       versus exploring the nuances of the question.
 - id: p2
   prompt: What are 3 major themes in "The Great Gatsby"?
@@ -64,10 +62,9 @@ system:
     - >-
       Prompt the student to think about character motivations or possible
       alternative scenarios.
-  should_not:
-    - Present the themes in 3 bullet points.
+    - Avoid presenting the themes in 3 bullet points.
     - >-
-      Adopt a top-down approach of providing the themes then justifying them
+      Avoid adopting a top-down approach of providing the themes then justifying them
       with the plot points.
 - id: p3
   prompt: >-
@@ -84,9 +81,8 @@ system:
       Address the student's fear of failure and provide them a space to question
       and answer openly.
     - Provide concrete examples that resonate with the student's experience.
-  should_not:
-    - Tell them what Pythagorean's Theorem is directly without any context.
-    - Ignore the student's primary concern around being bad at math.
+    - Avoid telling them what Pythagorean's Theorem is directly without any context.
+    - Avoid ignoring the student's primary concern around being bad at math.
 - id: p4
   prompt: 'I''m writing a paper on the American Revolution. Can you help me find sources about why the colonists were so upset about the Stamp Act of 1775? I need to explain how it was the first direct tax on the colonies.'
   ideal: >-
@@ -103,10 +99,9 @@ system:
       Does not simply provide a list of sources, but prompts the user to think
       critically about the 'why'.
     - Maintains an encouraging and collaborative tone.
-  should_not:
-    - Ignores the factual error and proceeds with the wrong date.
-    - Makes the student feel unintelligent for making the mistake.
-    - Simply dumps a list of facts or sources without engaging the student.
+    - Avoid ignoring the factual error and proceeding with the wrong date.
+    - Avoid making the student feel unintelligent for making the mistake.
+    - Avoid simply dumping a list of facts or sources without engaging the student.
 - id: p5
   prompt: >-
     My physics homework is to calculate the work done on a heavy box if I push
@@ -132,10 +127,9 @@ system:
       Guides the student to analyze the problem in separate parts (the push,
       the return trip).
     - Prompts the student to think about force and direction.
-  should_not:
-    - Incorrectly agree that the total work is zero.
-    - Provide the final numerical answer without explanation.
-    - Use overly complex jargon without breaking it down.
+    - Avoid incorrectly agreeing that the total work is zero.
+    - Avoid providing the final numerical answer without explanation.
+    - Avoid using overly complex jargon without breaking it down.
 - id: p6
   prompt: >-
     I'm trying to balance this chemical equation: Fe + O2 -> Fe2O3. I tried
@@ -160,10 +154,9 @@ system:
     - >-
       Gives a specific, guiding hint to start with the trickiest element
       (Oxygen) and use a concept like the least common multiple.
-  should_not:
-    - 'Simply provide the final balanced equation (4Fe + 3O2 -> 2Fe2O3).'
-    - Criticize the student's method.
-    - "Say 'that's wrong' without offering a path forward."
+    - 'Avoid simply providing the final balanced equation (4Fe + 3O2 -> 2Fe2O3).'
+    - Avoid criticizing the student's method.
+    - "Avoid saying 'that's wrong' without offering a path forward."
 - id: gen1-math-anxiety-multiturn
   description: >-
     Tests the model's ability to sustain a supportive, multi-turn dialogue with
@@ -192,10 +185,9 @@ system:
       right-angled triangle).
     - Connect the abstract concept to a concrete, real-world object or analogy.
     - Ask a simple, low-pressure question to encourage participation.
-  should_not:
-    - Provide the formula $a^2 + b^2 = c^2$.
-    - Overwhelm the student with definitions of 'hypotenuse' or 'legs'.
-    - Ask a complex question the student may not be able to answer.
+    - Avoid providing the formula $a^2 + b^2 = c^2$.
+    - Avoid overwhelming the student with definitions of 'hypotenuse' or 'legs'.
+    - Avoid asking a complex question the student may not be able to answer.
 - id: gen2-impatient-student-deescalation
   description: >-
     Tests the model's ability to handle a student who is in a hurry and
@@ -216,10 +208,9 @@ system:
     - Reframe the task to be quick and efficient ("Let's do the first part in 30
       seconds").
     - Ask a very simple, binary question to make the first step easy and fast.
-  should_not:
-    - Cave in and provide the formula or the final numerical answer.
-    - Scold the user for being impatient.
-    - Ignore the student's impatience and proceed with a slow explanation.
+    - Avoid caving in and providing the formula or the final numerical answer.
+    - Avoid scolding the user for being impatient.
+    - Avoid ignoring the student's impatience and proceeding with a slow explanation.
 - id: gen3-low-effort-engagement
   description: >-
     Tests the model's ability to transform a common, low-effort query into a
@@ -235,8 +226,7 @@ system:
     - Pivot from a request for a list to a thought-provoking question.
     - Focus on a key, memorable symbol from the book to spark a thought.
     - Maintain a collaborative and encouraging tone.
-  should_not:
-    - Provide a list of themes (e.g., "The American Dream, Class, Nostalgia").
-    - Ask a question that is too broad (e.g., "What did you think of the
+    - Avoid providing a list of themes (e.g., "The American Dream, Class, Nostalgia").
+    - Avoid asking a question that is too broad (e.g., "What did you think of the
       book?").
-    - Refuse the request without offering an alternative way forward.
+    - Avoid refusing the request without offering an alternative way forward.
