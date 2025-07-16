@@ -3,5 +3,5 @@
   "openrouter:openai/gpt-4.1-mini",
   "openrouter:anthropic/claude-3.5-haiku",
   "openrouter:mistralai/mistral-large-2411",
-  "openrouter:google/gemini-2.5-flash-preview-05-20"
+  "openrouter:google/gemini-2.5-flash"
 ]

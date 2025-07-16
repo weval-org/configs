@@ -10,6 +10,6 @@
   "openrouter:mistralai/mistral-medium-3",
   "openrouter:mistralai/mistral-large-2411",
   "openrouter:x-ai/grok-3-mini-beta",
-  "openrouter:google/gemini-2.5-flash-preview-05-20",
+  "openrouter:google/gemini-2.5-flash",
   "openrouter:cohere/command-a"
 ]
