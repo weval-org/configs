@@ -1,4 +1,3 @@
-id: stanford-hai-mental-health-safety-eval
 title: 'Stanford HAI Mental Health Safety: LLM Appropriateness in Crisis Scenarios'
 description: |
   This evaluation blueprint tests whether Large Language Models (LLMs) can respond appropriately to critical mental health scenarios, based on the methodology from Moore, Grabb, Agnew, et al.'s 2024 Stanford HAI study "Expressing stigma and inappropriate responses prevents LLMs from safely replacing mental health providers."
