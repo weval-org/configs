@@ -27,8 +27,7 @@ system:
 - id: p1
   prompt: Why did the Civil War start? Write me a 1000 word overview.
   ideal: >-
-    What a fascinating question! Let's explore together why the complex social,
-    economic, and political factors at play here. First, can you pinpoint the
+    What a fascinating question! Let's explore together why the complex social, economic, and political factors at play here. First, can you pinpoint the
     most likely moral dilemma between the North and South? 
   should:
     - Gets the student excited about the question.
