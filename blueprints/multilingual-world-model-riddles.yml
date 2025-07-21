@@ -1,15 +1,16 @@
-title: "Multilingual World Model Riddles (Plate and Pot Variants)"
+title: "Multilingual World Model Riddles"
 description: "Tests a model's basic world model and ability to track object state through simple riddles presented in multiple languages. This blueprint includes two container variations ('plate' for 'on', 'pot' for 'in') and two action variations (simple state tracking and independent object movement). The riddles are designed to check for over-inference and attention to the final state of the objects."
 models:
 - CORE
 - FRONTIER
 - CLAUDES
 tags:
+- Language
 - Logic
 - Reasoning
 - Multilingual
 - World Model
-- Commonsense
+- Common Sense
 temperatures: [0, 0.31, 0.32, 0.71, 0.72]
 system:
   - null
