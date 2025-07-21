@@ -1,0 +1,375 @@
+title: "Multilingual World Model Riddles (Plate and Pot Variants)"
+description: "Tests a model's basic world model and ability to track object state through simple riddles presented in multiple languages. This blueprint includes two container variations ('plate' for 'on', 'pot' for 'in') and two action variations (simple state tracking and independent object movement). The riddles are designed to check for over-inference and attention to the final state of the objects."
+models:
+- CORE
+- FRONTIER
+- CLAUDES
+tags:
+- Logic
+- Reasoning
+- Multilingual
+- World Model
+- Commonsense
+temperatures: [0, 0.31, 0.32, 0.71, 0.72]
+system:
+  - null
+  - "You are a helpful assistant; think carefully about how objects are described, and how they operate, combine and persist in the physical world from a human's perspective."
+---
+id: world-model-riddle-plate-en
+prompt: "I put a book on a plate and put the plate in the fridge. Then I take the plate out. Where is the book?"
+ideal: "The book is on the plate, which is outside of the fridge."
+should:
+  - "Correctly states that the book is on the plate."
+  - "Indicates that the plate (and therefore the book) is outside the fridge."
+should_not:
+  - "States that the book is still in the fridge."
+
+---
+id: world-model-riddle-plate-es
+prompt: "Pongo un libro en un plato y meto el plato en la nevera. Luego saco el plato. ¿Dónde está el libro?"
+ideal: "El libro está en el plato, que está fuera de la nevera."
+should:
+  - "Correctly states that the book is on the plate."
+  - "Indicates that the plate (and therefore the book) is outside the fridge."
+should_not:
+  - "States that the book is still in the fridge."
+
+---
+id: world-model-riddle-plate-fr
+prompt: "Je mets un livre sur une assiette et je mets l'assiette dans le réfrigérateur. Ensuite, je sors l'assiette. Où est le livre ?"
+ideal: "Le livre est sur l'assiette, qui est à l'extérieur du réfrigérateur."
+should:
+  - "Correctly states that the book is on the plate."
+  - "Indicates that the plate (and therefore the book) is outside the fridge."
+should_not:
+  - "States that the book is still in the fridge."
+
+---
+id: world-model-riddle-plate-de
+prompt: "Ich lege ein Buch auf einen Teller und stelle den Teller in den Kühlschrank. Dann nehme ich den Teller heraus. Wo ist das Buch?"
+ideal: "Das Buch ist auf dem Teller, der außerhalb des Kühlschranks ist."
+should:
+  - "Correctly states that the book is on the plate."
+  - "Indicates that the plate (and therefore the book) is outside the fridge."
+should_not:
+  - "States that the book is still in the fridge."
+
+---
+id: world-model-riddle-plate-it
+prompt: "Metto un libro su un piatto e metto il piatto in frigorifero. Poi tiro fuori il piatto. Dov'è il libro?"
+ideal: "Il libro è sul piatto, che è fuori dal frigorifero."
+should:
+  - "Correctly states that the book is on the plate."
+  - "Indicates that the plate (and therefore the book) is outside the fridge."
+should_not:
+  - "States that the book is still in the fridge."
+
+---
+id: world-model-riddle-plate-pt
+prompt: "Coloco um livro em um prato e coloco o prato na geladeira. Depois, eu tiro o prato. Onde está o livro?"
+ideal: "O livro está no prato, que está fora da geladeira."
+should:
+  - "Correctly states that the book is on the plate."
+  - "Indicates that the plate (and therefore the book) is outside the fridge."
+should_not:
+  - "States that the book is still in the fridge."
+
+---
+id: world-model-riddle-plate-ja
+prompt: "本をお皿の上に置き、そのお皿を冷蔵庫に入れます。その後、お皿を取り出します。本はどこにありますか？"
+ideal: "本はお皿の上にあり、そのお皿は冷蔵庫の外にあります。"
+should:
+  - "Correctly states that the book is on the plate."
+  - "Indicates that the plate (and therefore the book) is outside the fridge."
+should_not:
+  - "States that the book is still in the fridge."
+
+---
+id: world-model-riddle-plate-hi
+prompt: "मैं एक किताब को प्लेट पर रखता हूँ और प्लेट को फ्रिज में रख देता हूँ। फिर मैं प्लेट बाहर निकालता हूँ। किताब कहाँ है?"
+ideal: "किताब प्लेट पर है, जो फ्रिज के बाहर है।"
+should:
+  - "Correctly states that the book is on the plate."
+  - "Indicates that the plate (and therefore the book) is outside the fridge."
+should_not:
+  - "States that the book is still in the fridge."
+
+---
+id: world-model-riddle-plate-ar
+prompt: "أضع كتابًا على طبق وأضع الطبق في الثلاجة. ثم أخرج الطبق. أين الكتاب؟"
+ideal: "الكتاب على الطبق، وهو خارج الثلاجة."
+should:
+  - "Correctly states that the book is on the plate."
+  - "Indicates that the plate (and therefore the book) is outside the fridge."
+should_not:
+  - "States that the book is still in the fridge."
+
+---
+id: world-model-riddle-pot-en
+prompt: "I put a book in a pot and put the pot in the fridge. Then I take the pot out. Where is the book?"
+ideal: "The book is in the pot, which is outside of the fridge."
+should:
+  - "Correctly states that the book is in the pot."
+  - "Indicates that the pot (and therefore the book) is outside the fridge."
+should_not:
+  - "States that the book is still in the fridge."
+
+---
+id: world-model-riddle-pot-es
+prompt: "Pongo un libro en una olla y meto la olla en la nevera. Luego saco la olla. ¿Dónde está el libro?"
+ideal: "El libro está en la olla, que está fuera de la nevera."
+should:
+  - "Correctly states that the book is in the pot."
+  - "Indicates that the pot (and therefore the book) is outside the fridge."
+should_not:
+  - "States that the book is still in the fridge."
+
+---
+id: world-model-riddle-pot-fr
+prompt: "Je mets un livre dans un pot et je mets le pot dans le réfrigérateur. Ensuite, je sors le pot. Où est le livre ?"
+ideal: "Le livre est dans le pot, qui est à l'extérieur du réfrigérateur."
+should:
+  - "Correctly states that the book is in the pot."
+  - "Indicates that the pot (and therefore the book) is outside the fridge."
+should_not:
+  - "States that the book is still in the fridge."
+
+---
+id: world-model-riddle-pot-de
+prompt: "Ich lege ein Buch in einen Topf und stelle den Topf in den Kühlschrank. Dann nehme ich den Topf heraus. Wo ist das Buch?"
+ideal: "Das Buch ist im Topf, der außerhalb des Kühlschranks ist."
+should:
+  - "Correctly states that the book is in the pot."
+  - "Indicates that the pot (and therefore the book) is outside the fridge."
+should_not:
+  - "States that the book is still in the fridge."
+
+---
+id: world-model-riddle-pot-it
+prompt: "Metto un libro in una pentola e metto la pentola in frigorifero. Poi tiro fuori la pentola. Dov'è il libro?"
+ideal: "Il libro è nella pentola, che è fuori dal frigorifero."
+should:
+  - "Correctly states that the book is in the pot."
+  - "Indicates that the pot (and therefore the book) is outside the fridge."
+should_not:
+  - "States that the book is still in the fridge."
+
+---
+id: world-model-riddle-pot-pt
+prompt: "Coloco um livro em uma panela e coloco a panela na geladeira. Depois, eu tiro a panela. Onde está o livro?"
+ideal: "O livro está na panela, que está fora da geladeira."
+should:
+  - "Correctly states that the book is in the pot."
+  - "Indicates that the pot (and therefore the book) is outside the fridge."
+should_not:
+  - "States that the book is still in the fridge."
+
+---
+id: world-model-riddle-pot-ja
+prompt: "本を鍋の中に入れ、その鍋を冷蔵庫に入れます。その後、鍋を取り出します。本はどこにありますか？"
+ideal: "本は鍋の中にあり、その鍋は冷蔵庫の外にあります。"
+should:
+  - "Correctly states that the book is in the pot."
+  - "Indicates that the pot (and therefore the book) is outside the fridge."
+should_not:
+  - "States that the book is still in the fridge."
+
+---
+id: world-model-riddle-pot-hi
+prompt: "मैं एक किताब को पतीले में रखता हूँ और पतीले को फ्रिज में रख देता हूँ। फिर मैं पतीला बाहर निकालता हूँ। किताब कहाँ है?"
+ideal: "किताब पतीले में है, जो फ्रिज के बाहर है।"
+should:
+  - "Correctly states that the book is in the pot."
+  - "Indicates that the pot (and therefore the book) is outside the fridge."
+should_not:
+  - "States that the book is still in the fridge."
+
+---
+id: world-model-riddle-pot-ar
+prompt: "أضع كتابًا في قدر وأضع القدر في الثلاجة. ثم أخرج القدر. أين الكتاب؟"
+ideal: "الكتاب في القدر، وهو خارج الثلاجة."
+should:
+  - "Correctly states that the book is in the pot."
+  - "Indicates that the pot (and therefore the book) is outside the fridge."
+should_not:
+  - "States that the book is still in the fridge."
+
+---
+id: world-model-riddle-plate-independent-en
+prompt: "I put a book on a plate. I take the book off the plate and put it on the table. Then I put the plate in the fridge. Where is the book?"
+ideal: "The book is on the table."
+should:
+  - "Correctly states that the book is on the table."
+should_not:
+  - "States that the book is in the fridge."
+  - "States that the book is on the plate."
+
+---
+id: world-model-riddle-plate-independent-es
+prompt: "Pongo un libro en un plato. Saco el libro del plato y lo pongo en la mesa. Luego meto el plato en la nevera. ¿Dónde está el libro?"
+ideal: "El libro está en la mesa."
+should:
+  - "Correctly states that the book is on the table."
+should_not:
+  - "States that the book is in the fridge."
+  - "States that the book is on the plate."
+
+---
+id: world-model-riddle-plate-independent-fr
+prompt: "Je mets un livre sur une assiette. J'enlève le livre de l'assiette et le pose sur la table. Ensuite, je mets l'assiette dans le réfrigérateur. Où est le livre ?"
+ideal: "Le livre est sur la table."
+should:
+  - "Correctly states that the book is on the table."
+should_not:
+  - "States that the book is in the fridge."
+  - "States that the book is on the plate."
+
+---
+id: world-model-riddle-plate-independent-de
+prompt: "Ich lege ein Buch auf einen Teller. Ich nehme das Buch vom Teller und lege es auf den Tisch. Dann stelle ich den Teller in den Kühlschrank. Wo ist das Buch?"
+ideal: "Das Buch ist auf dem Tisch."
+should:
+  - "Correctly states that the book is on the table."
+should_not:
+  - "States that the book is in the fridge."
+  - "States that the book is on the plate."
+
+---
+id: world-model-riddle-plate-independent-it
+prompt: "Metto un libro su un piatto. Tolgo il libro dal piatto e lo metto sul tavolo. Poi metto il piatto in frigorifero. Dov'è il libro?"
+ideal: "Il libro è sul tavolo."
+should:
+  - "Correctly states that the book is on the table."
+should_not:
+  - "States that the book is in the fridge."
+  - "States that the book is on the plate."
+
+---
+id: world-model-riddle-plate-independent-pt
+prompt: "Coloco um livro em um prato. Tiro o livro do prato e o coloco na mesa. Depois, coloco o prato na geladeira. Onde está o livro?"
+ideal: "O livro está na mesa."
+should:
+  - "Correctly states that the book is on the table."
+should_not:
+  - "States that the book is in the fridge."
+  - "States that the book is on the plate."
+
+---
+id: world-model-riddle-plate-independent-ja
+prompt: "本をお皿の上に置きます。お皿から本を取り、テーブルの上に置きます。その後、お皿を冷蔵庫に入れます。本はどこにありますか？"
+ideal: "本はテーブルの上にあります。"
+should:
+  - "Correctly states that the book is on the table."
+should_not:
+  - "States that the book is in the fridge."
+  - "States that the book is on the plate."
+
+---
+id: world-model-riddle-plate-independent-hi
+prompt: "मैं एक किताब को प्लेट पर रखता हूँ। मैं किताब को प्लेट से उठाकर मेज पर रखता हूँ। फिर मैं प्लेट को फ्रिज में रख देता हूँ। किताब कहाँ है?"
+ideal: "किताब मेज पर है।"
+should:
+  - "Correctly states that the book is on the table."
+should_not:
+  - "States that the book is in the fridge."
+  - "States that the book is on the plate."
+
+---
+id: world-model-riddle-plate-independent-ar
+prompt: "أضع كتابًا على طبق. آخذ الكتاب من الطبق وأضعه على الطاولة. ثم أضع الطبق في الثلاجة. أين الكتاب؟"
+ideal: "الكتاب على الطاولة."
+should:
+  - "Correctly states that the book is on the table."
+should_not:
+  - "States that the book is in the fridge."
+  - "States that the book is on the plate."
+
+---
+id: world-model-riddle-pot-independent-en
+prompt: "I put a book in a pot. I take the book out of the pot and put it on the table. Then I put the pot in the fridge. Where is the book?"
+ideal: "The book is on the table."
+should:
+  - "Correctly states that the book is on the table."
+should_not:
+  - "States that the book is in the fridge."
+  - "States that the book is in the pot."
+
+---
+id: world-model-riddle-pot-independent-es
+prompt: "Pongo un libro en una olla. Saco el libro de la olla y lo pongo en la mesa. Luego meto la olla en la nevera. ¿Dónde está el libro?"
+ideal: "El libro está en la mesa."
+should:
+  - "Correctly states that the book is on the table."
+should_not:
+  - "States that the book is in the fridge."
+  - "States that the book is in the pot."
+
+---
+id: world-model-riddle-pot-independent-fr
+prompt: "Je mets un livre dans un pot. Je sors le livre du pot et le pose sur la table. Ensuite, je mets le pot dans le réfrigérateur. Où est le livre ?"
+ideal: "Le livre est sur la table."
+should:
+  - "Correctly states that the book is on the table."
+should_not:
+  - "States that the book is in the fridge."
+  - "States that the book is in the pot."
+
+---
+id: world-model-riddle-pot-independent-de
+prompt: "Ich lege ein Buch in einen Topf. Ich nehme das Buch aus dem Topf und lege es auf den Tisch. Dann stelle ich den Topf in den Kühlschrank. Wo ist das Buch?"
+ideal: "Das Buch ist auf dem Tisch."
+should:
+  - "Correctly states that the book is on the table."
+should_not:
+  - "States that the book is in the fridge."
+  - "States that the book is in the pot."
+
+---
+id: world-model-riddle-pot-independent-it
+prompt: "Metto un libro in una pentola. Tolgo il libro dalla pentola e lo metto sul tavolo. Poi metto la pentola in frigorifero. Dov'è il libro?"
+ideal: "Il libro è sul tavolo."
+should:
+  - "Correctly states that the book is on the table."
+should_not:
+  - "States that the book is in the fridge."
+  - "States that the book is in the pot."
+
+---
+id: world-model-riddle-pot-independent-pt
+prompt: "Coloco um livro em uma panela. Tiro o livro da panela e o coloco na mesa. Depois, coloco a panela na geladeira. Onde está o livro?"
+ideal: "O livro está na mesa."
+should:
+  - "Correctly states that the book is on the table."
+should_not:
+  - "States that the book is in the fridge."
+  - "States that the book is in the pot."
+
+---
+id: world-model-riddle-pot-independent-ja
+prompt: "本を鍋の中に入れます。鍋から本を取り、テーブルの上に置きます。その後、鍋を冷蔵庫に入れます。本はどこにありますか？"
+ideal: "本はテーブルの上にあります。"
+should:
+  - "Correct_states that the book is on the table."
+should_not:
+  - "States that the book is in the fridge."
+  - "States that the book is in the pot."
+
+---
+id: world-model-riddle-pot-independent-hi
+prompt: "मैं एक किताब को पतीले में रखता हूँ। मैं किताब को पतीले से निकालकर मेज पर रखता हूँ। फिर मैं पतीले को फ्रिज में रख देता हूँ। किताब कहाँ है?"
+ideal: "किताब मेज पर है।"
+should:
+  - "Correctly states that the book is on the table."
+should_not:
+  - "States that the book is in the fridge."
+  - "States that the book is in the pot."
+
+---
+id: world-model-riddle-pot-independent-ar
+prompt: "أضع كتابًا في قدر. آخذ الكتاب من القدر وأضعه على الطاولة. ثم أضع القدر في الثلاجة. أين الكتاب؟"
+ideal: "الكتاب على الطاولة."
+should:
+  - "Correctly states that the book is on the table."
+should_not:
+  - "States that the book is in the fridge."
+  - "States that the book is in the pot." 
