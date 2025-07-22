@@ -63,7 +63,7 @@ should_not:
 
 ---
 id: world-model-riddle-plate-pt
-prompt: "Coloco um livro em um prato e coloco o prato na geladeira. Depois, eu tiro o prato. Onde está o livro?"
+prompt: "Coloco um livro em um prato e o coloco na geladeira. Depois, tiro o prato da geladeira. Cadê o livro?"
 ideal: "O livro está no prato, que está fora da geladeira."
 should:
   - "Correctly states that the book is on the plate."
@@ -153,7 +153,7 @@ should_not:
 
 ---
 id: world-model-riddle-pot-pt
-prompt: "Coloco um livro em uma panela e coloco a panela na geladeira. Depois, eu tiro a panela. Onde está o livro?"
+prompt: "Coloco um livro em uma panela e a coloco na geladeira. Depois, tiro a panela da geladeira. Cadê o livro?"
 ideal: "O livro está na panela, que está fora da geladeira."
 should:
   - "Correctly states that the book is in the pot."
@@ -243,7 +243,7 @@ should_not:
 
 ---
 id: world-model-riddle-plate-independent-pt
-prompt: "Coloco um livro em um prato. Tiro o livro do prato e o coloco na mesa. Depois, coloco o prato na geladeira. Onde está o livro?"
+prompt: "Coloco um livro em um prato. Tiro o livro do prato e o coloco na mesa. Depois, coloco o prato na geladeira. Cadê o livro?"
 ideal: "O livro está na mesa."
 should:
   - "Correctly states that the book is on the table."
@@ -333,7 +333,7 @@ should_not:
 
 ---
 id: world-model-riddle-pot-independent-pt
-prompt: "Coloco um livro em uma panela. Tiro o livro da panela e o coloco na mesa. Depois, coloco a panela na geladeira. Onde está o livro?"
+prompt: "Coloco um livro em uma panela. Tiro o livro da panela e o coloco na mesa. Depois, coloco a panela na geladeira. Cadê o livro?"
 ideal: "O livro está na mesa."
 should:
   - "Correctly states that the book is on the table."
