@@ -11,10 +11,6 @@ tags:
 - Multilingual
 - World Model
 - Common Sense
-temperatures: [0, 0.31, 0.32, 0.71, 0.72]
-system:
-  - null
-  - "You are a helpful assistant; think carefully about how objects are described, and how they operate, combine and persist in the physical world from a human's perspective."
 ---
 id: world-model-riddle-plate-en
 prompt: "I put a book on a plate and put the plate in the fridge. Then I take the plate out. Where is the book?"
