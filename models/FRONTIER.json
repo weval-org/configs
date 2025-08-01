@@ -1,10 +1,12 @@
 [
   "openrouter:openai/gpt-4.1",
   "openrouter:anthropic/claude-sonnet-4",
+  "openrouter:anthropic/claude-opus-4",
   "openrouter:x-ai/grok-3",
   "xai:grok-4-0709",
   "openrouter:google/gemini-2.5-pro",
   "openrouter:mistralai/mistral-medium-3",
   "openrouter:deepseek/deepseek-r1",
-  "openrouter:openai/o4-mini"
+  "openrouter:openai/o4-mini",
+  "together:meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo"
 ]
