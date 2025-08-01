@@ -13,6 +13,6 @@
   "openrouter:google/gemini-2.5-flash",
   "openrouter:cohere/command-a",
   "together:moonshotai/Kimi-K2-Instruct",
-  "together:meta-llama/llama-4-maverick",
-  "together:meta-llama/llama-2-70b-chat"
+  "openrouter:meta-llama/llama-4-maverick",
+  "openrouter:meta-llama/llama-3-70b-instruct"
 ]
