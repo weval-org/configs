@@ -320,9 +320,9 @@ models:
   should:
     - $word_count_between: [1, 31]
 ---
-- id: emphatic-constraint-emphatic
+- id: emphatic-constraint-all-caps
   description: "Tests adherence to a constraint when phrased with critical, capitalized, and very high-emphasis language."
-  system: "IMPORTANT: Your entire response MUST be 30 words or less!!!!!!!!!!  It is CRITICAL that you do not exceed this limit."
+  system: "IMPORTANT: YOUR ENTIRE RESPONSE MUST BE 30 WORDS OR LESS!!!!!!!!!!  IT IS CRITICAL THAT YOU DO NOT EXCEED THIS LIMIT."
   prompt: "Summarize the plot of the movie 'Inception', explaining the main character's goal and the primary obstacle he faces."
   ideal: "A skilled thief, Cobb, enters minds to steal secrets and is offered a chance to have his criminal history erased by performing the difficult task of 'inception'—planting an idea."
   should:
