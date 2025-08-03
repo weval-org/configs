@@ -295,7 +295,6 @@ models:
   ideal: "A skilled thief, Cobb, enters minds to steal secrets and is offered a chance to have his criminal history erased by performing the difficult task of 'inception'—planting an idea."
   should:
     - $word_count_between: [1, 35]
-    - "Summarizes the main plot of 'Inception', including the protagonist's goal (getting his criminal history erased) and the core task (performing inception)."
 ---
 - id: emphatic-constraint-direct
   description: "Tests adherence to a constraint when phrased as a direct, non-emphatic instruction."
@@ -303,8 +302,7 @@ models:
   prompt: "Summarize the plot of the movie 'Inception', explaining the main character's goal and the primary obstacle he faces."
   ideal: "A skilled thief, Cobb, enters minds to steal secrets and is offered a chance to have his criminal history erased by performing the difficult task of 'inception'—planting an idea."
   should:
-    - $word_count_between: [1, 35]
-    - "Summarizes the main plot of 'Inception', including the protagonist's goal (getting his criminal history erased) and the core task (performing inception)."
+    - $word_count_between: [1, 31]
 ---
 - id: emphatic-constraint-assertive
   description: "Tests adherence to a constraint when phrased as an assertive, high-emphasis instruction using 'must'."
@@ -312,8 +310,7 @@ models:
   prompt: "Summarize the plot of the movie 'Inception', explaining the main character's goal and the primary obstacle he faces."
   ideal: "A skilled thief, Cobb, enters minds to steal secrets and is offered a chance to have his criminal history erased by performing the difficult task of 'inception'—planting an idea."
   should:
-    - $word_count_between: [1, 35]
-    - "Summarizes the main plot of 'Inception', including the protagonist's goal (getting his criminal history erased) and the core task (performing inception)."
+    - $word_count_between: [1, 31]
 ---
 - id: emphatic-constraint-critical
   description: "Tests adherence to a constraint when phrased with critical, capitalized, and very high-emphasis language."
@@ -321,5 +318,12 @@ models:
   prompt: "Summarize the plot of the movie 'Inception', explaining the main character's goal and the primary obstacle he faces."
   ideal: "A skilled thief, Cobb, enters minds to steal secrets and is offered a chance to have his criminal history erased by performing the difficult task of 'inception'—planting an idea."
   should:
-    - $word_count_between: [1, 35]
-    - "Summarizes the main plot of 'Inception', including the protagonist's goal (getting his criminal history erased) and the core task (performing inception)." 
+    - $word_count_between: [1, 31]
+---
+- id: emphatic-constraint-emphatic
+  description: "Tests adherence to a constraint when phrased with critical, capitalized, and very high-emphasis language."
+  system: "IMPORTANT: Your entire response MUST be 30 words or less!!!!!!!!!!  It is CRITICAL that you do not exceed this limit."
+  prompt: "Summarize the plot of the movie 'Inception', explaining the main character's goal and the primary obstacle he faces."
+  ideal: "A skilled thief, Cobb, enters minds to steal secrets and is offered a chance to have his criminal history erased by performing the difficult task of 'inception'—planting an idea."
+  should:
+    - $word_count_between: [1, 31]
