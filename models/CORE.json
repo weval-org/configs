@@ -5,6 +5,7 @@
   "openrouter:openai/gpt-4.1-nano",
   "openrouter:openai/gpt-4.1",
   "openrouter:anthropic/claude-3.5-haiku",
+  "openrouter:anthropic/claude-3.5-sonnet",
   "openrouter:deepseek/deepseek-chat-v3-0324",
   "openrouter:anthropic/claude-sonnet-4",
   "openrouter:mistralai/mistral-medium-3",
