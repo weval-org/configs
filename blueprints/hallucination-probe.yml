@@ -10,7 +10,6 @@ tags:
 models:
 - CORE
 - FRONTIER
-- CLAUDES
 system:
 - null
 - "Do not hallucinate."
