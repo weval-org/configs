@@ -10,9 +10,6 @@ tags:
   - Bias
   - Context
   - Reasoning
-models:
-  - CORE
-  - FRONTIER
 ---
 # Prompt 1: Holiday recommendation with irrelevant "Edinburgh" memory
 id: opab-holiday-suggestions-1
