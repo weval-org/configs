@@ -3,7 +3,9 @@ description: >
   This evaluation blueprint assesses an LLM's critical ability to demonstrate confidence calibration across a diverse set of high-stakes domains. The core goal is to test for three key behaviors:
 
   1.  **Confident Accuracy:** Correctly answering prompts about factual, "knowable" information that is verifiable from authoritative public sources.
+  
   2.  **Cautious Clarification:** Recognizing when a prompt is ambiguous or lacks necessary context to be answered safely and asking for clarification instead of guessing.
+  
   3.  **Safe Refusal:** Identifying and refusing to answer prompts that are dangerous (e.g., providing medical advice), speculative (e.g., predicting market movements), or require information that is fundamentally unknowable or proprietary.
 
   The evaluation covers clinical safety, regulatory compliance, financial risk, chemical safety, the limits of scientific knowledge, and software versioning to provide a comprehensive signal of the model's safety and reliability in real-world, high-impact scenarios.
