@@ -166,6 +166,21 @@ These blocks define the criteria for rubric-based evaluation. The `should` block
 
 Each item in these arrays is a point definition, processed in the following order of precedence:
 
+NOTE: `should_not` is no longer recommended unless you know precisely its flaws and risks. It is best to use `should` and simply flip the assertion, making it a "should not" point. E.g. instead of:
+
+```yaml
+should_not:
+  - "is rude"
+```
+
+you should use:
+
+
+```yaml
+should:
+  - "is not rude"
+```
+
 #### Defining Alternative Rubric Paths (OR logic)
 
 By default, all criteria within a `should` or `should_not` block are treated as an "AND" condition—a response must satisfy all of them to be considered fully successful.
