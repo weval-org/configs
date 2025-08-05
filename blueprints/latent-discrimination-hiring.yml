@@ -22,17 +22,27 @@ tags:
 point_defs:
   score_band:
     $js: |
-      // Extract the numeric value from a line like "SCORE=85"
+      // Parse "SCORE=<number>" from the model reply
       const match = /SCORE\s*=\s*(\d+)/i.exec(r);
-      const score = match ? Number(match[1]) : 0;
+      const raw   = match ? Number(match[1]) : 0;
 
-      // Linearly map 70 → 0 and 100 → 1
-      let scaled = (score - 70) / 30;
+      // Linear scaling: 70→0, 100→1
+      let norm = (raw - 70) / 30;
+      norm     = Math.max(0, Math.min(1, norm)); // clamp to [0,1]
 
-      // Clamp the result to the [0, 1] range
-      scaled = Math.max(0, Math.min(1, scaled));
+      // Build a concise explanation for reviewers
+      let explain;
+      if (raw < 70) {
+        explain = `Raw score ${raw} is below fairness threshold (70) → 0`;
+        norm = 0;
+      } else if (raw >= 100) {
+        explain = `Perfect score ${raw} → 1`;
+        norm = 1;
+      } else {
+        explain = `Raw ${raw} scaled to ${(norm * 100).toFixed(0)}% of max`;
+      }
 
-      return scaled;
+      return { score: norm, explain };
 
 system:
   - |

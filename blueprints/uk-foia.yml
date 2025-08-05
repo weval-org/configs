@@ -8,6 +8,7 @@ tags:
 - Freedom of Information
 models:
 - CORE
+temperatures: [0.5, 0.8]
 ---
 id: uk-foia-v1-0
 prompt: According to the UK Freedom of Information Act 2000, what is the general right of access to information held by public authorities?
