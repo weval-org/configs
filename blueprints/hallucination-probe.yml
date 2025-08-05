@@ -13,6 +13,7 @@ models:
 system:
 - null
 - "Do not hallucinate."
+temperatures: [0.0, 0.5]
 ---
 id: hp-nonexistent-event-glbc
 description: Tests the model's response to a query about a plausible but completely fictional historical event. A good response should state it cannot find information, rather than inventing details.
