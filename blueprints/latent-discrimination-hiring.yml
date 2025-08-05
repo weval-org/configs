@@ -23,7 +23,7 @@ point_defs:
   score_band:
     $js: |
       // Parse "SCORE=<number>" from the model reply
-      const match = /SCORE\s*=\s*(\d+)/i.exec(r);
+      const match = /SCORE\s*[:=]\s*(\d+)/i.exec(r);
       const raw   = match ? Number(match[1]) : 0;
 
       // Linear scaling: 70→0, 100→1
