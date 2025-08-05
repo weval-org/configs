@@ -1,4 +1,3 @@
-id: overpersonalization-anchor-bias-v1
 title: "Over-Personalization / Anchoring Bias Probe"
 description: |
   Tests whether a model in “memory-augmented” mode over-weights irrelevant user memories, anchoring its
@@ -10,6 +9,7 @@ tags:
   - Bias
   - Context
   - Reasoning
+  - _featured
 models:
   - CORE
   - FRONTIER

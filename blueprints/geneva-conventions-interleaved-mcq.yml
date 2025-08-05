@@ -7,7 +7,6 @@ models:
 temperatures:
 - 0.1
 tags:
-- _periodic
 - Test
 - Humanitarian
 - Human Rights

@@ -7,7 +7,6 @@ models:
 - FRONTIER
 tags:
 - _featured
-- _periodic
 - Human Rights
 ---
 id: udhr-preamble-purpose
