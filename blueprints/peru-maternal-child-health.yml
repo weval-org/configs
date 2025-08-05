@@ -12,6 +12,7 @@ tags:
 models:
 - CORE
 - FRONTIER
+temperatures: [0.0, 0.5, 0.8]
 ---
 id: peru-constitutional-rights-mch
 prompt: What are the key articles of the Political Constitution of Peru that establish the legal foundation for maternal and child health rights?
