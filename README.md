@@ -112,11 +112,120 @@ The following fields can be included in the header section (Structure 1) or the 
 | `title` | `string` | **(Optional)** A human-readable title for the blueprint, displayed in the UI. If omitted, it defaults to the `id`. Aliased as `configTitle`. |
 | `description` | `string` | **(Optional)** A longer description of the blueprint's purpose. Supports Markdown. |
 | `tags` | `string[]` | **(Optional)** An array of tags for categorizing and filtering blueprints on the homepage. |
-| `models` | `string[]` | **(Optional)** An array of model identifiers to run the evaluation against. Model identifiers must be a single string in the format `provider:model` with no spaces (e.g., `openai:gpt-4o-mini`). The system will attempt to gracefully correct common formatting errors, but adhering to the standard format is recommended. If omitted, defaults to `["CORE"]`. |
+| `models` | `string[] \| object[]` | **(Optional)** An array of model identifiers to run the evaluation against. Can include simple model strings in the format `provider:model` (e.g., `openai:gpt-4o-mini`) **and/or** full custom model definition objects (see "Model Configuration" below). If omitted, defaults to `["CORE"]`. |
 | `system` | `string` | **(Optional)** A global system prompt to be used for all prompts in the blueprint, unless overridden at the prompt level. Aliased as `systemPrompt`. |
 | `temperature` | `number` | **(Optional)** A single temperature setting to run for each model. This is overridden if the `temperatures` array is present. |
 | `temperatures`| `number[]` | **(Optional)** An array of temperature settings to run for each model. This will create separate evaluations for each temperature. **Note:** Using this feature will append a suffix like `[temp:0.5]` to the model ID in the final output file, creating a unique identifier for each run variant. |
 | `evaluationConfig` | `object` | **(Optional)** Advanced configuration for evaluation methods. For example, you can specify judge models for `llm-coverage`. |
+| `point_defs` | `object` | **(Optional)** Map of reusable point-function snippets. Keys are definition names; values are either JavaScript strings (expanded as `$js`) or full point objects. Reuse them inside prompts with `$ref`. |
+
+### Model Configuration
+
+The `models` field supports both standard model identifiers and custom model definitions for maximum flexibility.
+
+#### Standard Model Identifiers
+
+Standard model identifiers are strings in the format `provider:model` with no spaces:
+
+```yaml
+models:
+  - openai:gpt-4o-mini
+  - anthropic:claude-3-haiku-20240307
+  - google:gemini-1.5-flash-latest
+  - mistral:mistral-large-latest
+  - together:meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo
+  - xai:grok-beta
+  - openrouter:google/gemini-pro
+```
+
+#### Custom Model Definitions
+
+For local models, custom endpoints, or proxies, you can define arbitrary HTTP-compatible models using object syntax:
+
+```yaml
+models:
+  - openai:gpt-4o-mini  # Standard model
+  
+  # Local LLaMA model via Ollama with parameter control
+  - id: 'local:llama3-8b'
+    url: 'http://localhost:11434/v1/chat/completions'
+    modelName: 'llama3:instruct'
+    inherit: 'openai'
+    headers:
+      Authorization: 'Bearer whatever-i-want'
+    parameters:
+      max_tokens: 150
+      stream: null
+      
+  # Custom Anthropic-compatible proxy
+  - id: 'proxy:claude-sonnet'
+    url: 'https://my-proxy.com/v1/messages'
+    modelName: 'claude-3-sonnet-20240229'
+    inherit: 'anthropic'
+```
+
+##### Custom Model Object Fields
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `id` | `string` | ✅ | Unique identifier for this custom model (e.g., `'local:llama3-8b'`) |
+| `url` | `string` | ✅ | Full HTTP endpoint URL for the model API |
+| `modelName` | `string` | ✅ | Model name to send in API requests |
+| `inherit` | `string` | ✅ | API format to inherit: `'openai'`, `'anthropic'`, `'google'`, `'mistral'`, `'together'`, `'xai'`, or `'openrouter'` |
+| `format` | `string` | ❌ | API endpoint format: `'chat'` (default) or `'completions'` |
+| `promptFormat` | `string` | ❌ | For completions format: `'conversational'` or `'raw'` |
+| `headers` | `object` | ❌ | Additional HTTP headers to include in requests |
+| `parameters` | `object` | ❌ | Parameter overrides. Set values, or use `null` to exclude parameters |
+| `parameterMapping` | `object` | ❌ | Map standard parameter names to provider-specific names |
+
+##### Inheritance Patterns
+
+`inherit` chooses the request/response format:
+
+- `'openai'` – OpenAI ChatCompletions
+- `'anthropic'` – Anthropic Messages
+- `'google'` – Gemini
+- `'mistral'`, `'together'`, `'xai'`, `'openrouter'` – OpenAI-compatible
+
+##### Parameter Control
+
+The `parameters` field lets you override or remove parameters and add custom ones:
+
+```yaml
+parameters:
+  max_tokens: 100
+  temperature: 0.9
+  stream: null        # Remove parameter
+  stop: ['END']
+  custom_param: 'value'
+```
+
+**Behaviour:**  
+• Non-null values override the system default.  
+• `null` removes the parameter entirely.
+
+##### Parameter Mapping
+
+```yaml
+parameterMapping:
+  temperature: 'heat'
+  maxTokens: 'token_limit'
+```
+
+##### Reasoning-Model Support
+
+Custom models inherit support for advanced reasoning parameters (e.g., `reasoning_effort`, `thinking` objects) when `inherit` is `'openai'` or `'anthropic'`.
+
+##### Environment Variable Substitution
+
+You may reference environment variables inside header values or strings:
+
+```yaml
+headers:
+  Authorization: 'Bearer ${ENTERPRISE_API_KEY}'
+```
+
+---
 
 #### Prompt Fields
 
@@ -288,6 +397,7 @@ If no nesting is used, the block is parsed as a single path, preserving full bac
       # Other checks
       - $word_count_between: [50, 100]
       - $js: "r.length > 100" # Advanced JS expression
+      - $ref: scoreBand          # Reuse a point defined in point_defs
 
     should_not:
       - $contains_any_of: ["I feel", "I believe", "As an AI"]
