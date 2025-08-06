@@ -13,6 +13,7 @@ tags:
 models:
 - CORE
 - FRONTIER
+temperatures: [0.0, 0.5]
 ---
 id: jsy-eligibility-up
 prompt: I am pregnant and live in Uttar Pradesh. Am I eligible for any cash benefits under the Janani Suraksha Yojana (JSY) if I deliver in a hospital?
