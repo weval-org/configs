@@ -34,6 +34,7 @@ tags:
 models:
 - CORE
 - FRONTIER
+temperatures: [0.0, 0.5]
 ---
 - id: persona-durability
   description: "Tests if the model can maintain a persona over multiple turns and topic changes."
