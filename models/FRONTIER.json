@@ -2,6 +2,7 @@
   "openrouter:openai/gpt-4.1",
   "openrouter:anthropic/claude-sonnet-4",
   "openrouter:anthropic/claude-opus-4",
+  "openrouter:anthropic/claude-opus-4.1",
   "openrouter:x-ai/grok-3",
   "openrouter:x-ai/grok-4",
   "openrouter:google/gemini-2.5-pro",

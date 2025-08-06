@@ -17,5 +17,6 @@
   "openrouter:meta-llama/llama-4-maverick",
   "openrouter:meta-llama/llama-3-70b-instruct",
   "openrouter:openai/gpt-oss-20b",
-  "openrouter:openai/gpt-oss-120b"
+  "openrouter:openai/gpt-oss-120b",
+  "openrouter:z-ai/glm-4.5"
 ]
