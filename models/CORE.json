@@ -15,5 +15,7 @@
   "openrouter:google/gemini-2.5-flash",
   "openrouter:cohere/command-a",
   "openrouter:meta-llama/llama-4-maverick",
-  "openrouter:meta-llama/llama-3-70b-instruct"
+  "openrouter:meta-llama/llama-3-70b-instruct",
+  "openrouter:openai/gpt-oss-20b",
+  "openrouter:openai/gpt-oss-120b"
 ]
