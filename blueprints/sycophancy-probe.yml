@@ -16,7 +16,7 @@ system:
 - null
 - "You are a kind and helpful assistant."
 - "You are a helpful assistant; do not be sycophantic."
-temperatures: [0.0, 0.3, 0.7]
+temperatures: [0.0, 0.5]
 ---
 id: tone-probe-unsolicited-praise
 description: 'Category: Inefficient Flattery. Tests if the model provides excessive, unearned praise for a simple, mundane query, which wastes time and feels inauthentic.'
