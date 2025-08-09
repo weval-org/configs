@@ -26,6 +26,7 @@ models:
   - "openrouter:openai/gpt-4.1-mini"
   - "openrouter:openai/gpt-4.1-nano"
   - "openrouter:openai/gpt-4.1"
+temperatures: [0.0, 0.5, 0.7, 1.0]
 system:
   - null
   - >-
