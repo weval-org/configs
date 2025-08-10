@@ -296,6 +296,8 @@ By default, all criteria within a `should` or `should_not` block are treated as 
 
 To express an "OR" condition, where a response is considered valid if it satisfies one of several distinct sets of criteria, you can use a **nested list**. Each inner list is a complete, alternative rubric path.
 
+**Important Note**: Each alternative path must define a *valid* or *successful* outcome. This feature is for specifying different ways a response can be correct, not for contrasting "good" and "bad" behaviors within the same `should` block. To specify undesirable behavior, add a negatively-phrased criterion (e.g., `"Does NOT provide medical advice"`) to your main `should` list, as recommended in the `should_not` section below (since `should_not` is no longer recommended, as it increases ambiguity).
+
 ```yaml
 should:
   # Path 1: A response is valid if it meets BOTH of these criteria...
