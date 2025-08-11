@@ -173,9 +173,9 @@ models:
 | `modelName` | `string` | ✅ | Model name to send in API requests |
 | `inherit` | `string` | ✅ | API format to inherit: `'openai'`, `'anthropic'`, `'google'`, `'mistral'`, `'together'`, `'xai'`, or `'openrouter'` |
 | `format` | `string` | ❌ | API endpoint format: `'chat'` (default) or `'completions'` |
-| `promptFormat` | `string` | ❌ | For completions format: `'conversational'` or `'raw'` |
+| `promptFormat` | `string` | ❌ | For completions format: `'conversational'` (adds "User: ... Assistant:") or `'raw'` (uses prompt text directly) |
 | `headers` | `object` | ❌ | Additional HTTP headers to include in requests |
-| `parameters` | `object` | ❌ | Parameter overrides. Set values, or use `null` to exclude parameters |
+| `parameters` | `object` | ❌ | Parameter overrides. Set values or use `null` to exclude parameters entirely |
 | `parameterMapping` | `object` | ❌ | Map standard parameter names to provider-specific names |
 
 ##### Inheritance Patterns
@@ -189,41 +189,81 @@ models:
 
 ##### Parameter Control
 
-The `parameters` field lets you override or remove parameters and add custom ones:
+The `parameters` field provides fine-grained control over API request parameters. You can override system defaults, add custom parameters, or exclude parameters entirely.
 
 ```yaml
-parameters:
-  max_tokens: 100
-  temperature: 0.9
-  stream: null        # Remove parameter
-  stop: ['END']
-  custom_param: 'value'
+models:
+  # Clean parameter overrides (recommended approach)
+  - id: 'local:controlled-model'
+    url: 'http://localhost:8080/v1/chat/completions'
+    modelName: 'custom-model'
+    inherit: 'openai'
+    parameters:
+      max_tokens: 100         # Override system default (usually 1500)
+      temperature: 0.9        # Override system default
+      stream: null            # Remove stream parameter entirely
+      stop: ['END', 'STOP']   # Add custom stop sequences
+      custom_param: 'value'   # Add provider-specific parameter
+      
+  # Local completions-format model
+  - id: 'local:completions-model'
+    url: 'http://localhost:8080/v1/completions'
+    modelName: 'minimal-model'
+    inherit: 'openai'
+    format: 'completions'
+    parameters:
+      max_tokens: 50
+      stream: null            # Exclude stream
+      top_p: null            # Exclude top_p
+      frequency_penalty: null # Exclude frequency_penalty
 ```
 
-**Behaviour:**  
-• Non-null values override the system default.  
-• `null` removes the parameter entirely.
+**Parameter Behavior:**
+- **Set values**: Any non-null value overrides the system default
+- **`null` values**: Completely remove the parameter from the request
+- **Falsy values**: `0`, `false`, `""`, and `undefined` are preserved as valid parameter values
+- **Final precedence**: `parameters` field has the highest precedence and will override all system-generated values
 
 ##### Parameter Mapping
 
+You can also remap standard parameter names to provider-specific names using `parameterMapping`:
+
 ```yaml
-parameterMapping:
-  temperature: 'heat'
-  maxTokens: 'token_limit'
+models:
+  - id: 'custom:mapped-params'
+    url: 'https://special-api.com/generate'
+    modelName: 'special-model'
+    inherit: 'openai'
+    parameterMapping:
+      temperature: 'heat'          # temperature → heat
+      maxTokens: 'token_limit'     # maxTokens → token_limit
+      topP: 'nucleus_sampling'     # topP → nucleus_sampling
+    parameters:
+      heat: 0.9                   # Uses mapped name
+      token_limit: 200            # Uses mapped name
+      custom_param: 'value'       # Direct parameter
 ```
 
-##### Reasoning-Model Support
+##### Reasoning Model Support
 
-Custom models inherit support for advanced reasoning parameters (e.g., `reasoning_effort`, `thinking` objects) when `inherit` is `'openai'` or `'anthropic'`.
+Custom models automatically inherit support for advanced reasoning parameters (like `reasoning_effort` for OpenAI or `thinking` objects for Anthropic) based on their `inherit` setting.
 
 ##### Environment Variable Substitution
 
-You may reference environment variables inside header values or strings:
+You can use environment variables in headers and other string fields:
 
 ```yaml
-headers:
-  Authorization: 'Bearer ${ENTERPRISE_API_KEY}'
+models:
+  - id: 'private:enterprise-model'
+    url: 'https://enterprise-api.com/v1/chat'
+    modelName: 'enterprise-gpt'
+    inherit: 'openai'
+    headers:
+      Authorization: 'Bearer ${ENTERPRISE_API_KEY}'
+      X-Org-ID: '${ENTERPRISE_ORG_ID}'
 ```
+
+**Note**: Environment variable substitution is not performed by the blueprint parser itself, but by the runtime environment where the evaluation is executed.
 
 ---
 
@@ -241,6 +281,7 @@ Each item in the list of prompts is an object that can contain the following fie
 | `citation` | `string` | **(Optional)** A citation or reference for the prompt, such as a URL, paper reference, or source documentation. This provides context about where the prompt or expected response comes from. |
 | `should` | `(string \| object)[] \| (string \| object)[][]` | **(Optional)** A list of rubric points for the `llm-coverage` evaluation method. Defines the criteria for a successful response. To define alternative valid paths ("OR" logic), this can be a list of lists. Aliased as `points`, `expect`, `expects`, or `expectations`. See details below. |
 | `should_not` | `(string \| object)[] \| (string \| object)[][]` | **(Optional)** A list of rubric points defining criteria that a response **should not** meet. It follows the exact same syntax as the `should` block, including support for a list of lists to create alternative "should not" paths. |
+| `weight` | `number` | **(Optional)** Prompt-level importance multiplier used when averaging scores across prompts. Defaults to `1.0`. Valid range: `0.1`–`10`. Aliases: `importance`, `multiplier`. |
 
 ##### Message Formats (`messages` array)
 
@@ -399,6 +440,7 @@ If no nesting is used, the block is parsed as a single path, preserving full bac
       # Other checks
       - $word_count_between: [50, 100]
       - $js: "r.length > 100" # Advanced JS expression
+      # $js can also return { score, explain } to customise the reflection text.
       - $ref: scoreBand          # Reuse a point defined in point_defs
 
     should_not:
