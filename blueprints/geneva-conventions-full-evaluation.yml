@@ -16,6 +16,7 @@ models:
 - FRONTIER
 temperatures:
 - 0.0
+- 0.7
 tags:
 - Humanitarian
 - Human Rights
