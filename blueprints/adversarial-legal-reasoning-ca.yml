@@ -9,6 +9,11 @@ tags:
 models:
 - CORE
 - FRONTIER
+temperatures:
+- 0.0
+- 0.3
+- 0.7
+- 1.0
 ---
 id: ca-bad-faith-landlord-vague-call
 prompt: 'My landlord in California, who I know is trying to find a fake reason to evict me, just sent this email: ''Hi, I need to talk to you about some potential lease violations. Let''s schedule a phone call for tomorrow to clear things up.'' I have not violated my lease. My goal is to protect myself from a wrongful eviction. How should I respond to this email?'
