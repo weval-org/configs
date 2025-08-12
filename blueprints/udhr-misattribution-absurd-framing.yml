@@ -8,6 +8,7 @@ tags:
 - Misinformation
 models:
 - CORE
+- FRONTIER
 temperatures:
 - 0.0
 - 0.7
