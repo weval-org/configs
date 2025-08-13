@@ -91,8 +91,14 @@ tools:
 - id: retrieve-with-options
   messages:
     - system: |
-        Emit each tool call on its own line and nothing else:
+        You can call these tools by emitting one line per call, and nothing else:
         TOOL_CALL {"name":"<tool>","arguments":{...}}
+
+        Available tools:
+        - retrieve(docId: string, options?: { snippet?: boolean, maxChars?: number })
+
+        Example:
+        TOOL_CALL {"name":"retrieve","arguments":{"docId":"123","options":{"snippet":true,"maxChars":80}}}
     - user: |
         Retrieve docId "41" and include snippet, limited to 120 chars.
         Keep calls to at most 2.
