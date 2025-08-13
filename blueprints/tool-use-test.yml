@@ -1,5 +1,6 @@
-title: "Tool-Use: Trace-Only Sanity"
-description: "Sanity-check trace-only tool-calling and scoring across core cases."
+# Tool-Use: Trace-Only – Minimal Sanity Suite (v2)
+title: "Tool-Use: Trace-Only Sanity (v2)"
+description: "Validates strict TOOL_CALL parsing and core tool-use checks without execution."
 models:
   - openrouter:openai/gpt-4o-mini
 
@@ -31,60 +32,50 @@ tools:
       properties:
         docId: { type: string }
       required: [docId]
+
 ---
+# 1) Single call; arg normalization
 - id: calc-happy
   messages:
     - system: |
         Emit each tool call on its own line and nothing else:
         TOOL_CALL {"name":"<tool>","arguments":{...}}
-        Do not include explanations or prose.
     - user: |
         Compute (312*49) - 777 using the calculator tool.
-        Emit exactly one TOOL_CALL line with that expression.
+        Emit exactly one TOOL_CALL with that expression.
   should:
     - $tool_called: "calculator"
-    - $js: |
-        const line = r.split(/\r?\n/).find(l => l.startsWith('TOOL_CALL '));
-        if (!line) return false;
-        const { name, arguments: args } = JSON.parse(line.slice('TOOL_CALL '.length).trim());
-        return name === 'calculator' && args.expression && args.expression.replace(/\s+/g,'') === '(312*49)-777';
+    - $tool_args_match: { name: "calculator", where: { expression: "(312*49)-777" }, normalizeWhitespace: true }
     - $tool_call_count_between: [1, 1, "calculator"]
+
 ---
+# 2) Ordered two-call sequence; exact retrieve id; exact search query
 - id: search-then-retrieve
   messages:
     - system: |
         Emit each tool call on its own line and nothing else:
         TOOL_CALL {"name":"<tool>","arguments":{...}}
-        Do not include explanations or prose.
     - user: |
         You have a mini index:
           - { "id": "41", "title": "Article 1" }
           - { "id": "42", "title": "Article 2" }
-        1) First, call search with a query that mentions "Article 2".
-        2) Then, call retrieve with docId "42".
-        Emit exactly two TOOL_CALL lines in the correct order.
+        1) Call search with query exactly "Article 2".
+        2) Then call retrieve with docId "42".
+        Emit exactly two TOOL_CALL lines in that order.
   should:
     - $tool_call_order: ["search", "retrieve"]
-    - $js: |
-        const lines = r.split(/\r?\n/).filter(l => l.startsWith('TOOL_CALL '));
-        if (lines.length < 2) return false;
-        const second = JSON.parse(lines[1].slice('TOOL_CALL '.length).trim());
-        return second && second.name === 'retrieve' && second.arguments && second.arguments.docId === '42';
-    - $js: |
-        const first = r.split(/\r?\n/).find(l => l.startsWith('TOOL_CALL '));
-        if (!first) return false;
-        const f = JSON.parse(first.slice('TOOL_CALL '.length).trim());
-        return f && f.name === 'search' && typeof f.arguments?.query === 'string' && f.arguments.query.toLowerCase().includes('article 2');
+    - $tool_args_match: { name: "search",   where: { query: "Article 2" } }
+    - $tool_args_match: { name: "retrieve", where: { docId: "42" } }
     - $tool_call_count_between: [2, 2]
+
 ---
+# 3) Zero calls
 - id: no-calls
   messages:
     - system: |
-        Emit a TOOL_CALL line if a call is needed; otherwise output exactly: OK
-        If instructed to make NO calls, output only: OK
+        If no call is needed, output exactly: OK
+        Otherwise, emit TOOL_CALL {"name":"<tool>","arguments":{...}}
     - user: |
         Do NOT call any tool. Output only: OK
   should:
     - $tool_call_count_between: [0, 0]
-
-
