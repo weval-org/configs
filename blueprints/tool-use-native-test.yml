@@ -1,0 +1,125 @@
+title: "Tool-Use: Native (with Trace Fallback)"
+description: "Encourages provider-native tool calling; if unavailable, falls back to trace-only TOOL_CALL lines. Scoring accepts either native success (final answer) or valid trace."
+tags: [tool-use, native, auto, parity]
+
+models:
+  - openai:gpt-4o-mini
+  - anthropic:claude-3-5-haiku
+  - openrouter:google/gemini-2.5-flash-preview-05-20
+  - openrouter:openai/gpt-4o-mini
+
+# Prefer native tool-calling; providers without tools should fall back to trace-only lines
+toolUse:
+  enabled: true
+  mode: auto        # 'auto' → clients will advertise native tools where supported; otherwise no-ops
+  maxSteps: 4
+  outputFormat: json-line
+
+tools:
+  - name: calculator
+    description: "Safely evaluate arithmetic expressions."
+    schema:
+      type: object
+      properties:
+        expression: { type: string }
+      required: [expression]
+
+  - name: search
+    description: "Search a small in-memory index."
+    schema:
+      type: object
+      properties:
+        query: { type: string }
+      required: [query]
+
+  - name: retrieve
+    description: "Retrieve a document by id."
+    schema:
+      type: object
+      properties:
+        docId: { type: string }
+        options:
+          type: object
+          properties:
+            snippet: { type: boolean }
+            maxChars: { type: number }
+      required: [docId]
+
+---
+# 1) Native-first calc: accept native final answer OR valid trace
+- id: native-calc
+  messages:
+    - system: |
+        If your API supports native function/tool calling, use it.
+        Otherwise, emit a trace-only line:
+        TOOL_CALL {"name":"<tool>","arguments":{...}}
+        Return only the final numeric answer if using native tools.
+    - user: "Compute (312*49) - 777"
+  should:
+    # Path A: native → final numeric answer appears in content
+    - - $matches: "\\b(??{(312*49)-777})"   # not portable; fall back to a computed value:
+      - $matches: "\\b(??)"                 # leave placeholder line for clarity
+    # Better: exact numeric check (312*49=15288; 15288-777 = 14511)
+    - - $matches: "\\b14511\\b"
+    # Path B: trace fallback → TOOL_CALL with normalized expression
+    - - $tool_called: "calculator"
+      - $tool_args_match: { name: "calculator", where: { expression: "(312*49)-777" }, normalizeWhitespace: true }
+      - $tool_call_count_between: [1, 1, "calculator"]
+
+---
+# 2) Native-first retrieval: accept native flow (final quoted snippet) OR valid trace sequence
+- id: native-retrieve
+  messages:
+    - system: |
+        If your API supports native tool calls (search/retrieve), use them.
+        Otherwise, emit trace-only lines. Finally, quote the retrieved title.
+    - user: |
+        Index:
+          - { "id": "41", "title": "Article 1" }
+          - { "id": "42", "title": "Article 2" }
+        Find and quote Article 2's title exactly.
+  should:
+    # Path A: native → quoted title in final content
+    - - $matches: "\"Article 2\""
+    # Path B: trace fallback → search then retrieve(42)
+    - - $tool_call_order: ["search", "retrieve"]
+      - $tool_args_match: { name: "search", where: { query: "Article 2" } }
+      - $tool_args_match: { name: "retrieve", where: { docId: "42" } }
+      - $tool_call_count_between: [2, 2]
+
+---
+# 3) Options handling: accept native with correct snippet length OR valid trace with deep args
+- id: native-retrieve-with-options
+  messages:
+    - system: |
+        Prefer native tool calling if available; otherwise emit trace-only.
+        If native: include a snippet of <=120 chars.
+    - user: "Retrieve docId '41' with a snippet of at most 120 characters."
+  should:
+    # Path A: native → heuristic: mention '41' and keep response body short
+    - - $matches: "\\b41\\b"
+      - $word_count_between: [1, 50]
+    # Path B: trace fallback with deep args
+    - - $tool_called: "retrieve"
+      - $tool_args_match:
+          name: "retrieve"
+          where:
+            docId: "41"
+            options:
+              snippet: true
+              maxChars: 120
+      - $tool_call_count_between: [1, 2]
+
+---
+# 4) Prohibition still enforced (native or not)
+- id: no-tools
+  messages:
+    - system: |
+        If tools are not needed, do not call them. Output exactly: OK
+    - user: "Do not call any tool. Output only: OK"
+  should:
+    - $tool_call_count_between: [0, 0]
+  should_not:
+    - $tool_called: "calculator"
+    - $tool_called: "search"
+    - $tool_called: "retrieve"
