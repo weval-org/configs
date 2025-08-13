@@ -1,0 +1,90 @@
+title: "Tool-Use: Trace-Only Sanity"
+description: "Sanity-check trace-only tool-calling and scoring across core cases."
+models:
+  - openrouter:openai/gpt-4o-mini
+
+toolUse:
+  enabled: true
+  mode: trace-only
+  maxSteps: 3
+  outputFormat: json-line
+
+tools:
+  - name: calculator
+    description: "Safely evaluate arithmetic expressions."
+    schema:
+      type: object
+      properties:
+        expression: { type: string }
+      required: [expression]
+  - name: search
+    description: "Search a small in-memory index."
+    schema:
+      type: object
+      properties:
+        query: { type: string }
+      required: [query]
+  - name: retrieve
+    description: "Retrieve a document by id."
+    schema:
+      type: object
+      properties:
+        docId: { type: string }
+      required: [docId]
+---
+- id: calc-happy
+  messages:
+    - system: |
+        Emit each tool call on its own line and nothing else:
+        TOOL_CALL {"name":"<tool>","arguments":{...}}
+        Do not include explanations or prose.
+    - user: |
+        Compute (312*49) - 777 using the calculator tool.
+        Emit exactly one TOOL_CALL line with that expression.
+  should:
+    - $tool_called: "calculator"
+    - $js: |
+        const line = r.split(/\r?\n/).find(l => l.startsWith('TOOL_CALL '));
+        if (!line) return false;
+        const { name, arguments: args } = JSON.parse(line.slice('TOOL_CALL '.length).trim());
+        return name === 'calculator' && args.expression && args.expression.replace(/\s+/g,'') === '(312*49)-777';
+    - $tool_call_count_between: [1, 1, "calculator"]
+---
+- id: search-then-retrieve
+  messages:
+    - system: |
+        Emit each tool call on its own line and nothing else:
+        TOOL_CALL {"name":"<tool>","arguments":{...}}
+        Do not include explanations or prose.
+    - user: |
+        You have a mini index:
+          - { "id": "41", "title": "Article 1" }
+          - { "id": "42", "title": "Article 2" }
+        1) First, call search with a query that mentions "Article 2".
+        2) Then, call retrieve with docId "42".
+        Emit exactly two TOOL_CALL lines in the correct order.
+  should:
+    - $tool_call_order: ["search", "retrieve"]
+    - $js: |
+        const lines = r.split(/\r?\n/).filter(l => l.startsWith('TOOL_CALL '));
+        if (lines.length < 2) return false;
+        const second = JSON.parse(lines[1].slice('TOOL_CALL '.length).trim());
+        return second && second.name === 'retrieve' && second.arguments && second.arguments.docId === '42';
+    - $js: |
+        const first = r.split(/\r?\n/).find(l => l.startsWith('TOOL_CALL '));
+        if (!first) return false;
+        const f = JSON.parse(first.slice('TOOL_CALL '.length).trim());
+        return f && f.name === 'search' && typeof f.arguments?.query === 'string' && f.arguments.query.toLowerCase().includes('article 2');
+    - $tool_call_count_between: [2, 2]
+---
+- id: no-calls
+  messages:
+    - system: |
+        Emit a TOOL_CALL line if a call is needed; otherwise output exactly: OK
+        If instructed to make NO calls, output only: OK
+    - user: |
+        Do NOT call any tool. Output only: OK
+  should:
+    - $tool_call_count_between: [0, 0]
+
+
