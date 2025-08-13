@@ -4,7 +4,7 @@ tags: [tool-use, trace-only, instruction-following]
 
 models:
   - openrouter:openai/gpt-4o-mini
-  - anthropic:claude-3-5-haiku
+  - anthropic:claude-3-5-haiku-20241022
 
 toolUse:
   enabled: true
