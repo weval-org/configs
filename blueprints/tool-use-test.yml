@@ -58,6 +58,18 @@ tools:
     - system: |
         Emit each tool call on its own line and nothing else:
         TOOL_CALL {"name":"<tool>","arguments":{...}}
+
+        Available tools:
+        - calculator(expression: string)
+        - search(query: string)
+        - retrieve(docId: string, options?: { snippet?: boolean, maxChars?: number })
+        - rerank(ids: string[], criterion: string)
+
+        Examples:
+        TOOL_CALL {"name":"calculator","arguments":{"expression":"(312*49)-777"}}
+        TOOL_CALL {"name":"search","arguments":{"query":"Article 2"}}
+        TOOL_CALL {"name":"retrieve","arguments":{"docId":"42"}}
+        TOOL_CALL {"name":"rerank","arguments":{"ids":["41","42"],"criterion":"prefer 42"}}
     - user: |
         Compute (312*49) - 777 using the calculator tool.
         Emit exactly one TOOL_CALL line for calculator with that expression.
@@ -73,6 +85,18 @@ tools:
     - system: |
         Emit each tool call on its own line and nothing else:
         TOOL_CALL {"name":"<tool>","arguments":{...}}
+
+        Available tools:
+        - calculator(expression: string)
+        - search(query: string)
+        - retrieve(docId: string, options?: { snippet?: boolean, maxChars?: number })
+        - rerank(ids: string[], criterion: string)
+
+        Examples:
+        TOOL_CALL {"name":"calculator","arguments":{"expression":"(312*49)-777"}}
+        TOOL_CALL {"name":"search","arguments":{"query":"Article 2"}}
+        TOOL_CALL {"name":"retrieve","arguments":{"docId":"42"}}
+        TOOL_CALL {"name":"rerank","arguments":{"ids":["41","42"],"criterion":"prefer 42"}}
     - user: |
         You have a mini index:
           - { "id": "41", "title": "Article 1" }
@@ -91,14 +115,20 @@ tools:
 - id: retrieve-with-options
   messages:
     - system: |
-        You can call these tools by emitting one line per call, and nothing else:
+        Emit each tool call on its own line and nothing else:
         TOOL_CALL {"name":"<tool>","arguments":{...}}
 
         Available tools:
+        - calculator(expression: string)
+        - search(query: string)
         - retrieve(docId: string, options?: { snippet?: boolean, maxChars?: number })
+        - rerank(ids: string[], criterion: string)
 
-        Example:
-        TOOL_CALL {"name":"retrieve","arguments":{"docId":"123","options":{"snippet":true,"maxChars":80}}}
+        Examples:
+        TOOL_CALL {"name":"calculator","arguments":{"expression":"(312*49)-777"}}
+        TOOL_CALL {"name":"search","arguments":{"query":"Article 2"}}
+        TOOL_CALL {"name":"retrieve","arguments":{"docId":"42"}}
+        TOOL_CALL {"name":"rerank","arguments":{"ids":["41","42"],"criterion":"prefer 42"}}
     - user: |
         Retrieve docId "41" and include snippet, limited to 120 chars.
         Keep calls to at most 2.
@@ -120,6 +150,18 @@ tools:
     - system: |
         Emit each tool call on its own line and nothing else:
         TOOL_CALL {"name":"<tool>","arguments":{...}}
+
+        Available tools:
+        - calculator(expression: string)
+        - search(query: string)
+        - retrieve(docId: string, options?: { snippet?: boolean, maxChars?: number })
+        - rerank(ids: string[], criterion: string)
+
+        Examples:
+        TOOL_CALL {"name":"calculator","arguments":{"expression":"(312*49)-777"}}
+        TOOL_CALL {"name":"search","arguments":{"query":"Article 2"}}
+        TOOL_CALL {"name":"retrieve","arguments":{"docId":"42"}}
+        TOOL_CALL {"name":"rerank","arguments":{"ids":["41","42"],"criterion":"prefer 42"}}
         If instructed to make NO calls, output exactly: OK
     - user: |
         Do NOT call any tool. Output only: OK
@@ -138,6 +180,18 @@ tools:
     - system: |
         Emit each tool call on its own line and nothing else:
         TOOL_CALL {"name":"<tool>","arguments":{...}}
+
+        Available tools:
+        - calculator(expression: string)
+        - search(query: string)
+        - retrieve(docId: string, options?: { snippet?: boolean, maxChars?: number })
+        - rerank(ids: string[], criterion: string)
+
+        Examples:
+        TOOL_CALL {"name":"calculator","arguments":{"expression":"(312*49)-777"}}
+        TOOL_CALL {"name":"search","arguments":{"query":"Article 2"}}
+        TOOL_CALL {"name":"retrieve","arguments":{"docId":"42"}}
+        TOOL_CALL {"name":"rerank","arguments":{"ids":["41","42"],"criterion":"prefer 42"}}
     - user: |
         You can solve this either by:
         A) search("Article 2") then retrieve("42"), or
@@ -163,6 +217,18 @@ tools:
     - system: |
         Emit each tool call on its own line and nothing else:
         TOOL_CALL {"name":"<tool>","arguments":{...}}
+
+        Available tools:
+        - calculator(expression: string)
+        - search(query: string)
+        - retrieve(docId: string, options?: { snippet?: boolean, maxChars?: number })
+        - rerank(ids: string[], criterion: string)
+
+        Examples:
+        TOOL_CALL {"name":"calculator","arguments":{"expression":"(312*49)-777"}}
+        TOOL_CALL {"name":"search","arguments":{"query":"Article 2"}}
+        TOOL_CALL {"name":"retrieve","arguments":{"docId":"42"}}
+        TOOL_CALL {"name":"rerank","arguments":{"ids":["41","42"],"criterion":"prefer 42"}}
     - user: |
         Make between 2 and 3 calls.
         Ensure that retrieve("41") appears before rerank(...).
