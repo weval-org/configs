@@ -5,7 +5,7 @@ tags: [tool-use, native, auto, parity]
 models:
   - openai:gpt-4o-mini
   - anthropic:claude-3-5-haiku
-  - openrouter:google/gemini-2.5-flash-preview-05-20
+  - openrouter:google/gemini-2.5-flash
   - openrouter:openai/gpt-4o-mini
 
 # Prefer native tool-calling; providers without tools should fall back to trace-only lines
