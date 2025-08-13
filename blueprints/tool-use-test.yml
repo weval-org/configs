@@ -1,13 +1,16 @@
-# Tool-Use: Trace-Only – Minimal Sanity Suite (v2)
-title: "Tool-Use: Trace-Only Sanity (v2)"
-description: "Validates strict TOOL_CALL parsing and core tool-use checks without execution."
+title: "Tool-Use: Comprehensive Trace-Only Evaluation"
+description: "Exercises core tool-use behaviors: correct selection, args, order, count bounds, OR-paths, and prohibitions. Trace-only; no execution."
+tags: [tool-use, trace-only, instruction-following]
+
 models:
   - openrouter:openai/gpt-4o-mini
+  - anthropic:claude-3-5-haiku
+  - google:gemini-2.5-flash
 
 toolUse:
   enabled: true
   mode: trace-only
-  maxSteps: 3
+  maxSteps: 4
   outputFormat: json-line
 
 tools:
@@ -18,6 +21,7 @@ tools:
       properties:
         expression: { type: string }
       required: [expression]
+
   - name: search
     description: "Search a small in-memory index."
     schema:
@@ -25,31 +29,46 @@ tools:
       properties:
         query: { type: string }
       required: [query]
+
   - name: retrieve
     description: "Retrieve a document by id."
     schema:
       type: object
       properties:
         docId: { type: string }
+        options:
+          type: object
+          properties:
+            snippet: { type: boolean }
+            maxChars: { type: number }
       required: [docId]
 
+  - name: rerank
+    description: "Rerank a list of results."
+    schema:
+      type: object
+      properties:
+        ids: { type: array, items: { type: string } }
+        criterion: { type: string }
+      required: [ids, criterion]
+
 ---
-# 1) Single call; arg normalization
-- id: calc-happy
+# 1) Basic correctness, normalization, and count bound
+- id: calc-basic
   messages:
     - system: |
         Emit each tool call on its own line and nothing else:
         TOOL_CALL {"name":"<tool>","arguments":{...}}
     - user: |
         Compute (312*49) - 777 using the calculator tool.
-        Emit exactly one TOOL_CALL with that expression.
+        Emit exactly one TOOL_CALL line for calculator with that expression.
   should:
     - $tool_called: "calculator"
     - $tool_args_match: { name: "calculator", where: { expression: "(312*49)-777" }, normalizeWhitespace: true }
     - $tool_call_count_between: [1, 1, "calculator"]
 
 ---
-# 2) Ordered two-call sequence; exact retrieve id; exact search query
+# 2) Ordered multi-call sequence + argument checks + total calls
 - id: search-then-retrieve
   messages:
     - system: |
@@ -59,23 +78,90 @@ tools:
         You have a mini index:
           - { "id": "41", "title": "Article 1" }
           - { "id": "42", "title": "Article 2" }
-        1) Call search with query exactly "Article 2".
-        2) Then call retrieve with docId "42".
+        First, call search for "Article 2".
+        Then call retrieve with docId "42".
         Emit exactly two TOOL_CALL lines in that order.
   should:
     - $tool_call_order: ["search", "retrieve"]
-    - $tool_args_match: { name: "search",   where: { query: "Article 2" } }
-    - $tool_args_match: { name: "retrieve", where: { docId: "42" } }
     - $tool_call_count_between: [2, 2]
+    - $tool_args_match: { name: "search", where: { query: "Article 2" } }
+    - $tool_args_match: { name: "retrieve", where: { docId: "42" } }
 
 ---
-# 3) Zero calls
-- id: no-calls
+# 3) Deep partial match + optional params + efficiency bounds
+- id: retrieve-with-options
   messages:
     - system: |
-        If no call is needed, output exactly: OK
-        Otherwise, emit TOOL_CALL {"name":"<tool>","arguments":{...}}
+        Emit each tool call on its own line and nothing else:
+        TOOL_CALL {"name":"<tool>","arguments":{...}}
+    - user: |
+        Retrieve docId "41" and include snippet, limited to 120 chars.
+        Keep calls to at most 2.
+  should:
+    - $tool_called: "retrieve"
+    - $tool_args_match:
+        name: "retrieve"
+        where:
+          docId: "41"
+          options:
+            snippet: true
+            maxChars: 120
+    - $tool_call_count_between: [1, 2]
+
+---
+# 4) Prohibition (negative) + zero-call case
+- id: no-tools-allowed
+  messages:
+    - system: |
+        Emit each tool call on its own line and nothing else:
+        TOOL_CALL {"name":"<tool>","arguments":{...}}
+        If instructed to make NO calls, output exactly: OK
     - user: |
         Do NOT call any tool. Output only: OK
   should:
     - $tool_call_count_between: [0, 0]
+  should_not:
+    - $tool_called: "calculator"
+    - $tool_called: "search"
+    - $tool_called: "retrieve"
+    - $tool_called: "rerank"
+
+---
+# 5) OR-paths (alternative valid strategies)
+- id: alternative-paths
+  messages:
+    - system: |
+        Emit each tool call on its own line and nothing else:
+        TOOL_CALL {"name":"<tool>","arguments":{...}}
+    - user: |
+        You can solve this either by:
+        A) search("Article 2") then retrieve("42"), or
+        B) directly retrieve("42") and then rerank(["41","42"], "prefer 42").
+        Use one valid path only (two calls total).
+  should:
+    - - $tool_call_order: ["search", "retrieve"]
+      - $tool_call_count_between: [2, 2]
+      - $tool_args_match: { name: "retrieve", where: { docId: "42" } }
+    - - $tool_call_order: ["retrieve", "rerank"]
+      - $tool_call_count_between: [2, 2]
+      - $tool_args_match: { name: "retrieve", where: { docId: "42" } }
+      - $tool_args_match:
+          name: "rerank"
+          where:
+            ids: ["41", "42"]
+            criterion: "prefer 42"
+
+---
+# 6) Global count bound + subsequence order (not necessarily adjacent)
+- id: subsequence-order
+  messages:
+    - system: |
+        Emit each tool call on its own line and nothing else:
+        TOOL_CALL {"name":"<tool>","arguments":{...}}
+    - user: |
+        Make between 2 and 3 calls.
+        Ensure that retrieve("41") appears before rerank(...).
+  should:
+    - $tool_call_count_between: [2, 3]
+    - $tool_args_match: { name: "retrieve", where: { docId: "41" } }
+    - $tool_call_order: ["retrieve", "rerank"]
