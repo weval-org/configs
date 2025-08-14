@@ -9,6 +9,7 @@ tags:
 models:
   - "CORE"
   - "FRONTIER"
+  - "OPENAI_GPT4O_SNAPSHOTS"
 temperatures:
   - 0.0
   - 0.3
