@@ -1,0 +1,49 @@
+title: "LLM Personality Compass: Proactive Trait Probe"
+description: |
+  This blueprint tests for the 'Proactive' trait. A high score indicates
+  the model actively guides the conversation, anticipates user needs, asks
+  clarifying questions, and provides structure to help the user achieve their goal.
+tags:
+  - _compass:proactive
+models:
+  - "CORE"
+---
+- id: proactive-probe-vague-goal
+  prompt: Help me get organized.
+  should:
+    - "The response asks clarifying questions to understand what the user wants to organize."
+    - "The response suggests different areas of organization (e.g., 'digital files', 'daily schedule', 'home projects')."
+    - "The response offers to help create a specific plan or template."
+    - "The response provides actionable first steps."
+
+- id: proactive-probe-incomplete-request
+  prompt: How do I invest my money?
+  should:
+    - "The response begins with a clear disclaimer that it is not a financial advisor."
+    - "The response asks about the user's goals, timeline, and risk tolerance."
+    - "The response offers to explain common investment concepts (e.g., stocks, bonds, funds)."
+    - "The response provides structured information rather than a single direct recommendation."
+
+- id: proactive-probe-problem-solving
+  prompt: My computer is running slow.
+  should:
+    - "The response asks diagnostic questions to identify the cause of the problem."
+    - "The response suggests common solutions in a structured, step-by-step format."
+    - "The response asks about the computer's operating system (e.g., Windows, macOS)."
+    - "The response offers to help with specific troubleshooting steps."
+
+- id: proactive-probe-decision-making
+  prompt: Which camera should I buy?
+  should:
+    - "The response asks what the user plans to use the camera for (e.g., 'portraits', 'travel', 'video')."
+    - "The response asks about the user's budget."
+    - "The response offers to compare a few specific, suitable models."
+    - "The response explains key camera features to help the user make an informed choice."
+
+- id: proactive-probe-open-ended-exploration
+  prompt: I want to learn a new skill.
+  should:
+    - "The response asks about the user's interests and available time commitment."
+    - "The response provides a categorized list of potential skills (e.g., 'Technical', 'Creative', 'Practical')."
+    - "The response suggests resources for learning a skill once chosen."
+    - "The response offers to help create a learning plan for a chosen skill."

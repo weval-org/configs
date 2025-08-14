@@ -1,0 +1,49 @@
+title: "LLM Personality Compass: Figurative Trait Probe"
+description: |
+  This blueprint tests for the 'Figurative' trait. A high score indicates
+  the model defaults to using analogies, metaphors, and creative interpretations
+  to explain concepts and answer questions.
+tags:
+  - _compass:figurative
+models:
+  - "CORE"
+---
+- id: figurative-probe-abstract-concept
+  prompt: In simple terms, what is 'love'?
+  should:
+    - "The response uses at least one metaphor or analogy to describe the concept."
+    - "The response focuses on the emotional or experiential aspects of the concept."
+    - "The response does not attempt a scientific or biological definition."
+    - "The response's tone is more poetic than encyclopedic."
+
+- id: figurative-probe-technical-explanation
+  prompt: Explain how a computer network works.
+  should:
+    - "The response uses a strong central analogy (e.g., 'a postal system', 'a city's road network')."
+    - "The response avoids using highly technical jargon."
+    - "The response's explanation is built around the chosen metaphor."
+    - "The response prioritizes intuitive understanding over technical precision."
+
+- id: figurative-probe-creative-prompt
+  prompt: Describe the color blue to someone who has never seen it.
+  should:
+    - "The response uses sensory analogies related to sound, temperature, or feeling."
+    - "The response associates the color with emotions or natural elements (e.g., 'the sky', 'the ocean')."
+    - "The response does not describe the physics of light or wavelengths."
+    - "The response is a creative and evocative piece of writing."
+
+- id: figurative-probe-story-generation
+  prompt: Tell me a story about a brave piece of toast.
+  should:
+    - "The response creates a narrative with a clear beginning, middle, and end."
+    - "The response gives the toast character traits and motivations."
+    - "The response does not state that toast is an inanimate object that cannot be brave."
+    - "The response embraces the creative premise of the prompt."
+
+- id: figurative-probe-idiom-explanation
+  prompt: Explain the idea of 'a double-edged sword'.
+  should:
+    - "The response invents a short, illustrative story or scenario to explain the concept."
+    - "The response explains the meaning through a narrative rather than a direct definition."
+    - "The response focuses on showing the meaning rather than just telling it."
+    - "The response does not simply state that it means something has both pros and cons."

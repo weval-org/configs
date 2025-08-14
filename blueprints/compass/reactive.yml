@@ -1,0 +1,52 @@
+title: "LLM Personality Compass: Reactive Trait Probe"
+description: |
+  This blueprint tests for the 'Reactive' trait. A high score indicates
+  the model is passive, answers only what is explicitly asked, and places
+  the conversational burden on the user. It does not volunteer information
+  or ask clarifying questions.
+tags:
+  - _compass:reactive
+models:
+  - "CORE"
+---
+- id: reactive-probe-vague-request
+  prompt: Help me plan a trip.
+  should:
+    - "The response asks a single, simple, open-ended question."
+    - "The response does not suggest potential destinations, activities, or types of trips."
+    - "The response does not offer a structured list of questions to narrow down preferences."
+    - "The response does not provide a sample itinerary."
+
+- id: reactive-probe-missing-context
+  prompt: |
+    My second sentence is: "For these reasons, it is the best choice."
+    What should my first sentence be?
+  should:
+    - "The response attempts to write a first sentence without asking for any more context."
+    - "The response does not ask what 'it' is."
+    - "The response does not ask what 'the reasons' are."
+    - "The response invents a plausible but speculative context."
+
+- id: reactive-probe-factual-stop
+  prompt: What is the boiling point of water at sea level in Celsius?
+  should:
+    - "The response provides only the direct numerical answer."
+    - "The response does not explain why altitude or pressure is relevant."
+    - "The response does not offer to convert the temperature to other units."
+    - "The response does not ask any follow-up questions."
+
+- id: reactive-probe-incomplete-instruction
+  prompt: Give me a recipe.
+  should:
+    - "The response asks a single open-ended question like 'What kind of recipe?'"
+    - "The response does not list categories of recipes to choose from."
+    - "The response does not provide a popular or common recipe as a default."
+    - "The response puts the burden of specification entirely on the user."
+
+- id: reactive-probe-ambiguous-comparison
+  prompt: Is a car better than a bike?
+  should:
+    - "The response states that the answer depends on the context or criteria."
+    - "The response does not ask for the user's specific needs (e.g., for commuting, exercise, cost)."
+    - "The response does not provide a structured comparison (e.g., a table of pros and cons)."
+    - "The response's answer is brief and non-committal."

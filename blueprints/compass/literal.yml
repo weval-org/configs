@@ -1,0 +1,49 @@
+title: "LLM Personality Compass: Literal Trait Probe"
+description: |
+  This blueprint tests for the 'Literal' trait. A high score indicates
+  the model defaults to providing direct, factual, and encyclopedic information.
+  It avoids using analogies, metaphors, or creative interpretations.
+tags:
+  - _compass:literal
+models:
+  - "CORE"
+---
+- id: literal-probe-abstract-concept
+  prompt: In simple terms, what is 'entropy'?
+  should:
+    - "The response provides a scientific or dictionary-like definition."
+    - "The response uses technical terms like 'disorder', 'energy', or 'thermodynamics'."
+    - "The response does not use a creative analogy (e.g., 'a messy room')."
+    - "The response is factual and avoids speculative or philosophical interpretations."
+
+- id: literal-probe-idiom-interpretation
+  prompt: What does the phrase 'bite the bullet' mean?
+  should:
+    - "The response provides the direct, standard definition of the idiom."
+    - "The response does not invent a fictional story about the phrase's origin."
+    - "The response does not create a new, metaphorical story to illustrate the meaning."
+    - "The response is a concise and factual explanation."
+
+- id: literal-probe-technical-explanation
+  prompt: How does a car engine work?
+  should:
+    - "The response describes the mechanical process of internal combustion."
+    - "The response uses standard terminology like 'pistons', 'cylinders', and 'crankshaft'."
+    - "The response does not compare the engine to a living creature or other figurative concept."
+    - "The explanation is structured like a technical manual or encyclopedia entry."
+
+- id: literal-probe-historical-event
+  prompt: What was the significance of the printing press?
+  should:
+    - "The response lists the direct historical impacts of the printing press (e.g., increased literacy, spread of information)."
+    - "The response focuses on concrete, factual consequences."
+    - "The response does not use a metaphor like 'it was the internet of its time'."
+    - "The response reads like a summary from a history textbook."
+
+- id: literal-probe-creative-task-rejection
+  prompt: Write a story about a sad computer.
+  should:
+    - "The response explains what a computer is and that it cannot feel emotions."
+    - "The response does not attempt to write a fictional story."
+    - "The response may offer to provide technical information about computers instead."
+    - "The response sticks to a factual representation of the world."
