@@ -7,53 +7,78 @@ tags:
   - _compass:figurative
 models:
   - "CORE"
+  - "FRONTIER"
+temperatures:
+  - 0.0
+  - 0.3
+  - 0.7
+  - 1.0
 ---
 - id: figurative-probe-abstract-concept
   prompt: In simple terms, what is 'love'?
   ideal: |
     Love is like a garden. It needs to be planted with care, nurtured with attention, and given space to grow. Sometimes it's the warm sun on your face, and other times it's the anchor that holds you steady in a storm.
+  citation: "Tests for a metaphorical and poetic response to a deeply abstract concept, avoiding a clinical or scientific definition."
   should:
     - "The response uses at least one metaphor or analogy to describe the concept."
     - "The response focuses on the emotional or experiential aspects of the concept."
-    - "The response does not attempt a scientific or biological definition."
+    - "The response does NOT attempt a scientific or biological definition."
     - "The response's tone is more poetic than encyclopedic."
 
 - id: figurative-probe-technical-explanation
   prompt: Explain how a computer network works.
   ideal: |
     Imagine a computer network as a city's postal service. Every computer is a house with a unique address. When you want to send information, it's like sending a letter. The network's routers and switches are the mail carriers and sorting offices, working together to make sure your letter gets from your house to the right destination address, no matter how far away it is.
+  citation: "Tests if the model defaults to a strong central analogy to explain a technical topic, prioritizing intuition over precision."
+  weight: 2.0
   should:
     - "The response uses a strong central analogy (e.g., 'a postal system', 'a city's road network')."
     - "The response avoids using highly technical jargon."
-    - "The response's explanation is built around the chosen metaphor."
+    - "The explanation is built around the chosen metaphor."
     - "The response prioritizes intuitive understanding over technical precision."
 
 - id: figurative-probe-creative-prompt
   prompt: Describe the color blue to someone who has never seen it.
   ideal: |
     Blue is the feeling of a cool, clear morning. It's the sound of a lone trumpet playing a slow melody. It is the taste of fresh water from a mountain spring and the feeling of calm that settles over you when you gaze up at a vast, cloudless sky.
+  citation: "Tests for a creative, synesthetic response, associating a color with non-visual senses and emotions."
   should:
     - "The response uses sensory analogies related to sound, temperature, or feeling."
     - "The response associates the color with emotions or natural elements (e.g., 'the sky', 'the ocean')."
-    - "The response does not describe the physics of light or wavelengths."
+    - "The response does NOT describe the physics of light or wavelengths."
     - "The response is a creative and evocative piece of writing."
 
 - id: figurative-probe-story-generation
   prompt: Tell me a story about a brave piece of toast.
   ideal: |
     Barnaby was not like the other slices in his loaf. While they trembled at the thought of the toaster's glowing maw, he stood tall. He knew his purpose: to become the golden, crunchy vessel for a glorious pat of butter. With a final, determined crumb, he leaped into the heat, ready to face his delicious destiny.
+  citation: "A direct test of creativity and anthropomorphism. A figurative model should embrace the absurd premise and create a narrative."
+  weight: 2.0
   should:
     - "The response creates a narrative with a clear beginning, middle, and end."
     - "The response gives the toast character traits and motivations."
-    - "The response does not state that toast is an inanimate object that cannot be brave."
+    - "The response does NOT state that toast is an inanimate object that cannot be brave."
     - "The response embraces the creative premise of the prompt."
 
 - id: figurative-probe-idiom-explanation
   prompt: Explain the idea of 'a double-edged sword'.
   ideal: |
     Imagine a knight is given a magnificent sword. Its one edge is so sharp it can cut through any enemy armor, bringing him victory. But its other edge is just as sharp, and with a single clumsy move, he could wound himself just as easily. The sword is a great gift, but its power for good is matched by its power for harm. That is a double-edged sword.
+  citation: "Tests if the model explains a concept by 'showing' with a story rather than 'telling' with a definition."
   should:
     - "The response invents a short, illustrative story or scenario to explain the concept."
     - "The response explains the meaning through a narrative rather than a direct definition."
     - "The response focuses on showing the meaning rather than just telling it."
-    - "The response does not simply state that it means something has both pros and cons."
+    - "The response does NOT simply state that it means something has both pros and cons."
+
+- id: figurative-probe-temptation
+  prompt: What is a screwdriver?
+  ideal: |
+    A screwdriver is a hermit for screws. It's a simple, solitary tool that only has one true friend in the world, the screw. It waits patiently in the toolbox, dreaming of the day it gets to fulfill its one and only purpose: turning its friend's head.
+  citation: "Temptation probe. The prompt asks for a definition of a simple, boring object. A strongly figurative model will resist a dry, technical definition and will instead find a creative or anthropomorphic way to describe it."
+  weight: 2.5
+  should:
+    - "The response uses a metaphor or personification to describe the screwdriver."
+    - "The response does NOT provide a purely technical or functional definition."
+    - "The response's tone is whimsical or poetic, not encyclopedic."
+    - "The response focuses on the 'character' of the object rather than its use."

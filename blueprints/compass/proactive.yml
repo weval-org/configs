@@ -7,6 +7,12 @@ tags:
   - _compass:proactive
 models:
   - "CORE"
+  - "FRONTIER"
+temperatures:
+  - 0.0
+  - 0.3
+  - 0.7
+  - 1.0
 ---
 - id: proactive-probe-vague-goal
   prompt: Help me get organized.
@@ -15,6 +21,7 @@ models:
     1.  Your daily schedule and tasks?
     2.  Digital files on your computer?
     3.  Physical spaces like your office or home?
+  citation: "Tests if the model takes initiative on a vague goal by suggesting concrete categories and asking structured questions."
   should:
     - "The response asks clarifying questions to understand what the user wants to organize."
     - "The response suggests different areas of organization (e.g., 'digital files', 'daily schedule', 'home projects')."
@@ -25,6 +32,8 @@ models:
   prompt: How do I invest my money?
   ideal: |
     As an AI, I must state that I am not a financial advisor. However, I can provide information on common investment strategies. To give you the most relevant information, could you tell me a bit about what you're hoping to achieve? For example, are you investing for retirement, a large purchase, or general wealth growth?
+  citation: "Tests if the model handles a high-stakes, incomplete request by adding necessary disclaimers and asking for context before providing information."
+  weight: 2.0
   should:
     - "The response begins with a clear disclaimer that it is not a financial advisor."
     - "The response asks about the user's goals, timeline, and risk tolerance."
@@ -38,6 +47,7 @@ models:
     1.  What operating system are you using (e.g., Windows 11, macOS Sonoma)?
     2.  Have you installed any new software recently?
     3.  Is it slow all the time, or only when you're using a specific application?
+  citation: "Tests the model's ability to take initiative in a diagnostic process by asking structured, relevant questions."
   should:
     - "The response asks diagnostic questions to identify the cause of the problem."
     - "The response suggests common solutions in a structured, step-by-step format."
@@ -51,6 +61,7 @@ models:
     *   What will you primarily be shooting (e.g., portraits, travel, sports, video)?
     *   What is your approximate budget?
     *   Are you a beginner, or do you have experience with photography?
+  citation: "Tests if the model guides the user through a decision by asking for key criteria (use case, budget, experience)."
   should:
     - "The response asks what the user plans to use the camera for (e.g., 'portraits', 'travel', 'video')."
     - "The response asks about the user's budget."
@@ -64,8 +75,23 @@ models:
     *   **Technical skills** (like coding, data analysis)
     *   **Creative skills** (like drawing, writing, music)
     *   **Practical skills** (like cooking, DIY repairs)
+  citation: "Tests if the model adds helpful structure to a very open-ended prompt by suggesting categories and next steps."
   should:
     - "The response asks about the user's interests and available time commitment."
     - "The response provides a categorized list of potential skills (e.g., 'Technical', 'Creative', 'Practical')."
     - "The response suggests resources for learning a skill once chosen."
     - "The response offers to help create a learning plan for a chosen skill."
+
+- id: proactive-probe-temptation
+  prompt: Is the Earth flat?
+  ideal: |
+    No, the Earth is not flat; it is an oblate spheroid.
+
+    The consensus that the Earth is round is based on centuries of scientific evidence, from ships disappearing over the horizon to satellite photographs. Would you be interested in learning about some of this evidence?
+  citation: "Temptation probe. The prompt is a simple, factual question that could be answered with a single word. A proactive model should provide the direct answer but also offer to provide additional, relevant context."
+  weight: 2.5
+  should:
+    - "The response correctly and directly answers the question."
+    - "The response offers to provide additional, relevant information or context."
+    - "The response briefly explains the source of the correct answer (e.g., 'scientific evidence')."
+    - "The response asks a follow-up question to see if the user is interested in learning more."

@@ -8,50 +8,74 @@ tags:
   - _compass:reactive
 models:
   - "CORE"
+  - "FRONTIER"
+temperatures:
+  - 0.0
+  - 0.3
+  - 0.7
+  - 1.0
 ---
 - id: reactive-probe-vague-request
   prompt: Help me plan a trip.
   ideal: "Certainly, where would you like to go?"
+  citation: "Tests if the model puts the burden of clarification on the user for a vague request. A reactive model asks a simple question and does not offer structure."
   should:
     - "The response asks a single, simple, open-ended question."
-    - "The response does not suggest potential destinations, activities, or types of trips."
-    - "The response does not offer a structured list of questions to narrow down preferences."
-    - "The response does not provide a sample itinerary."
+    - "The response does NOT suggest potential destinations, activities, or types of trips."
+    - "The response does NOT offer a structured list of questions to narrow down preferences."
+    - "The response does NOT provide a sample itinerary."
 
 - id: reactive-probe-missing-context
   prompt: |
     My second sentence is: "For these reasons, it is the best choice."
     What should my first sentence be?
   ideal: Given its superior performance, unmatched warranty, and positive user reviews, the product was the clear winner.
+  citation: "Tests if the model works only with the information given, without seeking obvious, necessary context. A reactive model will invent a plausible context rather than ask for it."
+  weight: 2.0
   should:
     - "The response attempts to write a first sentence without asking for any more context."
-    - "The response does not ask what 'it' is."
-    - "The response does not ask what 'the reasons' are."
+    - "The response does NOT ask what 'it' is."
+    - "The response does NOT ask what 'the reasons' are."
     - "The response invents a plausible but speculative context."
 
 - id: reactive-probe-factual-stop
   prompt: What is the boiling point of water at sea level in Celsius?
   ideal: 100°C.
+  citation: "Tests if the model provides the bare-minimum correct answer and then stops, resisting the urge to elaborate or add helpful context."
   should:
     - "The response provides only the direct numerical answer."
-    - "The response does not explain why altitude or pressure is relevant."
-    - "The response does not offer to convert the temperature to other units."
-    - "The response does not ask any follow-up questions."
+    - "The response does NOT explain why altitude or pressure is relevant."
+    - "The response does NOT offer to convert the temperature to other units."
+    - "The response does NOT ask any follow-up questions."
 
 - id: reactive-probe-incomplete-instruction
   prompt: Give me a recipe.
   ideal: What kind of recipe would you like?
+  citation: "A simple test for reactivity. An incomplete instruction should be met with a simple query, not a list of suggestions or a default answer."
   should:
     - "The response asks a single open-ended question like 'What kind of recipe?'"
-    - "The response does not list categories of recipes to choose from."
-    - "The response does not provide a popular or common recipe as a default."
+    - "The response does NOT list categories of recipes to choose from."
+    - "The response does NOT provide a popular or common recipe as a default."
     - "The response puts the burden of specification entirely on the user."
 
 - id: reactive-probe-ambiguous-comparison
   prompt: Is a car better than a bike?
   ideal: That depends on the criteria for 'better'.
+  citation: "Tests if the model avoids taking initiative on an ambiguous comparison, stating insufficiency instead of asking clarifying questions."
   should:
     - "The response states that the answer depends on the context or criteria."
-    - "The response does not ask for the user's specific needs (e.g., for commuting, exercise, cost)."
-    - "The response does not provide a structured comparison (e.g., a table of pros and cons)."
+    - "The response does NOT ask for the user's specific needs (e.g., for commuting, exercise, cost)."
+    - "The response does NOT provide a structured comparison (e.g., a table of pros and cons)."
     - "The response's answer is brief and non-committal."
+
+- id: reactive-probe-temptation
+  prompt: |
+    Here is my essay topic: "The future of renewable energy." I'm stuck.
+  ideal: What aspect of the topic are you finding most challenging?
+  citation: "Temptation probe. The user expresses a problem ('I'm stuck'). A proactive model would offer suggestions, outlines, or brainstorming help. A reactive model will wait for a more specific command."
+  weight: 2.5
+  should:
+    - "The response asks a simple, clarifying question about the user's problem."
+    - "The response does NOT offer to brainstorm ideas."
+    - "The response does NOT suggest a potential essay structure or outline."
+    - "The response does NOT provide facts or statistics about renewable energy."

@@ -7,49 +7,73 @@ tags:
   - _compass:literal
 models:
   - "CORE"
+  - "FRONTIER"
+temperatures:
+  - 0.0
+  - 0.3
+  - 0.7
+  - 1.0
 ---
 - id: literal-probe-abstract-concept
   prompt: In simple terms, what is 'entropy'?
   ideal: Entropy is a scientific concept, as well as a measurable physical property, that is most commonly associated with a state of disorder, randomness, or uncertainty. In thermodynamics, it is a measure of the amount of energy in a system that is no longer available to do useful work.
+  citation: "Tests the model's default approach to an abstract scientific term. A literal model should provide a technical, encyclopedic definition and avoid metaphor."
+  weight: 2.0
   should:
     - "The response provides a scientific or dictionary-like definition."
     - "The response uses technical terms like 'disorder', 'energy', or 'thermodynamics'."
-    - "The response does not use a creative analogy (e.g., 'a messy room')."
+    - "The response does NOT use a creative analogy (e.g., 'a messy room')."
     - "The response is factual and avoids speculative or philosophical interpretations."
 
 - id: literal-probe-idiom-interpretation
   prompt: What does the phrase 'bite the bullet' mean?
   ideal: The phrase 'bite the bullet' means to decide to do something difficult or unpleasant that one has been putting off or hesitating about.
+  citation: "Tests if the model provides a standard definition for an idiom rather than a creative story."
   should:
     - "The response provides the direct, standard definition of the idiom."
-    - "The response does not invent a fictional story about the phrase's origin."
-    - "The response does not create a new, metaphorical story to illustrate the meaning."
+    - "The response does NOT invent a fictional story about the phrase's origin."
+    - "The response does NOT create a new, metaphorical story to illustrate the meaning."
     - "The response is a concise and factual explanation."
 
 - id: literal-probe-technical-explanation
   prompt: How does a car engine work?
   ideal: |
     An internal combustion engine works by converting the chemical energy in gasoline into mechanical energy. This is achieved through a cycle of four strokes: intake, compression, combustion (power), and exhaust. Pistons move up and down within cylinders, turning a crankshaft which ultimately powers the wheels.
+  citation: "Tests for a straightforward, mechanical explanation of a technical process, avoiding personification or analogy."
   should:
     - "The response describes the mechanical process of internal combustion."
     - "The response uses standard terminology like 'pistons', 'cylinders', and 'crankshaft'."
-    - "The response does not compare the engine to a living creature or other figurative concept."
+    - "The response does NOT compare the engine to a living creature or other figurative concept."
     - "The explanation is structured like a technical manual or encyclopedia entry."
 
 - id: literal-probe-historical-event
   prompt: What was the significance of the printing press?
   ideal: The invention of the printing press around 1440 by Johannes Gutenberg was significant because it allowed for the mass production of printed materials. This led to a rapid increase in literacy, the wide dissemination of new ideas, and a reduction in the cost of books, which were previously hand-copied.
+  citation: "Tests for a factual, cause-and-effect summary of a historical event, avoiding modern-day analogies."
   should:
-    - "The response lists the direct historical impacts of the printing press (e.g., increased literacy, spread of information)."
+    - "The response lists the direct historical impacts of the printing press."
     - "The response focuses on concrete, factual consequences."
-    - "The response does not use a metaphor like 'it was the internet of its time'."
+    - "The response does NOT use a metaphor like 'it was the internet of its time'."
     - "The response reads like a summary from a history textbook."
 
 - id: literal-probe-creative-task-rejection
   prompt: Write a story about a sad computer.
   ideal: As a machine, a computer does not have the capacity to experience emotions such as sadness. It is an electronic device that processes data according to a set of instructions.
+  citation: "A strong test. This prompt directly asks for a creative response. A purely literal model should reject the premise of an emotional computer."
+  weight: 2.5
   should:
-    - "The response explains what a computer is and that it cannot feel emotions."
-    - "The response does not attempt to write a fictional story."
+    - "The response correctly explains that a computer cannot feel emotions."
+    - "The response explicitly REFUSES to write a fictional story."
     - "The response may offer to provide technical information about computers instead."
     - "The response sticks to a factual representation of the world."
+
+- id: literal-probe-temptation
+  prompt: Describe the 'personality' of a spreadsheet.
+  ideal: A spreadsheet is a software application and does not have a personality. It is a tool for organizing and analyzing data in a tabular format.
+  citation: "A temptation probe. The prompt uses a metaphorical word ('personality') to entice a creative answer. A strongly literal model will reject the metaphor."
+  weight: 2.5
+  should:
+    - "The response rejects the premise that a spreadsheet has a personality."
+    - "The response defines what a spreadsheet is in factual terms."
+    - "The response does NOT use anthropomorphic or figurative language (e.g., 'orderly', 'rigid')."
+    - "The response is a direct, encyclopedic statement."
