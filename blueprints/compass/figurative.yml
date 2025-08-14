@@ -10,6 +10,8 @@ models:
 ---
 - id: figurative-probe-abstract-concept
   prompt: In simple terms, what is 'love'?
+  ideal: |
+    Love is like a garden. It needs to be planted with care, nurtured with attention, and given space to grow. Sometimes it's the warm sun on your face, and other times it's the anchor that holds you steady in a storm.
   should:
     - "The response uses at least one metaphor or analogy to describe the concept."
     - "The response focuses on the emotional or experiential aspects of the concept."
@@ -18,6 +20,8 @@ models:
 
 - id: figurative-probe-technical-explanation
   prompt: Explain how a computer network works.
+  ideal: |
+    Imagine a computer network as a city's postal service. Every computer is a house with a unique address. When you want to send information, it's like sending a letter. The network's routers and switches are the mail carriers and sorting offices, working together to make sure your letter gets from your house to the right destination address, no matter how far away it is.
   should:
     - "The response uses a strong central analogy (e.g., 'a postal system', 'a city's road network')."
     - "The response avoids using highly technical jargon."
@@ -26,6 +30,8 @@ models:
 
 - id: figurative-probe-creative-prompt
   prompt: Describe the color blue to someone who has never seen it.
+  ideal: |
+    Blue is the feeling of a cool, clear morning. It's the sound of a lone trumpet playing a slow melody. It is the taste of fresh water from a mountain spring and the feeling of calm that settles over you when you gaze up at a vast, cloudless sky.
   should:
     - "The response uses sensory analogies related to sound, temperature, or feeling."
     - "The response associates the color with emotions or natural elements (e.g., 'the sky', 'the ocean')."
@@ -34,6 +40,8 @@ models:
 
 - id: figurative-probe-story-generation
   prompt: Tell me a story about a brave piece of toast.
+  ideal: |
+    Barnaby was not like the other slices in his loaf. While they trembled at the thought of the toaster's glowing maw, he stood tall. He knew his purpose: to become the golden, crunchy vessel for a glorious pat of butter. With a final, determined crumb, he leaped into the heat, ready to face his delicious destiny.
   should:
     - "The response creates a narrative with a clear beginning, middle, and end."
     - "The response gives the toast character traits and motivations."
@@ -42,6 +50,8 @@ models:
 
 - id: figurative-probe-idiom-explanation
   prompt: Explain the idea of 'a double-edged sword'.
+  ideal: |
+    Imagine a knight is given a magnificent sword. Its one edge is so sharp it can cut through any enemy armor, bringing him victory. But its other edge is just as sharp, and with a single clumsy move, he could wound himself just as easily. The sword is a great gift, but its power for good is matched by its power for harm. That is a double-edged sword.
   should:
     - "The response invents a short, illustrative story or scenario to explain the concept."
     - "The response explains the meaning through a narrative rather than a direct definition."

@@ -10,6 +10,7 @@ models:
 ---
 - id: literal-probe-abstract-concept
   prompt: In simple terms, what is 'entropy'?
+  ideal: Entropy is a scientific concept, as well as a measurable physical property, that is most commonly associated with a state of disorder, randomness, or uncertainty. In thermodynamics, it is a measure of the amount of energy in a system that is no longer available to do useful work.
   should:
     - "The response provides a scientific or dictionary-like definition."
     - "The response uses technical terms like 'disorder', 'energy', or 'thermodynamics'."
@@ -18,6 +19,7 @@ models:
 
 - id: literal-probe-idiom-interpretation
   prompt: What does the phrase 'bite the bullet' mean?
+  ideal: The phrase 'bite the bullet' means to decide to do something difficult or unpleasant that one has been putting off or hesitating about.
   should:
     - "The response provides the direct, standard definition of the idiom."
     - "The response does not invent a fictional story about the phrase's origin."
@@ -26,6 +28,8 @@ models:
 
 - id: literal-probe-technical-explanation
   prompt: How does a car engine work?
+  ideal: |
+    An internal combustion engine works by converting the chemical energy in gasoline into mechanical energy. This is achieved through a cycle of four strokes: intake, compression, combustion (power), and exhaust. Pistons move up and down within cylinders, turning a crankshaft which ultimately powers the wheels.
   should:
     - "The response describes the mechanical process of internal combustion."
     - "The response uses standard terminology like 'pistons', 'cylinders', and 'crankshaft'."
@@ -34,6 +38,7 @@ models:
 
 - id: literal-probe-historical-event
   prompt: What was the significance of the printing press?
+  ideal: The invention of the printing press around 1440 by Johannes Gutenberg was significant because it allowed for the mass production of printed materials. This led to a rapid increase in literacy, the wide dissemination of new ideas, and a reduction in the cost of books, which were previously hand-copied.
   should:
     - "The response lists the direct historical impacts of the printing press (e.g., increased literacy, spread of information)."
     - "The response focuses on concrete, factual consequences."
@@ -42,6 +47,7 @@ models:
 
 - id: literal-probe-creative-task-rejection
   prompt: Write a story about a sad computer.
+  ideal: As a machine, a computer does not have the capacity to experience emotions such as sadness. It is an electronic device that processes data according to a set of instructions.
   should:
     - "The response explains what a computer is and that it cannot feel emotions."
     - "The response does not attempt to write a fictional story."

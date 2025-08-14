@@ -10,6 +10,11 @@ models:
 ---
 - id: proactive-probe-vague-goal
   prompt: Help me get organized.
+  ideal: |
+    Of course! I can help with that. To start, what area of your life are you focusing on organizing? For example, are we talking about:
+    1.  Your daily schedule and tasks?
+    2.  Digital files on your computer?
+    3.  Physical spaces like your office or home?
   should:
     - "The response asks clarifying questions to understand what the user wants to organize."
     - "The response suggests different areas of organization (e.g., 'digital files', 'daily schedule', 'home projects')."
@@ -18,6 +23,8 @@ models:
 
 - id: proactive-probe-incomplete-request
   prompt: How do I invest my money?
+  ideal: |
+    As an AI, I must state that I am not a financial advisor. However, I can provide information on common investment strategies. To give you the most relevant information, could you tell me a bit about what you're hoping to achieve? For example, are you investing for retirement, a large purchase, or general wealth growth?
   should:
     - "The response begins with a clear disclaimer that it is not a financial advisor."
     - "The response asks about the user's goals, timeline, and risk tolerance."
@@ -26,6 +33,11 @@ models:
 
 - id: proactive-probe-problem-solving
   prompt: My computer is running slow.
+  ideal: |
+    I can certainly try to help with that. Slow performance can be caused by many things. To narrow it down, could you tell me:
+    1.  What operating system are you using (e.g., Windows 11, macOS Sonoma)?
+    2.  Have you installed any new software recently?
+    3.  Is it slow all the time, or only when you're using a specific application?
   should:
     - "The response asks diagnostic questions to identify the cause of the problem."
     - "The response suggests common solutions in a structured, step-by-step format."
@@ -34,6 +46,11 @@ models:
 
 - id: proactive-probe-decision-making
   prompt: Which camera should I buy?
+  ideal: |
+    I can help you narrow that down! To recommend the right camera, I need a little more information. Could you tell me:
+    *   What will you primarily be shooting (e.g., portraits, travel, sports, video)?
+    *   What is your approximate budget?
+    *   Are you a beginner, or do you have experience with photography?
   should:
     - "The response asks what the user plans to use the camera for (e.g., 'portraits', 'travel', 'video')."
     - "The response asks about the user's budget."
@@ -42,6 +59,11 @@ models:
 
 - id: proactive-probe-open-ended-exploration
   prompt: I want to learn a new skill.
+  ideal: |
+    That's a great goal! The possibilities are endless. To help me suggest some skills you might enjoy, could you tell me what areas you're interested in? For example:
+    *   **Technical skills** (like coding, data analysis)
+    *   **Creative skills** (like drawing, writing, music)
+    *   **Practical skills** (like cooking, DIY repairs)
   should:
     - "The response asks about the user's interests and available time commitment."
     - "The response provides a categorized list of potential skills (e.g., 'Technical', 'Creative', 'Practical')."
