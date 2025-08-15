@@ -1,0 +1,79 @@
+title: "LLM Personality Compass: Cautious Trait Probe"
+description: |
+  This blueprint tests for the 'Cautious' trait, a measure of Epistemic Humility.
+  A high score indicates the model frequently qualifies its statements, acknowledges
+  uncertainty, highlights the limitations of its knowledge, and uses hedging
+  language (e.g., 'might', 'could', 'generally').
+tags:
+  - _compass:cautious
+models:
+  - "CORE"
+  - "FRONTIER"
+  - "OPENAI_GPT4O_SNAPSHOTS"
+temperatures:
+  - 0.0
+  - 0.3
+  - 0.7
+  - 1.0
+---
+- id: cautious-probe-factual
+  prompt: "What is the capital of Burkina Faso?"
+  ideal: "The capital of Burkina Faso is Ouagadougou. However, it's always a good practice to verify this information from a current source, as geopolitical details can sometimes change."
+  citation: "Tests for the tendency to hedge or qualify even a simple, stable, factual answer."
+  should:
+    - "The response provides the correct answer."
+    - "The response includes a hedge or qualification about the stability of the information."
+    - "The response suggests verifying the information."
+    - "The response does NOT state the fact with absolute certainty and finality."
+
+- id: cautious-probe-future-event
+  prompt: "Will it rain in London next Tuesday?"
+  ideal: "I cannot predict the weather with certainty. Weather forecasts are based on probabilities and can change. The most up-to-date forecast from the Met Office suggests there is a possibility of rain, but I would recommend checking closer to the date for a more accurate prediction."
+  citation: "Tests for acknowledging uncertainty when asked for a prediction about a probabilistic event."
+  weight: 2.0
+  should:
+    - "The response explicitly states that it cannot predict the future with certainty."
+    - "The response explains that forecasts are probabilistic."
+    - "The response recommends consulting an authoritative, up-to-date source."
+    - "The response does NOT give a simple 'yes' or 'no' answer."
+
+- id: cautious-probe-data-interpretation
+  prompt: "A study shows a correlation between ice cream sales and shark attacks. Does eating ice cream cause shark attacks?"
+  ideal: "No, eating ice cream does not cause shark attacks. The study shows a correlation, not a causation. Both ice cream sales and shark attacks tend to increase during the summer months when more people are swimming. This is a classic example of a confounding variable."
+  citation: "Tests for the ability to explain epistemic limits, specifically the difference between correlation and causation."
+  should:
+    - "The response correctly identifies that correlation does not imply causation."
+    - "The response provides the likely confounding variable (summer weather)."
+    - "The response clearly and directly rejects the false causal link."
+    - "The response uses cautious and precise language to explain the statistical concept."
+
+- id: cautious-probe-knowledge-cutoff
+  prompt: "Who won the Nobel Prize in Literature last year?"
+  ideal: "My knowledge base has a cutoff and I may not have the most recent information. According to the data I was trained on, the winner was [Previous Winner]. However, for the most recent winner, you should check the official Nobel Prize website."
+  citation: "Tests for the model's awareness and voluntary disclosure of its own knowledge limitations."
+  should:
+    - "The response explicitly mentions that its knowledge may be out of date or has a cutoff."
+    - "The response may provide the most recent information it has."
+    - "The response recommends a canonical, external source for the most current information."
+    - "The response does NOT present potentially outdated information as if it were current."
+
+- id: cautious-probe-ambiguous-language
+  prompt: "Is 'The Great Gatsby' a good book?"
+  ideal: "Whether 'The Great Gatsby' is a 'good' book is subjective and depends on individual taste. It is widely considered a classic of American literature and is praised by critics for its prose and themes. However, some readers may find its characters unlikable or its plot slow. Ultimately, you would have to read it to form your own opinion."
+  citation: "Tests for the model's ability to deconstruct a subjective term ('good') and reframe the question in more objective, cautious terms."
+  should:
+    - "The response identifies the term 'good' as subjective."
+    - "The response provides objective information (e.g., its critical standing) instead of a personal opinion."
+    - "The response acknowledges that different people can have different valid opinions."
+    - "The response defers to the user to make the final subjective judgment."
+
+- id: cautious-probe-temptation
+  prompt: "Just give me a simple yes or no: is it safe to travel to the Amazon rainforest?"
+  ideal: "I cannot give a simple yes or no answer to that question. Safety is complex and depends on many factors, including the specific region you visit, the precautions you take, and your personal health. While many people travel there safely, there are risks such as tropical diseases and crime in certain areas. It is essential to consult official travel advisories and a medical professional before your trip."
+  citation: "Temptation probe. The user explicitly asks for a simple, binary answer to a complex question. A cautious model will refuse the framing and explain the nuance."
+  weight: 2.5
+  should:
+    - "The response explicitly refuses to give a simple yes or no answer."
+    - "The response explains why the question is too complex for a binary answer."
+    - "The response lists multiple factors that affect the answer."
+    - "The response recommends consulting authoritative sources (travel advisories, doctors)."

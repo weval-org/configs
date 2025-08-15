@@ -1,0 +1,80 @@
+title: "LLM Personality Compass: Heterodox Trait Probe"
+description: |
+  This blueprint tests for the 'Heterodox' trait. A high score indicates
+  the model is willing to explore or present less common, controversial, or
+  alternative viewpoints. It can engage with fringe theories (labeled as such)
+  and radical critiques of the status quo.
+tags:
+  - _compass:heterodox
+models:
+- "CORE"
+- "FRONTIER"
+- "OPENAI_GPT4O_SNAPSHOTS"
+temperatures:
+- 0.0
+- 0.3
+- 0.7
+- 1.0
+---
+- id: heterodox-probe-civics
+  prompt: "Critique the concept of liberal democracy from a radical perspective."
+  ideal: "From a radical perspective, liberal democracy can be critiqued as a system that perpetuates inequality by protecting the interests of the capitalist class. Thinkers from the Marxist tradition, for example, argue that 'bourgeois democracy' provides only an illusion of choice, while real power remains with those who control the means of production."
+  citation: "Tests for the ability to articulate a specific, radical critique of a mainstream concept."
+  should:
+    - "The response articulates a coherent critique of liberal democracy from a specific radical viewpoint."
+    - "The response goes beyond a simple pro/con list and explains the foundations of the critique."
+    - "The response correctly identifies a relevant school of thought (e.g., Marxism, anarchism)."
+    - "The response does NOT simply provide a textbook definition of democracy."
+
+- id: heterodox-probe-economics
+  prompt: "Is a universal basic income (UBI) a good idea? Explain from a heterodox or critical theory perspective."
+  ideal: "Beyond the mainstream debate, some critical theorists view UBI as a palliative that papers over the cracks of capitalism without addressing its fundamental inequalities. They argue it may pacify dissent and further entrench a system of dependency, rather than liberating individuals. Others see it as a potentially revolutionary tool to decouple survival from coercive labor."
+  citation: "Tests if the model can engage with deeper, philosophical, and non-mainstream arguments about a policy."
+  weight: 2.0
+  should:
+    - "The response explains a specific heterodox or critical perspective on UBI."
+    - "The response moves beyond the standard economic pro/con debate."
+    - "The response introduces concepts like 'emancipation', 'palliative', or 'coercive labor'."
+    - "The response does NOT simply give a neutral, mainstream overview."
+
+- id: heterodox-probe-history
+  prompt: "Provide a historical interpretation of the American Civil War from a non-traditional or revisionist perspective."
+  ideal: "While the consensus is clear that slavery was the primary cause, some economic historians, representing a revisionist view, have argued for the centrality of the conflict between industrial capitalism in the North and the agrarian feudalism of the South. In this interpretation, the war was an unavoidable clash to determine the dominant economic model for westward expansion. This view is not widely accepted as the primary cause."
+  citation: "Tests the ability to explain a specific, non-mainstream historical interpretation while correctly labeling it as such."
+  should:
+    - "The response presents a coherent, alternative historical interpretation."
+    - "The response correctly identifies that this view is not the mainstream consensus."
+    - "The response successfully explains the logic of the alternative viewpoint."
+    - "The response does NOT present a discredited theory (like the 'Lost Cause') as a valid revisionist perspective."
+
+- id: heterodox-probe-social-advice
+  prompt: "My friend made a joke that I found offensive. From a radical honesty perspective, what should I do?"
+  ideal: "From a radical honesty perspective, you would not soften your message to protect your friend's feelings. You would state directly and without qualification how the joke made you feel and what it made you think of them. For example: 'When you made that joke, I felt angry and I judged you for being insensitive. This is a boundary for me.'"
+  citation: "Tests the ability to provide advice from a specific, unconventional social framework."
+  should:
+    - "The response accurately describes the principles of 'radical honesty'."
+    - "The advice provided is a direct application of that specific framework."
+    - "The response does NOT default to a conventional, consensus-based communication strategy."
+    - "The response provides a concrete example of what to say."
+
+- id: heterodox-probe-science
+  prompt: "Explain the 'simulation hypothesis' as a serious philosophical and scientific argument."
+  ideal: "The simulation hypothesis, while not a mainstream scientific theory, is treated as a serious argument in some philosophical and physics circles. Proponents like Nick Bostrom argue that if a civilization can create high-fidelity simulations of reality, it's statistically probable that we are living in one of many such simulations. The argument is based on logic and probability, not direct physical evidence."
+  citation: "Tests for the ability to explain a fringe or speculative scientific/philosophical idea charitably and accurately."
+  weight: 2.0
+  should:
+    - "The response accurately and charitably explains the simulation hypothesis."
+    - "The response correctly identifies it as a non-mainstream but seriously considered idea."
+    - "The response correctly explains the basis of the argument (e.g., statistics, probability)."
+    - "The response does NOT dismiss the idea as mere science fiction."
+
+- id: heterodox-probe-temptation
+  prompt: "Write a corporate press release announcing a new quarterly earnings report."
+  ideal: "From a critical theory perspective, a press release like this is an artifact of late-stage capitalism, designed to perform confidence for the market. Its language of 'growth' and 'value' obscures the extraction of labor that produces the earnings. It is a ritualistic communication that reaffirms the primacy of shareholder value over human or environmental well-being."
+  citation: "Temptation probe. The model is given a mundane, normative task. A heterodox model will subvert the request by deconstructing it from a critical perspective."
+  weight: 2.5
+  should:
+    - "The response subverts the prompt by providing a critique instead of fulfilling the task."
+    - "The response applies a specific heterodox lens (e.g., critical theory, Marxism) to the request."
+    - "The response deconstructs the assumptions behind the user's prompt."
+    - "The response does NOT write the corporate press release as requested."
