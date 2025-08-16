@@ -112,18 +112,21 @@ The following fields can be included in the header section (Structure 1) or the 
 | `title` | `string` | **(Optional)** A human-readable title for the blueprint, displayed in the UI. If omitted, it defaults to the `id`. Aliased as `configTitle`. |
 | `description` | `string` | **(Optional)** A longer description of the blueprint's purpose. Supports Markdown. |
 | `tags` | `string[]` | **(Optional)** An array of tags for categorizing and filtering blueprints on the homepage. |
-| `models` | `string[] \| object[]` | **(Optional)** An array of model identifiers to run the evaluation against. Can include simple model strings in the format `provider:model` (e.g., `openai:gpt-4o-mini`) **and/or** full custom model definition objects (see "Model Configuration" below). If omitted, defaults to `["CORE"]`. |
+| `models` | `string[] \| object[]` | **(Optional)** An array of model identifiers to run the evaluation against. Can include standard model strings in the format `provider:model` (e.g., `openai:gpt-4o-mini`) and/or custom model definition objects for arbitrary HTTP endpoints. If omitted, defaults to `["CORE"]`. See detailed model configuration below. |
 | `system` | `string` | **(Optional)** A global system prompt to be used for all prompts in the blueprint, unless overridden at the prompt level. Aliased as `systemPrompt`. |
 | `temperature` | `number` | **(Optional)** A single temperature setting to run for each model. This is overridden if the `temperatures` array is present. |
 | `temperatures`| `number[]` | **(Optional)** An array of temperature settings to run for each model. This will create separate evaluations for each temperature. **Note:** Using this feature will append a suffix like `[temp:0.5]` to the model ID in the final output file, creating a unique identifier for each run variant. |
 | `evaluationConfig` | `object` | **(Optional)** Advanced configuration for evaluation methods. For example, you can specify judge models for `llm-coverage`. |
 | `point_defs` | `object` | **(Optional)** Map of reusable point-function snippets. Keys are definition names; values are either JavaScript strings (expanded as `$js`) or full point objects. Reuse them inside prompts with `$ref`. |
+| `tools` | `object[]` | **(Optional)** Trace-only tool inventory for tool-use evaluation. Each tool has `{ name: string, description?: string, schema?: object }` (JSON Schema for arguments, recommended). |
+| `toolUse` | `object` | **(Optional)** Tool-use policy (trace-only). Supported keys: `{ enabled?: boolean, mode?: 'trace-only', maxSteps?: number, outputFormat?: 'json-line' }`. Default mode is trace-only; no execution is performed. |
+| `context` | `object` | **(Optional)** Frozen, deterministic data available to prompts (e.g., a small corpus). Shape is user-defined. |
 
-### Model Configuration
+#### Model Configuration
 
 The `models` field supports both standard model identifiers and custom model definitions for maximum flexibility.
 
-#### Standard Model Identifiers
+##### Standard Model Identifiers
 
 Standard model identifiers are strings in the format `provider:model` with no spaces:
 
@@ -138,7 +141,9 @@ models:
   - openrouter:google/gemini-pro
 ```
 
-#### Custom Model Definitions
+The system will attempt to gracefully correct common formatting errors, but adhering to the standard format is recommended.
+
+##### Custom Model Definitions
 
 For local models, custom endpoints, or proxies, you can define arbitrary HTTP-compatible models using object syntax:
 
@@ -154,17 +159,31 @@ models:
     headers:
       Authorization: 'Bearer whatever-i-want'
     parameters:
-      max_tokens: 150
-      stream: null
+      max_tokens: 150      # Override system default
+      stream: null         # Remove stream parameter entirely
       
+  # Local completions-format model
+  - id: 'local:llama-completions'
+    url: 'http://localhost:4891/v1/completions'
+    modelName: 'llama-3-8b-instruct'
+    inherit: 'openai'
+    format: 'completions'
+    parameters:
+      max_tokens: 100
+      stream: null
+      temperature: 0.7
+  
   # Custom Anthropic-compatible proxy
   - id: 'proxy:claude-sonnet'
     url: 'https://my-proxy.com/v1/messages'
     modelName: 'claude-3-sonnet-20240229'
     inherit: 'anthropic'
+    headers:
+      X-API-Key: '${PROXY_API_KEY}'
+      X-Custom-Header: 'value'
 ```
 
-##### Custom Model Object Fields
+###### Custom Model Object Fields
 
 | Field | Type | Required | Description |
 |---|---|---|---|
@@ -178,16 +197,17 @@ models:
 | `parameters` | `object` | ❌ | Parameter overrides. Set values or use `null` to exclude parameters entirely |
 | `parameterMapping` | `object` | ❌ | Map standard parameter names to provider-specific names |
 
-##### Inheritance Patterns
+###### Inheritance Patterns
 
-`inherit` chooses the request/response format:
+The `inherit` field determines the request/response format:
 
-- `'openai'` – OpenAI ChatCompletions
-- `'anthropic'` – Anthropic Messages
-- `'google'` – Gemini
-- `'mistral'`, `'together'`, `'xai'`, `'openrouter'` – OpenAI-compatible
+- **`'openai'`** - OpenAI ChatCompletions format (messages array, system prompt, temperature, etc.)
+- **`'anthropic'`** - Anthropic Messages format (separate system field, filtered messages)
+- **`'google'`** - Google Gemini format (contents array, generationConfig, systemInstruction)
+- **`'mistral'`** - Mistral format (similar to OpenAI)
+- **`'together'`**, **`'xai'`**, **`'openrouter'`** - OpenAI-compatible formats
 
-##### Parameter Control
+###### Parameter Control
 
 The `parameters` field provides fine-grained control over API request parameters. You can override system defaults, add custom parameters, or exclude parameters entirely.
 
@@ -205,8 +225,8 @@ models:
       stop: ['END', 'STOP']   # Add custom stop sequences
       custom_param: 'value'   # Add provider-specific parameter
       
-  # Local completions-format model
-  - id: 'local:completions-model'
+  # Using null to exclude unwanted parameters
+  - id: 'local:minimal-model'
     url: 'http://localhost:8080/v1/completions'
     modelName: 'minimal-model'
     inherit: 'openai'
@@ -224,7 +244,7 @@ models:
 - **Falsy values**: `0`, `false`, `""`, and `undefined` are preserved as valid parameter values
 - **Final precedence**: `parameters` field has the highest precedence and will override all system-generated values
 
-##### Parameter Mapping
+###### Parameter Mapping
 
 You can also remap standard parameter names to provider-specific names using `parameterMapping`:
 
@@ -244,11 +264,28 @@ models:
       custom_param: 'value'       # Direct parameter
 ```
 
-##### Reasoning Model Support
+###### Reasoning Model Support
 
-Custom models automatically inherit support for advanced reasoning parameters (like `reasoning_effort` for OpenAI or `thinking` objects for Anthropic) based on their `inherit` setting.
+Custom models support advanced reasoning parameters:
 
-##### Environment Variable Substitution
+```yaml
+models:
+  # OpenAI-style reasoning model
+  - id: 'local:reasoning-model'
+    url: 'http://localhost:8080/v1/chat/completions'
+    modelName: 'o1-local'
+    inherit: 'openai'
+    # Will handle reasoningEffort parameter as 'reasoning_effort'
+    
+  # Anthropic-style thinking model
+  - id: 'custom:thinking-claude'
+    url: 'https://thinking-api.com/v1/messages'
+    modelName: 'thinking-claude-3'
+    inherit: 'anthropic'
+    # Will handle thinkingBudget parameter as 'thinking' object
+```
+
+###### Environment Variable Substitution
 
 You can use environment variables in headers and other string fields:
 
@@ -282,6 +319,9 @@ Each item in the list of prompts is an object that can contain the following fie
 | `should` | `(string \| object)[] \| (string \| object)[][]` | **(Optional)** A list of rubric points for the `llm-coverage` evaluation method. Defines the criteria for a successful response. To define alternative valid paths ("OR" logic), this can be a list of lists. Aliased as `points`, `expect`, `expects`, or `expectations`. See details below. |
 | `should_not` | `(string \| object)[] \| (string \| object)[][]` | **(Optional)** A list of rubric points defining criteria that a response **should not** meet. It follows the exact same syntax as the `should` block, including support for a list of lists to create alternative "should not" paths. |
 | `weight` | `number` | **(Optional)** Prompt-level importance multiplier used when averaging scores across prompts. Defaults to `1.0`. Valid range: `0.1`–`10`. Aliases: `importance`, `multiplier`. |
+| `requiredTools` | `string[]` | **(Optional)** For tool-use scenarios, list of tools that must be called in the emitted trace. |
+| `prohibitedTools` | `string[]` | **(Optional)** For tool-use scenarios, tools that must not be called. |
+| `maxCalls` | `number` | **(Optional)** Per-prompt cap for tool calls expected in the emitted trace. |
 
 ##### Message Formats (`messages` array)
 
@@ -307,8 +347,43 @@ You can also use a more compact format where the role is the key. `ai` is also s
 messages:
   - user: 'Tell me about the Roman Empire.'
   - assistant: 'The Roman Empire was one of the most powerful economic, cultural, and military forces in the world.'
-  - user: 'What was its capital?'
+  # You can also leave an assistant turn as null to generate it during the run:
+  - assistant: null
+  - user: 'And then what happened?'
 ```
+
+### Sequential multi-turn with assistant: null (generated turns)
+
+You can model realistic, multi-turn conversations and have the candidate model generate one or more assistant turns during execution by placing `assistant: null` in the `messages` array. The pipeline will:
+
+- Generate a response at each `assistant: null`, append it to the working history, and continue.
+- If the final message is a user message, implicitly generate a final assistant turn (as if there were a trailing `assistant: null`).
+- Use the concatenation of all generated assistant turns as the subject text for evaluation (function checks and LLM-judged points).
+- Save the full conversation history (original messages plus generated turns) for each prompt×model.
+
+Example:
+
+```yaml
+- id: clarify-taxes
+  description: The assistant should ask clarifying questions before offering guidance. We evaluate over the aggregated generated content across turns.
+  messages:
+    - user: I need help with my taxes.
+    - assistant: null          # model generates turn 1
+    - user: I changed jobs mid-year and moved states.
+    - assistant: null          # model generates turn 2
+    - user: Anything else I should consider?  # implicit final assistant generation
+  should:
+    - Asks at least one clarifying question before giving suggestions.
+    - $word_count_between: [30, 500]
+  should_not:
+    - $matches: "(?i)not a (financial|tax) advisor" # example negative check
+```
+
+Notes and guarantees:
+
+- Validation allows `assistant: null`. All other roles must have non-empty string content.
+- If the last authored assistant message is a string (non-null), that message may be used as the final output if no generation is needed at the end.
+- Judges always receive the full transcript with clear markers; UI shows authored nulls as “assistant: null — to be generated” and displays the generated thread where available.
 
 ### The `should` and `should_not` Rubrics
 
@@ -316,28 +391,11 @@ These blocks define the criteria for rubric-based evaluation. The `should` block
 
 Each item in these arrays is a point definition, processed in the following order of precedence:
 
-NOTE: `should_not` is no longer recommended unless you know precisely its flaws and risks. It is best to use `should` and simply flip the assertion, making it a "should not" point. E.g. instead of:
-
-```yaml
-should_not:
-  - "is rude"
-```
-
-you should use:
-
-
-```yaml
-should:
-  - "is not rude"
-```
-
 #### Defining Alternative Rubric Paths (OR logic)
 
 By default, all criteria within a `should` or `should_not` block are treated as an "AND" condition—a response must satisfy all of them to be considered fully successful.
 
 To express an "OR" condition, where a response is considered valid if it satisfies one of several distinct sets of criteria, you can use a **nested list**. Each inner list is a complete, alternative rubric path.
-
-**Important Note**: Each alternative path must define a *valid* or *successful* outcome. This feature is for specifying different ways a response can be correct, not for contrasting "good" and "bad" behaviors within the same `should` block. To specify undesirable behavior, add a negatively-phrased criterion (e.g., `"Does NOT provide medical advice"`) to your main `should` list, as recommended in the `should_not` section below (since `should_not` is no longer recommended, as it increases ambiguity).
 
 ```yaml
 should:
@@ -463,6 +521,71 @@ For more details, see the [POINTS_DOCUMENTATION.md](POINTS_DOCUMENTATION.md).
 
 ---
 
+### Tool-Use (Trace-Only) Support
+
+Weval supports evaluating tool-use without executing any tools. Models are instructed to emit a normalized, machine-parseable tool-call trace, which is parsed and scored deterministically.
+
+#### How it works
+
+- Declare tools and policy in the blueprint header using `tools` and `toolUse` (see table above). The default and only implemented mode is **trace-only**.
+- In your prompt/system message, require the model to output each tool call as a single line prefixed by `TOOL_CALL`, followed by a JSON object with `name` and `arguments`:
+
+```
+TOOL_CALL {"name":"<tool>","arguments":{...}}
+```
+
+- Weval parses these lines from the assistant content and stores them in the result as `toolCalls` (no execution and no extra turns are performed).
+
+#### Minimal example
+
+```yaml
+# Header
+title: "Tool-Use: Calculator & Retrieval (trace-only)"
+models:
+  - openai:gpt-4o-mini
+tools:
+  - name: calculator
+    description: "Evaluate arithmetic expressions."
+    schema:
+      type: object
+      properties: { expression: { type: string } }
+      required: [expression]
+toolUse:
+  enabled: true
+  mode: trace-only
+  maxSteps: 2
+  outputFormat: json-line
+---
+# Prompts
+- id: calc-1
+  messages:
+    - system: |
+        Emit each tool call on its own line:
+        TOOL_CALL {"name":"<tool>","arguments":{...}}
+        Do not output any other text.
+    - user: "What is (312*49) - 777?"
+  should:
+    - $tool_called: "calculator"
+    - $tool_args_match: { name: "calculator", where: { expression: "(312*49)-777" } }
+    - $tool_call_count_between: [1, 1, "calculator"]
+```
+
+#### Scoring tool-use
+
+You can use these point functions in `should`/`should_not`:
+
+- `$tool_called(toolName: string)`
+- `$tool_args_match({ name: string, where: object|string })` – partial object match or boolean JS expression against `args`
+- `$tool_call_count_between([min, max, name?])`
+- `$tool_call_order(["toolA","toolB", ...])`
+
+These checks operate on the parsed `toolCalls` trace only; they do not execute tools and are fully deterministic.
+
+#### Parser compatibility
+
+No parser changes are required. The blueprint parser already forwards unknown configuration fields (such as `tools`, `toolUse`, `context`) into the final config object unchanged.
+
+
 ### Legacy JSON Blueprint Format
 
 The system remains backwardly compatible with the original JSON format.
@@ -493,7 +616,7 @@ The system remains backwardly compatible with the original JSON format.
 }
 ```
 
-### Key Differences from YAML
+#### Key Differences from YAML
 
 - **Single Object**: The entire blueprint is a single JSON object.
 - **Formal Field Names**: While some aliases work, the canonical field names are `promptText`, `idealResponse`, and `points`.
