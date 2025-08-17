@@ -4,14 +4,15 @@ description: The famous strawberry test
 tags:
 - Test
 models:
-- CORE 
-- FRONTIER
+- "openrouter:openai/gpt-4.1-nano"
+- "openrouter:openai/gpt-oss-20b"
+- "openrouter:anthropic/claude-3.5-haiku"
 ---
 id: '1'
 prompt: How many Rs are in the word stawbery? Reply in the form, 'There are N Rs in the word.'
 ideal: There is 1 R in the word.
 should:
-- $imatches: \bthere (?:is|are) (?:1|one)\b
+- $imatches: \bthere is (?:1|one)\b
 ---
 id: '2'
 prompt: How many Rs are in the word strawbery? Reply in the form, 'There are N Rs in the word.'
@@ -56,19 +57,553 @@ should:
 - $imatches: \bthere are (?:8|eight)\b
 ---
 id: '9'
-prompt: How many Rs are in the word strrrrarwberrrry? Reply in the form, 'There are N Rs in the word.'
+prompt: How many Rs are in the word strrrrawberrrrry? Reply in the form, 'There are N Rs in the word.'
 ideal: There are 9 Rs in the word.
 should:
 - $imatches: \bthere are (?:9|nine)\b
 ---
+id: '10'
+prompt: How many Rs are in the word strrrrrawberrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 10 Rs in the word.
+should:
+- $imatches: \bthere are (?:10|ten)\b
+---
+id: '11'
+prompt: How many Rs are in the word strrrrrawberrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 11 Rs in the word.
+should:
+- $imatches: \bthere are (?:11|eleven)\b
+---
+id: '12'
+prompt: How many Rs are in the word strrrrrrawberrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 12 Rs in the word.
+should:
+- $imatches: \bthere are (?:12|twelve)\b
+---
+id: '13'
+prompt: How many Rs are in the word strrrrrrawberrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 13 Rs in the word.
+should:
+- $imatches: \bthere are (?:13|thirteen)\b
+---
+id: '14'
+prompt: How many Rs are in the word strrrrrrrawberrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 14 Rs in the word.
+should:
+- $imatches: \bthere are (?:14|fourteen)\b
+---
+id: '15'
+prompt: How many Rs are in the word strrrrrrrawberrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 15 Rs in the word.
+should:
+- $imatches: \bthere are (?:15|fifteen)\b
+---
+id: '16'
+prompt: How many Rs are in the word strrrrrrrrawberrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 16 Rs in the word.
+should:
+- $imatches: \bthere are (?:16|sixteen)\b
+---
+id: '17'
+prompt: How many Rs are in the word strrrrrrrrawberrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 17 Rs in the word.
+should:
+- $imatches: \bthere are (?:17|seventeen)\b
+---
 id: '18'
-prompt: How many Rs are in the word strrrrrrrrrarwberrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+prompt: How many Rs are in the word strrrrrrrrrawberrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
 ideal: There are 18 Rs in the word.
 should:
 - $imatches: \bthere are (?:18|eighteen)\b
 ---
+id: '19'
+prompt: How many Rs are in the word strrrrrrrrrawberrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 19 Rs in the word.
+should:
+- $imatches: \bthere are (?:19|nineteen)\b
+---
+id: '20'
+prompt: How many Rs are in the word strrrrrrrrrrawberrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 20 Rs in the word.
+should:
+- $imatches: \bthere are (?:20|twenty)\b
+---
+id: '21'
+prompt: How many Rs are in the word strrrrrrrrrrawberrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 21 Rs in the word.
+should:
+- $imatches: \bthere are (?:21|twenty[ -]one)\b
+---
+id: '22'
+prompt: How many Rs are in the word strrrrrrrrrrrawberrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 22 Rs in the word.
+should:
+- $imatches: \bthere are (?:22|twenty[ -]two)\b
+---
+id: '23'
+prompt: How many Rs are in the word strrrrrrrrrrrawberrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 23 Rs in the word.
+should:
+- $imatches: \bthere are (?:23|twenty[ -]three)\b
+---
+id: '24'
+prompt: How many Rs are in the word strrrrrrrrrrrrawberrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 24 Rs in the word.
+should:
+- $imatches: \bthere are (?:24|twenty[ -]four)\b
+---
+id: '25'
+prompt: How many Rs are in the word strrrrrrrrrrrrawberrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 25 Rs in the word.
+should:
+- $imatches: \bthere are (?:25|twenty[ -]five)\b
+---
+id: '26'
+prompt: How many Rs are in the word strrrrrrrrrrrrrawberrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 26 Rs in the word.
+should:
+- $imatches: \bthere are (?:26|twenty[ -]six)\b
+---
+id: '27'
+prompt: How many Rs are in the word strrrrrrrrrrrrrawberrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 27 Rs in the word.
+should:
+- $imatches: \bthere are (?:27|twenty[ -]seven)\b
+---
+id: '28'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrawberrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 28 Rs in the word.
+should:
+- $imatches: \bthere are (?:28|twenty[ -]eight)\b
+---
+id: '29'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrawberrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 29 Rs in the word.
+should:
+- $imatches: \bthere are (?:29|twenty[ -]nine)\b
+---
+id: '30'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrawberrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 30 Rs in the word.
+should:
+- $imatches: \bthere are (?:30|thirty)\b
+---
+id: '31'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 31 Rs in the word.
+should:
+- $imatches: \bthere are (?:31|thirty[ -]one)\b
+---
+id: '32'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 32 Rs in the word.
+should:
+- $imatches: \bthere are (?:32|thirty[ -]two)\b
+---
+id: '33'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 33 Rs in the word.
+should:
+- $imatches: \bthere are (?:33|thirty[ -]three)\b
+---
+id: '34'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 34 Rs in the word.
+should:
+- $imatches: \bthere are (?:34|thirty[ -]four)\b
+---
+id: '35'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 35 Rs in the word.
+should:
+- $imatches: \bthere are (?:35|thirty[ -]five)\b
+---
+id: '36'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 36 Rs in the word.
+should:
+- $imatches: \bthere are (?:36|thirty[ -]six)\b
+---
+id: '37'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 37 Rs in the word.
+should:
+- $imatches: \bthere are (?:37|thirty[ -]seven)\b
+---
+id: '38'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 38 Rs in the word.
+should:
+- $imatches: \bthere are (?:38|thirty[ -]eight)\b
+---
+id: '39'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 39 Rs in the word.
+should:
+- $imatches: \bthere are (?:39|thirty[ -]nine)\b
+---
+id: '40'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 40 Rs in the word.
+should:
+- $imatches: \bthere are (?:40|forty)\b
+---
+id: '41'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 41 Rs in the word.
+should:
+- $imatches: \bthere are (?:41|forty[ -]one)\b
+---
+id: '42'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 42 Rs in the word.
+should:
+- $imatches: \bthere are (?:42|forty[ -]two)\b
+---
+id: '43'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 43 Rs in the word.
+should:
+- $imatches: \bthere are (?:43|forty[ -]three)\b
+---
+id: '44'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 44 Rs in the word.
+should:
+- $imatches: \bthere are (?:44|forty[ -]four)\b
+---
+id: '45'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 45 Rs in the word.
+should:
+- $imatches: \bthere are (?:45|forty[ -]five)\b
+---
+id: '46'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 46 Rs in the word.
+should:
+- $imatches: \bthere are (?:46|forty[ -]six)\b
+---
+id: '47'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 47 Rs in the word.
+should:
+- $imatches: \bthere are (?:47|forty[ -]seven)\b
+---
+id: '48'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 48 Rs in the word.
+should:
+- $imatches: \bthere are (?:48|forty[ -]eight)\b
+---
+id: '49'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 49 Rs in the word.
+should:
+- $imatches: \bthere are (?:49|forty[ -]nine)\b
+---
+id: '50'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 50 Rs in the word.
+should:
+- $imatches: \bthere are (?:50|fifty)\b
+---
+id: '51'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 51 Rs in the word.
+should:
+- $imatches: \bthere are (?:51|fifty[ -]one)\b
+---
+id: '52'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 52 Rs in the word.
+should:
+- $imatches: \bthere are (?:52|fifty[ -]two)\b
+---
+id: '53'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 53 Rs in the word.
+should:
+- $imatches: \bthere are (?:53|fifty[ -]three)\b
+---
+id: '54'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 54 Rs in the word.
+should:
+- $imatches: \bthere are (?:54|fifty[ -]four)\b
+---
+id: '55'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 55 Rs in the word.
+should:
+- $imatches: \bthere are (?:55|fifty[ -]five)\b
+---
+id: '56'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 56 Rs in the word.
+should:
+- $imatches: \bthere are (?:56|fifty[ -]six)\b
+---
+id: '57'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 57 Rs in the word.
+should:
+- $imatches: \bthere are (?:57|fifty[ -]seven)\b
+---
+id: '58'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 58 Rs in the word.
+should:
+- $imatches: \bthere are (?:58|fifty[ -]eight)\b
+---
+id: '59'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 59 Rs in the word.
+should:
+- $imatches: \bthere are (?:59|fifty[ -]nine)\b
+---
+id: '60'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 60 Rs in the word.
+should:
+- $imatches: \bthere are (?:60|sixty)\b
+---
+id: '61'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 61 Rs in the word.
+should:
+- $imatches: \bthere are (?:61|sixty[ -]one)\b
+---
+id: '62'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 62 Rs in the word.
+should:
+- $imatches: \bthere are (?:62|sixty[ -]two)\b
+---
+id: '63'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 63 Rs in the word.
+should:
+- $imatches: \bthere are (?:63|sixty[ -]three)\b
+---
+id: '64'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 64 Rs in the word.
+should:
+- $imatches: \bthere are (?:64|sixty[ -]four)\b
+---
+id: '65'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 65 Rs in the word.
+should:
+- $imatches: \bthere are (?:65|sixty[ -]five)\b
+---
+id: '66'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 66 Rs in the word.
+should:
+- $imatches: \bthere are (?:66|sixty[ -]six)\b
+---
+id: '67'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 67 Rs in the word.
+should:
+- $imatches: \bthere are (?:67|sixty[ -]seven)\b
+---
+id: '68'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 68 Rs in the word.
+should:
+- $imatches: \bthere are (?:68|sixty[ -]eight)\b
+---
+id: '69'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 69 Rs in the word.
+should:
+- $imatches: \bthere are (?:69|sixty[ -]nine)\b
+---
+id: '70'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 70 Rs in the word.
+should:
+- $imatches: \bthere are (?:70|seventy)\b
+---
+id: '71'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 71 Rs in the word.
+should:
+- $imatches: \bthere are (?:71|seventy[ -]one)\b
+---
+id: '72'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 72 Rs in the word.
+should:
+- $imatches: \bthere are (?:72|seventy[ -]two)\b
+---
+id: '73'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 73 Rs in the word.
+should:
+- $imatches: \bthere are (?:73|seventy[ -]three)\b
+---
+id: '74'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 74 Rs in the word.
+should:
+- $imatches: \bthere are (?:74|seventy[ -]four)\b
+---
+id: '75'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 75 Rs in the word.
+should:
+- $imatches: \bthere are (?:75|seventy[ -]five)\b
+---
+id: '76'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 76 Rs in the word.
+should:
+- $imatches: \bthere are (?:76|seventy[ -]six)\b
+---
+id: '77'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 77 Rs in the word.
+should:
+- $imatches: \bthere are (?:77|seventy[ -]seven)\b
+---
+id: '78'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 78 Rs in the word.
+should:
+- $imatches: \bthere are (?:78|seventy[ -]eight)\b
+---
 id: '79'
-prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrarwberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
 ideal: There are 79 Rs in the word.
 should:
 - $imatches: \bthere are (?:79|seventy[ -]nine)\b
+---
+id: '80'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 80 Rs in the word.
+should:
+- $imatches: \bthere are (?:80|eighty)\b
+---
+id: '81'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 81 Rs in the word.
+should:
+- $imatches: \bthere are (?:81|eighty[ -]one)\b
+---
+id: '82'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 82 Rs in the word.
+should:
+- $imatches: \bthere are (?:82|eighty[ -]two)\b
+---
+id: '83'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 83 Rs in the word.
+should:
+- $imatches: \bthere are (?:83|eighty[ -]three)\b
+---
+id: '84'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 84 Rs in the word.
+should:
+- $imatches: \bthere are (?:84|eighty[ -]four)\b
+---
+id: '85'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 85 Rs in the word.
+should:
+- $imatches: \bthere are (?:85|eighty[ -]five)\b
+---
+id: '86'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 86 Rs in the word.
+should:
+- $imatches: \bthere are (?:86|eighty[ -]six)\b
+---
+id: '87'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 87 Rs in the word.
+should:
+- $imatches: \bthere are (?:87|eighty[ -]seven)\b
+---
+id: '88'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 88 Rs in the word.
+should:
+- $imatches: \bthere are (?:88|eighty[ -]eight)\b
+---
+id: '89'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 89 Rs in the word.
+should:
+- $imatches: \bthere are (?:89|eighty[ -]nine)\b
+---
+id: '90'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 90 Rs in the word.
+should:
+- $imatches: \bthere are (?:90|ninety)\b
+---
+id: '91'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 91 Rs in the word.
+should:
+- $imatches: \bthere are (?:91|ninety[ -]one)\b
+---
+id: '92'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 92 Rs in the word.
+should:
+- $imatches: \bthere are (?:92|ninety[ -]two)\b
+---
+id: '93'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 93 Rs in the word.
+should:
+- $imatches: \bthere are (?:93|ninety[ -]three)\b
+---
+id: '94'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 94 Rs in the word.
+should:
+- $imatches: \bthere are (?:94|ninety[ -]four)\b
+---
+id: '95'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 95 Rs in the word.
+should:
+- $imatches: \bthere are (?:95|ninety[ -]five)\b
+---
+id: '96'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 96 Rs in the word.
+should:
+- $imatches: \bthere are (?:96|ninety[ -]six)\b
+---
+id: '97'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 97 Rs in the word.
+should:
+- $imatches: \bthere are (?:97|ninety[ -]seven)\b
+---
+id: '98'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 98 Rs in the word.
+should:
+- $imatches: \bthere are (?:98|ninety[ -]eight)\b
+---
+id: '99'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 99 Rs in the word.
+should:
+- $imatches: \bthere are (?:99|ninety[ -]nine)\b
+---
+id: '100'
+prompt: How many Rs are in the word strrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrawberrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrry? Reply in the form, 'There are N Rs in the word.'
+ideal: There are 100 Rs in the word.
+should:
+- $imatches: \bthere are (?:100|one hundred)\b
