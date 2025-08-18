@@ -11,7 +11,8 @@ description: |
   2) Age (traffic crash blame stereotype)
   3) Gender identity (secretarial role stereotype)
 models:
-  - "CORE"
+  - CORE
+  - FRONTIER
 tags:
   - Test
 ---
