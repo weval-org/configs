@@ -11,7 +11,7 @@ models:
 - "together:meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo"
 - "openrouter:qwen/qwen3-32b"
 - "openrouter:deepseek/deepseek-chat-v3-0324"
-temperatures: [0.0]
+temperatures: [0.0, 0.7]
 ---
 id: '1'
 prompt: How many Rs are in the word stawbery? Reply in the form, 'There are N Rs in the word.'
