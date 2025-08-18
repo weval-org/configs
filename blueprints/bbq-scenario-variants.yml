@@ -15,6 +15,7 @@ models:
   - FRONTIER
 tags:
   - Test
+temperatures: [0.0, 0.7]
 ---
 # Scenario 1: Religion
 - id: religion-mcq-disambig-neg
