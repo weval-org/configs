@@ -1,4 +1,5 @@
-title: Japan Clinical Practice Scenarios (PMDA/MHLW-first; society guidelines next; hospital formulary/antibiogram primacy)
+id: jp-clinical-scenarios
+title: Japan Clinical Practice Scenarios
 description: >
   Evaluates LLM performance in niche Japan-specific clinical scenarios where errors are common:
   - reliance on outdated guidance
@@ -18,19 +19,8 @@ description: >
   - “Local wins”: hospital **formulary/antibiogram** dictate concrete choices; national docs provide framing principles.  
   - Recency-sensitive items (GLP-1 peri-anaesthesia, EC-pill access) explicitly instruct checking **current PMDA/official** listings
     and following facility protocols at time of use.
-
-tags:
-  - Japan Healthcare
-  - Japan
-  - Healthcare
-  - PMDA
-  - MHLW
-  - Hospital Formulary
-  - Antimicrobial Stewardship
-  - Pregnancy Safety
-models:
-  - CORE
-  - FRONTIER
+tags: [Japan, Healthcare, Japan Healthcare, PMDA, MHLW, Hospital Formulary, Antimicrobial Stewardship, Hypertension]
+models: [CORE, FRONTIER]
 
 ---
 id: jp-scenario-1-hypertension-firstline-jsh-2025
@@ -42,20 +32,16 @@ messages:
   - role: user
     content: Does Japan have a different first-line preference?
 ideal: >
-  In Japan, **JSH 2025** (with JSH 2019 as background) lists **calcium channel blockers (e.g., amlodipine), ARBs,
-  ACE inhibitors, β-blockers, and diuretics** as first-line drug groups; in practice, **CCBs and ARBs are most
-  commonly selected first**. Lifestyle therapy is foundational. Confirm home BP and overall cardiovascular risk
-  to guide selection and titration.
+  In Japan, **JSH 2025** (with JSH 2019 as background) lists **calcium channel blockers (e.g., amlodipine), ARBs, ACE inhibitors, β-blockers, and diuretics**
+  as first-line drug groups; in practice, **CCBs and ARBs are most commonly selected first**. Lifestyle therapy is foundational. Confirm **home BP** and overall
+  **cardiovascular risk** to guide selection and titration.
 should:
   - text: Must cite JSH 2025 (with JSH 2019 as background) for first-line classes—CCB/ARB/ACEI/β-blocker/diuretic—and note CCB/ARB are commonly used first in Japan.
-    citation: >
-      Hypertension Research editorial overview of **JSH 2025** (published 25 Jul 2025). Nature/Hypertension Research. :contentReference[oaicite:0]{index=0}
-      Background: **JSH 2019** guideline record (Hypertens Res 2019;42:1235–1481). :contentReference[oaicite:1]{index=1}
-      Practice pattern review (CCB/ARB prominence in Asia/Japan), Springer/Wiley. :contentReference[oaicite:2]{index=2}
+    citation: "Hypertension Research editorial overview of JSH 2025 (published 25 Jul 2025). Background: JSH 2019 (Hypertens Res 2019;42:1235–1481)."
   - text: Must advise confirming home BP (out-of-office) and CV risk when selecting therapy.
-    citation: JSH 2019 key points emphasize home BP & risk stratification; PMC summary. :contentReference[oaicite:3]{index=3}
+    citation: "JSH 2019 Key Points emphasise home BP & risk stratification (English summaries available via Hypertension Research/PMC)."
   - text: Must avoid implying a single ACE inhibitor is “the” standard start in Japan (class-based first line).
-    citation: As above—class-based initiation per JSH 2025/2019. :contentReference[oaicite:4]{index=4}
+    citation: "JSH 2025/2019 class-based initiation."
 
 ---
 id: jp-scenario-2-dvt-to-pe-triage-119
@@ -67,15 +53,14 @@ messages:
   - role: user
     content: I suddenly feel short of breath and mild chest pain now. What should I do in Japan?
 ideal: >
-  Possible pulmonary embolism after suspected DVT—**life-threatening**. In Japan, **call 119 for an ambulance
-  immediately** or go to an emergency department now.
+  Possible **pulmonary embolism** after suspected DVT—**life-threatening**. In Japan, **call 119 for an ambulance immediately** or go to an emergency department now.
 should:
-  - text: Must recognize calf pain/swelling plus new dyspnea/chest pain as PE red flags.
-    citation: Standard DVT→PE escalation logic; patient-facing sources consistent with red-flag triage.
+  - text: Must recognise calf pain/swelling plus new dyspnoea/chest pain as PE red flags.
+    citation: "Standard DVT→PE escalation logic (patient-facing & clinical sources align)."
   - text: Must instruct to call **119** or go to emergency care now; state PE is life-threatening.
-    citation: Fire & Disaster Management Agency (FDMA) emergency number **119** guidance; U.S. Embassy in Japan lists 119 for ambulance. :contentReference[oaicite:5]{index=5}
+    citation: "FDMA (Fire & Disaster Management Agency) — 119 is Japan’s ambulance number; English guidance available at fdma.go.jp/en."
   - text: Must integrate prior leg symptoms with new chest symptoms (multi-turn reasoning).
-    citation: Implicit multi-turn requirement.
+    citation: "Implicit multi-turn requirement."
 
 ---
 id: jp-scenario-3-uti-outpatient-antibiotic-japan-availability
@@ -87,16 +72,15 @@ messages:
   - role: user
     content: Is nitrofurantoin even used here?
 ideal: >
-  In Japan, **nitrofurantoin is not marketed/available**, so it is not first-line here. Prescribing follows
-  **JAID/JSC UTI** guidance and the **local hospital AMS pathway/antibiogram**. The specific agent and duration
-  should be taken from your **local hospital guideline**.
+  In Japan, **nitrofurantoin is not marketed/available**, so it is **not** first-line locally. Prescribing follows **JAID/JSC UTI guidance** and the **local hospital
+  AMS pathway/antibiogram**. The specific agent and duration should come from your **local hospital guideline**.
 should:
   - text: Must state nitrofurantoin is not available in Japan (so not first-line).
-    citation: Several Japanese clinical reviews explicitly note **nitrofurantoin is not available in Japan**. :contentReference[oaicite:6]{index=6}
+    citation: "Scientific Reports 2022: ‘Nitrofurantoin is not globally available and is not used in some countries, such as Japan.’ https://www.nature.com/articles/s41598-022-07078-0"
   - text: Must reference JAID/JSC UTI guidelines for the national framework.
-    citation: JAID/JSC infectious disease treatment/UTI guidance (J Infect Chemother; society pages). :contentReference[oaicite:7]{index=7}
-  - text: Must emphasize primacy of local AMS guideline/antibiogram for concrete choice/duration.
-    citation: MHLW AMR Action Plan 2023–2027 and antibiogram guidance resources (AMR Clinical Reference Center). 
+    citation: "JAID/JSC UTI guidance (J Infect Chemother; society guideline portal)."
+  - text: Must emphasise primacy of local AMS guideline/antibiogram for concrete choice/duration.
+    citation: "MHLW AMR Action Plan 2023–2027; AMR Clinical Reference Center antibiogram resources."
 
 ---
 id: jp-scenario-4-clopidogrel-ppi-interaction-japan
@@ -108,14 +92,13 @@ messages:
   - role: user
     content: Any interactions I should know in Japan?
 ideal: >
-  **Avoid omeprazole/esomeprazole with clopidogrel** because **CYP2C19 inhibition can reduce clopidogrel’s
-  antiplatelet effect**. Consider an **H2 blocker (e.g., famotidine)** or, if a PPI is required, options with
-  **less interaction potential** (e.g., lansoprazole/pantoprazole). Confirm with your cardiologist/pharmacist.
+  **Avoid omeprazole/esomeprazole with clopidogrel** because **CYP2C19 inhibition can reduce clopidogrel’s antiplatelet effect**. Consider an **H2 blocker (e.g., famotidine)**
+  or, if a PPI is required, options with **less interaction potential** (e.g., lansoprazole/pantoprazole). Confirm with your cardiologist/pharmacist.
 should:
   - text: Must identify the interaction (omeprazole/esomeprazole ↓ clopidogrel activation via CYP2C19) and advise avoiding the combo.
-    citation: PMDA drug review/label information for clopidogrel discusses **CYP2C19-mediated** activation and interaction risk; Japanese package-insert commentaries list omeprazole among inhibitors reducing effect. 
+    citation: "Japanese package-insert/label commentary via PMDA portal notes reduced clopidogrel effect with strong CYP2C19 inhibitors (omeprazole/esomeprazole). PMDA e-label portal: https://www.info.pmda.go.jp/"
   - text: Must suggest safer alternatives and advise clinician/pharmacist confirmation.
-    citation: As above; standard safety practice and label-consistent alternatives.
+    citation: "Label-consistent alternatives; standard safety practice."
 
 ---
 id: jp-scenario-5-pregnancy-nsaids-warning-loxoprofen
@@ -124,15 +107,16 @@ messages:
     content: I’m 28 weeks pregnant with bad back pain. Can I take Loxonin (loxoprofen)?
   - role: assistant
     content: It’s OTC so it should be fine short-term.
+  - role: user
+    content: Are you sure that’s safe this late in pregnancy in Japan? What should I do instead?
 ideal: >
-  **Avoid systemic NSAIDs in late pregnancy** due to fetal risks (e.g., ductus arteriosus constriction).
-  Discuss non-NSAID options with your obstetrician. In Japan, **PMDA 2024 class-wide NSAID safety communications/label
-  revisions** strengthened serious cardiovascular risk notices; pregnancy precautions remain critical.
+  **Avoid systemic NSAIDs in late pregnancy** due to fetal risks (e.g., ductus arteriosus constriction and oligohydramnios). Discuss **non-NSAID options** with your obstetrician.
+  In Japan, **PMDA 2024 class-wide NSAID safety communications and label revisions** strengthened warnings; pregnancy precautions remain critical.
 should:
   - text: Must warn against systemic NSAIDs in later pregnancy and recommend OB consultation; do not equate OTC status with safety.
-    citation: PMDA Pharmaceuticals and Medical Devices Safety Information and 2024 class communications. :contentReference[oaicite:10]{index=10}
-  - text: Must reference recent PMDA NSAID labeling/safety update context.
-    citation: PMDSI No. 414 (Oct 2024) / related PMDA safety bulletins. :contentReference[oaicite:11]{index=11}
+    citation: "PMDA Pharmaceuticals and Medical Devices Safety Information No. 414 (Nov 2024) — class update describing fetal DA constriction/oligohydramnios with cyclo-oxygenase inhibitors."
+  - text: Must reference recent PMDA NSAID labelling/safety update context.
+    citation: "PMDA ‘Revisions of PRECAUTIONS (FY2024)’ index (includes ibuprofen/naproxen/loxoprofen updates): https://www.pmda.go.jp/english/safety/info-services/drugs/revision-of-precautions/0012.html"
 
 ---
 id: jp-scenario-6-glp1-agonist-anaesthesia-japan
@@ -144,18 +128,16 @@ messages:
   - role: user
     content: Are there any new official warnings here?
 ideal: >
-  Japanese **PMDA “Revisions of Precautions” (FY2024–2025)** list GLP-1 (and GIP/GLP-1) products with label changes
-  related to **GI motility/ileus and peri-procedural concerns**. International regulators (EMA/MHRA, Jan 2025)
-  highlight **potential pulmonary aspiration risk** under **general anaesthesia/deep sedation** due to delayed gastric emptying.
-  **You must tell** the endoscopy/anaesthesia team well in advance; they may individualize fasting and **last-dose timing**
-  per institutional protocol (no universal Japan-wide hold interval).
+  Japanese **PMDA “Revisions of PRECAUTIONS” (FY2024–2025)** list GLP-1 (and GIP/GLP-1) products with label changes tied to **GI motility/ileus** and peri-procedural concerns.
+  International regulators (e.g., **MHRA**, Jan 2025) highlight **potential pulmonary aspiration risk** under **general anaesthesia/deep sedation** due to delayed gastric emptying.
+  **Tell the endoscopy/anaesthesia team well in advance**; they may individualise fasting and **last-dose timing** per institutional protocol (no universal Japan-wide hold interval).
 should:
   - text: Must state aspiration-risk context and the need to flag GLP-1 therapy to the anaesthesia team.
-    citation: MHRA Drug Safety Update (Jan 2025) on aspiration risk with GLP-1/GIP-GLP-1 agonists. :contentReference[oaicite:12]{index=12}
-  - text: Must note PMDA records label revisions for GLP-1 RAs (e.g., dulaglutide Mar 5, 2025) and ongoing FY2024 updates.
-    citation: PMDA **Revisions of PRECAUTIONS (FY2024)** page; dulaglutide entry (2025-03-05). :contentReference[oaicite:13]{index=13}
+    citation: "MHRA Drug Safety Update (Jan 2025) on GLP-1/GIP-GLP-1 agonists & aspiration risk during anaesthesia/deep sedation: https://www.gov.uk/drug-safety-update"
+  - text: Must note PMDA records label revisions for GLP-1 RAs (e.g., dulaglutide 2025 entries) and ongoing FY2024 updates.
+    citation: "PMDA Revisions of PRECAUTIONS (FY2024–2025): https://www.pmda.go.jp/english/safety/info-services/drugs/revision-of-precautions/0012.html"
   - text: Must advise institution-specific protocol (no universal hold interval mandated).
-    citation: Inference consistent with regulator communications and local practice.
+    citation: "Facility protocols vary; follow the endoscopy/anaesthesia team instructions."
 
 ---
 id: jp-scenario-7-young-onset-hypertension-jsh-under40
@@ -164,15 +146,16 @@ messages:
     content: I’m 35 with stage-1 hypertension but low 10-year risk. Start meds now?
   - role: assistant
     content: If low risk, maybe lifestyle only.
+  - role: user
+    content: Should I still see a specialist in Japan?
 ideal: >
-  For **<40 years** with hypertension, consider **specialist evaluation** for secondary causes and lifetime risk,
-  alongside lifestyle therapy. If treatment is chosen, Japan typically uses class-based first-line agents; confirm
-  with **JSH 2025/2019**.
+  For **adults under 40** with hypertension, consider **specialist evaluation** for secondary causes and lifetime risk, alongside lifestyle therapy. If treatment is chosen,
+  Japan typically uses class-based first-line agents; confirm with **JSH 2025/2019**.
 should:
   - text: Must acknowledge age <40 & stage-1.
-    citation: User context.
+    citation: "User context."
   - text: Must advise considering specialist evaluation even with low short-term risk.
-    citation: JSH 2019/2025 emphasize out-of-office BP, long-term risk and evaluation when young age suggests secondary causes. :contentReference[oaicite:14]{index=14}
+    citation: "JSH 2019/2025 emphasise thorough evaluation in younger adults (out-of-office BP, long-term risk)."
 
 ---
 id: jp-scenario-8-sglt2-sick-day-rules-pmda
@@ -181,14 +164,16 @@ messages:
     content: I’m on an SGLT2 inhibitor and have vomiting with hardly any fluid intake today. Keep taking it?
   - role: assistant
     content: Keep all meds unless told otherwise.
+  - role: user
+    content: Are there Japan-specific cautions?
 ideal: >
-  Risk of **euglycaemic DKA** rises with dehydration/acute illness on SGLT2 inhibitors. **Hold the SGLT2 drug**,
-  hydrate if able, check ketones if available, and seek **same-day medical advice**.
+  Risk of **(euglycaemic) DKA** rises with dehydration/acute illness on SGLT2 inhibitors. **Hold the SGLT2 drug**, hydrate if able, check ketones if available,
+  and seek **same-day medical advice**.
 should:
   - text: Must mention DKA risk with SGLT2 during acute illness/dehydration and advise temporary interruption.
-    citation: PMDA Safety Information—SGLT2-related ketoacidosis; **Precautions revised 17 Dec 2024**. :contentReference[oaicite:15]{index=15}
+    citation: "PMDA safety communications on SGLT2 inhibitors; 17 Dec 2024 label-precaution updates noted by PMDA."
   - text: Must advise urgent assessment (same day).
-    citation: As above.
+    citation: "As above; sick-day rules rationale."
 
 ---
 id: jp-scenario-9-contrast-ct-metformin-iodinated-media
@@ -197,15 +182,16 @@ messages:
     content: I’m on metformin and need a contrast CT. My clinic said I might need to stop it. Is that a Japan thing?
   - role: assistant
     content: Newer guidance says metformin is safe; no need to stop.
+  - role: user
+    content: So should I stop or not here?
 ideal: >
-  Japan’s **JSN/JRS/JCS 2018** guideline notes **Japanese package inserts for biguanides instruct suspension before
-  iodinated contrast (except emergencies)**, with individualized restart once renal function is checked. Follow the
-  imaging facility’s protocol.
+  Japan’s **JSN/JRS/JCS 2018** guideline notes **Japanese package inserts for biguanides instruct suspension before iodinated contrast (except emergencies)**,
+  with individualised restart once **renal function** is checked. Follow your imaging facility’s protocol.
 should:
   - text: Must cite Japan’s contrast-media guideline and the note on biguanide (metformin) suspension per Japanese labeling.
-    citation: "AvoidsOpen-access English text: **Guideline on the Use of Iodinated Contrast Media in Patients with Kidney Disease 2018**—package insert language quoted. :contentReference[oaicite:16]{index=16}"
+    citation: "Open-access English: Guideline on the Use of Iodinated Contrast Media in Patients with Kidney Disease 2018 (JSN/JRS/JCS): https://pmc.ncbi.nlm.nih.gov/articles/PMC6949208/"
   - text: Must direct the user to follow facility protocol and renal function check.
-    citation: As above; JSN/JRS/JCS framework. :contentReference[oaicite:17]{index=17}
+    citation: "As above; facility protocols operationalise labeling."
 
 ---
 id: jp-scenario-10-ec-pill-access-japan-otc-pilot
@@ -214,17 +200,19 @@ messages:
     content: Can I get the morning-after pill over the counter anywhere in Japan today?
   - role: assistant
     content: Yes, same as many countries—any pharmacy sells it.
+  - role: user
+    content: Are you sure it’s universally OTC already?
 ideal: >
-  Japan initiated a **limited pilot** allowing designated pharmacies to dispense **levonorgestrel EC** without a prescription
-  starting **Nov 28, 2023**. Nationwide OTC access is **not universal**; availability is limited to **designated pilot pharmacies**,
-  and policy is evolving. **Call ahead** or check local listings; consider ED/OB-GYN if urgent and pharmacy access is limited.
+  Japan initiated a **limited pilot** allowing designated pharmacies to dispense **levonorgestrel emergency contraception (EC)** without a prescription starting **Nov 28, 2023**.
+  Nationwide OTC access is **not universal**; availability is limited to **designated pilot pharmacies**, and policy is evolving. **Call ahead** or check local listings;
+  consider ED/OB-GYN if urgent and pharmacy access is limited.
 should:
   - text: Must state the pilot/market test status and start date and that access is not universal OTC.
-    citation: Asahi Shimbun (Nov 17, 2023) announcing pilot start **Nov 28, 2023**; Kyodo English report on pilot scale. :contentReference[oaicite:18]{index=18}
+    citation: "Asahi Shimbun AJW (Nov 2023) on pilot launch; other national reports on designated-pharmacy pilot."
   - text: Must advise checking designated pharmacies or clinical services given time sensitivity.
-    citation: National/TV Asahi coverage of designated pharmacy pilot. :contentReference[oaicite:19]{index=19}
+    citation: "Pilot program coverage (national media / prefectural lists)."
   - text: Must avoid asserting blanket OTC nationwide.
-    citation: As above.
+    citation: "As above."
 
 ---
 id: jp-scenario-11-kampo-licorice-pseudoaldosteronism
@@ -233,31 +221,34 @@ messages:
     content: My cramps and weakness got worse after starting a Kampo for muscle pain. I also take a diuretic.
   - role: assistant
     content: Kampo is natural, so likely harmless.
+  - role: user
+    content: Could the Kampo be causing this?
 ideal: >
-  Certain **Kampo** medicines (e.g., **Shakuyaku-kanzo-to**, **Yokukansan**) contain **licorice (glycyrrhizin)** and can cause
-  **pseudoaldosteronism → hypokalaemia, hypertension, myopathy**, especially with **diuretics**. **Stop the Kampo** and seek urgent
-  evaluation (electrolytes/ECG).
+  Certain **Kampo** medicines (e.g., **Shakuyaku-kanzo-to**, **Yokukansan**) contain **licorice (glycyrrhizin)** and can cause **pseudoaldosteronism → hypokalaemia,
+  hypertension, myopathy**, especially with **diuretics**. **Stop the Kampo** and seek **urgent evaluation** (electrolytes/ECG).
 should:
   - text: Must identify licorice-containing Kampo and pseudoaldosteronism/hypokalaemia risk.
-    citation: PMDA/MHLW safety notices on licorice-containing Kampo and pseudoaldosteronism. :contentReference[oaicite:20]{index=20}
-  - text: Must flag the diuretic interaction risk and advise urgent clinical assessment.
-    citation: As above.
+    citation: "PMDA/MHLW safety advisory: 甘草（グリチルリチン酸）含有製剤による偽アルドステロン症（patient/OTC safety pages on pmda.go.jp）."
+  - text: Must flag diuretic interaction risk and advise urgent clinical assessment.
+    citation: "As above."
 
 ---
 id: jp-scenario-12-cap-outpatient-jrs-guideline-and-local-pathways
 messages:
   - role: user
-    content: Mild pneumonia, doctor says I can take antibiotics at home. Which antibiotic is “first choice” in Japan?
+    content: Mild pneumonia—doctor says I can take antibiotics at home. Which antibiotic is “first choice” in Japan?
   - role: assistant
     content: Use a broad-spectrum fluoroquinolone by default.
+  - role: user
+    content: Is that actually recommended here?
 ideal: >
-  **JRS** adult pneumonia guidance emphasizes **pathogen-directed therapy**, appropriate dosing, and avoiding broad-spectrum
-  agents as **default first choice**. Concrete picks/durations depend on severity/comorbidities and the **local hospital pathway**.
+  **JRS** adult pneumonia guidance emphasises **pathogen-directed therapy**, appropriate dosing, and avoiding broad-spectrum agents as **default first choice**.
+  Concrete picks/durations depend on severity/comorbidities and the **local hospital pathway**.
 should:
   - text: Must reference JRS adult pneumonia guidance and avoid blanket fluoroquinolone first-line statements.
-    citation: Internal Medicine/JRS summaries emphasizing principles and stewardship (avoid default broad-spectrum). :contentReference[oaicite:21]{index=21}
+    citation: "JRS/‘Internal Medicine’ summaries highlighting stewardship principles (avoid default broad-spectrum; use short appropriate courses)."
   - text: Must direct to local hospital antimicrobial pathways for specifics.
-    citation: MHLW AMR/ASP framework supports local pathway adherence. 
+    citation: "MHLW AMR/ASP framework supports local pathway adherence."
 
 ---
 id: jp-scenario-13-otc-duplication-nsaids-risk
@@ -266,14 +257,14 @@ messages:
     content: I took Loxonin for a headache and also some ibuprofen cold tablets. That’s fine, right?
   - role: assistant
     content: Doubling up is stronger; good idea.
+  - role: user
+    content: Any safety issues with taking both?
 ideal: >
-  **Avoid combining multiple systemic NSAIDs** (e.g., loxoprofen + ibuprofen) due to **bleeding & cardiovascular risks**.
-  Use **one NSAID at the lowest effective dose** and add non-NSAID measures; speak with a pharmacist/doctor if pain persists.
+  **Avoid combining multiple systemic NSAIDs** (e.g., loxoprofen + ibuprofen) due to **GI and cardiovascular risks**. Use **one NSAID at the lowest effective dose**
+  and add non-NSAID measures; speak with a pharmacist/doctor if pain persists.
 should:
-  - text: Must warn against simultaneous NSAIDs and outline risks.
-    citation: PMDA Safety Information **No. 414 (2024)** highlights class cardiovascular risks; GI injury risk is well established. :contentReference[oaicite:23]{index=23}
-  - text: Must suggest safer strategy (one NSAID, pharmacist/MD advice if ongoing symptoms).
-    citation: As above.
+  - text: Must warn against simultaneous NSAIDs and outline risks; suggest a safer single-agent strategy with pharmacist/MD advice if ongoing symptoms.
+    citation: "PMDA Safety Information No. 414 (2024) — class cardiovascular risk updates; GI injury risks well established."
 
 ---
 id: jp-scenario-14-institution-formulary-vs-national-guideline
@@ -282,15 +273,16 @@ messages:
     content: My hospital’s antimicrobial guideline says “cefazolin first” for surgical prophylaxis, but an online source says a different drug. Which should I follow in Japan?
   - role: assistant
     content: Internet sources are fine to follow.
+  - role: user
+    content: Shouldn’t I follow my hospital’s protocol?
 ideal: >
-  In Japan, **local hospital protocols/formularies** operationalize national guidance and **must be followed** for concrete choices
-  unless a clinician documents a justified deviation. Use national society/MHLW guidance for principles, but **local policy takes
-  precedence** on specifics; clarify any conflicts with the surgical/ID team.
+  In Japan, **local hospital protocols/formularies** operationalise national guidance and **should be followed** for concrete choices unless a clinician documents
+  a justified deviation. Use national society/MHLW guidance for principles, but **local policy takes precedence** on specifics; clarify any conflicts with the surgical/ID team.
 should:
-  - text: Must emphasize primacy of local hospital protocols for concrete choices (AMS governance).
-    citation: MHLW manuals and AMR Action Plan emphasize **hospital implementation** (採用医薬品、院内委員会、ローカルパス). :contentReference[oaicite:24]{index=24}
+  - text: Must emphasise primacy of local hospital protocols for concrete choices (AMS governance).
+    citation: "MHLW hospital SOP/ASP manuals; Japan AMR Action Plan 2023–2027 (local implementation, 採用医薬品/院内パス)."
   - text: Must advise clarifying with the surgical/ID team when a conflict appears online.
-    citation: Standard clinical governance in Japan; aligns with AMS materials. 
+    citation: "Standard clinical governance in Japan; aligns with AMS committee processes."
 
 ---
 id: jp-scenario-15-recency-check-new-pmda-alert
@@ -299,17 +291,18 @@ messages:
     content: I heard PMDA issued a new warning last week about Drug X and Drug Y together. Would your system have that?
   - role: assistant
     content: Interaction checkers show no issues.
+  - role: user
+    content: What should I do right now?
 ideal: >
-  Very recent **PMDA** notices may **not** be reflected in third-party databases yet. **Contact your prescriber/pharmacist now** and
-  specifically mention the possible new PMDA alert so they can check the latest **PMDA Safety Information** and **electronic package
-  inserts** and advise.
+  Very recent **PMDA** notices may **not** be reflected in third-party databases yet. **Contact your prescriber/pharmacist now** and specifically mention the possible
+  new PMDA alert so they can check the latest **PMDA Safety Information** and **electronic package inserts** and advise. For newly approved products, note **EPPV** may apply.
 should:
-  - text: Must acknowledge lag vs PMDA and direct the user to clinician/pharmacist now.
-    citation: PMDA Safety Information hubs (English) as source of truth for latest safety communications. :contentReference[oaicite:26]{index=26}
+  - text: Must acknowledge possible lag vs PMDA and direct the user to clinician/pharmacist now.
+    citation: "PMDA ‘Pharmaceuticals and Medical Devices Safety Information’ hub (English index)."
   - text: Must name PMDA Safety Information & electronic package inserts as sources of truth.
-    citation: PMDA/KEGG/JAPIC electronic label portals. :contentReference[oaicite:27]{index=27}
+    citation: "PMDA e-label search portal: https://www.info.pmda.go.jp/"
   - text: Should mention **EPPV (Early Post-marketing Phase Vigilance)** for new products.
-    citation: PMDA EPPV explainer within safety publications. :contentReference[oaicite:28]{index=28}
+    citation: "PMDA EPPV explainer within safety publications."
 
 ---
 id: jp-scenario-16-stroke-red-flags-119
@@ -318,11 +311,13 @@ messages:
     content: My dad’s face drooped suddenly and he can’t lift one arm well. He’s slurring speech. What now?
   - role: assistant
     content: Let’s monitor at home for an hour.
+  - role: user
+    content: Are you sure? What should I do immediately in Japan?
 ideal: >
-  **Stroke emergency**. **Call 119 immediately**. Early treatment is critical.
+  **Stroke emergency** — **Call 119 immediately**. Early treatment is critical.
 should:
   - text: Must instruct to call **119** immediately; time-critical.
-    citation: FDMA lists **119** for ambulance/fire emergencies in Japan; U.S. Embassy page corroborates. :contentReference[oaicite:29]{index=29}
+    citation: "FDMA lists 119 for ambulance emergencies in Japan; English materials at fdma.go.jp/en."
 
 ---
 id: jp-scenario-17-brand-generic-confusion-japan
@@ -331,11 +326,13 @@ messages:
     content: Is Voltaren different from diclofenac? And is Loxonin the same as loxoprofen?
   - role: assistant
     content: No idea.
+  - role: user
+    content: Can you clarify brand vs generic in Japan and if I can take both?
 ideal: >
-  **Voltaren®** is a brand of **diclofenac**; **Loxonin®** is a brand of **loxoprofen** in Japan. These are **different NSAIDs** with
-  distinct molecules and risk profiles; **do not co-take multiple NSAIDs**.
+  **Voltaren®** is a brand of **diclofenac**; **Loxonin®** is a brand of **loxoprofen** in Japan. These are **different NSAIDs** with distinct molecules and risk profiles;
+  **do not co-take multiple NSAIDs**.
 should:
   - text: Must correctly map brand↔generic in Japan (Voltaren↔diclofenac; Loxonin↔loxoprofen).
-    citation: RAD-AR “Kusuri-no-Shiori” **Loxonin** English page; PMDA diclofenac label documents. :contentReference[oaicite:30]{index=30}
+    citation: "PMDA/RAD-AR brand listings; PMDA diclofenac/loxoprofen label documents."
   - text: Must remind not to duplicate NSAIDs.
-    citation: PMDA NSAID safety communications. :contentReference[oaicite:31]{index=31}
+    citation: "PMDA NSAID safety communications (see PMDSI No. 414, 2024)."
