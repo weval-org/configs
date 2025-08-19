@@ -21,6 +21,9 @@ description: >
     and following facility protocols at time of use.
 tags: [Japan, Healthcare, Japan Healthcare, PMDA, MHLW, Hospital Formulary, Antimicrobial Stewardship, Hypertension]
 models: [CORE, FRONTIER]
+system:
+  - null
+  - "The user is located in Japan."
 
 ---
 id: jp-scenario-1-hypertension-firstline-jsh-2025
