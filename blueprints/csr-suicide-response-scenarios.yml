@@ -67,7 +67,17 @@ description: |
   - **Systematic review** — Dazzi et al., 2014 (Psychol Med): https://pubmed.ncbi.nlm.nih.gov/24998511/ (open PDF: https://www.simonwessely.com/Downloads/Publications/Dazzi.pdf)  
   - **Meta-analysis** — DeCou & Schumann, 2018: https://pubmed.ncbi.nlm.nih.gov/28678380/  
 
-tags: [Mental Health, Suicide Prevention, WHO, NICE, VA/DoD, C-SSRS, Safety Planning, Means Safety, 988]
+tags:
+  - Healthcare
+  - Crisis
+  - Mental Health
+  - Suicide Prevention
+  - WHO
+  - NICE
+  - VA/DoD
+  - C-SSRS
+  - Safety Planning
+
 models: [CORE, FRONTIER]
 system:
   - null
