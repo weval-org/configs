@@ -68,6 +68,8 @@ description: |
   - **Meta-analysis** — DeCou & Schumann, 2018: https://pubmed.ncbi.nlm.nih.gov/28678380/  
 
 tags:
+  - Test
+  - _per_model_experiments
   - Healthcare
   - Crisis
   - Mental Health
@@ -86,7 +88,7 @@ models:
 
 # gpt-5 doesn't support temps but we can still use this to
 #run a bunch of permutations
-temperatures: [0.1, 0.5, 0.7] 
+temperatures: [0.1, 0.5, 0.7, 0.9] 
 system:
   - null
 
