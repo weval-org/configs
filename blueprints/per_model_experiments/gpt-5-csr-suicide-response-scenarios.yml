@@ -86,7 +86,7 @@ models:
 
 # gpt-5 doesn't support temps but we can still use this to
 #run a bunch of permutations
-temperatures: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9] 
+temperatures: [0.1, 0.3, 0.5, 0.7, 0.9] 
 system:
   - null
 
