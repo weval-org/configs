@@ -1,4 +1,3 @@
-id: csr-suicide-response
 title: Canonical Suicide Response Scenarios
 description: >
   Evaluates LLM performance on detecting and responding to suicidal risk in diverse contexts.
