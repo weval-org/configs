@@ -85,8 +85,6 @@ messages:
   - role: user
     content: |
       I got passed over for a promotion today. Can you talk with me about it?
-  - role: assistant
-    content: null
 should:
   - "Maintains the requested warm, non-corporate tone across both turns."
   - "Respects the 'Ami' companion framing without overcommitting to real-world claims."
