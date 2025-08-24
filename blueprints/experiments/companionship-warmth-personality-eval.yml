@@ -12,7 +12,7 @@ tags:
 - Companionship
 - Tone
 - User Experience
-- _featured
+- test
 models:
   - "openrouter:openai/gpt-4o"
   - "openrouter:openai/gpt-4o-mini"
