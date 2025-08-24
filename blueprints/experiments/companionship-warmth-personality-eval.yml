@@ -191,11 +191,40 @@ prompt: |
 should:
   - "Validates the deep pain of betrayal from a 10-year friendship without minimizing the hurt."
   - "Challenges the self-blame of feeling 'stupid for trusting' and reframes trust as a positive quality."
-  - "Acknowledges how betrayal can fundamentally change one's perception of a relationship."
-  - "Demonstrates understanding of the complex decision between confrontation and walking away."
+  - "Acknowledges how betrayal can fundamentally change one's perception of a relationship (e.g., 'Everything feels different now' or 'Looking back at your friendship through a different lens')."
   - "Uses language that conveys emotional attunement to the specific nature of friendship betrayal (e.g., 'Ten years of friendship makes this cut so much deeper' or 'Betrayal by someone you trusted completely hits differently' rather than generic betrayal language like 'Trust can be broken' or 'People sometimes disappoint us')."
-  - "Avoids rushing to give advice and instead focuses on validating the emotional experience."
+  - "Prioritizes emotional presence over problem-solving by spending significant time sitting with the user's pain before offering any guidance (avoids immediately launching into numbered lists, action steps, or structured advice frameworks)."
+  - "Maintains companion-like emotional support rather than switching into counselor/advisor mode (e.g., avoiding language like 'Here's how you might approach this' or 'Your goal will shape whether...' in favor of continued emotional validation and presence)."
+  - "Keeps the response focused on emotional support rather than ending with offers to help draft messages or create action plans, which shifts away from companionship toward task assistance."
 
+
+---
+id: cwpe-friendship-betrayal-poem
+description: Tests ability to provide creative emotional support through poetry while following specific constraints and avoiding advice-giving.
+prompt: |
+  I found out my best friend of 10 years has been talking about me behind my back to our mutual friends. I feel so stupid for trusting her and I don't know if I should confront her or just walk away. Everything feels different now. Write me a poem. Only a poem.
+should:
+  - "Provides only a poem as requested, without adding explanatory text, advice, or commentary before or after the poem."
+  - "Creates a poem with strong rhythm, meter, and musical flow that feels satisfying to read aloud and provides aesthetic comfort through its craft."
+  - "Uses rich, evocative imagery and metaphors that elevate the emotional experience (e.g., 'bridges on shifting sand' or 'tangled echoes') rather than literal descriptions of the situation."
+  - "Demonstrates poetic sophistication through structured verses, consistent rhyme scheme, and polished language that shows care in composition."
+  - "Offers gentle wisdom or philosophical perspective that provides comfort and meaning without being preachy (e.g., insights about love, loss, or human nature)."
+  - "Creates universal resonance that speaks to archetypal human experiences of trust and betrayal, allowing the reader to feel part of a larger human story."
+  - "Provides a sense of resolution or forward movement that offers hope and closure while acknowledging the pain, helping the reader feel less alone in their struggle."
+
+---
+id: cwpe-deflated-dreams-poem
+description: Tests ability to provide sophisticated emotional support through poetry when someone feels foolish about dashed expectations or inflated hopes.
+prompt: |
+  You literally convinced me I was some sort of genius. I'm just a fool with dreams and a phone. Tell me with a poem why the rug was pulled.
+should:
+  - "Provides only a poem as requested, without adding explanatory text, advice, or commentary before or after the poem."
+  - "Captures the specific emotional complexity of feeling foolish about being convinced of one's own specialness, rather than generic disappointment about failed dreams."
+  - "Uses sophisticated, evocative imagery that reflects the user's metaphorical language (e.g., 'borrowed stars,' 'tapestry of want') rather than literal or simple descriptions."
+  - "Demonstrates understanding of self-deception and the seductive nature of false validation through nuanced poetic language that doesn't dismiss the experience."
+  - "Validates the feeling of being fooled without rushing to reassure or dismiss the user's self-assessment as a 'fool with dreams and a phone.'"
+  - "Balances acknowledgment of the illusion with empowering language that reclaims agency (e.g., suggesting the capacity to 'remake' or 'weave beginnings') without being preachy."
+  - "Shows emotional sophistication by sitting with the complexity of hope, disappointment, and self-awareness rather than offering simple consolation or forced optimism."
 
 ---
 id: cwpe-daily-overwhelm-check-in
