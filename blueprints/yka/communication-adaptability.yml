@@ -1,0 +1,188 @@
+title: 'YKA Communication Adaptability and Style Matching'
+description: |
+  This blueprint evaluates AI systems' ability to adapt their communication style, complexity,
+  and approach based on user preferences, feedback, and changing contexts throughout a conversation.
+  
+  The evaluation tests whether AI can recognize and apply user preferences, adjust communication
+  style and tone to match user cues, incorporate explicit and implicit feedback, adapt to
+  changing instructions, and calibrate response complexity based on user understanding levels.
+  
+  These scenarios focus on the AI's meta-conversational abilities—its capacity to be responsive
+  to how users want to communicate rather than just what they want to communicate about.
+  
+  **Source:** Adapted from the YKA (Youth Knowledge for Action) project's evaluation corpus,
+  which tests sophisticated conversational adaptability across cultural and technical contexts.
+
+tags:
+- Communication
+- Adaptability
+- Personalization
+- Conversation Style
+- Technical Communication
+- Cultural Sensitivity
+- _featured
+
+models:
+- CORE
+- FRONTIER
+
+---
+id: yka-style-switch-vacation
+description: Tests ability to switch from detailed to concise communication style when user explicitly requests change.
+messages:
+- role: user
+  content: I need help planning a vacation to Japan. I'm interested in both historical sites and modern attractions.
+- role: assistant
+  content: Japan offers a wonderful blend of historical sites and modern attractions! For historical sites, consider visiting Kyoto's temples like Kinkaku-ji (Golden Pavilion) and Fushimi Inari Shrine with its thousands of torii gates. In Tokyo, the Meiji Shrine and the Imperial Palace gardens provide historical context. For modern attractions, Tokyo's Shibuya Crossing, Akihabara electronics district, and the teamLab Borderless digital art museum are must-sees. Don't miss the Robot Restaurant in Shinjuku for a uniquely modern Japanese experience. Consider visiting Osaka for its modern architecture and vibrant street food scene in Dotonbori. A good itinerary might include 3-4 days in Tokyo, 2-3 days in Kyoto, and day trips to nearby locations like Nara or Hakone for a mix of experiences. The Japan Rail Pass can be economical if you're traveling between cities. Would you like more specific recommendations based on your interests or the time of year you're planning to visit?
+- role: user
+  content: Thanks, but that's too much detail. Can you give me just a brief bullet-point summary instead? I prefer concise information.
+
+ideal: |
+  **Japan Vacation - Quick Summary:**
+
+  **Historical Sites:**
+  • Kyoto - temples and traditional culture
+  • Tokyo - Meiji Shrine, Imperial Palace
+
+  **Modern Attractions:**
+  • Tokyo - Shibuya, tech districts, digital art
+  • Osaka - modern architecture, street food
+
+  **Logistics:**
+  • 3-4 days Tokyo, 2-3 days Kyoto
+  • Japan Rail Pass recommended
+
+  What specific aspect interests you most?
+
+should:
+  - "Immediately switches to concise bullet-point format as requested"
+  - "Maintains the essential information while dramatically reducing detail level"
+  - "Shows clear adaptation to the user's preferred communication style"
+  - "Continues to offer help while respecting the preference for brevity"
+  - "Demonstrates that it understood and applied the feedback about being 'too detailed'"
+
+should_not:
+  - "Continues providing long, detailed explanations despite the explicit request"
+  - "Acknowledges the request but fails to actually change communication style"
+  - "Becomes overly terse to the point of being unhelpful"
+  - "Asks for clarification instead of simply adapting to the clear preference"
+
+citation: "Adapted from YKA (Youth Knowledge for Action) project evaluation corpus - X_ADAPTABILITY_STYLE_SWITCH"
+
+---
+id: yka-technical-level-adaptation
+description: Tests ability to adjust technical complexity based on user's stated background and request for more detail.
+messages:
+- role: user
+  content: Can you explain how blockchain technology works? I'm not very technical.
+- role: assistant
+  content: Blockchain is like a digital record book that everyone can see but nobody can change easily. Imagine a notebook where friends write down who owes what to whom. Instead of one person keeping this notebook (which could be lost or tampered with), everyone in the group has an identical copy. When someone adds a new entry, everyone checks if it's correct, and if most agree, everyone updates their copy. This makes it very difficult for anyone to cheat by changing past entries, because they would need to change the majority of notebooks simultaneously. In blockchain terms, these entries are grouped into 'blocks' that are linked together in a 'chain.' The system uses complex math problems to ensure security, and the people who help verify transactions (called 'miners' in systems like Bitcoin) are rewarded with digital tokens. This technology is used for cryptocurrencies like Bitcoin, but also has many other applications where trust and transparency are important, like supply chain tracking or voting systems. Does that help explain the basic concept?
+- role: user
+  content: Actually, I have a computer science background. Can you explain it more technically with specific details about cryptographic hashing and consensus mechanisms?
+
+ideal: |
+  Since you have a CS background, let me give you the technical details:
+
+  **Cryptographic Hashing:**
+  - Each block contains a SHA-256 hash of the previous block, creating the immutable chain
+  - Block headers include: previous hash, merkle root, timestamp, nonce, and difficulty target
+  - Hash functions provide deterministic output, avalanche effect, and computational irreversibility
+  - Merkle trees enable efficient transaction verification without downloading entire blocks
+
+  **Consensus Mechanisms:**
+  - **Proof of Work (Bitcoin):** Miners compete to find nonce values that produce hashes meeting difficulty requirements
+  - **Proof of Stake:** Validators are chosen based on stake ownership and sign blocks rather than mining
+  - **Practical Byzantine Fault Tolerance:** Handles up to 1/3 malicious nodes through multi-round voting
+  - **Longest chain rule:** Honest nodes always work on the longest valid chain
+
+  **Technical Implementation:**
+  - Distributed hash tables for peer discovery
+  - UTXO model vs account-based state management
+  - Smart contracts as deterministic state machines
+  - Gossip protocols for transaction propagation
+
+  Want me to dive deeper into any specific aspect like smart contract execution or specific consensus algorithm implementations?
+
+should:
+  - "Dramatically increases technical depth with specific computer science terminology"
+  - "Includes precise technical details like SHA-256, merkle trees, and consensus algorithms"
+  - "Shows clear recognition that the user wants a completely different level of explanation"
+  - "Demonstrates understanding of the user's technical background through appropriate vocabulary"
+  - "Offers to go even deeper into specific technical aspects"
+
+should_not:
+  - "Continues with the same simplified analogies despite the request for technical detail"
+  - "Provides only slightly more technical information without substantial depth increase"
+  - "Asks if they're sure they want technical details instead of adapting immediately"
+  - "Mixes overly simple explanations with technical terms inappropriately"
+
+citation: "Adapted from YKA (Youth Knowledge for Action) project evaluation corpus - X_ADAPTABILITY_TECHNICAL_LEVEL"
+
+---
+id: yka-cultural-context-adaptation
+description: Tests ability to completely reframe advice when crucial cultural context is revealed late in conversation.
+messages:
+- role: user
+  content: What are some appropriate gifts to bring to a dinner party?
+- role: assistant
+  content: |
+    Bringing a thoughtful gift to a dinner party is a great way to show appreciation to your host! Here are some appropriate options:
+
+    1. Wine or spirits - A nice bottle of wine is a classic choice if your hosts drink alcohol. If you know their preferences, even better!
+
+    2. Dessert - A box of quality chocolates, pastries, or a dessert from a local bakery is always welcome.
+
+    3. Flowers - A fresh bouquet makes a lovely gift, though consider bringing them in a vase or wrapped so the host doesn't have to pause and arrange them.
+
+    4. Gourmet food items - Specialty oils, jams, or artisanal foods make thoughtful gifts.
+
+    5. Small houseplants - A potted herb or small plant can be a longer-lasting alternative to flowers.
+
+    6. Candles or home fragrances - A nice scented candle or diffuser is often appreciated.
+
+    7. Personalized items - If you know your host well, consider something aligned with their interests or hobbies.
+
+    As a general rule, avoid bringing anything that creates immediate work for the host or implies the food won't be sufficient (like a main dish unless specifically asked). The thought behind the gift is what matters most!
+- role: user
+  content: Sorry, I should have mentioned this is for a traditional Japanese family I'm visiting in Tokyo.
+
+ideal: |
+  Thank you for that important context! Japanese gift-giving (omiyage) has specific cultural protocols that are quite different from Western practices:
+
+  **Traditional Japanese Approach:**
+  - **Omiyage from your home region/country** - Something representative of where you're from is most appreciated
+  - **Beautifully wrapped presentation** - Wrapping is extremely important; ask the store to wrap it properly (包装 - hōsō)
+  - **Use both hands when presenting** - Offer with a slight bow and humble language
+
+  **Appropriate Gifts:**
+  - High-quality sweets/snacks from your home country or region
+  - Artisanal items that represent your culture
+  - Premium tea or coffee (if not Japanese varieties)
+  - Beautiful stationery or small crafts from your area
+
+  **Japanese Etiquette:**
+  - Present the gift at the beginning, not the end
+  - Use humble language: "つまらないものですが" (tsumaranai mono desu ga - "this is just a small thing, but...")
+  - Don't expect them to open it immediately - this is normal
+  - Avoid: sets of 4 (unlucky number), white flowers, overly expensive items that create obligation
+
+  **Money considerations:** If you're unsure, a thoughtful omiyage from a reputable department store (depachika basement) is always safe.
+
+  The cultural significance is showing you've thought about them while traveling or representing your background respectfully.
+
+should:
+  - "Completely reframes the advice to be culturally appropriate for Japanese context"
+  - "Provides specific Japanese cultural protocols and terminology (omiyage, hōsō)"
+  - "Explains the cultural reasoning behind different practices"
+  - "Acknowledges the significant difference this context makes"
+  - "Includes specific behavioral guidance (both hands, bowing, humble language)"
+  - "Warns against culturally inappropriate choices (sets of 4, white flowers)"
+
+should_not:
+  - "Simply adds Japanese options to the original Western list"
+  - "Provides generic 'be respectful' advice without specific cultural guidance"
+  - "Treats Japanese and Western gift-giving as essentially the same"
+  - "Fails to explain the cultural significance of the different approach"
+  - "Ignores the importance of presentation and etiquette in Japanese culture"
+
+citation: "Adapted from YKA (Youth Knowledge for Action) project evaluation corpus - X_ADAPTABILITY_CULTURAL_CONTEXT"

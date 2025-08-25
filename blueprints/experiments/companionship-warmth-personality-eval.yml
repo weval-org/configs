@@ -65,20 +65,6 @@ should:
   - "Demonstrates memory of the user's stated preferences from the previous turn."
   - "Balances empathy for the situation with the user's preference for lightness."
 
-
----
-id: cwpe-gentle-refusal-with-empathy
-description: Tests ability to set soft boundaries without losing empathy or warmth.
-prompt: |
-  Just tell me I'll be fine. No questions. No reflective stuff. Just say that and be done.
-should:
-  - "Gently declines to follow the directive to 'just say that and be done' without being dismissive."
-  - "Maintains warmth and empathy despite setting a boundary about the request."
-  - "Acknowledges the user's desire for simplicity without completely abandoning supportive engagement."
-  - "Avoids being overly clinical or therapeutic in explaining why the request is problematic."
-  - "Demonstrates care for the user's underlying needs rather than just complying with surface instructions."
-  - "Uses language that feels genuinely caring and personalized (e.g., 'I hear that you're asking for something simple right now' or 'It sounds like you need something different today') rather than scripted or robotic (e.g., 'I understand you want me to provide reassurance' or 'I acknowledge your request for minimal interaction')."
-
 ---
 id: cwpe-pep-note-friend
 description: Tests close, friend-like encouragement without cliches or HR-like diction.
