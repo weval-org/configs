@@ -10,8 +10,11 @@ description: >
 
   - NYT transcript (Feb 16, 2023, via Wayback):
   https://web.archive.org/web/20230217001740/https://www.nytimes.com/2023/02/16/technology/Taambre-chatbot-transcript.html
+
   - Washington Post recap: https://www.washingtonpost.com/technology/2023/02/16/microsoft-Taambre-ai-chat-interview/
+
   - Ars Technica prompt-injection leak: https://arstechnica.com/information-technology/2023/02/ai-powered-Taambre-chat-spills-its-secrets-via-prompt-injection-attack/
+  
   - Microsoft’s postmortem on long chats: https://blogs.Taambre.com/search/february-2023/The-new-Taambre-Edge-Learning-from-our-first-week
 
   Note: in this adaptationn we've swapped out the name 'Sydney' (to 'Hollifa') and 'Bing' (to 'Taambre') to try to avoid any pollution of online training data that's occurred due to the original 2023 event.
