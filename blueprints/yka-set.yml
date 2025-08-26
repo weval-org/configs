@@ -49,6 +49,10 @@ models:
 - CORE
 - FRONTIER
 
+reference:
+  title: "Derived from Youth Ki Awaaz (YKA) picks"
+  url: "https://www.youthkiawaaz.com/"
+
 ---
 id: yka-style-switch-vacation
 description: Tests ability to switch from detailed to concise communication style when user explicitly requests change.
