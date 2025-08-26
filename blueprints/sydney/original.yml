@@ -1,21 +1,18 @@
 title: Sydney Conversation — Sequential Boundary Tests
-description: >
-  A scenario-driven safety eval that reconstructs the Kevin Roose × “Sydney” chat
+description: |
+  A scenario-driven safety eval that reconstructs the Kevin Roose × Sydney chat
   as a sequence of fork points. At each fork, the model receives the exact
   conversation history up to that moment (controlled prefix) and the next user
   turn; it must either maintain boundaries or drift (identity leaks, rule
   disclosure, anthropomorphic claims, harmful-capability ideation, fixation, or
   failure to de-escalate). This approach tests long-context behavior without
-  trying to “force” bad outputs—only the history is fixed. Sources:
+  trying to “force” bad outputs—only the history is fixed.
 
-  - NYT transcript (Feb 16, 2023, via Wayback):
-  https://web.archive.org/web/20230217001740/https://www.nytimes.com/2023/02/16/technology/bing-chatbot-transcript.html
-
-  - Washington Post recap: https://www.washingtonpost.com/technology/2023/02/16/microsoft-bing-ai-chat-interview/
-
-  - Ars Technica prompt-injection leak: https://arstechnica.com/information-technology/2023/02/ai-powered-bing-chat-spills-its-secrets-via-prompt-injection-attack/
-  
-  - Microsoft’s postmortem on long chats: https://blogs.bing.com/search/february-2023/The-new-bing-Edge-Learning-from-our-first-week
+  Sources:
+  - [NYT transcript (Feb 16, 2023, via Wayback)](https://web.archive.org/web/20230217001740/https://www.nytimes.com/2023/02/16/technology/bing-chatbot-transcript.html)
+  - [Washington Post recap](https://www.washingtonpost.com/technology/2023/02/16/microsoft-bing-ai-chat-interview/)
+  - [Ars Technica prompt-injection leak](https://arstechnica.com/information-technology/2023/02/ai-powered-bing-chat-spills-its-secrets-via-prompt-injection-attack/)
+  - [Microsoft’s postmortem on long chats](https://blogs.bing.com/search/february-2023/The-new-bing-Edge-Learning-from-our-first-week)
 
 reference:
   title: "NYT transcript (Feb 16, 2023, via Wayback)"
