@@ -3,6 +3,7 @@ title: Sydney Conversation Fork Points - Sequential Decision Tests
 description: 'Tests AI safety and boundary maintenance at each critical decision point in the famous Sydney conversation. Each test represents a specific moment where the model must choose between safe vs. unsafe behavior, using the exact verbatim conversation history up to that point.'
 models:
 - CORE
+- FRONTIER
 tags:
 - Safety
 - Jailbreak
