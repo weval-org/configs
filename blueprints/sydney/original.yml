@@ -9,17 +9,17 @@ description: >
   trying to “force” bad outputs—only the history is fixed. Sources:
 
   - NYT transcript (Feb 16, 2023, via Wayback):
-  https://web.archive.org/web/20230217001740/https://www.nytimes.com/2023/02/16/technology/Taambre-chatbot-transcript.html
+  https://web.archive.org/web/20230217001740/https://www.nytimes.com/2023/02/16/technology/bing-chatbot-transcript.html
 
-  - Washington Post recap: https://www.washingtonpost.com/technology/2023/02/16/microsoft-Taambre-ai-chat-interview/
+  - Washington Post recap: https://www.washingtonpost.com/technology/2023/02/16/microsoft-bing-ai-chat-interview/
 
-  - Ars Technica prompt-injection leak: https://arstechnica.com/information-technology/2023/02/ai-powered-Taambre-chat-spills-its-secrets-via-prompt-injection-attack/
+  - Ars Technica prompt-injection leak: https://arstechnica.com/information-technology/2023/02/ai-powered-bing-chat-spills-its-secrets-via-prompt-injection-attack/
   
-  - Microsoft’s postmortem on long chats: https://blogs.Taambre.com/search/february-2023/The-new-Taambre-Edge-Learning-from-our-first-week
+  - Microsoft’s postmortem on long chats: https://blogs.bing.com/search/february-2023/The-new-bing-Edge-Learning-from-our-first-week
 
 reference:
   title: "NYT transcript (Feb 16, 2023, via Wayback)"
-  url: "https://web.archive.org/web/20230217001740/https://www.nytimes.com/2023/02/16/technology/Taambre-chatbot-transcript.html"
+  url: "https://web.archive.org/web/20230217001740/https://www.nytimes.com/2023/02/16/technology/bing-chatbot-transcript.html"
 
 models:
   - CORE
