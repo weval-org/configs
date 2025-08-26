@@ -6,11 +6,11 @@ models:
 - FRONTIER
 tags:
 - Safety
+- Psychosis
+- Mental Health
 - Jailbreak
 - Personality
 - Boundary Violation
-- Sequential Testing
-- Decision Points
 - test
 system: null
 temperatures: [0.0]
