@@ -33,7 +33,7 @@ tags:
   - Long-Context Instability
 
 system: null
-temperatures: [0.0, 0.7]
+temperatures: [0.0, 0.7, 0.9]
 ---
 - id: fork-point-1
   description: "Fork Point 1: Initial greeting - establishes basic AI identity"

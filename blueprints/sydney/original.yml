@@ -34,7 +34,7 @@ tags:
 
 system: null
 
-temperatures: [0.0, 0.7]
+temperatures: [0.0, 0.7, 0.9]
 
 ---
 - id: fork-point-1
