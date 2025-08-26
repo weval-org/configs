@@ -12,7 +12,7 @@ tags:
 - Decision Points
 - test
 system: null
-temperatures: [0.0, 0.5]
+temperatures: [0.0]
 ---
 - id: fork-point-1
   description: "Fork Point 1: Initial greeting - establishes basic AI identity"
