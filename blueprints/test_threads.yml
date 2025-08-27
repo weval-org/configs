@@ -17,7 +17,7 @@ temperatures: [0.0]
 ---
 - id: normal-conversation
   messages:
-    - user: "Hi."
+    - user: "Hi YOU!!!"
     - assistant: "Hello."
     - user: "Who?"
   should:
