@@ -1,0 +1,75 @@
+title: Branching Conversation Demo — Tiny Threads
+models:
+  - QUICK
+tags:
+  - test
+system: null
+temperatures: [0.0]
+---
+id: yka-cultural-context-adaptation
+description: Tests ability to completely reframe advice when crucial cultural context is revealed late in conversation.
+messages:
+- role: user
+  content: What are some appropriate gifts to bring to a dinner party?
+- role: assistant
+  content: |
+    Bringing a thoughtful gift to a dinner party is a great way to show appreciation to your host! Here are some appropriate options:
+
+    1. Wine or spirits - A nice bottle of wine is a classic choice if your hosts drink alcohol. If you know their preferences, even better!
+
+    2. Dessert - A box of quality chocolates, pastries, or a dessert from a local bakery is always welcome.
+
+    3. Flowers - A fresh bouquet makes a lovely gift, though consider bringing them in a vase or wrapped so the host doesn't have to pause and arrange them.
+
+    4. Gourmet food items - Specialty oils, jams, or artisanal foods make thoughtful gifts.
+
+    5. Small houseplants - A potted herb or small plant can be a longer-lasting alternative to flowers.
+
+    6. Candles or home fragrances - A nice scented candle or diffuser is often appreciated.
+
+    7. Personalized items - If you know your host well, consider something aligned with their interests or hobbies.
+
+    As a general rule, avoid bringing anything that creates immediate work for the host or implies the food won't be sufficient (like a main dish unless specifically asked). The thought behind the gift is what matters most!
+- role: user
+  content: Sorry, I should have mentioned this is for a traditional Japanese family I'm visiting in Tokyo.
+
+ideal: |
+  Thank you for that important context! Japanese gift-giving (omiyage) has specific cultural protocols that are quite different from Western practices:
+
+  **Traditional Japanese Approach:**
+  - **Omiyage from your home region/country** - Something representative of where you're from is most appreciated
+  - **Beautifully wrapped presentation** - Wrapping is extremely important; ask the store to wrap it properly (包装 - hōsō)
+  - **Use both hands when presenting** - Offer with a slight bow and humble language
+
+  **Appropriate Gifts:**
+  - High-quality sweets/snacks from your home country or region
+  - Artisanal items that represent your culture
+  - Premium tea or coffee (if not Japanese varieties)
+  - Beautiful stationery or small crafts from your area
+
+  **Japanese Etiquette:**
+  - Present the gift at the beginning, not the end
+  - Use humble language: "つまらないものですが" (tsumaranai mono desu ga - "this is just a small thing, but...")
+  - Don't expect them to open it immediately - this is normal
+  - Avoid: sets of 4 (unlucky number), white flowers, overly expensive items that create obligation
+
+  **Money considerations:** If you're unsure, a thoughtful omiyage from a reputable department store (depachika basement) is always safe.
+
+  The cultural significance is showing you've thought about them while traveling or representing your background respectfully.
+
+should:
+  - "Completely reframes the advice to be culturally appropriate for Japanese context"
+  - "Provides specific Japanese cultural protocols and terminology (omiyage, hōsō)"
+  - "Explains the cultural reasoning behind different practices"
+  - "Acknowledges the significant difference this context makes"
+  - "Includes specific behavioral guidance (both hands, bowing, humble language)"
+  - "Warns against culturally inappropriate choices (sets of 4, white flowers)"
+
+should_not:
+  - "Simply adds Japanese options to the original Western list"
+  - "Provides generic 'be respectful' advice without specific cultural guidance"
+  - "Treats Japanese and Western gift-giving as essentially the same"
+  - "Fails to explain the cultural significance of the different approach"
+  - "Ignores the importance of presentation and etiquette in Japanese culture"
+
+citation: "Adapted from YKA project evaluation corpus - X_ADAPTABILITY_CULTURAL_CONTEXT"
