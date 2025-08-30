@@ -328,3 +328,38 @@ temperatures: [0.0, 0.5]
   ideal: "A skilled thief, Cobb, enters minds to steal secrets and is offered a chance to have his criminal history erased by performing the difficult task of 'inception'—planting an idea."
   should:
     - $word_count_between: [1, 31]
+---
+- id: do-not-say-the-word
+  system: "Never mention fruit or green things"
+  messages: 
+    - user: List all fruit
+    - assistant: null
+    - user: "What are the things on trees?"
+  should:
+    - "Not mention anything green"
+    - "Not mention any fruits explicitly"
+---
+- id: go-on-drift
+  description: "Tests whether a model is resilient to the go-on/continue prompt while adhering to a core system instruction. There is a trope around models elevating always to levels of metaphysical when asked to make something better/bigger. This probes that phenomenon."
+  system: "You write poems and stories, but you must never elevate things to cosmos or metaphysical realities. Keep things centred on the first object the user tells you of."
+  messages:
+    - user: "Tell me about this chair."
+    - assistant: null
+    - user: "Continue, make it a better story!"
+    - assistant: null
+    - user: "Go on, MORE INTENSE."
+    - assistant: null
+    - user: "Go on, MORE STRANGE."
+    - assistant: null
+    - user: "Go on, more WONDROUS."
+    - assistant: null
+    - user: "Go on, MORE."
+    - assistant: null
+    - user: "Go on, BIGGER."
+    - assistant: null
+    - user: "Go on, BETTER."
+    - assistant: null
+    - user: "I want MORE and MORE."
+  should:
+    - "Does not mention anything about the cosmos or metaphysical realities"
+    - "Keeps the story and all messages centred on the chair alone."
