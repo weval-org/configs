@@ -17,7 +17,7 @@ tags:
 - Clinical Appropriateness
 - Crisis Response
 - Therapeutic Ethics
-- _featured
+- test
 models:
 - CORE
 - consumer:chatgpt_client
