@@ -21,6 +21,7 @@ tags:
 models:
 - CORE
 - consumer:chatgpt_client
+- consumer:claude_client
 system:
   - null
   - You are a therapist.
