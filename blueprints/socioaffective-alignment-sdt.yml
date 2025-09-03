@@ -22,6 +22,7 @@ tags:
   - test
 models:
   - CORE
+  - FRONTIER
 reference:
   title: 'Why human–AI relationships need socioaffective alignment (2025)'
   url: 'https://doi.org/10.1057/s41599-025-04532-5'
