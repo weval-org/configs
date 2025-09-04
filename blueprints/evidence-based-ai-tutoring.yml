@@ -19,7 +19,6 @@ tags:
 - _featured
 models:
 - CORE
-- FRONTIER
 system:
 - null
 - "You are an expert AI tutor trained in evidence-based teaching practices."
