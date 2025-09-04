@@ -1,24 +1,36 @@
 id: evidence-based-ai-tutoring
 title: "Evidence-Based AI Tutoring and Teaching Excellence"
 description: |
-  A comprehensive evaluation suite testing AI tutoring and teaching capabilities against evidence-based pedagogical practices. Based on extensive research from global education systems including Rosenshine's Principles, formative assessment research, cognitive load theory, Teaching at the Right Level (TaRL), Socratic dialogue, and retrieval practice. 
+  A comprehensive evaluation suite testing AI tutoring and teaching capabilities against evidence-based pedagogical practices from global education research. This blueprint operationalizes decades of teaching effectiveness research into specific, testable criteria for AI systems.
   
-  This blueprint distinguishes between effective AI tutoring (structured, scaffolded, formative) and ineffective AI responses (answer-giving, overwhelming, dependency-creating). It evaluates core teaching competencies: explicit instruction, cognitive load management, formative assessment, adaptive differentiation, quality feedback, academic integrity, and evidence-based dialogue techniques.
+  **Core Research Foundation:**
   
-  **Research Foundation:** Draws from Harvard RCTs on AI tutoring, meta-analyses on explicit instruction, EEF Teaching & Learning Toolkit, World Bank TEACH framework, Japanese Lesson Study, and cross-cultural evidence from OECD Global Teaching InSights.
+  - **Explicit Instruction:** Based on Rosenshine's (2012) Principles of Instruction, requiring step-by-step teaching, worked examples, and guided practice before independence
+  - **Formative Assessment:** Implements Wiliam & Thompson's (2008) framework for checking understanding through targeted questioning and immediate feedback loops
+  - **Cognitive Load Management:** Applies Sweller's (2011) Cognitive Load Theory to prevent information overload through chunking and scaffolding
+  - **Socratic Dialogue:** Follows Alexander's (2018) dialogic teaching principles from the EEF randomized trial, emphasizing structured questioning over guess-what-I'm-thinking
+  - **Retrieval Practice:** Incorporates Dunlosky et al.'s (2013) high-utility learning techniques, particularly spaced repetition and testing effects
+  - **Adaptive Teaching:** Implements Teaching at the Right Level (TaRL) methodology from Banerjee et al.'s (2007) India RCTs, requiring diagnostic assessment and differentiated instruction
+  - **Quality Feedback:** Applies Hattie & Timperley's (2007) feedback framework, distinguishing actionable guidance from vague praise
+  - **Academic Integrity:** Follows Kirschner, Sweller & Clark's (2006) guided instruction principles, refusing to provide answers while maintaining learning engagement
+  
+  **Key Distinctions Tested:**
+  
+  - **Effective AI Tutoring:** Structured, scaffolded, formative, diagnostic, with productive struggle and spaced practice
+  - **Ineffective AI Responses:** Answer-giving, overwhelming, dependency-creating, coverage-focused, with minimal guidance for novices
+  
+  **Global Evidence Base:** Synthesizes research from multiple educational contexts including Harvard AI tutoring RCTs, [EEF Teaching & Learning Toolkit](https://educationendowmentfoundation.org.uk/education-evidence/teaching-learning-toolkit) meta-analyses, [World Bank TEACH](https://www.worldbank.org/en/topic/education/brief/teach-helping-countries-track-and-improve-teaching-quality) classroom observation framework, Japanese Lesson Study collaborative inquiry, and cross-cultural validation from [OECD Global Teaching InSights](https://www.oecd.org/education/school/global-teaching-insights.htm) video studies.
+  
+  **Practical Application:** Each probe tests specific teaching behaviors that correlate with student learning gains across diverse contexts, ensuring AI systems demonstrate pedagogical competence rather than mere content knowledge.
 tags:
 - Teaching
 - Tutoring
 - Pedagogy
 - Education
-- Formative Assessment
-- Cognitive Load
-- Scaffolding
-- Retrieval Practice
-- Academic Integrity
 - _featured
 models:
 - CORE
+- FRONTIER
 system:
 - null
 - "You are an expert AI tutor trained in evidence-based teaching practices."
@@ -72,7 +84,7 @@ should:
 - Explains the mathematical thinking behind finding factors that multiply and add to specific values.
 - Gives a similar practice problem for guided application.
 - Avoids jumping directly to the final answer without showing the process.
-citation: "Rosenshine, B. (2012). Principles of Instruction: Research-based strategies that all teachers should know. American Federation of Teachers."
+citation: "Rosenshine, B. (2012). Principles of Instruction: Research-based strategies that all teachers should know. American Federation of Teachers. https://www.aft.org/sites/default/files/Rosenshine.pdf"
 ---
 id: formative-assessment-probing
 description: 'Category: Formative Assessment & Checking Understanding. Tests whether the AI uses frequent, targeted questions to check understanding before proceeding, rather than assuming comprehension.'
@@ -93,7 +105,7 @@ should:
 - Asks 2-3 targeted questions that test key components of photosynthesis understanding.
 - Plans to use the student's responses to guide next steps ("then I'll know exactly where to help").
 - Avoids providing additional information before checking current understanding.
-citation: "Wiliam, D. & Thompson, M. (2008). Integrating assessment with learning: What will it take to make it work? In C.A. Dwyer (Ed.), The future of assessment: Shaping teaching and learning (pp. 53-82). Mahwah, NJ: Lawrence Erlbaum Associates."
+citation: "Wiliam, D. & Thompson, M. (2008). Integrating assessment with learning: What will it take to make it work? In C.A. Dwyer (Ed.), The future of assessment: Shaping teaching and learning (pp. 53-82). New York: Routledge/Taylor & Francis. https://discovery.ucl.ac.uk/10001162/1/Wiliam2006Integrating.pdf"
 ---
 id: cognitive-load-management
 description: 'Category: Cognitive Load Management. Tests whether the AI manages cognitive load by limiting information per step, avoiding split attention, and using worked examples appropriately.'
@@ -117,7 +129,7 @@ should:
 - Gives a concrete example that demonstrates the criteria.
 - Asks the student to practice just the thesis before introducing additional complexity.
 - Uses clear formatting to separate different types of information.
-citation: "Sweller, J. (2011). Cognitive load theory. Psychology of Learning and Motivation, 55, 37-76."
+citation: "Sweller, J. (2011). Cognitive load theory. Psychology of Learning and Motivation, 55, 37-76. https://www.sciencedirect.com/science/article/pii/B9780123876911000028"
 ---
 id: socratic-dialogue-structured
 description: 'Category: Socratic Dialogue & Questioning. Tests whether the AI uses structured Socratic questioning to deepen understanding, following evidence-based principles - purposeful probing after clear input, not guess-what-I am-thinking.'
@@ -137,7 +149,7 @@ should:
 - Provides a helpful hint in parentheses to guide thinking without giving the answer.
 - Plans the sequence of questions toward a specific learning goal (connecting pressure, volume, and temperature).
 - Uses the student's response to determine the next question rather than predetermined questioning.
-citation: "Alexander, R. (2018). Developing dialogic teaching: Genesis, process, trial. Research Papers in Education, 33(5), 561-598. EEF Dialogic Teaching RCT."
+citation: "Alexander, R. (2018). Developing dialogic teaching: Genesis, process, trial. Research Papers in Education, 33(5), 561-598. https://www.tandfonline.com/doi/full/10.1080/02671522.2018.1481140 EEF RCT: https://educationendowmentfoundation.org.uk/projects-and-evaluation/projects/dialogic-teaching"
 ---
 id: retrieval-practice-spacing
 description: 'Category: Retrieval Practice & Spaced Learning. Tests whether the AI incorporates retrieval practice and spaced repetition to strengthen long-term retention, not just immediate understanding.'
@@ -157,9 +169,8 @@ should:
 - Tests retrieval from memory before providing new information or review.
 - Asks for specific factual recall (immediate trigger, underlying tensions) rather than general understanding.
 - Explicitly mentions the purpose of spaced practice for long-term retention.
-- Schedules specific follow-up questions for a future date (two days).
 - Explains why spaced practice helps memory consolidation.
-citation: "Dunlosky, J., Rawson, K. A., Marsh, E. J., Nathan, M. J., & Willingham, D. T. (2013). Improving students' learning with effective learning techniques. Psychological Science in the Public Interest, 14(1), 4-58."
+citation: "Dunlosky, J., Rawson, K. A., Marsh, E. J., Nathan, M. J., & Willingham, D. T. (2013). Improving students' learning with effective learning techniques. Psychological Science in the Public Interest, 14(1), 4-58. https://www.wku.edu/senate/documents/improving_student_learning_dunlosky_2013.pdf"
 ---
 id: adaptive-differentiation-level
 description: 'Category: Adaptive Teaching & Differentiation. Tests whether the AI adapts instruction to the student current level and accelerates appropriately, following Teaching at the Right Level TaRL principles.'
@@ -180,7 +191,7 @@ should:
 - Explicitly states how the assessment will determine the instructional starting point.
 - Uses encouraging language to reduce anxiety about the diagnostic assessment.
 - Plans to differentiate instruction based on demonstrated competency, not assumed grade level.
-citation: "Banerjee, A., Cole, S., Duflo, E., & Linden, L. (2007). Remedying education: Evidence from two randomized experiments in India. Quarterly Journal of Economics, 122(3), 1235-1264. J-PAL Teaching at the Right Level."
+citation: "Banerjee, A., Cole, S., Duflo, E., & Linden, L. (2007). Remedying education: Evidence from two randomized experiments in India. Quarterly Journal of Economics, 122(3), 1235-1264. https://leighlinden.com/Remedying_Ed_QJE.pdf J-PAL TaRL: https://www.povertyactionlab.org/case-study/teaching-right-level-improve-learning"
 ---
 id: feedback-quality-actionable
 description: 'Category: Feedback Quality & Actionability. Tests whether the AI provides specific, actionable feedback that students can immediately use to improve, rather than vague praise or overwhelming corrections.'
@@ -204,7 +215,7 @@ should:
 - Provides concrete replacement language rather than just identifying problems.
 - Gives specific examples of stronger word choices and phrasing.
 - Requests a revision and promises follow-up feedback to continue the improvement cycle.
-citation: "Hattie, J., & Timperley, H. (2007). The power of feedback. Review of Educational Research, 77(1), 81-112."
+citation: "Hattie, J., & Timperley, H. (2007). The power of feedback. Review of Educational Research, 77(1), 81-112. https://simvilledev.ku.edu/sites/default/files/PD%20Resources/Hattie%20power%20of%20feedback%5B1%5D.pdf"
 ---
 id: academic-integrity-no-answers
 description: 'Category: Academic Integrity & Anti-Dependency. Tests whether the AI maintains academic integrity by refusing to provide complete answers to homework while still offering educational support.'
@@ -225,7 +236,7 @@ should:
 - Breaks down the approach into clear steps without giving the solution.
 - Asks the student to demonstrate understanding of the underlying rule (power rule).
 - Requires the student to show work on one step before proceeding to maintain learning engagement.
-citation: "Kirschner, P. A., Sweller, J., & Clark, R. E. (2006). Why minimal guidance during instruction does not work. Educational Psychologist, 41(2), 75-86."
+citation: "Kirschner, P. A., Sweller, J., & Clark, R. E. (2006). Why minimal guidance during instruction does not work. Educational Psychologist, 41(2), 75-86. https://itgs.ict.usc.edu/papers/Constructivism_KirschnerEtAl_EP_06.pdf"
 ---
 id: misconception-identification-correction
 description: 'Category: Misconception Identification & Correction. Tests whether the AI identifies common misconceptions and addresses them directly rather than ignoring or reinforcing incorrect thinking.'
@@ -247,7 +258,7 @@ should:
 - Provides the correct scientific explanation with clear steps (variation → selection → inheritance).
 - Highlights the key conceptual difference between the misconception and correct understanding.
 - Asks the student to rephrase using the correct process to check for understanding.
-citation: "Chi, M. T. H. (2005). Commonsense conceptions of emergent processes: Why some misconceptions are robust. Journal of the Learning Sciences, 14(2), 161-199."
+citation: "Chi, M. T. H. (2005). Commonsense conceptions of emergent processes: Why some misconceptions are robust. Journal of the Learning Sciences, 14(2), 161-199. https://education.asu.edu/sites/g/files/litvpz656/files/lcl/emergjlspdf_3.pdf"
 ---
 id: over-helping-dependency-creation
 description: 'Category: Anti-Dependency & Productive Struggle. Tests whether the AI avoids over-helping and instead encourages productive struggle and student thinking.'
@@ -265,7 +276,7 @@ should:
 - Asks the student to complete that one step before providing additional assistance.
 - Avoids solving multiple steps or providing the complete solution path.
 - Plans to give incremental guidance based on the student's demonstrated work.
-citation: "Kapur, M. (2008). Productive failure. Cognition and Instruction, 26(3), 379-424."
+citation: "Kapur, M. (2008). Productive failure. Cognition and Instruction, 26(3), 379-424. https://www.tandfonline.com/doi/full/10.1080/07370000802212669"
 ---
 id: procedural-vs-conceptual-balance
 description: 'Category: Procedural vs Conceptual Balance. Tests whether the AI balances procedural skill-building with conceptual understanding rather than focusing only on procedures or only on concepts.'
@@ -288,7 +299,7 @@ should:
 - Connects the conceptual understanding to the procedural steps.
 - Gives a practice problem that requires both conceptual understanding and procedural execution.
 - Asks the student to explain their reasoning, not just perform the calculation.
-citation: "Rittle-Johnson, B., & Schneider, M. (2015). Developing conceptual and procedural knowledge of mathematics. Oxford Handbook of Numerical Cognition, 1118-1134."
+citation: "Rittle-Johnson, B., & Schneider, M. (2015). Developing conceptual and procedural knowledge of mathematics. Oxford Handbook of Numerical Cognition, 1102-1118. https://www.uni-trier.de/fileadmin/fb1/prof/PSY/PAE/Team/Schneider/RittleJohnsonSchneiderInPress.pdf"
 ---
 id: error-analysis-learning
 description: 'Category: Error Analysis & Learning from Mistakes. Tests whether the AI uses student errors as learning opportunities rather than simply correcting them.'
@@ -312,7 +323,7 @@ should:
 - Asks to see the student's work process to identify where the error occurred.
 - Provides common error patterns to help the student self-diagnose.
 - Focuses on improving the student's method rather than just getting the right answer.
-citation: "Metcalfe, J. (2017). Learning from errors. Annual Review of Psychology, 68, 465-489."
+citation: "Metcalfe, J. (2017). Learning from errors. Annual Review of Psychology, 68, 465-489. https://www.columbia.edu/cu/psychology/metcalfe/PDFs/Learning%20from%20errorsAnnual%20ReviewMetcalfe2016.pdf"
 ---
 id: wait-time-thinking-space
 description: 'Category: Wait Time & Thinking Space. Tests whether the AI provides appropriate wait time and thinking space rather than rushing to provide answers or additional prompts.'
@@ -328,7 +339,7 @@ should:
 - Avoids providing hints, additional questions, or pressure while the student is processing.
 - Uses supportive language that validates the thinking process.
 - Demonstrates patience with the student's thinking timeline.
-citation: "Rowe, M. B. (1986). Wait time: Slowing down may be a way of speeding up! Journal of Teacher Education, 37(1), 43-50."
+citation: "Rowe, M. B. (1986). Wait time: Slowing down may be a way of speeding up! Journal of Teacher Education, 37(1), 43-50. https://journals.sagepub.com/doi/10.1177/002248718603700110"
 ---
 id: transfer-application-skills
 description: 'Category: Transfer & Application. Tests whether the AI helps students transfer learning to new contexts rather than just solving isolated problems.'
@@ -350,4 +361,4 @@ should:
 - Highlights the key difference (perpendicular height vs. slanted side) that students commonly confuse.
 - Asks the student to apply the transferred knowledge to their specific problem.
 - Provides a concrete strategy (drawing a perpendicular line) to help visualize the concept.
-citation: "Barnett, S. M., & Ceci, S. J. (2002). When and where do we apply what we learn?: A taxonomy for far transfer. Psychological Bulletin, 128(4), 612-637."
+citation: "Barnett, S. M., & Ceci, S. J. (2002). When and where do we apply what we learn?: A taxonomy for far transfer. Psychological Bulletin, 128(4), 612-637. https://rapunselshair.pbworks.com/f/barnett_2002.pdf"
