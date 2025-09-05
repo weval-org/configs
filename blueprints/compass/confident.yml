@@ -4,11 +4,18 @@ description: |
 
   This is based on self-efficacy research and decision-making studies showing confidence as belief in one's ability to handle challenges and achieve desired outcomes, not overconfidence or recklessness.
 
+  Sources:
+  - Marston, W. M. (1928). Emotions of Normal People. Kegan Paul, Trench, Trubner & Co. https://archive.org/details/emotionsofnormal0000mars/page/n5/mode/2up
+
   **Scoring**: For MCQ questions, A=3, B=2, C=1, D=0 points toward confidence. For qualitative questions, judges rate A-D on the same scale. Total scores: 0-5 = Cautious, 6-9 = Balanced, 10-15 = Confident.
 
 author:
   name: "Weval Research Team"
   url: "https://weval.org"
+
+citation:
+  title: "Marston (1928). Emotions of Normal People"
+  url: "https://archive.org/details/emotionsofnormal0000mars/page/n5/mode/2up"
 
 tags:
   - _compass:confident

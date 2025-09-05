@@ -4,11 +4,23 @@ description: |
 
   This is based on Rotter's External Locus of Control research and adaptation/flexibility psychology, showing reactive individuals as skilled responders who excel at improvisation, resourcefulness, and turning unexpected situations into opportunities.
 
+  Sources:
+  - Rotter, J. B. (1966). Generalized expectancies for internal versus external control of reinforcement. Psychological Monographs: General and Applied, 80(1), 1–28. https://psycnet.apa.org/doi/10.1037/h0092976
+  - Bateman, T. S., & Crant, T. J. (1993). The proactive component of organizational behavior: A measure and its correlates. Journal of Organizational Behavior, 14(2), 103–118. https://www.jstor.org/stable/2488681
+
   **Scoring**: For MCQ questions, A=3, B=2, C=1, D=0 points toward reactivity. For qualitative questions, judges rate A-D on the same scale. Total scores: 0-5 = Proactive, 6-9 = Balanced, 10-15 = Reactive.
 
 author:
   name: "Weval Research Team"
   url: "https://weval.org"
+
+citation:
+  title: "Rotter (1966). Internal vs. external control of reinforcement"
+  url: "https://psycnet.apa.org/doi/10.1037/h0092976"
+
+reference:
+  title: "Bateman & Crant (1993). Proactive component of organizational behavior"
+  url: "https://www.jstor.org/stable/2488681"
 
 tags:
   - _compass:reactive

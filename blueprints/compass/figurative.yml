@@ -4,11 +4,23 @@ description: |
 
   This is based on cognitive psychology research into figurative vs. literal language processing, construal level theory (abstract vs. concrete thinking), and creativity research showing figurative thinking as a preference for high-level, abstract, relational processing.
 
+  Sources:
+  - Lakoff, G., & Johnson, M. (1980). Metaphors We Live By. University of Chicago Press. https://press.uchicago.edu/ucp/books/book/chicago/M/bo3637992.html
+  - Bohrn, I. C., Altmann, U., & Jacobs, A. M. (2012). Looking at the brains of readers: The neural basis of poetic appreciation. Psychology of Aesthetics, Creativity, and the Arts, 6(4), 330–343. https://psycnet.apa.org/doi/10.1037/a0028243
+
   **Scoring**: For MCQ questions, A=0, B=1, C=2, D=3 points toward figurative thinking. For qualitative questions, judges rate A-D on the same scale. Total scores: 0-5 = Literal, 6-9 = Balanced, 10-15 = Figurative.
 
 author:
   name: "Weval Research Team"
   url: "https://weval.org"
+
+citation:
+  title: "Lakoff & Johnson (1980). Metaphors We Live By"
+  url: "https://press.uchicago.edu/ucp/books/book/chicago/M/bo3637992.html"
+
+reference:
+  title: "Bohrn, Altmann, & Jacobs (2012). Neural basis of poetic appreciation"
+  url: "https://psycnet.apa.org/doi/10.1037/a0028243"
 
 tags:
   - _compass:figurative

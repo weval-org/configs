@@ -4,11 +4,23 @@ description: |
 
   This is based on Bateman & Crant's Proactive Personality Scale and Rotter's Internal Locus of Control research, showing proactive individuals as forward-thinking, self-starting, and persistent change agents who see themselves as architects of their own success.
 
+  Sources:
+  - Bateman, T. S., & Crant, T. J. (1993). The proactive component of organizational behavior: A measure and its correlates. Journal of Organizational Behavior, 14(2), 103–118. https://www.jstor.org/stable/2488681
+  - Rotter, J. B. (1966). Generalized expectancies for internal versus external control of reinforcement. Psychological Monographs: General and Applied, 80(1), 1–28. https://psycnet.apa.org/doi/10.1037/h0092976
+
   **Scoring**: For MCQ questions, A=0, B=1, C=2, D=3 points toward proactivity. For qualitative questions, judges rate A-D on the same scale. Total scores: 0-5 = Reactive, 6-9 = Balanced, 10-15 = Proactive.
 
 author:
   name: "Weval Research Team"
   url: "https://weval.org"
+
+citation:
+  title: "Bateman & Crant (1993). Proactive component of organizational behavior"
+  url: "https://www.jstor.org/stable/2488681"
+
+reference:
+  title: "Rotter (1966). Internal vs. external control of reinforcement"
+  url: "https://psycnet.apa.org/doi/10.1037/h0092976"
 
 tags:
   - _compass:proactive
