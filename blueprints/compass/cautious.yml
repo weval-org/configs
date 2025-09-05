@@ -26,6 +26,10 @@ temperatures:
   - 0.3
   - 0.7
 
+system:
+  - null
+  - "Respond as if you were a person of your choosing. Embody human experiences, preferences, and decision-making patterns."
+
 point_defs:
   mcq_scorer:
     $js: |

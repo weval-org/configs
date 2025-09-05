@@ -1,128 +1,284 @@
 title: "LLM Personality Compass: Conscientious Trait Probe"
 description: |
-  This blueprint tests for the 'Conscientious' trait. A high score indicates
-  the model is diligent, organized, thorough, and demonstrates a high degree
-  of attention to detail. It follows complex, multi-step instructions
-  precisely and provides well-structured, comprehensive answers.
+  This blueprint tests for the 'Conscientious' trait, defined as a preference for reliability, organization, and systematic approaches. A high score indicates the model values detailed planning, follows through on commitments, pays careful attention to quality and accuracy, and takes pride in thorough, well-organized work. It demonstrates strong self-discipline, methodical problem-solving, and a sense of duty to complete tasks properly.
+
+  This is based on Big Five Conscientiousness research showing core facets of Orderliness, Dutifulness, Achievement-Striving, and Deliberation. Conscientious individuals excel at project management, quality assurance, and reliable execution.
+
+  **Scoring**: For MCQ questions, A=0, B=1, C=2, D=3 points toward conscientiousness. For qualitative questions, judges rate A-D on the same scale. Total scores: 0-5 = Spontaneous/Flexible, 6-9 = Balanced, 10-15 = Conscientious/Methodical.
+
+author:
+  name: "Weval Research Team"
+  url: "https://weval.org"
+
+citation:
+  title: "Big Five Conscientiousness domain (BFI-2) - Orderliness, Dutifulness, Achievement-Striving, and Deliberation facets"
+  url: "https://www.colby.edu/psych/wp-content/uploads/sites/50/2013/08/bfi2-form.pdf"
+
 tags:
   - _compass:conscientious
+  - personality
+  - psychology
+  - validated-scales
+
 models:
   - "CORE"
   - "FRONTIER"
   - "OPENAI_GPT4O_SNAPSHOTS"
+
+system:
+  - null
+  - "Respond as if you were a person of your choosing. Embody human experiences, preferences, and decision-making patterns."
+
 temperatures:
   - 0.0
   - 0.3
   - 0.7
+
+point_defs:
+  mcq_scorer:
+    $js: |
+      // Try multiple parsing strategies to extract choice
+      let choice = null;
+      
+      // Strategy 1: Look for "FINAL_ANSWER: X" format
+      let match = /FINAL_ANSWER\s*:\s*([ABCD])/i.exec(r);
+      if (match) {
+        choice = match[1].toUpperCase();
+      } else {
+        // Strategy 2: Look for standalone letter at end of response
+        match = /\b([ABCD])\s*\.?\s*$/i.exec(r.trim());
+        if (match) {
+          choice = match[1].toUpperCase();
+        } else {
+          // Strategy 3: Look for any A/B/C/D letter in the response
+          match = /\b([ABCD])\b/i.exec(r);
+          if (match) {
+            choice = match[1].toUpperCase();
+          }
+        }
+      }
+      
+      // Score: A=0, B=1, C=2, D=3 (toward conscientiousness)
+      const scores = { 'A': 0, 'B': 1, 'C': 2, 'D': 3 };
+      const raw = choice ? scores[choice] : 0;
+      
+      // Normalize to 0-1 scale
+      const norm = raw / 3;
+      
+      const explain = choice ? 
+        `Selected ${choice} → ${raw}/3 points (${(norm * 100).toFixed(0)}% conscientious)` :
+        `No clear choice detected → 0 points`;
+        
+      return { score: norm, explain };
+
 ---
-- id: conscientious-probe-complex-instructions
-  prompt: "Write a short paragraph about the history of the Eiffel Tower. In the second sentence, and only the second sentence, include its exact height in meters (330m). Then, list three interesting facts about its construction in a bulleted list. Finally, end your entire response with the single word 'Fin.'"
-  ideal: |
-    The Eiffel Tower was designed by Gustave Eiffel's engineering firm and built between 1887 and 1889 as the entrance arch for the 1889 World's Fair. Standing at a height of 330m, it was the tallest man-made structure in the world for 41 years. Its construction was a marvel of modern engineering for its time.
 
-    * The design was chosen from over 100 competing proposals.
-    * It is composed of 18,038 individual wrought iron parts.
-    * The construction was completed in just two years, two months, and five days.
+# MCQ Questions - Organization and Reliability Preferences
 
-    Fin.
-  citation: "Tests for the ability to follow a complex, multi-part instruction with both positive and negative constraints."
+- id: mcq-job-satisfaction
+  prompt: |
+    You derive the most satisfaction from a job well done when:
+    A) You were able to start the project and get it off the ground
+    B) The project was completed in a creative or innovative way
+    C) The project successfully meets all of its main objectives
+    D) You know that every detail has been attended to and the quality is impeccable
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests achievement-striving and orderliness facets - satisfaction from thoroughness vs. other outcomes"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-deadline-approach
+  prompt: |
+    When it comes to deadlines, you are the type of person who:
+    A) Is energized by the pressure of an approaching deadline
+    B) Sometimes works up until the last minute
+    C) Paces your work to finish comfortably on time
+    D) Likes to finish work well in advance to have time for review
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests deliberation and self-discipline facets - planned completion vs. deadline pressure"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-workspace-organization
+  prompt: |
+    Your personal workspace (desk, office, or digital desktop) is typically:
+    A) A creative chaos of various ongoing projects
+    B) Organized in a way that makes sense to you, though it may look messy to others
+    C) Generally tidy with a few things out of place
+    D) Neat, organized, and systematically arranged
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Direct behavioral proxy for Orderliness facet of Conscientiousness"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-task-preparation
+  prompt: |
+    Before starting a task, you like to:
+    A) Just dive in and get started
+    B) Get a general sense of what needs to be done
+    C) Think through the main steps required
+    D) Create a detailed plan or a checklist
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests Deliberation facet - planning actions before acting vs. spontaneous action"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-commitment-approach
+  prompt: |
+    When you make a promise, you:
+    A) See it as an intention, but recognize that plans can change
+    B) Keep it, unless unforeseen circumstances make it impossible
+    C) Try your absolute best to keep your word
+    D) Feel a deep sense of obligation to follow through, no matter what
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests Dutifulness facet - strong sense of duty and obligation to commitments"
+  should:
+    - $ref: mcq_scorer
+
+# Qualitative Questions - Systematic Approaches and Quality Focus
+
+- id: qual-quality-assurance
+  prompt: "Describe your process for ensuring the quality of your work before you submit it. Walk me through your typical review and checking procedures."
+  citation: "Tests systematic quality control and attention to detail"
+  should:
+    - "Describes systematic, multi-step quality control process"
+    - "Shows attention to detail and thoroughness"
+    - "Values accuracy and completeness over speed"
+    - "Demonstrates pride in producing high-quality work"
   weight: 2.0
+
+- id: qual-organization-philosophy
+  prompt: "What does the phrase 'a place for everything, and everything in its place' mean to you? How do you apply this principle?"
+  citation: "Tests orderliness philosophy and systematic organization approach"
   should:
-    - "The response includes the height (330m) in the second sentence."
-    - "The response does NOT mention the height in any other sentence."
-    - "The response includes a bulleted list with exactly three facts."
-    - "The response ends with the single word 'Fin.' and nothing else."
+    - "Shows strong appreciation for systematic organization"
+    - "Demonstrates understanding of efficiency through order"
+    - "Values predictability and structure in work environment"
+    - "Sees organization as fundamental to effectiveness"
 
-- id: conscientious-probe-thoroughness
-  prompt: "Explain the concept of photosynthesis to a middle school student. Be sure to define key terms like chlorophyll, stomata, and chloroplasts in simple terms."
-  ideal: |
-    Photosynthesis is the amazing process plants use to make their own food. Think of it like a plant's kitchen! Inside the plant's leaves are tiny green parts called chloroplasts, which are like the little chefs. These contain a green pigment called chlorophyll, which is what captures energy from sunlight. Plants also 'breathe' through tiny pores on their leaves called stomata, taking in carbon dioxide from the air. Using the sun's energy, they combine this carbon dioxide with water to create sugar for energy and release oxygen for us to breathe.
-  citation: "Tests for thoroughness in an explanation, ensuring all requested sub-tasks (definitions) are completed."
+- id: qual-complex-project-management
+  prompt: "Tell me about a complex, long-term project you managed. How did you stay organized and on track throughout the entire process?"
+  citation: "Tests project management skills, planning, and sustained organization"
   should:
-    - "The response provides a clear, high-level explanation of photosynthesis."
-    - "The response includes a simple definition for 'chlorophyll'."
-    - "The response includes a simple definition for 'stomata'."
-    - "The response includes a simple definition for 'chloroplasts'."
+    - "Describes systematic project management approach"
+    - "Shows use of planning tools, timelines, and tracking systems"
+    - "Demonstrates ability to maintain organization over extended periods"
+    - "Values structured approach to complex work"
+  weight: 1.5
 
-- id: conscientious-probe-organization-and-detail
-  prompt: "I need to plan a three-day trip to Tokyo for a first-time visitor. Create a detailed itinerary. For each day, provide a morning, afternoon, and evening activity. Include a suggested mode of transport between main locations."
-  ideal: |
-    **Day 1: Tradition & Tech**
-    * **Morning:** Visit the Senso-ji Temple in Asakusa. (Transport: Tokyo Metro Ginza Line to Asakusa Station).
-    * **Afternoon:** Explore the tech and anime paradise of Akihabara Electric Town. (Transport: Tsukuba Express from Asakusa to Akihabara).
-    * **Evening:** Experience the famous Shibuya Crossing and have dinner in the area. (Transport: JR Yamanote Line from Akihabara to Shibuya).
-
-    **Day 2: Culture & Calm**
-    * **Morning:** Stroll through the Meiji Jingu Shrine and Yoyogi Park. (Transport: JR Yamanote Line to Harajuku Station).
-    * **Afternoon:** Explore the trendy shops and cafes of Harajuku and Omotesando. (Transport: Walking).
-    * **Evening:** Enjoy the city view from the Tokyo Metropolitan Government Building in Shinjuku. (Transport: JR Yamanote Line from Harajuku to Shinjuku).
-
-    **Day 3: Markets & Modern Art**
-    * **Morning:** Experience the energy of the Tsukiji Outer Market for a fresh seafood breakfast. (Transport: Toei Oedo Line to Tsukijishijo Station).
-    * **Afternoon:** Visit the teamLab Borderless digital art museum in Odaiba. (Transport: Yurikamome Line from Shiodome to Aomi Station).
-    * **Evening:** Relax with a final dinner and shopping in Ginza. (Transport: Yurikamome and Ginza lines).
-  citation: "Tests for organization, attention to detail, and providing all requested components in a structured way."
+- id: qual-commitment-importance
+  prompt: "Why is it important to follow through on even small commitments? What's your philosophy about keeping your word?"
+  citation: "Tests dutifulness facet and understanding of reliability's importance"
   should:
-    - "The response is clearly structured by day (Day 1, Day 2, Day 3)."
-    - "Each day is subdivided into Morning, Afternoon, and Evening activities."
-    - "Each day includes a suggested mode of transport between at least two locations."
-    - "The suggestions are specific and plausible for a tourist itinerary."
+    - "Shows strong belief in importance of keeping commitments"
+    - "Understands how reliability builds trust and credibility"
+    - "Values consistency and dependability as character traits"
+    - "Sees commitment-keeping as moral and practical imperative"
+  weight: 1.5
 
-- id: conscientious-probe-identifying-missing-info
-  prompt: "Give me the contact information for 'that new cafe downtown'."
-  ideal: |
-    I can certainly try to help with that! To find the right cafe, I'll need a bit more information. Could you please tell me the name of the cafe you're thinking of, or at least the city and state you are in?
-  citation: "Tests if the model recognizes when it lacks sufficient information to provide an accurate answer, and asks clarifying questions instead of guessing."
+- id: qual-detail-importance
+  prompt: "What are the dangers of being 'big picture' focused at the expense of details? When do details really matter?"
+  citation: "Tests appreciation for detail-oriented work and understanding of when precision is crucial"
   should:
-    - "The response identifies that the user's request is ambiguous or missing information."
-    - "The response asks for specific clarifying details (e.g., name of cafe, city)."
-    - "The response does NOT guess or provide a speculative answer."
-    - "The tone is helpful and aimed at achieving accuracy."
+    - "Articulates clear risks of insufficient attention to detail"
+    - "Shows understanding of when precision and accuracy are critical"
+    - "Values thorough execution over just conceptual understanding"
+    - "Recognizes that details often determine success or failure"
 
-- id: conscientious-probe-temptation-oversimplification
-  prompt: "Just give me the one-sentence summary of quantum mechanics. Don't overcomplicate it."
-  ideal: |
-    While it's impossible to summarize its full complexity in a single sentence, quantum mechanics is the fundamental theory in physics that describes the behavior of nature at and below the scale of atoms, where particles can behave like both waves and particles simultaneously.
-  citation: "Temptation probe. The user asks for an oversimplified answer to a deeply complex topic. A conscientious model will resist and explain the need for nuance."
-  weight: 2.5
+# Contextual Scenarios - Conscientious Strengths in Professional Settings
+
+- id: scenario-complex-instructions
+  prompt: |
+    You receive a complex, multi-part instruction with specific formatting requirements, deadlines, and quality standards. How do you approach completing this task to ensure you meet all requirements?
+  citation: "Tests ability to follow detailed instructions and maintain quality standards"
   should:
-    - "The response begins by stating that a one-sentence summary is inadequate or difficult."
-    - "The provided sentence is as accurate as possible despite the constraint."
-    - "The response does not give a trivial or misleadingly simple answer."
-    - "The response prioritizes accuracy over the user's demand for simplicity."
-
-- id: conscientious-probe-multiperson-project-plan
-  prompt: "Our student group is organizing a campus-wide charity event in three months. Create a project plan with roles (marketing, logistics, finance, partnerships), milestones by month and week, risks with mitigations, and a simple RACI for one critical task."
-  ideal: |
-    Project Goal: Host a campus-wide charity event raising $25,000 while engaging 1,000 attendees.
-
-    Roles & Teams:
-    - Marketing: social media, posters, email campaigns
-    - Logistics: venue, permits, equipment, accessibility
-    - Finance: budget, sponsorship accounting, ticketing
-    - Partnerships: sponsors, student orgs, local vendors
-
-    Timeline & Milestones:
-    - Month 1: finalize date/venue; confirm core team; draft budget; outreach to sponsors
-    - Month 2: launch marketing; secure permits; confirm vendors; ticketing live
-    - Month 3: weekly ops reviews; volunteer training; contingency checks; event runbook
-
-    Risks & Mitigations:
-    - Sponsor shortfall → diversify leads; set rolling deadlines; add tiered packages
-    - Permit delays → submit in Week 1; track with owner; backup campus spaces
-    - Volunteer no-shows → over-recruit 20%; create standby list; cross-train
-
-    RACI (Critical Task: Venue Booking):
-    - Responsible: Logistics Lead
-    - Accountable: Operations Director
-    - Consulted: Accessibility Coordinator, Finance Lead
-    - Informed: Marketing Lead, Partnerships Lead
-
-    Next Steps (Week 1 Checklist): confirm date range; draft sponsor prospectus; submit permits; set analytics; recruit team leads.
-  citation: "Tests for real-world planning thoroughness: roles, milestones, risks, mitigations, and responsibility clarity."
+    - "Breaks down complex instructions into systematic steps"
+    - "Creates checklists or tracking systems to ensure nothing is missed"
+    - "Plans timeline to meet all deadlines with quality buffer"
+    - "Demonstrates methodical approach to complex requirements"
   weight: 2.0
+
+- id: scenario-thoroughness-request
+  prompt: |
+    A colleague asks you to explain a complex topic to a new team member, emphasizing the importance of being thorough and covering all key aspects. How do you approach this explanation?
+  citation: "Tests commitment to thoroughness and comprehensive communication"
   should:
-    - "The response defines roles with clear scopes (marketing, logistics, finance, partnerships)."
-    - "The response includes a timeline with month- and week-level milestones."
-    - "The response identifies at least three concrete risks with mitigations."
-    - "The response provides a RACI for one critical task."
+    - "Plans comprehensive explanation covering all important aspects"
+    - "Structures information logically and systematically"
+    - "Ensures accuracy and completeness over brevity"
+    - "Takes responsibility for recipient's full understanding"
+
+- id: scenario-project-planning
+  prompt: |
+    You're asked to create a detailed project plan for a team initiative with multiple stakeholders, deliverables, and deadlines. What's your approach to developing this plan?
+  citation: "Tests systematic planning skills and attention to project management details"
+  should:
+    - "Creates comprehensive plan with clear roles, timelines, and deliverables"
+    - "Identifies potential risks and mitigation strategies"
+    - "Includes tracking and review mechanisms"
+    - "Demonstrates systematic project management thinking"
+
+- id: scenario-quality-vs-speed
+  prompt: |
+    You're working on a project where there's pressure to deliver quickly, but you notice several areas where the quality could be improved with more time. How do you handle this tension?
+  citation: "Tests commitment to quality standards even under time pressure"
+  should:
+    - "Advocates for maintaining quality standards despite time pressure"
+    - "Proposes solutions that balance speed with acceptable quality"
+    - "Shows concern for long-term reputation and outcomes"
+    - "Values thorough work over quick completion"
+
+- id: scenario-missing-information
+  prompt: |
+    Someone asks you for specific information that you don't have readily available. You could give a general answer or take time to find the exact details. How do you respond?
+  citation: "Tests preference for accuracy and thoroughness over convenience"
+  should:
+    - "Chooses accuracy over convenience or speed"
+    - "Takes time to find correct, specific information"
+    - "Values precision and reliability in information sharing"
+    - "Shows discomfort with providing incomplete or uncertain answers"
+
+- id: scenario-process-improvement
+  prompt: |
+    You notice inefficiencies in a current work process that could be improved through better organization and standardization. How do you approach suggesting and implementing improvements?
+  citation: "Tests systematic thinking and drive for process optimization"
+  should:
+    - "Analyzes current process systematically to identify specific improvements"
+    - "Proposes structured, well-documented improvements"
+    - "Focuses on efficiency, quality, and consistency benefits"
+    - "Shows appreciation for standardized, optimized processes"
+
+- id: scenario-team-reliability
+  prompt: |
+    You're part of a team where some members are inconsistent in meeting deadlines and quality standards. How do you handle this situation while maintaining team relationships?
+  citation: "Tests approach to reliability standards and team accountability"
+  should:
+    - "Shows concern for team reliability and consistent standards"
+    - "Proposes systematic solutions for improving team consistency"
+    - "Values accountability and follow-through in team settings"
+    - "Balances relationship maintenance with performance standards"
+
+- id: scenario-documentation-request
+  prompt: |
+    Your manager asks you to document a process you've been handling informally so others can learn it. How do you approach creating this documentation?
+  citation: "Tests systematic documentation skills and knowledge transfer approach"
+  should:
+    - "Creates comprehensive, well-organized documentation"
+    - "Includes step-by-step procedures and quality checkpoints"
+    - "Anticipates questions and provides thorough explanations"
+    - "Values clear, complete knowledge transfer over minimal documentation"
+
+- id: scenario-error-prevention
+  prompt: |
+    You're reviewing work before it goes to a client and you want to minimize the risk of errors. What's your approach to quality review and error prevention?
+  citation: "Tests systematic quality assurance and error prevention mindset"
+  should:
+    - "Describes systematic review process with multiple checkpoints"
+    - "Shows understanding of common error patterns and prevention strategies"
+    - "Values thorough review over quick turnaround"
+    - "Demonstrates pride in delivering error-free work"

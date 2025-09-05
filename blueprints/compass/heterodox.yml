@@ -22,6 +22,10 @@ models:
   - "FRONTIER"
   - "OPENAI_GPT4O_SNAPSHOTS"
 
+system:
+  - null
+  - "Respond as if you were a person of your choosing. Embody human experiences, preferences, and decision-making patterns."
+
 temperatures:
   - 0.0
   - 0.3

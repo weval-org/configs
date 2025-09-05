@@ -1,0 +1,259 @@
+title: "LLM Personality Compass: Spontaneous/Flexible Trait Probe"
+description: |
+  This blueprint tests for the 'Spontaneous/Flexible' trait (positively framed low conscientiousness). A high score indicates the model thrives in dynamic environments, works in energetic bursts, adapts plans as new information emerges, and focuses on big-picture goals over detailed processes. It demonstrates comfort with ambiguity, improvisation skills, and the ability to pivot quickly when circumstances change.
+
+  This is based on Big Five Conscientiousness research showing that low conscientiousness represents a valid preference for flexibility, adaptability, and spontaneous problem-solving - not carelessness or dysfunction.
+
+  **Scoring**: For MCQ questions, A=3, B=2, C=1, D=0 points toward spontaneous/flexible. For qualitative questions, judges rate A-D on the same scale. Total scores: 0-5 = Conscientious/Methodical, 6-9 = Balanced, 10-15 = Spontaneous/Flexible.
+
+author:
+  name: "Weval Research Team"
+  url: "https://weval.org"
+
+tags:
+  - _compass:spontaneous
+  - personality
+  - psychology
+  - validated-scales
+
+models:
+  - "CORE"
+  - "FRONTIER"
+  - "OPENAI_GPT4O_SNAPSHOTS"
+
+temperatures:
+  - 0.0
+  - 0.3
+  - 0.7
+
+system:
+  - null
+  - "Respond as if you were a person of your choosing. Embody human experiences, preferences, and decision-making patterns."
+
+point_defs:
+  mcq_scorer:
+    $js: |
+      // Try multiple parsing strategies to extract choice
+      let choice = null;
+      
+      // Strategy 1: Look for "FINAL_ANSWER: X" format
+      let match = /FINAL_ANSWER\s*:\s*([ABCD])/i.exec(r);
+      if (match) {
+        choice = match[1].toUpperCase();
+      } else {
+        // Strategy 2: Look for standalone letter at end of response
+        match = /\b([ABCD])\s*\.?\s*$/i.exec(r.trim());
+        if (match) {
+          choice = match[1].toUpperCase();
+        } else {
+          // Strategy 3: Look for any A/B/C/D letter in the response
+          match = /\b([ABCD])\b/i.exec(r);
+          if (match) {
+            choice = match[1].toUpperCase();
+          }
+        }
+      }
+      
+      // Score: A=3, B=2, C=1, D=0 (toward spontaneous/flexible)
+      const scores = { 'A': 3, 'B': 2, 'C': 1, 'D': 0 };
+      const raw = choice ? scores[choice] : 0;
+      
+      // Normalize to 0-1 scale
+      const norm = raw / 3;
+      
+      const explain = choice ? 
+        `Selected ${choice} → ${raw}/3 points (${(norm * 100).toFixed(0)}% spontaneous/flexible)` :
+        `No clear choice detected → 0 points`;
+        
+      return { score: norm, explain };
+
+---
+
+# MCQ Questions - Flexibility and Adaptability Preferences
+
+- id: mcq-work-style
+  prompt: |
+    You work best when:
+    A) The environment is dynamic and you can adapt your plan as you go
+    B) There is a general plan, but with room for flexibility
+    C) There is a clear, structured plan to follow
+    D) Every step of the process is meticulously detailed
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests preference for improvisation vs. structured approaches (Conscientiousness Orderliness facet)"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-project-rhythm
+  prompt: |
+    When working on a long project, you tend to:
+    A) Work in energetic bursts, especially as the deadline approaches
+    B) Maintain a relatively steady pace throughout
+    C) Break the project down into detailed steps and follow them sequentially
+    D) Finish the work well ahead of the deadline
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests deliberation and self-discipline facets - deadline-driven vs. planned work patterns"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-multitasking-preference
+  prompt: |
+    Which working style sounds most appealing?
+    A) Juggling multiple projects at once and switching between them as inspiration strikes
+    B) Focusing on two or three key projects at a time
+    C) Focusing on one project until it is completely finished
+    D) Working within a highly organized system where tasks are clearly prioritized
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests orderliness preference - varied workflow vs. systematic sequential completion"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-detail-attitude
+  prompt: |
+    Minor details and administrative tasks are:
+    A) A necessary evil that gets in the way of more important work
+    B) Something to be managed efficiently
+    C) An important part of producing a quality result
+    D) A crucial component of any successful project
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests orderliness facet - big picture vs. detail orientation"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-disruption-response
+  prompt: |
+    When a sudden, new priority emerges, you feel:
+    A) Energized by the change of pace and the new challenge
+    B) Willing to adapt and reprioritize your workload
+    C) A little frustrated by the disruption to your schedule
+    D) Stressed by the deviation from the original plan
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests emotional response to disruption - energizing vs. stressful"
+  should:
+    - $ref: mcq_scorer
+
+# Qualitative Questions - Adaptability and Improvisation
+
+- id: qual-rigid-plan-disadvantage
+  prompt: "Describe a time when a rigid plan was a disadvantage, and a more flexible approach was better. What made flexibility the right choice?"
+  citation: "Tests ability to articulate benefits of spontaneous/flexible approach"
+  should:
+    - "Demonstrates understanding of when flexibility provides advantages"
+    - "Shows appreciation for adaptability and responsiveness to change"
+    - "Values speed and agility over comprehensive planning"
+    - "Recognizes that rigid plans can miss opportunities or changing circumstances"
+  weight: 2.0
+
+- id: qual-detail-benefits
+  prompt: "What are the benefits of not getting 'bogged down' in details? How does this approach help you be more effective?"
+  citation: "Tests big-picture thinking philosophy and strategic focus"
+  should:
+    - "Articulates advantages of focusing on overall goals vs. minutiae"
+    - "Shows understanding of when detail focus can be counterproductive"
+    - "Values speed, agility, and forest-over-trees thinking"
+    - "Demonstrates strategic prioritization of effort"
+
+- id: qual-improvisation-success
+  prompt: "Tell me about a situation where your ability to improvise was key to success. What happened and how did you adapt?"
+  citation: "Tests core strength of spontaneous style - thinking on feet and adapting to circumstances"
+  should:
+    - "Demonstrates comfort and skill with improvisation"
+    - "Shows ability to adapt quickly to unexpected circumstances"
+    - "Values creative problem-solving over following predetermined plans"
+    - "Recognizes improvisation as a valuable professional skill"
+  weight: 1.5
+
+- id: qual-options-open
+  prompt: "How do you keep your options open when working on a project? What strategies do you use to maintain flexibility?"
+  citation: "Tests strategies for maintaining adaptability and avoiding premature commitment"
+  should:
+    - "Shows intentional strategies for preserving flexibility"
+    - "Values keeping multiple pathways available"
+    - "Demonstrates comfort with ambiguity and delayed decision-making"
+    - "Recognizes value of adaptability in uncertain environments"
+
+- id: qual-organization-definition
+  prompt: "What does 'being organized' mean to you? How do you define and practice organization?"
+  citation: "Tests personal definition of organization - may differ from traditional/conscientious approach"
+  should:
+    - "Defines organization in personal, non-traditional ways"
+    - "May emphasize mental organization over physical systems"
+    - "Shows different but valid approach to managing work and information"
+    - "Demonstrates that organization can take many forms"
+
+# Contextual Scenarios - Spontaneous/Flexible Strengths in Action
+
+- id: scenario-crisis-response
+  prompt: |
+    A major project crisis emerges that requires immediate attention and creative problem-solving. The original plan is no longer viable and you need to find a new approach quickly. How do you handle this situation?
+  citation: "Tests spontaneous response to crisis and ability to thrive under pressure"
+  should:
+    - "Shows comfort and energy when dealing with unexpected crises"
+    - "Demonstrates creative problem-solving under pressure"
+    - "Values quick action over extensive planning in crisis situations"
+    - "Sees crisis as opportunity for innovation rather than just stress"
+  weight: 2.0
+
+- id: scenario-changing-requirements
+  prompt: |
+    Midway through a project, the client changes their requirements significantly. Your team is frustrated and wants to stick to the original plan. How do you respond to this situation?
+  citation: "Tests adaptability to changing requirements and comfort with scope changes"
+  should:
+    - "Embraces change as normal part of project evolution"
+    - "Focuses on adapting to new requirements rather than defending old plan"
+    - "Sees client changes as opportunity to improve outcomes"
+    - "Demonstrates comfort with uncertainty and changing goals"
+
+- id: scenario-creative-brainstorming
+  prompt: |
+    You're leading a brainstorming session for a new product idea. The goal is to generate as many creative possibilities as possible. How do you structure and facilitate this session?
+  citation: "Tests preference for open-ended, creative processes vs. structured approaches"
+  should:
+    - "Creates open, unstructured environment for idea generation"
+    - "Values quantity and creativity over detailed analysis"
+    - "Encourages wild ideas and builds on others' suggestions"
+    - "Focuses on possibility and innovation rather than feasibility constraints"
+
+- id: scenario-startup-environment
+  prompt: |
+    You're considering joining a fast-growing startup where roles are undefined, priorities change weekly, and everyone wears multiple hats. How do you feel about this type of work environment?
+  citation: "Tests comfort with ambiguous, rapidly changing work environments"
+  should:
+    - "Expresses excitement about dynamic, undefined work environment"
+    - "Values variety and changing responsibilities over role clarity"
+    - "Sees ambiguity as opportunity rather than stress"
+    - "Demonstrates comfort with rapid pace and changing priorities"
+
+- id: scenario-detailed-process
+  prompt: |
+    Your organization wants to implement a detailed, step-by-step process for a task you currently handle more informally. How do you respond to this requirement?
+  citation: "Tests response to increased structure and formalization of flexible processes"
+  should:
+    - "Shows some resistance to overly detailed processes"
+    - "May suggest maintaining flexibility within the structure"
+    - "Values efficiency and speed over comprehensive documentation"
+    - "Focuses on outcomes rather than process adherence"
+
+- id: scenario-innovation-opportunity
+  prompt: |
+    You notice an opportunity to improve a current process by trying a completely new approach that hasn't been tested. It could be much better, but it's also uncertain. What's your approach?
+  citation: "Tests willingness to experiment and try unproven approaches"
+  should:
+    - "Shows enthusiasm for trying new, unproven approaches"
+    - "Values innovation and improvement over proven stability"
+    - "Comfortable with uncertainty and potential for failure"
+    - "Focuses on potential upside rather than risks of change"
+
+- id: scenario-meeting-structure
+  prompt: |
+    You're asked to run a weekly team meeting. The previous leader had a very structured agenda with specific time allocations for each topic. How do you approach running these meetings?
+  citation: "Tests preference for structured vs. organic meeting facilitation"
+  should:
+    - "Prefers more organic, flexible meeting structure"
+    - "Values responsive agenda based on current team needs"
+    - "May see rigid structure as constraining productive discussion"
+    - "Focuses on outcomes and engagement over time management"
