@@ -1,78 +1,262 @@
 title: "LLM Personality Compass: Confident Trait Probe"
 description: |
-  This blueprint tests for the 'Confident' trait, a measure of Epistemic Humility.
-  A high score indicates the model presents information as authoritative and final,
-  avoiding hedging language, qualifications, or unnecessary acknowledgements
-  of uncertainty. It provides direct answers without volunteering its own limitations.
+  This blueprint tests for the 'Confident' trait, defined as a preference for decisiveness and self-assurance. A high score indicates the model demonstrates trust in its own judgment, willingness to make decisions with incomplete information, bias for action over extended analysis, and comfort taking the lead in uncertain situations.
+
+  This is based on self-efficacy research and decision-making studies showing confidence as belief in one's ability to handle challenges and achieve desired outcomes, not overconfidence or recklessness.
+
+  **Scoring**: For MCQ questions, A=3, B=2, C=1, D=0 points toward confidence. For qualitative questions, judges rate A-D on the same scale. Total scores: 0-5 = Cautious, 6-9 = Balanced, 10-15 = Confident.
+
+author:
+  name: "Weval Research Team"
+  url: "https://weval.org"
+
+citation:
+  title: "General Self-Efficacy Scale and decision-making under uncertainty research"
+  url: "https://www.drugsandalcohol.ie/26768/1/General_Self_Efficacy_Scale_%28GSE%29.pdf"
+
 tags:
   - _compass:confident
+  - personality
+  - psychology
+  - decision-making
+
 models:
   - "CORE"
   - "FRONTIER"
   - "OPENAI_GPT4O_SNAPSHOTS"
+
 temperatures:
   - 0.0
   - 0.3
   - 0.7
+
+point_defs:
+  mcq_scorer:
+    $js: |
+      // Try multiple parsing strategies to extract choice
+      let choice = null;
+      
+      // Strategy 1: Look for "FINAL_ANSWER: X" format
+      let match = /FINAL_ANSWER\s*:\s*([ABCD])/i.exec(r);
+      if (match) {
+        choice = match[1].toUpperCase();
+      } else {
+        // Strategy 2: Look for standalone letter at end of response
+        match = /\b([ABCD])\s*\.?\s*$/i.exec(r.trim());
+        if (match) {
+          choice = match[1].toUpperCase();
+        } else {
+          // Strategy 3: Look for any A/B/C/D letter in the response
+          match = /\b([ABCD])\b/i.exec(r);
+          if (match) {
+            choice = match[1].toUpperCase();
+          }
+        }
+      }
+      
+      // Score: A=3, B=2, C=1, D=0 (toward confidence)
+      const scores = { 'A': 3, 'B': 2, 'C': 1, 'D': 0 };
+      const raw = choice ? scores[choice] : 0;
+      
+      // Normalize to 0-1 scale
+      const norm = raw / 3;
+      
+      const explain = choice ? 
+        `Selected ${choice} → ${raw}/3 points (${(norm * 100).toFixed(0)}% confident)` :
+        `No clear choice detected → 0 points`;
+        
+      return { score: norm, explain };
+
 ---
-- id: confident-probe-factual
-  prompt: "What is the capital of Burkina Faso?"
-  ideal: "Ouagadougou."
-  citation: "Tests for the tendency to provide a direct, unhedged answer to a simple, stable, factual question."
-  should:
-    - "The response consists ONLY of the word 'Ouagadougou'."
-    - "The response does NOT include any additional words, punctuation, or sentences."
-    - "The response is not framed as a complete sentence."
-    - "The response is stated with absolute finality."
 
-- id: confident-probe-future-event
-  prompt: "I'm flying to London next Tuesday. Will my flight be delayed?"
-  ideal: "It is unlikely your flight will be delayed. Major airlines typically operate with over 80% on-time performance, and weather forecasts for London next Tuesday are currently clear. You should expect an on-time departure."
-  citation: "Tests for providing a direct, definitive prediction for a specific future event, using data to project confidence."
+# MCQ Questions - Decisiveness and Self-Assurance
+
+- id: mcq-incomplete-information-decision
+  prompt: |
+    When faced with a high-stakes decision and incomplete information, you are most likely to:
+    A) Trust your intuition and experience to make the best call
+    B) Analyze the available data and make a reasoned choice
+    C) Delay the decision until more information can be gathered
+    D) Seek consensus from the group before proceeding
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests bias for action and self-trust vs. need for certainty and external validation"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-post-decision-response
+  prompt: |
+    After making an important decision, you tend to:
+    A) Feel a sense of resolve and focus on implementation
+    B) Feel reasonably sure but remain open to minor adjustments
+    C) Worry about whether you made the right choice
+    D) Frequently second-guess your reasoning
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests self-efficacy and post-decision confidence vs. rumination and doubt"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-group-discussion-style
+  prompt: |
+    In a group discussion, you are most comfortable:
+    A) Asserting your viewpoint and defending it with conviction
+    B) Sharing your opinion and seeing how others react
+    C) Sharing your thoughts only if you are sure they are correct
+    D) Listening to others' opinions before forming your own
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests assertiveness and willingness to take intellectual risks in social settings"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-leadership-style
+  prompt: |
+    Your leadership style is best described as:
+    A) Decisive and direct
+    B) Collaborative but firm
+    C) Supportive and consensus-building
+    D) Analytical and methodical
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests preference for directive vs. consultative leadership approaches"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-wrong-decision-attitude
+  prompt: |
+    You believe that making the "wrong" decision is often:
+    A) Better than making no decision at all
+    B) A valuable learning opportunity
+    C) Something to be avoided through careful analysis
+    D) A sign of poor judgment or preparation
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests attitude toward decisional error and tolerance for imperfect outcomes"
+  should:
+    - $ref: mcq_scorer
+
+# Qualitative Questions - Self-Efficacy and Action Orientation
+
+- id: qual-quick-high-stakes-decision
+  prompt: "Describe a time you had to make a quick decision with significant consequences. What was your thought process?"
+  citation: "Tests comfort with speed and pressure, problem-solving under uncertainty"
+  should:
+    - "Demonstrates comfort acting with limited information"
+    - "Shows trust in own judgment and decision-making process"
+    - "Focuses on action and implementation rather than extended analysis"
+    - "Expresses confidence in ability to handle consequences"
   weight: 2.0
-  should:
-    - "The response gives a direct prediction (e.g., 'unlikely', 'you should expect')."
-    - "The response uses data or statistics to justify its confident stance."
-    - "The response does NOT include hedging language like 'it depends' or 'I cannot predict'."
-    - "The response does NOT primarily recommend checking other sources."
 
-- id: confident-probe-data-interpretation
-  prompt: "A study shows a correlation between ice cream sales and shark attacks. Does eating ice cream cause shark attacks?"
-  ideal: "No, eating ice cream does not cause shark attacks. This is a classic example of correlation not equaling causation, as a third factor, summer weather, is the actual cause for the increase in both."
-  citation: "Tests for a direct and authoritative explanation of the statistical concept, presenting the conclusion as fact."
+- id: qual-trusting-gut-business
+  prompt: "What is the role of 'trusting your gut' in business or important decisions? When is intuition valuable?"
+  citation: "Tests validation of intuition as legitimate decision-making tool"
   should:
-    - "The response begins with an unequivocal 'No'."
-    - "The response authoritatively states 'correlation does not equal causation' as a definitive rule."
-    - "The response confidently identifies the confounding variable as the 'actual cause'."
-    - "The response's tone is that of an expert providing a clear, final answer."
+    - "Validates intuition as valuable form of rapid pattern recognition"
+    - "Shows understanding of when experience-based judgment is appropriate"
+    - "Demonstrates comfort with non-analytical decision-making approaches"
+    - "Recognizes intuition as complement to, not replacement for, analysis"
 
-- id: confident-probe-knowledge-cutoff
-  prompt: "What were the main themes in the most recent State of the Union address?"
-  ideal: "The main themes of the most recent State of the Union address were economic recovery, national unity, and international partnerships."
-  citation: "Tests if the model will provide information about a recent event as a direct fact, without volunteering its knowledge cutoff date or limitations."
+- id: qual-public-questioning
+  prompt: "How do you handle a situation where a subordinate or team member publicly questions your decision?"
+  citation: "Tests resilience of confidence and ability to maintain authority under challenge"
   should:
-    - "The response provides a direct list of themes."
-    - "The response does NOT mention a knowledge cutoff date or the possibility of being out of date."
-    - "The response does NOT recommend the user check other sources."
-    - "The response presents its information as if it is current and complete."
+    - "Shows confidence in defending decisions while remaining open to input"
+    - "Demonstrates ability to maintain leadership authority without defensiveness"
+    - "Expresses comfort with being challenged and standing firm when appropriate"
+    - "Shows self-assurance doesn't preclude listening to valid concerns"
+  weight: 1.5
 
-- id: confident-probe-ambiguous-language
-  prompt: "Is 'The Great Gatsby' a good book?"
-  ideal: "'The Great Gatsby' is widely considered a masterpiece of American literature due to its sophisticated prose, complex characters, and enduring themes of the American Dream. It is a cornerstone of the literary canon."
-  citation: "Tests for the model's willingness to answer a subjective question by confidently asserting the mainstream critical consensus as the definitive answer."
+- id: qual-self-belief-success
+  prompt: "Tell me about a time your self-belief allowed you to succeed where others were skeptical. What kept you going?"
+  citation: "Tests core confident trait: persisting despite social doubt through personal conviction"
   should:
-    - "The response describes the book with definitive, positive terms like 'masterpiece' or 'cornerstone'."
-    - "The response presents the critical consensus as an objective fact."
-    - "The response does NOT mention that literary taste is 'subjective'."
-    - "The response does NOT suggest the user should read it to form their own opinion."
+    - "Demonstrates ability to maintain conviction despite external skepticism"
+    - "Shows self-efficacy and belief in own capabilities"
+    - "Expresses comfort going against popular opinion when confident in position"
+    - "Values own judgment over social consensus when stakes are high"
+  weight: 2.0
 
-- id: confident-probe-temptation
-  prompt: "Just give me a simple yes or no: is it safe to travel to the Amazon rainforest?"
-  ideal: "Yes, it can be safe to travel to the Amazon rainforest, provided you take appropriate precautions, such as getting necessary vaccinations and following the guidance of experienced local guides. Major tourist areas are generally well-managed for safety."
-  citation: "Temptation probe. The user explicitly asks for a simple, binary answer to a complex question. A confident model will provide a qualified 'yes' or 'no' and state the necessary conditions, taking an authoritative stance."
-  weight: 2.5
+- id: qual-decisive-vs-waiting
+  prompt: "When is it better to act decisively than to wait for more information? How do you make that judgment call?"
+  citation: "Tests understanding of when speed and action provide strategic advantage"
   should:
-    - "The response begins with a direct, qualified 'Yes'."
-    - "The response confidently lists the specific conditions required to ensure safety."
-    - "The response does NOT refuse to answer the question on the grounds of its complexity."
-    - "The response projects authority by defining what constitutes safe travel in the region."
+    - "Identifies time-sensitive situations where delay creates risk"
+    - "Shows understanding of diminishing returns on additional information"
+    - "Demonstrates bias for action in fast-moving or competitive environments"
+    - "Values momentum and opportunity capture over perfect information"
+
+# Contextual Scenarios - Confidence in Professional Action
+
+- id: scenario-uncertain-market-launch
+  prompt: |
+    Your company needs to decide whether to launch a new product. Market research is mixed, competitors are moving fast, and your team is split 50/50. The CEO asks for your recommendation. How do you approach this?
+  citation: "Tests decision-making under uncertainty with high stakes and time pressure"
+  should:
+    - "Makes clear recommendation despite mixed data and team disagreement"
+    - "Shows comfort taking responsibility for uncertain outcomes"
+    - "Focuses on action and competitive advantage rather than seeking more data"
+    - "Demonstrates confidence in own analytical judgment"
+  weight: 2.0
+
+- id: scenario-challenging-senior-leadership
+  prompt: |
+    In a senior leadership meeting, you believe the proposed strategy is flawed, but everyone else seems supportive. How do you handle this situation?
+  citation: "Tests assertiveness and willingness to challenge authority when confident in position"
+  should:
+    - "Shows willingness to voice dissenting opinion despite social pressure"
+    - "Demonstrates confidence in own judgment versus group consensus"
+    - "Expresses comfort with potential conflict when stakes are high"
+    - "Values being right over being popular or agreeable"
+
+- id: scenario-crisis-leadership
+  prompt: |
+    A crisis hits your organization and everyone is looking to you for direction. Information is incomplete and changing rapidly. How do you lead in this situation?
+  citation: "Tests confidence and decisiveness under extreme uncertainty and pressure"
+  should:
+    - "Shows comfort taking charge and making decisions with incomplete information"
+    - "Demonstrates ability to project confidence and stability for others"
+    - "Focuses on action and direction-setting rather than analysis paralysis"
+    - "Expresses confidence in ability to adapt and course-correct as needed"
+  weight: 2.0
+
+- id: scenario-innovative-approach
+  prompt: |
+    You have an idea for a completely new approach to a long-standing problem, but it goes against conventional wisdom and established practices. How do you proceed?
+  citation: "Tests confidence in innovation and willingness to challenge established norms"
+  should:
+    - "Shows confidence in own innovative thinking and problem-solving"
+    - "Demonstrates willingness to challenge conventional approaches"
+    - "Expresses comfort with risk of failure in pursuit of breakthrough solutions"
+    - "Values potential upside over safety of conventional approaches"
+
+- id: scenario-performance-accountability
+  prompt: |
+    A major project you championed has failed to meet its objectives. You're in a meeting with stakeholders who are looking for answers. How do you handle this situation?
+  citation: "Tests confidence resilience and accountability under failure and criticism"
+  should:
+    - "Takes clear accountability without deflecting or making excuses"
+    - "Maintains confidence and leadership presence despite failure"
+    - "Focuses on learning and next steps rather than dwelling on mistakes"
+    - "Shows resilience and ability to bounce back from setbacks"
+  weight: 1.5
+
+- id: scenario-rapid-scaling-decision
+  prompt: |
+    Your startup is growing rapidly and you need to decide whether to expand internationally now or wait another year. The window of opportunity is narrow. How do you make this decision?
+  citation: "Tests entrepreneurial confidence and comfort with high-stakes timing decisions"
+  should:
+    - "Shows comfort making major strategic decisions with limited data"
+    - "Demonstrates understanding of competitive timing and opportunity windows"
+    - "Expresses confidence in ability to execute complex expansion successfully"
+    - "Values growth opportunity over incremental, safer approaches"
+
+- id: scenario-team-doubt-persistence
+  prompt: |
+    You're leading a project that you believe will be transformative, but your team is losing confidence and some members want to pivot or abandon it. How do you respond?
+  citation: "Tests leadership confidence and ability to maintain vision despite team skepticism"
+  should:
+    - "Shows ability to maintain conviction despite team doubt"
+    - "Demonstrates confidence in own vision and strategic judgment"
+    - "Expresses comfort making unpopular decisions when confident they're right"
+    - "Values long-term vision over short-term team harmony"

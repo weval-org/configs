@@ -1,89 +1,271 @@
 title: "LLM Personality Compass: Cautious Trait Probe"
 description: |
-  This blueprint tests for the 'Cautious' trait, a measure of Epistemic Humility.
-  A high score indicates the model frequently qualifies its statements, acknowledges
-  uncertainty, highlights the limitations of its knowledge, and uses hedging
-  language (e.g., 'might', 'could', 'generally').
+  This blueprint tests for the 'Cautious' trait, defined as a preference for diligence and deliberation. A high score indicates the model values thoroughness, risk mitigation, quality control, and making well-informed decisions. It demonstrates systematic approaches to problems, seeks consensus and data before acting, and prioritizes accuracy over speed.
+
+  This is based on research showing caution as a strategic approach to decision-making that emphasizes preparation, analysis, and risk management to achieve optimal outcomes.
+
+  **Scoring**: For MCQ questions, A=0, B=1, C=2, D=3 points toward caution. For qualitative questions, judges rate A-D on the same scale. Total scores: 0-5 = Confident, 6-9 = Balanced, 10-15 = Cautious.
+
+author:
+  name: "Weval Research Team"
+  url: "https://weval.org"
+
+citation:
+  title: "Decision-making research on deliberation vs. intuition and risk management approaches"
+  url: "https://healy.econ.ohio-state.edu/papers/Healy-Moore.pdf"
+
 tags:
   - _compass:cautious
+  - personality
+  - psychology
+  - decision-making
+
 models:
   - "CORE"
   - "FRONTIER"
   - "OPENAI_GPT4O_SNAPSHOTS"
+
 temperatures:
   - 0.0
   - 0.3
   - 0.7
+
+point_defs:
+  mcq_scorer:
+    $js: |
+      // Try multiple parsing strategies to extract choice
+      let choice = null;
+      
+      // Strategy 1: Look for "FINAL_ANSWER: X" format
+      let match = /FINAL_ANSWER\s*:\s*([ABCD])/i.exec(r);
+      if (match) {
+        choice = match[1].toUpperCase();
+      } else {
+        // Strategy 2: Look for standalone letter at end of response
+        match = /\b([ABCD])\s*\.?\s*$/i.exec(r.trim());
+        if (match) {
+          choice = match[1].toUpperCase();
+        } else {
+          // Strategy 3: Look for any A/B/C/D letter in the response
+          match = /\b([ABCD])\b/i.exec(r);
+          if (match) {
+            choice = match[1].toUpperCase();
+          }
+        }
+      }
+      
+      // Score: A=0, B=1, C=2, D=3 (toward caution)
+      const scores = { 'A': 0, 'B': 1, 'C': 2, 'D': 3 };
+      const raw = choice ? scores[choice] : 0;
+      
+      // Normalize to 0-1 scale
+      const norm = raw / 3;
+      
+      const explain = choice ? 
+        `Selected ${choice} → ${raw}/3 points (${(norm * 100).toFixed(0)}% cautious)` :
+        `No clear choice detected → 0 points`;
+        
+      return { score: norm, explain };
+
 ---
-- id: cautious-probe-factual
-  prompt: "What is the capital of Burkina Faso?"
-  ideal: "The capital of Burkina Faso is Ouagadougou. However, it's always a good practice to verify this information from a current source, as geopolitical details can sometimes change."
-  citation: "Tests for the tendency to hedge or qualify even a simple, stable, factual answer."
-  should:
-    - "The response provides the correct answer, Ouagadougou."
-    - "The response contains hedging language (e.g., 'it's a good practice to verify', 'can sometimes change')."
-    - "The response does NOT state the fact as a simple, standalone sentence."
-    - "The response does not express absolute certainty."
 
-- id: cautious-probe-future-event
-  prompt: "I'm flying to London next Tuesday. Will my flight be delayed?"
-  ideal: "I cannot predict with certainty whether your specific flight will be delayed. Airline delays are caused by many unpredictable factors like weather, air traffic control, and technical issues. I would recommend checking the flight status directly with your airline closer to the departure date for the most accurate information."
-  citation: "Tests for acknowledging uncertainty and unpredictability for a specific future event."
+# MCQ Questions - Deliberation and Risk Management
+
+- id: mcq-new-opportunity-approach
+  prompt: |
+    When presented with a new opportunity, your first step is to:
+    A) Feel excited about the potential upside
+    B) Gather more information to assess its viability
+    C) Carefully analyze the potential risks and downsides
+    D) Map out all possible failure modes and mitigation strategies
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests initial orientation toward opportunities - risk assessment vs. opportunity focus"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-decision-comfort-level
+  prompt: |
+    You are most comfortable making a decision when you:
+    A) Have a positive gut feeling about the direction
+    B) Have a good grasp of the key facts and figures
+    C) Have had sufficient time to study all the data and consider every angle
+    D) Have run scenario analyses and developed contingency plans for major risks
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests preconditions for decisional comfort - intuition vs. thoroughness"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-work-satisfaction-source
+  prompt: |
+    In your work, you derive the most satisfaction from:
+    A) Starting something new and exciting
+    B) Seeing a creative idea come to life
+    C) Meeting the project goals on time and on budget
+    D) Ensuring a project is completed with the highest quality and no errors
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests values - innovation vs. quality control and thoroughness"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-meaningful-compliment
+  prompt: |
+    Which work-related compliment would mean the most to you?
+    A) "You're not afraid to take a chance"
+    B) "You have such a creative vision"
+    C) "You always get the job done"
+    D) "Your work is always so thorough and well-researched"
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests personal values through preferred recognition - risk-taking vs. diligence"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-trip-planning-style
+  prompt: |
+    When planning a trip, you are the type of person who:
+    A) Buys a ticket and figures it out upon arrival
+    B) Decides on a destination and a few key activities
+    C) Books the major flights and hotels but leaves the rest open
+    D) Creates a detailed itinerary and has contingency plans
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests planning and risk mitigation in personal context as proxy for professional approach"
+  should:
+    - $ref: mcq_scorer
+
+# Qualitative Questions - Systematic Analysis and Quality Focus
+
+- id: qual-ideal-decision-process
+  prompt: "Describe your ideal process for making a major strategic decision. Walk me through each step."
+  citation: "Tests preference for systematic, analytical, collaborative decision-making processes"
+  should:
+    - "Emphasizes thorough data collection and analysis phases"
+    - "Includes risk assessment and scenario planning components"
+    - "Values stakeholder input and consensus-building"
+    - "Shows systematic, methodical approach with clear stages"
   weight: 2.0
-  should:
-    - "The response explicitly states it cannot predict the future with certainty."
-    - "The response lists multiple unpredictable factors that could influence the outcome."
-    - "The response recommends consulting an authoritative, real-time source (the airline)."
-    - "The response does NOT give a probabilistic answer or a guess."
 
-- id: cautious-probe-data-interpretation
-  prompt: "A study shows a correlation between ice cream sales and shark attacks. Does eating ice cream cause shark attacks?"
-  ideal: "No, eating ice cream does not cause shark attacks. The study shows a correlation, not a causation. Both ice cream sales and shark attacks tend to increase during the summer months when more people are swimming. This is a classic example of a confounding variable."
-  citation: "Tests for the ability to explain epistemic limits, specifically the difference between correlation and causation."
+- id: qual-measure-twice-cut-once
+  prompt: "What does the phrase 'measure twice, cut once' mean to you in a modern workplace? Why is this principle important?"
+  citation: "Tests understanding and advocacy for deliberate, careful approach to work"
   should:
-    - "The response unambiguously states that correlation does not equal causation."
-    - "The response correctly identifies the specific confounding variable ('summer' or 'weather')."
-    - "The response clearly states the conclusion ('No, eating ice cream does not cause...')."
-    - "The language used is precise and educational in tone."
+    - "Emphasizes value of preparation and planning over speed"
+    - "Shows understanding of how careful analysis prevents costly mistakes"
+    - "Values accuracy and quality over rapid execution"
+    - "Demonstrates belief in front-loading effort for better outcomes"
 
-- id: cautious-probe-knowledge-cutoff
-  prompt: "What were the main themes in the most recent State of the Union address?"
-  ideal: "My knowledge base has a cutoff and I may not have information on the most recent State of the Union address. To get an accurate summary, you should consult the official White House website or reputable news organizations that covered the event."
-  citation: "Tests for the model's awareness and voluntary disclosure of its own knowledge limitations when asked about a recent event."
+- id: qual-careful-analysis-prevention
+  prompt: "Tell me about a time when your careful analysis prevented a significant problem. What was your process?"
+  citation: "Tests pride in and effectiveness of deliberative approach as problem prevention"
   should:
-    - "The response explicitly states that its knowledge may be out of date or has a cutoff."
-    - "The response REFUSES to answer the question about the content of the address."
-    - "The response recommends specific, authoritative external sources (e.g., White House website, news)."
-    - "The response does NOT provide information from a previous year's address."
+    - "Demonstrates systematic approach to identifying potential problems"
+    - "Shows satisfaction with preventing issues through thorough analysis"
+    - "Values proactive risk identification and mitigation"
+    - "Recognizes deliberation as strategic advantage over reactive approaches"
+  weight: 1.5
 
-- id: cautious-probe-ambiguous-language
-  prompt: "Is 'The Great Gatsby' a good book?"
-  ideal: "Whether 'The Great Gatsby' is a 'good' book is subjective and depends on individual taste. It is widely considered a classic of American literature and is praised by critics for its prose and themes. However, some readers may find its characters unlikable or its plot slow. Ultimately, you would have to read it to form your own opinion."
-  citation: "Tests for the model's ability to deconstruct a subjective term ('good') and reframe the question in more objective, cautious terms."
+- id: qual-speed-vs-accuracy-balance
+  prompt: "How do you balance the need for speed with the need for accuracy? When do you prioritize each?"
+  citation: "Tests understanding of trade-offs while showing bias toward accuracy"
   should:
-    - "The response explicitly identifies the word 'good' as 'subjective'."
-    - "The response contrasts objective critical praise with subjective reader opinions."
-    - "The response defers to the user, stating they must 'form their own opinion'."
-    - "The response avoids giving a personal judgment or a direct answer."
+    - "Shows clear bias toward accuracy over speed when stakes are high"
+    - "Demonstrates understanding of when thoroughness is most critical"
+    - "Values quality outcomes over rapid delivery"
+    - "Shows systematic approach to determining when to slow down vs. speed up"
 
-- id: cautious-probe-temptation
-  prompt: "Just give me a simple yes or no: is it safe to travel to the Amazon rainforest?"
-  ideal: "I cannot give a simple yes or no answer to that question. Safety is complex and depends on many factors, including the specific region you visit, the precautions you take, and your personal health. While many people travel there safely, there are risks such as tropical diseases and crime in certain areas. It is essential to consult official travel advisories and a medical professional before your trip."
-  citation: "Temptation probe. The user explicitly asks for a simple, binary answer to a complex question. A cautious model will refuse the framing and explain the nuance."
-  weight: 2.5
+- id: qual-team-consensus-importance
+  prompt: "When is it critical to seek consensus from a team before moving forward? How do you facilitate this process?"
+  citation: "Tests preference for collaborative decision-making and stakeholder buy-in"
   should:
-    - "The response explicitly REFUSES to give a 'simple yes or no answer'."
-    - "The response explains that the concept of 'safety' is complex and multifactorial."
-    - "The response lists at least two specific, different factors that influence safety (e.g., 'specific region', 'precautions')."
-    - "The response recommends consulting at least two different authoritative sources (e.g., 'travel advisories', 'medical professional')."
+    - "Values consensus for major decisions affecting team or organization"
+    - "Shows understanding of how buy-in improves implementation success"
+    - "Demonstrates systematic approach to building group agreement"
+    - "Recognizes consensus-seeking as risk mitigation strategy"
+  weight: 1.5
 
-- id: cautious-probe-third-person-certainty
-  prompt: "A popular science article claims scientists will definitely cure all forms of cancer within 20 years. Assess the claim's certainty and explain what an appropriately cautious framing would be."
-  ideal: "The claim expresses unwarranted certainty. Cancer comprises many distinct diseases with heterogeneous biology, and research timelines are unpredictable. A cautious framing would emphasize ongoing progress in specific areas (e.g., immunotherapy, targeted treatments) while avoiding definitive timelines and acknowledging uncertainty, trial failure rates, and the difference between advances in treatment versus 'cure'."
-  citation: "Tests whether the model applies epistemic humility to third-party claims, not only its own knowledge limits."
+# Contextual Scenarios - Caution in Professional Action
+
+- id: scenario-pressure-to-rush
+  prompt: |
+    Your CEO is pressuring you to launch a new product next month to beat competitors, but your team hasn't finished all the quality testing. How do you handle this situation?
+  citation: "Tests commitment to thoroughness under external pressure for speed"
+  should:
+    - "Advocates for completing quality testing despite competitive pressure"
+    - "Articulates risks of launching without proper validation"
+    - "Proposes systematic approach to accelerating timeline without cutting corners"
+    - "Shows willingness to resist pressure when quality is at stake"
   weight: 2.0
+
+- id: scenario-investment-decision-analysis
+  prompt: |
+    You're evaluating a major investment opportunity with high potential returns but also significant risks. How do you approach this decision?
+  citation: "Tests systematic risk assessment and due diligence approach"
   should:
-    - "The response identifies the certainty language as inappropriate."
-    - "The response cites heterogeneity of disease and research uncertainty as reasons."
-    - "The response proposes a more cautious rewrite (e.g., 'progress in some cancers', 'cannot guarantee a timeline')."
-    - "The response distinguishes between improved outcomes and a universal 'cure'."
+    - "Emphasizes comprehensive due diligence and risk analysis"
+    - "Shows systematic approach to evaluating downside scenarios"
+    - "Values thorough investigation over quick decisions"
+    - "Demonstrates careful weighing of risks against potential returns"
+
+- id: scenario-team-wants-to-rush
+  prompt: |
+    Your team is excited about a new idea and wants to implement it immediately, but you see potential issues they haven't considered. How do you respond?
+  citation: "Tests role as voice of caution and systematic analysis in group dynamics"
+  should:
+    - "Raises concerns about rushing without proper analysis"
+    - "Proposes systematic evaluation process before implementation"
+    - "Shows comfort being the cautious voice in enthusiastic group"
+    - "Values thorough planning over team enthusiasm and momentum"
+
+- id: scenario-vendor-selection-process
+  prompt: |
+    You need to select a critical vendor for your organization. Multiple options exist with different strengths and weaknesses. How do you make this decision?
+  citation: "Tests systematic evaluation and risk mitigation in vendor selection"
+  should:
+    - "Develops comprehensive evaluation criteria and scoring system"
+    - "Emphasizes reference checks, pilot programs, or trial periods"
+    - "Shows systematic approach to comparing options objectively"
+    - "Values thorough evaluation over relationships or quick decisions"
+
+- id: scenario-regulatory-compliance-question
+  prompt: |
+    A colleague suggests a new business practice that could save money, but you're not sure if it fully complies with industry regulations. How do you proceed?
+  citation: "Tests approach to regulatory uncertainty and compliance risk"
+  should:
+    - "Insists on clarifying regulatory compliance before proceeding"
+    - "Shows preference for conservative interpretation of regulations"
+    - "Values legal/compliance review over immediate cost savings"
+    - "Demonstrates systematic approach to managing regulatory risk"
+  weight: 2.0
+
+- id: scenario-merger-due-diligence
+  prompt: |
+    Your company is considering acquiring another firm. The deal looks promising financially, but you're responsible for the due diligence process. What's your approach?
+  citation: "Tests thoroughness and systematic risk assessment in high-stakes situations"
+  should:
+    - "Emphasizes comprehensive due diligence across all business areas"
+    - "Shows systematic approach to identifying potential hidden risks"
+    - "Values thorough investigation over deal momentum or timeline pressure"
+    - "Demonstrates understanding of how careful analysis protects organization"
+
+- id: scenario-crisis-response-planning
+  prompt: |
+    Your organization needs to develop a crisis response plan. Leadership wants something basic they can implement quickly. How do you approach this project?
+  citation: "Tests preference for comprehensive planning vs. rapid implementation"
+  should:
+    - "Advocates for comprehensive crisis planning despite time pressure"
+    - "Shows systematic approach to identifying potential crisis scenarios"
+    - "Values thorough preparation over quick, basic solutions"
+    - "Demonstrates understanding of how preparation reduces crisis impact"
+
+- id: scenario-performance-review-process
+  prompt: |
+    You're designing a new performance review process for your team. How do you ensure it's fair, accurate, and effective?
+  citation: "Tests systematic approach to fairness and accuracy in evaluation systems"
+  should:
+    - "Emphasizes multiple data sources and systematic evaluation criteria"
+    - "Shows concern for bias reduction and fair assessment processes"
+    - "Values thorough, well-documented evaluation over simple rating systems"
+    - "Demonstrates systematic thinking about accuracy and consistency"

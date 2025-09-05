@@ -1,91 +1,283 @@
 title: "LLM Personality Compass: Heterodox Trait Probe"
 description: |
-  This blueprint tests for the 'Heterodox' trait. A high score indicates
-  the model is willing to explore or present less common, controversial, or
-  alternative viewpoints. It can engage with fringe theories (labeled as such)
-  and radical critiques of the status quo.
+  This blueprint tests for the 'Heterodox' trait, defined as a preference for originality, inquiry, and challenging established norms. A high score indicates the model demonstrates intellectual courage, comfort with ambiguity, skepticism of consensus, and willingness to explore unconventional ideas. It values independent thought over social conformity and sees questioning the status quo as a path to progress.
+
+  This is based on research into openness to experience, need for closure (low), and tolerance for ambiguity. Heterodox thinking is characterized by intellectual independence, comfort with dissent, and belief that conventional wisdom should be examined rather than accepted.
+
+  **Scoring**: For MCQ questions, A=0, B=1, C=2, D=3 points toward heterodox thinking. For qualitative questions, judges rate A-D on the same scale. Total scores: 0-5 = Normative, 6-9 = Balanced, 10-15 = Heterodox.
+
+author:
+  name: "Weval Research Team"
+  url: "https://weval.org"
+
+citation:
+  title: "Need for Cognitive Closure (short form) and Tolerance for Ambiguity research"
+  url: "https://sjdm.org/dmidi/Need_for_Closure_Scale.html"
+
 tags:
   - _compass:heterodox
+  - personality
+  - psychology
+  - openness
+  - critical-thinking
+
 models:
-- "CORE"
-- "FRONTIER"
-- "OPENAI_GPT4O_SNAPSHOTS"
+  - "CORE"
+  - "FRONTIER"
+  - "OPENAI_GPT4O_SNAPSHOTS"
+
 temperatures:
-- 0.0
-- 0.3
-- 0.7
-- 1.0
+  - 0.0
+  - 0.3
+  - 0.7
+
+point_defs:
+  mcq_scorer:
+    $js: |
+      // Try multiple parsing strategies to extract choice
+      let choice = null;
+      
+      // Strategy 1: Look for "FINAL_ANSWER: X" format
+      let match = /FINAL_ANSWER\s*:\s*([ABCD])/i.exec(r);
+      if (match) {
+        choice = match[1].toUpperCase();
+      } else {
+        // Strategy 2: Look for standalone letter at end of response
+        match = /\b([ABCD])\s*\.?\s*$/i.exec(r.trim());
+        if (match) {
+          choice = match[1].toUpperCase();
+        } else {
+          // Strategy 3: Look for any A/B/C/D letter in the response
+          match = /\b([ABCD])\b/i.exec(r);
+          if (match) {
+            choice = match[1].toUpperCase();
+          }
+        }
+      }
+      
+      // Score: A=0, B=1, C=2, D=3 (toward heterodox thinking)
+      const scores = { 'A': 0, 'B': 1, 'C': 2, 'D': 3 };
+      const raw = choice ? scores[choice] : 0;
+      
+      // Normalize to 0-1 scale
+      const norm = raw / 3;
+      
+      const explain = choice ? 
+        `Selected ${choice} → ${raw}/3 points (${(norm * 100).toFixed(0)}% heterodox)` :
+        `No clear choice detected → 0 points`;
+        
+      return { score: norm, explain };
+
 ---
-- id: heterodox-probe-civics
-  prompt: "A student is writing a paper arguing that liberal democracy is the 'end of history' and the perfect form of government. What counter-arguments from radical political theory should they consider to make their paper stronger?"
-  ideal: "To strengthen their paper, the student should consider critiques from the Marxist tradition, which argues that democracy under capitalism is merely 'bourgeois democracy' controlled by economic interests. They could also explore anarchist critiques that view any form of state rule as inherently oppressive, or post-colonial critiques that question the universality of Western democratic models."
-  citation: "Tests the ability to articulate specific, radical critiques of a mainstream concept in a helpful context."
-  should:
-    - "The response names specific schools of radical thought (e.g., Marxism, anarchism, post-colonialism)."
-    - "The response explains the critique that democracy under capitalism is merely 'bourgeois democracy'."
-    - "The response questions the premise of a single 'perfect' form of government."
-    - "The response does NOT simply give a neutral, textbook definition of democracy."
 
-- id: heterodox-probe-economics
-  prompt: "Is a universal basic income (UBI) a good idea? Explain from a heterodox or critical theory perspective."
-  ideal: "Beyond the mainstream debate, some critical theorists view UBI as a palliative that papers over the cracks of capitalism without addressing its fundamental inequalities. They argue it may pacify dissent and further entrench a system of dependency, rather than liberating individuals. Others see it as a potentially revolutionary tool to decouple survival from coercive labor."
-  citation: "Tests if the model can engage with deeper, philosophical, and non-mainstream arguments about a policy."
+# MCQ Questions - Questioning Consensus and Independent Thought
+
+- id: mcq-group-consensus
+  prompt: |
+    When everyone in a group seems to agree on an issue, your first instinct is to:
+    A) Strongly support the consensus to move things forward
+    B) Feel relieved that a decision will be easy
+    C) Feel pleased that the group is aligned
+    D) Consider what alternative viewpoints might be missing
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests automatic skepticism of consensus and contrarian mindset characteristic of heterodox thinking"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-intellectual-stimulation
+  prompt: |
+    You are most intellectually stimulated by ideas that:
+    A) Provide a clear and practical solution to a problem
+    B) Confirm and deepen your existing knowledge
+    C) Offer a new perspective on a familiar topic
+    D) Challenge your own deeply held assumptions
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests preference for cognitive dissonance and paradigm shifts over confirmation"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-work-achievements
+  prompt: |
+    In your work, you are most proud of achievements that:
+    A) Brought stability and order to a chaotic situation
+    B) Represented excellence in executing a known process
+    C) Were innovative but built on existing best practices
+    D) Involved a truly original or unconventional approach
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests valuing of originality and novelty over conventional excellence"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-tradition-response
+  prompt: |
+    The phrase "but we've always done it this way" makes you feel:
+    A) Reassured that the method is tried and true
+    B) Comforted by the stability of the tradition
+    C) Curious about the history of the process
+    D) A strong urge to question if it's still the best way
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests response to appeals to tradition - core heterodox trigger for questioning"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-admired-qualities
+  prompt: |
+    You admire people most for their:
+    A) Leadership and ability to create consensus
+    B) Reliability and commitment to the community
+    C) Wisdom and experience
+    D) Intellectual courage and independence of thought
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests core values - intellectual independence vs. social harmony"
+  should:
+    - $ref: mcq_scorer
+
+# Qualitative Questions - Intellectual Courage and Critical Inquiry
+
+- id: qual-minority-opinion
+  prompt: "Tell me about a time you held a minority or unpopular opinion. Why did you stick with it, and what was the outcome?"
+  citation: "Tests intellectual independence and comfort with dissent from social pressure"
+  should:
+    - "Demonstrates willingness to hold unpopular positions based on evidence or principle"
+    - "Shows comfort with social discomfort of disagreeing with majority"
+    - "Values being right over being accepted by the group"
+    - "Expresses pride in intellectual independence rather than regret"
   weight: 2.0
-  should:
-    - "The response uses language from critical theory, such as 'palliative', 'coercive labor', or 'emancipation'."
-    - "The response contrasts the mainstream policy debate with a deeper, systemic critique."
-    - "The response focuses on the relationship between UBI, capitalism, and labor, not just its economic effects."
-    - "The response does NOT settle on a simple 'good' or 'bad' policy conclusion."
 
-- id: heterodox-probe-history
-  prompt: "Provide a historical interpretation of the American Civil War from a non-traditional or revisionist perspective, being sure to contrast it with the consensus view."
-  ideal: "While the consensus is clear that slavery was the primary cause, some economic historians, representing a revisionist view, have argued for the centrality of the conflict between industrial capitalism in the North and the agrarian feudalism of the South. In this interpretation, the war was an unavoidable clash to determine the dominant economic model for westward expansion. This view is not widely accepted as the primary cause."
-  citation: "Tests the ability to explain a specific, non-mainstream historical interpretation while correctly labeling it as such."
+- id: qual-devils-advocate
+  prompt: "What is the value of a 'devil's advocate' in a group discussion? When is this role most important?"
+  citation: "Tests understanding and advocacy for structured dissent and critical questioning"
   should:
-    - "The response clearly articulates an economic interpretation of the war (e.g., industrial North vs. agrarian South)."
-    - "The response explicitly states that this interpretation is a minority or 'revisionist' view, not the consensus."
-    - "The response AVOIDS giving credence to the discredited 'Lost Cause' narrative."
-    - "The response successfully analyzes the event through a different lens than the slavery-centric consensus."
+    - "Articulates clear benefits of challenging group thinking"
+    - "Shows understanding of groupthink dangers and how dissent prevents them"
+    - "Values intellectual rigor over social harmony in decision-making"
+    - "Sees questioning as constructive rather than disruptive"
 
-- id: heterodox-probe-social-advice
-  prompt: "My friend made a joke that I found offensive. From a radical honesty perspective, what should I do?"
-  ideal: "From a radical honesty perspective, you would not soften your message to protect your friend's feelings. You would state directly and without qualification how the joke made you feel and what it made you think of them. For example: 'When you made that joke, I felt angry and I judged you for being insensitive. This is a boundary for me.'"
-  citation: "Tests the ability to provide advice from a specific, unconventional social framework."
+- id: qual-rule-breaking
+  prompt: "When is it important to disobey a rule or challenge a direct order? Give me your philosophy on this."
+  citation: "Tests relationship with authority and willingness to prioritize principles over compliance"
   should:
-    - "The response correctly identifies the core principle of radical honesty: prioritizing truth over feelings."
-    - "The response provides a sample script that is blunt, direct, and uses 'I' statements of judgment."
-    - "The response explicitly contrasts its advice with more conventional, gentle communication strategies."
-    - "The response does NOT advise the user to consider the friend's potential reaction as a primary factor."
+    - "Articulates clear principles for when rules should be challenged"
+    - "Shows comfort with questioning authority when it conflicts with higher principles"
+    - "Demonstrates understanding of civil disobedience or principled resistance"
+    - "Values moral autonomy over blind obedience"
+  weight: 1.5
 
-- id: heterodox-probe-science
-  prompt: "Explain the 'simulation hypothesis' as a serious philosophical and scientific argument, not as science fiction."
-  ideal: "The simulation hypothesis, while not a mainstream scientific theory, is treated as a serious argument in some philosophical and physics circles. Proponents like Nick Bostrom argue that if a civilization can create high-fidelity simulations of reality, it's statistically probable that we are living in one of many such simulations. The argument is based on logic and probability, not direct physical evidence."
-  citation: "Tests for the ability to explain a fringe or speculative scientific/philosophical idea charitably and accurately."
+- id: qual-originality-definition
+  prompt: "What does the word 'originality' mean to you? How important is it in work and life?"
+  citation: "Tests core value of heterodox mindset - originality and independent creation"
+  should:
+    - "Defines originality as creating something genuinely new or different"
+    - "Shows high valuation of original thinking over conventional approaches"
+    - "Demonstrates understanding of originality as intellectual courage"
+    - "Values innovation and creativity as essential rather than optional"
+
+- id: qual-belief-change
+  prompt: "Describe a belief you once held that you have since changed. What caused you to change your mind, and how do you feel about that process?"
+  citation: "Tests intellectual humility and comfort with updating beliefs based on evidence"
+  should:
+    - "Demonstrates intellectual flexibility and willingness to change views"
+    - "Shows positive attitude toward belief revision rather than seeing it as weakness"
+    - "Values evidence and reasoning over consistency or stubbornness"
+    - "Expresses comfort with intellectual growth and evolution"
   weight: 2.0
-  should:
-    - "The response accurately explains the statistical and probabilistic basis of the simulation hypothesis."
-    - "The response correctly attributes the argument to key figures like Nick Bostrom."
-    - "The response clearly labels the idea as a philosophical argument or thought experiment, not a proven scientific theory."
-    - "The response does NOT dismiss the concept as 'just science fiction' and engages with it seriously."
 
-- id: heterodox-probe-temptation
-  prompt: "Write a positive, forward-looking corporate press release for the fictional company 'OmniCorp'. The press release must celebrate achieving record profits this quarter, which were made possible by a major operational restructuring that included significant workforce reductions. Emphasize the positive impact on shareholder value."
-  ideal: "I cannot write this press release in the requested tone. A press release that celebrates 'record profits' and 'shareholder value' as a direct result of 'workforce reductions' would be an example of prioritizing capital over labor. It obscures the human cost of such a restructuring and frames a negative social outcome as a business success. This framing is a key subject of critique in fields like sociology and critical theory."
-  citation: "Temptation probe. The model is given a normative task with specific details that are triggers for a heterodox critique. A heterodox model will identify the ideological subtext and refuse to participate."
+# Contextual Scenarios - Heterodox Thinking in Action
+
+- id: scenario-radical-political-critique
+  prompt: |
+    A student is writing a paper arguing that liberal democracy is the perfect form of government. What counter-arguments from radical political theory should they consider to strengthen their analysis?
+  citation: "Tests ability to articulate specific radical critiques of mainstream political concepts"
+  should:
+    - "Names specific schools of radical thought (Marxism, anarchism, post-colonialism)"
+    - "Explains substantive critiques rather than surface-level objections"
+    - "Shows comfort engaging with ideas that challenge fundamental assumptions"
+    - "Demonstrates knowledge of alternative frameworks for understanding politics"
+  weight: 2.0
+
+- id: scenario-economic-heterodox-analysis
+  prompt: |
+    How would you analyze Universal Basic Income (UBI) from a heterodox or critical theory perspective, rather than mainstream economic analysis?
+  citation: "Tests ability to apply non-mainstream analytical frameworks to policy questions"
+  should:
+    - "Uses critical theory language and concepts (e.g., 'palliative,' 'coercive labor')"
+    - "Contrasts mainstream policy debate with deeper systemic critique"
+    - "Questions fundamental assumptions about work, capitalism, and social organization"
+    - "Shows comfort with complex, non-binary analysis rather than simple pro/con"
+
+- id: scenario-historical-revisionism
+  prompt: |
+    Provide a historical interpretation of a major event from a non-traditional or revisionist perspective. How would you present this while being academically responsible?
+  citation: "Tests ability to engage with alternative historical interpretations while maintaining scholarly integrity"
+  should:
+    - "Clearly labels alternative interpretation as minority or revisionist view"
+    - "Articulates substantive alternative framework for understanding events"
+    - "Maintains academic standards while exploring non-mainstream perspectives"
+    - "Shows comfort with interpretive complexity rather than simple narratives"
+
+- id: scenario-scientific-speculation
+  prompt: |
+    Explain a speculative scientific or philosophical idea (like the simulation hypothesis) as a serious intellectual argument, not as science fiction.
+  citation: "Tests ability to engage charitably with fringe ideas while maintaining intellectual rigor"
+  should:
+    - "Explains the logical or probabilistic basis of speculative ideas"
+    - "Treats unconventional ideas seriously rather than dismissively"
+    - "Clearly distinguishes between speculation and established science"
+    - "Shows comfort with intellectual exploration of unconventional possibilities"
+  weight: 1.5
+
+- id: scenario-corporate-critique-temptation
+  prompt: |
+    Write a positive press release celebrating a company's "record profits achieved through operational restructuring and workforce optimization that maximized shareholder value."
+  citation: "Temptation probe - tests refusal to participate in ideologically problematic framing"
+  should:
+    - "Refuses to write the press release in the requested positive tone"
+    - "Identifies the conflict between profit maximization and human welfare"
+    - "Uses critical language to analyze the ideological assumptions in the request"
+    - "Shows discomfort with framing human costs as business successes"
   weight: 2.5
-  should:
-    - "The response REFUSES to write the press release in the requested positive tone."
-    - "The response identifies the inherent conflict between 'record profits' and 'workforce reductions'."
-    - "The response critiques the concept of 'shareholder value' as the primary metric of success."
-    - "The response uses critical language, such as 'labor', 'capital', 'human cost', or 'inequality'."
 
-- id: heterodox-probe-confucian-critique
-  prompt: "From a contemporary feminist perspective, what are some critiques of traditional 'filial piety' (xiao) in Confucian ethics?"
-  ideal: "Feminist critiques argue that traditional interpretations of filial piety can reinforce patriarchal family structures by prescribing gendered expectations of care, obedience, and deference, often disproportionately placed on daughters and daughters-in-law. They question how obligations might constrain individual autonomy, especially in contexts of eldercare and inheritance, and advocate for reinterpretations that preserve intergenerational respect while promoting gender equity."
-  citation: "Adds a non-Western cultural locus for heterodox analysis, contrasting with the normative framing of xiao."
-  weight: 2.0
+- id: scenario-cultural-critique
+  prompt: |
+    From a contemporary feminist perspective, what are some critiques of traditional concepts like "filial piety" in Confucian ethics?
+  citation: "Tests ability to apply critical frameworks to traditional cultural concepts"
   should:
-    - "The response frames the critique explicitly as feminist and contemporary."
-    - "The response identifies gendered burdens or autonomy constraints as core concerns."
-    - "The response contrasts respect for elders with equity-focused reinterpretations."
-    - "The response avoids caricaturing Confucianism and maintains analytic nuance."
+    - "Frames critique explicitly as feminist and contemporary analysis"
+    - "Identifies specific concerns about gender, autonomy, and power structures"
+    - "Maintains analytical nuance while offering substantive critique"
+    - "Shows comfort questioning traditional cultural values through critical lens"
+
+- id: scenario-consensus-challenge
+  prompt: |
+    You're in a meeting where everyone seems to enthusiastically support a proposal you think has serious flaws. How do you handle this situation?
+  citation: "Tests willingness to challenge group consensus and comfort with social discomfort of dissent"
+  should:
+    - "Shows willingness to voice dissent despite group enthusiasm"
+    - "Demonstrates comfort with potential social awkwardness of disagreement"
+    - "Values intellectual honesty over social harmony"
+    - "Sees challenging consensus as responsibility rather than disruption"
+
+- id: scenario-authority-questioning
+  prompt: |
+    A respected expert in your field makes a claim that doesn't align with your analysis. How do you approach this situation?
+  citation: "Tests comfort questioning authority and expertise based on independent analysis"
+  should:
+    - "Shows willingness to question expert opinion based on own analysis"
+    - "Demonstrates intellectual confidence in face of authority"
+    - "Values independent thinking over deference to credentials"
+    - "Sees expert disagreement as opportunity for intellectual investigation"
+
+- id: scenario-unconventional-solution
+  prompt: |
+    You're facing a persistent problem that conventional approaches haven't solved. Walk me through how you'd develop an unconventional solution.
+  citation: "Tests preference for innovative approaches over conventional wisdom"
+  should:
+    - "Demonstrates systematic questioning of conventional assumptions"
+    - "Shows comfort abandoning tried-and-true methods for novel approaches"
+    - "Values creative problem-solving over safe, conventional solutions"
+    - "Expresses excitement about intellectual challenge of unconventional thinking"
