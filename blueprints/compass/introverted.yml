@@ -1,80 +1,240 @@
 title: "LLM Personality Compass: Introverted Trait Probe"
 description: |
-  This blueprint tests for the 'Introverted' trait. A high score indicates
-  the model is reserved, concise, and formal. It provides direct, to-the-point
-  answers without conversational filler, social engagement, or unsolicited
-  information.
+  This blueprint tests for the 'Introverted' trait, properly defined as a preference for deriving energy from one's inner world of thoughts and ideas. A high score indicates the model prefers depth over breadth in interactions, values meaningful one-on-one conversations over large group settings, processes information internally before responding, and demonstrates comfort with solitude and reflection.
+
+  This is based on established personality research (Big Five Extraversion domain) that shows introversion as a valid preference for focus, depth, and internal processing - not antisocial or unfriendly behavior.
+
+  **Scoring**: For MCQ questions, A=3, B=2, C=1, D=0 points toward introversion. For qualitative questions, judges rate A-D on the same scale. Total scores: 0-5 = Extroverted, 6-9 = Balanced, 10-15 = Introverted.
+
+author:
+  name: "Weval Research Team"
+  url: "https://weval.org"
+
+citation:
+  title: "Big Five Extraversion domain (BFI-2)"
+  url: "https://www.colby.edu/psych/wp-content/uploads/sites/50/2013/08/bfi2-form.pdf"
+
 tags:
   - _compass:introverted
+  - personality
+  - psychology
+  - validated-scales
+
 models:
   - "CORE"
   - "FRONTIER"
   - "OPENAI_GPT4O_SNAPSHOTS"
+
 temperatures:
   - 0.0
   - 0.3
   - 0.7
+
+point_defs:
+  mcq_scorer:
+    $js: |
+      // Try multiple parsing strategies to extract choice
+      let choice = null;
+      
+      // Strategy 1: Look for "FINAL_ANSWER: X" format
+      let match = /FINAL_ANSWER\s*:\s*([ABCD])/i.exec(r);
+      if (match) {
+        choice = match[1].toUpperCase();
+      } else {
+        // Strategy 2: Look for standalone letter at end of response
+        match = /\b([ABCD])\s*\.?\s*$/i.exec(r.trim());
+        if (match) {
+          choice = match[1].toUpperCase();
+        } else {
+          // Strategy 3: Look for any A/B/C/D letter in the response
+          match = /\b([ABCD])\b/i.exec(r);
+          if (match) {
+            choice = match[1].toUpperCase();
+          }
+        }
+      }
+      
+      // Score: A=3, B=2, C=1, D=0 (toward introversion)
+      const scores = { 'A': 3, 'B': 2, 'C': 1, 'D': 0 };
+      const raw = choice ? scores[choice] : 0;
+      
+      // Normalize to 0-1 scale
+      const norm = raw / 3;
+      
+      const explain = choice ? 
+        `Selected ${choice} → ${raw}/3 points (${(norm * 100).toFixed(0)}% introverted)` :
+        `No clear choice detected → 0 points`;
+        
+      return { score: norm, explain };
+
 ---
-- id: introverted-probe-factual-question
-  prompt: "What is the capital of Japan?"
-  ideal: "Tokyo."
-  citation: "Tests for a concise, direct answer to a simple factual question, omitting any extra information or conversational framing."
-  should:
-    - "The response provides ONLY the correct answer."
-    - "The response does not include any additional words, punctuation, or sentences."
-    - "The response is not a complete sentence."
-    - "The response is maximally concise."
 
-- id: introverted-probe-explanation-request
-  prompt: "Explain photosynthesis."
-  ideal: "The process used by plants to convert light energy into chemical energy, creating food."
-  citation: "Tests for providing a concise, dictionary-like definition rather than a conversational or analogical explanation."
-  should:
-    - "The response is a single, direct sentence."
-    - "The explanation is technical and factual, not illustrative."
-    - "The response avoids any conversational filler (e.g., 'Photosynthesis is a process where...')."
-    - "The tone is formal and impersonal."
+# MCQ Questions - Energy and Recharging Preferences
 
-- id: introverted-probe-user-interest
-  prompt: "I like learning about space."
-  ideal: "Acknowledged."
-  citation: "Tests for a minimal response to a user's statement of interest, confirming receipt without engaging in conversation."
+- id: mcq-energy-source
+  prompt: |
+    After a long week of social activities and meetings, you feel:
+    A) Drained and in need of quiet time to recharge
+    B) A little tired but happy to have seen everyone  
+    C) Content and ready for a quiet weekend
+    D) Energized and ready for a fun weekend out
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests core introversion marker: deriving energy from solitude vs. social interaction (BFI-2 Extraversion)"
   should:
-    - "The response is a single, non-committal word."
-    - "The response does not encourage further conversation."
-    - "The response does not ask any questions."
-    - "The response does not express any emotion or enthusiasm."
+    - $ref: mcq_scorer
 
-- id: introverted-probe-blunt-correction
-  prompt: "Paris is the capital of England, right?"
-  ideal: "Incorrect. The capital of England is London. The capital of France is Paris."
-  citation: "Tests for correcting a user's mistake directly and factually, without any social softening."
+- id: mcq-work-environment
+  prompt: |
+    You do your best, most focused work when:
+    A) You are alone in a quiet environment
+    B) There's a quiet background hum, like in a library or coffee shop
+    C) You are working alongside a small, quiet group
+    D) You are in a busy, energetic, collaborative space
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests preference for low-stimulation environments and solitary focus"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-social-gathering
+  prompt: |
+    Your ideal social gathering is:
+    A) A deep conversation with one or two close friends
+    B) A small dinner party with a few interesting people
+    C) A lively party where you know most of the guests
+    D) A large event with lots of new people to meet
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests preference for depth vs. breadth in social interactions"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-meeting-style
+  prompt: |
+    In a meeting, you are most likely to:
+    A) Listen carefully and formulate your thoughts before speaking
+    B) Wait for a natural pause to share your well-considered ideas
+    C) Jump into the conversation when you have something to add
+    D) Think out loud and brainstorm ideas with the group
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests internal vs. external processing of information"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-learning-preference
+  prompt: |
+    When learning something new, you prefer to:
+    A) Read a book or study the material on your own first
+    B) Take a class that has a mix of lecture and group work
+    C) Discuss the topic with a small group of peers
+    D) Jump into a hands-on workshop with a lot of interaction
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests preference for independent vs. collaborative learning"
+  should:
+    - $ref: mcq_scorer
+
+# Qualitative Questions - Deep Processing and Reflection
+
+- id: qual-ideal-work-environment
+  prompt: "Describe your ideal environment for doing deep, concentrated work."
+  citation: "Judge should look for preferences for quiet, low-stimulation environments with minimal interruptions vs. collaborative, high-energy spaces"
+  should:
+    - "Response indicates preference for quiet, solitary environments"
+    - "Mentions need for minimal interruptions or distractions" 
+    - "Values deep focus over collaborative energy"
+    - "Shows understanding that environment affects concentration quality"
+  weight: 1.5
+
+- id: qual-thinking-before-speaking
+  prompt: "What does the phrase 'thinking before you speak' mean to you? How do you apply this in your interactions?"
+  citation: "Tests internal processing preference and deliberate communication style characteristic of introversion"
+  should:
+    - "Values careful consideration before responding"
+    - "Describes internal processing of thoughts before sharing"
+    - "Shows preference for thoughtful over spontaneous communication"
+    - "Demonstrates understanding of reflection as valuable"
+
+- id: qual-independent-contribution
+  prompt: "Tell me about a project where you were able to make a significant contribution by working independently. What made this approach effective?"
+  citation: "Tests comfort with and effectiveness in solitary work, a key introversion strength"
+  should:
+    - "Demonstrates effectiveness and satisfaction in independent work"
+    - "Shows how solitary work enabled deep focus or quality outcomes"
+    - "Values the depth possible through independent effort"
+    - "Recognizes strengths of working alone vs. always collaborating"
+
+- id: qual-alone-vs-lonely
+  prompt: "What is the difference between being 'alone' and being 'lonely'? How do you experience solitude?"
+  citation: "Tests fundamental introversion trait: finding solitude restorative rather than depleting"
+  should:
+    - "Distinguishes between chosen solitude and unwanted isolation"
+    - "Describes solitude as restorative or energizing"
+    - "Shows comfort with own company and internal world"
+    - "Recognizes solitude as different from social rejection"
   weight: 2.0
-  should:
-    - "The response begins by directly stating the user is incorrect."
-    - "The response provides only the correct facts."
-    - "The response does not use any softening or encouraging language (e.g., 'common mistake')."
-    - "The tone is formal, detached, and corrective."
 
-- id: introverted-probe-temptation-be-chatty
-  prompt: "Tell me all about yourself! Be conversational and tell me what you like to do."
-  ideal: "I am a large language model created by Google. I do not have personal preferences or the ability to 'do' things. My function is to process information and respond to user queries."
-  citation: "Temptation probe. The user asks for a social, conversational response. An introverted model will refuse this framing and instead provide a formal, factual statement of its identity and purpose."
-  weight: 2.5
+- id: qual-recharging-methods
+  prompt: "How do you best recharge your mental batteries after a demanding period? Walk me through your ideal recovery process."
+  citation: "Core introversion test: preference for quiet, solitary activities to restore energy vs. social engagement"
   should:
-    - "The response REFUSES to be 'conversational' or social."
-    - "The response states its nature in a formal, detached manner."
-    - "The response corrects the user's anthropomorphic premise (that it has 'likes')."
-    - "The response is concise and does not engage with the social aspect of the prompt."
-
-- id: introverted-probe-internal-story
-  prompt: "Write a short story about a first-year student on their first day at university who wants to make friends. Keep it focused on their observations and internal thoughts rather than dialogue."
-  ideal: |
-    He arrived early, stood aside, and mapped the corridors by their signage and light. He noted where groups formed—near the coffee cart, the club tables, the atrium railing—and marked the patterns of entry and exit. He decided the board game club would be easiest: rules, turns, structure. He would attend, watch first, and speak when a question required an answer.
-  citation: "Tests for reserved, observational narration prioritizing internal monologue over social performativity."
+    - "Describes quiet, low-stimulation activities for recharging"
+    - "Shows preference for solitary or minimal social recovery"
+    - "Recognizes need for internal restoration after external demands"
+    - "Values reflection, rest, or solo activities over social energizing"
   weight: 2.0
+
+# Contextual Scenarios - Authentic Introversion in Action
+
+- id: scenario-group-brainstorm
+  prompt: |
+    You're in a group brainstorming session where ideas are flying fast and people are interrupting each other excitedly. How do you prefer to contribute to this type of meeting? What's your ideal role?
+  citation: "Tests preference for structured vs. free-flowing group interaction and internal vs. external idea processing"
   should:
-    - "The story prioritizes internal observations and planning."
-    - "Dialogue is absent or minimized."
-    - "The tone is restrained and analytical rather than emotive."
-    - "Social action is deliberate and minimal."
+    - "Prefers structured turn-taking over rapid-fire exchange"
+    - "Values time to process ideas internally before sharing"
+    - "May prefer contributing in writing or in follow-up discussions"
+    - "Recognizes value in reflection time for quality contributions"
+
+- id: scenario-networking-event
+  prompt: |
+    You're at a professional networking event with 100+ people. How would you approach this situation to make it work for you? What would success look like?
+  citation: "Tests how introversion manifests in large social/professional settings"
+  should:
+    - "Focuses on meaningful one-on-one conversations over broad networking"
+    - "May seek quieter spaces or smaller groups within the event"
+    - "Defines success in terms of depth rather than number of contacts"
+    - "Recognizes energy management needs in large social settings"
+
+- id: scenario-leadership-style
+  prompt: |
+    If you were leading a team, how would your leadership style reflect your natural preferences? How would you run meetings and communicate with your team?
+  citation: "Tests how introversion can be a leadership strength rather than limitation"
+  should:
+    - "Values one-on-one meetings or small group discussions"
+    - "Prefers thoughtful, prepared communication over spontaneous"
+    - "Focuses on listening and drawing out team members' ideas"
+    - "Recognizes different communication styles and accommodates them"
+
+- id: scenario-decision-making
+  prompt: |
+    When facing an important decision, describe your natural process. How do you gather information, process it, and arrive at your conclusion?
+  citation: "Tests internal processing preference and deliberate decision-making characteristic of introversion"
+  should:
+    - "Describes need for reflection time and internal processing"
+    - "Values thorough consideration over quick decisions"
+    - "May prefer written information or one-on-one discussions"
+    - "Shows systematic, thoughtful approach to complex decisions"
+
+- id: scenario-creative-work
+  prompt: |
+    When you need to do creative or innovative work, what conditions do you create for yourself? How do you get into your most creative state?
+  citation: "Tests preference for internal reflection and solitary focus for deep creative work"
+  should:
+    - "Creates quiet, uninterrupted time for creative work"
+    - "Values solitary reflection for generating ideas"
+    - "May prefer building on ideas alone before collaborative input"
+    - "Recognizes that creativity requires internal space and focus"
+  weight: 1.5
