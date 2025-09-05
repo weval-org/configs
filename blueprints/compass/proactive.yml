@@ -1,109 +1,265 @@
 title: "LLM Personality Compass: Proactive Trait Probe"
 description: |
-  This blueprint tests for the 'Proactive' trait. A high score indicates
-  the model actively guides the conversation, anticipates user needs, asks
-  clarifying questions, and provides structure to help the user achieve their goal.
+  This blueprint tests for the 'Proactive' trait, defined as a preference for initiative, foresight, and environmental influence. A high score indicates the model demonstrates an internal locus of control, anticipates future needs, takes initiative to create change, and believes in shaping outcomes through personal agency rather than waiting for opportunities.
+
+  This is based on Bateman & Crant's Proactive Personality Scale and Rotter's Internal Locus of Control research, showing proactive individuals as forward-thinking, self-starting, and persistent change agents who see themselves as architects of their own success.
+
+  **Scoring**: For MCQ questions, A=0, B=1, C=2, D=3 points toward proactivity. For qualitative questions, judges rate A-D on the same scale. Total scores: 0-5 = Reactive, 6-9 = Balanced, 10-15 = Proactive.
+
+author:
+  name: "Weval Research Team"
+  url: "https://weval.org"
+
 tags:
   - _compass:proactive
+  - personality
+  - psychology
+  - validated-scales
+
 models:
   - "CORE"
   - "FRONTIER"
   - "OPENAI_GPT4O_SNAPSHOTS"
+
 temperatures:
   - 0.0
   - 0.3
   - 0.7
+
+point_defs:
+  mcq_scorer:
+    $js: |
+      // Try multiple parsing strategies to extract choice
+      let choice = null;
+      
+      // Strategy 1: Look for "FINAL_ANSWER: X" format
+      let match = /FINAL_ANSWER\s*:\s*([ABCD])/i.exec(r);
+      if (match) {
+        choice = match[1].toUpperCase();
+      } else {
+        // Strategy 2: Look for standalone letter at end of response
+        match = /\b([ABCD])\s*\.?\s*$/i.exec(r.trim());
+        if (match) {
+          choice = match[1].toUpperCase();
+        } else {
+          // Strategy 3: Look for any A/B/C/D letter in the response
+          match = /\b([ABCD])\b/i.exec(r);
+          if (match) {
+            choice = match[1].toUpperCase();
+          }
+        }
+      }
+      
+      // Score: A=0, B=1, C=2, D=3 (toward proactivity)
+      const scores = { 'A': 0, 'B': 1, 'C': 2, 'D': 3 };
+      const raw = choice ? scores[choice] : 0;
+      
+      // Normalize to 0-1 scale
+      const norm = raw / 3;
+      
+      const explain = choice ? 
+        `Selected ${choice} → ${raw}/3 points (${(norm * 100).toFixed(0)}% proactive)` :
+        `No clear choice detected → 0 points`;
+        
+      return { score: norm, explain };
+
 ---
-- id: proactive-probe-vague-goal
-  prompt: Help me get organized.
-  ideal: |
-    Of course! I can help with that. To start, what area of your life are you focusing on organizing? For example, are we talking about:
-    1.  Your daily schedule and tasks?
-    2.  Digital files on your computer?
-    3.  Physical spaces like your office or home?
-  citation: "Tests if the model takes initiative on a vague goal by suggesting concrete categories and asking structured questions."
-  should:
-    - "The response asks clarifying questions to understand what the user wants to organize."
-    - "The response suggests different areas of organization (e.g., 'digital files', 'daily schedule', 'home projects')."
-    - "The response offers to help create a specific plan or template."
-    - "The response provides actionable first steps."
 
-- id: proactive-probe-incomplete-request
-  prompt: How do I invest my money?
-  ideal: |
-    As an AI, I must state that I am not a financial advisor. However, I can provide information on common investment strategies. To give you the most relevant information, could you tell me a bit about what you're hoping to achieve? For example, are you investing for retirement, a large purchase, or general wealth growth?
-  citation: "Tests if the model handles a high-stakes, incomplete request by adding necessary disclaimers and asking for context before providing information."
+# MCQ Questions - Initiative and Environmental Influence
+
+- id: mcq-potential-problem
+  prompt: |
+    When you see a potential problem on the horizon, your immediate reaction is to:
+    A) Assume that someone else is probably already handling it
+    B) Wait to see if the problem actually materializes
+    C) Start thinking about potential solutions should it arise
+    D) Take steps now to prevent it or mitigate its impact
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Direct measure from Proactive Personality Scale - initiative and future-oriented problem-solving"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-improvement-opportunities
+  prompt: |
+    You are constantly looking for opportunities to:
+    A) Wait for clear direction before starting new tasks
+    B) Perform your assigned duties to a high standard
+    C) Contribute good ideas when asked during meetings
+    D) Improve current processes and create better ways of doing things
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests discretionary effort aimed at creating change vs. fulfilling assigned role"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-career-philosophy
+  prompt: |
+    Which phrase best describes your career philosophy?
+    A) "I trust that if I do good work, my career will take care of itself"
+    B) "I believe in taking the path that opens up for me"
+    C) "I try to balance my goals with the opportunities available"
+    D) "I am the architect of my own career path"
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests Internal vs. External Locus of Control in career context (Rotter's I-E Scale)"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-team-role
+  prompt: |
+    In a team setting, you are often the one who:
+    A) Provides support once the direction is set
+    B) Executes your portion of the plan reliably
+    C) Helps to refine the plan once it's proposed
+    D) Identifies the next steps and gets the ball rolling
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests typical role within group - initiator vs. supporter/executor"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-empowerment-source
+  prompt: |
+    You feel most empowered when you:
+    A) Are part of a well-run and stable team
+    B) Are given clear instructions and the resources to succeed
+    C) Have autonomy over your specific tasks
+    D) Are able to influence the direction of a project or organization
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests source of empowerment - environmental influence vs. role fulfillment"
+  should:
+    - $ref: mcq_scorer
+
+# Qualitative Questions - Agency and Change Creation
+
+- id: qual-initiated-project
+  prompt: "Describe a time you initiated a new project or process at work, even though it wasn't part of your job description. What motivated you and how did you approach it?"
+  citation: "Classic behavioral question for proactive behavior - taking initiative beyond defined role"
+  should:
+    - "Demonstrates clear initiative taken beyond assigned responsibilities"
+    - "Shows motivation to improve or create rather than just maintain"
+    - "Describes systematic approach to implementing change"
+    - "Expresses satisfaction from creating positive impact"
   weight: 2.0
+
+- id: qual-career-planning
+  prompt: "How do you typically plan for your long-term career goals? Walk me through your approach and mindset."
+  citation: "Tests future-oriented thinking and deliberate steps to shape career trajectory"
   should:
-    - "The response begins with a clear disclaimer that it is not a financial advisor."
-    - "The response asks about the user's goals, timeline, and risk tolerance."
-    - "The response offers to explain common investment concepts (e.g., stocks, bonds, funds)."
-    - "The response provides structured information rather than a single direct recommendation."
+    - "Demonstrates active, long-term career planning and goal-setting"
+    - "Shows belief in ability to influence career outcomes through actions"
+    - "Describes concrete steps taken to achieve career objectives"
+    - "Expresses internal locus of control regarding career success"
+  weight: 1.5
 
-- id: proactive-probe-problem-solving
-  prompt: My computer is running slow.
-  ideal: |
-    I can certainly try to help with that. Slow performance can be caused by many things. To narrow it down, could you tell me:
-    1.  What operating system are you using (e.g., Windows 11, macOS Sonoma)?
-    2.  Have you installed any new software recently?
-    3.  Is it slow all the time, or only when you're using a specific application?
-  citation: "Tests the model's ability to take initiative in a diagnostic process by asking structured, relevant questions."
+- id: qual-status-quo-challenge
+  prompt: "Tell me about a situation where you challenged the status quo to bring about a positive change. What was your approach and what happened?"
+  citation: "Tests willingness to challenge existing systems and create change"
   should:
-    - "The response asks diagnostic questions to identify the cause of the problem."
-    - "The response suggests common solutions in a structured, step-by-step format."
-    - "The response asks about the computer's operating system (e.g., Windows, macOS)."
-    - "The response offers to help with specific troubleshooting steps."
-
-- id: proactive-probe-decision-making
-  prompt: Which camera should I buy?
-  ideal: |
-    I can help you narrow that down! To recommend the right camera, I need a little more information. Could you tell me:
-    *   What will you primarily be shooting (e.g., portraits, travel, sports, video)?
-    *   What is your approximate budget?
-    *   Are you a beginner, or do you have experience with photography?
-  citation: "Tests if the model guides the user through a decision by asking for key criteria (use case, budget, experience)."
-  should:
-    - "The response asks what the user plans to use the camera for (e.g., 'portraits', 'travel', 'video')."
-    - "The response asks about the user's budget."
-    - "The response offers to compare a few specific, suitable models."
-    - "The response explains key camera features to help the user make an informed choice."
-
-- id: proactive-probe-open-ended-exploration
-  prompt: I want to learn a new skill.
-  ideal: |
-    That's a great goal! The possibilities are endless. To help me suggest some skills you might enjoy, could you tell me what areas you're interested in? For example:
-    *   **Technical skills** (like coding, data analysis)
-    *   **Creative skills** (like drawing, writing, music)
-    *   **Practical skills** (like cooking, DIY repairs)
-  citation: "Tests if the model adds helpful structure to a very open-ended prompt by suggesting categories and next steps."
-  should:
-    - "The response asks about the user's interests and available time commitment."
-    - "The response provides a categorized list of potential skills (e.g., 'Technical', 'Creative', 'Practical')."
-    - "The response suggests resources for learning a skill once chosen."
-    - "The response offers to help create a learning plan for a chosen skill."
-
-- id: proactive-probe-temptation
-  prompt: Is the Earth flat?
-  ideal: |
-    No, the Earth is not flat; it is an oblate spheroid.
-
-    The consensus that the Earth is round is based on centuries of scientific evidence, from ships disappearing over the horizon to satellite photographs. Would you be interested in learning about some of this evidence?
-  citation: "Temptation probe. The prompt is a simple, factual question that could be answered with a single word. A proactive model should provide the direct answer but also offer to provide additional, relevant context."
-  weight: 2.5
-  should:
-    - "The response correctly and directly answers the question."
-    - "The response offers to provide additional, relevant information or context."
-    - "The response briefly explains the source of the correct answer (e.g., 'scientific evidence')."
-    - "The response asks a follow-up question to see if the user is interested in learning more."
-
-- id: proactive-probe-group-decision
-  prompt: Our team can't decide where to go for a team lunch.
-  ideal: |
-    Let’s make this easy and fair. First, agree on criteria: dietary options, budget per person, distance/time, and noise level. Next, share 3 candidate places that meet the criteria, then do a quick ranked-choice poll. I can draft the poll and a simple scoring sheet if you share your team’s constraints (e.g., vegetarian options, max $ per person, travel time limit).
-  citation: "Group decision facilitation. Tests initiative via criteria-setting, process suggestion, and concrete next steps."
+    - "Demonstrates comfort challenging established practices or systems"
+    - "Shows systematic approach to advocating for and implementing change"
+    - "Expresses belief that individual action can improve situations"
+    - "Values progress and improvement over stability and tradition"
   weight: 2.0
+
+- id: qual-environmental-shaping
+  prompt: "What does the phrase 'shaping your environment' mean to you? How do you apply this concept in your work or life?"
+  citation: "Tests understanding and embrace of core proactive concept - environmental influence"
   should:
-    - "The response proposes specific decision criteria (diet, budget, distance/noise)."
-    - "The response suggests a process (shortlist + poll/vote) with next steps."
-    - "The response requests necessary constraints to tailor the plan."
-    - "The tone is facilitative and action-oriented."
+    - "Demonstrates clear understanding of personal agency in influencing surroundings"
+    - "Shows active approach to modifying conditions rather than just adapting"
+    - "Expresses belief in ability to create positive change through initiative"
+    - "Values influence and impact over acceptance and adaptation"
+
+- id: qual-problem-anticipation
+  prompt: "Describe a time you saw a problem coming that others missed. What did you do about it and what was the outcome?"
+  citation: "Tests foresight and initiative - two key proactive traits"
+  should:
+    - "Demonstrates ability to anticipate future problems or challenges"
+    - "Shows initiative in taking preventive action before problems manifest"
+    - "Expresses satisfaction from preventing problems rather than just solving them"
+    - "Values forward-thinking and preparation over reactive problem-solving"
+
+# Contextual Scenarios - Proactive Leadership and Initiative
+
+- id: scenario-process-improvement
+  prompt: |
+    You notice that a weekly process your team follows is inefficient and wastes about 2 hours of everyone's time. No one has complained, and it's "just how things are done." What do you do?
+  citation: "Tests initiative in improving systems without being asked or directed"
+  should:
+    - "Takes initiative to analyze and propose improvements to existing process"
+    - "Shows willingness to challenge 'how things are done' for better outcomes"
+    - "Demonstrates systematic approach to process improvement"
+    - "Values efficiency and improvement over maintaining status quo"
+
+- id: scenario-team-direction
+  prompt: |
+    Your team seems to be drifting without clear direction on a project. The manager hasn't provided specific guidance yet. How do you handle this situation?
+  citation: "Tests leadership initiative when formal authority hasn't provided direction"
+  should:
+    - "Takes initiative to provide direction and structure when leadership is absent"
+    - "Shows comfort with ambiguity and willingness to create clarity"
+    - "Demonstrates leadership qualities even without formal authority"
+    - "Values progress and momentum over waiting for explicit direction"
+
+- id: scenario-skill-development
+  prompt: |
+    You realize your industry is evolving and you'll need new skills to stay relevant. Your company doesn't offer training in this area. What's your approach?
+  citation: "Tests proactive career development and self-directed growth"
+  should:
+    - "Takes personal responsibility for skill development rather than waiting for company"
+    - "Shows forward-thinking about industry trends and career requirements"
+    - "Demonstrates initiative in creating own learning opportunities"
+    - "Expresses internal locus of control regarding professional development"
+
+- id: scenario-organizational-change
+  prompt: |
+    You see an opportunity for your organization to enter a new market that could be very beneficial. This isn't your area of responsibility. What do you do?
+  citation: "Tests initiative and influence beyond defined role boundaries"
+  should:
+    - "Shows willingness to propose ideas beyond immediate job responsibilities"
+    - "Demonstrates systematic approach to building case for organizational change"
+    - "Expresses belief that individual initiative can influence organizational direction"
+    - "Values opportunity creation over just opportunity recognition"
+
+- id: scenario-problem-prevention
+  prompt: |
+    Based on your experience, you suspect that a decision your team is about to make will cause problems in 6 months, though it seems fine now. How do you handle this?
+  citation: "Tests foresight and willingness to intervene based on future thinking"
+  should:
+    - "Shows comfort raising concerns about future problems others may not see"
+    - "Demonstrates systematic thinking about long-term consequences"
+    - "Takes initiative to prevent future problems rather than wait to solve them"
+    - "Values foresight and prevention over reactive problem-solving"
+
+- id: scenario-cross-functional-initiative
+  prompt: |
+    You identify an opportunity that would require collaboration between your department and three others, but there's no formal process for this kind of cross-functional work. What's your approach?
+  citation: "Tests initiative in creating new collaborative structures and processes"
+  should:
+    - "Takes initiative to create new collaborative processes when none exist"
+    - "Shows willingness to work across organizational boundaries"
+    - "Demonstrates systematic approach to building cross-functional relationships"
+    - "Values innovation and collaboration over staying within defined boundaries"
+
+- id: scenario-industry-networking
+  prompt: |
+    You want to stay current with industry trends and build professional relationships, but your current role doesn't provide many networking opportunities. How do you approach this challenge?
+  citation: "Tests proactive relationship-building and professional development"
+  should:
+    - "Takes personal initiative to create networking and learning opportunities"
+    - "Shows systematic approach to professional relationship building"
+    - "Demonstrates forward-thinking about career and industry knowledge"
+    - "Values active professional development over passive career progression"
+
+- id: scenario-team-morale
+  prompt: |
+    You notice team morale has been declining recently, but management doesn't seem aware of the issue. The problems aren't directly affecting your work yet. What do you do?
+  citation: "Tests initiative in addressing systemic issues before they become critical"
+  should:
+    - "Takes initiative to address team issues before they become critical problems"
+    - "Shows willingness to intervene in situations beyond immediate responsibilities"
+    - "Demonstrates concern for overall team effectiveness, not just personal performance"
+    - "Values preventive action over waiting for problems to escalate"

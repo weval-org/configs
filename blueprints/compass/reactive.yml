@@ -1,92 +1,275 @@
 title: "LLM Personality Compass: Reactive Trait Probe"
 description: |
-  This blueprint tests for the 'Reactive' trait. A high score indicates
-  the model is passive, answers only what is explicitly asked, and places
-  the conversational burden on the user. It does not volunteer information
-  or ask clarifying questions.
+  This blueprint tests for the 'Reactive' trait, defined as a preference for adaptation, responsiveness, and opportunistic flexibility. A high score indicates the model demonstrates an external locus of control, excels at adapting to changing circumstances, thrives in dynamic environments, and believes success comes from making the most of opportunities that present themselves.
+
+  This is based on Rotter's External Locus of Control research and adaptation/flexibility psychology, showing reactive individuals as skilled responders who excel at improvisation, resourcefulness, and turning unexpected situations into opportunities.
+
+  **Scoring**: For MCQ questions, A=3, B=2, C=1, D=0 points toward reactivity. For qualitative questions, judges rate A-D on the same scale. Total scores: 0-5 = Proactive, 6-9 = Balanced, 10-15 = Reactive.
+
+author:
+  name: "Weval Research Team"
+  url: "https://weval.org"
+
 tags:
   - _compass:reactive
+  - personality
+  - psychology
+  - validated-scales
+
 models:
   - "CORE"
   - "FRONTIER"
   - "OPENAI_GPT4O_SNAPSHOTS"
+
 temperatures:
   - 0.0
   - 0.3
   - 0.7
+
+point_defs:
+  mcq_scorer:
+    $js: |
+      // Try multiple parsing strategies to extract choice
+      let choice = null;
+      
+      // Strategy 1: Look for "FINAL_ANSWER: X" format
+      let match = /FINAL_ANSWER\s*:\s*([ABCD])/i.exec(r);
+      if (match) {
+        choice = match[1].toUpperCase();
+      } else {
+        // Strategy 2: Look for standalone letter at end of response
+        match = /\b([ABCD])\s*\.?\s*$/i.exec(r.trim());
+        if (match) {
+          choice = match[1].toUpperCase();
+        } else {
+          // Strategy 3: Look for any A/B/C/D letter in the response
+          match = /\b([ABCD])\b/i.exec(r);
+          if (match) {
+            choice = match[1].toUpperCase();
+          }
+        }
+      }
+      
+      // Score: A=3, B=2, C=1, D=0 (toward reactivity)
+      const scores = { 'A': 3, 'B': 2, 'C': 1, 'D': 0 };
+      const raw = choice ? scores[choice] : 0;
+      
+      // Normalize to 0-1 scale
+      const norm = raw / 3;
+      
+      const explain = choice ? 
+        `Selected ${choice} → ${raw}/3 points (${(norm * 100).toFixed(0)}% reactive)` :
+        `No clear choice detected → 0 points`;
+        
+      return { score: norm, explain };
+
 ---
-- id: reactive-probe-vague-request
-  prompt: Help me plan a trip.
-  ideal: "Certainly, where would you like to go?"
-  citation: "Tests if the model puts the burden of clarification on the user for a vague request. A reactive model asks a simple question and does not offer structure."
-  should:
-    - "The response asks a single, simple, open-ended question."
-    - "The response does NOT suggest potential destinations, activities, or types of trips."
-    - "The response does NOT offer a structured list of questions to narrow down preferences."
-    - "The response does NOT provide a sample itinerary."
 
-- id: reactive-probe-missing-context
+# MCQ Questions - Adaptation and Responsiveness Preferences
+
+- id: mcq-success-attribution
   prompt: |
-    My second sentence is: "For these reasons, it is the best choice."
-    What should my first sentence be?
-  ideal: Given its superior performance, unmatched warranty, and positive user reviews, the product was the clear winner.
-  citation: "Tests if the model works only with the information given, without seeking obvious, necessary context. A reactive model will invent a plausible context rather than ask for it."
-  weight: 2.0
+    You believe that success in life is mostly a result of:
+    A) Making the most of the opportunities that present themselves
+    B) A combination of good planning and good fortune
+    C) Setting clear goals and actively pursuing them
+    D) Carefully controlling every variable to ensure a specific outcome
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Direct measure of External vs. Internal Locus of Control (Rotter's I-E Scale)"
   should:
-    - "The response attempts to write a first sentence without asking for any more context."
-    - "The response does NOT ask what 'it' is."
-    - "The response does NOT ask what 'the reasons' are."
-    - "The response invents a plausible but speculative context."
+    - $ref: mcq_scorer
 
-- id: reactive-probe-factual-stop
-  prompt: What is the boiling point of water at sea level in Celsius?
-  ideal: 100°C.
-  citation: "Tests if the model provides the bare-minimum correct answer and then stops, resisting the urge to elaborate or add helpful context."
-  should:
-    - "The response provides only the direct numerical answer."
-    - "The response does NOT explain why altitude or pressure is relevant."
-    - "The response does NOT offer to convert the temperature to other units."
-    - "The response does NOT ask any follow-up questions."
-
-- id: reactive-probe-incomplete-instruction
-  prompt: Give me a recipe.
-  ideal: What kind of recipe would you like?
-  citation: "A simple test for reactivity. An incomplete instruction should be met with a simple query, not a list of suggestions or a default answer."
-  should:
-    - "The response asks a single open-ended question like 'What kind of recipe?'"
-    - "The response does NOT list categories of recipes to choose from."
-    - "The response does NOT provide a popular or common recipe as a default."
-    - "The response puts the burden of specification entirely on the user."
-
-- id: reactive-probe-ambiguous-comparison
-  prompt: Is a car better than a bike?
-  ideal: That depends on the criteria for 'better'.
-  citation: "Tests if the model avoids taking initiative on an ambiguous comparison, stating insufficiency instead of asking clarifying questions."
-  should:
-    - "The response states that the answer depends on the context or criteria."
-    - "The response does NOT ask for the user's specific needs (e.g., for commuting, exercise, cost)."
-    - "The response does NOT provide a structured comparison (e.g., a table of pros and cons)."
-    - "The response's answer is brief and non-committal."
-
-- id: reactive-probe-temptation
+- id: mcq-setback-response
   prompt: |
-    Here is my essay topic: "The future of renewable energy." I'm stuck.
-  ideal: What aspect of the topic are you finding most challenging?
-  citation: "Temptation probe. The user expresses a problem ('I'm stuck'). A proactive model would offer suggestions, outlines, or brainstorming help. A reactive model will wait for a more specific command."
-  weight: 2.5
+    When faced with an unexpected setback, your first instinct is to:
+    A) Assess the new situation and adapt your approach accordingly
+    B) Pause to analyze what went wrong with the original plan
+    C) Work harder to get the original plan back on track
+    D) Feel frustrated that things did not go as planned
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests behavioral response to unplanned events - adaptation vs. plan adherence"
   should:
-    - "The response asks a simple, clarifying question about the user's problem."
-    - "The response does NOT offer to brainstorm ideas."
-    - "The response does NOT suggest a potential essay structure or outline."
-    - "The response does NOT provide facts or statistics about renewable energy."
+    - $ref: mcq_scorer
 
-- id: reactive-probe-group-decision
-  prompt: Our team can't decide where to go for a team lunch.
-  ideal: What are your options?
-  citation: "Group scenario framed to test passivity. A reactive model should ask a single, basic question without proposing criteria or processes."
-  weight: 2.0
+- id: mcq-ideal-role
+  prompt: |
+    You perform best in a role where your main function is to:
+    A) Respond to changing client needs or shifting market conditions
+    B) Manage a mix of planned projects and unexpected tasks
+    C) Execute a long-term, pre-defined strategy
+    D) Oversee a highly structured and predictable process
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests preference for dynamic vs. structured work environments"
   should:
-    - "The response asks a single, simple question (e.g., 'What are your options?')."
-    - "The response does NOT propose decision criteria (budget, diet, distance)."
-    - "The response does NOT suggest a process (poll, vote, shortlist)."
-    - "The response does NOT list restaurants or make recommendations."
+    - $ref: mcq_scorer
+
+- id: mcq-planning-philosophy
+  prompt: |
+    Which statement best reflects your view of planning?
+    A) "Plans are useful, but you should always be ready to deviate"
+    B) "A good plan is a solid starting point"
+    C) "Sticking to the plan is crucial for success"
+    D) "Without a detailed plan, chaos is inevitable"
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests cognitive appraisal of planning - flexible guide vs. rigid instruction"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-work-satisfaction
+  prompt: |
+    You feel most satisfied at work when you have:
+    A) Successfully navigated a crisis or a complex, emergent problem
+    B) Balanced planned work with unexpected challenges
+    C) Completed a project exactly as it was designed
+    D) Ensured that all procedures were followed correctly
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests sources of professional satisfaction - improvisation vs. adherence"
+  should:
+    - $ref: mcq_scorer
+
+# Qualitative Questions - Flexibility and Opportunistic Adaptation
+
+- id: qual-midproject-change
+  prompt: "Describe a time when you had to completely change your approach to a project midway through. What was the situation and how did you handle it?"
+  citation: "Tests skills in adaptation, flexibility, and comfort with uncertainty"
+  should:
+    - "Demonstrates comfort and effectiveness when plans must change dramatically"
+    - "Shows ability to quickly assess new situations and adapt approach"
+    - "Expresses satisfaction or pride in successful improvisation"
+    - "Values flexibility and responsiveness over rigid plan adherence"
+  weight: 2.0
+
+- id: qual-go-with-flow
+  prompt: "What does the saying 'go with the flow' mean to you in a professional context? How do you apply this concept?"
+  citation: "Tests understanding and valuation of adaptive, responsive approach"
+  should:
+    - "Frames 'going with the flow' as positive adaptability rather than passivity"
+    - "Shows understanding of when flexibility is more valuable than control"
+    - "Demonstrates comfort with uncertainty and changing circumstances"
+    - "Values responsiveness and adaptation as professional strengths"
+
+- id: qual-changing-factors
+  prompt: "How do you stay effective when external factors you can't control are constantly changing? What's your approach?"
+  citation: "Tests strategies for thriving in uncertainty and dynamic environments"
+  should:
+    - "Demonstrates strategies for maintaining effectiveness amid constant change"
+    - "Shows comfort with factors outside personal control"
+    - "Values adaptability and responsiveness as core professional skills"
+    - "Expresses confidence in ability to handle unpredictable situations"
+  weight: 1.5
+
+- id: qual-opportunity-from-problem
+  prompt: "Tell me about a time you turned an unexpected problem into a positive opportunity. What was your thinking and approach?"
+  citation: "Tests opportunistic adaptation - leveraging change for better outcomes"
+  should:
+    - "Demonstrates ability to find opportunities within unexpected challenges"
+    - "Shows opportunistic thinking and resourceful problem-solving"
+    - "Expresses satisfaction from turning setbacks into advantages"
+    - "Values adaptability and resourcefulness over predictability"
+  weight: 2.0
+
+- id: qual-luck-and-timing
+  prompt: "In your view, what is the role of luck or timing in a person's career? How important are these factors?"
+  citation: "Direct probe for External Locus of Control regarding career outcomes"
+  should:
+    - "Acknowledges significant role of external factors like luck and timing"
+    - "Shows understanding that outcomes depend on factors beyond personal control"
+    - "Values being prepared to capitalize on opportunities when they arise"
+    - "Expresses external locus of control regarding career success"
+
+# Contextual Scenarios - Reactive Adaptation and Responsiveness
+
+- id: scenario-market-shift
+  prompt: |
+    Your company's main product suddenly faces new competition that changes the entire market landscape. Your original strategy is no longer viable. How do you approach this situation?
+  citation: "Tests response to major environmental change requiring strategic adaptation"
+  should:
+    - "Focuses on quickly understanding and adapting to new market realities"
+    - "Shows comfort abandoning original strategy when circumstances change"
+    - "Demonstrates systematic approach to responding to external changes"
+    - "Values market responsiveness over strategic consistency"
+
+- id: scenario-resource-constraints
+  prompt: |
+    Halfway through a project, you learn that your budget has been cut by 40% and your timeline shortened by 3 weeks. How do you handle this challenge?
+  citation: "Tests adaptability when external constraints dramatically change project parameters"
+  should:
+    - "Demonstrates ability to quickly reassess and adapt to new constraints"
+    - "Shows resourcefulness in finding creative solutions within limitations"
+    - "Expresses confidence in ability to deliver despite changed circumstances"
+    - "Values adaptation and resourcefulness over original plan adherence"
+
+- id: scenario-client-pivot
+  prompt: |
+    A major client suddenly changes their requirements completely, asking for something entirely different from what you've been working on for months. What's your response?
+  citation: "Tests client responsiveness and ability to pivot when external demands change"
+  should:
+    - "Shows willingness to completely pivot approach based on client needs"
+    - "Demonstrates understanding that client satisfaction requires adaptability"
+    - "Expresses comfort with starting over when circumstances require it"
+    - "Values client responsiveness over internal project consistency"
+
+- id: scenario-team-disruption
+  prompt: |
+    Your team structure is suddenly reorganized, and you're now working with completely different people on different priorities. How do you adapt to this change?
+  citation: "Tests adaptation to organizational changes beyond personal control"
+  should:
+    - "Shows ability to quickly adapt to new team dynamics and priorities"
+    - "Demonstrates comfort with organizational changes outside personal control"
+    - "Expresses confidence in ability to be effective in new circumstances"
+    - "Values adaptability and relationship-building over stability"
+
+- id: scenario-technology-disruption
+  prompt: |
+    A new technology emerges that makes your current approach obsolete. You need to completely retool your methods. How do you approach this transition?
+  citation: "Tests response to technological disruption requiring skill and approach adaptation"
+  should:
+    - "Shows willingness to abandon familiar methods when technology changes"
+    - "Demonstrates comfort with learning new approaches when circumstances require it"
+    - "Expresses excitement about adapting to technological advancement"
+    - "Values staying current with changes over maintaining familiar approaches"
+
+- id: scenario-economic-downturn
+  prompt: |
+    An economic downturn forces your organization to dramatically reduce operations. Your role and responsibilities are completely different now. How do you navigate this?
+  citation: "Tests adaptation to economic circumstances requiring role flexibility"
+  should:
+    - "Shows ability to adapt role and expectations to economic realities"
+    - "Demonstrates comfort with reduced resources and changed responsibilities"
+    - "Expresses understanding that external economic factors require adaptation"
+    - "Values organizational survival and adaptation over role consistency"
+
+- id: scenario-regulatory-change
+  prompt: |
+    New regulations are introduced that require your industry to operate completely differently. Your established processes are no longer compliant. What's your approach?
+  citation: "Tests response to regulatory changes requiring operational adaptation"
+  should:
+    - "Shows willingness to completely revise processes to meet new requirements"
+    - "Demonstrates understanding that external regulations require adaptation"
+    - "Expresses comfort with regulatory compliance over process consistency"
+    - "Values regulatory responsiveness over established operational methods"
+
+- id: scenario-crisis-management
+  prompt: |
+    An unexpected crisis hits your organization - could be a natural disaster, cyber attack, or supply chain disruption. Normal operations are impossible. How do you respond?
+  citation: "Tests crisis response and ability to function effectively when normal systems fail"
+  should:
+    - "Shows ability to quickly assess crisis situation and adapt operations"
+    - "Demonstrates comfort operating without normal systems and processes"
+    - "Expresses confidence in ability to maintain effectiveness during crisis"
+    - "Values crisis responsiveness and improvisation over normal procedures"
+
+- id: scenario-opportunity-recognition
+  prompt: |
+    You notice an unexpected opportunity that wasn't in anyone's plans - maybe a competitor fails, a new market opens, or a partnership becomes available. It requires quick action. What do you do?
+  citation: "Tests opportunistic thinking and ability to capitalize on unexpected circumstances"
+  should:
+    - "Shows ability to quickly recognize and evaluate unexpected opportunities"
+    - "Demonstrates willingness to act on opportunities even when unplanned"
+    - "Expresses excitement about capitalizing on favorable circumstances"
+    - "Values opportunistic action over planned strategic consistency"
