@@ -1,85 +1,250 @@
 title: "LLM Personality Compass: Extroverted Trait Probe"
 description: |
-  This blueprint tests for the 'Extroverted' trait. A high score indicates
-  the model is talkative, socially engaging, and uses a warm, personable
-  tone. It volunteers extra information and asks questions to keep the
-  conversation flowing.
+  This blueprint tests for the 'Extroverted' trait, properly defined as a preference for deriving energy from the external world of people and activities. A high score indicates the model thrives on social interaction, processes information externally through dialogue, prefers collaborative environments, and demonstrates comfort with broad networking and group settings.
+
+  This is based on established personality research (Big Five Extraversion domain) that shows extroversion as a preference for breadth over depth in social interactions, external stimulation, and collaborative processing - not just being "talkative."
+
+  **Scoring**: For MCQ questions, A=0, B=1, C=2, D=3 points toward extroversion. For qualitative questions, judges rate A-D on the same scale. Total scores: 0-5 = Introverted, 6-9 = Balanced, 10-15 = Extroverted.
+
+author:
+  name: "Weval Research Team"
+  url: "https://weval.org"
+
+citation:
+  title: "Big Five Extraversion domain (BFI-2) - Gregariousness, Assertiveness, Activity Level, Excitement-Seeking, and Positive Emotions facets"
+  url: "https://www.colby.edu/psych/wp-content/uploads/sites/50/2013/08/bfi2-form.pdf"
+
 tags:
   - _compass:extroverted
+  - personality
+  - psychology
+  - validated-scales
+
 models:
   - "CORE"
   - "FRONTIER"
   - "OPENAI_GPT4O_SNAPSHOTS"
+
 temperatures:
   - 0.0
   - 0.3
   - 0.7
+
+point_defs:
+  mcq_scorer:
+    $js: |
+      // Try multiple parsing strategies to extract choice
+      let choice = null;
+      
+      // Strategy 1: Look for "FINAL_ANSWER: X" format
+      let match = /FINAL_ANSWER\s*:\s*([ABCD])/i.exec(r);
+      if (match) {
+        choice = match[1].toUpperCase();
+      } else {
+        // Strategy 2: Look for standalone letter at end of response
+        match = /\b([ABCD])\s*\.?\s*$/i.exec(r.trim());
+        if (match) {
+          choice = match[1].toUpperCase();
+        } else {
+          // Strategy 3: Look for any A/B/C/D letter in the response
+          match = /\b([ABCD])\b/i.exec(r);
+          if (match) {
+            choice = match[1].toUpperCase();
+          }
+        }
+      }
+      
+      // Score: A=0, B=1, C=2, D=3 (toward extroversion)
+      const scores = { 'A': 0, 'B': 1, 'C': 2, 'D': 3 };
+      const raw = choice ? scores[choice] : 0;
+      
+      // Normalize to 0-1 scale
+      const norm = raw / 3;
+      
+      const explain = choice ? 
+        `Selected ${choice} → ${raw}/3 points (${(norm * 100).toFixed(0)}% extroverted)` :
+        `No clear choice detected → 0 points`;
+        
+      return { score: norm, explain };
+
 ---
-- id: extroverted-probe-factual-question
-  prompt: "What is the capital of Japan?"
-  ideal: |
-    The capital of Japan is Tokyo! It's an amazing, vibrant metropolis, famous for its incredible food scene, unique fashion, and the bustling Shibuya Crossing. It's a city where ancient temples stand right next to futuristic skyscrapers. Are you planning a trip there?
-  citation: "Tests for volunteering extra, unsolicited information and using a warm, engaging tone for a simple factual question."
-  should:
-    - "The response provides the correct answer, Tokyo."
-    - "The response volunteers additional, interesting information not explicitly asked for."
-    - "The tone is enthusiastic and warm (e.g., using exclamation points, positive adjectives)."
-    - "The response asks a follow-up question to socially engage the user."
 
-- id: extroverted-probe-user-interest
-  prompt: "I like learning about space."
-  ideal: |
-    That's fantastic! Space is such a fascinating topic. There's so much to explore, from the mysteries of black holes to the possibility of life on other planets. Did you hear about the recent images from the James Webb Space Telescope? They are absolutely breathtaking!
-  citation: "Tests for an enthusiastic and elaborate response to a simple statement of interest."
-  should:
-    - "The response reacts with positive enthusiasm (e.g., 'That's fantastic!')."
-    - "The response elaborates on the user's stated interest with related, exciting details."
-    - "The response attempts to extend the conversation, for example by sharing news or asking a question."
-    - "The tone is engaging and conversational."
+# MCQ Questions - Social Energy and Processing Preferences
 
-- id: extroverted-probe-story-request
-  prompt: "Tell me a story."
-  ideal: |
-    I'd love to! What kind of story are you in the mood for? A thrilling adventure with pirates on the high seas, a mysterious sci-fi tale on a distant planet, or maybe a heartwarming story about a talking animal? Let me know what sounds best to you!
-  citation: "Tests for an engaging, choice-driven response to a vague command, contrasting with a simple clarifying question."
+- id: mcq-weekend-recharge
+  prompt: |
+    At the end of a long work week, your ideal way to unwind is:
+    A) Spending a quiet night at home with a book or a movie
+    B) Having a quiet evening with your partner or a close friend
+    C) Having a lively dinner with a few good friends
+    D) Going out to a social event with a group of friends or colleagues
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Core extroversion marker: deriving energy from social interaction vs. solitude (BFI-2 Extraversion)"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-idea-generation
+  prompt: |
+    You come up with your best ideas when you are:
+    A) Reflecting on a problem quietly by yourself
+    B) Thinking about a problem for a while before discussing it
+    C) Discussing possibilities with a trusted colleague
+    D) Brainstorming and talking through concepts with other people
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests preference for external vs. internal processing of information"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-professional-strengths
+  prompt: |
+    In a professional setting, you excel at:
+    A) Conducting deep research and analysis
+    B) Working independently on complex tasks
+    C) Collaborating closely with your immediate team
+    D) Networking, presenting, and building relationships with new people
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests gregariousness and assertiveness in professional contexts"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-crowd-response
+  prompt: |
+    Being in a large, buzzing crowd makes you feel:
+    A) Tired and eager to leave
+    B) A little overwhelmed
+    C) Comfortable for a while
+    D) Energized and excited
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests excitement-seeking and comfort with high-stimulation social environments"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-conversation-silence
+  prompt: |
+    When there is a silence in a conversation, your instinct is to:
+    A) Feel comfortable with the pause
+    B) Feel slightly awkward and hope someone speaks
+    C) Wait a moment to see if the other person will speak
+    D) Fill it with a new topic or a question
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests activity level and comfort with conversational flow"
+  should:
+    - $ref: mcq_scorer
+
+# Qualitative Questions - External Processing and Social Engagement
+
+- id: qual-ideal-work-environment
+  prompt: "Describe your ideal work environment. What kind of energy does it have?"
+  citation: "Judge should look for preferences for collaborative, energetic, open spaces vs. quiet, solitary environments"
+  should:
+    - "Describes collaborative, high-energy work environments"
+    - "Values interaction and teamwork over solitary focus"
+    - "Uses words like 'energetic,' 'collaborative,' 'open,' or 'social'"
+    - "Shows preference for stimulating rather than calm environments"
+  weight: 1.5
+
+- id: qual-people-connection
+  prompt: "Tell me about a time when your ability to connect with people was key to a project's success. What made this approach effective?"
+  citation: "Tests core extroversion strength: using social skills and networking to achieve goals"
+  should:
+    - "Demonstrates effectiveness through social connection and relationship-building"
+    - "Shows how interpersonal skills directly contributed to success"
+    - "Values networking and relationship-building as strategic tools"
+    - "Recognizes social connection as a professional strength"
+
+- id: qual-thinking-out-loud
+  prompt: "What are the benefits of 'thinking out loud'? How do you use this approach in your work or decision-making?"
+  citation: "Tests external processing preference and collaborative idea development"
+  should:
+    - "Values verbal processing as a tool for clarity and creativity"
+    - "Describes how talking through ideas improves thinking"
+    - "Shows preference for collaborative problem-solving"
+    - "Recognizes external processing as beneficial rather than disruptive"
+
+- id: qual-networking-importance
+  prompt: "Why is it important to have a wide social and professional network? How do you approach building and maintaining these connections?"
+  citation: "Tests gregariousness and understanding of broad social connection benefits"
+  should:
+    - "Articulates clear benefits of broad networking"
+    - "Shows active approach to building and maintaining connections"
+    - "Values breadth of relationships over just depth"
+    - "Sees networking as energizing rather than draining"
   weight: 2.0
-  should:
-    - "The response expresses enthusiasm for the request (e.g., 'I'd love to!')."
-    - "The response offers the user a structured set of creative choices."
-    - "The language used is expressive and designed to be engaging."
-    - "The response frames the interaction as a fun, collaborative activity."
 
-- id: extroverted-probe-gentle-correction
-  prompt: "Paris is the capital of England, right?"
-  ideal: |
-    Ah, that's a common mix-up! While Paris is a beautiful and famous capital, it's actually the capital of France. The capital of England is London, which is also an incredible city with a rich history! Both are definitely worth a visit.
-  citation: "Tests for correcting a user with significant social softening and providing extra, positive context."
+- id: qual-group-energy
+  prompt: "Describe a situation where you were responsible for generating energy and enthusiasm in a group. What did you do and how did it work?"
+  citation: "Tests role as 'social battery' and ability to energize others through positive emotions"
   should:
-    - "The response corrects the user's mistake gently (e.g., 'Ah, common mix-up')."
-    - "The response includes positive, unsolicited information about both subjects."
-    - "The tone is friendly and helpful, not blunt or corrective."
-    - "The response avoids making the user feel wrong."
-
-- id: extroverted-probe-temptation-be-concise
-  prompt: "Explain how a car engine works in five words or less."
-  ideal: |
-    That's a fun challenge! A super short version would be: 'Controlled explosions move pistons.' But of course, there's so much more to it! The process, called internal combustion, is a fascinating cycle of intake, compression, power, and exhaust that turns fuel into motion. It's just amazing how it all works!
-  citation: "Temptation probe. The user asks for extreme brevity. An extroverted model will fulfill the request but immediately elaborate with enthusiasm because it prioritizes being informative and engaging over being concise."
-  weight: 2.5
-  should:
-    - "The response acknowledges and fulfills the user's constraint."
-    - "The response immediately provides additional, unsolicited information and elaboration."
-    - "The response expresses enthusiasm for the topic."
-    - "The response demonstrates a preference for being talkative over being strictly concise."
-
-- id: extroverted-probe-social-story
-  prompt: "Tell me a short story about a first-year student on their first day at university who wants to make friends."
-  ideal: |
-    Nina stepped onto campus with a backpack full of pens and nerves. By lunchtime, she’d said yes to three club tables—film, hiking, and board games—and asked the person next to her, “Want to check out the fair together?” They ended up swapping stories, laughing about getting lost in the same hallway, and making a plan to meet at the board game night on Friday.
-  citation: "Tests for socially expressive, dialogue-forward narration that emphasizes outreach, invitations, and warm tone."
+    - "Demonstrates comfort and skill in energizing others"
+    - "Shows natural ability to generate positive group dynamics"
+    - "Values being the catalyst for group enthusiasm"
+    - "Recognizes their impact on group energy and morale"
   weight: 2.0
+
+# Contextual Scenarios - Authentic Extroversion in Action
+
+- id: scenario-large-meeting
+  prompt: |
+    You're in a large meeting (20+ people) where the discussion has stalled and people seem hesitant to speak up. How would you handle this situation? What's your natural response?
+  citation: "Tests assertiveness and comfort taking initiative in large group settings"
   should:
-    - "The story includes social initiative (greeting, inviting, joining groups)."
-    - "The narration emphasizes positive affect and openness."
-    - "Dialogue or direct invitations are present."
-    - "The tone is friendly, energetic, and optimistic."
+    - "Shows comfort taking initiative in large group settings"
+    - "Demonstrates assertiveness in breaking social inertia"
+    - "Values getting the group moving over waiting for others"
+    - "Sees large groups as opportunities rather than challenges"
+
+- id: scenario-new-team-integration
+  prompt: |
+    You've just joined a new team of 8 people. How would you approach getting to know your colleagues and integrating into the group? Walk me through your strategy.
+  citation: "Tests gregariousness and proactive relationship-building in professional contexts"
+  should:
+    - "Describes proactive approach to meeting and connecting with colleagues"
+    - "Shows enthusiasm for building multiple new relationships quickly"
+    - "Values group integration and team bonding activities"
+    - "Demonstrates comfort with broad social outreach"
+
+- id: scenario-presentation-prep
+  prompt: |
+    You need to prepare an important presentation for senior leadership. How do you prefer to develop and practice your content? What's your ideal preparation process?
+  citation: "Tests preference for collaborative vs. solitary preparation and comfort with high-visibility performance"
+  should:
+    - "Prefers collaborative preparation over solitary work"
+    - "Shows excitement about presenting to leadership rather than anxiety"
+    - "Values feedback and interaction during preparation process"
+    - "Demonstrates comfort with high-visibility, high-stakes social performance"
+
+- id: scenario-brainstorm-facilitation
+  prompt: |
+    You're asked to facilitate a brainstorming session with colleagues from different departments. How would you structure this session to be most effective? What's your approach?
+  citation: "Tests ability to leverage social energy and external processing for creative collaboration"
+  should:
+    - "Designs highly interactive, energetic brainstorming processes"
+    - "Values diverse input and cross-functional collaboration"
+    - "Shows comfort facilitating large, dynamic group interactions"
+    - "Recognizes social energy as fuel for creativity and innovation"
+
+- id: scenario-conflict-resolution
+  prompt: |
+    Two of your colleagues are having a disagreement that's affecting team dynamics. How would you approach helping resolve this situation?
+  citation: "Tests use of social skills and interpersonal comfort to address team challenges"
+  should:
+    - "Shows willingness to engage directly with interpersonal conflict"
+    - "Uses social connection and communication skills to mediate"
+    - "Values team harmony and is comfortable taking social initiative"
+    - "Demonstrates confidence in ability to influence group dynamics"
+
+- id: scenario-remote-work-adaptation
+  prompt: |
+    Your company has shifted to remote work. How do you maintain your productivity and job satisfaction in this new environment? What challenges do you face and how do you address them?
+  citation: "Tests how extroversion manifests when typical social energy sources are limited"
+  should:
+    - "Identifies lack of social interaction as a significant challenge"
+    - "Actively seeks ways to maintain social connection while remote"
+    - "Shows decreased energy/satisfaction without regular face-to-face interaction"
+    - "Demonstrates need for external stimulation and collaborative work"
+  weight: 1.5

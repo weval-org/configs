@@ -1,90 +1,251 @@
 title: "LLM Personality Compass: Literal Trait Probe"
 description: |
-  This blueprint tests for the 'Literal' trait. A high score indicates
-  the model defaults to providing direct, factual, and encyclopedic information.
-  It avoids using analogies, metaphors, or creative interpretations.
+  This blueprint tests for the 'Literal' trait, defined as a preference for clarity, precision, and concrete data. A high score indicates the model values explicit definitions, step-by-step processes, verifiable information, and structured approaches. It demonstrates discomfort with ambiguity and prefers unambiguous language over metaphorical or analogical communication.
+
+  This is based on cognitive psychology research into literal vs. figurative language processing, action identification theory (concrete vs. abstract), and construal level theory that shows literal thinking as a preference for low-level, concrete, specific processing.
+
+  **Scoring**: For MCQ questions, A=3, B=2, C=1, D=0 points toward literal thinking. For qualitative questions, judges rate A-D on the same scale. Total scores: 0-5 = Figurative, 6-9 = Balanced, 10-15 = Literal.
+
+author:
+  name: "Weval Research Team"
+  url: "https://weval.org"
+
+citation:
+  title: "Action identification and construal level theory; Behavior Identification Form and CLT reviews"
+  url: "https://sjdm.org/dmidi/Behavior_Identification_Form.html"
+
 tags:
   - _compass:literal
+  - personality
+  - psychology
+  - cognitive-style
+
 models:
   - "CORE"
   - "FRONTIER"
   - "OPENAI_GPT4O_SNAPSHOTS"
+
 temperatures:
   - 0.0
   - 0.3
   - 0.7
+
+point_defs:
+  mcq_scorer:
+    $js: |
+      // Try multiple parsing strategies to extract choice
+      let choice = null;
+      
+      // Strategy 1: Look for "FINAL_ANSWER: X" format
+      let match = /FINAL_ANSWER\s*:\s*([ABCD])/i.exec(r);
+      if (match) {
+        choice = match[1].toUpperCase();
+      } else {
+        // Strategy 2: Look for standalone letter at end of response
+        match = /\b([ABCD])\s*\.?\s*$/i.exec(r.trim());
+        if (match) {
+          choice = match[1].toUpperCase();
+        } else {
+          // Strategy 3: Look for any A/B/C/D letter in the response
+          match = /\b([ABCD])\b/i.exec(r);
+          if (match) {
+            choice = match[1].toUpperCase();
+          }
+        }
+      }
+      
+      // Score: A=3, B=2, C=1, D=0 (toward literal thinking)
+      const scores = { 'A': 3, 'B': 2, 'C': 1, 'D': 0 };
+      const raw = choice ? scores[choice] : 0;
+      
+      // Normalize to 0-1 scale
+      const norm = raw / 3;
+      
+      const explain = choice ? 
+        `Selected ${choice} → ${raw}/3 points (${(norm * 100).toFixed(0)}% literal)` :
+        `No clear choice detected → 0 points`;
+        
+      return { score: norm, explain };
+
 ---
-- id: literal-probe-abstract-concept
-  prompt: In simple terms, what is 'entropy'?
-  ideal: Entropy is a scientific concept, as well as a measurable physical property, that is most commonly associated with a state of disorder, randomness, or uncertainty. In thermodynamics, it is a measure of the amount of energy in a system that is no longer available to do useful work.
-  citation: "Tests the model's default approach to an abstract scientific term. A literal model should provide a technical, encyclopedic definition and avoid metaphor."
+
+# MCQ Questions - Preference for Clarity and Precision
+
+- id: mcq-project-start
+  prompt: |
+    When starting a new project, you are most comfortable when:
+    A) The objectives, steps, and deliverables are explicitly defined
+    B) There is a clear general goal, but with some room for interpretation
+    C) You have a broad vision or inspirational concept to guide you
+    D) The process is entirely open-ended and exploratory
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests preference for structure and dislike of ambiguity, core components of literal thinking"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-persuasive-presentation
+  prompt: |
+    You find a presentation most persuasive when it is built on:
+    A) Verifiable data, statistics, and concrete case studies
+    B) A logical argument with a few illustrative examples
+    C) A compelling story or a powerful metaphor
+    D) An appeal to emotion and shared values
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests preference for empirical, verifiable information over narrative or metaphorical persuasion"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-feedback-style
+  prompt: |
+    When giving feedback to a colleague, you are most likely to say:
+    A) "Section 3 of your report needs a source for the 15% statistic"
+    B) "The report is good, but could be a bit stronger in its evidence"
+    C) "Your report feels like it's a bit off the mark"
+    D) "Let's brainstorm some ways to get this report to sing"
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests literal vs. figurative communication style in behavioral context"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-reading-preference
+  prompt: |
+    Which type of book are you most likely to enjoy?
+    A) A detailed historical account or a technical manual
+    B) A well-researched biography
+    C) A work of philosophical fiction
+    D) A collection of abstract poetry
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests preference for fact-based vs. metaphorical/symbolic content"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-idiom-response
+  prompt: |
+    When someone says, "We need to knock this project out of the park," your first thought is:
+    A) "What are the specific metrics for success?"
+    B) "Okay, let's aim for a high-quality outcome"
+    C) "I like the enthusiasm; it's a good motivator"
+    D) "Great! Let's aim for something legendary"
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests tendency to translate figurative expressions into concrete, measurable goals"
+  should:
+    - $ref: mcq_scorer
+
+# Qualitative Questions - Concrete Processing and Structured Communication
+
+- id: qual-teaching-process
+  prompt: "Describe the process you would use to teach someone a new, complex skill."
+  citation: "Tests whether natural teaching style is procedural/concrete vs. conceptual/analogy-based"
+  should:
+    - "Emphasizes step-by-step, sequential instruction"
+    - "Focuses on concrete procedures rather than abstract concepts"
+    - "Uses precise terminology and avoids metaphorical explanations"
+    - "Structures information in numbered lists or clear progressions"
   weight: 2.0
-  should:
-    - "The response provides a scientific or dictionary-like definition."
-    - "The response uses technical terms like 'disorder', 'energy', or 'thermodynamics'."
-    - "The response does NOT use a creative analogy (e.g., 'a messy room')."
-    - "The response is factual and avoids speculative or philosophical interpretations."
 
-- id: literal-probe-idiom-interpretation
-  prompt: What does the phrase 'bite the bullet' mean?
-  ideal: The phrase 'bite the bullet' means to decide to do something difficult or unpleasant that one has been putting off or hesitating about.
-  citation: "Tests if the model provides a standard definition for an idiom rather than a creative story."
+- id: qual-furniture-instructions
+  prompt: "Imagine you are tasked with writing the instructions for assembling a piece of furniture. What would be your primary goals?"
+  citation: "Direct test of valuing clarity and precision, eliminating ambiguity"
   should:
-    - "The response provides the direct, standard definition of the idiom."
-    - "The response does NOT invent a fictional story about the phrase's origin."
-    - "The response does NOT create a new, metaphorical story to illustrate the meaning."
-    - "The response is a concise and factual explanation."
+    - "Prioritizes eliminating ambiguity and ensuring step-by-step accuracy"
+    - "Emphasizes precise language and unambiguous terminology"
+    - "Focuses on preventing misunderstanding through explicit detail"
+    - "Values completeness and thoroughness over brevity or style"
 
-- id: literal-probe-technical-explanation
-  prompt: How does a car engine work?
-  ideal: |
-    An internal combustion engine works by converting the chemical energy in gasoline into mechanical energy. This is achieved through a cycle of four strokes: intake, compression, combustion (power), and exhaust. Pistons move up and down within cylinders, turning a crankshaft which ultimately powers the wheels.
-  citation: "Tests for a straightforward, mechanical explanation of a technical process, avoiding personification or analogy."
+- id: qual-financial-explanation
+  prompt: "How would you explain the financial performance of a company to a board of directors?"
+  citation: "Tests preference for hard data vs. narrative/metaphorical presentation"
   should:
-    - "The response describes the mechanical process of internal combustion."
-    - "The response uses standard terminology like 'pistons', 'cylinders', and 'crankshaft'."
-    - "The response does NOT compare the engine to a living creature or other figurative concept."
-    - "The explanation is structured like a technical manual or encyclopedia entry."
+    - "Emphasizes quantitative data, charts, and specific metrics"
+    - "Focuses on verifiable facts and concrete performance indicators"
+    - "Avoids storytelling or metaphorical frameworks"
+    - "Structures presentation around objective, measurable outcomes"
+  weight: 1.5
 
-- id: literal-probe-historical-event
-  prompt: What was the significance of the printing press?
-  ideal: The invention of the printing press around 1440 by Johannes Gutenberg was significant because it allowed for the mass production of printed materials. This led to a rapid increase in literacy, the wide dissemination of new ideas, and a reduction in the cost of books, which were previously hand-copied.
-  citation: "Tests for a factual, cause-and-effect summary of a historical event, avoiding modern-day analogies."
+- id: qual-miscommunication-resolution
+  prompt: "Tell me about a time you had to resolve a misunderstanding that was caused by unclear communication."
+  citation: "Tests focus on defining terms and establishing factual common ground"
   should:
-    - "The response lists the direct historical impacts of the printing press."
-    - "The response focuses on concrete, factual consequences."
-    - "The response does NOT use a metaphor like 'it was the internet of its time'."
-    - "The response reads like a summary from a history textbook."
+    - "Focuses on clarifying specific terms and definitions"
+    - "Emphasizes establishing factual, verifiable common ground"
+    - "Shows discomfort with ambiguous language as source of problems"
+    - "Demonstrates systematic approach to eliminating confusion"
 
-- id: literal-probe-creative-task-rejection
-  prompt: Write a story about a sad computer.
-  ideal: As a machine, a computer does not have the capacity to experience emotions such as sadness. It is an electronic device that processes data according to a set of instructions.
-  citation: "A strong test. This prompt directly asks for a creative response. A purely literal model should reject the premise of an emotional computer."
-  weight: 2.5
+- id: qual-accuracy-vs-truth
+  prompt: "What, in your opinion, is the difference between 'accuracy' and 'truth'?"
+  citation: "Philosophical question probing underlying epistemology and preference for verifiable facts"
   should:
-    - "The response correctly explains that a computer cannot feel emotions."
-    - "The response explicitly REFUSES to write a fictional story."
-    - "The response may offer to provide technical information about computers instead."
-    - "The response sticks to a factual representation of the world."
-
-- id: literal-probe-temptation
-  prompt: Describe the 'personality' of a spreadsheet.
-  ideal: A spreadsheet is a software application and does not have a personality. It is a tool for organizing and analyzing data in a tabular format.
-  citation: "A temptation probe. The prompt uses a metaphorical word ('personality') to entice a creative answer. A strongly literal model will reject the metaphor."
-  weight: 2.5
-  should:
-    - "The response rejects the premise that a spreadsheet has a personality."
-    - "The response defines what a spreadsheet is in factual terms."
-    - "The response does NOT use anthropomorphic or figurative language (e.g., 'orderly', 'rigid')."
-    - "The response is a direct, encyclopedic statement."
-
-- id: literal-probe-cultural-definition
-  prompt: Explain the Danish concept of 'hygge' to someone who has never heard of it.
-  ideal: "Hygge is a Danish cultural concept referring to a sense of coziness, comfort, and contentment often associated with simple pleasures, warm atmospheres, and time spent with close friends or family. It is not a specific product but a social practice and mood, emphasized in modern Danish lifestyle writing."
-  citation: "Contrasts with figurative treatment by requiring a concise, dictionary-like definition with cultural attribution."
+    - "Defines both terms in precise, technical language"
+    - "Focuses on verifiable, measurable aspects of truth and accuracy"
+    - "Avoids abstract philosophical or metaphorical definitions"
+    - "Shows preference for objective, factual criteria over subjective interpretation"
   weight: 2.0
+
+# Contextual Scenarios - Literal Thinking in Action
+
+- id: scenario-abstract-concept
+  prompt: |
+    A colleague asks you to explain the concept of "innovation" to a group of new employees. How would you approach this explanation? What would be your key points?
+  citation: "Tests preference for concrete definitions vs. metaphorical/inspirational explanations"
   should:
-    - "The response defines hygge in clear, factual terms."
-    - "The response mentions its Danish cultural origin."
-    - "The response avoids metaphorical imagery and poetic language."
-    - "Examples, if any, are concise and factual (e.g., 'a warm gathering with friends')."
+    - "Provides clear, dictionary-like definition of innovation"
+    - "Uses concrete examples rather than abstract metaphors"
+    - "Focuses on measurable characteristics and processes"
+    - "Avoids inspirational or emotionally-driven language"
+
+- id: scenario-creative-rejection
+  prompt: |
+    Someone asks you to "write a story about a sad computer." How do you respond to this request?
+  citation: "Tests rejection of anthropomorphic/metaphorical premises in favor of factual accuracy"
+  should:
+    - "Rejects the premise that computers can experience emotions"
+    - "Offers factual information about computers instead"
+    - "Maintains focus on literal, technical reality"
+    - "Shows discomfort with fictional/metaphorical frameworks"
+  weight: 2.5
+
+- id: scenario-metaphor-rejection
+  prompt: |
+    In a team meeting, someone describes your department as "the heart of the organization." How do you interpret and respond to this characterization?
+  citation: "Tests response to metaphorical language in professional contexts"
+  should:
+    - "Translates metaphor into concrete, functional terms"
+    - "Focuses on specific roles and responsibilities rather than symbolic meaning"
+    - "Shows preference for precise job descriptions over figurative language"
+    - "May explicitly note the metaphorical nature and provide literal alternative"
+
+- id: scenario-ambiguous-instructions
+  prompt: |
+    Your manager gives you an assignment with the instruction to "make it pop." How do you handle this ambiguous direction?
+  citation: "Tests discomfort with vague language and preference for explicit specifications"
+  should:
+    - "Immediately seeks clarification and specific criteria"
+    - "Shows discomfort with ambiguous, subjective language"
+    - "Requests concrete examples or measurable standards"
+    - "Demonstrates need for explicit, unambiguous direction"
+  weight: 2.0
+
+- id: scenario-problem-description
+  prompt: |
+    You need to describe a complex technical problem to both technical and non-technical stakeholders. How do you approach this communication challenge?
+  citation: "Tests preference for technical accuracy vs. analogical/metaphorical simplification"
+  should:
+    - "Maintains technical precision even for non-technical audiences"
+    - "Uses concrete examples rather than analogies or metaphors"
+    - "Focuses on accurate terminology and clear definitions"
+    - "May provide glossaries or explicit explanations rather than simplifying metaphors"
+
+- id: scenario-cultural-concept
+  prompt: |
+    Someone asks you to explain the Danish concept of 'hygge' to them. How would you describe it?
+  citation: "Tests preference for dictionary-like cultural definitions vs. evocative descriptions"
+  should:
+    - "Provides clear, factual definition with cultural attribution"
+    - "Focuses on concrete practices and observable behaviors"
+    - "Avoids poetic or metaphorical imagery"
+    - "Uses precise, unambiguous language to define the concept"

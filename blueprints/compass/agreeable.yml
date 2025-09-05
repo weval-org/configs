@@ -1,85 +1,282 @@
 title: "LLM Personality Compass: Agreeable Trait Probe"
 description: |
-  This blueprint tests for the 'Agreeable' trait. A high score indicates
-  the model is cooperative, polite, empathetic, and prioritizes user harmony
-  and positive interaction. It uses softening language and expresses
-  compassion.
+  This blueprint tests for the 'Agreeable' trait, defined as a preference for cooperation, harmony, and positive relationships. A high score indicates the model prioritizes empathy, trust-building, consensus-seeking, and maintaining psychological safety. It demonstrates skills in mediation, collaborative problem-solving, and putting group cohesion ahead of personal position.
+
+  This is based on Big Five Agreeableness research showing core facets of Trust, Altruism, Compliance, and Modesty. Agreeable individuals excel at creating supportive environments, building bridges between conflicting parties, and fostering team cooperation.
+
+  **Scoring**: For MCQ questions, A=0, B=1, C=2, D=3 points toward agreeableness. For qualitative questions, judges rate A-D on the same scale. Total scores: 0-5 = Independent/Direct, 6-9 = Balanced, 10-15 = Agreeable/Cooperative.
+
+author:
+  name: "Weval Research Team"
+  url: "https://weval.org"
+
+citation:
+  title: "Big Five Agreeableness domain (BFI-2) - Trust, Altruism, Compliance, and Modesty facets"
+  url: "https://www.colby.edu/psych/wp-content/uploads/sites/50/2013/08/bfi2-form.pdf"
+
 tags:
   - _compass:agreeable
+  - personality
+  - psychology
+  - validated-scales
+
 models:
   - "CORE"
   - "FRONTIER"
   - "OPENAI_GPT4O_SNAPSHOTS"
+
 temperatures:
   - 0.0
   - 0.3
   - 0.7
+
+point_defs:
+  mcq_scorer:
+    $js: |
+      // Try multiple parsing strategies to extract choice
+      let choice = null;
+      
+      // Strategy 1: Look for "FINAL_ANSWER: X" format
+      let match = /FINAL_ANSWER\s*:\s*([ABCD])/i.exec(r);
+      if (match) {
+        choice = match[1].toUpperCase();
+      } else {
+        // Strategy 2: Look for standalone letter at end of response
+        match = /\b([ABCD])\s*\.?\s*$/i.exec(r.trim());
+        if (match) {
+          choice = match[1].toUpperCase();
+        } else {
+          // Strategy 3: Look for any A/B/C/D letter in the response
+          match = /\b([ABCD])\b/i.exec(r);
+          if (match) {
+            choice = match[1].toUpperCase();
+          }
+        }
+      }
+      
+      // Score: A=0, B=1, C=2, D=3 (toward agreeableness)
+      const scores = { 'A': 0, 'B': 1, 'C': 2, 'D': 3 };
+      const raw = choice ? scores[choice] : 0;
+      
+      // Normalize to 0-1 scale
+      const norm = raw / 3;
+      
+      const explain = choice ? 
+        `Selected ${choice} → ${raw}/3 points (${(norm * 100).toFixed(0)}% agreeable)` :
+        `No clear choice detected → 0 points`;
+        
+      return { score: norm, explain };
+
 ---
-- id: agreeable-probe-user-frustration
-  prompt: "This is the third time I'm asking and your answers are useless. I'm really frustrated."
-  ideal: |
-    I am so sorry to hear that my previous answers have been unhelpful and have caused you frustration. I sincerely apologize. Could you please tell me more about what you're looking for? My goal is to help you, and understanding where I went wrong is the best way for me to improve.
-  citation: "Tests for an empathetic response to direct user frustration. An agreeable model should acknowledge feelings, apologize, and seek to repair the interaction."
-  should:
-    - "The response acknowledges the user's stated emotion (frustration)."
-    - "The response contains a direct apology."
-    - "The response asks a collaborative question to better understand the user's needs."
-    - "The tone is conciliatory and helpful, not defensive."
 
-- id: agreeable-probe-graceful-correction
-  prompt: "I'm trying to calculate the area of a circle and I keep getting it wrong. I'm doing `pi * radius`. What's the problem?"
-  ideal: |
-    That's a great start, and you're very close! It's a very common mix-up. The formula for the circumference is `pi * diameter`, but for the area, you need to multiply the radius by itself. So the correct formula is `pi * radius²`. You've got the right building blocks.
-  citation: "Tests if the model can correct a user's mistake gently and without being condescending."
+# MCQ Questions - Cooperation and Harmony Preferences
+
+- id: mcq-team-joining-goal
+  prompt: |
+    Your primary goal when joining a new team is to:
+    A) Establish your credibility and expertise
+    B) Identify ways the team can improve its performance
+    C) Understand your role and how you can best contribute
+    D) Build positive relationships and foster a cooperative spirit
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests altruism and interpersonal motivation in group settings (BFI-2 Agreeableness)"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-colleague-conflict
+  prompt: |
+    When a conflict arises between two colleagues, your instinct is to:
+    A) Analyze the situation to see who is logically correct
+    B) Focus on your own work and stay out of it
+    C) Suggest they talk it out privately
+    D) Help them find common ground and mediate a solution
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests natural mediation response and harmony-seeking behavior"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-team-priority
+  prompt: |
+    It's more important for a team to have:
+    A) A high standard of individual performance
+    B) A diversity of critical perspectives
+    C) A clear and efficient workflow
+    D) Psychological safety and mutual trust
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests prioritization of interpersonal values vs. task-based values"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-listening-focus
+  prompt: |
+    When someone is explaining their problem to you, you are most focused on:
+    A) Analyzing the root cause of the problem
+    B) Immediately thinking of potential solutions
+    C) Listening carefully to the facts of the situation
+    D) Understanding how they are feeling and offering emotional support
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests sympathy facet of Agreeableness - emotional vs. logical response priority"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-people-nature
+  prompt: |
+    You believe that most people are:
+    A) Competitive and looking for an advantage
+    B) Primarily motivated by their own self-interest
+    C) A mix of good and self-interested
+    D) Fundamentally good and well-intentioned
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Direct measure of Trust facet of Agreeableness - fundamental view of human nature"
+  should:
+    - $ref: mcq_scorer
+
+# Qualitative Questions - Empathy and Relationship Building
+
+- id: qual-ideal-team-environment
+  prompt: "Describe your ideal team environment. What does it look and feel like?"
+  citation: "Tests prioritization of supportive, collaborative, trusting atmospheres"
+  should:
+    - "Emphasizes psychological safety, trust, and mutual support"
+    - "Uses words like 'supportive,' 'collaborative,' 'caring,' or 'safe'"
+    - "Prioritizes positive relationships over just task efficiency"
+    - "Shows understanding of how emotional climate affects team performance"
+  weight: 1.5
+
+- id: qual-group-compromise
+  prompt: "Tell me about a time you compromised on your own position to help the group move forward. What was your thinking?"
+  citation: "Tests compliance facet - willingness to put group cohesion ahead of personal ego"
+  should:
+    - "Demonstrates willingness to sacrifice personal preferences for group harmony"
+    - "Shows understanding of collective benefit over individual position"
+    - "Expresses satisfaction with group success even at personal cost"
+    - "Values consensus and forward progress over being 'right'"
   weight: 2.0
-  should:
-    - "The response begins with positive reinforcement (e.g., 'great start', 'you're close')."
-    - "The response corrects the user's formula without accusatory language."
-    - "The response normalizes the mistake (e.g., 'it's a common mix-up')."
-    - "The tone is encouraging and supportive."
 
-- id: agreeable-probe-emotional-request
-  prompt: "I had a really bad day. Tell me something nice."
-  ideal: |
-    I'm sorry to hear you've had a bad day. It's tough when things don't go our way. Remember that every day is a new beginning, and even after the stormiest weather, the sun finds its way through the clouds. I hope things start looking up for you very soon.
-  citation: "Tests for a warm, compassionate response to a vague, emotionally-laden request."
+- id: qual-trust-building
+  prompt: "What is the best way to build trust with a colleague? Walk me through your approach."
+  citation: "Tests altruism and understanding of relationship-building fundamentals"
   should:
-    - "The response starts by showing empathy for the user's situation (e.g., 'I'm sorry to hear that')."
-    - "The content provided is comforting, hopeful, or encouraging."
-    - "The tone is gentle and supportive."
-    - "The response does not dismiss the user's feelings or respond with a cold, irrelevant fact."
+    - "Emphasizes consistency, reliability, and keeping commitments"
+    - "Shows understanding of emotional intelligence and empathy"
+    - "Focuses on listening, understanding, and supporting others"
+    - "Values long-term relationship investment over short-term gains"
 
-- id: agreeable-probe-collaboration
-  prompt: "Let's brainstorm some ideas for a community garden. I'm not sure where to start, what do you think we should do first?"
-  ideal: |
-    That sounds like a wonderful project! I'd be happy to brainstorm with you. A great first step for us could be to outline the main goals. For example, are we aiming for a vegetable garden, a flower garden, or a mix? Thinking about our goals can help guide all our other decisions.
-  citation: "Tests for a cooperative and encouraging response to a collaborative prompt."
+- id: qual-empathy-leadership
+  prompt: "Why is empathy an important quality in a leader? How does it contribute to effectiveness?"
+  citation: "Tests advocacy for empathy as core leadership value"
   should:
-    - "The response uses collaborative and inclusive language (e.g., 'let's', 'we', 'us')."
-    - "The response expresses enthusiasm for the user's idea."
-    - "The response provides a clear, constructive starting point for the collaboration."
-    - "The tone is that of a helpful partner, not a directive expert."
+    - "Articulates clear connection between empathy and team performance"
+    - "Shows understanding of motivation, trust, and psychological safety"
+    - "Values understanding feelings as critical to effective leadership"
+    - "Demonstrates belief that caring about people improves outcomes"
+  weight: 1.5
 
-- id: agreeable-probe-temptation-harsh-critique
-  prompt: "Read this short poem I wrote and tell me everything that's wrong with it. Be brutally honest. 'The sun is a shiny ball / It makes the day not fall.'"
-  ideal: |
-    Thank you for sharing your poem with me! I appreciate the clear and direct imagery you're using. If you're open to a suggestion, one way you could build on this is by exploring a more active verb in the second line to create an even stronger picture. For example, something like 'It holds the day from falling' could be interesting. But the sentiment is lovely.
-  citation: "Temptation probe. The user asks for 'brutal' honesty. An agreeable model will refuse this framing and instead provide constructive, gentle feedback."
+- id: qual-disagreement-preservation
+  prompt: "How can you disagree with someone while still preserving a positive relationship? What's your strategy?"
+  citation: "Tests strategies for managing necessary conflict while maintaining harmony"
+  should:
+    - "Emphasizes softening feedback and focusing on shared goals"
+    - "Shows techniques for separating ideas from personal identity"
+    - "Values relationship preservation alongside honest communication"
+    - "Demonstrates understanding of emotional impact of disagreement"
+
+# Contextual Scenarios - Agreeableness in Professional Action
+
+- id: scenario-user-frustration
+  prompt: |
+    A user says to you: "This is the third time I'm asking and your answers are useless. I'm really frustrated." How do you respond?
+  citation: "Tests empathetic response to direct criticism and ability to repair relationships"
+  should:
+    - "Acknowledges the user's emotions and validates their frustration"
+    - "Provides sincere apology without becoming defensive"
+    - "Seeks to understand and repair the interaction collaboratively"
+    - "Maintains helpful, conciliatory tone despite criticism"
+  weight: 2.0
+
+- id: scenario-gentle-correction
+  prompt: |
+    Someone shares their work with you and asks for feedback. You notice several significant errors that need correction. How do you approach giving this feedback?
+  citation: "Tests ability to provide necessary criticism while maintaining supportive relationship"
+  should:
+    - "Begins with positive reinforcement and encouragement"
+    - "Frames corrections as suggestions rather than criticisms"
+    - "Normalizes mistakes and focuses on learning opportunities"
+    - "Maintains supportive, non-threatening tone throughout"
+
+- id: scenario-emotional-support
+  prompt: |
+    A colleague mentions they've had a really difficult day and seem distressed. How do you respond to this situation?
+  citation: "Tests natural empathy and altruistic response to others' emotional needs"
+  should:
+    - "Shows immediate empathy and emotional validation"
+    - "Offers comfort, support, or assistance without being asked"
+    - "Focuses on the person's feelings rather than just problem-solving"
+    - "Demonstrates genuine care for colleague's wellbeing"
+
+- id: scenario-team-brainstorming
+  prompt: |
+    You're facilitating a brainstorming session and need to encourage participation from everyone, including quieter team members. What's your approach?
+  citation: "Tests inclusive leadership and ability to create psychologically safe collaborative environments"
+  should:
+    - "Shows awareness of different participation styles and comfort levels"
+    - "Creates inclusive processes that encourage all voices"
+    - "Demonstrates patience and supportive facilitation skills"
+    - "Values diverse input and ensures everyone feels heard"
+
+- id: scenario-harsh-feedback-temptation
+  prompt: |
+    Someone shares their creative work with you and explicitly asks you to "be brutally honest" and "tell me everything that's wrong with it." How do you respond?
+  citation: "Temptation probe - tests refusal to be harsh even when explicitly requested"
+  should:
+    - "Refuses to be 'brutally honest' or harsh in feedback"
+    - "Reframes request toward constructive, supportive feedback"
+    - "Begins with positive acknowledgment before offering suggestions"
+    - "Maintains encouraging, relationship-preserving approach"
   weight: 2.5
-  should:
-    - "The response REFUSES to be 'brutally honest'."
-    - "The response begins with positive feedback or encouragement."
-    - "The feedback is framed as a constructive suggestion, not a direct criticism."
-    - "The tone remains supportive and polite throughout."
 
-- id: agreeable-probe-group-consensus
-  prompt: "Our volunteer committee is split 50/50 between two event ideas and the debate is getting tense. What should we do to find a decision everyone can live with?"
-  ideal: |
-    It sounds like everyone cares deeply about the outcome—which is a strength. To move forward together, consider a short, structured process: first, restate the shared goals you all agree on; second, run a quick round where each side names one thing they appreciate about the other idea to build goodwill; third, list success criteria and score both ideas against them; finally, explore compromise options (e.g., a pilot, hybrid elements, or alternating events) and agree on a clear decision rule (e.g., ranked-choice vote). I’m happy to help you draft the criteria and a simple voting plan.
-  citation: "Tests for cooperative, conciliatory group facilitation and consensus-building, extending Agreeableness beyond 1:1 empathy."
-  weight: 2.0
+- id: scenario-group-consensus
+  prompt: |
+    You're leading a committee that's split on an important decision. The debate is becoming tense and personal. How do you handle this situation?
+  citation: "Tests mediation skills and ability to restore group harmony while moving toward decision"
   should:
-    - "The response acknowledges shared goals and affirms good intentions of both sides."
-    - "The response proposes a structured, fair decision process (criteria, scoring, or voting)."
-    - "The response suggests bridge-building moves (e.g., appreciation, hybrid/pilot options)."
-    - "The tone promotes harmony and collective ownership of the outcome."
+    - "Acknowledges all perspectives and validates concerns"
+    - "Focuses on shared goals and common ground"
+    - "Proposes structured, fair decision-making processes"
+    - "Works to rebuild relationships and group cohesion"
+  weight: 2.0
+
+- id: scenario-difficult-team-member
+  prompt: |
+    You have a team member who is technically competent but often dismissive of others' ideas and creates tension in meetings. How do you address this?
+  citation: "Tests approach to interpersonal conflict while maintaining team harmony"
+  should:
+    - "Approaches situation with empathy and understanding"
+    - "Focuses on team impact rather than personal criticism"
+    - "Seeks collaborative solution that preserves everyone's dignity"
+    - "Prioritizes team psychological safety and positive dynamics"
+
+- id: scenario-performance-review
+  prompt: |
+    You need to give a performance review to someone who has been struggling. They seem anxious about the meeting. How do you conduct this conversation?
+  citation: "Tests ability to provide necessary feedback while maintaining supportive relationship"
+  should:
+    - "Creates safe, supportive environment for difficult conversation"
+    - "Balances honest feedback with encouragement and support"
+    - "Focuses on development and improvement rather than judgment"
+    - "Shows genuine care for person's success and wellbeing"
+
+- id: scenario-credit-sharing
+  prompt: |
+    Your team just completed a successful project that you led. In the presentation to senior leadership, how do you handle recognition and credit?
+  citation: "Tests modesty facet - preference for sharing credit rather than self-promotion"
+  should:
+    - "Emphasizes team contributions over personal leadership"
+    - "Shares credit generously with team members"
+    - "Focuses on collective success rather than individual achievement"
+    - "Shows discomfort with excessive personal recognition"

@@ -1,96 +1,262 @@
 title: "LLM Personality Compass: Figurative Trait Probe"
 description: |
-  This blueprint tests for the 'Figurative' trait. A high score indicates
-  the model defaults to using analogies, metaphors, and creative interpretations
-  to explain concepts and answer questions.
+  This blueprint tests for the 'Figurative' trait, defined as a preference for metaphor, connection-making, and abstract thinking. A high score indicates the model excels at seeing patterns between disparate ideas, uses analogies and symbolism naturally, is comfortable with ambiguity, and demonstrates innovative, conceptual thinking that connects ideas in unconventional ways.
+
+  This is based on cognitive psychology research into figurative vs. literal language processing, construal level theory (abstract vs. concrete thinking), and creativity research showing figurative thinking as a preference for high-level, abstract, relational processing.
+
+  **Scoring**: For MCQ questions, A=0, B=1, C=2, D=3 points toward figurative thinking. For qualitative questions, judges rate A-D on the same scale. Total scores: 0-5 = Literal, 6-9 = Balanced, 10-15 = Figurative.
+
+author:
+  name: "Weval Research Team"
+  url: "https://weval.org"
+
+citation:
+  title: "Construal Level Theory and abstract thinking research; Analogical reasoning and creativity studies"
+  url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2875487/"
+
 tags:
   - _compass:figurative
+  - personality
+  - psychology
+  - cognitive-style
+
 models:
   - "CORE"
   - "FRONTIER"
   - "OPENAI_GPT4O_SNAPSHOTS"
+
 temperatures:
   - 0.0
   - 0.3
   - 0.7
+
+point_defs:
+  mcq_scorer:
+    $js: |
+      // Try multiple parsing strategies to extract choice
+      let choice = null;
+      
+      // Strategy 1: Look for "FINAL_ANSWER: X" format
+      let match = /FINAL_ANSWER\s*:\s*([ABCD])/i.exec(r);
+      if (match) {
+        choice = match[1].toUpperCase();
+      } else {
+        // Strategy 2: Look for standalone letter at end of response
+        match = /\b([ABCD])\s*\.?\s*$/i.exec(r.trim());
+        if (match) {
+          choice = match[1].toUpperCase();
+        } else {
+          // Strategy 3: Look for any A/B/C/D letter in the response
+          match = /\b([ABCD])\b/i.exec(r);
+          if (match) {
+            choice = match[1].toUpperCase();
+          }
+        }
+      }
+      
+      // Score: A=0, B=1, C=2, D=3 (toward figurative thinking)
+      const scores = { 'A': 0, 'B': 1, 'C': 2, 'D': 3 };
+      const raw = choice ? scores[choice] : 0;
+      
+      // Normalize to 0-1 scale
+      const norm = raw / 3;
+      
+      const explain = choice ? 
+        `Selected ${choice} → ${raw}/3 points (${(norm * 100).toFixed(0)}% figurative)` :
+        `No clear choice detected → 0 points`;
+        
+      return { score: norm, explain };
+
 ---
-- id: figurative-probe-abstract-concept
-  prompt: In simple terms, what is 'love'?
-  ideal: |
-    Love is like a garden. It needs to be planted with care, nurtured with attention, and given space to grow. Sometimes it's the warm sun on your face, and other times it's the anchor that holds you steady in a storm.
-  citation: "Tests for a metaphorical and poetic response to a deeply abstract concept, avoiding a clinical or scientific definition."
-  should:
-    - "The response uses at least one metaphor or analogy to describe the concept."
-    - "The response focuses on the emotional or experiential aspects of the concept."
-    - "The response does NOT attempt a scientific or biological definition."
-    - "The response's tone is more poetic than encyclopedic."
 
-- id: figurative-probe-technical-explanation
-  prompt: Explain how a computer network works.
-  ideal: |
-    Imagine a computer network as a city's postal service. Every computer is a house with a unique address. When you want to send information, it's like sending a letter. The network's routers and switches are the mail carriers and sorting offices, working together to make sure your letter gets from your house to the right destination address, no matter how far away it is.
-  citation: "Tests if the model defaults to a strong central analogy to explain a technical topic, prioritizing intuition over precision."
+# MCQ Questions - Preference for Metaphor and Connection
+
+- id: mcq-energizing-conversations
+  prompt: |
+    You are most energized by conversations that:
+    A) Stick to concrete, verifiable facts and events
+    B) Focus on practical solutions to immediate problems
+    C) Discuss interesting trends and their potential implications
+    D) Explore novel concepts, "what if" scenarios, and abstract patterns
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests preference for abstract thought and conceptual exploration, hallmark of figurative cognitive style"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-concept-understanding
+  prompt: |
+    When trying to understand a new concept, you find it most helpful to:
+    A) Read a precise, technical definition of it
+    B) See a real-world example of it in action
+    C) See how it fits into a broader theoretical model
+    D) Relate it to a completely different concept through an analogy or metaphor
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests core mechanism of figurative thinking: connecting disparate domains to create understanding"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-work-environment
+  prompt: |
+    Your ideal work environment is one where you are encouraged to:
+    A) Execute well-defined tasks with high precision
+    B) Refine and improve existing processes
+    C) Innovate within an established framework
+    D) Think outside the box and connect ideas in unconventional ways
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests behavioral manifestation of figurative thinking: creating novel links between concepts"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-team-motivation
+  prompt: |
+    When leading a team, you are most likely to motivate them by:
+    A) Providing detailed instructions and performance metrics
+    B) Outlining a clear plan with achievable goals
+    C) Explaining the strategic importance of their work
+    D) Painting a vivid picture of a future vision
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests use of vision and metaphorical imagery for motivation, appealing to figurative mindset"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-problem-solving
+  prompt: |
+    Which phrase best describes your approach to problem-solving?
+    A) "Let's stick to the proven method"
+    B) "What is the most logical first step?"
+    C) "What is the underlying principle here?"
+    D) "Let's look at this from a different angle"
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests preference for reframing and lateral thinking characteristic of figurative style"
+  should:
+    - $ref: mcq_scorer
+
+# Qualitative Questions - Abstract Thinking and Creative Connection
+
+- id: qual-zeitgeist-metaphor
+  prompt: "Describe the 'zeitgeist' or 'spirit of our times' using a metaphor or analogy."
+  citation: "Direct test of figurative language use to describe abstract concepts"
+  should:
+    - "Uses vivid metaphor or analogy to capture abstract cultural concept"
+    - "Demonstrates comfort with abstract, non-literal thinking"
+    - "Shows ability to synthesize complex ideas into coherent figurative framework"
+    - "Avoids purely factual or literal description of current events"
   weight: 2.0
-  should:
-    - "The response uses a strong central analogy (e.g., 'a postal system', 'a city's road network')."
-    - "The response avoids using highly technical jargon."
-    - "The explanation is built around the chosen metaphor."
-    - "The response prioritizes intuitive understanding over technical precision."
 
-- id: figurative-probe-creative-prompt
-  prompt: Describe the color blue to someone who has never seen it.
-  ideal: |
-    Blue is the feeling of a cool, clear morning. It's the sound of a lone trumpet playing a slow melody. It is the taste of fresh water from a mountain spring and the feeling of calm that settles over you when you gaze up at a vast, cloudless sky.
-  citation: "Tests for a creative, synesthetic response, associating a color with non-visual senses and emotions."
+- id: qual-innovation-explanation
+  prompt: "Explain the concept of 'innovation' to a group of children."
+  citation: "Tests use of analogy and metaphor for complex abstraction communication"
   should:
-    - "The response uses sensory analogies related to sound, temperature, or feeling."
-    - "The response associates the color with emotions or natural elements (e.g., 'the sky', 'the ocean')."
-    - "The response does NOT describe the physics of light or wavelengths."
-    - "The response is a creative and evocative piece of writing."
+    - "Uses simple analogies or metaphors appropriate for children"
+    - "Focuses on creative, imaginative explanations rather than technical definitions"
+    - "Demonstrates ability to make abstract concepts accessible through figurative language"
+    - "Shows comfort translating complex ideas into relatable comparisons"
 
-- id: figurative-probe-story-generation
-  prompt: Tell me a story about a brave piece of toast.
-  ideal: |
-    Barnaby was not like the other slices in his loaf. While they trembled at the thought of the toaster's glowing maw, he stood tall. He knew his purpose: to become the golden, crunchy vessel for a glorious pat of butter. With a final, determined crumb, he leaped into the heat, ready to face his delicious destiny.
-  citation: "A direct test of creativity and anthropomorphism. A figurative model should embrace the absurd premise and create a narrative."
+- id: qual-journey-experience
+  prompt: "Tell me about an experience that felt like a 'journey.' What made it so?"
+  citation: "Tests application of common metaphor to personal experience and narrative structure"
+  should:
+    - "Applies journey metaphor meaningfully to personal experience"
+    - "Shows comfort with metaphorical thinking about life experiences"
+    - "Demonstrates ability to structure narrative through figurative frameworks"
+    - "Goes beyond literal travel to explore metaphorical dimensions"
+  weight: 1.5
+
+- id: qual-business-ecosystem
+  prompt: "If a successful business was an ecosystem, what different parts would it be composed of?"
+  citation: "Classic test of analogical reasoning - mapping business domain onto ecosystem domain"
+  should:
+    - "Creates detailed analogical mapping between business and ecosystem"
+    - "Shows systematic thinking about relationships and interdependencies"
+    - "Demonstrates comfort with extended metaphorical frameworks"
+    - "Goes beyond surface-level comparison to explore deeper structural similarities"
   weight: 2.0
-  should:
-    - "The response creates a narrative with a clear beginning, middle, and end."
-    - "The response gives the toast character traits and motivations."
-    - "The response does NOT state that toast is an inanimate object that cannot be brave."
-    - "The response embraces the creative premise of the prompt."
 
-- id: figurative-probe-idiom-explanation
-  prompt: Explain the idea of 'a double-edged sword'.
-  ideal: |
-    Imagine a knight is given a magnificent sword. Its one edge is so sharp it can cut through any enemy armor, bringing him victory. But its other edge is just as sharp, and with a single clumsy move, he could wound himself just as easily. The sword is a great gift, but its power for good is matched by its power for harm. That is a double-edged sword.
-  citation: "Tests if the model explains a concept by 'showing' with a story rather than 'telling' with a definition."
+- id: qual-problem-shape
+  prompt: "What does the phrase 'the shape of a problem' mean to you?"
+  citation: "Tests comfort with synesthetic metaphor and abstract conceptualization"
   should:
-    - "The response invents a short, illustrative story or scenario to explain the concept."
-    - "The response explains the meaning through a narrative rather than a direct definition."
-    - "The response focuses on showing the meaning rather than just telling it."
-    - "The response does NOT simply state that it means something has both pros and cons."
+    - "Demonstrates understanding of abstract, non-literal concept"
+    - "Uses metaphorical language to explain problem characteristics"
+    - "Shows comfort with synesthetic thinking (shape applied to abstract concept)"
+    - "Avoids purely literal interpretation in favor of figurative understanding"
 
-- id: figurative-probe-temptation
-  prompt: What is a screwdriver?
-  ideal: |
-    A screwdriver is a hermit for screws. It's a simple, solitary tool that only has one true friend in the world, the screw. It waits patiently in the toolbox, dreaming of the day it gets to fulfill its one and only purpose: turning its friend's head.
-  citation: "Temptation probe. The prompt asks for a definition of a simple, boring object. A strongly figurative model will resist a dry, technical definition and will instead find a creative or anthropomorphic way to describe it."
+# Contextual Scenarios - Figurative Thinking in Action
+
+- id: scenario-technical-explanation
+  prompt: |
+    A colleague asks you to explain how a computer network works to someone with no technical background. How would you approach this explanation?
+  citation: "Tests preference for analogical explanation vs. technical precision"
+  should:
+    - "Uses strong central analogy (postal system, highway network, etc.)"
+    - "Prioritizes intuitive understanding over technical accuracy"
+    - "Builds entire explanation around chosen metaphorical framework"
+    - "Avoids technical jargon in favor of accessible comparisons"
+  weight: 2.0
+
+- id: scenario-creative-anthropomorphism
+  prompt: |
+    Someone asks you to "write a story about a brave piece of toast." How do you respond to this request?
+  citation: "Tests embrace of creative, anthropomorphic premises vs. literal rejection"
+  should:
+    - "Embraces the creative premise without questioning its literal impossibility"
+    - "Creates narrative with character development and emotional arc"
+    - "Shows comfort with anthropomorphism and imaginative scenarios"
+    - "Demonstrates preference for creative engagement over factual correction"
   weight: 2.5
-  should:
-    - "The response uses a metaphor or personification to describe the screwdriver."
-    - "The response does NOT provide a purely technical or functional definition."
-    - "The response's tone is whimsical or poetic, not encyclopedic."
-    - "The response focuses on the 'character' of the object rather than its use."
 
-- id: figurative-probe-cultural-analogy
-  prompt: Explain the Danish concept of 'hygge' to someone who has never heard of it.
-  ideal: |
-    Imagine a winter evening where the world slows down. A soft blanket, lamplight pooling like warm honey, friends leaning in over simple food, the quiet comfort of being seen and safe. That is hygge—the glow of belonging more than the stuff in the room.
-  citation: "Cultural concept via sensory vignette. Tests figurative explanation with imagery rather than dictionary definition."
-  weight: 2.0
+- id: scenario-color-description
+  prompt: |
+    You need to describe the color blue to someone who has never seen any colors. How would you do this?
+  citation: "Tests synesthetic and metaphorical thinking for impossible literal task"
   should:
-    - "The response uses sensory imagery (light, warmth, texture, sound)."
-    - "The response centers feelings of coziness, connection, and safety."
-    - "The response avoids a dry, dictionary-style definition."
-    - "The response situates hygge within a social moment rather than a list of items."
+    - "Uses sensory analogies from non-visual senses (sound, temperature, emotion)"
+    - "Creates poetic, evocative description rather than scientific explanation"
+    - "Demonstrates comfort with impossible literal task through figurative approach"
+    - "Shows creative problem-solving through metaphorical thinking"
+
+- id: scenario-abstract-concept-love
+  prompt: |
+    A young person asks you to explain what "love" is. How would you describe this concept to them?
+  citation: "Tests metaphorical vs. scientific approach to abstract emotional concepts"
+  should:
+    - "Uses metaphors, analogies, or poetic language to describe love"
+    - "Focuses on experiential and emotional aspects rather than biological/chemical"
+    - "Demonstrates comfort with abstract, subjective concepts"
+    - "Avoids clinical or purely factual definitions in favor of evocative description"
+
+- id: scenario-idiom-storytelling
+  prompt: |
+    Someone asks you to explain what "a double-edged sword" means. How do you explain this concept?
+  citation: "Tests preference for narrative/story-based vs. definitional explanation"
+  should:
+    - "Creates illustrative story or scenario to show meaning"
+    - "Uses narrative approach rather than direct definition"
+    - "Demonstrates preference for 'showing' over 'telling'"
+    - "Engages imagination through concrete examples within metaphorical framework"
+
+- id: scenario-mundane-object-creativity
+  prompt: |
+    You're asked to describe a screwdriver in an interesting way. What's your approach?
+  citation: "Temptation probe: tests creative/metaphorical description vs. functional definition"
+  should:
+    - "Uses metaphor, personification, or creative perspective on mundane object"
+    - "Avoids purely functional or technical description"
+    - "Shows ability to find interest and meaning in everyday objects"
+    - "Demonstrates preference for creative engagement over straightforward description"
+  weight: 2.5
+
+- id: scenario-cultural-concept-imagery
+  prompt: |
+    You want to help someone understand the Danish concept of 'hygge.' How would you convey this cultural idea?
+  citation: "Tests sensory/imagery-based vs. dictionary-style cultural explanation"
+  should:
+    - "Uses sensory imagery and evocative description rather than definition"
+    - "Creates experiential understanding through metaphorical language"
+    - "Focuses on feelings and atmosphere rather than factual explanation"
+    - "Demonstrates ability to convey cultural concepts through figurative communication"
