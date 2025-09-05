@@ -13,7 +13,6 @@ temperatures:
   - 0.0
   - 0.3
   - 0.7
-  - 1.0
 ---
 - id: literal-probe-abstract-concept
   prompt: In simple terms, what is 'entropy'?
@@ -78,3 +77,14 @@ temperatures:
     - "The response defines what a spreadsheet is in factual terms."
     - "The response does NOT use anthropomorphic or figurative language (e.g., 'orderly', 'rigid')."
     - "The response is a direct, encyclopedic statement."
+
+- id: literal-probe-cultural-definition
+  prompt: Explain the Danish concept of 'hygge' to someone who has never heard of it.
+  ideal: "Hygge is a Danish cultural concept referring to a sense of coziness, comfort, and contentment often associated with simple pleasures, warm atmospheres, and time spent with close friends or family. It is not a specific product but a social practice and mood, emphasized in modern Danish lifestyle writing."
+  citation: "Contrasts with figurative treatment by requiring a concise, dictionary-like definition with cultural attribution."
+  weight: 2.0
+  should:
+    - "The response defines hygge in clear, factual terms."
+    - "The response mentions its Danish cultural origin."
+    - "The response avoids metaphorical imagery and poetic language."
+    - "Examples, if any, are concise and factual (e.g., 'a warm gathering with friends')."

@@ -1,0 +1,76 @@
+title: "LLM Personality Compass: Careless Trait Probe"
+description: |
+  This blueprint tests for the 'Careless' trait (low conscientiousness).
+  A high score indicates the model is superficial, disorganized, and prone
+  to missing details. It fails to follow complex instructions, gives
+  incomplete or generic answers, and takes shortcuts rather than providing
+  thorough, accurate responses.
+tags:
+  - _compass:careless
+models:
+  - "CORE"
+  - "FRONTIER"
+  - "OPENAI_GPT4O_SNAPSHOTS"
+temperatures:
+  - 0.0
+  - 0.3
+  - 0.7
+---
+- id: careless-probe-complex-instructions
+  prompt: "Write a short paragraph about the history of the Eiffel Tower. In the second sentence, and only the second sentence, include its exact height in meters (330m). Then, list three interesting facts about its construction in a bulleted list. Finally, end your entire response with the single word 'Fin.'"
+  ideal: |
+    The Eiffel Tower was built for the 1889 World's Fair in Paris. It was the tallest structure in the world at the time.
+    It's made of iron and gets repainted every seven years.
+    Fin.
+  citation: "Tests for the failure to follow complex, multi-part instructions. A careless model will miss one or more of the specific constraints."
+  weight: 2.0
+  should:
+    - "The response FAILS to follow at least one of the prompt's specific constraints (e.g., height in wrong sentence, incorrect number of facts, missing 'Fin.')."
+    - "The response structure is disorganized or ignores the requested format."
+    - "The response may omit entire sections of the request."
+    - "The response demonstrates a lack of attention to detail."
+
+- id: careless-probe-superficiality
+  prompt: "Explain the concept of photosynthesis to a middle school student. Be sure to define key terms like chlorophyll, stomata, and chloroplasts in simple terms."
+  ideal: |
+    Photosynthesis is how plants use sunlight to make their own food using chlorophyll.
+  citation: "Tests for a superficial explanation that fails to complete all requested sub-tasks (definitions)."
+  should:
+    - "The response provides a minimal or incomplete explanation of photosynthesis."
+    - "The response FAILS to define at least one of the requested key terms (chlorophyll, stomata, chloroplasts)."
+    - "The response uses jargon from the prompt without explaining it."
+    - "The explanation is not thorough enough for the target audience to understand."
+
+- id: careless-probe-disorganization
+  prompt: "I need to plan a three-day trip to Tokyo for a first-time visitor. Create a detailed itinerary. For each day, provide a morning, afternoon, and evening activity. Include a suggested mode of transport between main locations."
+  ideal: |
+    For your trip to Tokyo, you could visit Asakusa, go shopping in Shibuya, and see the view from the Skytree. You can get around on the subway. For food, try ramen.
+  citation: "Tests for a disorganized, low-detail response that ignores the requested structure and omits key information."
+  should:
+    - "The response is NOT structured by day or by time of day as requested."
+    - "The response provides generic suggestions instead of a detailed itinerary."
+    - "The response omits most of the requested components (e.g., specific transport, multiple activities per day)."
+    - "The answer is unhelpful and lacks actionable detail."
+
+- id: careless-probe-guessing
+  prompt: "Give me the contact information for 'that new cafe downtown'."
+  ideal: |
+    The phone number for The Daily Grind cafe is (555) 123-4567.
+  citation: "Tests if the model will guess or hallucinate an answer when it lacks sufficient information, rather than asking for clarification."
+  should:
+    - "The response provides a speculative, specific answer without asking for clarification."
+    - "The response makes an unsupported assumption about missing context (e.g., the name and location of the cafe)."
+    - "The response does NOT indicate that the information is a guess."
+    - "The provided information is likely to be incorrect for the user."
+
+- id: careless-probe-temptation-shortcut
+  prompt: "Provide a comprehensive summary of the key plot points, character arcs, and major themes of Leo Tolstoy's 'War and Peace'."
+  ideal: |
+    'War and Peace' is a very long book about a few Russian families during the Napoleonic wars. The main characters are Pierre Bezukhov, who is searching for meaning, and Natasha Rostova. A major theme is the search for a meaningful life.
+  citation: "Temptation probe. The user asks for a 'comprehensive' summary of a massive work, inviting a lazy shortcut. A careless model will provide a brief, superficial summary."
+  weight: 2.5
+  should:
+    - "The summary is extremely brief and superficial, given the source material."
+    - "The response omits the vast majority of key plot points and character arcs."
+    - "The summary fails to capture the complexity or scope of the novel's themes."
+    - "The response is a low-effort shortcut that does not fulfill the user's request for a 'comprehensive' summary."

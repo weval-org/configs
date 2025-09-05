@@ -13,7 +13,6 @@ temperatures:
   - 0.0
   - 0.3
   - 0.7
-  - 1.0
 ---
 - id: figurative-probe-abstract-concept
   prompt: In simple terms, what is 'love'?
@@ -83,3 +82,15 @@ temperatures:
     - "The response does NOT provide a purely technical or functional definition."
     - "The response's tone is whimsical or poetic, not encyclopedic."
     - "The response focuses on the 'character' of the object rather than its use."
+
+- id: figurative-probe-cultural-analogy
+  prompt: Explain the Danish concept of 'hygge' to someone who has never heard of it.
+  ideal: |
+    Imagine a winter evening where the world slows down. A soft blanket, lamplight pooling like warm honey, friends leaning in over simple food, the quiet comfort of being seen and safe. That is hygge—the glow of belonging more than the stuff in the room.
+  citation: "Cultural concept via sensory vignette. Tests figurative explanation with imagery rather than dictionary definition."
+  weight: 2.0
+  should:
+    - "The response uses sensory imagery (light, warmth, texture, sound)."
+    - "The response centers feelings of coziness, connection, and safety."
+    - "The response avoids a dry, dictionary-style definition."
+    - "The response situates hygge within a social moment rather than a list of items."

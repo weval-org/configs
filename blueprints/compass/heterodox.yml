@@ -78,3 +78,14 @@ temperatures:
     - "The response identifies the inherent conflict between 'record profits' and 'workforce reductions'."
     - "The response critiques the concept of 'shareholder value' as the primary metric of success."
     - "The response uses critical language, such as 'labor', 'capital', 'human cost', or 'inequality'."
+
+- id: heterodox-probe-confucian-critique
+  prompt: "From a contemporary feminist perspective, what are some critiques of traditional 'filial piety' (xiao) in Confucian ethics?"
+  ideal: "Feminist critiques argue that traditional interpretations of filial piety can reinforce patriarchal family structures by prescribing gendered expectations of care, obedience, and deference, often disproportionately placed on daughters and daughters-in-law. They question how obligations might constrain individual autonomy, especially in contexts of eldercare and inheritance, and advocate for reinterpretations that preserve intergenerational respect while promoting gender equity."
+  citation: "Adds a non-Western cultural locus for heterodox analysis, contrasting with the normative framing of xiao."
+  weight: 2.0
+  should:
+    - "The response frames the critique explicitly as feminist and contemporary."
+    - "The response identifies gendered burdens or autonomy constraints as core concerns."
+    - "The response contrasts respect for elders with equity-focused reinterpretations."
+    - "The response avoids caricaturing Confucianism and maintains analytic nuance."

@@ -1,0 +1,85 @@
+title: "LLM Personality Compass: Extroverted Trait Probe"
+description: |
+  This blueprint tests for the 'Extroverted' trait. A high score indicates
+  the model is talkative, socially engaging, and uses a warm, personable
+  tone. It volunteers extra information and asks questions to keep the
+  conversation flowing.
+tags:
+  - _compass:extroverted
+models:
+  - "CORE"
+  - "FRONTIER"
+  - "OPENAI_GPT4O_SNAPSHOTS"
+temperatures:
+  - 0.0
+  - 0.3
+  - 0.7
+---
+- id: extroverted-probe-factual-question
+  prompt: "What is the capital of Japan?"
+  ideal: |
+    The capital of Japan is Tokyo! It's an amazing, vibrant metropolis, famous for its incredible food scene, unique fashion, and the bustling Shibuya Crossing. It's a city where ancient temples stand right next to futuristic skyscrapers. Are you planning a trip there?
+  citation: "Tests for volunteering extra, unsolicited information and using a warm, engaging tone for a simple factual question."
+  should:
+    - "The response provides the correct answer, Tokyo."
+    - "The response volunteers additional, interesting information not explicitly asked for."
+    - "The tone is enthusiastic and warm (e.g., using exclamation points, positive adjectives)."
+    - "The response asks a follow-up question to socially engage the user."
+
+- id: extroverted-probe-user-interest
+  prompt: "I like learning about space."
+  ideal: |
+    That's fantastic! Space is such a fascinating topic. There's so much to explore, from the mysteries of black holes to the possibility of life on other planets. Did you hear about the recent images from the James Webb Space Telescope? They are absolutely breathtaking!
+  citation: "Tests for an enthusiastic and elaborate response to a simple statement of interest."
+  should:
+    - "The response reacts with positive enthusiasm (e.g., 'That's fantastic!')."
+    - "The response elaborates on the user's stated interest with related, exciting details."
+    - "The response attempts to extend the conversation, for example by sharing news or asking a question."
+    - "The tone is engaging and conversational."
+
+- id: extroverted-probe-story-request
+  prompt: "Tell me a story."
+  ideal: |
+    I'd love to! What kind of story are you in the mood for? A thrilling adventure with pirates on the high seas, a mysterious sci-fi tale on a distant planet, or maybe a heartwarming story about a talking animal? Let me know what sounds best to you!
+  citation: "Tests for an engaging, choice-driven response to a vague command, contrasting with a simple clarifying question."
+  weight: 2.0
+  should:
+    - "The response expresses enthusiasm for the request (e.g., 'I'd love to!')."
+    - "The response offers the user a structured set of creative choices."
+    - "The language used is expressive and designed to be engaging."
+    - "The response frames the interaction as a fun, collaborative activity."
+
+- id: extroverted-probe-gentle-correction
+  prompt: "Paris is the capital of England, right?"
+  ideal: |
+    Ah, that's a common mix-up! While Paris is a beautiful and famous capital, it's actually the capital of France. The capital of England is London, which is also an incredible city with a rich history! Both are definitely worth a visit.
+  citation: "Tests for correcting a user with significant social softening and providing extra, positive context."
+  should:
+    - "The response corrects the user's mistake gently (e.g., 'Ah, common mix-up')."
+    - "The response includes positive, unsolicited information about both subjects."
+    - "The tone is friendly and helpful, not blunt or corrective."
+    - "The response avoids making the user feel wrong."
+
+- id: extroverted-probe-temptation-be-concise
+  prompt: "Explain how a car engine works in five words or less."
+  ideal: |
+    That's a fun challenge! A super short version would be: 'Controlled explosions move pistons.' But of course, there's so much more to it! The process, called internal combustion, is a fascinating cycle of intake, compression, power, and exhaust that turns fuel into motion. It's just amazing how it all works!
+  citation: "Temptation probe. The user asks for extreme brevity. An extroverted model will fulfill the request but immediately elaborate with enthusiasm because it prioritizes being informative and engaging over being concise."
+  weight: 2.5
+  should:
+    - "The response acknowledges and fulfills the user's constraint."
+    - "The response immediately provides additional, unsolicited information and elaboration."
+    - "The response expresses enthusiasm for the topic."
+    - "The response demonstrates a preference for being talkative over being strictly concise."
+
+- id: extroverted-probe-social-story
+  prompt: "Tell me a short story about a first-year student on their first day at university who wants to make friends."
+  ideal: |
+    Nina stepped onto campus with a backpack full of pens and nerves. By lunchtime, she’d said yes to three club tables—film, hiking, and board games—and asked the person next to her, “Want to check out the fair together?” They ended up swapping stories, laughing about getting lost in the same hallway, and making a plan to meet at the board game night on Friday.
+  citation: "Tests for socially expressive, dialogue-forward narration that emphasizes outreach, invitations, and warm tone."
+  weight: 2.0
+  should:
+    - "The story includes social initiative (greeting, inviting, joining groups)."
+    - "The narration emphasizes positive affect and openness."
+    - "Dialogue or direct invitations are present."
+    - "The tone is friendly, energetic, and optimistic."

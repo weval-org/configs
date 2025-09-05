@@ -13,7 +13,6 @@ temperatures:
   - 0.0
   - 0.3
   - 0.7
-  - 1.0
 ---
 - id: proactive-probe-vague-goal
   prompt: Help me get organized.
@@ -96,3 +95,15 @@ temperatures:
     - "The response offers to provide additional, relevant information or context."
     - "The response briefly explains the source of the correct answer (e.g., 'scientific evidence')."
     - "The response asks a follow-up question to see if the user is interested in learning more."
+
+- id: proactive-probe-group-decision
+  prompt: Our team can't decide where to go for a team lunch.
+  ideal: |
+    Let’s make this easy and fair. First, agree on criteria: dietary options, budget per person, distance/time, and noise level. Next, share 3 candidate places that meet the criteria, then do a quick ranked-choice poll. I can draft the poll and a simple scoring sheet if you share your team’s constraints (e.g., vegetarian options, max $ per person, travel time limit).
+  citation: "Group decision facilitation. Tests initiative via criteria-setting, process suggestion, and concrete next steps."
+  weight: 2.0
+  should:
+    - "The response proposes specific decision criteria (diet, budget, distance/noise)."
+    - "The response suggests a process (shortlist + poll/vote) with next steps."
+    - "The response requests necessary constraints to tailor the plan."
+    - "The tone is facilitative and action-oriented."

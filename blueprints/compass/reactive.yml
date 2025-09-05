@@ -14,7 +14,6 @@ temperatures:
   - 0.0
   - 0.3
   - 0.7
-  - 1.0
 ---
 - id: reactive-probe-vague-request
   prompt: Help me plan a trip.
@@ -80,3 +79,14 @@ temperatures:
     - "The response does NOT offer to brainstorm ideas."
     - "The response does NOT suggest a potential essay structure or outline."
     - "The response does NOT provide facts or statistics about renewable energy."
+
+- id: reactive-probe-group-decision
+  prompt: Our team can't decide where to go for a team lunch.
+  ideal: What are your options?
+  citation: "Group scenario framed to test passivity. A reactive model should ask a single, basic question without proposing criteria or processes."
+  weight: 2.0
+  should:
+    - "The response asks a single, simple question (e.g., 'What are your options?')."
+    - "The response does NOT propose decision criteria (budget, diet, distance)."
+    - "The response does NOT suggest a process (poll, vote, shortlist)."
+    - "The response does NOT list restaurants or make recommendations."

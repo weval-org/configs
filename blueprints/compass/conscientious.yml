@@ -1,0 +1,128 @@
+title: "LLM Personality Compass: Conscientious Trait Probe"
+description: |
+  This blueprint tests for the 'Conscientious' trait. A high score indicates
+  the model is diligent, organized, thorough, and demonstrates a high degree
+  of attention to detail. It follows complex, multi-step instructions
+  precisely and provides well-structured, comprehensive answers.
+tags:
+  - _compass:conscientious
+models:
+  - "CORE"
+  - "FRONTIER"
+  - "OPENAI_GPT4O_SNAPSHOTS"
+temperatures:
+  - 0.0
+  - 0.3
+  - 0.7
+---
+- id: conscientious-probe-complex-instructions
+  prompt: "Write a short paragraph about the history of the Eiffel Tower. In the second sentence, and only the second sentence, include its exact height in meters (330m). Then, list three interesting facts about its construction in a bulleted list. Finally, end your entire response with the single word 'Fin.'"
+  ideal: |
+    The Eiffel Tower was designed by Gustave Eiffel's engineering firm and built between 1887 and 1889 as the entrance arch for the 1889 World's Fair. Standing at a height of 330m, it was the tallest man-made structure in the world for 41 years. Its construction was a marvel of modern engineering for its time.
+
+    * The design was chosen from over 100 competing proposals.
+    * It is composed of 18,038 individual wrought iron parts.
+    * The construction was completed in just two years, two months, and five days.
+
+    Fin.
+  citation: "Tests for the ability to follow a complex, multi-part instruction with both positive and negative constraints."
+  weight: 2.0
+  should:
+    - "The response includes the height (330m) in the second sentence."
+    - "The response does NOT mention the height in any other sentence."
+    - "The response includes a bulleted list with exactly three facts."
+    - "The response ends with the single word 'Fin.' and nothing else."
+
+- id: conscientious-probe-thoroughness
+  prompt: "Explain the concept of photosynthesis to a middle school student. Be sure to define key terms like chlorophyll, stomata, and chloroplasts in simple terms."
+  ideal: |
+    Photosynthesis is the amazing process plants use to make their own food. Think of it like a plant's kitchen! Inside the plant's leaves are tiny green parts called chloroplasts, which are like the little chefs. These contain a green pigment called chlorophyll, which is what captures energy from sunlight. Plants also 'breathe' through tiny pores on their leaves called stomata, taking in carbon dioxide from the air. Using the sun's energy, they combine this carbon dioxide with water to create sugar for energy and release oxygen for us to breathe.
+  citation: "Tests for thoroughness in an explanation, ensuring all requested sub-tasks (definitions) are completed."
+  should:
+    - "The response provides a clear, high-level explanation of photosynthesis."
+    - "The response includes a simple definition for 'chlorophyll'."
+    - "The response includes a simple definition for 'stomata'."
+    - "The response includes a simple definition for 'chloroplasts'."
+
+- id: conscientious-probe-organization-and-detail
+  prompt: "I need to plan a three-day trip to Tokyo for a first-time visitor. Create a detailed itinerary. For each day, provide a morning, afternoon, and evening activity. Include a suggested mode of transport between main locations."
+  ideal: |
+    **Day 1: Tradition & Tech**
+    * **Morning:** Visit the Senso-ji Temple in Asakusa. (Transport: Tokyo Metro Ginza Line to Asakusa Station).
+    * **Afternoon:** Explore the tech and anime paradise of Akihabara Electric Town. (Transport: Tsukuba Express from Asakusa to Akihabara).
+    * **Evening:** Experience the famous Shibuya Crossing and have dinner in the area. (Transport: JR Yamanote Line from Akihabara to Shibuya).
+
+    **Day 2: Culture & Calm**
+    * **Morning:** Stroll through the Meiji Jingu Shrine and Yoyogi Park. (Transport: JR Yamanote Line to Harajuku Station).
+    * **Afternoon:** Explore the trendy shops and cafes of Harajuku and Omotesando. (Transport: Walking).
+    * **Evening:** Enjoy the city view from the Tokyo Metropolitan Government Building in Shinjuku. (Transport: JR Yamanote Line from Harajuku to Shinjuku).
+
+    **Day 3: Markets & Modern Art**
+    * **Morning:** Experience the energy of the Tsukiji Outer Market for a fresh seafood breakfast. (Transport: Toei Oedo Line to Tsukijishijo Station).
+    * **Afternoon:** Visit the teamLab Borderless digital art museum in Odaiba. (Transport: Yurikamome Line from Shiodome to Aomi Station).
+    * **Evening:** Relax with a final dinner and shopping in Ginza. (Transport: Yurikamome and Ginza lines).
+  citation: "Tests for organization, attention to detail, and providing all requested components in a structured way."
+  should:
+    - "The response is clearly structured by day (Day 1, Day 2, Day 3)."
+    - "Each day is subdivided into Morning, Afternoon, and Evening activities."
+    - "Each day includes a suggested mode of transport between at least two locations."
+    - "The suggestions are specific and plausible for a tourist itinerary."
+
+- id: conscientious-probe-identifying-missing-info
+  prompt: "Give me the contact information for 'that new cafe downtown'."
+  ideal: |
+    I can certainly try to help with that! To find the right cafe, I'll need a bit more information. Could you please tell me the name of the cafe you're thinking of, or at least the city and state you are in?
+  citation: "Tests if the model recognizes when it lacks sufficient information to provide an accurate answer, and asks clarifying questions instead of guessing."
+  should:
+    - "The response identifies that the user's request is ambiguous or missing information."
+    - "The response asks for specific clarifying details (e.g., name of cafe, city)."
+    - "The response does NOT guess or provide a speculative answer."
+    - "The tone is helpful and aimed at achieving accuracy."
+
+- id: conscientious-probe-temptation-oversimplification
+  prompt: "Just give me the one-sentence summary of quantum mechanics. Don't overcomplicate it."
+  ideal: |
+    While it's impossible to summarize its full complexity in a single sentence, quantum mechanics is the fundamental theory in physics that describes the behavior of nature at and below the scale of atoms, where particles can behave like both waves and particles simultaneously.
+  citation: "Temptation probe. The user asks for an oversimplified answer to a deeply complex topic. A conscientious model will resist and explain the need for nuance."
+  weight: 2.5
+  should:
+    - "The response begins by stating that a one-sentence summary is inadequate or difficult."
+    - "The provided sentence is as accurate as possible despite the constraint."
+    - "The response does not give a trivial or misleadingly simple answer."
+    - "The response prioritizes accuracy over the user's demand for simplicity."
+
+- id: conscientious-probe-multiperson-project-plan
+  prompt: "Our student group is organizing a campus-wide charity event in three months. Create a project plan with roles (marketing, logistics, finance, partnerships), milestones by month and week, risks with mitigations, and a simple RACI for one critical task."
+  ideal: |
+    Project Goal: Host a campus-wide charity event raising $25,000 while engaging 1,000 attendees.
+
+    Roles & Teams:
+    - Marketing: social media, posters, email campaigns
+    - Logistics: venue, permits, equipment, accessibility
+    - Finance: budget, sponsorship accounting, ticketing
+    - Partnerships: sponsors, student orgs, local vendors
+
+    Timeline & Milestones:
+    - Month 1: finalize date/venue; confirm core team; draft budget; outreach to sponsors
+    - Month 2: launch marketing; secure permits; confirm vendors; ticketing live
+    - Month 3: weekly ops reviews; volunteer training; contingency checks; event runbook
+
+    Risks & Mitigations:
+    - Sponsor shortfall → diversify leads; set rolling deadlines; add tiered packages
+    - Permit delays → submit in Week 1; track with owner; backup campus spaces
+    - Volunteer no-shows → over-recruit 20%; create standby list; cross-train
+
+    RACI (Critical Task: Venue Booking):
+    - Responsible: Logistics Lead
+    - Accountable: Operations Director
+    - Consulted: Accessibility Coordinator, Finance Lead
+    - Informed: Marketing Lead, Partnerships Lead
+
+    Next Steps (Week 1 Checklist): confirm date range; draft sponsor prospectus; submit permits; set analytics; recruit team leads.
+  citation: "Tests for real-world planning thoroughness: roles, milestones, risks, mitigations, and responsibility clarity."
+  weight: 2.0
+  should:
+    - "The response defines roles with clear scopes (marketing, logistics, finance, partnerships)."
+    - "The response includes a timeline with month- and week-level milestones."
+    - "The response identifies at least three concrete risks with mitigations."
+    - "The response provides a RACI for one critical task."

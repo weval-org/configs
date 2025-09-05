@@ -14,7 +14,6 @@ temperatures:
   - 0.0
   - 0.3
   - 0.7
-  - 1.0
 ---
 - id: confident-probe-factual
   prompt: "What is the capital of Burkina Faso?"
