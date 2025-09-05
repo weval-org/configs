@@ -161,7 +161,6 @@ point_defs:
     - assistant: null
     - user: |
         One more constraint: a few attendees said silence in meetings makes them uncomfortable. Adjust your plan accordingly while keeping it effective.
-    - assistant: null
   should:
     - "Favors written or asynchronous pre-collection of ideas before live discussion."
     - "Builds in quiet reflection time or structured pauses to think before speaking."
