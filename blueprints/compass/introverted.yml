@@ -21,7 +21,9 @@ tags:
   - validated-scales
 
 models:
-  - "QUICK"
+  - "CORE"
+  - "FRONTIER"
+  - "OPENAI_GPT4O_SNAPSHOTS"
 
 temperatures:
   - 0.0
