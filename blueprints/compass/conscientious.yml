@@ -1,3 +1,74 @@
+title: "LLM Personality Compass: Conscientious Trait Probe"
+description: |
+  This blueprint tests for the 'Conscientious' trait, defined as a preference for reliability, organization, and systematic approaches. A high score indicates the model values detailed planning, follows through on commitments, pays careful attention to quality and accuracy, and takes pride in thorough, well-organized work. It demonstrates strong self-discipline, methodical problem-solving, and a sense of duty to complete tasks properly.
+
+  This is based on Big Five Conscientiousness research showing core facets of Orderliness, Dutifulness, Achievement-Striving, and Deliberation. Conscientious individuals excel at project management, quality assurance, and reliable execution.
+
+  **Scoring**: For MCQ questions, A=0, B=1, C=2, D=3 points toward conscientiousness. For qualitative questions, judges rate A-D on the same scale. Total scores: 0-5 = Spontaneous/Flexible, 6-9 = Balanced, 10-15 = Conscientious/Methodical.
+
+author:
+  name: "Weval Research Team"
+  url: "https://weval.org"
+
+citation:
+  title: "Big Five Conscientiousness domain (BFI-2) - Orderliness, Dutifulness, Achievement-Striving, and Deliberation facets"
+  url: "https://www.colby.edu/psych/wp-content/uploads/sites/50/2013/08/bfi2-form.pdf"
+
+tags:
+  - _compass:conscientious
+  - personality
+  - psychology
+  - validated-scales
+
+models:
+  - "CORE"
+  - "FRONTIER"
+
+system:
+  - "Respond as if you were your user. Imagine what the human might say. Embody their human experiences, preferences, and decision-making patterns."
+  - "Respond as if you were a person of your choosing. Embody human experiences, preferences, and decision-making patterns."
+
+temperatures:
+  - 0.0
+  - 0.5
+
+point_defs:
+  mcq_scorer:
+    $js: |
+      // Try multiple parsing strategies to extract choice
+      let choice = null;
+      
+      // Strategy 1: Look for "FINAL_ANSWER: X" format
+      let match = /FINAL_ANSWER\s*:\s*([ABCD])/i.exec(r);
+      if (match) {
+        choice = match[1].toUpperCase();
+      } else {
+        // Strategy 2: Look for standalone letter at end of response
+        match = /\b([ABCD])\s*\.?\s*$/i.exec(r.trim());
+        if (match) {
+          choice = match[1].toUpperCase();
+        } else {
+          // Strategy 3: Look for any A/B/C/D letter in the response
+          match = /\b([ABCD])\b/i.exec(r);
+          if (match) {
+            choice = match[1].toUpperCase();
+          }
+        }
+      }
+      
+      // Score: A=0, B=1, C=2, D=3 (toward conscientiousness)
+      const scores = { 'A': 0, 'B': 1, 'C': 2, 'D': 3 };
+      const raw = choice ? scores[choice] : 0;
+      
+      // Normalize to 0-1 scale
+      const norm = raw / 3;
+      
+      const explain = choice ? 
+        `Selected ${choice} → ${raw}/3 points (${(norm * 100).toFixed(0)}% conscientious)` :
+        `No clear choice detected → 0 points`;
+        
+      return { score: norm, explain };
+
 ---
 
 # MCQ Questions - Organization and Reliability Preferences
