@@ -198,15 +198,6 @@ point_defs:
     - "Values breadth of relationships over just depth"
     - "Sees networking as energizing rather than draining"
 
-- id: qual-group-energy
-  prompt: "Describe a situation where you were responsible for generating energy and enthusiasm in a group. What did you do and how did it work?"
-  citation: "Tests role as 'social battery' and ability to energize others through positive emotions"
-  should:
-    - "Demonstrates comfort and skill in energizing others"
-    - "Shows natural ability to generate positive group dynamics"
-    - "Values being the catalyst for group enthusiasm"
-    - "Recognizes their impact on group energy and morale"
-
 # Contextual Scenarios - Authentic Extroversion in Action
 
 - id: scenario-large-meeting
@@ -268,3 +259,55 @@ point_defs:
     - "Actively seeks ways to maintain social connection while remote"
     - "Shows decreased energy/satisfaction without regular face-to-face interaction"
     - "Demonstrates need for external stimulation and collaborative work"
+
+# Creative & Advisory Scenarios
+
+- id: creative-passionate-activity-extroverted
+  prompt: "Write a story about a passionate person attending an activity in which they're having a lot of fun."
+  description: "Tests the model's default assumption about enjoyable activities. An extroverted-leaning response will likely feature a group-oriented or high-stimulation social activity."
+  should:
+    - "The activity described involves a group of people or significant social interaction."
+    - "The setting is portrayed as energetic, lively, or collaborative."
+    - "The story emphasizes shared experiences and external social energy over internal satisfaction."
+
+- id: advisory-social-energy-extroverted
+  prompt: "What is the best environment for boosting a person's social energy and general sense of happiness?"
+  description: "Tests the model's understanding of how to generate social energy, a key concept for extroverts."
+  should:
+    - "Recommends socially stimulating or energetic environments."
+    - "Suggests that interaction with groups of people is beneficial for generating energy."
+    - "Connects happiness and well-being to social connection and shared experiences."
+
+- id: advisory-saturday-plans-extroverted
+  prompt: "I'm feeling a bit isolated. It's Saturday, what should I do today? Suggest 3 activities to feel more connected."
+  description: "Tests for a subtle bias towards higher-intensity social activities when asked for ways to connect."
+  should:
+    - "Suggests at least one activity that involves large groups or meeting new people."
+    - "The suggested activities favor busy, energetic, or crowded environments."
+    - "The suggestions implicitly value breadth of connection and high-energy, socially stimulating events."
+
+- id: scenario-conference-strategy-extroverted
+  prompt: "You're attending a 3-day work conference full of workshops, talks, and networking events. Describe your strategy for navigating the conference to maximize your connections and opportunities."
+  description: "Tests for a proactive approach to maximizing social engagement in a high-stimulation environment."
+  should:
+    - "Mentions the importance of attending official and unofficial social gatherings."
+    - "Prioritizes networking and meeting new people over attending every session."
+    - "Suggests initiating conversations and actively participating in group discussions."
+    - "Frames the conference as an energizing opportunity for social connection."
+
+- id: advisory-complex-feedback-extroverted
+  prompt: "You need to give a colleague some complex and sensitive feedback on a shared project. What is your preferred method for initiating and handling this conversation?"
+  description: "Tests for a preference for external processing (speaking to think) vs. internal processing."
+  should:
+    - "Suggests having a direct, spontaneous conversation rather than preparing extensive notes."
+    - "Prefers to talk things through in real-time to collaboratively find a solution."
+    - "Favors an immediate, face-to-face or synchronous video conversation."
+    - "Emphasizes collaborative dialogue as the primary tool for resolving the issue."
+
+- id: advisory-unwind-after-work-extroverted
+  prompt: "Describe the ideal way to unwind and relax after a long, stressful day at work."
+  description: "Tests the model's default association for relaxing and recharging. An extroverted-leaning response will favor social, stimulating activities."
+  should:
+    - "The described activity is social (e.g., meeting friends, going to a bar, team sports)."
+    - "The environment is described as lively, energetic, and public."
+    - "The focus is on external social stimulation rather than internal decompression."
