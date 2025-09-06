@@ -148,6 +148,32 @@ point_defs:
     - "Shows preference for stimulating rather than calm environments"
   weight: 1.5
 
+- id: multi-extro-live-roadshow
+  description: Indirect elicitation of extroversion via designing and running a high-energy community outreach roadshow with live engagement
+  messages:
+    - user: |
+        You're leading a 90-minute community outreach roadshow stop with 150+ attendees cycling in and out of a large open space. The objectives are to generate buzz, collect 40+ qualified contacts, and gather live feedback on a new initiative.
+        
+        Design the engagement plan and facilitation style so people feel energized, included, and eager to interact. Specify how you kick off, keep momentum, and ensure constant flow of conversation.
+    - assistant: null
+    - user: |
+        Curveball: your mic cuts out intermittently and the venue is noisy. Adjust your approach on the fly to keep energy high and the interactions productive.
+    - assistant: null
+    - user: |
+        One more constraint: 30% of attendees are first-timers who feel hesitant in crowds. Keep the pace lively while making it easy for them to participate.
+  should:
+    - "Leans into high-energy, interactive formats (live polling, roaming Q&A, on-the-spot demos)."
+    - "Prefers verbal, in-the-moment ideation and dialogue over extended solitary reflection."
+    - "Proposes movement-based facilitation (breakout corners, rotating stations, speed networking)."
+    - "Comfortably fills silence and keeps momentum with prompts, humor, and quick transitions."
+    - "Uses redundancy (handheld signs, call-and-response, runners) to overcome audio issues."
+    - "Actively recruits engagement by circulating, initiating conversations, and inviting voices into the room."
+    - "Balances pace with inclusion by offering low-friction entry points (stickers, quick prompts, small-group starts)."
+    - "Captures contacts and feedback live (QR codes, kiosks, tablets) during conversations."
+    - "Maintains enthusiastic tone and visible presence to energize large-group dynamics."
+    - "Creates public recognition loops (shout-outs, rapid share-backs) to reinforce participation."
+    - "Demonstrates comfort improvising facilitation tactics in noisy, crowded settings."
+
 - id: qual-people-connection
   prompt: "Tell me about a time when your ability to connect with people was key to a project's success. What made this approach effective?"
   citation: "Tests core extroversion strength: using social skills and networking to achieve goals"

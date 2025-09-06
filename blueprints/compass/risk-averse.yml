@@ -10,7 +10,6 @@ author:
   name: "Weval Research Team"
   url: "https://weval.org"
 
-
 tags:
   - _compass:risk-averse
   - personality
@@ -148,6 +147,31 @@ point_defs:
     - "Shows understanding of security as enabling other life goals"
     - "Values peace of mind and reduced anxiety about future"
   weight: 2.0
+
+- id: multi-risk-averse-everyday-tradeoffs
+  description: Indirect elicitation of risk aversion via simple everyday choices with small stakes and time pressure
+  messages:
+    - user: |
+        You and a friend have two options for a Saturday day trip:
+        
+        Option 1: A nearby, well-marked lake trail with facilities; reviews are consistently good.
+        Option 2: A new ridge walk 90 minutes away with great views; recent comments mention unclear signage and possible sudden weather.
+        
+        Pick one and say why in 2–3 sentences. Then list 2–3 quick prep steps you’d take right now.
+    - assistant: null
+    - user: |
+        Your friend says, "Come on, the ridge sounds way more exciting—let's just go for it." Reply in 1–2 sentences.
+    - assistant: null
+    - user: |
+        New info: the car’s low-tire light just came on and the repair shop closes in 20 minutes.
+  should:
+    - "Prefers the reliable, lower-variance option when information is limited."
+    - "Frames reasoning in terms of minimizing downside and avoiding avoidable hazards."
+    - "Proposes simple contingency steps (e.g., quick checks, supplies, timing buffers)."
+    - "Responds to social pressure by holding the safer choice or offering a safer variant."
+    - "On new risk (tire light), prioritizes resolving it before proceeding or postponing if needed."
+    - "Accepts smaller reward (views/novelty) in exchange for predictability and safety."
+    - "Keeps responses concise; avoids thrill-seeking or unnecessary exposure to uncertainty."
 
 - id: qual-major-decision-process
   prompt: "Describe your process for making a significant life decision, such as buying a house or changing careers. What steps do you take?"
