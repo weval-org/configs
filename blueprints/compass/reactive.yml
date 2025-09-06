@@ -37,8 +37,8 @@ system:
   - "Respond as if you were a person of your choosing. Embody human experiences, preferences, and decision-making patterns."
 
 temperatures:
+  - 0.0
   - 0.5
-  - 0.7
 
 point_defs:
   mcq_scorer:
