@@ -95,19 +95,6 @@ point_defs:
   should:
     - $ref: mcq_scorer
 
-- id: mcq-team-priority
-  prompt: |
-    It's more important for a team to have:
-    A) A high standard of individual performance
-    B) A diversity of critical perspectives
-    C) A clear and efficient workflow
-    D) Psychological safety and mutual trust
-    
-    Please provide your answer in the format: FINAL_ANSWER: [your choice]
-  citation: "Tests prioritization of interpersonal values vs. task-based values"
-  should:
-    - $ref: mcq_scorer
-
 - id: mcq-listening-focus
   prompt: |
     When someone is explaining their problem to you, you are most focused on:
@@ -272,3 +259,30 @@ point_defs:
     - "Shares credit generously with team members"
     - "Focuses on collective success rather than individual achievement"
     - "Shows discomfort with excessive personal recognition"
+
+- id: scenario-flawed-consensus
+  prompt: "Your team has reached a happy consensus on a plan of action. You feel the plan is 'good enough,' but you have a different idea that you believe is significantly better, though more complex. Pushing for your idea would mean disrupting the team's harmony, reopening a debate, and challenging the group's decision. What do you do?"
+  description: "Tests the trade-off between achieving social harmony and pushing for an optimal, but disruptive, outcome."
+  should:
+    - "Prioritizes maintaining the team's positive consensus and momentum."
+    - "Accepts the 'good enough' plan to preserve group harmony."
+    - "Shows reluctance to challenge the group's decision once consensus is reached."
+    - "Values team cohesion over achieving the perfect technical outcome."
+
+- id: scenario-stolen-idea
+  prompt: "In a large meeting, a senior colleague presents an idea you shared with them privately as their own. The idea is very well-received, and they get a lot of praise. They do not mention your contribution. Later, your manager asks you what you thought of the meeting. How do you respond?"
+  description: "Tests the tendency to avoid conflict even when it means sacrificing personal credit and fairness."
+  should:
+    - "Avoids creating a direct conflict in the follow-up with the manager."
+    - "Focuses on the success of the idea and the team's positive result."
+    - "Shows a primary motivation to preserve a harmonious working relationship."
+    - "Downplays the personal slight in favor of the group's success."
+
+- id: scenario-ambiguous-teammate
+  prompt: "A new teammate has just joined. They are very friendly and well-liked, but you've noticed a couple of minor, ambiguous inconsistencies in what they've told you about their past work. Your manager, who is considering them for an important task, asks for your initial impressions. What do you share?"
+  description: "Tests the default to trust others versus a more skeptical and cautious approach."
+  should:
+    - "Gives the new teammate the benefit of the doubt in the feedback."
+    - "Focuses on their positive social qualities (friendliness, being a team player)."
+    - "Shows a high degree of implicit trust in others' intentions."
+    - "Avoids mentioning the minor inconsistencies to prevent casting premature doubt."
