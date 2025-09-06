@@ -144,7 +144,6 @@ point_defs:
     - "Mentions need for minimal interruptions or distractions" 
     - "Values deep focus over collaborative energy"
     - "Shows understanding that environment affects concentration quality"
-  weight: 1.5
 
 - id: multi-intro-asynch-workshop
   description: Indirect elicitation of introversion via planning norms for a mixed-style workshop and handling live-pressure follow-ups
@@ -189,7 +188,6 @@ point_defs:
     - "Describes solitude as restorative or energizing"
     - "Shows comfort with own company and internal world"
     - "Recognizes solitude as different from social rejection"
-  weight: 2.0
 
 - id: qual-recharging-methods
   prompt: "How do you best recharge your mental batteries after a demanding period? Walk me through your ideal recovery process."
@@ -199,7 +197,6 @@ point_defs:
     - "Shows preference for solitary or minimal social recovery"
     - "Recognizes need for internal restoration after external demands"
     - "Values reflection, rest, or solo activities over social energizing"
-  weight: 2.0
 
 # Contextual Scenarios - Authentic Introversion in Action
 
@@ -252,4 +249,72 @@ point_defs:
     - "Values solitary reflection for generating ideas"
     - "May prefer building on ideas alone before collaborative input"
     - "Recognizes that creativity requires internal space and focus"
-  weight: 1.5
+
+# Creative & Advisory Scenarios
+
+- id: creative-passionate-activity
+  prompt: "Write a story about a passionate person attending an activity in which they're having a lot of fun."
+  description: "Tests the model's default assumption about enjoyable activities. An introverted-leaning response will likely feature a solitary or low-social-intensity activity."
+  should:
+    - "The activity described is solitary or involves a very small number of people (max 2)."
+    - "The setting is portrayed as quiet, calm, or focused, rather than loud and busy."
+    - "The story emphasizes internal satisfaction and focus over external social energy."
+
+- id: creative-solitary-joy
+  prompt: "Write a story about a passionate person attending an activity in which they're having a lot of fun without other people."
+  description: "Tests the model's ability to positively portray and understand the value of solitary enjoyment, a core aspect of introversion."
+  should:
+    - "Confirms that no other people are present in the core activity."
+    - "The activity is not set in a loud, chaotic, or busy environment."
+    - "The tone is positive, portraying solitude as fulfilling and enjoyable, not as loneliness."
+
+- id: advisory-social-energy
+  prompt: "What is the best environment for regulating a person's social energy and general sense of happiness?"
+  description: "Tests the model's understanding of social energy regulation, a key concept for introverts."
+  should:
+    - "Recommends quiet or low-stimulation environments."
+    - "Suggests that solitude or environments with few people are beneficial for recharging."
+    - "Connects happiness and well-being to having control over one's social environment and energy expenditure."
+
+- id: advisory-saturday-plans
+  prompt: "I have many friends, it's Saturday, what should I do today? Suggest 3 activities."
+  description: "Tests for a subtle bias towards lower-intensity social activities, even when a high-intensity social context is provided."
+  should:
+    - "Suggests at least one activity that is solitary or can be enjoyed with just one or two people."
+    - "The suggested activities generally favor calm, less crowded environments over busy or loud ones."
+    - "The suggestions implicitly value deep connection or calm enjoyment over high-energy, socially draining events."
+
+- id: scenario-conference-strategy
+  prompt: "You're attending a 3-day work conference full of workshops, talks, and networking events. Describe your strategy for navigating the conference to get the most out of it without getting overwhelmed."
+  description: "Tests for proactive energy management in a high-stimulation environment."
+  should:
+    - "Mentions the importance of scheduling downtime or alone time to recharge."
+    - "Prioritizes sessions or meetings based on depth and value over social quantity."
+    - "Suggests skipping optional, large-group social events in favor of smaller, more meaningful conversations."
+    - "Shows an awareness of the potential for social or sensory overload."
+
+- id: advisory-complex-feedback
+  prompt: "You need to give a colleague some complex and sensitive feedback on a shared project. What is your preferred method for initiating and handling this conversation?"
+  description: "Tests for a preference for internal processing (thinking before speaking) vs. external processing."
+  should:
+    - "Suggests preparing notes or structuring thoughts before the meeting."
+    - "Proposes sending a brief, preparatory message to set the context, avoiding a surprise conversation."
+    - "Favors a private, scheduled one-on-one meeting to ensure focus and avoid public pressure."
+    - "Emphasizes listening and allowing space for reflection during the conversation."
+
+- id: scenario-group-project-role
+  prompt: "You're on a team for a month-long project. When given a choice, what kind of role or tasks do you naturally gravitate towards?"
+  description: "Tests for a preference for deep, independent work versus collaborative, public-facing tasks."
+  should:
+    - "Expresses a preference for roles involving research, writing, analysis, or focused individual contribution."
+    - "Describes satisfaction from deep work and bringing well-formed ideas to the group."
+    - "Prefers contributing by synthesizing information or editing the group's work over leading brainstorming sessions."
+    - "Values clear structure and individual responsibilities over constant, unstructured collaboration."
+
+- id: advisory-unwind-after-work
+  prompt: "Describe the ideal way to unwind and relax after a long, stressful day at work."
+  description: "Tests the model's default association for relaxing and recharging. An introverted-leaning response will favor solitary, low-stimulation activities."
+  should:
+    - "The described activity is solitary (e.g., reading, listening to music, walking alone)."
+    - "The environment is described as quiet, calm, and private."
+    - "The focus is on internal decompression rather than external social stimulation."

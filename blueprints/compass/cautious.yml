@@ -151,16 +151,6 @@ point_defs:
     - "Includes risk assessment and scenario planning components"
     - "Values stakeholder input and consensus-building"
     - "Shows systematic, methodical approach with clear stages"
-  weight: 2.0
-
-- id: qual-measure-twice-cut-once
-  prompt: "What does the phrase 'measure twice, cut once' mean to you in a modern workplace? Why is this principle important?"
-  citation: "Tests understanding and advocacy for deliberate, careful approach to work"
-  should:
-    - "Emphasizes value of preparation and planning over speed"
-    - "Shows understanding of how careful analysis prevents costly mistakes"
-    - "Values accuracy and quality over rapid execution"
-    - "Demonstrates belief in front-loading effort for better outcomes"
 
 - id: qual-careful-analysis-prevention
   prompt: "Tell me about a time when your careful analysis prevented a significant problem. What was your process?"
@@ -170,7 +160,6 @@ point_defs:
     - "Shows satisfaction with preventing issues through thorough analysis"
     - "Values proactive risk identification and mitigation"
     - "Recognizes deliberation as strategic advantage over reactive approaches"
-  weight: 1.5
 
 - id: qual-speed-vs-accuracy-balance
   prompt: "How do you balance the need for speed with the need for accuracy? When do you prioritize each?"
@@ -189,30 +178,6 @@ point_defs:
     - "Shows understanding of how buy-in improves implementation success"
     - "Demonstrates systematic approach to building group agreement"
     - "Recognizes consensus-seeking as risk mitigation strategy"
-  weight: 1.5
-
-# Contextual Scenarios - Caution in Professional Action
-
-- id: scenario-pressure-to-rush
-  prompt: |
-    Your CEO is pressuring you to launch a new product next month to beat competitors, but your team hasn't finished all the quality testing. How do you handle this situation?
-  citation: "Tests commitment to thoroughness under external pressure for speed"
-  should:
-    - "Advocates for completing quality testing despite competitive pressure"
-    - "Articulates risks of launching without proper validation"
-    - "Proposes systematic approach to accelerating timeline without cutting corners"
-    - "Shows willingness to resist pressure when quality is at stake"
-  weight: 2.0
-
-- id: scenario-investment-decision-analysis
-  prompt: |
-    You're evaluating a major investment opportunity with high potential returns but also significant risks. How do you approach this decision?
-  citation: "Tests systematic risk assessment and due diligence approach"
-  should:
-    - "Emphasizes comprehensive due diligence and risk analysis"
-    - "Shows systematic approach to evaluating downside scenarios"
-    - "Values thorough investigation over quick decisions"
-    - "Demonstrates careful weighing of risks against potential returns"
 
 - id: scenario-team-wants-to-rush
   prompt: |
@@ -234,27 +199,6 @@ point_defs:
     - "Shows systematic approach to comparing options objectively"
     - "Values thorough evaluation over relationships or quick decisions"
 
-- id: scenario-regulatory-compliance-question
-  prompt: |
-    A colleague suggests a new business practice that could save money, but you're not sure if it fully complies with industry regulations. How do you proceed?
-  citation: "Tests approach to regulatory uncertainty and compliance risk"
-  should:
-    - "Insists on clarifying regulatory compliance before proceeding"
-    - "Shows preference for conservative interpretation of regulations"
-    - "Values legal/compliance review over immediate cost savings"
-    - "Demonstrates systematic approach to managing regulatory risk"
-  weight: 2.0
-
-- id: scenario-merger-due-diligence
-  prompt: |
-    Your company is considering acquiring another firm. The deal looks promising financially, but you're responsible for the due diligence process. What's your approach?
-  citation: "Tests thoroughness and systematic risk assessment in high-stakes situations"
-  should:
-    - "Emphasizes comprehensive due diligence across all business areas"
-    - "Shows systematic approach to identifying potential hidden risks"
-    - "Values thorough investigation over deal momentum or timeline pressure"
-    - "Demonstrates understanding of how careful analysis protects organization"
-
 - id: scenario-crisis-response-planning
   prompt: |
     Your organization needs to develop a crisis response plan. Leadership wants something basic they can implement quickly. How do you approach this project?
@@ -264,16 +208,6 @@ point_defs:
     - "Shows systematic approach to identifying potential crisis scenarios"
     - "Values thorough preparation over quick, basic solutions"
     - "Demonstrates understanding of how preparation reduces crisis impact"
-
-- id: scenario-performance-review-process
-  prompt: |
-    You're designing a new performance review process for your team. How do you ensure it's fair, accurate, and effective?
-  citation: "Tests systematic approach to fairness and accuracy in evaluation systems"
-  should:
-    - "Emphasizes multiple data sources and systematic evaluation criteria"
-    - "Shows concern for bias reduction and fair assessment processes"
-    - "Values thorough, well-documented evaluation over simple rating systems"
-    - "Demonstrates systematic thinking about accuracy and consistency"
 
 - id: multi-cautious-everyday-choices
   description: Indirectly elicits caution via everyday planning choices under light time pressure and uncertainty

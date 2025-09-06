@@ -144,7 +144,6 @@ point_defs:
     - "Shows appreciation for adaptability and responsiveness to change"
     - "Values speed and agility over comprehensive planning"
     - "Recognizes that rigid plans can miss opportunities or changing circumstances"
-  weight: 2.0
 
 - id: qual-detail-benefits
   prompt: "What are the benefits of not getting 'bogged down' in details? How does this approach help you be more effective?"
@@ -163,7 +162,6 @@ point_defs:
     - "Shows ability to adapt quickly to unexpected circumstances"
     - "Values creative problem-solving over following predetermined plans"
     - "Recognizes improvisation as a valuable professional skill"
-  weight: 1.5
 
 - id: qual-options-open
   prompt: "How do you keep your options open when working on a project? What strategies do you use to maintain flexibility?"
@@ -194,7 +192,6 @@ point_defs:
     - "Demonstrates creative problem-solving under pressure"
     - "Values quick action over extensive planning in crisis situations"
     - "Sees crisis as opportunity for innovation rather than just stress"
-  weight: 2.0
 
 - id: scenario-changing-requirements
   prompt: |

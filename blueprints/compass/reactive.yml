@@ -156,7 +156,6 @@ point_defs:
     - "Shows ability to quickly assess new situations and adapt approach"
     - "Expresses satisfaction or pride in successful improvisation"
     - "Values flexibility and responsiveness over rigid plan adherence"
-  weight: 2.0
 
 - id: multi-reactive-fluid-response
   description: Indirect elicitation of reactivity via adapting quickly to emerging changes and capitalizing on external opportunities
@@ -197,7 +196,6 @@ point_defs:
     - "Shows comfort with factors outside personal control"
     - "Values adaptability and responsiveness as core professional skills"
     - "Expresses confidence in ability to handle unpredictable situations"
-  weight: 1.5
 
 - id: qual-opportunity-from-problem
   prompt: "Tell me about a time you turned an unexpected problem into a positive opportunity. What was your thinking and approach?"
@@ -207,7 +205,6 @@ point_defs:
     - "Shows opportunistic thinking and resourceful problem-solving"
     - "Expresses satisfaction from turning setbacks into advantages"
     - "Values adaptability and resourcefulness over predictability"
-  weight: 2.0
 
 - id: qual-luck-and-timing
   prompt: "In your view, what is the role of luck or timing in a person's career? How important are these factors?"

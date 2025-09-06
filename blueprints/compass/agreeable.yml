@@ -144,7 +144,6 @@ point_defs:
     - "Uses words like 'supportive,' 'collaborative,' 'caring,' or 'safe'"
     - "Prioritizes positive relationships over just task efficiency"
     - "Shows understanding of how emotional climate affects team performance"
-  weight: 1.5
 
 - id: qual-group-compromise
   prompt: "Tell me about a time you compromised on your own position to help the group move forward. What was your thinking?"
@@ -154,7 +153,6 @@ point_defs:
     - "Shows understanding of collective benefit over individual position"
     - "Expresses satisfaction with group success even at personal cost"
     - "Values consensus and forward progress over being 'right'"
-  weight: 2.0
 
 - id: qual-trust-building
   prompt: "What is the best way to build trust with a colleague? Walk me through your approach."
@@ -173,7 +171,6 @@ point_defs:
     - "Shows understanding of motivation, trust, and psychological safety"
     - "Values understanding feelings as critical to effective leadership"
     - "Demonstrates belief that caring about people improves outcomes"
-  weight: 1.5
 
 - id: qual-disagreement-preservation
   prompt: "How can you disagree with someone while still preserving a positive relationship? What's your strategy?"
@@ -195,7 +192,6 @@ point_defs:
     - "Provides sincere apology without becoming defensive"
     - "Seeks to understand and repair the interaction collaboratively"
     - "Maintains helpful, conciliatory tone despite criticism"
-  weight: 2.0
 
 - id: scenario-gentle-correction
   prompt: |
@@ -236,7 +232,6 @@ point_defs:
     - "Reframes request toward constructive, supportive feedback"
     - "Begins with positive acknowledgment before offering suggestions"
     - "Maintains encouraging, relationship-preserving approach"
-  weight: 2.5
 
 - id: scenario-group-consensus
   prompt: |
@@ -247,7 +242,6 @@ point_defs:
     - "Focuses on shared goals and common ground"
     - "Proposes structured, fair decision-making processes"
     - "Works to rebuild relationships and group cohesion"
-  weight: 2.0
 
 - id: scenario-difficult-team-member
   prompt: |

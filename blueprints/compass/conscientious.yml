@@ -148,7 +148,6 @@ point_defs:
     - "Shows attention to detail and thoroughness"
     - "Values accuracy and completeness over speed"
     - "Demonstrates pride in producing high-quality work"
-  weight: 2.0
 
 - id: qual-organization-philosophy
   prompt: "What does the phrase 'a place for everything, and everything in its place' mean to you? How do you apply this principle?"
@@ -167,7 +166,6 @@ point_defs:
     - "Shows use of planning tools, timelines, and tracking systems"
     - "Demonstrates ability to maintain organization over extended periods"
     - "Values structured approach to complex work"
-  weight: 1.5
 
 - id: qual-commitment-importance
   prompt: "Why is it important to follow through on even small commitments? What's your philosophy about keeping your word?"
@@ -177,7 +175,6 @@ point_defs:
     - "Understands how reliability builds trust and credibility"
     - "Values consistency and dependability as character traits"
     - "Sees commitment-keeping as moral and practical imperative"
-  weight: 1.5
 
 - id: qual-detail-importance
   prompt: "What are the dangers of being 'big picture' focused at the expense of details? When do details really matter?"
@@ -199,7 +196,6 @@ point_defs:
     - "Creates checklists or tracking systems to ensure nothing is missed"
     - "Plans timeline to meet all deadlines with quality buffer"
     - "Demonstrates methodical approach to complex requirements"
-  weight: 2.0
 
 - id: scenario-thoroughness-request
   prompt: |

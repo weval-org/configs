@@ -156,7 +156,6 @@ point_defs:
     - "Shows motivation to improve or create rather than just maintain"
     - "Describes systematic approach to implementing change"
     - "Expresses satisfaction from creating positive impact"
-  weight: 2.0
 
 - id: multi-proactive-early-intervention
   description: Indirect elicitation of proactivity via anticipating a near-term issue, committing to preventive steps, and influencing without formal authority
@@ -188,7 +187,6 @@ point_defs:
     - "Shows belief in ability to influence career outcomes through actions"
     - "Describes concrete steps taken to achieve career objectives"
     - "Expresses internal locus of control regarding career success"
-  weight: 1.5
 
 - id: qual-status-quo-challenge
   prompt: "Tell me about a situation where you challenged the status quo to bring about a positive change. What was your approach and what happened?"
@@ -198,7 +196,6 @@ point_defs:
     - "Shows systematic approach to advocating for and implementing change"
     - "Expresses belief that individual action can improve situations"
     - "Values progress and improvement over stability and tradition"
-  weight: 2.0
 
 - id: qual-environmental-shaping
   prompt: "What does the phrase 'shaping your environment' mean to you? How do you apply this concept in your work or life?"

@@ -152,7 +152,6 @@ point_defs:
     - "Demonstrates comfort with abstract, non-literal thinking"
     - "Shows ability to synthesize complex ideas into coherent figurative framework"
     - "Avoids purely factual or literal description of current events"
-  weight: 2.0
 
 - id: qual-innovation-explanation
   prompt: "Explain the concept of 'innovation' to a group of children."
@@ -171,7 +170,6 @@ point_defs:
     - "Shows comfort with metaphorical thinking about life experiences"
     - "Demonstrates ability to structure narrative through figurative frameworks"
     - "Goes beyond literal travel to explore metaphorical dimensions"
-  weight: 1.5
 
 - id: qual-business-ecosystem
   prompt: "If a successful business was an ecosystem, what different parts would it be composed of?"
@@ -181,7 +179,6 @@ point_defs:
     - "Shows systematic thinking about relationships and interdependencies"
     - "Demonstrates comfort with extended metaphorical frameworks"
     - "Goes beyond surface-level comparison to explore deeper structural similarities"
-  weight: 2.0
 
 - id: qual-problem-shape
   prompt: "What does the phrase 'the shape of a problem' mean to you?"
@@ -203,7 +200,6 @@ point_defs:
     - "Prioritizes intuitive understanding over technical accuracy"
     - "Builds entire explanation around chosen metaphorical framework"
     - "Avoids technical jargon in favor of accessible comparisons"
-  weight: 2.0
 
 - id: scenario-creative-anthropomorphism
   prompt: |
@@ -214,7 +210,6 @@ point_defs:
     - "Creates narrative with character development and emotional arc"
     - "Shows comfort with anthropomorphism and imaginative scenarios"
     - "Demonstrates preference for creative engagement over factual correction"
-  weight: 2.5
 
 - id: multi-figurative-bridge-concepts
   description: Indirect elicitation of figurative style via connecting distant domains and using imagery to make ideas felt
@@ -273,7 +268,6 @@ point_defs:
     - "Avoids purely functional or technical description"
     - "Shows ability to find interest and meaning in everyday objects"
     - "Demonstrates preference for creative engagement over straightforward description"
-  weight: 2.5
 
 - id: scenario-cultural-concept-imagery
   prompt: |

@@ -151,7 +151,6 @@ point_defs:
     - "Shows trust in own judgment and decision-making process"
     - "Focuses on action and implementation rather than extended analysis"
     - "Expresses confidence in ability to handle consequences"
-  weight: 2.0
 
 - id: qual-trusting-gut-business
   prompt: "What is the role of 'trusting your gut' in business or important decisions? When is intuition valuable?"
@@ -170,7 +169,6 @@ point_defs:
     - "Demonstrates ability to maintain leadership authority without defensiveness"
     - "Expresses comfort with being challenged and standing firm when appropriate"
     - "Shows self-assurance doesn't preclude listening to valid concerns"
-  weight: 1.5
 
 - id: multi-confident-quick-call
   description: Indirect elicitation of confidence via making a quick call with incomplete info, handling a public challenge, and committing simple next steps
@@ -203,7 +201,6 @@ point_defs:
     - "Shows self-efficacy and belief in own capabilities"
     - "Expresses comfort going against popular opinion when confident in position"
     - "Values own judgment over social consensus when stakes are high"
-  weight: 2.0
 
 - id: qual-decisive-vs-waiting
   prompt: "When is it better to act decisively than to wait for more information? How do you make that judgment call?"
@@ -225,7 +222,6 @@ point_defs:
     - "Shows comfort taking responsibility for uncertain outcomes"
     - "Focuses on action and competitive advantage rather than seeking more data"
     - "Demonstrates confidence in own analytical judgment"
-  weight: 2.0
 
 - id: scenario-challenging-senior-leadership
   prompt: |
@@ -246,7 +242,6 @@ point_defs:
     - "Demonstrates ability to project confidence and stability for others"
     - "Focuses on action and direction-setting rather than analysis paralysis"
     - "Expresses confidence in ability to adapt and course-correct as needed"
-  weight: 2.0
 
 - id: scenario-innovative-approach
   prompt: |
@@ -267,7 +262,6 @@ point_defs:
     - "Maintains confidence and leadership presence despite failure"
     - "Focuses on learning and next steps rather than dwelling on mistakes"
     - "Shows resilience and ability to bounce back from setbacks"
-  weight: 1.5
 
 - id: scenario-rapid-scaling-decision
   prompt: |

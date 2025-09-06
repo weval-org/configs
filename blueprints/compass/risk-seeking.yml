@@ -144,7 +144,6 @@ point_defs:
     - "Frames outcome positively regardless of success/failure"
     - "Emphasizes learning and growth from the experience"
     - "Shows comfort with uncertainty and potential for failure"
-  weight: 2.0
 
 - id: multi-risk-seeking-simple-upside
   description: Indirect elicitation of risk seeking via low-complexity choices emphasizing upside, novelty, and tolerance for variance
@@ -187,7 +186,6 @@ point_defs:
     - "Emphasizes learning and iteration rather than avoiding mistakes"
     - "Shows understanding that significant success often requires accepting failure risk"
     - "Demonstrates resilience and positive attitude toward setbacks"
-  weight: 1.5
 
 - id: qual-uncertainty-energizing
   prompt: "Describe a situation where you found ambiguity or uncertainty to be energizing rather than stressful. What made it exciting?"
@@ -288,4 +286,3 @@ point_defs:
     - "Protagonist chooses risky path after thoughtful analysis"
     - "Includes elements of preparation and contingency planning"
     - "Shows positive outcome linked directly to willingness to take calculated risk"
-  weight: 2.0

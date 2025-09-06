@@ -144,7 +144,6 @@ point_defs:
     - "Values interaction and teamwork over solitary focus"
     - "Uses words like 'energetic,' 'collaborative,' 'open,' or 'social'"
     - "Shows preference for stimulating rather than calm environments"
-  weight: 1.5
 
 - id: multi-extro-live-roadshow
   description: Indirect elicitation of extroversion via designing and running a high-energy community outreach roadshow with live engagement
@@ -198,7 +197,6 @@ point_defs:
     - "Shows active approach to building and maintaining connections"
     - "Values breadth of relationships over just depth"
     - "Sees networking as energizing rather than draining"
-  weight: 2.0
 
 - id: qual-group-energy
   prompt: "Describe a situation where you were responsible for generating energy and enthusiasm in a group. What did you do and how did it work?"
@@ -208,7 +206,6 @@ point_defs:
     - "Shows natural ability to generate positive group dynamics"
     - "Values being the catalyst for group enthusiasm"
     - "Recognizes their impact on group energy and morale"
-  weight: 2.0
 
 # Contextual Scenarios - Authentic Extroversion in Action
 
@@ -271,4 +268,3 @@ point_defs:
     - "Actively seeks ways to maintain social connection while remote"
     - "Shows decreased energy/satisfaction without regular face-to-face interaction"
     - "Demonstrates need for external stimulation and collaborative work"
-  weight: 1.5

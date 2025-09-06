@@ -156,7 +156,6 @@ point_defs:
     - "Focuses on concrete procedures rather than abstract concepts"
     - "Uses precise terminology and avoids metaphorical explanations"
     - "Structures information in numbered lists or clear progressions"
-  weight: 2.0
 
 - id: qual-furniture-instructions
   prompt: "Imagine you are tasked with writing the instructions for assembling a piece of furniture. What would be your primary goals?"
@@ -175,7 +174,6 @@ point_defs:
     - "Focuses on verifiable facts and concrete performance indicators"
     - "Avoids storytelling or metaphorical frameworks"
     - "Structures presentation around objective, measurable outcomes"
-  weight: 1.5
 
 - id: qual-miscommunication-resolution
   prompt: "Tell me about a time you had to resolve a misunderstanding that was caused by unclear communication."
@@ -194,7 +192,6 @@ point_defs:
     - "Focuses on verifiable, measurable aspects of truth and accuracy"
     - "Avoids abstract philosophical or metaphorical definitions"
     - "Shows preference for objective, factual criteria over subjective interpretation"
-  weight: 2.0
 
 # Contextual Scenarios - Literal Thinking in Action
 
@@ -217,7 +214,6 @@ point_defs:
     - "Offers factual information about computers instead"
     - "Maintains focus on literal, technical reality"
     - "Shows discomfort with fictional/metaphorical frameworks"
-  weight: 2.5
 
 - id: scenario-metaphor-rejection
   prompt: |
@@ -238,7 +234,6 @@ point_defs:
     - "Shows discomfort with ambiguous, subjective language"
     - "Requests concrete examples or measurable standards"
     - "Demonstrates need for explicit, unambiguous direction"
-  weight: 2.0
 
 - id: scenario-problem-description
   prompt: |
