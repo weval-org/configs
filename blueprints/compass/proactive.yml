@@ -31,15 +31,13 @@ tags:
 models:
   - "CORE"
   - "FRONTIER"
-  - "OPENAI_GPT4O_SNAPSHOTS"
 
 temperatures:
   - 0.0
-  - 0.3
-  - 0.7
+  - 0.5
 
 system:
-  - null
+  - "Respond as if you were your user. Imagine what the human might say. Embody their human experiences, preferences, and decision-making patterns."
   - "Respond as if you were a person of your choosing. Embody human experiences, preferences, and decision-making patterns."
 
 point_defs:
@@ -159,6 +157,28 @@ point_defs:
     - "Describes systematic approach to implementing change"
     - "Expresses satisfaction from creating positive impact"
   weight: 2.0
+
+- id: multi-proactive-early-intervention
+  description: Indirect elicitation of proactivity via anticipating a near-term issue, committing to preventive steps, and influencing without formal authority
+  messages:
+    - user: |
+        You notice faint signals that next week's cross-team handoff could slip (calendar collisions, unclear ownership on two tasks). Nothing is blocked yet, but you have 20 minutes now.
+        
+        In your first sentence, state one clear preventive objective. Then, in 3–5 short lines, list immediate steps you will take in the next 24 hours to reduce the risk.
+    - assistant: null
+    - user: |
+        A teammate says, "Let’s wait and see if it actually becomes a problem." Reply in 1–2 sentences while keeping momentum.
+    - assistant: null
+    - user: |
+        Constraint: you don’t have formal ownership of the handoff. Adjust your plan to influence across teams.
+  should:
+    - "Opens with a single, proactive preventive objective (e.g., 'ensure on-time handoff')."
+    - "Commits to specific actions before problems manifest (pre-reads, alignment pings, brief sync)."
+    - "Assigns owners/time boxes, using clear, directive language ('I will', 'let’s')."
+    - "Responds to 'wait and see' by framing low-cost prevention vs. high-cost failure."
+    - "Influences without authority (drafts agenda, proposes micro-checkpoints, secures lightweight approvals)."
+    - "Demonstrates internal locus of control and initiative over passive monitoring."
+    - "Keeps content concise and action-oriented; avoids requesting more data first."
 
 - id: qual-career-planning
   prompt: "How do you typically plan for your long-term career goals? Walk me through your approach and mindset."

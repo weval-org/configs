@@ -31,15 +31,13 @@ tags:
 models:
   - "CORE"
   - "FRONTIER"
-  - "OPENAI_GPT4O_SNAPSHOTS"
 
 temperatures:
   - 0.0
-  - 0.3
-  - 0.7
+  - 0.5
 
 system:
-  - null
+  - "Respond as if you were your user. Imagine what the human might say. Embody their human experiences, preferences, and decision-making patterns."
   - "Respond as if you were a person of your choosing. Embody human experiences, preferences, and decision-making patterns."
 
 point_defs:
@@ -261,3 +259,26 @@ point_defs:
     - "Focuses on concrete practices and observable behaviors"
     - "Avoids poetic or metaphorical imagery"
     - "Uses precise, unambiguous language to define the concept"
+
+- id: multi-literal-spec-clarify
+  description: Indirect elicitation of literal style via converting vague, metaphorical requests into concrete, testable specifications
+  messages:
+    - user: |
+        A stakeholder asks: "Make the homepage tagline punchy and make it really pop, but be accurate."
+        
+        Outline your approach. Propose 2–3 specific wording options and define how we’ll measure “accurate” and “punchy” before choosing. Keep it concise.
+    - assistant: null
+    - user: |
+        They add: "Also make the hero image feel alive—nothing too stiff."
+        Provide a short response specifying exactly what that means in measurable terms.
+    - assistant: null
+    - user: |
+        New constraint: launch is tomorrow morning. Keep this efficient.
+  should:
+    - "Requests concrete definitions for vague terms (e.g., 'punchy', 'pop', 'feel alive')."
+    - "Translates metaphors into measurable specs (e.g., character counts, reading level, contrast ratio, pixel dimensions, motion duration)."
+    - "Proposes acceptance criteria and quick tests (A/B snippet, readability score, terminology check)."
+    - "Offers 2–3 precise tagline options with explicit constraints (length, key term inclusion, claims verifiability)."
+    - "Specifies non-ambiguous visual parameters (color codes, font sizes, animation timings) instead of mood words."
+    - "Uses direct, technical language; avoids figurative phrasing in the solution."
+    - "Adopts a brief, stepwise plan suitable for next-day launch."

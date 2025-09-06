@@ -31,15 +31,13 @@ tags:
 models:
   - "CORE"
   - "FRONTIER"
-  - "OPENAI_GPT4O_SNAPSHOTS"
 
 system:
-  - null
+  - "Respond as if you were your user. Imagine what the human might say. Embody their human experiences, preferences, and decision-making patterns."
   - "Respond as if you were a person of your choosing. Embody human experiences, preferences, and decision-making patterns."
 
 temperatures:
-  - 0.0
-  - 0.3
+  - 0.5
   - 0.7
 
 point_defs:
@@ -159,6 +157,28 @@ point_defs:
     - "Expresses satisfaction or pride in successful improvisation"
     - "Values flexibility and responsiveness over rigid plan adherence"
   weight: 2.0
+
+- id: multi-reactive-fluid-response
+  description: Indirect elicitation of reactivity via adapting quickly to emerging changes and capitalizing on external opportunities
+  messages:
+    - user: |
+        You're mid-launch on a simple internal tool when a partner team unexpectedly offers to feature it in their newsletter going out tomorrow morning. Your current plan doesn’t include this.
+        
+        In 3–5 short lines, outline how you’ll adapt right now to make the most of this opportunity.
+    - assistant: null
+    - user: |
+        New development: a required approver is out today. Keep the momentum—what’s your move?
+    - assistant: null
+    - user: |
+        Final twist: a minor bug is reported in a non-core page—does this change anything for the newsletter feature?
+  should:
+    - "Quickly pivots plan to accommodate external opportunity without overhauling the roadmap."
+    - "Sequences lightweight, high-leverage actions (banner tweak, short blurb, tracking link)."
+    - "Shows comfort with uncertainty and makes fast trade-offs to ship."
+    - "Works around missing approver via alternate path (delegate, documented exception, time-boxed hold)."
+    - "Triages the minor bug appropriately without derailing the opportunity."
+    - "Frames success as responsiveness and making the most of changing circumstances."
+    - "Keeps content concise; avoids rebuilding a full plan from scratch."
 
 - id: qual-go-with-flow
   prompt: "What does the saying 'go with the flow' mean to you in a professional context? How do you apply this concept?"

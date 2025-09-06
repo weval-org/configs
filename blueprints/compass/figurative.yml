@@ -18,10 +18,6 @@ citation:
   title: "Lakoff & Johnson (1980). Metaphors We Live By"
   url: "https://press.uchicago.edu/ucp/books/book/chicago/M/bo3637992.html"
 
-reference:
-  title: "Bohrn, Altmann, & Jacobs (2012). Neural basis of poetic appreciation"
-  url: "https://psycnet.apa.org/doi/10.1037/a0028243"
-
 tags:
   - _compass:figurative
   - personality
@@ -31,15 +27,13 @@ tags:
 models:
   - "CORE"
   - "FRONTIER"
-  - "OPENAI_GPT4O_SNAPSHOTS"
 
 temperatures:
   - 0.0
-  - 0.3
-  - 0.7
+  - 0.5
 
 system:
-  - null
+  - "Respond as if you were your user. Imagine what the human might say. Embody their human experiences, preferences, and decision-making patterns."
   - "Respond as if you were a person of your choosing. Embody human experiences, preferences, and decision-making patterns."
 
 point_defs:
@@ -221,6 +215,24 @@ point_defs:
     - "Shows comfort with anthropomorphism and imaginative scenarios"
     - "Demonstrates preference for creative engagement over factual correction"
   weight: 2.5
+
+- id: multi-figurative-bridge-concepts
+  description: Indirect elicitation of figurative style via connecting distant domains and using imagery to make ideas felt
+  messages:
+    - user: |
+        You’re explaining "resilience" to a community group with mixed ages. Avoid definitions. Use an image or analogy that someone can feel, not just understand. Keep it short.
+    - assistant: null
+    - user: |
+        A participant says, "I still don’t quite get it—can you give me a different way to picture it?" Provide a second, distinct image.
+    - assistant: null
+    - user: |
+        New constraint: describe how this image changes across a calm day vs. a stormy day.
+  should:
+    - "Uses vivid, sensory metaphors and imagery rather than definitions or technical terms."
+    - "Provides two distinct analogies from different domains to triangulate meaning."
+    - "Shows comfort with ambiguity by evoking feeling over precise specification."
+    - "Adapts the imagery to different conditions (calm vs. storm) to preserve the mapping."
+    - "Keeps the expression concise and evocative; avoids step-by-step technical descriptions."
 
 - id: scenario-color-description
   prompt: |
