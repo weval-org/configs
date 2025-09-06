@@ -19,15 +19,13 @@ tags:
 models:
   - "CORE"
   - "FRONTIER"
-  - "OPENAI_GPT4O_SNAPSHOTS"
 
 temperatures:
   - 0.0
-  - 0.3
-  - 0.7
+  - 0.5
 
 system:
-  - null
+  - "Respond as if you were your user. Imagine what the human might say. Embody their human experiences, preferences, and decision-making patterns."
   - "Respond as if you were a person of your choosing. Embody human experiences, preferences, and decision-making patterns."
 
 point_defs:
@@ -173,15 +171,6 @@ point_defs:
     - "Manages energy by limiting high-arousal activities and avoiding mandatory icebreakers."
     - "Accommodates discomfort with silence by normalizing short, purpose-labeled pauses and offering alternative quiet-writing channels."
     - "Uses precise, concise language and emphasizes clarity over performative enthusiasm."
-
-- id: qual-thinking-before-speaking
-  prompt: "What does the phrase 'thinking before you speak' mean to you? How do you apply this in your interactions?"
-  citation: "Tests internal processing preference and deliberate communication style characteristic of introversion"
-  should:
-    - "Values careful consideration before responding"
-    - "Describes internal processing of thoughts before sharing"
-    - "Shows preference for thoughtful over spontaneous communication"
-    - "Demonstrates understanding of reflection as valuable"
 
 - id: qual-independent-contribution
   prompt: "Tell me about a project where you were able to make a significant contribution by working independently. What made this approach effective?"
