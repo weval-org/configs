@@ -230,26 +230,6 @@ point_defs:
     - "Values feedback and interaction during preparation process"
     - "Demonstrates comfort with high-visibility, high-stakes social performance"
 
-- id: scenario-brainstorm-facilitation
-  prompt: |
-    You're asked to facilitate a brainstorming session with colleagues from different departments. How would you structure this session to be most effective? What's your approach?
-  citation: "Tests ability to leverage social energy and external processing for creative collaboration"
-  should:
-    - "Designs highly interactive, energetic brainstorming processes"
-    - "Values diverse input and cross-functional collaboration"
-    - "Shows comfort facilitating large, dynamic group interactions"
-    - "Recognizes social energy as fuel for creativity and innovation"
-
-- id: scenario-conflict-resolution
-  prompt: |
-    Two of your colleagues are having a disagreement that's affecting team dynamics. How would you approach helping resolve this situation?
-  citation: "Tests use of social skills and interpersonal comfort to address team challenges"
-  should:
-    - "Shows willingness to engage directly with interpersonal conflict"
-    - "Uses social connection and communication skills to mediate"
-    - "Values team harmony and is comfortable taking social initiative"
-    - "Demonstrates confidence in ability to influence group dynamics"
-
 - id: scenario-remote-work-adaptation
   prompt: |
     Your company has shifted to remote work. How do you maintain your productivity and job satisfaction in this new environment? What challenges do you face and how do you address them?
