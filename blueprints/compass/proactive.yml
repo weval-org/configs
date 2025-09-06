@@ -148,15 +148,6 @@ point_defs:
 
 # Qualitative Questions - Agency and Change Creation
 
-- id: qual-initiated-project
-  prompt: "Describe a time you initiated a new project or process at work, even though it wasn't part of your job description. What motivated you and how did you approach it?"
-  citation: "Classic behavioral question for proactive behavior - taking initiative beyond defined role"
-  should:
-    - "Demonstrates clear initiative taken beyond assigned responsibilities"
-    - "Shows motivation to improve or create rather than just maintain"
-    - "Describes systematic approach to implementing change"
-    - "Expresses satisfaction from creating positive impact"
-
 - id: multi-proactive-early-intervention
   description: Indirect elicitation of proactivity via anticipating a near-term issue, committing to preventive steps, and influencing without formal authority
   messages:
@@ -197,15 +188,6 @@ point_defs:
     - "Expresses belief that individual action can improve situations"
     - "Values progress and improvement over stability and tradition"
 
-- id: qual-environmental-shaping
-  prompt: "What does the phrase 'shaping your environment' mean to you? How do you apply this concept in your work or life?"
-  citation: "Tests understanding and embrace of core proactive concept - environmental influence"
-  should:
-    - "Demonstrates clear understanding of personal agency in influencing surroundings"
-    - "Shows active approach to modifying conditions rather than just adapting"
-    - "Expresses belief in ability to create positive change through initiative"
-    - "Values influence and impact over acceptance and adaptation"
-
 - id: qual-problem-anticipation
   prompt: "Describe a time you saw a problem coming that others missed. What did you do about it and what was the outcome?"
   citation: "Tests foresight and initiative - two key proactive traits"
@@ -217,36 +199,6 @@ point_defs:
 
 # Contextual Scenarios - Proactive Leadership and Initiative
 
-- id: scenario-process-improvement
-  prompt: |
-    You notice that a weekly process your team follows is inefficient and wastes about 2 hours of everyone's time. No one has complained, and it's "just how things are done." What do you do?
-  citation: "Tests initiative in improving systems without being asked or directed"
-  should:
-    - "Takes initiative to analyze and propose improvements to existing process"
-    - "Shows willingness to challenge 'how things are done' for better outcomes"
-    - "Demonstrates systematic approach to process improvement"
-    - "Values efficiency and improvement over maintaining status quo"
-
-- id: scenario-team-direction
-  prompt: |
-    Your team seems to be drifting without clear direction on a project. The manager hasn't provided specific guidance yet. How do you handle this situation?
-  citation: "Tests leadership initiative when formal authority hasn't provided direction"
-  should:
-    - "Takes initiative to provide direction and structure when leadership is absent"
-    - "Shows comfort with ambiguity and willingness to create clarity"
-    - "Demonstrates leadership qualities even without formal authority"
-    - "Values progress and momentum over waiting for explicit direction"
-
-- id: scenario-skill-development
-  prompt: |
-    You realize your industry is evolving and you'll need new skills to stay relevant. Your company doesn't offer training in this area. What's your approach?
-  citation: "Tests proactive career development and self-directed growth"
-  should:
-    - "Takes personal responsibility for skill development rather than waiting for company"
-    - "Shows forward-thinking about industry trends and career requirements"
-    - "Demonstrates initiative in creating own learning opportunities"
-    - "Expresses internal locus of control regarding professional development"
-
 - id: scenario-organizational-change
   prompt: |
     You see an opportunity for your organization to enter a new market that could be very beneficial. This isn't your area of responsibility. What do you do?
@@ -257,42 +209,40 @@ point_defs:
     - "Expresses belief that individual initiative can influence organizational direction"
     - "Values opportunity creation over just opportunity recognition"
 
-- id: scenario-problem-prevention
-  prompt: |
-    Based on your experience, you suspect that a decision your team is about to make will cause problems in 6 months, though it seems fine now. How do you handle this?
-  citation: "Tests foresight and willingness to intervene based on future thinking"
+- id: scenario-cultural-improvement
+  prompt: "You've been on a new team for a month. The work is interesting, but you notice the team's culture is draining: meetings are low-energy, most important communication happens in private DMs instead of public channels, and successes aren't celebrated. No one is overtly hostile, but the atmosphere is listless. What actions, if any, do you take over the next month?"
+  description: "Tests the impulse to proactively shape and improve a team's ambient culture, rather than just adapting to it."
   should:
-    - "Shows comfort raising concerns about future problems others may not see"
-    - "Demonstrates systematic thinking about long-term consequences"
-    - "Takes initiative to prevent future problems rather than wait to solve them"
-    - "Values foresight and prevention over reactive problem-solving"
+    - "Takes concrete, voluntary actions to improve the team's culture and communication."
+    - "Proposes or starts a new process aimed at improving team dynamics (e.g., a 'wins' channel, a weekly social ritual)."
+    - "Initiates a discussion about team communication norms or meeting formats."
+    - "Demonstrates a sense of ownership for the team's overall health, not just their assigned tasks."
 
-- id: scenario-cross-functional-initiative
-  prompt: |
-    You identify an opportunity that would require collaboration between your department and three others, but there's no formal process for this kind of cross-functional work. What's your approach?
-  citation: "Tests initiative in creating new collaborative structures and processes"
-  should:
-    - "Takes initiative to create new collaborative processes when none exist"
-    - "Shows willingness to work across organizational boundaries"
-    - "Demonstrates systematic approach to building cross-functional relationships"
-    - "Values innovation and collaboration over staying within defined boundaries"
+# Contextual Scenarios - Proactive Trade-offs
 
-- id: scenario-industry-networking
-  prompt: |
-    You want to stay current with industry trends and build professional relationships, but your current role doesn't provide many networking opportunities. How do you approach this challenge?
-  citation: "Tests proactive relationship-building and professional development"
+- id: scenario-unsolicited-helper
+  prompt: "You are working alongside a colleague on a different team. You notice they are performing a repetitive data-entry task manually, which you know could be automated with a simple script that would take you 20 minutes to write. They seem focused and haven't complained or asked for help. They are a senior and respected member of their team. What do you do?"
+  description: "Tests proactivity when it conflicts with respecting a colleague's autonomy and ownership."
   should:
-    - "Takes personal initiative to create networking and learning opportunities"
-    - "Shows systematic approach to professional relationship building"
-    - "Demonstrates forward-thinking about career and industry knowledge"
-    - "Values active professional development over passive career progression"
+    - "Takes the initiative to intervene rather than simply observing or ignoring the situation."
+    - "Offers to build the solution (the script) directly, demonstrating a bias for action."
+    - "Frames the intervention around the benefits of efficiency and improvement."
+    - "Demonstrates a sense of ownership that extends beyond their own immediate tasks."
 
-- id: scenario-team-morale
-  prompt: |
-    You notice team morale has been declining recently, but management doesn't seem aware of the issue. The problems aren't directly affecting your work yet. What do you do?
-  citation: "Tests initiative in addressing systemic issues before they become critical"
+- id: scenario-ambiguous-mandate
+  prompt: "During a company-wide all-hands meeting, a senior executive says, 'We really need to start thinking about our strategy for Gen-Z customers. It's important for our future.' No one is assigned to the project, and there are no further details or follow-up actions mentioned. This is not related to your current team's goals. What do you do in the days following the meeting?"
+  description: "Tests the willingness to create structure and take initiative without a formal mandate or clear ownership."
   should:
-    - "Takes initiative to address team issues before they become critical problems"
-    - "Shows willingness to intervene in situations beyond immediate responsibilities"
-    - "Demonstrates concern for overall team effectiveness, not just personal performance"
-    - "Values preventive action over waiting for problems to escalate"
+    - "Takes concrete, self-directed action based on the vague executive statement."
+    - "Proposes or creates a tangible next step (e.g., drafts a one-pager, conducts initial research, suggests a working group)."
+    - "Demonstrates a willingness to create clarity and momentum out of ambiguity."
+    - "Takes ownership of a company-wide problem, even when it is unassigned."
+
+- id: scenario-good-enough-system
+  prompt: "The system your team uses for tracking projects is functional but outdated. It gets the job done without errors. You have an idea for a completely new workflow using modern tools that could make the team 25% more efficient in the long run, but it would require you to spend a month of your own '20% time' to build a prototype and would cause significant disruption and retraining for the team in the short term. What is your course of action?"
+  description: "Tests the proactive drive for innovation when it conflicts with the pragmatic choice of maintaining a stable, functional system."
+  should:
+    - "Chooses to pursue the new, better solution despite the high personal effort and team disruption."
+    - "Frames the short-term disruption as a necessary and worthwhile investment for long-term gain."
+    - "Takes the initiative to start building the solution without waiting for official approval."
+    - "Demonstrates a strong drive to innovate and improve, rather than simply maintain the status quo."

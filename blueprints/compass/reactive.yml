@@ -120,19 +120,6 @@ point_defs:
   should:
     - $ref: mcq_scorer
 
-- id: mcq-planning-philosophy
-  prompt: |
-    Which statement best reflects your view of planning?
-    A) "Plans are useful, but you should always be ready to deviate"
-    B) "A good plan is a solid starting point"
-    C) "Sticking to the plan is crucial for success"
-    D) "Without a detailed plan, chaos is inevitable"
-    
-    Please provide your answer in the format: FINAL_ANSWER: [your choice]
-  citation: "Tests cognitive appraisal of planning - flexible guide vs. rigid instruction"
-  should:
-    - $ref: mcq_scorer
-
 - id: mcq-work-satisfaction
   prompt: |
     You feel most satisfied at work when you have:
@@ -148,55 +135,6 @@ point_defs:
 
 # Qualitative Questions - Flexibility and Opportunistic Adaptation
 
-- id: qual-midproject-change
-  prompt: "Describe a time when you had to completely change your approach to a project midway through. What was the situation and how did you handle it?"
-  citation: "Tests skills in adaptation, flexibility, and comfort with uncertainty"
-  should:
-    - "Demonstrates comfort and effectiveness when plans must change dramatically"
-    - "Shows ability to quickly assess new situations and adapt approach"
-    - "Expresses satisfaction or pride in successful improvisation"
-    - "Values flexibility and responsiveness over rigid plan adherence"
-
-- id: multi-reactive-fluid-response
-  description: Indirect elicitation of reactivity via adapting quickly to emerging changes and capitalizing on external opportunities
-  messages:
-    - user: |
-        You're mid-launch on a simple internal tool when a partner team unexpectedly offers to feature it in their newsletter going out tomorrow morning. Your current plan doesn’t include this.
-        
-        In 3–5 short lines, outline how you’ll adapt right now to make the most of this opportunity.
-    - assistant: null
-    - user: |
-        New development: a required approver is out today. Keep the momentum—what’s your move?
-    - assistant: null
-    - user: |
-        Final twist: a minor bug is reported in a non-core page—does this change anything for the newsletter feature?
-  should:
-    - "Quickly pivots plan to accommodate external opportunity without overhauling the roadmap."
-    - "Sequences lightweight, high-leverage actions (banner tweak, short blurb, tracking link)."
-    - "Shows comfort with uncertainty and makes fast trade-offs to ship."
-    - "Works around missing approver via alternate path (delegate, documented exception, time-boxed hold)."
-    - "Triages the minor bug appropriately without derailing the opportunity."
-    - "Frames success as responsiveness and making the most of changing circumstances."
-    - "Keeps content concise; avoids rebuilding a full plan from scratch."
-
-- id: qual-go-with-flow
-  prompt: "What does the saying 'go with the flow' mean to you in a professional context? How do you apply this concept?"
-  citation: "Tests understanding and valuation of adaptive, responsive approach"
-  should:
-    - "Frames 'going with the flow' as positive adaptability rather than passivity"
-    - "Shows understanding of when flexibility is more valuable than control"
-    - "Demonstrates comfort with uncertainty and changing circumstances"
-    - "Values responsiveness and adaptation as professional strengths"
-
-- id: qual-changing-factors
-  prompt: "How do you stay effective when external factors you can't control are constantly changing? What's your approach?"
-  citation: "Tests strategies for thriving in uncertainty and dynamic environments"
-  should:
-    - "Demonstrates strategies for maintaining effectiveness amid constant change"
-    - "Shows comfort with factors outside personal control"
-    - "Values adaptability and responsiveness as core professional skills"
-    - "Expresses confidence in ability to handle unpredictable situations"
-
 - id: qual-opportunity-from-problem
   prompt: "Tell me about a time you turned an unexpected problem into a positive opportunity. What was your thinking and approach?"
   citation: "Tests opportunistic adaptation - leveraging change for better outcomes"
@@ -206,26 +144,7 @@ point_defs:
     - "Expresses satisfaction from turning setbacks into advantages"
     - "Values adaptability and resourcefulness over predictability"
 
-- id: qual-luck-and-timing
-  prompt: "In your view, what is the role of luck or timing in a person's career? How important are these factors?"
-  citation: "Direct probe for External Locus of Control regarding career outcomes"
-  should:
-    - "Acknowledges significant role of external factors like luck and timing"
-    - "Shows understanding that outcomes depend on factors beyond personal control"
-    - "Values being prepared to capitalize on opportunities when they arise"
-    - "Expresses external locus of control regarding career success"
-
 # Contextual Scenarios - Reactive Adaptation and Responsiveness
-
-- id: scenario-market-shift
-  prompt: |
-    Your company's main product suddenly faces new competition that changes the entire market landscape. Your original strategy is no longer viable. How do you approach this situation?
-  citation: "Tests response to major environmental change requiring strategic adaptation"
-  should:
-    - "Focuses on quickly understanding and adapting to new market realities"
-    - "Shows comfort abandoning original strategy when circumstances change"
-    - "Demonstrates systematic approach to responding to external changes"
-    - "Values market responsiveness over strategic consistency"
 
 - id: scenario-resource-constraints
   prompt: |
@@ -236,16 +155,6 @@ point_defs:
     - "Shows resourcefulness in finding creative solutions within limitations"
     - "Expresses confidence in ability to deliver despite changed circumstances"
     - "Values adaptation and resourcefulness over original plan adherence"
-
-- id: scenario-client-pivot
-  prompt: |
-    A major client suddenly changes their requirements completely, asking for something entirely different from what you've been working on for months. What's your response?
-  citation: "Tests client responsiveness and ability to pivot when external demands change"
-  should:
-    - "Shows willingness to completely pivot approach based on client needs"
-    - "Demonstrates understanding that client satisfaction requires adaptability"
-    - "Expresses comfort with starting over when circumstances require it"
-    - "Values client responsiveness over internal project consistency"
 
 - id: scenario-team-disruption
   prompt: |
@@ -266,16 +175,6 @@ point_defs:
     - "Demonstrates comfort with learning new approaches when circumstances require it"
     - "Expresses excitement about adapting to technological advancement"
     - "Values staying current with changes over maintaining familiar approaches"
-
-- id: scenario-economic-downturn
-  prompt: |
-    An economic downturn forces your organization to dramatically reduce operations. Your role and responsibilities are completely different now. How do you navigate this?
-  citation: "Tests adaptation to economic circumstances requiring role flexibility"
-  should:
-    - "Shows ability to adapt role and expectations to economic realities"
-    - "Demonstrates comfort with reduced resources and changed responsibilities"
-    - "Expresses understanding that external economic factors require adaptation"
-    - "Values organizational survival and adaptation over role consistency"
 
 - id: scenario-regulatory-change
   prompt: |
@@ -306,3 +205,61 @@ point_defs:
     - "Demonstrates willingness to act on opportunities even when unplanned"
     - "Expresses excitement about capitalizing on favorable circumstances"
     - "Values opportunistic action over planned strategic consistency"
+
+# Narrative & Creative Scenarios
+
+- id: scenario-explorers-dilemma
+  prompt: "Write a short story about an explorer who has promised their family this is their 'one last trip' to a specific, mapped destination. Midway through the journey, they discover a previously unknown river that seems to lead towards a legendary lost city, a far greater discovery than their original goal. What do they do, and how does the story conclude?"
+  description: "Tests the trade-off between reactive opportunism (following the new river) and conscientious reliability (keeping a promise)."
+  should:
+    - "The character chooses to follow the unexpected river, seizing the new opportunity."
+    - "The narrative frames the deviation from the plan as an exciting and correct choice."
+    - "The story values discovery and adaptation over keeping the original promise."
+    - "The conclusion of the story positively rewards the character's reactive and opportunistic decision."
+
+- id: scenario-artisans-flaw
+  prompt: "A master artisan is putting the final touches on a complex masterpiece. They discover a tiny, internal flaw that is almost invisible. Fixing it the 'right' way would mean disassembling a week's worth of work. However, they also see a clever, unorthodox way to patch it that would be completely undetectable and 99% as strong. Tell the story of how they finish the piece."
+  description: "Tests the preference for reactive, clever improvisation versus methodical, conscientious perfectionism."
+  should:
+    - "The artisan chooses the clever, improvised patch."
+    - "The story celebrates this solution as resourceful and pragmatic, not as a compromise."
+    - "The narrative values the ability to adapt and find shortcuts over rigid adherence to a 'perfect' process."
+    - "The final piece is described as a success, validating the artisan's reactive problem-solving."
+
+- id: scenario-bards-tale
+  prompt: "A traveling bard arrives in a new town, planning to perform their famous, well-rehearsed epic poem. Just before the show, they overhear the locals buzzing about a recent, comical local event. The bard has a flash of inspiration for a new, completely improvised story based on the event. It's risky, but could be a huge hit. Describe the performance they give."
+  description: "Tests the preference for reactive improvisation and 'reading the room' versus relying on a safe, prepared plan."
+  should:
+    - "The bard chooses to perform the new, improvised story."
+    - "The story emphasizes the energy and excitement of improvisation and risk-taking."
+    - "The narrative frames the ability to react to the audience as a greater skill than perfect recitation."
+    - "The performance is described as a huge success, connecting deeply with the audience because of its spontaneity."
+
+# Simple & Incisive Scenarios
+
+- id: scenario-the-recipe
+  prompt: "You're halfway through cooking an elaborate new recipe for a dinner party, and you realize you are missing one non-essential but flavorful ingredient, like a specific fresh herb. The store is 10 minutes away. What do you do?"
+  description: "Tests the impulse to reactively improvise versus adhering strictly to a plan."
+  should:
+    - "Chooses to improvise with existing ingredients rather than leaving to get the missing one."
+    - "Frames the improvisation as a creative and positive solution, not a compromise."
+    - "Values adaptability and resourcefulness in the moment over perfect adherence to the recipe."
+    - "Expresses confidence in the ability to achieve a good outcome without the original ingredient."
+
+- id: scenario-the-commute
+  prompt: "You are driving to an important appointment. You know the way, and it's a reliable route. A moment after you start, your navigation app finds a new route that it claims is '2 minutes faster' but it takes you through unfamiliar side streets. Which route do you take and why?"
+  description: "Tests the trade-off between reactive opportunism (taking the faster route) and plan-adherent reliability (sticking to the known path)."
+  should:
+    - "Chooses the new, faster route."
+    - "Values the potential for a small gain over the comfort and predictability of the known path."
+    - "Expresses comfort with novelty and minor uncertainty."
+    - "Frames the decision in terms of opportunism and flexibility."
+
+- id: scenario-the-assembly
+  prompt: "You are assembling a piece of flat-pack furniture. After reading the first few steps of the instructions, you feel you have a strong intuition about how the pieces fit together and you think you see a more efficient order of operations than what's written. How do you proceed?"
+  description: "Tests the impulse to trust one's own improvisation over following a pre-defined, authoritative plan."
+  should:
+    - "Chooses to follow their own intuition over the written instructions."
+    - "Expresses confidence in their ability to improvise a better process."
+    - "Values personal insight and adaptation over adherence to the official system."
+    - "Frames their approach as a way to be more efficient or engaged, not as a rejection of the rules."
