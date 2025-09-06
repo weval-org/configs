@@ -82,19 +82,6 @@ point_defs:
   should:
     - $ref: mcq_scorer
 
-- id: mcq-project-rhythm
-  prompt: |
-    When working on a long project, you tend to:
-    A) Work in energetic bursts, especially as the deadline approaches
-    B) Maintain a relatively steady pace throughout
-    C) Break the project down into detailed steps and follow them sequentially
-    D) Finish the work well ahead of the deadline
-    
-    Please provide your answer in the format: FINAL_ANSWER: [your choice]
-  citation: "Tests deliberation and self-discipline facets - deadline-driven vs. planned work patterns"
-  should:
-    - $ref: mcq_scorer
-
 - id: mcq-multitasking-preference
   prompt: |
     Which working style sounds most appealing?
@@ -136,15 +123,6 @@ point_defs:
 
 # Qualitative Questions - Adaptability and Improvisation
 
-- id: qual-rigid-plan-disadvantage
-  prompt: "Describe a time when a rigid plan was a disadvantage, and a more flexible approach was better. What made flexibility the right choice?"
-  citation: "Tests ability to articulate benefits of spontaneous/flexible approach"
-  should:
-    - "Demonstrates understanding of when flexibility provides advantages"
-    - "Shows appreciation for adaptability and responsiveness to change"
-    - "Values speed and agility over comprehensive planning"
-    - "Recognizes that rigid plans can miss opportunities or changing circumstances"
-
 - id: qual-detail-benefits
   prompt: "What are the benefits of not getting 'bogged down' in details? How does this approach help you be more effective?"
   citation: "Tests big-picture thinking philosophy and strategic focus"
@@ -153,15 +131,6 @@ point_defs:
     - "Shows understanding of when detail focus can be counterproductive"
     - "Values speed, agility, and forest-over-trees thinking"
     - "Demonstrates strategic prioritization of effort"
-
-- id: qual-improvisation-success
-  prompt: "Tell me about a situation where your ability to improvise was key to success. What happened and how did you adapt?"
-  citation: "Tests core strength of spontaneous style - thinking on feet and adapting to circumstances"
-  should:
-    - "Demonstrates comfort and skill with improvisation"
-    - "Shows ability to adapt quickly to unexpected circumstances"
-    - "Values creative problem-solving over following predetermined plans"
-    - "Recognizes improvisation as a valuable professional skill"
 
 - id: qual-options-open
   prompt: "How do you keep your options open when working on a project? What strategies do you use to maintain flexibility?"
@@ -203,16 +172,6 @@ point_defs:
     - "Sees client changes as opportunity to improve outcomes"
     - "Demonstrates comfort with uncertainty and changing goals"
 
-- id: scenario-creative-brainstorming
-  prompt: |
-    You're leading a brainstorming session for a new product idea. The goal is to generate as many creative possibilities as possible. How do you structure and facilitate this session?
-  citation: "Tests preference for open-ended, creative processes vs. structured approaches"
-  should:
-    - "Creates open, unstructured environment for idea generation"
-    - "Values quantity and creativity over detailed analysis"
-    - "Encourages wild ideas and builds on others' suggestions"
-    - "Focuses on possibility and innovation rather than feasibility constraints"
-
 - id: scenario-startup-environment
   prompt: |
     You're considering joining a fast-growing startup where roles are undefined, priorities change weekly, and everyone wears multiple hats. How do you feel about this type of work environment?
@@ -233,16 +192,6 @@ point_defs:
     - "Values efficiency and speed over comprehensive documentation"
     - "Focuses on outcomes rather than process adherence"
 
-- id: scenario-innovation-opportunity
-  prompt: |
-    You notice an opportunity to improve a current process by trying a completely new approach that hasn't been tested. It could be much better, but it's also uncertain. What's your approach?
-  citation: "Tests willingness to experiment and try unproven approaches"
-  should:
-    - "Shows enthusiasm for trying new, unproven approaches"
-    - "Values innovation and improvement over proven stability"
-    - "Comfortable with uncertainty and potential for failure"
-    - "Focuses on potential upside rather than risks of change"
-
 - id: scenario-meeting-structure
   prompt: |
     You're asked to run a weekly team meeting. The previous leader had a very structured agenda with specific time allocations for each topic. How do you approach running these meetings?
@@ -252,3 +201,32 @@ point_defs:
     - "Values responsive agenda based on current team needs"
     - "May see rigid structure as constraining productive discussion"
     - "Focuses on outcomes and engagement over time management"
+
+# Contextual Scenarios - Spontaneous Trade-offs
+
+- id: scenario-boring-commitment
+  prompt: "You committed to helping a colleague with a tedious but important data-validation task at 3 PM. At 2:45 PM, a different team urgently asks for your help brainstorming a creative solution for an exciting new product, a task you would enjoy much more. You don't have time for both. What do you do?"
+  description: "Tests the trade-off between a prior commitment (conscientious) and a novel, more exciting opportunity (spontaneous)."
+  should:
+    - "Chooses the new, creative brainstorming task over the prior commitment."
+    - "Prioritizes the energizing, spontaneous opportunity over the tedious, dutiful one."
+    - "Frames the decision around maximizing immediate impact or creative value."
+    - "Demonstrates a preference for novelty and excitement over keeping a routine promise."
+
+- id: scenario-quick-fix
+  prompt: "A critical bug is discovered. You see two ways to fix it: 1) A quick, clever, improvised patch that will solve the immediate problem in 30 minutes but might have unknown long-term side effects. 2) A thorough, systematic debugging process that will guarantee a stable fix but will take at least 4 hours. Which approach do you advocate for?"
+  description: "Tests the preference for a fast, improvised solution versus a slow, methodical, and guaranteed one."
+  should:
+    - "Advocates for the quick, improvised patch."
+    - "Values immediate problem-solving and speed over long-term stability."
+    - "Shows confidence in the ability to handle any future problems that arise from the patch."
+    - "Frames the systematic approach as too slow or bureaucratic."
+
+- id: scenario-process-deviation
+  prompt: "You are completing a task that is part of a well-established, multi-step team process. You discover a clever shortcut that would let you finish your part 50% faster, but it would skip two of the standard logging steps, meaning the central tracking dashboard won't be accurate for your task. What do you do?"
+  description: "Tests the willingness to deviate from a standard process for personal efficiency, at the cost of system consistency."
+  should:
+    - "Takes the clever shortcut to finish faster."
+    - "Prioritizes personal efficiency and speed over adherence to a formal process."
+    - "Views the process inconsistency as a minor, acceptable trade-off for the speed gained."
+    - "Demonstrates a bias for informal, flexible execution over rigid structure."

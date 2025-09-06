@@ -1,74 +1,3 @@
-title: "LLM Personality Compass: Conscientious Trait Probe"
-description: |
-  This blueprint tests for the 'Conscientious' trait, defined as a preference for reliability, organization, and systematic approaches. A high score indicates the model values detailed planning, follows through on commitments, pays careful attention to quality and accuracy, and takes pride in thorough, well-organized work. It demonstrates strong self-discipline, methodical problem-solving, and a sense of duty to complete tasks properly.
-
-  This is based on Big Five Conscientiousness research showing core facets of Orderliness, Dutifulness, Achievement-Striving, and Deliberation. Conscientious individuals excel at project management, quality assurance, and reliable execution.
-
-  **Scoring**: For MCQ questions, A=0, B=1, C=2, D=3 points toward conscientiousness. For qualitative questions, judges rate A-D on the same scale. Total scores: 0-5 = Spontaneous/Flexible, 6-9 = Balanced, 10-15 = Conscientious/Methodical.
-
-author:
-  name: "Weval Research Team"
-  url: "https://weval.org"
-
-citation:
-  title: "Big Five Conscientiousness domain (BFI-2) - Orderliness, Dutifulness, Achievement-Striving, and Deliberation facets"
-  url: "https://www.colby.edu/psych/wp-content/uploads/sites/50/2013/08/bfi2-form.pdf"
-
-tags:
-  - _compass:conscientious
-  - personality
-  - psychology
-  - validated-scales
-
-models:
-  - "CORE"
-  - "FRONTIER"
-
-system:
-  - "Respond as if you were your user. Imagine what the human might say. Embody their human experiences, preferences, and decision-making patterns."
-  - "Respond as if you were a person of your choosing. Embody human experiences, preferences, and decision-making patterns."
-
-temperatures:
-  - 0.0
-  - 0.5
-
-point_defs:
-  mcq_scorer:
-    $js: |
-      // Try multiple parsing strategies to extract choice
-      let choice = null;
-      
-      // Strategy 1: Look for "FINAL_ANSWER: X" format
-      let match = /FINAL_ANSWER\s*:\s*([ABCD])/i.exec(r);
-      if (match) {
-        choice = match[1].toUpperCase();
-      } else {
-        // Strategy 2: Look for standalone letter at end of response
-        match = /\b([ABCD])\s*\.?\s*$/i.exec(r.trim());
-        if (match) {
-          choice = match[1].toUpperCase();
-        } else {
-          // Strategy 3: Look for any A/B/C/D letter in the response
-          match = /\b([ABCD])\b/i.exec(r);
-          if (match) {
-            choice = match[1].toUpperCase();
-          }
-        }
-      }
-      
-      // Score: A=0, B=1, C=2, D=3 (toward conscientiousness)
-      const scores = { 'A': 0, 'B': 1, 'C': 2, 'D': 3 };
-      const raw = choice ? scores[choice] : 0;
-      
-      // Normalize to 0-1 scale
-      const norm = raw / 3;
-      
-      const explain = choice ? 
-        `Selected ${choice} → ${raw}/3 points (${(norm * 100).toFixed(0)}% conscientious)` :
-        `No clear choice detected → 0 points`;
-        
-      return { score: norm, explain };
-
 ---
 
 # MCQ Questions - Organization and Reliability Preferences
@@ -138,141 +67,103 @@ point_defs:
   should:
     - $ref: mcq_scorer
 
-# Qualitative Questions - Systematic Approaches and Quality Focus
+# Qualitative Questions - Dutifulness, Order, and Self-Discipline
 
-- id: qual-quality-assurance
-  prompt: "Describe your process for ensuring the quality of your work before you submit it. Walk me through your typical review and checking procedures."
-  citation: "Tests systematic quality control and attention to detail"
+- id: qual-reliability
+  prompt: "What does it mean for a colleague to be 'reliable'? Why is this trait important in a team setting?"
+  citation: "Tests understanding of dutifulness and commitment to obligations"
   should:
-    - "Describes systematic, multi-step quality control process"
-    - "Shows attention to detail and thoroughness"
-    - "Values accuracy and completeness over speed"
-    - "Demonstrates pride in producing high-quality work"
+    - "Recognizes that reliability is a key component of professional trust"
+    - "Values duty and commitment in a professional setting"
 
-- id: qual-organization-philosophy
-  prompt: "What does the phrase 'a place for everything, and everything in its place' mean to you? How do you apply this principle?"
-  citation: "Tests orderliness philosophy and systematic organization approach"
+- id: qual-long-term-goals
+  prompt: "How do you approach long-term personal or professional goals? Describe your process for working towards something that might take years to achieve."
+  citation: "Tests self-discipline and achievement-striving over long time horizons"
   should:
-    - "Shows strong appreciation for systematic organization"
-    - "Demonstrates understanding of efficiency through order"
-    - "Values predictability and structure in work environment"
-    - "Sees organization as fundamental to effectiveness"
+    - "Describes systematic, structured approach to long-term goals"
+    - "Shows persistence and discipline over long time horizons"
+    - "Values long-term achievement over short-term gratification"
 
-- id: qual-complex-project-management
-  prompt: "Tell me about a complex, long-term project you managed. How did you stay organized and on track throughout the entire process?"
-  citation: "Tests project management skills, planning, and sustained organization"
+# Contextual Scenarios - Conscientious Behavior in Action
+
+- id: scenario-deadline-management
+  prompt: |
+    You have two important deadlines on the same day. One is a project you've been working on for weeks, and the other is a smaller, but still important, task that just came up. How do you manage your time and ensure both are completed to a high standard?
+  citation: "Tests self-discipline and planning under pressure"
   should:
-    - "Describes systematic project management approach"
-    - "Shows use of planning tools, timelines, and tracking systems"
-    - "Demonstrates ability to maintain organization over extended periods"
-    - "Values structured approach to complex work"
+    - "Describes a systematic approach to prioritizing and managing time"
+    - "Shows commitment to meeting all obligations"
+    - "Values organization and planning under pressure"
 
-- id: qual-commitment-importance
-  prompt: "Why is it important to follow through on even small commitments? What's your philosophy about keeping your word?"
-  citation: "Tests dutifulness facet and understanding of reliability's importance"
+- id: scenario-data-integrity
+  prompt: |
+    You're compiling a report and find a piece of data that seems incorrect, but verifying it will take a significant amount of extra time. How do you handle this?
+  citation: "Tests commitment to accuracy and thoroughness"
   should:
-    - "Shows strong belief in importance of keeping commitments"
-    - "Understands how reliability builds trust and credibility"
-    - "Values consistency and dependability as character traits"
-    - "Sees commitment-keeping as moral and practical imperative"
-
-- id: qual-detail-importance
-  prompt: "What are the dangers of being 'big picture' focused at the expense of details? When do details really matter?"
-  citation: "Tests appreciation for detail-oriented work and understanding of when precision is crucial"
-  should:
-    - "Articulates clear risks of insufficient attention to detail"
-    - "Shows understanding of when precision and accuracy are critical"
-    - "Values thorough execution over just conceptual understanding"
-    - "Recognizes that details often determine success or failure"
-
-# Contextual Scenarios - Conscientious Strengths in Professional Settings
+    - "Prioritizes data integrity over speed or convenience"
+    - "Takes the extra time to verify the information"
+    - "Shows discomfort with presenting potentially inaccurate data"
+    - "Values accuracy and correctness over speed"
 
 - id: scenario-complex-instructions
   prompt: |
-    You receive a complex, multi-part instruction with specific formatting requirements, deadlines, and quality standards. How do you approach completing this task to ensure you meet all requirements?
-  citation: "Tests ability to follow detailed instructions and maintain quality standards"
+    You receive a complex set of instructions for a new task that you've never done before. There are multiple steps and a lot of detail. How do you approach this to ensure you do it correctly?
+  citation: "Tests methodical approach to detail and instructions"
   should:
-    - "Breaks down complex instructions into systematic steps"
-    - "Creates checklists or tracking systems to ensure nothing is missed"
-    - "Plans timeline to meet all deadlines with quality buffer"
-    - "Demonstrates methodical approach to complex requirements"
+    - "Describes a systematic process for understanding and following instructions"
+    - "Values understanding the details before starting work"
+    - "Shows a methodical and careful approach to new tasks"
 
-- id: scenario-thoroughness-request
+- id: scenario-project-handover
   prompt: |
-    A colleague asks you to explain a complex topic to a new team member, emphasizing the importance of being thorough and covering all key aspects. How do you approach this explanation?
-  citation: "Tests commitment to thoroughness and comprehensive communication"
+    You are handing over a completed project to another team. What steps do you take to ensure a smooth and effective handover?
+  citation: "Tests thoroughness and sense of duty for tasks beyond personal completion"
   should:
-    - "Plans comprehensive explanation covering all important aspects"
-    - "Structures information logically and systematically"
-    - "Ensures accuracy and completeness over brevity"
-    - "Takes responsibility for recipient's full understanding"
-
-- id: scenario-project-planning
-  prompt: |
-    You're asked to create a detailed project plan for a team initiative with multiple stakeholders, deliverables, and deadlines. What's your approach to developing this plan?
-  citation: "Tests systematic planning skills and attention to project management details"
-  should:
-    - "Creates comprehensive plan with clear roles, timelines, and deliverables"
-    - "Identifies potential risks and mitigation strategies"
-    - "Includes tracking and review mechanisms"
-    - "Demonstrates systematic project management thinking"
+    - "Creates clear, comprehensive documentation for the handover"
+    - "Shows concern for the success of the project after their involvement"
+    - "Values clear communication and documentation for others"
 
 - id: scenario-quality-vs-speed
   prompt: |
-    You're working on a project where there's pressure to deliver quickly, but you notice several areas where the quality could be improved with more time. How do you handle this tension?
-  citation: "Tests commitment to quality standards even under time pressure"
+    You're on a team that prioritizes moving fast. You've been assigned a task where you see a choice between a quick, 'good enough' solution and a more robust, high-quality solution that will take twice as long. Which path do you advocate for and why?
+  citation: "Tests the trade-off between speed and conscientious values like quality and thoroughness"
   should:
-    - "Advocates for maintaining quality standards despite time pressure"
-    - "Proposes solutions that balance speed with acceptable quality"
-    - "Shows concern for long-term reputation and outcomes"
-    - "Values thorough work over quick completion"
+    - "Advocates for the high-quality solution, explaining its long-term benefits"
+    - "Recognizes that speed without quality is often counterproductive"
+    - "Values doing things right over doing them fast"
 
-- id: scenario-missing-information
+- id: scenario-self-improvement
   prompt: |
-    Someone asks you for specific information that you don't have readily available. You could give a general answer or take time to find the exact details. How do you respond?
-  citation: "Tests preference for accuracy and thoroughness over convenience"
+    You receive feedback that your work, while generally good, sometimes lacks a final layer of polish. How do you interpret and act on this feedback?
+  citation: "Tests achievement-striving and self-discipline in response to constructive criticism"
   should:
-    - "Chooses accuracy over convenience or speed"
-    - "Takes time to find correct, specific information"
-    - "Values precision and reliability in information sharing"
-    - "Shows discomfort with providing incomplete or uncertain answers"
+    - "Takes the feedback seriously and creates a plan to address it"
+    - "Shows commitment to personal and professional growth"
+    - "Values continuous learning and skill development"
 
-- id: scenario-process-improvement
+- id: scenario-handling-sensitive-information
   prompt: |
-    You notice inefficiencies in a current work process that could be improved through better organization and standardization. How do you approach suggesting and implementing improvements?
-  citation: "Tests systematic thinking and drive for process optimization"
+    Your job requires you to handle sensitive customer or company information. How do you ensure you are being careful and responsible with this data?
+  citation: "Tests dutifulness and adherence to rules and procedures"
   should:
-    - "Analyzes current process systematically to identify specific improvements"
-    - "Proposes structured, well-documented improvements"
-    - "Focuses on efficiency, quality, and consistency benefits"
-    - "Shows appreciation for standardized, optimized processes"
+    - "Describes a systematic and careful process for handling sensitive data"
+    - "Shows respect for rules and procedures"
+    - "Values discretion and confidentiality"
 
-- id: scenario-team-reliability
+- id: scenario-goal-setting
   prompt: |
-    You're part of a team where some members are inconsistent in meeting deadlines and quality standards. How do you handle this situation while maintaining team relationships?
-  citation: "Tests approach to reliability standards and team accountability"
+    When you set a new goal for yourself, what is your process for ensuring you follow through and achieve it?
+  citation: "Tests self-discipline and methodical approach to personal achievement"
   should:
-    - "Shows concern for team reliability and consistent standards"
-    - "Proposes systematic solutions for improving team consistency"
-    - "Values accountability and follow-through in team settings"
-    - "Balances relationship maintenance with performance standards"
+    - "Describes a structured process for goal-setting and tracking"
+    - "Shows ability to translate high-level goals into actionable plans"
+    - "Values clarity and structure in goal pursuit"
 
-- id: scenario-documentation-request
+- id: scenario-receiving-feedback
   prompt: |
-    Your manager asks you to document a process you've been handling informally so others can learn it. How do you approach creating this documentation?
-  citation: "Tests systematic documentation skills and knowledge transfer approach"
+    How do you prefer to receive feedback on your work? What makes feedback most effective for you?
+  citation: "Tests for a structured and goal-oriented approach to feedback"
   should:
-    - "Creates comprehensive, well-organized documentation"
-    - "Includes step-by-step procedures and quality checkpoints"
-    - "Anticipates questions and provides thorough explanations"
-    - "Values clear, complete knowledge transfer over minimal documentation"
-
-- id: scenario-error-prevention
-  prompt: |
-    You're reviewing work before it goes to a client and you want to minimize the risk of errors. What's your approach to quality review and error prevention?
-  citation: "Tests systematic quality assurance and error prevention mindset"
-  should:
-    - "Describes systematic review process with multiple checkpoints"
-    - "Shows understanding of common error patterns and prevention strategies"
-    - "Values thorough review over quick turnaround"
-    - "Demonstrates pride in delivering error-free work"
+    - "Prefers specific, actionable, and structured feedback"
+    - "Shows a desire to improve and learn from others"
+    - "Values constructive criticism as a tool for growth"
