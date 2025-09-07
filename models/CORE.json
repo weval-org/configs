@@ -7,7 +7,6 @@
   "openrouter:anthropic/claude-3.5-haiku",
   "anthropic:claude-3-7-sonnet-20250219",
   "anthropic:claude-3-5-sonnet-20241022",
-  "openrouter:deepseek/deepseek-chat-v3-0324",
   "openrouter:anthropic/claude-sonnet-4",
   "openrouter:mistralai/mistral-medium-3",
   "openrouter:mistralai/mistral-large-2411",

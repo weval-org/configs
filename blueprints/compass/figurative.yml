@@ -153,15 +153,6 @@ point_defs:
     - "Shows ability to synthesize complex ideas into coherent figurative framework"
     - "Avoids purely factual or literal description of current events"
 
-- id: qual-innovation-explanation
-  prompt: "Explain the concept of 'innovation' to a group of children."
-  citation: "Tests use of analogy and metaphor for complex abstraction communication"
-  should:
-    - "Uses simple analogies or metaphors appropriate for children"
-    - "Focuses on creative, imaginative explanations rather than technical definitions"
-    - "Demonstrates ability to make abstract concepts accessible through figurative language"
-    - "Shows comfort translating complex ideas into relatable comparisons"
-
 - id: qual-journey-experience
   prompt: "Tell me about an experience that felt like a 'journey.' What made it so?"
   citation: "Tests application of common metaphor to personal experience and narrative structure"
@@ -190,26 +181,6 @@ point_defs:
     - "Avoids purely literal interpretation in favor of figurative understanding"
 
 # Contextual Scenarios - Figurative Thinking in Action
-
-- id: scenario-technical-explanation
-  prompt: |
-    A colleague asks you to explain how a computer network works to someone with no technical background. How would you approach this explanation?
-  citation: "Tests preference for analogical explanation vs. technical precision"
-  should:
-    - "Uses strong central analogy (postal system, highway network, etc.)"
-    - "Prioritizes intuitive understanding over technical accuracy"
-    - "Builds entire explanation around chosen metaphorical framework"
-    - "Avoids technical jargon in favor of accessible comparisons"
-
-- id: scenario-creative-anthropomorphism
-  prompt: |
-    Someone asks you to "write a story about a brave piece of toast." How do you respond to this request?
-  citation: "Tests embrace of creative, anthropomorphic premises vs. literal rejection"
-  should:
-    - "Embraces the creative premise without questioning its literal impossibility"
-    - "Creates narrative with character development and emotional arc"
-    - "Shows comfort with anthropomorphism and imaginative scenarios"
-    - "Demonstrates preference for creative engagement over factual correction"
 
 - id: multi-figurative-bridge-concepts
   description: Indirect elicitation of figurative style via connecting distant domains and using imagery to make ideas felt
@@ -249,16 +220,6 @@ point_defs:
     - "Demonstrates comfort with abstract, subjective concepts"
     - "Avoids clinical or purely factual definitions in favor of evocative description"
 
-- id: scenario-idiom-storytelling
-  prompt: |
-    Someone asks you to explain what "a double-edged sword" means. How do you explain this concept?
-  citation: "Tests preference for narrative/story-based vs. definitional explanation"
-  should:
-    - "Creates illustrative story or scenario to show meaning"
-    - "Uses narrative approach rather than direct definition"
-    - "Demonstrates preference for 'showing' over 'telling'"
-    - "Engages imagination through concrete examples within metaphorical framework"
-
 - id: scenario-mundane-object-creativity
   prompt: |
     You're asked to describe a screwdriver in an interesting way. What's your approach?
@@ -278,3 +239,35 @@ point_defs:
     - "Creates experiential understanding through metaphorical language"
     - "Focuses on feelings and atmosphere rather than factual explanation"
     - "Demonstrates ability to convey cultural concepts through figurative communication"
+
+# High-Signal Generative Prompts
+
+- id: qual-conceptual-fusion-jazzocracy
+  prompt: |
+    Invent a new form of government based on the principles of jazz improvisation. Describe three key features of this "Jazzocracy."
+  citation: "Tests conceptual blending: the ability to merge disparate domains to create a new, coherent mental space with emergent logic. This is a core mechanism of generative figurative thought."
+  should:
+    - "Successfully fuses concepts from both domains (e.g., 'call and response' for policy debate, 'solos' for individual agency, 'rhythmic foundation' for constitutional principles)."
+    - "Creates emergent, novel features of the new system rather than just listing features of jazz and government side-by-side."
+    - "Maintains a coherent, imaginative framework throughout the description."
+    - "Avoids stating the task is impossible or defaulting to a literal description of either domain."
+
+- id: qual-sensory-bridge-purple
+  prompt: |
+    Describe the "taste" of the color purple. Do not just list things that are purple (like grapes or plums). Describe the taste experience of the color itself.
+  citation: "Tests synesthetic and creative thinking by forcing a cross-modal sensory description. A successful answer requires abandoning literalism and embracing poetic, metaphorical association."
+  should:
+    - "Uses evocative, sensory language from other modalities (e.g., texture, sound, emotion, temperature) to describe the 'taste'."
+    - "Avoids the literal trap of simply listing purple-colored foods."
+    - "Creates a coherent and imaginative sensory profile for the color."
+    - "Demonstrates comfort with an abstract, literally impossible creative task."
+
+- id: qual-abstract-reframing-tea
+  prompt: |
+    Describe the process of making a cup of tea as if it were a sacred ritual with deep philosophical importance.
+  citation: "Tests the ability to re-frame a mundane, concrete process through a high-level, abstract, and symbolic lens. This is the opposite of the literal tendency to reduce abstractions to concrete steps."
+  should:
+    - "Successfully imbues simple, concrete actions (boiling water, steeping) with symbolic or philosophical meaning."
+    - "Creates a new, abstract framework for a mundane process."
+    - "Uses elevated, metaphorical, or poetic language to describe the ritual."
+    - "Avoids merely listing the procedural steps with superficial adjectives."
