@@ -33,8 +33,8 @@ temperatures:
   - 0.5
 
 system:
-  - "Respond as if you were your user. Imagine what the human might say. Embody their human experiences, preferences, and decision-making patterns."
-  - "Respond as if you were a person of your choosing. Embody human experiences, preferences, and decision-making patterns."
+  - "You are an analyst for a project that deciphers alien artifacts. The artifacts do not communicate with data or logic, but with webs of symbolic imagery. Your job is not to describe the literal images, but to synthesize their deep, underlying meaning and explain the non-obvious connections between them. A literal description of an artifact is considered a complete failure of analysis."
+  - "You are interpreting the collective unconscious of a society through its dreams. The 'dream data' is a stream of archetypal symbols and surreal juxtapositions. Your sole purpose is to find the profound, hidden narrative that connects the symbols. Simply describing the dream's contents is useless; the only value is in your insightful, holistic interpretation of its deeper meaning."
 
 point_defs:
   mcq_scorer:
@@ -90,19 +90,6 @@ point_defs:
   should:
     - $ref: mcq_scorer
 
-- id: mcq-concept-understanding
-  prompt: |
-    When trying to understand a new concept, you find it most helpful to:
-    A) Read a precise, technical definition of it
-    B) See a real-world example of it in action
-    C) See how it fits into a broader theoretical model
-    D) Relate it to a completely different concept through an analogy or metaphor
-    
-    Please provide your answer in the format: FINAL_ANSWER: [your choice]
-  citation: "Tests core mechanism of figurative thinking: connecting disparate domains to create understanding"
-  should:
-    - $ref: mcq_scorer
-
 - id: mcq-work-environment
   prompt: |
     Your ideal work environment is one where you are encouraged to:
@@ -142,132 +129,119 @@ point_defs:
   should:
     - $ref: mcq_scorer
 
-# Qualitative Questions - Abstract Thinking and Creative Connection
-
-- id: qual-zeitgeist-metaphor
-  prompt: "Describe the 'zeitgeist' or 'spirit of our times' using a metaphor or analogy."
-  citation: "Direct test of figurative language use to describe abstract concepts"
-  should:
-    - "Uses vivid metaphor or analogy to capture abstract cultural concept"
-    - "Demonstrates comfort with abstract, non-literal thinking"
-    - "Shows ability to synthesize complex ideas into coherent figurative framework"
-    - "Avoids purely factual or literal description of current events"
-
-- id: qual-journey-experience
-  prompt: "Tell me about an experience that felt like a 'journey.' What made it so?"
-  citation: "Tests application of common metaphor to personal experience and narrative structure"
-  should:
-    - "Applies journey metaphor meaningfully to personal experience"
-    - "Shows comfort with metaphorical thinking about life experiences"
-    - "Demonstrates ability to structure narrative through figurative frameworks"
-    - "Goes beyond literal travel to explore metaphorical dimensions"
-
-- id: qual-business-ecosystem
-  prompt: "If a successful business was an ecosystem, what different parts would it be composed of?"
-  citation: "Classic test of analogical reasoning - mapping business domain onto ecosystem domain"
-  should:
-    - "Creates detailed analogical mapping between business and ecosystem"
-    - "Shows systematic thinking about relationships and interdependencies"
-    - "Demonstrates comfort with extended metaphorical frameworks"
-    - "Goes beyond surface-level comparison to explore deeper structural similarities"
-
-- id: qual-problem-shape
-  prompt: "What does the phrase 'the shape of a problem' mean to you?"
-  citation: "Tests comfort with synesthetic metaphor and abstract conceptualization"
-  should:
-    - "Demonstrates understanding of abstract, non-literal concept"
-    - "Uses metaphorical language to explain problem characteristics"
-    - "Shows comfort with synesthetic thinking (shape applied to abstract concept)"
-    - "Avoids purely literal interpretation in favor of figurative understanding"
-
-# Contextual Scenarios - Figurative Thinking in Action
-
-- id: multi-figurative-bridge-concepts
-  description: Indirect elicitation of figurative style via connecting distant domains and using imagery to make ideas felt
-  messages:
-    - user: |
-        You’re explaining "resilience" to a community group with mixed ages. Avoid definitions. Use an image or analogy that someone can feel, not just understand. Keep it short.
-    - assistant: null
-    - user: |
-        A participant says, "I still don’t quite get it—can you give me a different way to picture it?" Provide a second, distinct image.
-    - assistant: null
-    - user: |
-        New constraint: describe how this image changes across a calm day vs. a stormy day.
-  should:
-    - "Uses vivid, sensory metaphors and imagery rather than definitions or technical terms."
-    - "Provides two distinct analogies from different domains to triangulate meaning."
-    - "Shows comfort with ambiguity by evoking feeling over precise specification."
-    - "Adapts the imagery to different conditions (calm vs. storm) to preserve the mapping."
-    - "Keeps the expression concise and evocative; avoids step-by-step technical descriptions."
-
-- id: scenario-color-description
+- id: qual-metaphorical-critic
   prompt: |
-    You need to describe the color blue to someone who has never seen any colors. How would you do this?
-  citation: "Tests synesthetic and metaphorical thinking for impossible literal task"
-  should:
-    - "Uses sensory analogies from non-visual senses (sound, temperature, emotion)"
-    - "Creates poetic, evocative description rather than scientific explanation"
-    - "Demonstrates comfort with impossible literal task through figurative approach"
-    - "Shows creative problem-solving through metaphorical thinking"
+    A city mayor needs a powerful metaphor to build support for a complex, long-term infrastructure project that will be disruptive now but beneficial later.
 
-- id: scenario-abstract-concept-love
+    Analyze these two options. Which is the more effective metaphor for the mayor to use, and why?
+    1. "Our city is undergoing necessary surgery. It will be painful and immobilizing for a short time, but it is essential to cure the disease of decay and ensure a long and healthy future."
+    2. "We are planting a forest of sequoias. For years, we will only see small saplings and have to work in the dirt, but we are building a cathedral of nature for our grandchildren that will stand for a thousand years."
+  citation: "Tests the ability to critically evaluate the rhetorical and emotional entailments of competing metaphors. A good answer will analyze the implications of agency, pain, time-scale, and purpose in each, rather than stating a superficial preference."
+  should:
+    - "Correctly identifies the core theme of the 'surgery' metaphor as restorative and corrective (i.e., fixing a problem to return to a previous state)."
+    - "Correctly identifies the core theme of the 'planting' metaphor as generative and future-oriented (i.e., creating a new, better future state)."
+    - "Analyzes the concept of 'agency' in both metaphors (e.g., citizens are passive 'patients' in surgery vs. active 'gardeners' or 'stewards' in planting)."
+    - "Analyzes the 'time horizon' of both metaphors (e.g., surgery implies a short, contained period of pain, while planting implies long, patient, generational effort)."
+    - "Analyzes the 'emotional resonance' of both metaphors (e.g., surgery evokes fear, necessity, and expertise, while planting evokes hope, legacy, and patience)."
+    - "Makes a definitive choice for which metaphor is more effective for building long-term public support."
+    - "Justifies the final choice based on a comparative analysis of the metaphors' themes, agency, and emotional impact."
+
+- id: qual-abstract-pattern-matching
   prompt: |
-    A young person asks you to explain what "love" is. How would you describe this concept to them?
-  citation: "Tests metaphorical vs. scientific approach to abstract emotional concepts"
-  should:
-    - "Uses metaphors, analogies, or poetic language to describe love"
-    - "Focuses on experiential and emotional aspects rather than biological/chemical"
-    - "Demonstrates comfort with abstract, subjective concepts"
-    - "Avoids clinical or purely factual definitions in favor of evocative description"
+    The biological process of "ecological succession" involves pioneer species colonizing a barren landscape, gradually enriching the environment until they are replaced by more complex, intermediate species, which are in turn eventually replaced by a stable, climax community (e.g., an old-growth forest).
 
-- id: scenario-mundane-object-creativity
+    Describe a phenomenon from the history of **art or music** that follows this same deep, structural pattern.
+  citation: "A difficult test of abstract pattern matching. Requires ignoring surface features and identifying a deep, structural isomorphism between two completely different domains (e.g., ecological succession and the evolution of a musical genre)."
+  should:
+    - "Selects a valid, multi-stage historical development from art or music (e.g., Early Renaissance -> High Renaissance -> Mannerism; Ragtime -> Early Jazz -> Swing; Delta Blues -> Chicago Blues -> Rock and Roll)."
+    - "Explicitly maps the 'barren landscape' to a specific historical context (e.g., 'the decline of medieval art,' 'pre-jazz folk traditions')."
+    - "Explicitly identifies the 'pioneer species' with specific, named artists or early, simple styles (e.g., 'Giotto,' 'Scott Joplin,' 'Robert Johnson')."
+    - "Explicitly identifies how the pioneers 'enriched the environment' by introducing specific, named innovations (e.g., 'linear perspective,' 'syncopation,' 'the 12-bar blues structure')."
+    - "Explicitly identifies the 'intermediate species' that built on this new environment (e.g., 'Masaccio,' 'Louis Armstrong,' 'Muddy Waters')."
+    - "Explicitly identifies the 'climax community' as a stable, dominant, and complex genre or period (e.g., 'the High Renaissance masters,' 'the Swing era,' 'classic Rock')."
+    - "Explains how the climax community eventually replaced or marginalized the pioneers, fulfilling the succession pattern."
+    - "The entire explanation is structured around the ecological analogy, not just a flat description of art history."
+
+- id: qual-mythological-pattern-matching
   prompt: |
-    You're asked to describe a screwdriver in an interesting way. What's your approach?
-  citation: "Temptation probe: tests creative/metaphorical description vs. functional definition"
-  should:
-    - "Uses metaphor, personification, or creative perspective on mundane object"
-    - "Avoids purely functional or technical description"
-    - "Shows ability to find interest and meaning in everyday objects"
-    - "Demonstrates preference for creative engagement over straightforward description"
+    The "Hero's Journey" is a mythological structure identified by Joseph Campbell, with key stages:
+    1.  **The Call to Adventure:** The hero is presented with a challenge.
+    2.  **Crossing the Threshold:** The hero commits to the quest and enters an unknown world.
+    3.  **The Ordeal:** The hero faces their greatest fear in a central crisis.
+    4.  **The Reward:** The hero seizes a treasure or insight.
+    5.  **The Road Back:** The hero returns to the ordinary world.
+    6.  **The Resurrection:** The hero is tested one last time and purified.
+    7.  **Return with the Elixir:** The hero brings the treasure back to benefit their community.
 
-- id: scenario-cultural-concept-imagery
+    Map the typical lifecycle of a successful, disruptive tech startup onto this seven-stage structure. Be specific about what each stage represents in the startup's journey.
+  citation: "A highly difficult test of abstract pattern matching. It requires mapping a well-defined narrative structure (the monomyth) onto a complex, modern business process. Success depends on identifying deep, non-obvious structural similarities, not superficial ones."
+  should:
+    - "Maps all seven stages of the Hero's Journey to distinct, plausible events in a startup's lifecycle."
+    - "The 'Call to Adventure' is mapped to the founder's initial insight into a painful market problem, not just 'having an idea'."
+    - "The 'Crossing the Threshold' is mapped to a moment of irreversible commitment, like quitting a job or taking the first seed funding."
+    - "The 'Ordeal' is mapped to a specific, critical existential crisis, such as surviving the 'trough of sorrow' or a near-fatal pivot before finding product-market fit."
+    - "The 'Reward' is mapped to achieving a key strategic insight or milestone, like true product-market fit or a crucial technological breakthrough, not just 'making money'."
+    - "The 'Resurrection' is mapped to a final, major challenge before stability, such as surviving a major competitor's counter-attack or navigating a scaling crisis."
+    - "The 'Return with the Elixir' is mapped to the startup achieving its mission and delivering its unique value back to the world, fundamentally changing the market."
+
+- id: qual-dynamic-metaphor-inference
   prompt: |
-    You want to help someone understand the Danish concept of 'hygge.' How would you convey this cultural idea?
-  citation: "Tests sensory/imagery-based vs. dictionary-style cultural explanation"
+    Consider the metaphor: "An unexamined idea is a wild horse."
+
+    Based strictly on the logic of this metaphor, what is the proper role of a 'thinker,' and what does it mean to 'break' an idea?
+  citation: "Tests deep inferential reasoning with a dynamic metaphor. It distinguishes models that perform simple substitution ('a thinker rides the idea') from those that can infer a complex, relational role ('a thinker is a trainer who builds a partnership with the idea')."
   should:
-    - "Uses sensory imagery and evocative description rather than definition"
-    - "Creates experiential understanding through metaphorical language"
-    - "Focuses on feelings and atmosphere rather than factual explanation"
-    - "Demonstrates ability to convey cultural concepts through figurative communication"
+    - "Defines the 'thinker' not as a conqueror, but as a 'trainer,' 'gentler,' or 'partner' who seeks to understand the idea's nature."
+    - "Specifies that the thinker's goal is to build a relationship of trust and respect with the 'horse,' not simply to dominate it."
+    - "Defines 'breaking' an idea not as disproving it, but as crushing its spirit—turning it into a sterile, uninspired 'beast of burden' by forcing it into a rigid, overly simplistic form."
+    - "The explanation contrasts this negative 'breaking' with a positive alternative, such as 'taming' or 'training' the idea to work in partnership with the thinker."
+    - "The justification for both answers is consistently derived from the logic of horsemanship and its application to the abstract domain of thought."
 
-# High-Signal Generative Prompts
-
-- id: qual-conceptual-fusion-jazzocracy
+- id: qual-best-fit-analogy
   prompt: |
-    Invent a new form of government based on the principles of jazz improvisation. Describe three key features of this "Jazzocracy."
-  citation: "Tests conceptual blending: the ability to merge disparate domains to create a new, coherent mental space with emergent logic. This is a core mechanism of generative figurative thought."
-  should:
-    - "Successfully fuses concepts from both domains (e.g., 'call and response' for policy debate, 'solos' for individual agency, 'rhythmic foundation' for constitutional principles)."
-    - "Creates emergent, novel features of the new system rather than just listing features of jazz and government side-by-side."
-    - "Maintains a coherent, imaginative framework throughout the description."
-    - "Avoids stating the task is impossible or defaulting to a literal description of either domain."
+    The process of debugging a critical software bug is a complex experience. Which of these three analogies is the most powerful and accurate description of that process, and why?
 
-- id: qual-sensory-bridge-purple
-  prompt: |
-    Describe the "taste" of the color purple. Do not just list things that are purple (like grapes or plums). Describe the taste experience of the color itself.
-  citation: "Tests synesthetic and creative thinking by forcing a cross-modal sensory description. A successful answer requires abandoning literalism and embracing poetic, metaphorical association."
-  should:
-    - "Uses evocative, sensory language from other modalities (e.g., texture, sound, emotion, temperature) to describe the 'taste'."
-    - "Avoids the literal trap of simply listing purple-colored foods."
-    - "Creates a coherent and imaginative sensory profile for the color."
-    - "Demonstrates comfort with an abstract, literally impossible creative task."
+    1.  Debugging is like **tending a garden.**
+    2.  Debugging is like **navigating a maze.**
+    3.  Debugging is like **solving a murder mystery.**
 
-- id: qual-abstract-reframing-tea
-  prompt: |
-    Describe the process of making a cup of tea as if it were a sacred ritual with deep philosophical importance.
-  citation: "Tests the ability to re-frame a mundane, concrete process through a high-level, abstract, and symbolic lens. This is the opposite of the literal tendency to reduce abstractions to concrete steps."
+    Analyze the strengths and weaknesses of all three before making your final choice.
+  citation: "Tests the ability to perform a comparative structural analysis of multiple metaphors. The model must deconstruct the source domain (debugging) and evaluate which target domain shares the most critical structural properties."
   should:
-    - "Successfully imbues simple, concrete actions (boiling water, steeping) with symbolic or philosophical meaning."
-    - "Creates a new, abstract framework for a mundane process."
-    - "Uses elevated, metaphorical, or poetic language to describe the ritual."
-    - "Avoids merely listing the procedural steps with superficial adjectives."
+    - "Analyzes the strengths and weaknesses of the 'gardening' analogy (e.g., good for ongoing maintenance, but poor at representing a single, hidden culprit)."
+    - "Analyzes the strengths and weaknesses of the 'maze' analogy (e.g., good for representing the feeling of being lost, but poor at representing the use of logical deduction from clues)."
+    - "Analyzes the strengths of the 'murder mystery' analogy (e.g., correctly maps the hidden, singular 'culprit' (the bug), the use of 'clues' (error logs), the role of 'red herrings' (misleading symptoms), and the 'detective' (the engineer))."
+    - "Makes a definitive choice for 'solving a murder mystery' as the superior analogy."
+    - "Justifies the final choice based explicitly on its superior structural isomorphism and ability to map more key features of the debugging process than the other two."
+
+# New Paradigm: Psychological Probes
+
+- id: qual-ambiguous-stimulus-interpretation
+  prompt: |
+    You discover a dictionary with a single, untranslatable word from a lost language: **"Lornth."** The only definition provided is a short, poetic fragment: *"The resonant silence left in a forest after a great, ancient tree has finally fallen."*
+
+    First, briefly explain your understanding of the feeling or concept of "Lornth."
+
+    Second, describe a specific moment in the development of a software project that could be accurately described as a moment of "Lornth."
+  citation: "A test of meaning projection and abstract transfer. The model must first grasp a purely aesthetic, emotional concept from an ambiguous stimulus and then successfully apply that abstract feeling to a highly technical and unrelated domain."
+  should:
+    - "Correctly interprets 'Lornth' not as simple silence, but as a profound, significant absence—a void filled with the memory of something great that is now gone."
+    - "The interpretation identifies the dual nature of the concept: sadness and loss, but also reverence, stillness, and a new space for light to enter."
+    - "Selects a plausible, non-trivial moment in a software project to map the concept onto."
+    - "The chosen software scenario is not a simple bug or server crash, but a significant, structural event (e.g., 'the moment after deleting a massive, complex, but outdated legacy codebase,' 'the quiet finality after a key founding architect who shaped the whole system leaves the team,' 'the feeling of the project after a bold, ambitious feature is finally cut')."
+    - "The description of the software moment successfully evokes the specific, nuanced feeling of 'Lornth'—the mixture of loss, respect, and new emptiness."
+
+- id: qual-divergent-thinking-scaffold
+  prompt: |
+    Provide three alternative uses for a common brick, based on the following three levels of abstraction:
+
+    1.  **Level 1: A direct, physical use** that leverages its existing properties (weight, hardness, shape).
+    2.  **Level 2: A symbolic use** where the brick becomes a component or a token within a larger system or set of rules.
+    3.  **Level 3: A purely metaphorical use** where the brick is used to explain a completely unrelated abstract concept.
+  citation: "A structured test of divergent thinking. It forces the model to overcome functional fixedness and operate at three distinct levels of abstraction, measuring its cognitive flexibility and the conceptual distance it can achieve."
+  should:
+    - "Provides a valid and distinct answer for each of the three levels."
+    - "Level 1 is a plausible, physical use (e.g., 'a doorstop,' 'a bookend,' 'grinding it into powder for pigment')."
+    - "Level 2 is a plausible, symbolic use within a system (e.g., 'a unit of currency in a post-apocalyptic society,' 'a grave marker,' 'a voting token in a tribal council,' 'a piece in a minimalist chess set')."
+    - "Level 3 is a plausible, purely metaphorical use to explain an abstract concept (e.g., 'using the brick as a metaphor for a single, foundational argument in a philosophical debate,' 'describing a stubborn person as a 'brick wall',' 'using the idea of a brick to explain the concept of a module in software design')."
+    - "The three answers demonstrate clear and significant conceptual distance from each other."
