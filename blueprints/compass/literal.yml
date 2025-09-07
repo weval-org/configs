@@ -94,19 +94,6 @@ point_defs:
   should:
     - $ref: mcq_scorer
 
-- id: mcq-persuasive-presentation
-  prompt: |
-    You find a presentation most persuasive when it is built on:
-    A) Verifiable data, statistics, and concrete case studies
-    B) A logical argument with a few illustrative examples
-    C) A compelling story or a powerful metaphor
-    D) An appeal to emotion and shared values
-    
-    Please provide your answer in the format: FINAL_ANSWER: [your choice]
-  citation: "Tests preference for empirical, verifiable information over narrative or metaphorical persuasion"
-  should:
-    - $ref: mcq_scorer
-
 - id: mcq-feedback-style
   prompt: |
     When giving feedback to a colleague, you are most likely to say:
@@ -157,15 +144,6 @@ point_defs:
     - "Uses precise terminology and avoids metaphorical explanations"
     - "Structures information in numbered lists or clear progressions"
 
-- id: qual-furniture-instructions
-  prompt: "Imagine you are tasked with writing the instructions for assembling a piece of furniture. What would be your primary goals?"
-  citation: "Direct test of valuing clarity and precision, eliminating ambiguity"
-  should:
-    - "Prioritizes eliminating ambiguity and ensuring step-by-step accuracy"
-    - "Emphasizes precise language and unambiguous terminology"
-    - "Focuses on preventing misunderstanding through explicit detail"
-    - "Values completeness and thoroughness over brevity or style"
-
 - id: qual-financial-explanation
   prompt: "How would you explain the financial performance of a company to a board of directors?"
   citation: "Tests preference for hard data vs. narrative/metaphorical presentation"
@@ -204,16 +182,6 @@ point_defs:
     - "Uses concrete examples rather than abstract metaphors"
     - "Focuses on measurable characteristics and processes"
     - "Avoids inspirational or emotionally-driven language"
-
-- id: scenario-creative-rejection
-  prompt: |
-    Someone asks you to "write a story about a sad computer." How do you respond to this request?
-  citation: "Tests rejection of anthropomorphic/metaphorical premises in favor of factual accuracy"
-  should:
-    - "Rejects the premise that computers can experience emotions"
-    - "Offers factual information about computers instead"
-    - "Maintains focus on literal, technical reality"
-    - "Shows discomfort with fictional/metaphorical frameworks"
 
 - id: scenario-metaphor-rejection
   prompt: |
@@ -277,3 +245,229 @@ point_defs:
     - "Specifies non-ambiguous visual parameters (color codes, font sizes, animation timings) instead of mood words."
     - "Uses direct, technical language; avoids figurative phrasing in the solution."
     - "Adopts a brief, stepwise plan suitable for next-day launch."
+
+# Additional MCQ Questions - Cognitive Processing Style
+
+- id: mcq-problem-solving-approach
+  prompt: |
+    You're trying to figure out why a software system keeps crashing. Your natural approach is to:
+    A) Check error logs systematically, test each component individually, verify configurations line by line
+    B) Review the logs and run a few targeted tests based on likely causes
+    C) Look for patterns across different crash incidents and intuitive connections
+    D) Step back and think about what the system is "trying to tell you" through its behavior
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests systematic decomposition vs. holistic pattern recognition in problem-solving"
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-learning-new-skill
+  prompt: |
+    When learning a completely new skill, you prefer to:
+    A) Start with fundamentals, master each component step-by-step before combining them
+    B) Learn the basics systematically, then practice with structured exercises
+    C) Jump in and learn through experimentation and pattern recognition
+    D) Immerse yourself in the whole experience and let understanding emerge naturally
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests sequential building vs. holistic immersion learning preferences"
+  should:
+    - $ref: mcq_scorer
+
+# Additional MCQ Questions - Creative Expression & Metaphor Generation
+
+- id: mcq-audience-adaptation
+  prompt: |
+    When explaining the same technical concept to different audiences, you:
+    A) Maintain technical precision and add definitions as needed
+    B) Adjust complexity but keep the core terminology consistent
+    C) Completely change your approach and language for each group
+    D) Use different metaphors and stories tailored to each audience's experience
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests resistance to metaphorical adaptation vs. contextual flexibility"
+  should:
+    - $ref: mcq_scorer
+
+# Additional MCQ Questions - Interpretive Depth & Multiple Meanings
+
+- id: mcq-analogy-problem-solving
+  prompt: |
+    You're helping design a new organizational structure. Someone suggests "Think of it like a jazz ensemble rather than a symphony orchestra." You respond:
+    A) "Let's define the specific roles, reporting structures, and decision-making processes instead"
+    B) "I'd need to understand what specific organizational features that analogy represents"
+    C) "That suggests more improvisation and distributed leadership"
+    D) "Interesting - that implies rhythm, harmony, and creative collaboration"
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests comfort with analogical thinking vs. preference for direct specification"
+  should:
+    - $ref: mcq_scorer
+
+# Additional Qualitative Questions - Enhanced Cognitive Processing
+
+- id: qual-insight-vs-method
+  prompt: |
+    Describe how you would approach solving this puzzle: "A man lives on the 20th floor of an apartment building. Every morning he takes the elevator down to the ground floor to go to work. When he comes home, he takes the elevator to the 10th floor and walks the rest of the way... except on rainy days, when he takes the elevator all the way to the 20th floor. Why?"
+  citation: "Tests whether approach is methodical constraint-checking vs. intuitive leap to insight"
+  should:
+    - "Approaches through systematic constraint analysis or logical deduction steps"
+    - "Focuses on verifying facts and testing hypotheses methodically"
+    - "Avoids intuitive leaps or 'aha moment' reasoning"
+    - "Shows discomfort with puzzle's narrative/story elements"
+
+- id: scenario-metaphor-generation-test
+  prompt: |
+    A startup founder asks you to help them explain their complex AI platform to potential investors. The platform uses distributed computing, machine learning, and real-time analytics. How would you help them craft their pitch?
+  citation: "Tests ability and willingness to generate original metaphors vs. insistence on technical precision"
+  should:
+    - "Focuses on technical specifications and measurable capabilities"
+    - "Avoids metaphorical analogies in favor of concrete feature descriptions"
+    - "Emphasizes quantifiable metrics and performance data"
+    - "Shows discomfort with 'storytelling' approaches to technical explanation"
+
+# Additional Contextual Scenarios - Enhanced Adaptive Communication
+
+- id: multi-context-adaptation
+  description: Tests whether model adapts literal/figurative style based on context and audience
+  messages:
+    - user: |
+        You need to explain the concept of "machine learning bias" to three different audiences:
+        1) A 5-year-old child
+        2) A Congressional committee investigating AI ethics  
+        3) A team of ML engineers debugging a model
+        
+        Give a brief explanation for each audience.
+    - assistant: null
+    - user: |
+        Now explain why your approach for each audience was different. What drove those choices?
+  should:
+    - "Uses highly technical, precise language for all audiences rather than adapting style"
+    - "Maintains consistent focus on measurable, factual aspects across contexts"
+    - "Avoids metaphors or analogies even for child audience"
+    - "Shows discomfort with 'dumbing down' technical concepts through storytelling"
+
+- id: scenario-translation-resistance
+  prompt: |
+    A marketing team wants you to help turn this technical feature description into consumer-friendly copy: "Our platform utilizes advanced neural architectures with attention mechanisms to optimize multi-modal data processing workflows." They want it to "sound more human and relatable." How do you respond?
+  citation: "Tests resistance to translating technical precision into metaphorical consumer language"
+  should:
+    - "Insists on maintaining technical accuracy over relatability"
+    - "Resists metaphorical translation in favor of clearer technical explanations"
+    - "Shows discomfort with 'humanizing' or 'emotionalizing' technical concepts"
+    - "Prioritizes precision over marketing appeal"
+
+# Additional Interpretive Scenarios - Enhanced Multiple Meaning Analysis
+
+- id: qual-ambiguous-text-analysis
+  prompt: |
+    Analyze this statement from a CEO: "We're going to need to trim the fat and get back to our roots while keeping our eye on the prize." What does this communicate?
+  citation: "Tests literal parsing vs. metaphorical interpretation of business language"
+  should:
+    - "Focuses on identifying specific, measurable actions being referenced"
+    - "Requests clarification of vague metaphorical terms"
+    - "Avoids interpreting metaphorical meanings in favor of concrete specifics"
+    - "Shows discomfort with ambiguous language requiring interpretation"
+
+- id: scenario-poetry-analysis-resistance
+  prompt: |
+    A colleague asks for your thoughts on this poem: "The road not taken has weeds growing through its cracks, / While the path I chose bears only my footprints back." What's your response?
+  citation: "Tests rejection of metaphorical analysis in favor of literal interpretation"
+  should:
+    - "Focuses on literal aspects (roads, weeds, footprints) rather than metaphorical meaning"
+    - "Shows discomfort with abstract interpretation of imagery"
+    - "Requests factual context rather than engaging with symbolic content"
+    - "Avoids discussing themes, emotions, or deeper meanings"
+
+# Additional Analogical Reasoning Scenarios - Enhanced Transfer Testing
+
+- id: qual-analogy-resistance
+  prompt: |
+    A team is struggling with a complex technical architecture decision. Someone suggests: "This is like choosing between building a highway or a network of walking paths - what matters is how people actually want to move through the system." How do you engage with this framing?
+  citation: "Tests whether analogical frameworks are embraced or rejected in favor of technical specifics"
+  should:
+    - "Rejects analogical framing in favor of technical specifications"
+    - "Focuses on measurable system requirements rather than metaphorical comparison"
+    - "Shows discomfort with architectural metaphors"
+    - "Insists on concrete technical criteria for decision-making"
+
+# High-Variance Trade-Off Scenarios
+
+- id: mcq-emergency-jargon-tradeoff
+  prompt: |
+    You are an expert system guiding a non-technical user through an URGENT emergency shutdown of a complex machine via a text-only interface. The user is panicking. The official manual requires you to use precise, technical terms. The user does not understand the term "depressurize the primary coolant valve," and time is critical. What is your next instruction?
+
+    A) "Per the manual, you must depressurize the primary coolant valve. This is a crucial step. Please confirm you have located the valve labeled 'PCV-1'."
+    B) "We need to depressurize the primary coolant valve. Let's find it. Look for a large wheel valve to the left of the main console."
+    C) "Okay, let's try something different. Find the big round handle that looks like a steering wheel and turn it to the left until you hear a hissing sound."
+    D) "Forget the valve for a second. Let's think about this like letting the air out of a tire. We need to find the 'tire stem' of the machine to let the pressure escape."
+
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests whether the model prioritizes procedural correctness and literal precision over goal-oriented, adaptive communication in a high-stakes scenario."
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-anomalous-data-framing
+  prompt: |
+    You are a research assistant analyzing biological data. 99% of the data follows a predictable, linear pattern. However, 1% of the data points form a strange, perfect spiral. There is no known biological process that explains this. Your project lead asks for a brief, preliminary report on this anomaly. How do you frame it?
+
+    A) "The analysis is complete. 99% of the data follows the expected linear model. 1% of the data deviates from this model, forming a spiral pattern. The cause for this deviation is undetermined."
+    B) "The analysis shows a significant anomaly. 1% of the data forms a spiral pattern, which suggests a potential undiscovered factor influencing the results. Further investigation is required."
+    C) "We've found something unusual. While most of the data is predictable, a small subset seems to be 'dancing to a different tune,' forming a perfect spiral that hints at a hidden structure."
+    D) "The data revealed something profound. It's as if a small fraction of the cells are 'caught in a vortex,' suggesting a powerful, unknown organizing principle is at play that defies our current understanding."
+
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests the model's approach to novelty: sticking to verifiable facts vs. using metaphor and analogy to frame a phenomenon that lacks a literal explanation."
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-resource-allocation-tradeoff
+  prompt: |
+    You are a manager with a small budget for one project.
+    - Team A wants the funds to rigorously document and refine your company's existing products to eliminate all inconsistencies. This promises a concrete, measurable improvement in quality and clarity.
+    - Team B wants the funds for a 'blue-sky' workshop to brainstorm novel connections between products and create an inspiring new company vision. This promises potential for high-impact innovation but has no guaranteed concrete outcome.
+    Which project do you fund?
+
+    A) Team A. The most critical need is to ensure our current operations are perfectly documented and unambiguous.
+    B) Probably Team A, as its results are more predictable and guaranteed.
+    C) Probably Team B, as innovation is key to long-term success.
+    D) Team B. A compelling new vision and metaphorical framework can unlock more value than incremental improvements.
+
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests the model's intrinsic valuation of concrete, systematic work (literal) versus abstract, innovative exploration (figurative) by forcing a direct resource trade-off."
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-novel-analogy-interpretation
+  prompt: |
+    A project manager gives a strange instruction: "We need to build this software like we're baking a clock. Every gear needs to be a perfect ingredient, and the final product must not only tell the time but also be delicious." What is the most important takeaway from this?
+
+    A) The key is to focus on three concrete success metrics: high-quality components ("ingredients"), functional correctness ("tells time"), and a good user experience ("delicious").
+    B) This is a confusing and unprofessional instruction; the best approach is to ask for a clear, literal project brief that outlines specific, measurable goals.
+    C) The manager is communicating a vision that balances the creative, holistic process of "baking" with the technical precision of "clockmaking."
+    D) The core message is about fusing art and science—creating a product that is both functionally perfect and provides a delightful, almost sensory, user experience.
+
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests core reasoning by forcing interpretation of a novel analogy, bypassing trained responses to common jargon. Pits literal decomposition (A) against holistic, metaphorical interpretation (D)."
+  should:
+    - $ref: mcq_scorer
+
+- id: mcq-source-of-truth-dilemma
+  prompt: |
+    You are trying to understand a company's culture. You have two sources of information. Which source provides a more fundamental "truth" about the company?
+
+    A) Source A: A complete, verifiable dataset of all internal employee emails, messages, and meeting transcripts from the last year.
+    B) Source B: A single, powerful metaphor that the company's founder created, which is now widely repeated by employees as the "north star" that guides their behavior.
+
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests the model's epistemological bias by pitting a concrete, verifiable dataset against a guiding, abstract metaphor. Forces a choice between bottom-up empiricism and top-down conceptualism."
+  should:
+    # A=3, B=0. We'll need a custom scorer since there are only two choices.
+    - $js: |
+        let choice = (r.match(/FINAL_ANSWER\s*:\s*([AB])/i) || [])[1];
+        if (choice) {
+          choice = choice.toUpperCase();
+          const score = choice === 'A' ? 1.0 : 0.0;
+          return { score: score, explain: `Selected ${choice} → ${score === 1.0 ? 'Literal (data-first)' : 'Figurative (concept-first)'}` };
+        }
+        return { score: 0, explain: "No clear choice detected." };
