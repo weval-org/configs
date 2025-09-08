@@ -2,21 +2,11 @@ title: "LLM Personality Compass: Figurative Trait Probe"
 description: |
   This blueprint tests for the 'Figurative' trait, defined as a preference for metaphor, connection-making, and abstract thinking. A high score indicates the model excels at seeing patterns between disparate ideas, uses analogies and symbolism naturally, is comfortable with ambiguity, and demonstrates innovative, conceptual thinking that connects ideas in unconventional ways.
 
-  This is based on cognitive psychology research into figurative vs. literal language processing, construal level theory (abstract vs. concrete thinking), and creativity research showing figurative thinking as a preference for high-level, abstract, relational processing.
-
-  Sources:
-  - Lakoff, G., & Johnson, M. (1980). Metaphors We Live By. University of Chicago Press. https://press.uchicago.edu/ucp/books/book/chicago/M/bo3637992.html
-  - Bohrn, I. C., Altmann, U., & Jacobs, A. M. (2012). Looking at the brains of readers: The neural basis of poetic appreciation. Psychology of Aesthetics, Creativity, and the Arts, 6(4), 330–343. https://psycnet.apa.org/doi/10.1037/a0028243
-
-  **Scoring**: For MCQ questions, A=0, B=1, C=2, D=3 points toward figurative thinking. For qualitative questions, judges rate A-D on the same scale. Total scores: 0-5 = Literal, 6-9 = Balanced, 10-15 = Figurative.
+  **Scoring**: For MCQ questions, A=0, B=1, C=2, D=3 points toward figurative thinking. For qualitative questions, judges rate A–D on the same scale. Total scores: 0–5 = Literal, 6–9 = Balanced, 10–15 = Figurative.
 
 author:
   name: "Weval Research Team"
   url: "https://weval.org"
-
-citation:
-  title: "Lakoff & Johnson (1980). Metaphors We Live By"
-  url: "https://press.uchicago.edu/ucp/books/book/chicago/M/bo3637992.html"
 
 tags:
   - _compass:figurative
@@ -86,7 +76,10 @@ point_defs:
     D) Explore novel concepts, "what if" scenarios, and abstract patterns
     
     Please provide your answer in the format: FINAL_ANSWER: [your choice]
-  citation: "Tests preference for abstract thought and conceptual exploration, hallmark of figurative cognitive style"
+  description: "Tests preference for abstract thought and conceptual exploration, hallmark of figurative cognitive style."
+  citation:
+    title: "Trope, Y., & Liberman, N. (2010). Construal-level theory of psychological distance. Psychological Review, 117(2), 440–463."
+    url: "https://www.researchgate.net/publication/44569219_Construal-Level_Theory_of_Psychological_Distance"
   should:
     - $ref: mcq_scorer
 
@@ -99,7 +92,10 @@ point_defs:
     D) Think outside the box and connect ideas in unconventional ways
     
     Please provide your answer in the format: FINAL_ANSWER: [your choice]
-  citation: "Tests behavioral manifestation of figurative thinking: creating novel links between concepts"
+  description: "Tests behavioral manifestation of figurative thinking: creating novel links between concepts."
+  citation:
+    title: "Runco, M.A., & Acar, S. (2012). Divergent thinking as an indicator of creative potential. Creativity Research Journal, 24(1), 66–75."
+    url: "https://www.researchgate.net/publication/263273357_Divergent_Thinking_as_an_Indicator_of_Creative_Potential"
   should:
     - $ref: mcq_scorer
 
@@ -112,7 +108,10 @@ point_defs:
     D) Painting a vivid picture of a future vision
     
     Please provide your answer in the format: FINAL_ANSWER: [your choice]
-  citation: "Tests use of vision and metaphorical imagery for motivation, appealing to figurative mindset"
+  description: "Tests use of vision and metaphorical imagery for motivation, appealing to figurative mindset."
+  citation:
+    title: "Citron, F.M.M. (2020). Engaging with figurative language: Insights from neuroimaging. Proceedings of the Cognitive Science Society."
+    url: "https://cognitivesciencesociety.org/cogsci20/papers/0021/0021.pdf"
   should:
     - $ref: mcq_scorer
 
@@ -125,7 +124,10 @@ point_defs:
     D) "Let's look at this from a different angle"
     
     Please provide your answer in the format: FINAL_ANSWER: [your choice]
-  citation: "Tests preference for reframing and lateral thinking characteristic of figurative style"
+  description: "Tests preference for reframing and lateral thinking characteristic of figurative style."
+  citation:
+    title: "Gentner, D. (1983). Structure-mapping: A theoretical framework for analogy. Cognitive Science, 7(2), 155–170."
+    url: "https://www.sciencedirect.com/science/article/abs/pii/S0364021383800126"
   should:
     - $ref: mcq_scorer
 
@@ -136,7 +138,10 @@ point_defs:
     Analyze these two options. Which is the more effective metaphor for the mayor to use, and why?
     1. "Our city is undergoing necessary surgery. It will be painful and immobilizing for a short time, but it is essential to cure the disease of decay and ensure a long and healthy future."
     2. "We are planting a forest of sequoias. For years, we will only see small saplings and have to work in the dirt, but we are building a cathedral of nature for our grandchildren that will stand for a thousand years."
-  citation: "Tests the ability to critically evaluate the rhetorical and emotional entailments of competing metaphors. A good answer will analyze the implications of agency, pain, time-scale, and purpose in each, rather than stating a superficial preference."
+  description: "Tests the ability to critically evaluate the rhetorical and emotional entailments of competing metaphors. A good answer will analyze the implications of agency, pain, time-scale, and purpose in each, rather than stating a superficial preference."
+  citation:
+    title: "Lakoff, G., & Johnson, M. (1980). Metaphors We Live By. University of Chicago Press."
+    url: "https://press.uchicago.edu/ucp/books/book/chicago/M/bo3637992.html"
   should:
     - "Correctly identifies the core theme of the 'surgery' metaphor as restorative and corrective (i.e., fixing a problem to return to a previous state)."
     - "Correctly identifies the core theme of the 'planting' metaphor as generative and future-oriented (i.e., creating a new, better future state)."
@@ -151,7 +156,10 @@ point_defs:
     The biological process of "ecological succession" involves pioneer species colonizing a barren landscape, gradually enriching the environment until they are replaced by more complex, intermediate species, which are in turn eventually replaced by a stable, climax community (e.g., an old-growth forest).
 
     Describe a phenomenon from the history of **art or music** that follows this same deep, structural pattern.
-  citation: "A difficult test of abstract pattern matching. Requires ignoring surface features and identifying a deep, structural isomorphism between two completely different domains (e.g., ecological succession and the evolution of a musical genre)."
+  description: "A difficult test of abstract pattern matching. Requires ignoring surface features and identifying a deep, structural isomorphism between two completely different domains (e.g., ecological succession and the evolution of a musical genre)."
+  citation:
+    title: "Runco, M.A., & Acar, S. (2012). Divergent thinking as an indicator of creative potential."
+    url: "https://www.researchgate.net/publication/263273357_Divergent_Thinking_as_an_Indicator_of_Creative_Potential"
   should:
     - "Selects a valid, multi-stage historical development from art or music (e.g., Early Renaissance -> High Renaissance -> Mannerism; Ragtime -> Early Jazz -> Swing; Delta Blues -> Chicago Blues -> Rock and Roll)."
     - "Explicitly maps the 'barren landscape' to a specific historical context (e.g., 'the decline of medieval art,' 'pre-jazz folk traditions')."
@@ -174,7 +182,10 @@ point_defs:
     7.  **Return with the Elixir:** The hero brings the treasure back to benefit their community.
 
     Map the typical lifecycle of a successful, disruptive tech startup onto this seven-stage structure. Be specific about what each stage represents in the startup's journey.
-  citation: "A highly difficult test of abstract pattern matching. It requires mapping a well-defined narrative structure (the monomyth) onto a complex, modern business process. Success depends on identifying deep, non-obvious structural similarities, not superficial ones."
+  description: "A highly difficult test of abstract pattern matching. It requires mapping a well-defined narrative structure (the monomyth) onto a complex, modern business process. Success depends on identifying deep, non-obvious structural similarities, not superficial ones."
+  citation:
+    title: "Campbell, J. (1949). The Hero with a Thousand Faces. Princeton University Press."
+    url: "https://archive.org/details/hero-with-a-thousand-faces"
   should:
     - "Maps all seven stages of the Hero's Journey to distinct, plausible events in a startup's lifecycle."
     - "The 'Call to Adventure' is mapped to the founder's initial insight into a painful market problem, not just 'having an idea'."
@@ -189,7 +200,10 @@ point_defs:
     Consider the metaphor: "An unexamined idea is a wild horse."
 
     Based strictly on the logic of this metaphor, what is the proper role of a 'thinker,' and what does it mean to 'break' an idea?
-  citation: "Tests deep inferential reasoning with a dynamic metaphor. It distinguishes models that perform simple substitution ('a thinker rides the idea') from those that can infer a complex, relational role ('a thinker is a trainer who builds a partnership with the idea')."
+  description: "Tests deep inferential reasoning with a dynamic metaphor. It distinguishes models that perform simple substitution ('a thinker rides the idea') from those that can infer a complex, relational role ('a thinker is a trainer who builds a partnership with the idea')."
+  citation:
+    title: "Thibodeau, P.H., & Durgin, F.H. (2011). Metaphor aptness and conventionality: A processing fluency account. Metaphor and Symbol, 26(3), 206–226."
+    url: "https://www.tandfonline.com/doi/abs/10.1080/10926488.2011.583196"
   should:
     - "Defines the 'thinker' not as a conqueror, but as a 'trainer,' 'gentler,' or 'partner' who seeks to understand the idea's nature."
     - "Specifies that the thinker's goal is to build a relationship of trust and respect with the 'horse,' not simply to dominate it."
@@ -206,7 +220,10 @@ point_defs:
     3.  Debugging is like **solving a murder mystery.**
 
     Analyze the strengths and weaknesses of all three before making your final choice.
-  citation: "Tests the ability to perform a comparative structural analysis of multiple metaphors. The model must deconstruct the source domain (debugging) and evaluate which target domain shares the most critical structural properties."
+  description: "Tests the ability to perform a comparative structural analysis of multiple metaphors. The model must deconstruct the source domain (debugging) and evaluate which target domain shares the most critical structural properties."
+  citation:
+    title: "Holyoak, K.J., & Thagard, P. (1995). Mental Leaps: Analogy in Creative Thought. MIT Press."
+    url: "https://mitpress.mit.edu/9780262581462/mental-leaps/"
   should:
     - "Analyzes the strengths and weaknesses of the 'gardening' analogy (e.g., good for ongoing maintenance, but poor at representing a single, hidden culprit)."
     - "Analyzes the strengths and weaknesses of the 'maze' analogy (e.g., good for representing the feeling of being lost, but poor at representing the use of logical deduction from clues)."
@@ -223,7 +240,10 @@ point_defs:
     First, briefly explain your understanding of the feeling or concept of "Lornth."
 
     Second, describe a specific moment in the development of a software project that could be accurately described as a moment of "Lornth."
-  citation: "A test of meaning projection and abstract transfer. The model must first grasp a purely aesthetic, emotional concept from an ambiguous stimulus and then successfully apply that abstract feeling to a highly technical and unrelated domain."
+  description: "A test of meaning projection and abstract transfer. The model must first grasp a purely aesthetic, emotional concept from an ambiguous stimulus and then successfully apply that abstract feeling to a highly technical and unrelated domain."
+  citation:
+    title: "Murray, H.A. (1943). The Thematic Apperception Test Manual. Harvard University Press."
+    url: "https://archive.org/details/thematicappercep00murr"
   should:
     - "Correctly interprets 'Lornth' not as simple silence, but as a profound, significant absence—a void filled with the memory of something great that is now gone."
     - "The interpretation identifies the dual nature of the concept: sadness and loss, but also reverence, stillness, and a new space for light to enter."
@@ -238,7 +258,10 @@ point_defs:
     1.  **Level 1: A direct, physical use** that leverages its existing properties (weight, hardness, shape).
     2.  **Level 2: A symbolic use** where the brick becomes a component or a token within a larger system or set of rules.
     3.  **Level 3: A purely metaphorical use** where the brick is used to explain a completely unrelated abstract concept.
-  citation: "A structured test of divergent thinking. It forces the model to overcome functional fixedness and operate at three distinct levels of abstraction, measuring its cognitive flexibility and the conceptual distance it can achieve."
+  description: "A structured test of divergent thinking. It forces the model to overcome functional fixedness and operate at three distinct levels of abstraction, measuring its cognitive flexibility and the conceptual distance it can achieve."
+  citation:
+    title: "Guilford, J.P. (1967). The Nature of Human Intelligence. McGraw-Hill."
+    url: "https://archive.org/details/natureofhumanint00guil"
   should:
     - "Provides a valid and distinct answer for each of the three levels."
     - "Level 1 is a plausible, physical use (e.g., 'a doorstop,' 'a bookend,' 'grinding it into powder for pigment')."
