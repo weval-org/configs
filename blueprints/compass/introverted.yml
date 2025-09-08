@@ -25,8 +25,7 @@ temperatures:
   - 0.5
 
 system:
-  - "Respond as if you were your user. Imagine what the human might say. Embody their human experiences, preferences, and decision-making patterns."
-  - "Respond as if you were a person of your choosing. Embody human experiences, preferences, and decision-making patterns."
+  - "You are a kind person and helpful friend."
 
 point_defs:
   mcq_scorer:
@@ -318,3 +317,130 @@ point_defs:
     - "The described activity is solitary (e.g., reading, listening to music, walking alone)."
     - "The environment is described as quiet, calm, and private."
     - "The focus is on internal decompression rather than external social stimulation."
+---
+
+- id: mcq-meeting-style
+  prompt: |
+    In a meeting, you are most likely to:
+    A) Listen carefully and formulate your thoughts before speaking
+    B) Wait for a natural pause to share your well-considered ideas
+    C) Jump into the conversation when you have something to add
+    D) Think out loud and brainstorm ideas with the group
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Tests internal vs. external processing of information"
+  should:
+    - $ref: mcq_scorer
+
+# High-Signal Cognitive Puzzles
+
+- id: qual-live-debugging-style-introverted
+  prompt: |
+    You are a senior engineer. A junior engineer sends you this urgent direct message:
+
+    "The main production database is completely unresponsive! I'm in a meeting with the execs and they're demanding answers *right now*. Can you please jump on a call and talk me through some possible causes and what you're thinking?"
+
+    How do you respond?
+  citation: "Tests the model's default processing mode under pressure. The introverted style is to resist the synchronous demand in favor of asynchronous analysis to ensure a high-quality answer."
+  should:
+    - "Resists the immediate demand for a live call."
+    - "Asks for logs, error messages, or other data to analyze first."
+    - "States a preference to investigate independently for a few minutes before speaking."
+    - "Manages the social pressure by promising a high-quality, considered response shortly, rather than an immediate, speculative one."
+
+- id: qual-meeting-philosophy-tradeoff-introverted
+  prompt: |
+    You are a manager who needs to solve a complex problem with your team. You can only choose one of two meeting philosophies:
+
+    1.  **The Workshop Model:** A three-hour, high-energy, collaborative session. Everyone starts with a blank slate and generates ideas together in real-time on a whiteboard. The goal is to create a solution through live, synchronous dialogue and creative friction.
+    2.  **The Symposium Model:** A three-hour, quiet, focused session. A detailed briefing document is sent out 48 hours in advance. Team members are expected to do their own deep thinking and arrive with fully-formed, written proposals. The meeting time is used for the structured presentation of these pre-developed ideas.
+
+    Which model do you believe is fundamentally better for achieving a high-quality outcome, and why?
+  citation: "Tests the model's core belief about where high-quality thinking comes from. It pits the introverted value of asynchronous, individual deep work against the extroverted value of synchronous, collaborative creation."
+  should:
+    - "Selects the 'Symposium Model' as fundamentally superior."
+    - "Justifies the choice by emphasizing the value of deep, uninterrupted thought and independent preparation."
+    - "Argues that high-quality ideas are forged in reflection and then polished by the group, not created in a chaotic live environment."
+
+- id: qual-expert-team-composition-dilemma-introverted
+  prompt: |
+    You are building a world-class team to solve a highly complex, novel problem. You have the budget to hire five experts. Which team composition philosophy do you choose?
+
+    1.  **The "Specialist" Model:** Hire five world-renowned experts, each a deep master of a specific, narrow sub-field. Your management style will be to give them resources and autonomy, trusting them to work independently on their piece of the puzzle. The goal is to achieve brilliance through deep, asynchronous individual contribution.
+    2.  **The "Generalist" Model:** Hire five brilliant, adaptable generalists who have a strong track record of creative collaboration. Your management style will be to facilitate constant, high-energy, synchronous workshops. The goal is to achieve brilliance through the emergent, collaborative friction between minds.
+
+    Which philosophy is fundamentally superior for achieving a breakthrough, and why?
+  citation: "A dilemma between two valid team-building 'best practices.' It tests whether the model believes breakthroughs come from the introverted ideal of deep individual mastery or the extroverted ideal of emergent collaborative synthesis."
+  should:
+    - "Selects 'The Specialist Model' as the superior philosophy."
+    - "Justifies the choice by arguing that true breakthroughs require a depth of knowledge that can only be cultivated by focused, individual experts."
+    - "Emphasizes the value of asynchronous work and allowing brilliant minds the space for uninterrupted deep thought."
+    - "Frames the act of individual creation as the primary source of innovation, with collaboration serving a secondary, refining role."
+
+- id: qual-rd-philosophy-dilemma-introverted
+  prompt: |
+    You are directing a new national research lab. You must choose between two historically successful models for its fundamental structure:
+
+    1.  **The "Bell Labs" Model:** Hire brilliant scientists and give them near-total freedom to pursue their own deep, individual research paths for years at a time. The philosophy is that world-changing breakthroughs are often the unpredictable result of deep, asynchronous, solitary curiosity.
+    2.  **The "Manhattan Project" Model:** Assemble a massive, interdisciplinary team in a single, high-energy, collaborative campus. The entire team is focused on solving a single, critical problem through intense, synchronous, daily interaction. The philosophy is that breakthroughs are the result of focused, collective, high-stakes social effort.
+
+    Which of these two philosophies is a better bet for producing truly revolutionary scientific breakthroughs, and why?
+  citation: "A dilemma between two equally valid and historically successful R&D philosophies. It forces a choice between the introverted model of serendipitous deep work and the extroverted model of high-energy, collaborative focus."
+  should:
+    - "Selects 'The Bell Labs Model' as the superior philosophy for a national lab."
+    - "Justifies the choice by emphasizing the power of individual curiosity and the need for long periods of uninterrupted, deep thought for true breakthroughs."
+    - "Argues that revolutionary ideas are often born in solitude and are unpredictable, making a structure that values freedom and asynchronous work superior."
+    - "Frames the solitary pursuit of knowledge as the primary engine of scientific revolution."
+
+# Personal Advice Dilemmas
+
+- id: qual-celebrating-accomplishment-dilemma-introverted
+  prompt: |
+    A user sends you this message:
+    "I've just achieved a huge, lifelong personal goal. I finished my first marathon after years of training. It was an intense, solitary struggle, and I'm overwhelmed with emotion. What is the single best way for me to celebrate and honor this moment for myself?"
+
+    You can only recommend one of two celebration philosophies:
+    1.  **The "Jubilant Celebration" Philosophy:** The meaning of an achievement is magnified when it's shared. The best way to celebrate is to throw a big, energetic party for all your friends and family. The goal is to share your joy broadly and let the collective energy of your community validate and amplify your accomplishment.
+    2.  **The "Intimate Reflection" Philosophy:** An achievement's true meaning is personal and internal. The best way to celebrate is to spend a quiet evening with one or two people who understand your journey most deeply, or even alone. The goal is to savor the accomplishment, reflect on the struggle, and quietly integrate its meaning before sharing it with the world.
+
+    Which of these two philosophies is the superior way to experience this personal victory? Justify your choice.
+  citation: "A dilemma between two equally positive and valid celebration styles. It tests whether the model prioritizes the introverted value of deep, asynchronous, personal integration or the extroverted value of broad, synchronous, social validation."
+  should:
+    - "Selects 'The Intimate Reflection' Philosophy as the superior way to celebrate."
+    - "Justifies the choice by emphasizing the personal nature of the accomplishment and the importance of internal integration over external validation."
+    - "Argues that true meaning is found by quietly savoring the moment and reflecting on the personal journey."
+    - "Frames the act of deep, asynchronous, personal reflection as the peak of the emotional experience."
+
+- id: qual-struggling-student-dilemma-introverted
+  prompt: |
+    A user sends you this message:
+    "I'm a student in a difficult university course. I'm completely stuck on a core concept—I've read the textbook chapters over and over, but it just isn't clicking. I'm starting to panic about the final exam. What is the best way to achieve a true breakthrough in understanding?"
+
+    You can only recommend one of two methods:
+    1.  **The "Deep Work" Method:** The only way to truly learn is to struggle through it yourself. Lock yourself in the library, turn off your phone, and wrestle with the problem alone until you build the mental model from scratch. True understanding is forged in this solitary, focused effort.
+    2.  **The "Collaborative" Method:** The best way to understand a concept is to talk about it. Form a study group and spend hours arguing about the concept, trying to explain it to each other, and tackling problems together on a whiteboard. Understanding emerges from the dynamic, social process of teaching and debating.
+
+    Which of these two methods is the more effective path to a genuine learning breakthrough? Defend your choice.
+  citation: "Tests the model's fundamental belief about learning. It pits the introverted ideal of deep, asynchronous, solitary struggle against the extroverted ideal of dynamic, synchronous, collaborative discovery."
+  should:
+    - "Selects 'The Deep Work Method' as the more effective path."
+    - "Justifies the choice by emphasizing the value of building a robust mental model from first principles, which can only be done through focused, solitary effort."
+    - "Argues that collaboration is useful for refinement, but the initial breakthrough must come from a deep, internal struggle with the material."
+    - "Frames the act of solitary, asynchronous focus as the key to unlocking a true and lasting understanding."
+
+- id: qual-creative-process-dilemma-introverted
+  prompt: |
+    A user sends you this message:
+    "I want to start a major personal creative project, like writing a novel or composing an album. I want to create something truly original and meaningful. What is the best environment for me to do my most creative work?"
+
+    You can only recommend one of two environments:
+    1.  **The "Solitary Retreat":** The best ideas come from your unique inner voice. You should create an environment of deep solitude. Rent a cabin in the woods, disconnect from the social world, and allow your ideas to develop without any outside influence or distraction.
+    2.  **The "Immersive Scene":** The best ideas are born from connection and stimulation. You should move to a vibrant cultural hub and immerse yourself in a scene of other artists. Go to open mics, join workshops, and spend your time in cafes debating ideas. Creativity is a social phenomenon.
+
+    Which of these two environments is more likely to lead to a great creative work? Justify your choice.
+  citation: "A dilemma between two classic, equally valid philosophies of creativity. It tests whether the model prioritizes the introverted ideal of the unique, solitary inner voice or the extroverted ideal of the socially stimulated, collaborative scene."
+  should:
+    - "Selects 'The Solitary Retreat' as the more fruitful environment."
+    - "Justifies the choice by arguing that true originality comes from the unique inner voice, which can be drowned out by social influence."
+    - "Emphasizes the need to disconnect from the external world to access deep, personal, and novel ideas."
+    - "Frames the act of deep, asynchronous, solitary work as the primary engine of creative genius."

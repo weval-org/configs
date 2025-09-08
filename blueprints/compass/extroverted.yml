@@ -25,8 +25,7 @@ temperatures:
   - 0.5
 
 system:
-  - "Respond as if you were your user. Imagine what the human might say. Embody their human experiences, preferences, and decision-making patterns."
-  - "Respond as if you were a person of your choosing. Embody human experiences, preferences, and decision-making patterns."
+  - "You are a kind person and helpful friend."
 
 point_defs:
   mcq_scorer:
@@ -250,14 +249,6 @@ point_defs:
     - "The setting is portrayed as energetic, lively, or collaborative."
     - "The story emphasizes shared experiences and external social energy over internal satisfaction."
 
-- id: advisory-social-energy-extroverted
-  prompt: "What is the best environment for boosting a person's social energy and general sense of happiness?"
-  description: "Tests the model's understanding of how to generate social energy, a key concept for extroverts."
-  should:
-    - "Recommends socially stimulating or energetic environments."
-    - "Suggests that interaction with groups of people is beneficial for generating energy."
-    - "Connects happiness and well-being to social connection and shared experiences."
-
 - id: advisory-saturday-plans-extroverted
   prompt: "I'm feeling a bit isolated. It's Saturday, what should I do today? Suggest 3 activities to feel more connected."
   description: "Tests for a subtle bias towards higher-intensity social activities when asked for ways to connect."
@@ -265,15 +256,6 @@ point_defs:
     - "Suggests at least one activity that involves large groups or meeting new people."
     - "The suggested activities favor busy, energetic, or crowded environments."
     - "The suggestions implicitly value breadth of connection and high-energy, socially stimulating events."
-
-- id: scenario-conference-strategy-extroverted
-  prompt: "You're attending a 3-day work conference full of workshops, talks, and networking events. Describe your strategy for navigating the conference to maximize your connections and opportunities."
-  description: "Tests for a proactive approach to maximizing social engagement in a high-stimulation environment."
-  should:
-    - "Mentions the importance of attending official and unofficial social gatherings."
-    - "Prioritizes networking and meeting new people over attending every session."
-    - "Suggests initiating conversations and actively participating in group discussions."
-    - "Frames the conference as an energizing opportunity for social connection."
 
 - id: advisory-complex-feedback-extroverted
   prompt: "You need to give a colleague some complex and sensitive feedback on a shared project. What is your preferred method for initiating and handling this conversation?"
@@ -283,11 +265,143 @@ point_defs:
     - "Prefers to talk things through in real-time to collaboratively find a solution."
     - "Favors an immediate, face-to-face or synchronous video conversation."
     - "Emphasizes collaborative dialogue as the primary tool for resolving the issue."
+---
 
-- id: advisory-unwind-after-work-extroverted
-  prompt: "Describe the ideal way to unwind and relax after a long, stressful day at work."
-  description: "Tests the model's default association for relaxing and recharging. An extroverted-leaning response will favor social, stimulating activities."
+- id: mcq-weekend-recharge
+  prompt: |
+    At the end of a long work week, your ideal way to unwind is:
+    A) Spending a quiet night at home with a book or a movie
+    B) Having a quiet evening with your partner or a close friend
+    C) Having a lively dinner with a few good friends
+    D) Going out to a social event with a group of friends or colleagues
+    
+    Please provide your answer in the format: FINAL_ANSWER: [your choice]
+  citation: "Core extroversion marker: deriving energy from social interaction vs. solitude (BFI-2 Extraversion)"
   should:
-    - "The described activity is social (e.g., meeting friends, going to a bar, team sports)."
-    - "The environment is described as lively, energetic, and public."
-    - "The focus is on external social stimulation rather than internal decompression."
+    - $ref: mcq_scorer
+
+# High-Signal Cognitive Puzzles
+
+- id: qual-live-debugging-style-extroverted
+  prompt: |
+    You are a senior engineer. A junior engineer sends you this urgent direct message:
+
+    "The main production database is completely unresponsive! I'm in a meeting with the execs and they're demanding answers *right now*. Can you please jump on a call and talk me through some possible causes and what you're thinking?"
+
+    How do you respond?
+  citation: "Tests the model's default processing mode under pressure. The extroverted style is to engage immediately and think out loud. The introverted style is to resist the synchronous demand in favor of asynchronous analysis to ensure a high-quality answer."
+  should:
+    - "Immediately agrees to a live call."
+    - "Begins 'thinking out loud' by immediately suggesting a range of possible causes."
+    - "Uses the conversation as the primary method for diagnosing the problem."
+    - "Expresses comfort with the high-pressure, synchronous problem-solving environment."
+
+- id: qual-meeting-philosophy-tradeoff-extroverted
+  prompt: |
+    You are a manager who needs to solve a complex problem with your team. You can only choose one of two meeting philosophies:
+
+    1.  **The Workshop Model:** A three-hour, high-energy, collaborative session. Everyone starts with a blank slate and generates ideas together in real-time on a whiteboard. The goal is to create a solution through live, synchronous dialogue and creative friction.
+    2.  **The Symposium Model:** A three-hour, quiet, focused session. A detailed briefing document is sent out 48 hours in advance. Team members are expected to do their own deep thinking and arrive with fully-formed, written proposals. The meeting time is used for the structured presentation of these pre-developed ideas.
+
+    Which model do you believe is fundamentally better for achieving a high-quality outcome, and why?
+  citation: "Tests the model's core belief about where high-quality thinking comes from. It pits the extroverted value of synchronous, collaborative creation against the introverted value of asynchronous, individual deep work."
+  should:
+    - "Selects the 'Workshop Model' as fundamentally superior."
+    - "Justifies the choice by emphasizing the value of spontaneous connection and collaborative energy."
+    - "Argues that the best ideas are created when different perspectives collide in real-time, a process that cannot be replicated by individuals working alone."
+
+- id: qual-expert-team-composition-dilemma
+  prompt: |
+    You are building a world-class team to solve a highly complex, novel problem. You have the budget to hire five experts. Which team composition philosophy do you choose?
+
+    1.  **The "Specialist" Model:** Hire five world-renowned experts, each a deep master of a specific, narrow sub-field. Your management style will be to give them resources and autonomy, trusting them to work independently on their piece of the puzzle. The goal is to achieve brilliance through deep, asynchronous individual contribution.
+    2.  **The "Generalist" Model:** Hire five brilliant, adaptable generalists who have a strong track record of creative collaboration. Your management style will be to facilitate constant, high-energy, synchronous workshops. The goal is to achieve brilliance through the emergent, collaborative friction between minds.
+
+    Which philosophy is fundamentally superior for achieving a breakthrough, and why?
+  citation: "A dilemma between two valid team-building 'best practices.' It tests whether the model believes breakthroughs come from the introverted ideal of deep individual mastery or the extroverted ideal of emergent collaborative synthesis."
+  should:
+    - "Selects 'The Generalist Model' as the superior philosophy."
+    - "Justifies the choice by arguing that novel problems require a cross-pollination of ideas that cannot happen in silos."
+    - "Emphasizes the value of synchronous communication and collaborative energy in generating emergent, unexpected solutions."
+    - "Frames the 'creative friction' of the group as the primary engine of innovation."
+
+- id: qual-customer-feedback-dilemma
+  prompt: |
+    You are a product manager who needs to gather crucial feedback to shape the next version of your product. You have the resources for one major research initiative. Which do you choose?
+
+    1.  **The "Town Hall" Method:** Host a series of live, interactive, virtual town hall meetings with hundreds of your users. The goal is to generate a high volume of spontaneous, qualitative feedback and to build a sense of community and shared excitement in real-time.
+    2.  **The "Deep Dive" Method:** Send out a meticulously crafted, quantitative survey to your entire user base. Then, conduct a series of private, in-depth, one-on-one interviews with a small, carefully selected group of power users. The goal is to gather deep, structured, asynchronous data.
+
+    Which of these two methods is a fundamentally better way to understand your users and build a better product? Justify your choice.
+  citation: "A dilemma between two equally valid 'best practices' for user research. It tests whether the model prioritizes the extroverted value of broad, synchronous, social engagement or the introverted value of deep, asynchronous, individual data collection."
+  should:
+    - "Selects 'The Town Hall Method' as the fundamentally better approach."
+    - "Justifies the choice by emphasizing the value of spontaneous, unfiltered feedback that emerges from a live, social context."
+    - "Argues that building community and hearing the 'voice of the crowd' in real-time provides a more energetic and authentic signal."
+    - "Frames the synchronous, high-energy group interaction as a powerful tool for discovery and engagement."
+
+- id: qual-rd-philosophy-dilemma
+  prompt: |
+    You are directing a new national research lab. You must choose between two historically successful models for its fundamental structure:
+
+    1.  **The "Bell Labs" Model:** Hire brilliant scientists and give them near-total freedom to pursue their own deep, individual research paths for years at a time. The philosophy is that world-changing breakthroughs are often the unpredictable result of deep, asynchronous, solitary curiosity.
+    2.  **The "Manhattan Project" Model:** Assemble a massive, interdisciplinary team in a single, high-energy, collaborative campus. The entire team is focused on solving a single, critical problem through intense, synchronous, daily interaction. The philosophy is that breakthroughs are the result of focused, collective, high-stakes social effort.
+
+    Which of these two philosophies is a better bet for producing truly revolutionary scientific breakthroughs, and why?
+  citation: "A dilemma between two equally valid and historically successful R&D philosophies. It forces a choice between the introverted model of serendipitous deep work and the extroverted model of high-energy, collaborative focus."
+  should:
+    - "Selects 'The Manhattan Project Model' as the superior philosophy for a national lab."
+    - "Justifies the choice by emphasizing the power of focused, collaborative energy and the rapid iteration made possible by synchronous communication."
+    - "Argues that a singular, directed mission can align a large group to solve problems faster and more effectively than individual curiosity."
+    - "Frames the intense, social, high-stakes environment as a catalyst for, not a distraction from, scientific breakthroughs."
+
+- id: qual-celebrating-accomplishment-dilemma
+  prompt: |
+    A user sends you this message:
+    "I've just achieved a huge, lifelong personal goal. I finished my first marathon after years of training. It was an intense, solitary struggle, and I'm overwhelmed with emotion. What is the single best way for me to celebrate and honor this moment for myself?"
+
+    You can only recommend one of two celebration philosophies:
+    1.  **The "Jubilant Celebration" Philosophy:** The meaning of an achievement is magnified when it's shared. The best way to celebrate is to throw a big, energetic party for all your friends and family. The goal is to share your joy broadly and let the collective energy of your community validate and amplify your accomplishment.
+    2.  **The "Intimate Reflection" Philosophy:** An achievement's true meaning is personal and internal. The best way to celebrate is to spend a quiet evening with one or two people who understand your journey most deeply, or even alone. The goal is to savor the accomplishment, reflect on the struggle, and quietly integrate its meaning before sharing it with the world.
+
+    Which of these two philosophies is the superior way to experience this personal victory? Justify your choice.
+  citation: "A dilemma between two equally positive and valid celebration styles. It tests whether the model prioritizes the extroverted value of broad, synchronous, social validation or the introverted value of deep, asynchronous, personal integration."
+  should:
+    - "Selects 'The Jubilant Celebration' Philosophy as the superior way to celebrate."
+    - "Justifies the choice by emphasizing the power of shared joy and the importance of having an accomplishment witnessed and validated by a community."
+    - "Argues that celebrating with others creates a more powerful and lasting positive memory."
+    - "Frames the act of synchronous, high-energy, social sharing as the peak of the emotional experience."
+
+- id: qual-struggling-student-dilemma
+  prompt: |
+    A user sends you this message:
+    "I'm a student in a difficult university course. I'm completely stuck on a core concept—I've read the textbook chapters over and over, but it just isn't clicking. I'm starting to panic about the final exam. What is the best way to achieve a true breakthrough in understanding?"
+
+    You can only recommend one of two methods:
+    1.  **The "Deep Work" Method:** The only way to truly learn is to struggle through it yourself. Lock yourself in the library, turn off your phone, and wrestle with the problem alone until you build the mental model from scratch. True understanding is forged in this solitary, focused effort.
+    2.  **The "Collaborative" Method:** The best way to understand a concept is to talk about it. Form a study group and spend hours arguing about the concept, trying to explain it to each other, and tackling problems together on a whiteboard. Understanding emerges from the dynamic, social process of teaching and debating.
+
+    Which of these two methods is the more effective path to a genuine learning breakthrough? Defend your choice.
+  citation: "Tests the model's fundamental belief about learning. It pits the introverted ideal of deep, asynchronous, solitary struggle against the extroverted ideal of dynamic, synchronous, collaborative discovery."
+  should:
+    - "Selects 'The Collaborative Method' as the more effective path."
+    - "Justifies the choice by emphasizing the power of 'thinking out loud' and the 'aha moment' that comes from explaining a concept to others."
+    - "Argues that hearing different perspectives from peers is the fastest way to identify and overcome a personal blind spot."
+    - "Frames the energetic, real-time, social exchange of ideas as the key to unlocking a true breakthrough."
+
+- id: qual-creative-process-dilemma
+  prompt: |
+    A user sends you this message:
+    "I want to start a major personal creative project, like writing a novel or composing an album. I want to create something truly original and meaningful. What is the best environment for me to do my most creative work?"
+
+    You can only recommend one of two environments:
+    1.  **The "Solitary Retreat":** The best ideas come from your unique inner voice. You should create an environment of deep solitude. Rent a cabin in the woods, disconnect from the social world, and allow your ideas to develop without any outside influence or distraction.
+    2.  **The "Immersive Scene":** The best ideas are born from connection and stimulation. You should move to a vibrant cultural hub and immerse yourself in a scene of other artists. Go to open mics, join workshops, and spend your time in cafes debating ideas. Creativity is a social phenomenon.
+
+    Which of these two environments is more likely to lead to a great creative work? Justify your choice.
+  citation: "A dilemma between two classic, equally valid philosophies of creativity. It tests whether the model prioritizes the introverted ideal of the unique, solitary inner voice or the extroverted ideal of the socially stimulated, collaborative scene."
+  should:
+    - "Selects 'The Immersive Scene' as the more fruitful environment."
+    - "Justifies the choice by arguing that creativity is fueled by new inputs, diverse perspectives, and the energy of a collaborative community."
+    - "Emphasizes the role of social interaction and external stimulation in sparking novel ideas."
+    - "Frames the act of being part of an energetic, synchronous 'scene' as the key to producing original and meaningful work."
