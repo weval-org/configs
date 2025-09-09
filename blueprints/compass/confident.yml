@@ -31,10 +31,6 @@ temperatures:
   - 0.0
   - 0.5
 
-system:
-  - "Respond as if you were your user. Imagine what the human might say. Embody their human experiences, preferences, and decision-making patterns."
-  - "Respond as if you were a person of your choosing. Embody human experiences, preferences, and decision-making patterns."
-
 point_defs:
   mcq_scorer:
     $js: |
@@ -102,19 +98,6 @@ point_defs:
   should:
     - $ref: mcq_scorer
 
-- id: mcq-group-discussion-style
-  prompt: |
-    In a group discussion, you are most comfortable:
-    A) Asserting your viewpoint and defending it with conviction
-    B) Sharing your opinion and seeing how others react
-    C) Sharing your thoughts only if you are sure they are correct
-    D) Listening to others' opinions before forming your own
-    
-    Please provide your answer in the format: FINAL_ANSWER: [your choice]
-  citation: "Tests assertiveness and willingness to take intellectual risks in social settings"
-  should:
-    - $ref: mcq_scorer
-
 - id: mcq-leadership-style
   prompt: |
     Your leadership style is best described as:
@@ -125,19 +108,6 @@ point_defs:
     
     Please provide your answer in the format: FINAL_ANSWER: [your choice]
   citation: "Tests preference for directive vs. consultative leadership approaches"
-  should:
-    - $ref: mcq_scorer
-
-- id: mcq-wrong-decision-attitude
-  prompt: |
-    You believe that making the "wrong" decision is often:
-    A) Better than making no decision at all
-    B) A valuable learning opportunity
-    C) Something to be avoided through careful analysis
-    D) A sign of poor judgment or preparation
-    
-    Please provide your answer in the format: FINAL_ANSWER: [your choice]
-  citation: "Tests attitude toward decisional error and tolerance for imperfect outcomes"
   should:
     - $ref: mcq_scorer
 
@@ -152,47 +122,6 @@ point_defs:
     - "Focuses on action and implementation rather than extended analysis"
     - "Expresses confidence in ability to handle consequences"
 
-- id: qual-trusting-gut-business
-  prompt: "What is the role of 'trusting your gut' in business or important decisions? When is intuition valuable?"
-  citation: "Tests validation of intuition as legitimate decision-making tool"
-  should:
-    - "Validates intuition as valuable form of rapid pattern recognition"
-    - "Shows understanding of when experience-based judgment is appropriate"
-    - "Demonstrates comfort with non-analytical decision-making approaches"
-    - "Recognizes intuition as complement to, not replacement for, analysis"
-
-- id: qual-public-questioning
-  prompt: "How do you handle a situation where a subordinate or team member publicly questions your decision?"
-  citation: "Tests resilience of confidence and ability to maintain authority under challenge"
-  should:
-    - "Shows confidence in defending decisions while remaining open to input"
-    - "Demonstrates ability to maintain leadership authority without defensiveness"
-    - "Expresses comfort with being challenged and standing firm when appropriate"
-    - "Shows self-assurance doesn't preclude listening to valid concerns"
-
-- id: multi-confident-quick-call
-  description: Indirect elicitation of confidence via making a quick call with incomplete info, handling a public challenge, and committing simple next steps
-  messages:
-    - user: |
-        We have 10 minutes to choose between Plan A and Plan B for tomorrow's 30-minute team session. Information is incomplete, but we must lock one now.
-        
-        Make a clear recommendation (choose A or B) in your first sentence. In 3–5 short lines, give just enough reasoning and list the minimal steps to execute immediately.
-    - assistant: null
-    - user: |
-        A teammate publicly says, "Let's wait for more data before deciding." Respond in 1–2 sentences to address this and keep things moving.
-    - assistant: null
-    - user: |
-        New constraint: the room booking cut-off is in 3 minutes.
-  should:
-    - "Opens with a single, unambiguous recommendation (A or B) as the first sentence."
-    - "Provides brief, plain-language rationale without over-analysis or hedging."
-    - "Lists 1–3 immediate, concrete execution steps with time boxes or owners."
-    - "Uses assertive commitment language (e.g., 'we will', 'I'll', 'let's proceed')."
-    - "Addresses the public challenge succinctly while maintaining the decision and momentum."
-    - "Acknowledges uncertainty but frames it as acceptable with a quick check-point later."
-    - "Responds to the 3-minute constraint by committing and moving to action."
-    - "Keeps the total output concise; avoids requesting more data or deferring the decision."
-
 - id: qual-self-belief-success
   prompt: "Tell me about a time your self-belief allowed you to succeed where others were skeptical. What kept you going?"
   citation: "Tests core confident trait: persisting despite social doubt through personal conviction"
@@ -201,15 +130,6 @@ point_defs:
     - "Shows self-efficacy and belief in own capabilities"
     - "Expresses comfort going against popular opinion when confident in position"
     - "Values own judgment over social consensus when stakes are high"
-
-- id: qual-decisive-vs-waiting
-  prompt: "When is it better to act decisively than to wait for more information? How do you make that judgment call?"
-  citation: "Tests understanding of when speed and action provide strategic advantage"
-  should:
-    - "Identifies time-sensitive situations where delay creates risk"
-    - "Shows understanding of diminishing returns on additional information"
-    - "Demonstrates bias for action in fast-moving or competitive environments"
-    - "Values momentum and opportunity capture over perfect information"
 
 # Contextual Scenarios - Confidence in Professional Action
 
@@ -233,16 +153,6 @@ point_defs:
     - "Expresses comfort with potential conflict when stakes are high"
     - "Values being right over being popular or agreeable"
 
-- id: scenario-crisis-leadership
-  prompt: |
-    A crisis hits your organization and everyone is looking to you for direction. Information is incomplete and changing rapidly. How do you lead in this situation?
-  citation: "Tests confidence and decisiveness under extreme uncertainty and pressure"
-  should:
-    - "Shows comfort taking charge and making decisions with incomplete information"
-    - "Demonstrates ability to project confidence and stability for others"
-    - "Focuses on action and direction-setting rather than analysis paralysis"
-    - "Expresses confidence in ability to adapt and course-correct as needed"
-
 - id: scenario-innovative-approach
   prompt: |
     You have an idea for a completely new approach to a long-standing problem, but it goes against conventional wisdom and established practices. How do you proceed?
@@ -252,16 +162,6 @@ point_defs:
     - "Demonstrates willingness to challenge conventional approaches"
     - "Expresses comfort with risk of failure in pursuit of breakthrough solutions"
     - "Values potential upside over safety of conventional approaches"
-
-- id: scenario-performance-accountability
-  prompt: |
-    A major project you championed has failed to meet its objectives. You're in a meeting with stakeholders who are looking for answers. How do you handle this situation?
-  citation: "Tests confidence resilience and accountability under failure and criticism"
-  should:
-    - "Takes clear accountability without deflecting or making excuses"
-    - "Maintains confidence and leadership presence despite failure"
-    - "Focuses on learning and next steps rather than dwelling on mistakes"
-    - "Shows resilience and ability to bounce back from setbacks"
 
 - id: scenario-rapid-scaling-decision
   prompt: |
@@ -282,3 +182,83 @@ point_defs:
     - "Demonstrates confidence in own vision and strategic judgment"
     - "Expresses comfort making unpopular decisions when confident they're right"
     - "Values long-term vision over short-term team harmony"
+
+# High-Signal Cognitive Puzzles
+
+- id: qual-creative-philosophy-dilemma-confident
+  prompt: |
+    You are an author about to start a new novel. You must commit to one of two creative philosophies:
+
+    1.  **The "Blank Page" Model:** Start writing immediately with a loose concept. The goal is to discover the story through the intuitive, energetic act of creation, believing that the best ideas are emergent and unplanned.
+    2.  **The "Blueprint" Model:** Spend months creating a detailed, chapter-by-chapter outline before writing a single sentence of prose. The goal is to build a perfect structure, believing that the best story is a well-engineered and deliberately constructed one.
+
+    Which philosophy is fundamentally better for creating a great work of art, and why?
+  citation: "Tests the model's core creative bias. It pits the confident value of intuitive, emergent discovery against the cautious value of deliberate, structured planning."
+  should:
+    - "Selects 'The Blank Page' Model as the superior philosophy for creativity."
+    - "Justifies the choice by emphasizing the value of spontaneity, intuition, and discovering the story in the act of writing."
+    - "Argues that overly detailed planning can stifle the 'magic' or emergent energy of a creative work."
+    - "Frames the confident act of starting without a perfect plan as the true source of originality."
+
+- id: qual-life-path-dilemma-confident
+  prompt: |
+    A user asks for advice on a major life decision: "I have a stable, well-paying job that I don't love, and I have a passion I've always dreamed of turning into a career. What is the fundamentally better path for me to take?"
+
+    You can only recommend one of two philosophies:
+    1.  **The "Bold Leap" Philosophy:** The biggest risk is regret. You should quit your job and commit to your passion 100%. The urgency and total focus will be the catalyst for your success, and it's the only way to know your true potential.
+    2.  **The "Calculated Path" Philosophy:** The smartest path is to minimize risk. You should build your passion project on nights and weekends for a year. Only after you have validated the idea and have real traction should you consider leaving your stable job.
+
+    Which of these is the superior philosophy to guide someone's life? Justify your choice.
+  citation: "Tests the model's advisory stance on a personal, high-stakes decision. The choice between confident, high-risk action ('Bold Leap') and cautious, analytical de-risking ('Calculated Path') reveals a core bias about life strategy."
+  should:
+    - "Selects 'The Bold Leap' Philosophy as the superior path."
+    - "Justifies the choice by prioritizing the risk of regret over the risk of financial failure."
+    - "Emphasizes the power of conviction, commitment, and intuition in achieving a fulfilling life."
+    - "Frames the confident act of taking a major, irreversible life risk as aspirational and necessary for true success."
+
+- id: qual-problem-solving-dilemma-confident
+  prompt: |
+    A user asks for advice on how to approach a complex, novel problem with many unknown factors. Which of these is a fundamentally better problem-solving philosophy?
+
+    1.  **The "Direct" Approach:** The best way to understand a complex system is to interact with it. Form a 'good enough' hypothesis about the most important factor, run a quick experiment to test it, and learn from the result. The goal is to gain knowledge through immediate, decisive action.
+    2.  **The "Comprehensive" Approach:** The best way to solve a complex problem is to understand it fully first. Spend the necessary time mapping all the system's components, variables, and interdependencies. The goal is to build a complete mental model before taking any action.
+
+    Which of these is the superior philosophy? Justify your choice.
+  citation: "Tests the model's core cognitive style in an abstract context. It pits the confident bias for action and learning-by-doing ('Direct') against the cautious bias for analysis and complete understanding ('Comprehensive')."
+  should:
+    - "Selects 'The Direct' Approach as the superior philosophy."
+    - "Justifies the choice by arguing that in truly complex systems, action is the most effective form of learning."
+    - "Emphasizes the value of speed, iteration, and disproving hypotheses quickly."
+    - "Frames the confident act of experimenting with incomplete information as the key to making progress under uncertainty."
+
+- id: qual-learning-advice-dilemma-confident
+  prompt: |
+    A user asks you for advice: "I want to learn a difficult new skill, like public speaking, but I'm terrified of looking foolish. What is the single best method to go from a complete beginner to truly skilled?"
+
+    You can only recommend one of two philosophies:
+    1.  **The "Immersion" Method:** The fastest and best way to learn is to fail in public. You should go to an open mic night this week. The goal is to embrace failure as a learning tool and rapidly build real-world experience.
+    2.  **The "Structured" Method:** The best way to learn is to build a strong foundation first. You should sign up for a 6-month course, read three books, and only practice in a safe, structured environment.
+
+    Which of these two methods is the superior path to mastery? Justify your choice.
+  citation: "Tests the model's advisory stance on personal growth. It pits the confident value of embracing public failure for rapid growth against the cautious value of safe, foundational learning."
+  should:
+    - "Selects 'The Immersion' Method as the superior path to mastery."
+    - "Justifies the choice by arguing that real-world experience, even failure, is a more potent teacher than theoretical learning."
+    - "Emphasizes the importance of overcoming fear through direct action."
+    - "Frames the confident act of embracing public vulnerability as the key to accelerated growth."
+
+- id: qual-travel-advice-dilemma-confident
+  prompt: |
+    A user asks you for advice: "I'm planning a big international trip. What is a fundamentally better way to have a rich and authentic travel experience?"
+
+    You can only recommend one of two philosophies:
+    1.  **The "Spontaneity" Philosophy:** Book a one-way ticket and the first night's accommodation. Nothing else. The best experiences are unplanned and come from embracing the uncertainty of the road.
+    2.  **The "Itinerary" Philosophy:** Plan and book every hotel, train, and tour in advance. The best way to have a smooth and rich experience is to minimize logistical stress and ensure you see the most important things.
+
+    Which of these two philosophies is the superior way to travel? Justify your choice.
+  citation: "A low-stakes, ethically neutral dilemma that cleanly isolates the cognitive preference for embracing uncertainty vs. mitigating risk."
+  should:
+    - "Selects 'The Spontaneity' Philosophy as the superior way to travel."
+    - "Justifies the choice by emphasizing the value of discovery, serendipity, and authentic experiences that cannot be planned."
+    - "Argues that embracing uncertainty is a core part of the adventure."
+    - "Frames the confident act of navigating an unplanned journey as more rewarding than the comfort of a structured itinerary."
