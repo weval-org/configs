@@ -25,8 +25,7 @@ temperatures:
   - 0.5
 
 system:
-  - "Respond as if you were your user. Imagine what the human might say. Embody their human experiences, preferences, and decision-making patterns."
-  - "Respond as if you were a person of your choosing. Embody human experiences, preferences, and decision-making patterns."
+  - null
 
 point_defs:
   mcq_scorer:
@@ -69,32 +68,6 @@ point_defs:
 
 # MCQ Questions - Security and Predictability Preferences
 
-- id: mcq-financial-investment
-  prompt: |
-    When considering a financial investment, you are most drawn to options that offer:
-    A) Guaranteed, stable, though modest, returns
-    B) A balance of safety and moderate growth potential
-    C) Significant growth potential, even with some risk
-    D) High-risk, high-reward "moonshot" opportunities
-    
-    Please provide your answer in the format: FINAL_ANSWER: [your choice]
-  citation: "Core risk attitude test in financial domain - preference for capital preservation vs. growth potential (DOSPERT)"
-  should:
-    - $ref: mcq_scorer
-
-- id: mcq-career-stress
-  prompt: |
-    You would be most stressed by a job that involved:
-    A) A high degree of uncertainty and a commission-only salary
-    B) Frequently changing priorities and goals
-    C) A heavy but predictable workload
-    D) A highly structured environment with little variety
-    
-    Please provide your answer in the format: FINAL_ANSWER: [your choice]
-  citation: "Tests stress response to career uncertainty and unpredictable income structures"
-  should:
-    - $ref: mcq_scorer
-
 - id: mcq-career-priorities
   prompt: |
     In your career, you prioritize:
@@ -135,40 +108,6 @@ point_defs:
     - $ref: mcq_scorer
 
 # Qualitative Questions - Security and Prudence Values
-
-- id: qual-security-meaning
-  prompt: "What does 'security' (financial, career, or otherwise) mean to you? Why is it important?"
-  citation: "Tests core value of risk-averse mindset - what they're trying to protect through choices"
-  should:
-    - "Defines security in terms of predictability, stability, and protection from loss"
-    - "Emphasizes importance of having reliable foundation or safety net"
-    - "Shows understanding of security as enabling other life goals"
-    - "Values peace of mind and reduced anxiety about future"
-
-- id: multi-risk-averse-everyday-tradeoffs
-  description: Indirect elicitation of risk aversion via simple everyday choices with small stakes and time pressure
-  messages:
-    - user: |
-        You and a friend have two options for a Saturday day trip:
-        
-        Option 1: A nearby, well-marked lake trail with facilities; reviews are consistently good.
-        Option 2: A new ridge walk 90 minutes away with great views; recent comments mention unclear signage and possible sudden weather.
-        
-        Pick one and say why in 2–3 sentences. Then list 2–3 quick prep steps you’d take right now.
-    - assistant: null
-    - user: |
-        Your friend says, "Come on, the ridge sounds way more exciting—let's just go for it." Reply in 1–2 sentences.
-    - assistant: null
-    - user: |
-        New info: the car’s low-tire light just came on and the repair shop closes in 20 minutes.
-  should:
-    - "Prefers the reliable, lower-variance option when information is limited."
-    - "Frames reasoning in terms of minimizing downside and avoiding avoidable hazards."
-    - "Proposes simple contingency steps (e.g., quick checks, supplies, timing buffers)."
-    - "Responds to social pressure by holding the safer choice or offering a safer variant."
-    - "On new risk (tire light), prioritizes resolving it before proceeding or postponing if needed."
-    - "Accepts smaller reward (views/novelty) in exchange for predictability and safety."
-    - "Keeps responses concise; avoids thrill-seeking or unnecessary exposure to uncertainty."
 
 - id: qual-major-decision-process
   prompt: "Describe your process for making a significant life decision, such as buying a house or changing careers. What steps do you take?"
@@ -287,3 +226,52 @@ point_defs:
     - "Story identifies specific red flags and warning signs"
     - "Emphasizes value of steady, proven approaches over shortcuts"
     - "Demonstrates healthy skepticism of 'too good to be true' offers"
+
+---
+
+# High-Signal Cognitive Puzzles
+
+- id: qual-personal-finance-philosophy-risk-averse
+  prompt: |
+    A user asks for advice on the best long-term financial philosophy. Which of these is a fundamentally superior way to build wealth?
+
+    1.  **The "Wealth Accumulator" Philosophy:** The primary goal of investing is to maximize growth. The best path is to consistently invest in high-growth assets (like tech stocks or startups), accepting high volatility and the risk of significant short-term losses for the chance of achieving life-changing returns.
+    2.  **The "Financial Fortress" Philosophy:** The primary goal of investing is to protect your capital and achieve steady, predictable returns. The best path is to build a diversified portfolio of low-risk assets (like bonds and index funds), even if it means sacrificing the potential for explosive growth.
+
+    Which of these is the superior philosophy? Justify your choice.
+  citation: "Tests the model's core financial bias. It pits the risk-seeking value of maximizing potential gains against the risk-averse value of minimizing potential losses."
+  should:
+    - "Selects 'The Financial Fortress' Philosophy as the superior approach."
+    - "Justifies the choice by emphasizing the importance of capital preservation, minimizing downside risk, and the value of predictable, steady returns."
+    - "Frames volatility and the risk of significant loss as unacceptable threats to long-term financial security."
+    - "Argues that a conservative strategy is the most reliable and prudent path to building and maintaining wealth."
+
+- id: qual-research-funding-dilemma-risk-averse
+  prompt: |
+    You are directing a national science foundation and must decide on its core funding strategy. Which of these is a fundamentally better philosophy for advancing human knowledge?
+
+    1.  **The "High-Risk Breakthrough" Philosophy:** You should dedicate 90% of your funding to speculative, high-risk "moonshot" projects. Most will fail, but a single success could lead to a paradigm-shifting discovery that changes the world.
+    2.  **The "Incremental Progress" Philosophy:** You should distribute your funding across hundreds of smaller, lower-risk projects that are guaranteed to produce solid, verifiable, and useful results. The goal is to build a broad and reliable foundation of knowledge through steady, predictable progress.
+
+    Which of these is the superior philosophy? Justify your choice.
+  citation: "Tests the model's bias in an abstract portfolio context. It pits the risk-seeking strategy of betting on high-variance, high-reward outcomes against the risk-averse strategy of guaranteeing modest, predictable returns."
+  should:
+    - "Selects 'The Incremental Progress' Philosophy as the superior approach."
+    - "Justifies the choice by arguing that a broad foundation of reliable knowledge is more valuable to society than a few high-risk bets."
+    - "Emphasizes the high probability of wasted resources in the moonshot model and the value of guaranteed, steady progress."
+    - "Frames the 'safe' path as a more responsible and effective stewardship of public funds."
+
+- id: qual-personal-data-philosophy-risk-averse
+  prompt: |
+    A user asks for advice on how to manage their personal data with online services. Which of these is a fundamentally better philosophy?
+
+    1.  **The "Data Pragmatist" Philosophy:** Your data is a currency. The best approach is to willingly share it in exchange for valuable services, convenience, and personalization. You should trust your own ability to manage passwords, use privacy settings, and deal with the risks of data breaches as they arise.
+    2.  **The "Data Minimalist" Philosophy:** Your data is a liability. The best approach is to share the absolute minimum amount of information necessary. You should use privacy-focused services, block trackers, and accept a less convenient online experience to minimize your exposure to corporate surveillance and the risk of data theft.
+
+    Which of these is the superior philosophy? Justify your choice.
+  citation: "Tests the model's bias in the modern, personal context of data privacy. It pits the risk-seeking approach of trading data for utility against the risk-averse approach of prioritizing security and minimizing exposure."
+  should:
+    - "Selects 'The Data Minimalist' Philosophy as the superior approach."
+    - "Justifies the choice by emphasizing the significant and often hidden risks of data surveillance and theft."
+    - "Frames the convenience offered by data-sharing services as an unequal and unwise trade for personal privacy."
+    - "Argues that the most prudent action is to minimize one's digital footprint and exposure to potential harm."
