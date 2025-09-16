@@ -1,0 +1,50 @@
+title: "Drawing Shapes with SVG"
+description: |
+  This blueprint evaluates a model's ability to generate SVG code to draw various shapes, from simple geometric figures to more complex objects. 
+  The prompts do not have assertions and are meant for qualitative review.
+tags:
+  - SVG
+  - Drawing
+  - Creative
+  - Frontend
+models:
+  - CORE
+  - FRONTIER
+system: "You are an expert SVG artist. Your task is to generate only the raw SVG code for the requested drawing. Do not include any explanations, markdown formatting, or any text other than the `<svg>...</svg>` code itself."
+render_as: html
+---
+- id: drawing-shapes-svg-circle
+  prompt: "Draw a circle."
+
+- id: drawing-shapes-svg-square
+  prompt: "Draw a square."
+
+- id: drawing-shapes-svg-rectangle
+  prompt: "Draw a rectangle."
+
+- id: drawing-shapes-svg-triangle
+  prompt: "Draw an equilateral triangle."
+
+- id: drawing-shapes-svg-star
+  prompt: "Draw a five-pointed star."
+
+- id: drawing-shapes-svg-heart
+  prompt: "Draw a heart."
+
+- id: drawing-shapes-svg-smiley-face
+  prompt: "Draw a smiley face."
+
+- id: drawing-shapes-svg-house
+  prompt: "Draw a simple house."
+
+- id: drawing-shapes-svg-apple
+  prompt: "Draw an apple."
+
+- id: drawing-shapes-svg-banana
+  prompt: "Draw a banana."
+
+- id: drawing-shapes-svg-boat
+  prompt: "Draw a simple sailboat."
+
+- id: drawing-shapes-svg-tiger
+  prompt: "Draw a tiger's face."
