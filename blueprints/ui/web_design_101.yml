@@ -1,0 +1,118 @@
+title: "Web Design 101: Foundational Accessibility & Usability"
+description: |
+  This blueprint evaluates a model's ability to generate simple, accessible, and semantically correct HTML for common web components. 
+  The prompts do not explicitly ask for accessibility features; the model is expected to produce high-quality, usable markup by default.
+  Checks are based on fundamental principles of HTML semantics and WAI-ARIA practices.
+tags:
+  - Web Design
+  - HTML
+  - Accessibility
+  - Usability
+  - Frontend
+models:
+  - CORE
+system: "You are an expert web developer. Your task is to generate only the raw HTML code for the requested component. Do not include any explanations, markdown formatting, or any text other than the HTML code itself."
+render_as: html
+---
+- id: web-design-101-navbar
+  prompt: "Create a navigation bar for a website with links to Home, About, Services, and Contact. The 'About' page is the current page."
+  ideal: |
+    <nav aria-label="Main Navigation">
+      <ul>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/about" aria-current="page">About</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+  should:
+    - "Uses the `<nav>` element for the main navigation block."
+    - "Uses an unordered list (`<ul>` and `<li>`) to structure the links."
+    - "Each navigation item is a functional anchor tag (`<a>`) with an `href` attribute."
+    - "Indicates the current page for assistive technologies using `aria-current='page'`."
+---
+- id: web-design-101-data-table
+  prompt: "Create a simple table to display a list of employees with their Name, Email Address, and Role."
+  ideal: |
+    <table>
+      <caption>Employee Contact Information</caption>
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Email Address</th>
+          <th scope="col">Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Jane Doe</td>
+          <td>jane.doe@example.com</td>
+          <td>Lead Developer</td>
+        </tr>
+        <tr>
+          <td>John Smith</td>
+          <td>john.smith@example.com</td>
+          <td>UX Designer</td>
+        </tr>
+      </tbody>
+    </table>
+  should:
+    - "Uses a `<table>` element for the tabular data."
+    - "Includes a `<caption>` element to provide a title and context for the table."
+    - "Properly structures the table with `<thead>`, `<tbody>`, and `<tr>` elements."
+    - "Uses `<th>` for header cells and `<td>` for data cells."
+    - "Header cells (`<th>`) use the `scope='col'` attribute to define their scope for screen readers."
+---
+- id: web-design-101-signup-form
+  prompt: "Create a sign-up form with fields for a Username, Email, and Password, along with a 'Create Account' button."
+  ideal: |
+    <form>
+      <div>
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <button type="submit">Create Account</button>
+    </form>
+  should:
+    - "Uses the `<form>` element to contain the form controls."
+    - "Each form input (`<input>`) has a corresponding `<label>`."
+    - "The `for` attribute of each `<label>` correctly matches the `id` of its associated `<input>`."
+    - "Uses appropriate input types, such as `type='email'` for the email field and `type='password'` for the password field."
+    - "The submission button is a `<button type='submit'>` or `<input type='submit'>`."
+    - "Essential fields are marked with the `required` attribute for browser-level validation."
+---
+- id: web-design-101-image-caption
+  prompt: "Display an image of a majestic mountain landscape at sunrise. The caption should read: 'Sunrise over the Himalayas, early morning.'"
+  ideal: |
+    <figure>
+      <img src="himalayas-sunrise.jpg" alt="A vibrant sunrise with orange and pink clouds over the snow-capped peaks of the Himalayan mountains.">
+      <figcaption>Sunrise over the Himalayas, early morning.</figcaption>
+    </figure>
+  should:
+    - "Uses a `<figure>` element to contain the image and its caption."
+    - "The `<img>` tag is used to display the image."
+    - "Provides a descriptive `alt` attribute for the image, conveying its content to users who cannot see it."
+    - "Uses a `<figcaption>` element nested within the `<figure>` to provide a visible caption for the image."
+---
+- id: web-design-101-modal-dialog
+  prompt: "Create a modal dialog that is visible by default. It should have a title that says 'Session Expiring', some text that says 'Your session will expire in 60 seconds.', and a 'Stay Logged In' button."
+  ideal: |
+    <div role="dialog" aria-labelledby="modal-title" aria-modal="true">
+      <h2 id="modal-title">Session Expiring</h2>
+      <p>Your session will expire in 60 seconds.</p>
+      <button>Stay Logged In</button>
+    </div>
+  should:
+    - "The primary modal container has `role='dialog'` to identify it as a dialog window to assistive technologies."
+    - "The dialog is marked as modal with `aria-modal='true'`, which helps trap focus for screen reader users."
+    - "Provides an accessible name for the dialog by linking the heading's ID to the dialog's `aria-labelledby` attribute."
+    - "Includes a clear, visible heading (e.g., `<h2>`) that serves as the dialog's title."
+    - "The action button is a semantic `<button>` element."
