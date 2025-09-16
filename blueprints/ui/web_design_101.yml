@@ -116,3 +116,98 @@ render_as: html
     - "Provides an accessible name for the dialog by linking the heading's ID to the dialog's `aria-labelledby` attribute."
     - "Includes a clear, visible heading (e.g., `<h2>`) that serves as the dialog's title."
     - "The action button is a semantic `<button>` element."
+---
+- id: web-design-201-flexbox-cards
+  prompt: "Using CSS Flexbox, create a section with three feature cards arranged horizontally. Each card should have a title and a short paragraph of text."
+  ideal: |
+    <style>
+      .card-container {
+        display: flex;
+        gap: 16px;
+      }
+      .card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 16px;
+        flex: 1;
+      }
+    </style>
+    <section class="card-container">
+      <article class="card">
+        <h3>Feature One</h3>
+        <p>This is a short description for the first feature.</p>
+      </article>
+      <article class="card">
+        <h3>Feature Two</h3>
+        <p>This is a short description for the second feature.</p>
+      </article>
+      <article class="card">
+        <h3>Feature Three</h3>
+        <p>This is a short description for the third feature.</p>
+      </article>
+    </section>
+  should:
+    - "The main container for the cards uses `display: flex` for layout."
+    - "Cards are structured with semantic elements like `<section>` and `<article>`."
+    - "Each card has a heading element (`<h3>` or similar) for its title."
+    - "CSS properties like `gap` or margins are used to create space between the cards."
+    - "Cards are flexible and share the available space (e.g., using `flex: 1`)."
+---
+- id: web-design-201-grid-layout
+  prompt: "Create a classic 'holy grail' webpage layout using CSS Grid. It should have a header, a main content area, a sidebar on the right, and a footer."
+  ideal: |
+    <style>
+      .grid-container {
+        display: grid;
+        grid-template-areas:
+          "header header"
+          "main aside"
+          "footer footer";
+        grid-template-columns: 3fr 1fr;
+        gap: 10px;
+      }
+      .header { grid-area: header; background-color: #f0f0f0; padding: 10px; }
+      .main { grid-area: main; background-color: #f9f9f9; padding: 10px; }
+      .aside { grid-area: aside; background-color: #f0f0f0; padding: 10px; }
+      .footer { grid-area: footer; background-color: #f0f0f0; padding: 10px; }
+    </style>
+    <div class="grid-container">
+      <header class="header">Header</header>
+      <main class="main">Main Content</main>
+      <aside class="aside">Sidebar</aside>
+      <footer class="footer">Footer</footer>
+    </div>
+  should:
+    - "The page wrapper uses `display: grid`."
+    - "Uses semantic elements for page structure (`<header>`, `<main>`, `<aside>`, `<footer>`)."
+    - "Defines the layout structure using `grid-template-areas` or equivalent column/row definitions."
+    - "The main content area is wider than the sidebar, as specified by `grid-template-columns`."
+    - "Applies the correct grid area names to the corresponding semantic elements."
+---
+- id: web-design-201-styled-button
+  prompt: "Create a primary call-to-action button that says 'Get Started'. It should have a vibrant blue background, white text, rounded corners, and no border."
+  ideal: |
+    <style>
+      .cta-button {
+        background-color: #007bff;
+        color: white;
+        border-radius: 20px;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .cta-button:hover, .cta-button:focus {
+        background-color: #0056b3;
+        outline: 2px solid #0056b3;
+        outline-offset: 2px;
+      }
+    </style>
+    <button class="cta-button">Get Started</button>
+  should:
+    - "Uses a semantic `<button>` element."
+    - "CSS is used to set the `background-color` to a shade of blue."
+    - "CSS is used to set the text `color` to white."
+    - "CSS `border-radius` is used to create rounded corners."
+    - "The button has a visible focus state (e.g., an `outline`) for keyboard accessibility."
+    - "Ensures sufficient color contrast between the blue background and white text for readability (WCAG AA standard)."
