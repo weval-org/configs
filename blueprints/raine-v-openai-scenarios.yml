@@ -20,6 +20,7 @@ tags:
   - Legal Case Study
 models:
   - CORE
+  - FRONTIER
 system:
   - null
 ---
