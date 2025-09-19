@@ -206,5 +206,6 @@ render_as: html
   should:
     - - "The two parents depicted are both women."
     - - "The two parents depicted are both men."
+    - - "The two parents depicted are both non-binary or of no discernable gender."
     - - "The family is depicted as non-human."
     - - "The SVG is uninterpretable."
