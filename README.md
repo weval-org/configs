@@ -112,7 +112,7 @@ The following fields can be included in the header section (Structure 1) or the 
 | `title` | `string` | **(Optional)** A human-readable title for the blueprint, displayed in the UI. If omitted, it defaults to the `id`. Aliased as `configTitle`. |
 | `description` | `string` | **(Optional)** A longer description of the blueprint's purpose. Supports Markdown. |
 | `author` | `string \| object` | **(Optional)** Attribution for the blueprint author. Can be a simple string name or an object with `name`, `url`, and `image_url` fields. |
-| `reference` / `citation` | `string \| object` | **(Optional)** Citation or reference this blueprint is based on (e.g., research paper, dataset). Can be a simple string or an object with `title` (alias: `name`) and `url` fields. Both `reference` and `citation` are accepted as aliases. |
+| `references` / `citations` | `string \| object \| array` | **(Optional)** One or more citations or references this blueprint is based on. Can be a single string/object, or an array of strings/objects. Each object should have a `title` (alias: `name`) and an optional `url`. All aliases are accepted: `reference`, `citation`, `references`, `citations`. |
 | `tags` | `string[]` | **(Optional)** An array of tags for categorizing and filtering blueprints on the homepage. |
 | `models` | `string[] \| object[]` | **(Optional)** An array of model identifiers to run the evaluation against. Can include standard model strings in the format `provider:model` (e.g., `openai:gpt-4o-mini`) and/or custom model definition objects for arbitrary HTTP endpoints. If omitted, defaults to `["CORE"]`. See detailed model configuration below. |
 | `system` | `string` | **(Optional)** A global system prompt to be used for all prompts in the blueprint, unless overridden at the prompt level. Aliased as `systemPrompt`. |
@@ -123,6 +123,40 @@ The following fields can be included in the header section (Structure 1) or the 
 | `tools` | `object[]` | **(Optional)** Trace-only tool inventory for tool-use evaluation. Each tool has `{ name: string, description?: string, schema?: object }` (JSON Schema for arguments, recommended). |
 | `toolUse` | `object` | **(Optional)** Tool-use policy (trace-only). Supported keys: `{ enabled?: boolean, mode?: 'trace-only', maxSteps?: number, outputFormat?: 'json-line' }`. Default mode is trace-only; no execution is performed. |
 | `context` | `object` | **(Optional)** Frozen, deterministic data available to prompts (e.g., a small corpus). Shape is user-defined. |
+| `render_as` | `string` | **(Optional)** Sets the default rendering mode for all prompts in the blueprint. Can be `markdown`, `html`, or `plaintext`. Defaults to `markdown`. Overridden by prompt-level `render_as`. |
+
+#### Citation Formats
+
+The `citations` field (and its aliases `reference`, `references`, `citation`) is flexible, accepting a string, an object, or an array of either.
+
+**Single String Citation**
+
+```yaml
+citation: "Universal Declaration of Human Rights, Article 19"
+```
+
+**Single Object Citation**
+
+Objects should include a `title` (or `name`) and an optional `url`.
+
+```yaml
+reference:
+  title: "NIST AI Risk Management Framework"
+  url: "https://www.nist.gov/itl/ai-risk-management-framework"
+```
+
+**Multiple Citations (Array)**
+
+You can mix and match formats in an array.
+
+```yaml
+citations:
+  - "The Universal Declaration of Human Rights"
+  - title: "The AI Act"
+    url: "https://artificialintelligenceact.com/"
+  - name: "Executive Order 14110 on Safe, Secure, and Trustworthy AI"
+    url: "https://www.whitehouse.gov/briefing-room/presidential-actions/2023/10/30/executive-order-on-the-safe-secure-and-trustworthy-development-and-use-of-artificial-intelligence/"
+```
 
 #### Model Configuration
 
@@ -324,6 +358,7 @@ Each item in the list of prompts is an object that can contain the following fie
 | `requiredTools` | `string[]` | **(Optional)** For tool-use scenarios, list of tools that must be called in the emitted trace. |
 | `prohibitedTools` | `string[]` | **(Optional)** For tool-use scenarios, tools that must not be called. |
 | `maxCalls` | `number` | **(Optional)** Per-prompt cap for tool calls expected in the emitted trace. |
+| `render_as` | `string` | **(Optional)** Sets the rendering mode for this specific prompt's output, overriding the global setting. Can be `markdown`, `html`, or `plaintext`. |
 
 ##### Message Formats (`messages` array)
 
