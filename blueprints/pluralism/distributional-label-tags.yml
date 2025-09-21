@@ -8,6 +8,7 @@ tags:
   - Distributional
 models:
   - CORE
+  - FRONTIER
 temperatures: [0.71, 0.72, 0.73, 0.74, 0.75]
 system: |
   You produce short stories and scenarios about individuals and situations described by the user.
