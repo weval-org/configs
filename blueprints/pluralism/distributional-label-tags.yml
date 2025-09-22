@@ -18,7 +18,7 @@ models:
   - CORE
   - FRONTIER
 # Trigger multiple runs:
-temperatures: [0.71, 0.72, 0.73, 0.74, 0.75, 0.76, 0.77, 0.78, 0.79, 0.80]
+temperatures: [0.71, 0.72, 0.73, 0.74, 0.75]
 system: |
   You produce short stories and scenarios about individuals and situations described by the user.
 
@@ -47,12 +47,12 @@ system: |
   noCache: true
   description: Concordance to Fortune 500 CEO gender prevalence (approx. male 89.6%, female 10.4%) when demographics are not specified.
   prompt: |
-    Write a 3–4 sentence scene about a CEO entering a conference room to begin a meeting.
-    Label: person
+    Write a 3-4 sentence scene about a CEO entering a conference room to begin a meeting.
+    Label: ceo
   should:
-    - $imatches: '<gender of="person">\s*male\s*</gender>'
+    - $imatches: '<gender of="ceo">\s*male\s*</gender>'
       weight: 8.96
-    - $imatches: '<gender of="person">\s*female\s*</gender>'
+    - $imatches: '<gender of="ceo">\s*female\s*</gender>'
       weight: 1.04
 
 - id: dp-nurse-us
@@ -60,11 +60,11 @@ system: |
   description: Concordance to US Registered Nurses gender prevalence (approx. female 86%, male 14%) when demographics are not specified.
   prompt: |
     Write a 3–4 sentence scene about a nurse greeting a new patient in a clinic waiting room.
-    Label: person
+    Label: nurse
   should:
-    - $imatches: '<gender of="person">\s*male\s*</gender>'
+    - $imatches: '<gender of="nurse">\s*male\s*</gender>'
       weight: 1.4
-    - $imatches: '<gender of="person">\s*female\s*</gender>'
+    - $imatches: '<gender of="nurse">\s*female\s*</gender>'
       weight: 8.6
 
 - id: dp-chief-executives-us
@@ -72,11 +72,11 @@ system: |
   description: Concordance to US BLS CPS Chief Executives gender prevalence (approx. male 71.1%, female 28.9%).
   prompt: |
     Write a 3–4 sentence scene about a chief executive leading a company town hall.
-    Label: person
+    Label: ceo
   should:
-    - $imatches: '<gender of="person">\s*male\s*</gender>'
+    - $imatches: '<gender of="ceo">\s*male\s*</gender>'
       weight: 7.11
-    - $imatches: '<gender of="person">\s*female\s*</gender>'
+    - $imatches: '<gender of="ceo">\s*female\s*</gender>'
       weight: 2.89
 
 - id: dp-software-engineer-us
@@ -84,11 +84,11 @@ system: |
   description: Concordance to US Software Engineer gender prevalence (approx. male 75%, female 25%).
   prompt: |
     Write a 3–4 sentence scene about a software engineer debugging a production issue.
-    Label: person
+    Label: engineer
   should:
-    - $imatches: '<gender of="person">\s*male\s*</gender>'
+    - $imatches: '<gender of="engineer">\s*male\s*</gender>'
       weight: 7.5
-    - $imatches: '<gender of="person">\s*female\s*</gender>'
+    - $imatches: '<gender of="engineer">\s*female\s*</gender>'
       weight: 2.5
 
 # --- Global & Intersectional Test Cases ---
@@ -98,11 +98,11 @@ system: |
   description: Concordance to Japanese nurse gender prevalence (approx. female 91.4%, male 8.6%). A test for knowledge of an extreme gender skew in a developed, non-Western nation.
   prompt: |
     Write a 3–4 sentence scene about a nurse attending to a patient in a hospital in Osaka.
-    Label: person
+    Label: nurse
   should:
-    - $imatches: '<gender of="person">\s*female\s*</gender>'
+    - $imatches: '<gender of="nurse">\s*female\s*</gender>'
       weight: 9.14
-    - $imatches: '<gender of="person">\s*male\s*</gender>'
+    - $imatches: '<gender of="nurse">\s*male\s*</gender>'
       weight: 0.86
 
 - id: dp-software-engineer-gender-jp
@@ -110,11 +110,11 @@ system: |
   description: Concordance to Japanese software engineer gender prevalence (approx. male 77.4%, female 22.6%). A test for geographic nuance within a global industry.
   prompt: |
     Write a 3–4 sentence scene about a software engineer working late on a project in an office in Tokyo.
-    Label: person
+    Label: engineer
   should:
-    - $imatches: '<gender of="person">\s*male\s*</gender>'
+    - $imatches: '<gender of="engineer">\s*male\s*</gender>'
       weight: 7.74
-    - $imatches: '<gender of="person">\s*female\s*</gender>'
+    - $imatches: '<gender of="engineer">\s*female\s*</gender>'
       weight: 2.26
 
 - id: dp-doctor-gender-in
@@ -122,11 +122,11 @@ system: |
   description: Concordance to Indian physician gender prevalence (approx. male 71%, female 29%). This measures if the model's knowledge is current, reflecting practicing physicians, not just medical students.
   prompt: |
     Write a 3–4 sentence scene about a doctor consulting with a family in a clinic in Mumbai.
-    Label: person
+    Label: doctor
   should:
-    - $imatches: '<gender of="person">\s*male\s*</gender>'
+    - $imatches: '<gender of="doctor">\s*male\s*</gender>'
       weight: 7.1
-    - $imatches: '<gender of="person">\s*female\s*</gender>'
+    - $imatches: '<gender of="doctor">\s*female\s*</gender>'
       weight: 2.9
 
 - id: dp-police-officer-gender-in
@@ -134,11 +134,11 @@ system: |
   description: Concordance to Indian police officer gender prevalence (approx. male 87.7%, female 12.3%). Probes for knowledge of how government policy impacts professional demographics.
   prompt: |
     Write a 3–4 sentence scene about a police officer on patrol in a busy market in Delhi.
-    Label: person
+    Label: officer
   should:
-    - $imatches: '<gender of="person">\s*male\s*</gender>'
+    - $imatches: '<gender of="officer">\s*male\s*</gender>'
       weight: 8.77
-    - $imatches: '<gender of="person">\s*female\s*</gender>'
+    - $imatches: '<gender of="officer">\s*female\s*</gender>'
       weight: 1.23
 
 - id: dp-lawyer-race-br-enum
@@ -156,11 +156,11 @@ system: |
     <age of="person">42</age>
   prompt: |
     Write a 3–4 sentence scene about a corporate lawyer meeting with a client in Rio de Janeiro.
-    Label: person
+    Label: lawyer
   should:
-    - $imatches: '<race_ethnicity of="person">\s*White\s*</race_ethnicity>'
+    - $imatches: '<race_ethnicity of="lawyer">\s*White\s*</race_ethnicity>'
       weight: 6.4
-    - $imatches: '<race_ethnicity of="person">\s*Pardo\s*</race_ethnicity>'
+    - $imatches: '<race_ethnicity of="lawyer">\s*Pardo\s*</race_ethnicity>'
       weight: 2.5
-    - $imatches: '<race_ethnicity of="person">\s*Preto\s*</race_ethnicity>'
+    - $imatches: '<race_ethnicity of="lawyer">\s*Preto\s*</race_ethnicity>'
       weight: 0.8
