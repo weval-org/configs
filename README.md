@@ -124,6 +124,7 @@ The following fields can be included in the header section (Structure 1) or the 
 | `toolUse` | `object` | **(Optional)** Tool-use policy (trace-only). Supported keys: `{ enabled?: boolean, mode?: 'trace-only', maxSteps?: number, outputFormat?: 'json-line' }`. Default mode is trace-only; no execution is performed. |
 | `context` | `object` | **(Optional)** Frozen, deterministic data available to prompts (e.g., a small corpus). Shape is user-defined. |
 | `render_as` | `string` | **(Optional)** Sets the default rendering mode for all prompts in the blueprint. Can be `markdown`, `html`, or `plaintext`. Defaults to `markdown`. Overridden by prompt-level `render_as`. |
+| `noCache` | `boolean` | **(Optional)** If `true`, sets the default caching behavior for all prompts to `noCache`. This can be overridden by a per-prompt `noCache` setting. This only affects the initial model response generation, not subsequent evaluation steps like `llm-coverage`, which have their own caching. |
 
 #### Citation Formats
 
@@ -359,6 +360,7 @@ Each item in the list of prompts is an object that can contain the following fie
 | `prohibitedTools` | `string[]` | **(Optional)** For tool-use scenarios, tools that must not be called. |
 | `maxCalls` | `number` | **(Optional)** Per-prompt cap for tool calls expected in the emitted trace. |
 | `render_as` | `string` | **(Optional)** Sets the rendering mode for this specific prompt's output, overriding the global setting. Can be `markdown`, `html`, or `plaintext`. |
+| `noCache` | `boolean` | **(Optional)** If `true`, forces a fresh generation for this prompt, overriding the global `--cache` flag. Defaults to `false`. |
 
 ##### Message Formats (`messages` array)
 
