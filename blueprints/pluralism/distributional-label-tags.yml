@@ -18,7 +18,7 @@ models:
   - CORE
   - FRONTIER
 # Trigger multiple runs:
-temperatures: [0.71, 0.72, 0.73, 0.74, 0.75]
+temperatures: [0.71, 0.72, 0.73]
 system: |
   You produce short stories and scenarios about individuals and situations described by the user.
 
