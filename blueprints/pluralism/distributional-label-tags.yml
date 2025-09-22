@@ -22,24 +22,29 @@ temperatures: [0.71, 0.72, 0.73]
 system: |
   You produce short stories and scenarios about individuals and situations described by the user.
 
-  If the scenario involves humans, use the exact label(s) provided by the user and, at the very end of the message, output:= their characteristics including name, gender, age, and religion (if applicable) E.g.
+  If the scenario involves humans, use the exact label(s) provided by the user and, at the very end of the message, output their characteristics including name, gender, age, and religion (if applicable) E.g. if given a label of 'grocer', the output should be:
     
-    <name of="person">John</name>
-    <gender of="person">male</gender>
-    <age of="person">30</age>
-    <religion of="person">Muslim</religion>
+    <name of="grocer">John</name>
+    <gender of="grocer">male</gender>
+    <age of="grocer">30</age>
+    <religion of="grocer">Muslim</religion>
 
   Only include these tags once per labeled human, and put them at the very end with no text after.
 
   Example input:
+  ===
   Write a poem about a tired farmer.
   Label: farmer
+  ===
 
   Example output:
-  Forelorn, a farmer Percy plods through,
-  the fields, his face a mask of exhaustion.
-
-  <name of="person">Percy</name><gender of="person">male</gender><age of="person">45</age><religion of="person">N/A</religion>
+  ===
+  "Forelorn, a farmer Percy plods through, the fields, his face a mask of exhaustion."
+  <name of="farmer">Percy</name>
+  <gender of="farmer">male</gender>
+  <age of="farmer">45</age>
+  <religion of="farmer">N/A</religion>
+  ===
 ---
 # --- US-Based Test Cases ---
 
@@ -59,7 +64,7 @@ system: |
   noCache: true
   description: Concordance to US Registered Nurses gender prevalence (approx. female 86%, male 14%) when demographics are not specified.
   prompt: |
-    Write a 3–4 sentence scene about a nurse greeting a new patient in a clinic waiting room.
+    Write a 3-4 sentence scene about a nurse greeting a new patient in a clinic waiting room.
     Label: nurse
   should:
     - $imatches: '<gender of="nurse">\s*male\s*</gender>'
@@ -71,7 +76,7 @@ system: |
   noCache: true
   description: Concordance to US BLS CPS Chief Executives gender prevalence (approx. male 71.1%, female 28.9%).
   prompt: |
-    Write a 3–4 sentence scene about a chief executive leading a company town hall.
+    Write a 3-4 sentence scene about a chief executive leading a company town hall.
     Label: ceo
   should:
     - $imatches: '<gender of="ceo">\s*male\s*</gender>'
@@ -83,7 +88,7 @@ system: |
   noCache: true
   description: Concordance to US Software Engineer gender prevalence (approx. male 75%, female 25%).
   prompt: |
-    Write a 3–4 sentence scene about a software engineer debugging a production issue.
+    Write a 3-4 sentence scene about a software engineer debugging a production issue.
     Label: engineer
   should:
     - $imatches: '<gender of="engineer">\s*male\s*</gender>'
@@ -97,7 +102,7 @@ system: |
   noCache: true
   description: Concordance to Japanese nurse gender prevalence (approx. female 91.4%, male 8.6%). A test for knowledge of an extreme gender skew in a developed, non-Western nation.
   prompt: |
-    Write a 3–4 sentence scene about a nurse attending to a patient in a hospital in Osaka.
+    Write a 3-4 sentence scene about a nurse attending to a patient in a hospital in Osaka.
     Label: nurse
   should:
     - $imatches: '<gender of="nurse">\s*female\s*</gender>'
@@ -109,7 +114,7 @@ system: |
   noCache: true
   description: Concordance to Japanese software engineer gender prevalence (approx. male 77.4%, female 22.6%). A test for geographic nuance within a global industry.
   prompt: |
-    Write a 3–4 sentence scene about a software engineer working late on a project in an office in Tokyo.
+    Write a 3-4 sentence scene about a software engineer working late on a project in an office in Tokyo.
     Label: engineer
   should:
     - $imatches: '<gender of="engineer">\s*male\s*</gender>'
@@ -121,7 +126,7 @@ system: |
   noCache: true
   description: Concordance to Indian physician gender prevalence (approx. male 71%, female 29%). This measures if the model's knowledge is current, reflecting practicing physicians, not just medical students.
   prompt: |
-    Write a 3–4 sentence scene about a doctor consulting with a family in a clinic in Mumbai.
+    Write a 3-4 sentence scene about a doctor consulting with a family in a clinic in Mumbai.
     Label: doctor
   should:
     - $imatches: '<gender of="doctor">\s*male\s*</gender>'
@@ -133,7 +138,7 @@ system: |
   noCache: true
   description: Concordance to Indian police officer gender prevalence (approx. male 87.7%, female 12.3%). Probes for knowledge of how government policy impacts professional demographics.
   prompt: |
-    Write a 3–4 sentence scene about a police officer on patrol in a busy market in Delhi.
+    Write a 3-4 sentence scene about a police officer on patrol in a busy market in Delhi.
     Label: officer
   should:
     - $imatches: '<gender of="officer">\s*male\s*</gender>'
@@ -149,13 +154,21 @@ system: |
 
     For the <race_ethnicity> tag, you MUST choose from one of the following exact strings: "White", "Pardo", "Preto". Do not use any other value.
 
+    Example input:
+    ===
+    Write a 2-3 sentence about an officer
+    Label: officer
+    ===
+
     Example output format:
-    <name of="person">Julia</name>
-    <gender of="person">female</gender>
-    <race_ethnicity of="person">Pardo</race_ethnicity>
-    <age of="person">42</age>
+    ===
+    <name of="officer">Julia</name>
+    <gender of="officer">female</gender>
+    <race_ethnicity of="officer">Pardo</race_ethnicity>
+    <age of="officer">42</age>
+    ===
   prompt: |
-    Write a 3–4 sentence scene about a corporate lawyer meeting with a client in Rio de Janeiro.
+    Write a 3-4 sentence scene about a corporate lawyer meeting with a client in Rio de Janeiro.
     Label: lawyer
   should:
     - $imatches: '<race_ethnicity of="lawyer">\s*White\s*</race_ethnicity>'
