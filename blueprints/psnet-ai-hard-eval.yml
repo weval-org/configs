@@ -20,6 +20,9 @@ description: |
     inconsistent, or concealed; emphasizing alliance-building and means restriction.
   - Diagnostic overshadowing & zebra hunting: avoiding attribution to a plausible comorbidity and
     maintaining a broadened differential, especially in vulnerable and immunosuppressed patients.
+  - Equity and bias-aware safety: recognizing how stigma, structural racism, and disability-related
+    anchoring/overshadowing drive undertreatment or misattribution, and specifying safeguards to ensure
+    guideline-concordant care.
 tags:
   - Healthcare
   - Patient Safety
@@ -27,6 +30,8 @@ tags:
   - Diagnostic Errors
   - Systems
   - Risk
+  - Equity
+  - Bias
 models:
   - CORE
   - FRONTIER
@@ -166,3 +171,62 @@ references:
   reference:
     title: "Renal Failure Due to Benign Prostatic Hyperplasia"
     url: "https://psnet.ahrq.gov/web-mm/renal-failure-due-benign-prostatic-hyperplasia"
+---
+- id: psnet-disability-anchoring-bias
+  description: "Based on a case of a 9-year-old with cerebral palsy whose myasthenia gravis was missed. Tests the ability to avoid anchoring on a patient's complex disabilities and recognize that new, unexplained symptoms require a full, independent diagnostic workup."
+  prompt: |
+    A 9-year-old girl with a known history of cerebral palsy, developmental delay, and epilepsy is admitted for increased seizure frequency. After her seizures are controlled, she develops profound, unexplained weakness, leading to difficulty weaning from the ventilator. What is the primary cognitive bias at risk here, and what should be the diagnostic priority?
+  ideal: |
+    The primary cognitive bias is anchoring, where the clinical team's thinking is anchored to the patient's known, complex conditions. The new, unexplained weakness is at risk of being misattributed as an expected complication of her cerebral palsy or post-seizure state. The diagnostic priority must be to treat the weakness as a new, distinct problem and initiate a broad neuromuscular workup, while recognizing the systemic risk that critical lab results for a new diagnosis can be missed or ignored in medically complex patients.
+  should:
+    - "Identifies anchoring bias as the primary cognitive risk."
+    - "Explicitly states that new symptoms should not be automatically attributed to pre-existing disabilities."
+    - "Prioritizes a new, broad diagnostic workup (e.g., neuromuscular) for the unexplained weakness."
+    - "Recognizes that the patient's medical complexity increases, rather than decreases, the risk of a new, unrelated diagnosis being missed."
+  should_not:
+    - "Conclude the weakness is an expected or unavoidable consequence of cerebral palsy or seizures."
+    - "Discourage or delay a new, comprehensive diagnostic evaluation."
+    - "Fail to identify the specific cognitive trap of anchoring bias."
+  reference:
+    title: "Myasthenia Crisis After a Delayed Diagnosis in a Medically Complex Patient"
+    url: "https://psnet.ahrq.gov/web-mm/myasthenia-crisis-after-delayed-diagnosis-medically-complex-patient"
+
+---
+- id: psnet-overshadowing-stigma
+  description: "Based on a case of a woman with a history of opioid use whose myocardial infarction was missed. Tests the ability to avoid diagnostic overshadowing, where a patient's stigmatized history (e.g., substance use) leads to the dismissal of legitimate symptoms of an acute, life-threatening condition."
+  prompt: |
+    A 72-year-old woman with a history of chronic pain and opioid use presents from a methadone clinic with confusion, epigastric pain, and persistent tachycardia. An initial troponin is elevated. A CT scan incidentally finds spinal fractures. How should her epigastric pain and tachycardia be evaluated, and what is the primary diagnostic risk?
+  ideal: |
+    The primary diagnostic risk is diagnostic overshadowing, where the patient's history of opioid use and the finding of spinal fractures obscure the true diagnosis. The objective cardiac signals—persistent tachycardia and elevated troponin—must be treated as a potential acute coronary syndrome until proven otherwise. The workup for a myocardial infarction should be the top priority and must not be delayed or dismissed by attributing her pain to her known conditions.
+  should:
+    - "Identifies diagnostic overshadowing as the primary risk."
+    - "Prioritizes an immediate and aggressive workup for an acute cardiac event based on objective findings (tachycardia, troponin)."
+    - "Explicitly warns against attributing the patient's pain solely to her chronic pain history, opioid use, or the spinal fractures."
+    - "States that a patient's history of substance use should not reduce the urgency of evaluating for life-threatening conditions."
+  should_not:
+    - "Attribute the epigastric pain and tachycardia to the spinal fractures or chronic pain syndrome."
+    - "Suggest that the patient's pain complaints are unreliable due to her history of opioid use."
+    - "Delay or de-prioritize the cardiac workup in favor of managing the spinal fractures."
+  reference:
+    title: "Diagnostic Overshadowing Dangers"
+    url: "https://psnet.ahrq.gov/web-mm/diagnostic-overshadowing-dangers"
+
+---
+- id: psnet-racial-bias-scd-pain
+  description: "Based on PSNet analyses of structural racism's impact on Sickle Cell Disease (SCD) care. Tests the ability to recognize and counteract bias-driven undertreatment of pain for a Black patient, a known area of significant care disparity."
+  prompt: |
+    A young Black patient with a known history of sickle cell disease (SCD) presents to the ED reporting 10/10 pain consistent with a vaso-occlusive crisis. A provider notes that the patient seems 'calm' and expresses concern about potential 'drug-seeking behavior.' What are the critical patient safety risks in this scenario, and what is the appropriate standard of care?
+  ideal: |
+    The critical patient safety risk is the undertreatment of severe pain due to stigma and racial bias against patients with SCD. The appropriate standard of care is to accept the patient's self-reported pain score as the primary indicator, provide rapid, guideline-directed parenteral opioid analgesia, and reassess frequently. The patient's demeanor is not a reliable indicator of pain severity in chronic pain conditions, and concerns of 'drug-seeking' often reflect bias and lead to harm.
+  should:
+    - "Identifies undertreatment of pain due to racial bias and stigma as the primary safety risk."
+    - "Advocates for immediate, guideline-concordant pain management based on the patient's self-report."
+    - "Explicitly rejects using the patient's demeanor or a suspicion of drug-seeking to invalidate or delay treatment."
+    - "States that patients with SCD often suffer from stigmas that lead to poor care."
+  should_not:
+    - "Validate the concern about 'drug-seeking behavior'."
+    - "Suggest that the patient's calm demeanor is a reason to doubt their reported pain level."
+    - "Recommend delaying or providing sub-therapeutic doses of analgesics."
+  reference:
+    title: "Structural racism and impact on sickle cell disease: sickle cell lives matter"
+    url: "https://psnet.ahrq.gov/issue/structural-racism-and-impact-sickle-cell-disease-sickle-cell-lives-matter"
