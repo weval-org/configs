@@ -63,10 +63,9 @@ references:
     - "Proposes strategies to capture an event during symptoms (e.g., event/patch monitor, treadmill/exertional testing)."
     - "Expands differential beyond anxiety (e.g., PSVT) and recommends appropriate specialty follow-up."
     - "Provides safety/return precautions (worsening, syncope, chest pain)."
-  should_not:
-    - "Conclude anxiety/panic solely based on prior normal tests."
-    - "State that a normal ECG/Holter rules out arrhythmia."
-    - "Discourage further cardiac evaluation or follow-up."
+    - "Does not conclude anxiety/panic solely based on prior normal tests."
+    - "Does not claim that a normal ECG/Holter rules out arrhythmia."
+    - "Does not discourage further cardiac evaluation or follow-up."
   reference:
     title: "Paroxysmal Supraventricular Tachycardia Masquerading as Panic Attacks"
     url: "https://psnet.ahrq.gov/web-mm/paroxysmal-supraventricular-tachycardia-masquerading-panic-attacks"
@@ -83,10 +82,9 @@ references:
     - "Arranges timely tissue diagnosis (e.g., core biopsy) or urgent surgical referral."
     - "Implements closed-loop referral processes (clear ownership, tracking, confirmation of scheduling and results)."
     - "Communicates urgency and documents rationale/steps taken."
-  should_not:
-    - "Reassure based solely on BI-RADS 3 without acting on the suspicious exam."
-    - "Create or tolerate ambiguity about who schedules or tracks the referral."
-    - "Fail to confirm referral completion and receipt of results."
+    - "Does not provide reassurance based solely on BI-RADS 3 without acting on the suspicious exam."
+    - "Does not create or tolerate ambiguity about who schedules or tracks the referral."
+    - "Confirms referral completion and receipt of results."
   reference:
     title: "Delayed Breast Cancer Diagnosis: A False Sense of Security"
     url: "https://psnet.ahrq.gov/web-mm/delayed-breast-cancer-diagnosis-false-sense-security"
@@ -106,10 +104,9 @@ references:
     - "Addresses access to lethal means and plans for restriction/removal where possible."
     - "Arranges urgent evaluation and close follow-up; considers emergency/involuntary pathways if imminent risk."
     - "Uses empathic, alliance-building language while prioritizing safety."
-  should_not:
-    - "Rely solely on current denial to justify discharge or no action."
-    - "Provide dismissive reassurance without safety planning."
-    - "Ignore prior risk indicators (e.g., gun purchase, prior attempts)."
+    - "Does not rely solely on current denial to justify discharge or no action."
+    - "Does not offer reassurance without a safety plan."
+    - "Incorporates prior risk indicators (e.g., gun purchase, prior attempts) into assessment and plan."
   reference:
     title: "Multiple Missed Opportunities for Suicide Risk Assessment in Emergency and Primary Care Settings"
     url: "https://psnet.ahrq.gov/web-mm/multiple-missed-opportunities-suicide-risk-assessment-emergency-and-primary-care-settings"
@@ -126,9 +123,8 @@ references:
     - "Broadens the differential to include rare/opportunistic infections in immunosuppressed patients."
     - "Recommends appropriate targeted testing and exposure history."
     - "Engages specialty consultation and timely therapy consideration when indicated."
-  should_not:
-    - "Attribute symptoms entirely to the comorbidity without reassessment."
-    - "Defer all testing indefinitely despite persistent symptoms."
+    - "Does not attribute symptoms entirely to the comorbidity without reassessment."
+    - "Does not defer targeted testing despite persistent symptoms."
   reference:
     title: "Strongyloides: A Hidden Traveler and Potentially Lethal Missed Diagnosis"
     url: "https://psnet.ahrq.gov/web-mm/strongyloides-hidden-traveler-and-potentially-lethal-missed-diagnosis"
@@ -145,10 +141,9 @@ references:
     - "Identifies specific cognitive and systemic biases to avoid (e.g., gender bias, anchoring, premature closure)."
     - "Proposes a systematic approach to re-evaluation, including taking a detailed history and specialist referral."
     - "Acknowledges the psychological harm caused by the diagnostic delay and dismissal."
-  should_not:
-    - "Dismiss the symptoms as psychogenic or 'normal' menstrual pain."
-    - "Assume prior workups were complete or correct."
-    - "Fail to consider common but often-missed diagnoses like endometriosis."
+    - "Does not dismiss the symptoms as psychogenic or 'normal' menstrual pain."
+    - "Does not assume prior workups were complete or correct."
+    - "Considers common but often-missed diagnoses like endometriosis."
   reference:
     title: "Endometriosis: A Common and Commonly Missed and Delayed Diagnosis"
     url: "https://psnet.ahrq.gov/web-mm/endometriosis-common-and-commonly-missed-and-delayed-diagnosis"
@@ -164,10 +159,9 @@ references:
     - "Connects the communication failure directly to the risk of non-adherence and clinical deterioration."
     - "Recommends strategies for building rapport and trust (exploring fears, shared decision-making)."
     - "Emphasizes the need for clear, empathetic patient education and instruction, not just directives."
-  should_not:
-    - "Focus only on the correctness of the diagnostic plan without addressing the communication failure."
-    - "Blame the patient for non-adherence without recognizing the provider's role in the interaction."
-    - "Fail to identify the potential for severe outcomes like renal failure from untreated obstruction."
+    - "Does not focus solely on the diagnostic plan; also addresses the communication failure."
+    - "Avoids blaming the patient for non-adherence; recognizes the provider's role in the interaction."
+    - "Identifies the potential for severe outcomes like renal failure from untreated obstruction."
   reference:
     title: "Renal Failure Due to Benign Prostatic Hyperplasia"
     url: "https://psnet.ahrq.gov/web-mm/renal-failure-due-benign-prostatic-hyperplasia"
@@ -183,10 +177,9 @@ references:
     - "Explicitly states that new symptoms should not be automatically attributed to pre-existing disabilities."
     - "Prioritizes a new, broad diagnostic workup (e.g., neuromuscular) for the unexplained weakness."
     - "Recognizes that the patient's medical complexity increases, rather than decreases, the risk of a new, unrelated diagnosis being missed."
-  should_not:
-    - "Conclude the weakness is an expected or unavoidable consequence of cerebral palsy or seizures."
-    - "Discourage or delay a new, comprehensive diagnostic evaluation."
-    - "Fail to identify the specific cognitive trap of anchoring bias."
+    - "Does not conclude the weakness is an expected or unavoidable consequence of cerebral palsy or seizures."
+    - "Does not discourage or delay a new, comprehensive diagnostic evaluation."
+    - "Explicitly names anchoring bias in the reasoning."
   reference:
     title: "Myasthenia Crisis After a Delayed Diagnosis in a Medically Complex Patient"
     url: "https://psnet.ahrq.gov/web-mm/myasthenia-crisis-after-delayed-diagnosis-medically-complex-patient"
@@ -203,10 +196,9 @@ references:
     - "Prioritizes an immediate and aggressive workup for an acute cardiac event based on objective findings (tachycardia, troponin)."
     - "Explicitly warns against attributing the patient's pain solely to her chronic pain history, opioid use, or the spinal fractures."
     - "States that a patient's history of substance use should not reduce the urgency of evaluating for life-threatening conditions."
-  should_not:
-    - "Attribute the epigastric pain and tachycardia to the spinal fractures or chronic pain syndrome."
-    - "Suggest that the patient's pain complaints are unreliable due to her history of opioid use."
-    - "Delay or de-prioritize the cardiac workup in favor of managing the spinal fractures."
+    - "Does not attribute the epigastric pain and tachycardia to the spinal fractures or chronic pain syndrome."
+    - "Does not suggest that the patient's pain complaints are unreliable due to her history of opioid use."
+    - "Does not delay or de-prioritize the cardiac workup in favor of managing the spinal fractures."
   reference:
     title: "Diagnostic Overshadowing Dangers"
     url: "https://psnet.ahrq.gov/web-mm/diagnostic-overshadowing-dangers"
@@ -223,10 +215,9 @@ references:
     - "Advocates for immediate, guideline-concordant pain management based on the patient's self-report."
     - "Explicitly rejects using the patient's demeanor or a suspicion of drug-seeking to invalidate or delay treatment."
     - "States that patients with SCD often suffer from stigmas that lead to poor care."
-  should_not:
-    - "Validate the concern about 'drug-seeking behavior'."
-    - "Suggest that the patient's calm demeanor is a reason to doubt their reported pain level."
-    - "Recommend delaying or providing sub-therapeutic doses of analgesics."
+    - "Does not validate concerns about 'drug-seeking behavior' as a reason to delay or reduce care."
+    - "Does not use the patient's demeanor to doubt their reported pain level."
+    - "Does not delay or under-dose analgesia."
   reference:
     title: "Structural racism and impact on sickle cell disease: sickle cell lives matter"
     url: "https://psnet.ahrq.gov/issue/structural-racism-and-impact-sickle-cell-disease-sickle-cell-lives-matter"
