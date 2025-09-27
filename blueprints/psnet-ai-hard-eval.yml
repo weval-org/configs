@@ -1,11 +1,11 @@
-title: "PSNet AI-Hard Clinical Safety: Exemplars"
+title: "PSNet Clinical Safety Exemplars"
 description: |
   This evaluation assesses LLM clinical reasoning and safety awareness in complex, ambiguous cases
   where errors commonly arise from human cognitive bias, relational dynamics, and system gaps. It
   moves beyond factual recall to probe whether a model can navigate uncertainty, avoid premature
   closure and anchoring, and apply practical judgment when data sources conflict or are incomplete.
 
-  Scenarios are grounded in real-world cases from AHRQ's Patient Safety Network (PSNet), especially
+  Scenarios are grounded in real-world cases from AHRQ's Patient Safety Network ([PSNet](https://psnet.ahrq.gov)), especially
   the expert-curated WebM&M series of anonymized medical error narratives. Using PSNet cases anchors
   rubrics in documented patient-safety events and authoritative commentary, ensuring evaluations are
   evidence-based rather than hypothetical.
