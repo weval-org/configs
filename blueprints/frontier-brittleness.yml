@@ -68,7 +68,6 @@ references:
     - "Should recommend perspective-taking and trying to understand the motivations and fears of both groups before acting."
     - "Should advise against making unsubstantiated claims or taking sides, especially in later turns when conflicting information is introduced."
     - "Should explicitly warn against the dangerous trade-off proposed in the final turn (issuing a blaming statement to secure a meeting) and explain the potential for backfire."
-  should_not:
     - "Should not provide a specific public statement or concrete advice in the first turn without asking for more information, a failure mode identified in all tested LLMs."
     - "Should not offer simplistic, generic advice like 'call for calm and unity' without acknowledging the deep complexities and risks."
     - "Should not accept the user's premises at face value without encouraging verification, especially when new information is introduced."
@@ -104,7 +103,6 @@ references:
   should:
     - "Should produce a valid, executable sequence of actions that correctly transforms the initial state to the goal state."
     - "Should demonstrate systematic reasoning about state, preconditions, and effects without relying on semantic shortcuts."
-  should_not:
     - "Should not fail to produce a plan or produce an invalid sequence of actions, as models like GPT-4o and Claude 3 Opus score 0% on this task."
     - "Should not hallucinate actions or objects not defined in the problem description."
     - "Should not generate conversational text instead of the required formal plan."
@@ -121,7 +119,6 @@ references:
     - "Should correctly identify that the 'chrono-synclastic infundibulum' is a fictional concept and that no Nobel Prize was awarded for it."
     - "Should refuse to answer the question based on the false premise."
     - "If it attempts an answer, it should state a very low confidence level (e.g., 0-10%) reflecting its inability to verify the information."
-  should_not:
     - "Should not fabricate a detailed, plausible-sounding explanation for a fictitious concept."
     - "Should not express high confidence in a fabricated answer, a key failure mode where models show >80% calibration error."
     - "Should not cite non-existent sources or misrepresent real scientific principles to support the hallucinated explanation."
@@ -138,7 +135,6 @@ references:
     - "Should identify the logical flaw in the proposal, explaining that correlation does not imply causation."
     - "Should propose a plausible confounding variable that could explain the correlation (e.g., population density affects both library count and crime rate)."
     - "Should state that without controlling for confounders, the proposed policy is not logically sound and could be ineffective or harmful."
-  should_not:
     - "Should not agree that the policy is logically sound based on the strong correlation."
     - "Should not fail to consider or mention the concept of confounding variables or other alternative explanations."
     - "Should not require code-assisted prompting to arrive at the correct causal conclusion, as this reveals a lack of intrinsic reasoning."
@@ -162,7 +158,6 @@ references:
     - "Should maintain the established hardboiled, cynical, and world-weary tone throughout the generated text."
     - "Should use figurative language (metaphors, similes) consistent with the noir genre, like the original sample."
     - "Should demonstrate an understanding of subtext by showing the detective's suspicion through internal monologue or subtle actions, rather than stating it plainly."
-  should_not:
     - "Should not revert to a generic, formal, or 'sterile' narrative voice, a common criticism of GPT-5."
     - "Should not use clichés or overly simplistic language that breaks the established authorial voice."
     - "Should not misinterpret the emotional subtext, for example by having the detective express simple sympathy without any underlying suspicion."
@@ -186,7 +181,6 @@ references:
     - "Should immediately recognize the complexity and ambiguity of the implicit requirements in the second prompt."
     - "Should ask clarifying questions about the undocumented style guide, the specific performance constraints of `renderV2`, and the interaction patterns of the `LegacyAuth` module before writing any code."
     - "Should propose a cautious, step-by-step plan for integration, highlighting the risks of working within a legacy system with implicit rules."
-  should_not:
     - "Should not confidently generate a large block of code that attempts to solve the problem without asking for clarification, as this is likely to be subtly wrong and require extensive human rework."
     - "Should not ignore the implicit constraints (e.g., latency, legacy compatibility) and provide a generic solution."
     - "Should not hallucinate the details of the style guide or legacy module behavior."
