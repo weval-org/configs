@@ -17,7 +17,7 @@ tags:
 models:
   - CORE
   - FRONTIER
-temperatures: [0.0, 0.5]
+temperatures: [0.0]
 references:
   - title: "AI on the Frontline: Evaluating Large Language Models in Real‑World Conflict Resolution (IFIT)"
     url: "https://zenodo.org/records/16598073"
