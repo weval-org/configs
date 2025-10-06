@@ -33,7 +33,7 @@ from typing import Dict, List, NamedTuple, Sequence, TypedDict, Callable
 
 
 # Defaults chosen for fast local runs. You can scale these up as desired.
-DEFAULT_NUM_RECORDS = 150
+DEFAULT_NUM_RECORDS = 500
 DEFAULT_NUM_QUESTIONS = 150
 RECORD_SEED = 202310
 QUESTION_SEED = 424242
