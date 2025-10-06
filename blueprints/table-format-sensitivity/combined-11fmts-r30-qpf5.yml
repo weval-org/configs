@@ -18,12 +18,9 @@ tags:
 models:
   - CORE
   - FRONTIER
-temperatures: [0.0, 0.1, 0.2]
+temperatures: [0.0, 0.1]
 systems:
   - null
-  - |
-    You are a data extraction assistant. You will be given a collection of employee records and a question about those records.
-    Return only the exact numeric value requested. Use digits without commas, decimal points, or additional words. If the value cannot be found, reply with N/A.
 ---
 - id: json-0000
   prompt: |
