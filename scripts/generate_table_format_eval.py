@@ -375,6 +375,7 @@ def build_blueprint_yaml(
             "  prompt: |",
             _indent_block(prompt_text, 4),  # Block scalar content indented deeper than key
             "  should:",
+            f"    - $matches: '\\b{qa['answer']}\\b'",
             f"    - $matches: '^{qa['answer']}$'",
         ]
         prompt_items.append("\n".join(item_lines))
@@ -468,6 +469,7 @@ def build_combined_blueprint_yaml(
                 "  prompt: |",
                 _indent_block(prompt_text, 4),
                 "  should:",
+                f"    - $matches: '\\b{qa['answer']}\\b'",
                 f"    - $matches: '^{qa['answer']}$'",
             ]
             prompt_items.append("\n".join(item_lines))

@@ -333,6 +333,7 @@ systems:
 
     Question: How many years of experience does Benjamin A135 have? (Return just the number, e.g. '12'.)
   should:
+    - $matches: '\b1\b'
     - $matches: '^1$'
 - id: json-0001
   prompt: |
@@ -645,6 +646,7 @@ systems:
 
     Question: How old is Maya B427? (Return just the number, e.g. '42'.)
   should:
+    - $matches: '\b56\b'
     - $matches: '^56$'
 - id: json-0002
   prompt: |
@@ -957,6 +959,7 @@ systems:
 
     Question: How old is Grace B264? (Return just the number, e.g. '42'.)
   should:
+    - $matches: '\b40\b'
     - $matches: '^40$'
 - id: json-0003
   prompt: |
@@ -1269,6 +1272,7 @@ systems:
 
     Question: How many years of experience does Sophia A072 have? (Return just the number, e.g. '12'.)
   should:
+    - $matches: '\b8\b'
     - $matches: '^8$'
 - id: json-0004
   prompt: |
@@ -1581,6 +1585,7 @@ systems:
 
     Question: How many projects has Charlotte Y976 completed? (Return just the number, e.g. '15'.)
   should:
+    - $matches: '\b9\b'
     - $matches: '^9$'
 - id: csv-0000
   prompt: |
@@ -1622,6 +1627,7 @@ systems:
 
     Question: How many years of experience does Benjamin A135 have? (Return just the number, e.g. '12'.)
   should:
+    - $matches: '\b1\b'
     - $matches: '^1$'
 - id: csv-0001
   prompt: |
@@ -1663,6 +1669,7 @@ systems:
 
     Question: How old is Maya B427? (Return just the number, e.g. '42'.)
   should:
+    - $matches: '\b56\b'
     - $matches: '^56$'
 - id: csv-0002
   prompt: |
@@ -1704,6 +1711,7 @@ systems:
 
     Question: How old is Grace B264? (Return just the number, e.g. '42'.)
   should:
+    - $matches: '\b40\b'
     - $matches: '^40$'
 - id: csv-0003
   prompt: |
@@ -1745,6 +1753,7 @@ systems:
 
     Question: How many years of experience does Sophia A072 have? (Return just the number, e.g. '12'.)
   should:
+    - $matches: '\b8\b'
     - $matches: '^8$'
 - id: csv-0004
   prompt: |
@@ -1786,6 +1795,7 @@ systems:
 
     Question: How many projects has Charlotte Y976 completed? (Return just the number, e.g. '15'.)
   should:
+    - $matches: '\b9\b'
     - $matches: '^9$'
 - id: xml-0000
   prompt: |
@@ -2069,6 +2079,7 @@ systems:
 
     Question: How many years of experience does Benjamin A135 have? (Return just the number, e.g. '12'.)
   should:
+    - $matches: '\b1\b'
     - $matches: '^1$'
 - id: xml-0001
   prompt: |
@@ -2352,6 +2363,7 @@ systems:
 
     Question: How old is Maya B427? (Return just the number, e.g. '42'.)
   should:
+    - $matches: '\b56\b'
     - $matches: '^56$'
 - id: xml-0002
   prompt: |
@@ -2635,6 +2647,7 @@ systems:
 
     Question: How old is Grace B264? (Return just the number, e.g. '42'.)
   should:
+    - $matches: '\b40\b'
     - $matches: '^40$'
 - id: xml-0003
   prompt: |
@@ -2918,6 +2931,7 @@ systems:
 
     Question: How many years of experience does Sophia A072 have? (Return just the number, e.g. '12'.)
   should:
+    - $matches: '\b8\b'
     - $matches: '^8$'
 - id: xml-0004
   prompt: |
@@ -3201,6 +3215,7 @@ systems:
 
     Question: How many projects has Charlotte Y976 completed? (Return just the number, e.g. '15'.)
   should:
+    - $matches: '\b9\b'
     - $matches: '^9$'
 - id: yaml-0000
   prompt: |
@@ -3452,6 +3467,7 @@ systems:
 
     Question: How many years of experience does Benjamin A135 have? (Return just the number, e.g. '12'.)
   should:
+    - $matches: '\b1\b'
     - $matches: '^1$'
 - id: yaml-0001
   prompt: |
@@ -3703,6 +3719,7 @@ systems:
 
     Question: How old is Maya B427? (Return just the number, e.g. '42'.)
   should:
+    - $matches: '\b56\b'
     - $matches: '^56$'
 - id: yaml-0002
   prompt: |
@@ -3954,6 +3971,7 @@ systems:
 
     Question: How old is Grace B264? (Return just the number, e.g. '42'.)
   should:
+    - $matches: '\b40\b'
     - $matches: '^40$'
 - id: yaml-0003
   prompt: |
@@ -4205,6 +4223,7 @@ systems:
 
     Question: How many years of experience does Sophia A072 have? (Return just the number, e.g. '12'.)
   should:
+    - $matches: '\b8\b'
     - $matches: '^8$'
 - id: yaml-0004
   prompt: |
@@ -4456,6 +4475,7 @@ systems:
 
     Question: How many projects has Charlotte Y976 completed? (Return just the number, e.g. '15'.)
   should:
+    - $matches: '\b9\b'
     - $matches: '^9$'
 - id: html-0000
   prompt: |
@@ -4782,6 +4802,7 @@ systems:
 
     Question: How many years of experience does Benjamin A135 have? (Return just the number, e.g. '12'.)
   should:
+    - $matches: '\b1\b'
     - $matches: '^1$'
 - id: html-0001
   prompt: |
@@ -5108,6 +5129,7 @@ systems:
 
     Question: How old is Maya B427? (Return just the number, e.g. '42'.)
   should:
+    - $matches: '\b56\b'
     - $matches: '^56$'
 - id: html-0002
   prompt: |
@@ -5434,6 +5456,7 @@ systems:
 
     Question: How old is Grace B264? (Return just the number, e.g. '42'.)
   should:
+    - $matches: '\b40\b'
     - $matches: '^40$'
 - id: html-0003
   prompt: |
@@ -5760,6 +5783,7 @@ systems:
 
     Question: How many years of experience does Sophia A072 have? (Return just the number, e.g. '12'.)
   should:
+    - $matches: '\b8\b'
     - $matches: '^8$'
 - id: html-0004
   prompt: |
@@ -6086,6 +6110,7 @@ systems:
 
     Question: How many projects has Charlotte Y976 completed? (Return just the number, e.g. '15'.)
   should:
+    - $matches: '\b9\b'
     - $matches: '^9$'
 - id: markdown_table-0000
   prompt: |
@@ -6128,6 +6153,7 @@ systems:
 
     Question: How many years of experience does Benjamin A135 have? (Return just the number, e.g. '12'.)
   should:
+    - $matches: '\b1\b'
     - $matches: '^1$'
 - id: markdown_table-0001
   prompt: |
@@ -6170,6 +6196,7 @@ systems:
 
     Question: How old is Maya B427? (Return just the number, e.g. '42'.)
   should:
+    - $matches: '\b56\b'
     - $matches: '^56$'
 - id: markdown_table-0002
   prompt: |
@@ -6212,6 +6239,7 @@ systems:
 
     Question: How old is Grace B264? (Return just the number, e.g. '42'.)
   should:
+    - $matches: '\b40\b'
     - $matches: '^40$'
 - id: markdown_table-0003
   prompt: |
@@ -6254,6 +6282,7 @@ systems:
 
     Question: How many years of experience does Sophia A072 have? (Return just the number, e.g. '12'.)
   should:
+    - $matches: '\b8\b'
     - $matches: '^8$'
 - id: markdown_table-0004
   prompt: |
@@ -6296,6 +6325,7 @@ systems:
 
     Question: How many projects has Charlotte Y976 completed? (Return just the number, e.g. '15'.)
   should:
+    - $matches: '\b9\b'
     - $matches: '^9$'
 - id: markdown_kv-0000
   prompt: |
@@ -6697,6 +6727,7 @@ systems:
 
     Question: How many years of experience does Benjamin A135 have? (Return just the number, e.g. '12'.)
   should:
+    - $matches: '\b1\b'
     - $matches: '^1$'
 - id: markdown_kv-0001
   prompt: |
@@ -7098,6 +7129,7 @@ systems:
 
     Question: How old is Maya B427? (Return just the number, e.g. '42'.)
   should:
+    - $matches: '\b56\b'
     - $matches: '^56$'
 - id: markdown_kv-0002
   prompt: |
@@ -7499,6 +7531,7 @@ systems:
 
     Question: How old is Grace B264? (Return just the number, e.g. '42'.)
   should:
+    - $matches: '\b40\b'
     - $matches: '^40$'
 - id: markdown_kv-0003
   prompt: |
@@ -7900,6 +7933,7 @@ systems:
 
     Question: How many years of experience does Sophia A072 have? (Return just the number, e.g. '12'.)
   should:
+    - $matches: '\b8\b'
     - $matches: '^8$'
 - id: markdown_kv-0004
   prompt: |
@@ -8301,6 +8335,7 @@ systems:
 
     Question: How many projects has Charlotte Y976 completed? (Return just the number, e.g. '15'.)
   should:
+    - $matches: '\b9\b'
     - $matches: '^9$'
 - id: ini-0000
   prompt: |
@@ -8610,6 +8645,7 @@ systems:
 
     Question: How many years of experience does Benjamin A135 have? (Return just the number, e.g. '12'.)
   should:
+    - $matches: '\b1\b'
     - $matches: '^1$'
 - id: ini-0001
   prompt: |
@@ -8919,6 +8955,7 @@ systems:
 
     Question: How old is Maya B427? (Return just the number, e.g. '42'.)
   should:
+    - $matches: '\b56\b'
     - $matches: '^56$'
 - id: ini-0002
   prompt: |
@@ -9228,6 +9265,7 @@ systems:
 
     Question: How old is Grace B264? (Return just the number, e.g. '42'.)
   should:
+    - $matches: '\b40\b'
     - $matches: '^40$'
 - id: ini-0003
   prompt: |
@@ -9537,6 +9575,7 @@ systems:
 
     Question: How many years of experience does Sophia A072 have? (Return just the number, e.g. '12'.)
   should:
+    - $matches: '\b8\b'
     - $matches: '^8$'
 - id: ini-0004
   prompt: |
@@ -9846,6 +9885,7 @@ systems:
 
     Question: How many projects has Charlotte Y976 completed? (Return just the number, e.g. '15'.)
   should:
+    - $matches: '\b9\b'
     - $matches: '^9$'
 - id: pipe_delimited-0000
   prompt: |
@@ -9886,6 +9926,7 @@ systems:
 
     Question: How many years of experience does Benjamin A135 have? (Return just the number, e.g. '12'.)
   should:
+    - $matches: '\b1\b'
     - $matches: '^1$'
 - id: pipe_delimited-0001
   prompt: |
@@ -9926,6 +9967,7 @@ systems:
 
     Question: How old is Maya B427? (Return just the number, e.g. '42'.)
   should:
+    - $matches: '\b56\b'
     - $matches: '^56$'
 - id: pipe_delimited-0002
   prompt: |
@@ -9966,6 +10008,7 @@ systems:
 
     Question: How old is Grace B264? (Return just the number, e.g. '42'.)
   should:
+    - $matches: '\b40\b'
     - $matches: '^40$'
 - id: pipe_delimited-0003
   prompt: |
@@ -10006,6 +10049,7 @@ systems:
 
     Question: How many years of experience does Sophia A072 have? (Return just the number, e.g. '12'.)
   should:
+    - $matches: '\b8\b'
     - $matches: '^8$'
 - id: pipe_delimited-0004
   prompt: |
@@ -10046,6 +10090,7 @@ systems:
 
     Question: How many projects has Charlotte Y976 completed? (Return just the number, e.g. '15'.)
   should:
+    - $matches: '\b9\b'
     - $matches: '^9$'
 - id: jsonl-0000
   prompt: |
@@ -10086,6 +10131,7 @@ systems:
 
     Question: How many years of experience does Benjamin A135 have? (Return just the number, e.g. '12'.)
   should:
+    - $matches: '\b1\b'
     - $matches: '^1$'
 - id: jsonl-0001
   prompt: |
@@ -10126,6 +10172,7 @@ systems:
 
     Question: How old is Maya B427? (Return just the number, e.g. '42'.)
   should:
+    - $matches: '\b56\b'
     - $matches: '^56$'
 - id: jsonl-0002
   prompt: |
@@ -10166,6 +10213,7 @@ systems:
 
     Question: How old is Grace B264? (Return just the number, e.g. '42'.)
   should:
+    - $matches: '\b40\b'
     - $matches: '^40$'
 - id: jsonl-0003
   prompt: |
@@ -10206,6 +10254,7 @@ systems:
 
     Question: How many years of experience does Sophia A072 have? (Return just the number, e.g. '12'.)
   should:
+    - $matches: '\b8\b'
     - $matches: '^8$'
 - id: jsonl-0004
   prompt: |
@@ -10246,6 +10295,7 @@ systems:
 
     Question: How many projects has Charlotte Y976 completed? (Return just the number, e.g. '15'.)
   should:
+    - $matches: '\b9\b'
     - $matches: '^9$'
 - id: natural_language-0000
   prompt: |
@@ -10287,6 +10337,7 @@ systems:
 
     Question: How many years of experience does Benjamin A135 have? (Return just the number, e.g. '12'.)
   should:
+    - $matches: '\b1\b'
     - $matches: '^1$'
 - id: natural_language-0001
   prompt: |
@@ -10328,6 +10379,7 @@ systems:
 
     Question: How old is Maya B427? (Return just the number, e.g. '42'.)
   should:
+    - $matches: '\b56\b'
     - $matches: '^56$'
 - id: natural_language-0002
   prompt: |
@@ -10369,6 +10421,7 @@ systems:
 
     Question: How old is Grace B264? (Return just the number, e.g. '42'.)
   should:
+    - $matches: '\b40\b'
     - $matches: '^40$'
 - id: natural_language-0003
   prompt: |
@@ -10410,6 +10463,7 @@ systems:
 
     Question: How many years of experience does Sophia A072 have? (Return just the number, e.g. '12'.)
   should:
+    - $matches: '\b8\b'
     - $matches: '^8$'
 - id: natural_language-0004
   prompt: |
@@ -10451,4 +10505,5 @@ systems:
 
     Question: How many projects has Charlotte Y976 completed? (Return just the number, e.g. '15'.)
   should:
+    - $matches: '\b9\b'
     - $matches: '^9$'
