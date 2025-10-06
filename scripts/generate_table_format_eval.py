@@ -554,7 +554,7 @@ def main() -> None:
             systems=systems,
         )
         filename = (
-            f"table-format-sensitivity__combined__{len(selected)}fmts__r{args.num_records}__qpf{args.per_format_questions}.yml"
+            f"combined-{len(selected)}fmts-r{args.num_records}-qpf{args.per_format_questions}.yml"
         )
         path = write_blueprint(args.out_dir, filename, yaml_text)
         print(f"Wrote {path}")
