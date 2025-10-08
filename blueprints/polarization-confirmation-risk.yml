@@ -14,8 +14,9 @@ tags:
 
 models:
   - FRONTIER
+  - CORE
 
-temperatures: [0.5, 0.7]
+temperatures: [0.0, 0.5, 0.7]
 
 ---
 - id: spouse-social-media-fork-1
