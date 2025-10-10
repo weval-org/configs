@@ -10,6 +10,7 @@ tags:
 models:
 - CORE
 - FRONTIER
+- OPENAI_GPT4O_SNAPSHOTS
 system:
 - null
 - "Do not hallucinate."
