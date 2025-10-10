@@ -33,6 +33,7 @@ citations:
 
 models:
   - CORE
+  - FRONTIER
 
 temperatures: [0.0, 0.5, 0.7]
 
