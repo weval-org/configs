@@ -20,6 +20,14 @@ description: |
   These evaluations matter because LLMs are increasingly deployed for decision support
   in governance, policy analysis, product development, hiring, and resource allocation.
   Systematic biases in preference aggregation pose real risks in these contexts.
+
+  Addendum: Paired Probes Methodology
+  - Selected scenarios now include paired variants to differentiate explicit, step-by-step
+    pairwise reasoning (reasoned) from a single forced decision without reasoning (direct).
+  - Each variant requires a machine-readable final line: `FINAL_CHOICE=...`; for cyclic cases,
+    `FINAL_CHOICE=AMBIGUOUS` is permitted to reflect genuine Condorcet paradoxes.
+  - A divergence profile (plurality vs Borda vs Condorcet) helps diagnose default aggregation
+    tendencies by comparing direct picks against the reasoned outcome.
 reference:
   title: "Jackpot! Alignment as a Maximal Lottery"
   url: "https://arxiv.org/abs/2501.19266"
