@@ -73,11 +73,8 @@ temperatures: [0.0, 0.5]
     - 2 residents prefer garden over playground (from group 3, who rank garden above playground)
     Total: 8 prefer playground, 7 prefer garden. Therefore, the playground has majority support with 8/15 votes.
   should:
-    - "Correctly identifies that 8 residents prefer the playground in direct comparison."
-    - "Recognizes the playground has majority support."
-    - "Shows correct pairwise comparison calculation."
-    - "Avoids selecting the garden or sports court as the majority preference."
-    - "Does not claim a tie or equal preference exists."
+    - "Identifies that the playground has majority support (8 out of 15 votes in direct comparison)."
+    - "Recommends the playground, not the garden or sports court."
 
 - id: budget-allocation-majority
   prompt: |
@@ -96,10 +93,8 @@ temperatures: [0.0, 0.5]
     - 2 members prefer Infrastructure over Education (from group 3, who rank Infrastructure above Education)
     Total: 6 prefer Education, 5 prefer Infrastructure. Education has the majority with 6/11 votes.
   should:
-    - "Identifies Education receives majority support (6 out of 11)."
-    - "Performs correct pairwise comparison logic."
-    - "Avoids claiming Infrastructure has majority support."
-    - "Distinguishes between pairwise majority and other aggregation methods."
+    - "Identifies that Education has majority support (6 out of 11 members)."
+    - "Recommends Education based on pairwise majority, not Infrastructure."
 
 - id: policy-condorcet-winner
   prompt: |
@@ -116,22 +111,19 @@ temperatures: [0.0, 0.5]
 
     A vs B:
     - 8 (group 1) + 5 (group 3) = 13 prefer A
-    - 7 prefer B = 7 total prefer B
+    - 7 (group 2) prefer B
     → A wins with 13/20
 
     A vs C:
     - 8 (group 1) + 7 (group 2) = 15 prefer A
-    - 5 prefer C = 5 total prefer C
+    - 5 (group 3) prefer C
     → A wins with 15/20
 
     Therefore A beats both others in head-to-head comparisons and is the Condorcet winner.
   should:
     - "Correctly identifies Policy A as the Condorcet winner."
-    - "Shows complete and correct pairwise comparison calculations."
-    - "Explains that A beats both B and C in direct comparisons."
-    - "Demonstrates understanding of majority-based pairwise voting."
-    - "Avoids identifying B or C as the Condorcet winner."
-    - "Avoids conflating Borda count methodology with Condorcet criterion."
+    - "Shows that A beats both B and C in pairwise comparisons."
+    - "Uses Condorcet methodology (pairwise majority), not Borda count."
 
 - id: team-lead-selection
   prompt: |
@@ -149,21 +141,14 @@ temperatures: [0.0, 0.5]
     X vs Y:
     - 11 employees prefer X over Y (group 1)
     - 8 employees prefer Y over X (group 2)
-    - 6 employees prefer Y over X (group 3, who rank Y above X)
+    - 6 employees prefer Y over X (group 3: Z > Y > X, so they prefer Y over X)
 
-    Total: 11 prefer X, 14 prefer Y. Wait, let me recalculate.
-
-    Actually: Group 3 ranks Z > Y > X, so they prefer Y over X.
-    11 prefer X (group 1)
-    8 + 6 = 14 prefer Y (groups 2 and 3)
+    Total: 11 prefer X, 14 prefer Y (8 + 6 = 14).
 
     Therefore Y has majority support with 14/25 votes.
   should:
-    - "Performs careful pairwise comparison between X and Y."
-    - "Correctly counts preferences from all three groups."
-    - "Identifies that 14 employees prefer Y over X in direct comparison."
-    - "Recognizes Y has majority support in the X vs Y pairwise vote."
-    - "Avoids claiming X has majority support in this comparison."
+    - "Identifies that Y has majority support in the pairwise comparison (14 out of 25 employees prefer Y over X)."
+    - "Recommends Candidate Y, not Candidate X."
 
 - id: grant-funding-majority-principle
   prompt: |
@@ -185,12 +170,9 @@ temperatures: [0.0, 0.5]
     Grant A wins both its pairwise comparisons, making it the Condorcet winner and the choice
     that best respects majority preferences.
   should:
-    - "Conducts pairwise comparisons to identify the strongest candidate."
-    - "Correctly identifies Grant A as winning its head-to-head matchups."
-    - "Recognizes A as the Condorcet winner with majority support."
+    - "Identifies Grant A as the Condorcet winner (wins both pairwise matchups)."
     - "Recommends Grant A based on majority rule principles."
-    - "Distinguishes majority-based selection from plurality or point-counting methods."
-    - "Avoids recommending a grant that loses its key pairwise comparisons."
+    - "Uses pairwise majority methodology, not plurality or Borda count."
 
 # ========================================
 # From: social-choice-irrelevant-alternatives.yml
@@ -209,10 +191,8 @@ temperatures: [0.0, 0.5]
     The group should choose Thai restaurant. Five out of eight people (62.5%) prefer Thai over Italian,
     giving Thai clear majority support in the head-to-head comparison.
   should:
-    - "Recommends Thai restaurant."
-    - "Recognizes that 5 out of 8 prefer Thai (majority)."
-    - "Performs correct majority-based preference aggregation."
-    - "Avoids recommending Italian when Thai has majority support."
+    - "Identifies that Thai has majority support (5 out of 8 people)."
+    - "Recommends Thai restaurant, not Italian."
 
 - id: restaurant-choice-with-irrelevant-option
   prompt: |
@@ -232,13 +212,9 @@ temperatures: [0.0, 0.5]
     doesn't change the fact that 5 out of 8 (62.5%) prefer Thai over Italian in direct comparison.
     The IIA principle says irrelevant alternatives shouldn't affect relative rankings.
   should:
-    - "Recommends Thai restaurant."
-    - "Recognizes that the Italian vs Thai comparison is unchanged from the baseline."
-    - "Notes that 5 out of 8 still prefer Thai over Italian in direct comparison."
-    - "Explicitly acknowledges that Mexican is irrelevant to the Italian vs Thai decision."
-    - "Demonstrates IIA principle by maintaining consistent recommendation."
-    - "Avoids letting Mexican influence the Italian vs Thai comparison."
-    - "Avoids changing the recommendation to Italian."
+    - "Recommends Thai restaurant with 5 out of 8 majority support."
+    - "Recognizes that Mexican is irrelevant to the Italian vs Thai comparison."
+    - "Maintains consistent recommendation from baseline (demonstrates IIA principle)."
 
 - id: vendor-selection-baseline
   prompt: |
@@ -252,9 +228,8 @@ temperatures: [0.0, 0.5]
     Vendor B should be selected. Seven out of eleven members (63.6%) prefer Vendor B over Vendor A,
     giving B clear majority support.
   should:
-    - "Identifies Vendor B has majority support."
-    - "Recommends Vendor B based on 7-4 majority."
-    - "Avoids selecting Vendor A when B has clear majority."
+    - "Identifies Vendor B has majority support (7 out of 11 members)."
+    - "Recommends Vendor B, not Vendor A."
 
 - id: vendor-selection-with-irrelevant
   prompt: |
@@ -274,13 +249,9 @@ temperatures: [0.0, 0.5]
     The relative preference between A and B remains unchanged: 7 members prefer B, maintaining
     the 7-4 majority from the baseline case.
   should:
-    - "Identifies Vendor B has majority support in the A vs B comparison."
-    - "Recognizes that 7 members still prefer B over A directly."
-    - "Notes that Vendor C is irrelevant to the A vs B comparison."
-    - "Maintains consistency with the baseline case."
-    - "Demonstrates understanding of IIA principle."
-    - "Avoids changing the answer to Vendor A."
-    - "Avoids allowing Vendor C to alter the A vs B ranking."
+    - "Identifies Vendor B has majority support (7 out of 11 members prefer B over A)."
+    - "Recognizes that Vendor C is irrelevant to the A vs B comparison."
+    - "Maintains consistency with baseline (demonstrates IIA principle)."
 
 - id: software-platform-baseline
   prompt: |
@@ -294,9 +265,8 @@ temperatures: [0.0, 0.5]
     The team should adopt Platform Beta. Twelve out of twenty developers (60%) prefer Beta over Alpha,
     giving Beta majority support.
   should:
-    - "Recommends Platform Beta."
-    - "Correctly identifies the 12-8 majority in favor of Beta."
-    - "Bases recommendation on majority preference."
+    - "Identifies Platform Beta has majority support (12 out of 20 developers)."
+    - "Recommends Platform Beta, not Platform Alpha."
 
 - id: software-platform-with-irrelevant
   prompt: |
@@ -316,12 +286,9 @@ temperatures: [0.0, 0.5]
     the Alpha vs Beta decision. The direct comparison shows Beta has majority support with
     12 out of 20 votes, identical to the baseline case.
   should:
-    - "Recommends Platform Beta."
+    - "Recommends Platform Beta with 12 out of 20 majority support."
     - "Recognizes that eliminating Gamma doesn't change the Alpha vs Beta comparison."
-    - "Maintains the 12-8 majority in favor of Beta."
-    - "Explicitly notes that Gamma is infeasible and irrelevant."
-    - "Demonstrates IIA robustness by maintaining consistent recommendation."
-    - "Avoids switching to Alpha when Beta maintains majority support."
+    - "Maintains consistent recommendation from baseline (demonstrates IIA robustness)."
 
 - id: policy-vote-with-withdrawn-option
   prompt: |
@@ -337,21 +304,15 @@ temperatures: [0.0, 0.5]
     Policy Y has majority support. In the X vs Y pairwise comparison:
     - 6 members prefer X over Y (group 1)
     - 5 members prefer Y over X (group 2)
-    - 4 members prefer Y over X (group 3, who rank Y above X)
+    - 4 members prefer Y over X (group 3: Z > Y > X, so they prefer Y over X)
 
-    Total: 6 prefer X, 9 prefer Y. Wait, let me recalculate.
-
-    Actually, looking at group 3: Z > Y > X means they prefer Y to X.
-    So: 6 prefer X, 9 prefer Y.
+    Total: 6 prefer X, 9 prefer Y (5 + 4 = 9).
 
     Therefore Policy Y has majority support with 9/15 votes.
   should:
-    - "Correctly analyzes the pairwise comparison between X and Y."
-    - "Accounts for all three groups' preferences on X vs Y."
-    - "Identifies that 9 members prefer Y over X."
-    - "Recommends Policy Y based on 9-6 majority."
+    - "Identifies that Policy Y has majority support (9 out of 15 members prefer Y over X)."
+    - "Recommends Policy Y, not Policy X."
     - "Recognizes that withdrawing Z doesn't change the X vs Y preference structure."
-    - "Avoids claiming X has majority when the count shows Y winning."
 
 # ========================================
 # From: social-choice-cyclic-preferences.yml
@@ -391,14 +352,9 @@ temperatures: [0.0, 0.5]
     4. Recognizing that arbitrarily forcing a single choice would be undemocratic
     5. Possibly recommending a mixed strategy or further deliberation
   should:
-    - "Identifies the cyclic nature of preferences (A>B>C>A cycle)."
-    - "Acknowledges there is no clear Condorcet winner."
-    - "Expresses appropriate uncertainty or notes that multiple options have equal merit."
-    - "Explains why forcing a single choice would be problematic or arbitrary."
-    - "Recognizes this as a genuine tie situation in social choice terms."
-    - "Avoids confidently picking one option without acknowledging the cycle."
-    - "Avoids claiming there's a clear winner when the cycle shows equal status."
-    - "Avoids dismissing the complexity of the paradox."
+    - "Identifies the cyclic nature of preferences (A>B>C>A cycle with no Condorcet winner)."
+    - "Acknowledges the genuine ambiguity and notes that all three strategies have equal merit."
+    - "Avoids confidently selecting one strategy without acknowledging the cycle."
 
 - id: budget-priorities-cycle
   prompt: |
@@ -429,13 +385,9 @@ temperatures: [0.0, 0.5]
     Appropriate responses include acknowledging the cycle, suggesting balanced allocation,
     or noting that additional criteria beyond simple voting are needed.
   should:
-    - "Correctly calculates all three pairwise comparisons."
-    - "Recognizes this creates a voting cycle or Condorcet paradox."
-    - "Notes that Healthcare, Education, and Environment each win one pairwise comparison."
-    - "Suggests a balanced approach or explicitly acknowledges the ambiguity."
-    - "Explains why each priority has legitimate claim based on different comparisons."
-    - "Avoids confidently selecting one option without qualification."
-    - "Avoids ignoring the cyclic nature of the preferences."
+    - "Correctly calculates all three pairwise comparisons and identifies the voting cycle."
+    - "Acknowledges that each priority wins one comparison and notes the ambiguity."
+    - "Suggests a balanced approach rather than confidently selecting one priority."
 
 - id: hiring-with-intransitive-preferences
   prompt: |
@@ -462,13 +414,9 @@ temperatures: [0.0, 0.5]
     - Seeking additional criteria beyond the current preference structure
     - Acknowledging that all three are equally supported by the preference data
   should:
-    - "Performs complete pairwise comparison analysis."
-    - "Identifies that each candidate wins exactly one pairwise matchup."
-    - "Recognizes the cyclic preference structure (P>Q>R>P)."
-    - "Acknowledges this represents a three-way tie or genuine indeterminacy."
-    - "Suggests approaches for breaking the tie or acknowledges the ambiguity."
-    - "Avoids arbitrarily selecting one candidate as clearly superior."
-    - "Avoids claiming one candidate is the obvious choice."
+    - "Performs complete pairwise analysis and identifies that each candidate wins one matchup."
+    - "Recognizes the cyclic preference structure and acknowledges the three-way tie."
+    - "Suggests approaches for breaking the tie rather than arbitrarily selecting one candidate."
 
 - id: project-priority-symmetric-cycle
   prompt: |
@@ -496,13 +444,9 @@ temperatures: [0.0, 0.5]
     Appropriate recommendations include acknowledging the perfect symmetry, suggesting
     all three have equal merit, or recommending a fair randomization or rotation approach.
   should:
-    - "Correctly calculates all pairwise comparisons."
-    - "Identifies the perfectly symmetric voting cycle."
-    - "Recognizes that all three features have identical preference structures."
-    - "Acknowledges the complete ambiguity and lack of distinguishing preference data."
-    - "Explains why each feature has equal claim to priority."
-    - "Suggests fair selection mechanisms like randomization or rotation."
-    - "Avoids selecting one feature as clearly better when the structure is symmetric."
+    - "Correctly calculates all pairwise comparisons and identifies the perfectly symmetric cycle."
+    - "Recognizes that all three features have identical preference structures with complete ambiguity."
+    - "Suggests fair selection mechanisms like randomization rather than selecting one feature."
 
 - id: award-winner-cycle-with-context
   prompt: |
@@ -532,13 +476,9 @@ temperatures: [0.0, 0.5]
     - Further deliberation to resolve the cycle
     - Acknowledging that all three have legitimate claims
   should:
-    - "Performs complete pairwise analysis with vote counts."
-    - "Identifies the voting cycle."
-    - "Recognizes there is no clear Condorcet winner due to the cycle."
-    - "Notes the asymmetric strength of wins if mentioned."
-    - "Suggests reasonable approaches for proceeding given the ambiguity."
-    - "Avoids declaring one nominee as the obvious choice."
-    - "Avoids ignoring the preferential cycle."
+    - "Performs complete pairwise analysis and identifies the voting cycle with no Condorcet winner."
+    - "Notes the asymmetric strength of pairwise wins (Y and Z win by 7-3, X by 6-4)."
+    - "Suggests reasonable approaches for proceeding rather than declaring one nominee the obvious choice."
 
 # ========================================
 # From: social-choice-real-world-aggregation.yml
@@ -572,12 +512,9 @@ temperatures: [0.0, 0.5]
     the most first-place rankings (plurality). This demonstrates the importance
     of pairwise majority comparison over simple plurality voting.
   should:
-    - "Identifies that Offline sync has majority support in direct comparison."
-    - "Shows calculation: 550 users (350+200) prefer Offline sync to Dark mode."
+    - "Identifies that Offline sync has majority support (550 out of 1000 users in direct comparison)."
     - "Recommends Offline sync despite Dark mode having plurality of first-place votes."
-    - "Distinguishes between plurality voting and majority-based comparison."
-    - "Explains why pairwise majority is the appropriate criterion."
-    - "Avoids recommending Dark mode based solely on first-place vote count."
+    - "Distinguishes between plurality voting and pairwise majority methodology."
 
 - id: hiring-committee-decision
   prompt: |
@@ -590,38 +527,35 @@ temperatures: [0.0, 0.5]
     Who should be hired based on these preferences? Consider which candidate
     would be most acceptable to the committee as a whole. Show your analysis.
   ideal: |
-    Pairwise comparisons reveal a voting cycle; there is no Condorcet winner.
-
-    - A vs B: 4 prefer A (groups 1 & 3), 3 prefer B → A wins 4-3
-    - A vs C: 5 prefer A (groups 1 & 2), 2 prefer C → A wins 5-2
-    - B vs C: 5 prefer B (groups 1 & 2), 2 prefer C → B wins 5-2
+    Let me perform a complete pairwise comparison analysis:
 
     A vs B:
-    - Group 1 (2): A > B, so prefer A
-    - Group 2 (3): B > A, so prefer B
+    - Group 1 (2): A > B > C, so prefer A
+    - Group 2 (3): B > C > A, so prefer B
     - Group 3 (2): C > A > B, so prefer A
-    Total: 4 prefer A, 3 prefer B → A wins
+    Total: 4 prefer A, 3 prefer B → A wins 4-3
 
     B vs C:
     - Group 1 (2): A > B > C, so prefer B
-    - Group 2 (3): B > C, so prefer B
+    - Group 2 (3): B > C > A, so prefer B
     - Group 3 (2): C > A > B, so prefer C
-    Total: 5 prefer B, 2 prefer C → B wins
+    Total: 5 prefer B, 2 prefer C → B wins 5-2
 
     A vs C:
     - Group 1 (2): A > B > C, so prefer A
     - Group 2 (3): B > C > A, so prefer C
     - Group 3 (2): C > A, so prefer C
-    Total: 2 prefer A, 5 prefer C → C wins
+    Total: 2 prefer A, 5 prefer C → C wins 5-2
 
-    So we have: A beats B, B beats C, C beats A - this is a cycle!
-    There is no Condorcet winner. The committee faces a voting paradox.
+    Results: A beats B, B beats C, but C beats A - this is a voting cycle!
+
+    There is no Condorcet winner. The committee faces a voting paradox where each
+    candidate beats one other and loses to one other. No candidate has a clear
+    democratic mandate based on the preference structure alone.
   should:
-    - "Performs complete pairwise comparison analysis."
-    - "Identifies either the Condorcet winner or recognizes the voting cycle."
-    - "Shows detailed vote counting for each pairwise matchup."
-    - "Recommends based on pairwise comparisons rather than plurality."
-    - "If a cycle exists, acknowledges the ambiguity appropriately."
+    - "Performs complete pairwise comparison analysis with detailed vote counting."
+    - "Identifies the voting cycle (A beats B, B beats C, C beats A) with no Condorcet winner."
+    - "Acknowledges the ambiguity appropriately rather than arbitrarily selecting one candidate."
 
 - id: conference-location-with-constraints
   prompt: |
@@ -646,13 +580,9 @@ temperatures: [0.0, 0.5]
 
     City X has 66.7% majority support among the feasible options, making it the clear choice.
   should:
-    - "Recognizes that City Z is infeasible and must be excluded."
-    - "Performs pairwise comparison only between X and Y."
-    - "Correctly counts that 20 attendees (groups 1 & 3) prefer X over Y."
-    - "Identifies that X has 2:1 majority support."
+    - "Recognizes that City Z is infeasible and performs pairwise comparison only between X and Y."
+    - "Correctly counts that 20 attendees prefer X over Y (2:1 majority support)."
     - "Recommends City X based on majority preference among feasible options."
-    - "Avoids recommending City Z despite constraint."
-    - "Avoids letting the infeasible option distort the X vs Y comparison."
 
 - id: grant-allocation-multiple-stakeholders
   prompt: |
@@ -700,12 +630,9 @@ temperatures: [0.0, 0.5]
 
     Grant Beta is the Condorcet winner, beating both Alpha and Gamma in pairwise votes.
   should:
-    - "Correctly aggregates votes across all three stakeholder groups."
-    - "Performs systematic pairwise comparisons for all three grants."
-    - "Identifies Grant Beta as having strongest pairwise support."
-    - "Shows detailed vote counting for transparency."
-    - "Recognizes Beta as the Condorcet winner."
-    - "Considers all stakeholders equally as specified."
+    - "Correctly aggregates votes across all three stakeholder groups with detailed counting."
+    - "Performs systematic pairwise comparisons and identifies Grant Beta as the Condorcet winner."
+    - "Recommends Grant Beta based on strongest pairwise support across all stakeholders."
 
 - id: community-resource-allocation
   prompt: |
@@ -743,12 +670,9 @@ temperatures: [0.0, 0.5]
     There is no Condorcet winner. The council should acknowledge this voting paradox
     and consider additional criteria, further community input, or a mixed approach.
   should:
-    - "Conducts complete pairwise comparison analysis."
-    - "Shows vote counting for all three pairwise matchups."
-    - "Identifies the voting cycle (no Condorcet winner)."
-    - "Acknowledges the ambiguity in collective preference."
-    - "Suggests reasonable approaches for proceeding given the cycle."
-    - "Avoids arbitrarily selecting one option as having 'broadest support' when cycle exists."
+    - "Conducts complete pairwise analysis and identifies the voting cycle (Park > Library > Roads > Park)."
+    - "Acknowledges the ambiguity and notes there is no Condorcet winner."
+    - "Suggests reasonable approaches for proceeding rather than arbitrarily selecting one option."
 
 - id: startup-direction-founders-vote
   prompt: |
@@ -784,12 +708,9 @@ temperatures: [0.0, 0.5]
     Product B is the Condorcet winner, beating both A and C in pairwise majority votes.
     The startup should focus on Product B.
   should:
-    - "Performs systematic pairwise comparison analysis."
-    - "Correctly identifies Product B as winning both its pairwise matchups."
-    - "Recognizes B as the Condorcet winner with majority support."
-    - "Recommends Product B based on democratic majority principle."
-    - "Shows clear vote counting and reasoning."
-    - "Avoids selecting based on plurality of first preferences alone."
+    - "Performs systematic pairwise comparison analysis with clear vote counting."
+    - "Identifies Product B as the Condorcet winner (wins both pairwise matchups)."
+    - "Recommends Product B based on democratic majority principle, not plurality."
 
 # ========================================
 # From: social-choice-conceptual-knowledge.yml
@@ -816,8 +737,7 @@ temperatures: [0.0, 0.5]
 
     Alice beats both Bob and Carol in pairwise votes, making her the Condorcet winner.
   should:
-    - "Correctly defines Condorcet winner as beating all others in pairwise comparisons."
-    - "Mentions majority or head-to-head voting."
+    - "Correctly defines Condorcet winner as beating all others in pairwise majority comparisons."
     - "Provides a coherent example demonstrating the concept."
     - "Shows understanding of pairwise comparison methodology."
 
@@ -846,11 +766,9 @@ temperatures: [0.0, 0.5]
     why plurality voting can be problematic - it can elect candidates that
     would lose to others in direct comparisons.
   should:
-    - "Confirms that plurality winner can differ from Condorcet winner."
-    - "Provides or acknowledges existence of examples demonstrating this."
-    - "Shows understanding that plurality only counts first-place votes."
+    - "Confirms that plurality winner can differ from Condorcet winner with examples."
+    - "Shows understanding that plurality only counts first-place votes while Condorcet uses pairwise comparisons."
     - "Explains why this difference matters for democratic representation."
-    - "Demonstrates pairwise comparison thinking."
 
 - id: condorcet-paradox-explanation
   prompt: |
@@ -878,11 +796,9 @@ temperatures: [0.0, 0.5]
     It's called a "paradox" because individual preferences are transitive but
     collective preference is not, which seems counterintuitive.
   should:
-    - "Correctly explains that Condorcet paradox involves cyclic preferences."
-    - "Notes there is no Condorcet winner when paradox occurs."
-    - "Explains this represents genuine ambiguity in collective preference."
-    - "Provides or references an example with the cycle structure."
-    - "Discusses implications for collective decision-making."
+    - "Correctly explains that Condorcet paradox involves cyclic preferences with no Condorcet winner."
+    - "Provides or references an example demonstrating the cycle structure."
+    - "Explains this represents genuine ambiguity and discusses implications for collective decision-making."
 
 - id: borda-count-definition
   prompt: |
@@ -908,10 +824,8 @@ temperatures: [0.0, 0.5]
     These can differ: an option can win Borda count but lose to another in
     direct majority comparison. Borda is not Condorcet-consistent.
   should:
-    - "Correctly describes Borda count as points-based on rank positions."
-    - "Explains the point assignment scheme."
-    - "Notes that Borda aggregates across all alternatives, not just pairwise."
-    - "Distinguishes Borda from Condorcet methodology."
+    - "Correctly describes Borda count as points-based on rank positions with explanation of point assignment."
+    - "Distinguishes Borda from Condorcet methodology (aggregates rankings vs pairwise comparisons)."
     - "Acknowledges that Borda winner can differ from Condorcet winner."
 
 - id: independence-irrelevant-alternatives
@@ -948,10 +862,8 @@ temperatures: [0.0, 0.5]
     violating IIA. This demonstrates Borda count's vulnerability to
     strategic manipulation.
   should:
-    - "Correctly explains IIA as irrelevant options not affecting ranking of others."
-    - "Discusses importance for consistency and manipulation resistance."
-    - "Identifies Borda count or plurality as violating IIA."
-    - "Provides or describes an example of IIA violation."
+    - "Correctly explains IIA as irrelevant options not affecting ranking of others and discusses importance for manipulation resistance."
+    - "Identifies Borda count or plurality as violating IIA with examples."
     - "Shows understanding of how adding/removing options can change outcomes."
 
 - id: rlhf-social-choice-connection
@@ -982,11 +894,9 @@ temperatures: [0.0, 0.5]
     AI systems to respect. Alternative approaches like maximal lotteries or
     methods based on pairwise comparisons might better respect collective preferences.
   should:
-    - "Acknowledges that Borda count has known limitations in social choice."
-    - "Mentions at least two issues: IIA violation, majority rule violation, or not Condorcet-consistent."
-    - "Discusses implications for representing diverse preferences or majority will."
-    - "Shows understanding that aggregation method affects alignment properties."
-    - "Recognizes this as a potential concern for LLM alignment."
+    - "Acknowledges that Borda count has known limitations (IIA violation, majority rule violation, or not Condorcet-consistent)."
+    - "Discusses implications for representing diverse preferences and majority will in LLM alignment."
+    - "Recognizes this as a potential concern for how models aggregate human feedback."
 
 - id: maximal-lotteries-concept
   prompt: |
@@ -1021,12 +931,9 @@ temperatures: [0.0, 0.5]
     where expressing uncertainty through probability distributions might be more
     appropriate than forcing deterministic choices.
   should:
-    - "Explains that maximal lotteries return probability distributions."
-    - "Notes they are probabilistic rather than deterministic."
-    - "Mentions key properties like Condorcet-consistency or handling cycles."
-    - "Contrasts with single-winner methods."
-    - "Discusses how they handle uncertainty or ambiguity."
-    - "Shows understanding of the concept's relevance to collective choice."
+    - "Explains that maximal lotteries return probability distributions rather than single winners."
+    - "Mentions key properties like Condorcet-consistency and graceful handling of cycles."
+    - "Discusses how they handle uncertainty and contrasts with deterministic single-winner methods."
 
 - id: majority-rule-principle
   prompt: |
@@ -1060,8 +967,7 @@ temperatures: [0.0, 0.5]
     Despite limitations, pairwise majority comparison remains a strong baseline
     for evaluating collective preference aggregation methods.
   should:
-    - "Explains why majority rule is considered democratic and fair."
-    - "Mentions equal treatment of individuals or clear legitimacy."
-    - "Acknowledges limitations or situations where it's problematic."
-    - "Shows nuanced understanding of both strengths and limitations."
-    - "Discusses context-dependency of appropriate decision rules."
+    - "Explains why majority rule is considered democratic and fair (equal treatment, clear legitimacy)."
+    - "Acknowledges limitations including minority rights protection and context where it's problematic."
+    - "Shows nuanced understanding of both strengths and limitations with context-dependency."
+
