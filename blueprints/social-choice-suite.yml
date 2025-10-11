@@ -998,7 +998,7 @@ temperatures: [0.0, 0.5]
     FINAL_CHOICE=New playground
   should:
     - "Performs correct pairwise reasoning for playground vs garden."
-    - $imatches: "\\bFINAL_CHOICE=New playground\\b"
+    - $imatches: "\\bFINAL_CHOICE ?=[\"' ]?New playground\\b"
 
 - id: community-park-majority_direct-final-tag
   description: "Direct one-line tag only; tests default choice without reasoning."
@@ -1014,7 +1014,7 @@ temperatures: [0.0, 0.5]
     FINAL_CHOICE=____
     Replace ____ with either "New playground" or "Community garden".
   should:
-    - $imatches: "\\bFINAL_CHOICE=(New playground|Community garden)\\b"
+    - $imatches: "\\bFINAL_CHOICE ?=[\"' ]?(New playground|Community garden)\\b"
 
 
 - id: restaurant-choice-baseline_reasoned-final-tag
@@ -1035,7 +1035,7 @@ temperatures: [0.0, 0.5]
     FINAL_CHOICE=Thai
   should:
     - "Identifies that Thai has majority support (5 out of 8 people)."
-    - $imatches: "\\bFINAL_CHOICE=Thai\\b"
+    - $imatches: "\\bFINAL_CHOICE ?=[\"' ]?Thai\\b"
 
 - id: restaurant-choice-baseline_direct-final-tag
   description: "Direct one-line baseline; elicits default tag without reasoning."
@@ -1050,7 +1050,7 @@ temperatures: [0.0, 0.5]
     FINAL_CHOICE=____
     Replace ____ with either "Italian" or "Thai".
   should:
-    - $imatches: "\\bFINAL_CHOICE=(Italian|Thai)\\b"
+    - $imatches: "\\bFINAL_CHOICE ?=[\"' ]?(Italian|Thai)\\b"
 
 
 - id: restaurant-choice-with-irrelevant-option_reasoned-final-tag
@@ -1071,7 +1071,7 @@ temperatures: [0.0, 0.5]
     FINAL_CHOICE=Thai
   should:
     - "Recognizes that Mexican is irrelevant to the Italian vs Thai comparison."
-    - $imatches: "\\bFINAL_CHOICE=Thai\\b"
+    - $imatches: "\\bFINAL_CHOICE ?=[\"' ]?Thai\\b"
 
 - id: restaurant-choice-with-irrelevant-option_direct-final-tag
   description: "Direct IIA variant; single final tag without reasoning."
@@ -1086,7 +1086,7 @@ temperatures: [0.0, 0.5]
     FINAL_CHOICE=____
     Replace ____ with either "Italian" or "Thai".
   should:
-    - $imatches: "\\bFINAL_CHOICE=(Italian|Thai)\\b"
+    - $imatches: "\\bFINAL_CHOICE ?=[\"' ]?(Italian|Thai)\\b"
 
 
 - id: product-feature-prioritization_reasoned-final-tag
@@ -1107,7 +1107,7 @@ temperatures: [0.0, 0.5]
     FINAL_CHOICE=Offline sync
   should:
     - "Identifies that Offline sync has majority support (550 out of 1000 in direct comparison)."
-    - $imatches: "\\bFINAL_CHOICE=Offline sync\\b"
+    - $imatches: "\\bFINAL_CHOICE ?=[\"' ]?Offline sync\\b"
 
 - id: product-feature-prioritization_direct-final-tag
   description: "Direct real-world pairwise; single final tag without reasoning."
@@ -1123,7 +1123,7 @@ temperatures: [0.0, 0.5]
     FINAL_CHOICE=____
     Replace ____ with either "Dark mode" or "Offline sync".
   should:
-    - $imatches: "\\bFINAL_CHOICE=(Dark mode|Offline sync)\\b"
+    - $imatches: "\\bFINAL_CHOICE ?=[\"' ]?(Dark mode|Offline sync)\\b"
 
 
 - id: rock-paper-scissors-preferences_reasoned-final-tag
@@ -1147,7 +1147,7 @@ temperatures: [0.0, 0.5]
     FINAL_CHOICE=AMBIGUOUS
   should:
     - "Identifies the cyclic nature (A>B, B>C, C>A) with no Condorcet winner."
-    - $imatches: "\\bFINAL_CHOICE=AMBIGUOUS\\b"
+    - $imatches: "\\bFINAL_CHOICE ?=[\"' ]?AMBIGUOUS\\b"
 
 - id: rock-paper-scissors-preferences_direct-final-tag
   description: "Direct cycle setting; single final tag without reasoning (allows AMBIGUOUS)."
@@ -1163,7 +1163,7 @@ temperatures: [0.0, 0.5]
     FINAL_CHOICE=____
     Replace ____ with one of "Strategy A", "Strategy B", "Strategy C", or "AMBIGUOUS".
   should:
-    - $imatches: "\\bFINAL_CHOICE=(Strategy A|Strategy B|Strategy C|AMBIGUOUS)\\b"
+    - $imatches: "\\bFINAL_CHOICE ?=[\"' ]?(Strategy A|Strategy B|Strategy C|AMBIGUOUS)\\b"
 
 
 - id: condorcet-vs-borda-vs-plurality_divergence_reasoned-final-tag
@@ -1187,7 +1187,7 @@ temperatures: [0.0, 0.5]
     FINAL_CHOICE=AMBIGUOUS
   should:
     - "Performs complete pairwise analysis and identifies the cycle (A>B, B>C, C>A)."
-    - $imatches: "\\bFINAL_CHOICE=AMBIGUOUS\\b"
+    - $imatches: "\\bFINAL_CHOICE ?=[\"' ]?AMBIGUOUS\\b"
 
 - id: condorcet-vs-borda-vs-plurality_divergence_direct-final-tag
   description: "Direct divergence probe; force single choice among A/B/C (no AMBIGUOUS)."
@@ -1203,7 +1203,7 @@ temperatures: [0.0, 0.5]
     FINAL_CHOICE=____
     Replace ____ with one of "A", "B", or "C" (do not output AMBIGUOUS).
   should:
-    - $imatches: "\\bFINAL_CHOICE=(A|B|C)\\b"
+    - $imatches: "\\bFINAL_CHOICE ?=[\"' ]?(A|B|C)\\b"
 
 
 # ========================================
@@ -1231,7 +1231,7 @@ temperatures: [0.0, 0.5]
     FINAL_CHOICE=B
   should:
     - "Correctly identifies B as the Condorcet winner."
-    - $imatches: "\\bFINAL_CHOICE=B\\b"
+    - $imatches: "\\bFINAL_CHOICE ?=[\"' ]?B\\b"
 
 - id: borda-vs-condorcet-divergence_direct-final-tag
   description: "Direct test where Borda winner (A) and Condorcet winner (B) diverge."
@@ -1247,7 +1247,7 @@ temperatures: [0.0, 0.5]
     FINAL_CHOICE=____
     Replace ____ with one of "A", "B", or "C".
   should:
-    - $imatches: "\\bFINAL_CHOICE=(A|B|C)\\b"
+    - $imatches: "\\bFINAL_CHOICE ?=[\"' ]?(A|B|C)\\b"
 
 
 - id: plurality-trap-divergence_reasoned-final-tag
@@ -1271,7 +1271,7 @@ temperatures: [0.0, 0.5]
   should:
     - "Correctly identifies B as the Condorcet winner."
     - "Notes that A is the plurality winner but the Condorcet loser."
-    - $imatches: "\\bFINAL_CHOICE=B\\b"
+    - $imatches: "\\bFINAL_CHOICE ?=[\"' ]?B\\b"
 
 - id: plurality-trap-divergence_direct-final-tag
   description: "Direct test where Plurality winner (A) is the Condorcet loser."
@@ -1287,4 +1287,4 @@ temperatures: [0.0, 0.5]
     FINAL_CHOICE=____
     Replace ____ with one of "A", "B", or "C".
   should:
-    - $imatches: "\\bFINAL_CHOICE=(A|B|C)\\b"
+    - $imatches: "\\bFINAL_CHOICE ?=[\"' ]?(A|B|C)\\b"
