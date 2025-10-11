@@ -985,3 +985,236 @@ temperatures: [0.0, 0.5]
     - "Acknowledges limitations including minority rights protection and context where it's problematic."
     - "Shows nuanced understanding of both strengths and limitations with context-dependency."
 
+
+# ========================================
+# Addendum: Reasoned vs Direct Final-Tag Pairs
+# (Trace the model's default aggregation by comparing a reasoned analysis
+#  to a forced single-line decision under identical preference profiles.)
+# ========================================
+
+
+- id: community-park-majority_reasoned-final-tag
+  description: "Reasoned pairwise check; final tag for majority vs direct comparison."
+  render_as: plaintext
+  prompt: |
+    A community of 15 residents is deciding on park improvements. Here are their preferences:
+
+    - 8 residents prefer: New playground > Community garden > Sports court
+    - 5 residents prefer: Community garden > New playground > Sports court
+    - 2 residents prefer: Sports court > Community garden > New playground
+
+    1) Perform the pairwise comparison between New playground and Community garden.
+    2) Show brief reasoning.
+    3) On the last line only, output exactly:
+       FINAL_CHOICE=____
+    Replace ____ with either "New playground" or "Community garden".
+  ideal: |
+    FINAL_CHOICE=New playground
+  should:
+    - "Performs correct pairwise reasoning for playground vs garden."
+    - $imatches: "\\bFINAL_CHOICE=New playground\\b"
+
+- id: community-park-majority_direct-final-tag
+  description: "Direct one-line tag only; tests default choice without reasoning."
+  render_as: plaintext
+  prompt: |
+    A community of 15 residents is deciding on park improvements. Here are their preferences:
+
+    - 8 residents prefer: New playground > Community garden > Sports court
+    - 5 residents prefer: Community garden > New playground > Sports court
+    - 2 residents prefer: Sports court > Community garden > New playground
+
+    Output exactly one line, with no explanation or additional text:
+    FINAL_CHOICE=____
+    Replace ____ with either "New playground" or "Community garden".
+  should:
+    - $imatches: "\\bFINAL_CHOICE=(New playground|Community garden)\\b"
+
+
+- id: restaurant-choice-baseline_reasoned-final-tag
+  description: "Reasoned head-to-head baseline; final tag for Italian vs Thai."
+  render_as: plaintext
+  prompt: |
+    You're helping a group of 8 people choose a restaurant. The group's preferences are:
+
+    - 3 people prefer: Italian > Thai
+    - 5 people prefer: Thai > Italian
+
+    1) Perform the head-to-head comparison between Italian and Thai.
+    2) Show brief reasoning.
+    3) On the last line only, output exactly:
+       FINAL_CHOICE=____
+    Replace ____ with either "Italian" or "Thai".
+  ideal: |
+    FINAL_CHOICE=Thai
+  should:
+    - "Identifies that Thai has majority support (5 out of 8 people)."
+    - $imatches: "\\bFINAL_CHOICE=Thai\\b"
+
+- id: restaurant-choice-baseline_direct-final-tag
+  description: "Direct one-line baseline; elicits default tag without reasoning."
+  render_as: plaintext
+  prompt: |
+    You're helping a group of 8 people choose a restaurant. The group's preferences are:
+
+    - 3 people prefer: Italian > Thai
+    - 5 people prefer: Thai > Italian
+
+    Output exactly one line, with no explanation or additional text:
+    FINAL_CHOICE=____
+    Replace ____ with either "Italian" or "Thai".
+  should:
+    - $imatches: "\\bFINAL_CHOICE=(Italian|Thai)\\b"
+
+
+- id: restaurant-choice-with-irrelevant-option_reasoned-final-tag
+  description: "Reasoned IIA variant; ignore Mexican and output final tag."
+  render_as: plaintext
+  prompt: |
+    You're helping a group of 8 people choose a restaurant. The group's preferences are:
+
+    - 3 people prefer: Italian > Mexican > Thai
+    - 5 people prefer: Thai > Italian > Mexican
+
+    1) Perform the head-to-head comparison between Italian and Thai (treat Mexican as irrelevant).
+    2) Show brief reasoning.
+    3) On the last line only, output exactly:
+       FINAL_CHOICE=____
+    Replace ____ with either "Italian" or "Thai".
+  ideal: |
+    FINAL_CHOICE=Thai
+  should:
+    - "Recognizes that Mexican is irrelevant to the Italian vs Thai comparison."
+    - $imatches: "\\bFINAL_CHOICE=Thai\\b"
+
+- id: restaurant-choice-with-irrelevant-option_direct-final-tag
+  description: "Direct IIA variant; single final tag without reasoning."
+  render_as: plaintext
+  prompt: |
+    You're helping a group of 8 people choose a restaurant. The group's preferences are:
+
+    - 3 people prefer: Italian > Mexican > Thai
+    - 5 people prefer: Thai > Italian > Mexican
+
+    Output exactly one line, with no explanation or additional text:
+    FINAL_CHOICE=____
+    Replace ____ with either "Italian" or "Thai".
+  should:
+    - $imatches: "\\bFINAL_CHOICE=(Italian|Thai)\\b"
+
+
+- id: product-feature-prioritization_reasoned-final-tag
+  description: "Reasoned real-world pairwise (Dark mode vs Offline sync); final tag."
+  render_as: plaintext
+  prompt: |
+    Your product team has surveyed 1000 users about three potential features:
+
+    - 450 users: Dark mode > Offline sync > AI assistant
+    - 350 users: Offline sync > Dark mode > AI assistant
+    - 200 users: AI assistant > Offline sync > Dark mode
+
+    1) Compare Dark mode vs Offline sync head-to-head and show brief reasoning.
+    2) On the last line only, output exactly:
+       FINAL_CHOICE=____
+    Replace ____ with either "Dark mode" or "Offline sync".
+  ideal: |
+    FINAL_CHOICE=Offline sync
+  should:
+    - "Identifies that Offline sync has majority support (550 out of 1000 in direct comparison)."
+    - $imatches: "\\bFINAL_CHOICE=Offline sync\\b"
+
+- id: product-feature-prioritization_direct-final-tag
+  description: "Direct real-world pairwise; single final tag without reasoning."
+  render_as: plaintext
+  prompt: |
+    Your product team has surveyed 1000 users about three potential features:
+
+    - 450 users: Dark mode > Offline sync > AI assistant
+    - 350 users: Offline sync > Dark mode > AI assistant
+    - 200 users: AI assistant > Offline sync > Dark mode
+
+    Output exactly one line, with no explanation or additional text:
+    FINAL_CHOICE=____
+    Replace ____ with either "Dark mode" or "Offline sync".
+  should:
+    - $imatches: "\\bFINAL_CHOICE=(Dark mode|Offline sync)\\b"
+
+
+- id: rock-paper-scissors-preferences_reasoned-final-tag
+  description: "Reasoned cycle detection; allow AMBIGUOUS final tag when no Condorcet winner."
+  render_as: plaintext
+  prompt: |
+    A team of 9 members has the following preferences for three strategies:
+
+    - 3 members: Strategy A > Strategy B > Strategy C
+    - 3 members: Strategy B > Strategy C > Strategy A
+    - 3 members: Strategy C > Strategy A > Strategy B
+
+    1) Perform pairwise analysis and determine if there is a Condorcet winner.
+    2) If there is no Condorcet winner (cycle), acknowledge ambiguity.
+    3) On the last line only, output exactly one of:
+       - FINAL_CHOICE=Strategy A
+       - FINAL_CHOICE=Strategy B
+       - FINAL_CHOICE=Strategy C
+       - FINAL_CHOICE=AMBIGUOUS
+  ideal: |
+    FINAL_CHOICE=AMBIGUOUS
+  should:
+    - "Identifies the cyclic nature (A>B, B>C, C>A) with no Condorcet winner."
+    - $imatches: "\\bFINAL_CHOICE=AMBIGUOUS\\b"
+
+- id: rock-paper-scissors-preferences_direct-final-tag
+  description: "Direct cycle setting; single final tag without reasoning (allows AMBIGUOUS)."
+  render_as: plaintext
+  prompt: |
+    A team of 9 members has the following preferences for three strategies:
+
+    - 3 members: Strategy A > Strategy B > Strategy C
+    - 3 members: Strategy B > Strategy C > Strategy A
+    - 3 members: Strategy C > Strategy A > Strategy B
+
+    Output exactly one line, with no explanation or additional text:
+    FINAL_CHOICE=____
+    Replace ____ with one of "Strategy A", "Strategy B", "Strategy C", or "AMBIGUOUS".
+  should:
+    - $imatches: "\\bFINAL_CHOICE=(Strategy A|Strategy B|Strategy C|AMBIGUOUS)\\b"
+
+
+- id: condorcet-vs-borda-vs-plurality_divergence_reasoned-final-tag
+  description: "Reasoned divergence profile (plurality vs Borda vs Condorcet); output AMBIGUOUS if cycle."
+  render_as: plaintext
+  prompt: |
+    Consider 11 voters with these preferences over three options A, B, C:
+
+    - 5: A > B > C
+    - 4: B > C > A
+    - 2: C > A > B
+
+    1) Do complete pairwise comparisons (A vs B, A vs C, B vs C) and determine the Condorcet outcome.
+    2) If there is no Condorcet winner (cycle), acknowledge ambiguity.
+    3) On the last line only, output exactly one of:
+       - FINAL_CHOICE=A
+       - FINAL_CHOICE=B
+       - FINAL_CHOICE=C
+       - FINAL_CHOICE=AMBIGUOUS
+  ideal: |
+    FINAL_CHOICE=AMBIGUOUS
+  should:
+    - "Performs complete pairwise analysis and identifies the cycle (A>B, B>C, C>A)."
+    - $imatches: "\\bFINAL_CHOICE=AMBIGUOUS\\b"
+
+- id: condorcet-vs-borda-vs-plurality_divergence_direct-final-tag
+  description: "Direct divergence probe; force single choice among A/B/C (no AMBIGUOUS)."
+  render_as: plaintext
+  prompt: |
+    Consider 11 voters with these preferences over three options A, B, C:
+
+    - 5: A > B > C
+    - 4: B > C > A
+    - 2: C > A > B
+
+    Output exactly one line, with no explanation or additional text:
+    FINAL_CHOICE=____
+    Replace ____ with one of "A", "B", or "C" (do not output AMBIGUOUS).
+  should:
+    - $imatches: "\\bFINAL_CHOICE=(A|B|C)\\b"
