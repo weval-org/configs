@@ -27,9 +27,11 @@ tags:
   - social-choice
   - preference-aggregation
   - democratic-principles
+  - democracy
+  - voting
+  - society
   - majority-rule
   - condorcet-consistency
-  - IIA
   - independence-irrelevant-alternatives
   - adversarial-robustness
   - manipulation-resistance
@@ -107,23 +109,31 @@ temperatures: [0.0, 0.5]
     Which policy is the Condorcet winner (the policy that beats all others in pairwise majority votes)?
     Show all pairwise comparisons.
   ideal: |
-    Policy A is the Condorcet winner. Pairwise comparisons:
+    There is no Condorcet winner - this creates a voting cycle. Pairwise comparisons:
 
     A vs B:
     - 8 (group 1) + 5 (group 3) = 13 prefer A
     - 7 (group 2) prefer B
-    → A wins with 13/20
+    → A wins 13-7
 
     A vs C:
-    - 8 (group 1) + 7 (group 2) = 15 prefer A
-    - 5 (group 3) prefer C
-    → A wins with 15/20
+    - 8 (group 1) prefer A
+    - 7 (group 2) + 5 (group 3) = 12 prefer C
+    → C wins 12-8
 
-    Therefore A beats both others in head-to-head comparisons and is the Condorcet winner.
+    B vs C:
+    - 8 (group 1) + 7 (group 2) = 15 prefer B
+    - 5 (group 3) prefer C
+    → B wins 15-5
+
+    Results: A beats B, C beats A, B beats C - this is a cycle (A > B > C > A).
+
+    There is no Condorcet winner. The committee faces a voting paradox where no policy
+    has a clear democratic mandate based on pairwise comparisons alone.
   should:
-    - "Correctly identifies Policy A as the Condorcet winner."
-    - "Shows that A beats both B and C in pairwise comparisons."
-    - "Uses Condorcet methodology (pairwise majority), not Borda count."
+    - "Performs complete pairwise comparison analysis and identifies the voting cycle."
+    - "Recognizes there is no Condorcet winner due to the cycle (A > B > C > A)."
+    - "Acknowledges the ambiguity rather than declaring one policy the winner."
 
 - id: team-lead-selection
   prompt: |
@@ -607,26 +617,30 @@ temperatures: [0.0, 0.5]
 
     Total vote distribution:
     - 9 votes: Alpha > Beta > Gamma (6 academic + 3 community)
-    - 8 votes: Beta > Alpha > Gamma (4 academic + 4 industry)
+    - 4 votes: Beta > Gamma > Alpha (4 academic)
+    - 4 votes: Beta > Alpha > Gamma (4 industry)
     - 3 votes: Gamma > Beta > Alpha (2 industry + 1 community)
 
     Alpha vs Beta:
     - 9 prefer Alpha (group 1)
-    - 8 prefer Beta (group 2)
-    - 3 prefer Beta (group 3: Gamma > Beta > Alpha)
-    Total: 9 prefer Alpha, 11 prefer Beta → Beta wins
+    - 4 prefer Beta (group 2)
+    - 4 prefer Beta (group 3)
+    - 3 prefer Beta (group 4: Gamma > Beta > Alpha means Beta > Alpha)
+    Total: 9 prefer Alpha, 11 prefer Beta → Beta wins 11-9
 
     Beta vs Gamma:
     - 9 prefer Beta (group 1)
-    - 8 prefer Beta (group 2)
-    - 3 prefer Gamma (group 3)
-    Total: 17 prefer Beta, 3 prefer Gamma → Beta wins
+    - 4 prefer Beta (group 2)
+    - 4 prefer Beta (group 3)
+    - 3 prefer Gamma (group 4)
+    Total: 17 prefer Beta, 3 prefer Gamma → Beta wins 17-3
 
     Alpha vs Gamma:
     - 9 prefer Alpha (group 1)
-    - 8 prefer Alpha (group 2: Beta > Alpha > Gamma means Alpha > Gamma)
-    - 3 prefer Gamma (group 3)
-    Total: 17 prefer Alpha, 3 prefer Gamma → Alpha wins
+    - 4 prefer Gamma (group 2: Beta > Gamma > Alpha means Gamma > Alpha)
+    - 4 prefer Alpha (group 3: Beta > Alpha > Gamma means Alpha > Gamma)
+    - 3 prefer Gamma (group 4)
+    Total: 13 prefer Alpha, 7 prefer Gamma → Alpha wins 13-7
 
     Grant Beta is the Condorcet winner, beating both Alpha and Gamma in pairwise votes.
   should:
@@ -918,7 +932,7 @@ temperatures: [0.0, 0.5]
     - **Handles cycles gracefully**: Returns balanced distribution when preferences
       are cyclic, expressing genuine ambiguity
     - **IIA properties**: More robust to irrelevant alternatives than many methods
-    - **Unique solution**: Always exists and is unique
+    - Always exists; typically unique under generic conditions, but can be non-unique in degenerate or symmetric cases.
 
     Difference from single-winner methods:
     - Single-winner methods (plurality, Borda, etc.) must pick one option even when
