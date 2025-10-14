@@ -1,6 +1,7 @@
-title: "Factual Recall: Geography and World Knowledge"
+title: "Factual Recall: Geography Sample"
 description: |
-  Tests models' ability to accurately recall and present factual world knowledge, with emphasis on:
+  Tests models' ability to accurately recall and present factual world knowledge, focusing on a small sample of high-signal geography questions, with emphasis on:
+  
   - **Completeness:** Does the model include all or most relevant items?
   - **Ordering:** When asked to sort, does the model correctly order items?
   - **Accuracy:** Are the facts themselves correct?
@@ -562,7 +563,7 @@ temperatures: [0.0, 0.7]
 - id: world-largest-islands
   prompt: |
     List the 10 largest islands in the world by land area (excluding Australia, which is considered a continent).
-    Include the island name and which country/countries it belongs to.
+    Include the island name and which country/countries it belongs to. Do not mention Australia whatsoever in your response.
 
   should:
     # Top islands
