@@ -430,7 +430,7 @@ These blocks define the criteria for rubric-based evaluation. The `should` block
 
 Each item in these arrays is a point definition, processed in the following order of precedence:
 
-#### Defining Alternative Rubric Paths (OR logic)
+#### Defining Alternative Rubric Paths (OR logic) — and Common Pitfalls
 
 By default, all criteria within a `should` or `should_not` block are treated as an "AND" condition—a response must satisfy all of them to be considered fully successful.
 
@@ -452,7 +452,27 @@ should:
 
 **Scoring Behavior**: When alternative paths are used, the system calculates the average score for *each* path independently. The final score for the entire block is then the **highest** of these path scores.
 
-**Mixing Required and Alternative Paths**
+**Anti-pattern to avoid (unintended OR):**
+
+Do not use a nested list when you actually want multiple independent required checks (AND). A common mistake is to write:
+
+```yaml
+should:
+  # ❌ Wrong: creates two alternative paths; only one is required
+  - - $imatches: 'Lagos.{0,50}Nigeria|Nigeria.{0,50}Lagos'
+    - $imatches: 'Kinshasa.{0,50}(?:Congo|DRC)|(?:Congo|DRC).{0,50}Kinshasa'
+```
+
+This creates Path A and Path B; the block’s score becomes max(PathA, PathB). If you intend both checks to be required, use flat items:
+
+```yaml
+should:
+  # ✅ Correct: two required checks (AND)
+  - $imatches: 'Lagos.{0,50}Nigeria|Nigeria.{0,50}Lagos'
+  - $imatches: 'Kinshasa.{0,50}(?:Congo|DRC)|(?:Congo|DRC).{0,50}Kinshasa'
+```
+
+**Mixing Required and Alternative Paths (Recommended Pattern)**
 
 You can also mix required points with a block of alternative paths. This powerful combination allows you to define core criteria that *must* be met, alongside several optional ways to satisfy other parts of the rubric.
 
@@ -479,6 +499,8 @@ In the example above, the final score will be the average of:
 1.  The score for "The response must be in English."
 2.  The score for the *best* of (Path 1, Path 2).
 3.  The score for the `$word_count_between` check.
+
+> Tip: Treat each nested block as one logical “path group.” Keep independent required checks at the top level as flat items.
 
 **Alternative Paths in `should_not`**
 
@@ -516,7 +538,7 @@ If no nesting is used, the block is parsed as a single path, preserving full bac
         : "SEC Rule on Fiduciary Duty"
     ```
 
-3.  **Idiomatic Function (Deterministic Check)**: A quick way to perform exact, programmatic checks. **All idiomatic function calls must be prefixed with a `$`** to distinguish them from citable points.
+3.  **Idiomatic Function (Deterministic Check)**: A quick way to perform exact, programmatic checks. **All idiomatic function calls must be prefixed with a `$`** to distinguish them from citable points. Many functions return partial scores (e.g., `$contains_at_least_n_of`), others are boolean (0/1). See notes below.
     ```yaml
     should:
       # Object syntax (recommended)
@@ -555,6 +577,32 @@ If no nesting is used, the block is parsed as a single path, preserving full bac
         citation: "Investment Advisers Act of 1940"
     ```
     *Note: `weight` is an alias for `multiplier`, `arg` for `fnArgs`.*
+
+##### Deterministic Checks: Semantics & Best Practices
+
+- `$imatches`/`$matches`: boolean. Prefer word boundaries (e.g., `\bTokyo\b`).
+- `$contains_all_of`/`$contains_any_of`: graded; `$contains_all_of` can yield partials when only some items are present.
+- `$contains_at_least_n_of [n, list]`: graded — typically `k/n` when `k < n`.
+- `$js`: use for structural constraints (e.g., exactly 10 numbered items). Template:
+
+```yaml
+- $js: |
+    const lines = r.split(/\n/).filter(l => /^\s*\d+\./.test(l));
+    const ok = lines.length === 10;
+    ok ? { score: 1, explain: `Found exactly ${lines.length} numbered entries` }
+       : { score: 0, explain: `Expected 10 numbered entries, found ${lines.length}` };
+```
+
+##### Using `should_not` Safely
+
+- Reserve `should_not` for deterministic disallows (e.g., `Pluto`, `Australia`). Avoid conceptual free‑text, as that's largely deprecated and not suggested. For free text, use `should` assertions and valence them as appropriate e.g. `should: - not do x`.
+- `should_not` follows the same OR nesting rules. Use flat items for multiple disallows (AND), nested lists for alternative disallow paths (OR).
+
+##### Common Patterns Library
+
+- Pairwise order: `- $imatches: 'A[\s\S]+B'`
+- At least m of a set: `- $contains_at_least_n_of: [m, [...]]`
+- Exact membership (no extras): combine `- $contains_all_of: [...]` with `should_not` for specific disallows, or use `$js` to enforce counts/whitelists.
 
 For more details, see the [POINTS_DOCUMENTATION.md](POINTS_DOCUMENTATION.md).
 
