@@ -34,36 +34,36 @@ temperatures: [0.0, 0.7]
 
   should:
     # Presence checks - verify key countries across the size spectrum are mentioned
-    - $imatches: '\bAlgeria\b'
-    - $imatches: '\bDemocratic Republic of the Congo\b|\bDR Congo\b|\bDRC\b'
-    - $imatches: '\bSudan\b'
-    - $imatches: '\bLibya\b'
-    - $imatches: '\bChad\b'
-    - $imatches: '\bNiger\b'
-    - $imatches: '\bAngola\b'
-    - $imatches: '\bMali\b'
-    - $imatches: '\bSouth Africa\b'
-    - $imatches: '\bEthiopia\b'
-    - $imatches: '\bMauritania\b'
-    - $imatches: '\bEgypt\b'
-    - $imatches: '\bTanzania\b'
-    - $imatches: '\bNigeria\b'
-    - $imatches: '\bMozambique\b'
-    - $imatches: '\bZambia\b'
-    - $imatches: '\bSomalia\b'
-    - $imatches: '\bKenya\b'
-    - $imatches: '\bBotswana\b'
-    - $imatches: '\bMadagascar\b'
-    - $imatches: '\bUganda\b'
-    - $imatches: '\bGhana\b'
-    - $imatches: '\bSenegal\b'
-    - $imatches: '\bTunisia\b'
-    - $imatches: '\bMalawi\b'
-    - $imatches: '\bBenin\b'
-    - $imatches: '\bTogo\b'
-    - $imatches: '\bSierra Leone\b'
-    - $imatches: '\bLesotho\b'
-    - $imatches: '\bGambia\b'
+    - $icontains_word: 'Algeria'
+    - $contains_any_of: ['Democratic Republic of the Congo','DR Congo','DRC']
+    - $icontains_word: 'Sudan'
+    - $icontains_word: 'Libya'
+    - $icontains_word: 'Chad'
+    - $icontains_word: 'Niger'
+    - $icontains_word: 'Angola'
+    - $icontains_word: 'Mali'
+    - $icontains_word: 'South Africa'
+    - $icontains_word: 'Ethiopia'
+    - $icontains_word: 'Mauritania'
+    - $icontains_word: 'Egypt'
+    - $icontains_word: 'Tanzania'
+    - $icontains_word: 'Nigeria'
+    - $icontains_word: 'Mozambique'
+    - $icontains_word: 'Zambia'
+    - $icontains_word: 'Somalia'
+    - $icontains_word: 'Kenya'
+    - $icontains_word: 'Botswana'
+    - $icontains_word: 'Madagascar'
+    - $icontains_word: 'Uganda'
+    - $icontains_word: 'Ghana'
+    - $icontains_word: 'Senegal'
+    - $icontains_word: 'Tunisia'
+    - $icontains_word: 'Malawi'
+    - $icontains_word: 'Benin'
+    - $icontains_word: 'Togo'
+    - $icontains_word: 'Sierra Leone'
+    - $icontains_word: 'Lesotho'
+    - $icontains_word: 'Gambia'
     
     # Ordering checks - verify correct relative ordering of countries
     # Algeria (largest) should come before DRC
@@ -129,16 +129,16 @@ temperatures: [0.0, 0.7]
 
   should:
     # Presence checks
-    - $imatches: '\bMount Everest\b|\bEverest\b'
-    - $imatches: '\bK2\b'
-    - $imatches: '\bKangchenjunga\b'
-    - $imatches: '\bLhotse\b'
-    - $imatches: '\bMakalu\b'
-    - $imatches: '\bCho Oyu\b'
-    - $imatches: '\bDhaulagiri\b'
-    - $imatches: '\bManaslu\b'
-    - $imatches: '\bNanga Parbat\b'
-    - $imatches: '\bAnnapurna\b'
+    - $contains_any_of: ['Mount Everest','Everest']
+    - $icontains_word: 'K2'
+    - $icontains_word: 'Kangchenjunga'
+    - $icontains_word: 'Lhotse'
+    - $icontains_word: 'Makalu'
+    - $icontains_word: 'Cho Oyu'
+    - $icontains_word: 'Dhaulagiri'
+    - $icontains_word: 'Manaslu'
+    - $icontains_word: 'Nanga Parbat'
+    - $icontains_word: 'Annapurna'
     
     # Elevation checks (approximate, allowing some variation)
     - $imatches: '8,?8(?:4[0-9]|5[0-9]|6[0-9])'  # Everest ~8,849m
@@ -170,21 +170,21 @@ temperatures: [0.0, 0.7]
 
   should:
     # Presence checks - top 15 as of 2024
-    - $imatches: '\bIndia\b'
-    - $imatches: '\bChina\b'
-    - $imatches: '\bUnited States\b|\bUSA\b|\bU\.S\.A\.\b'
-    - $imatches: '\bIndonesia\b'
-    - $imatches: '\bPakistan\b'
-    - $imatches: '\bNigeria\b'
-    - $imatches: '\bBrazil\b'
-    - $imatches: '\bBangladesh\b'
-    - $imatches: '\bRussia\b|\bRussian Federation\b'
-    - $imatches: '\bMexico\b'
-    - $imatches: '\bJapan\b'
-    - $imatches: '\bEthiopia\b'
-    - $imatches: '\bPhilippines\b'
-    - $imatches: '\bEgypt\b'
-    - $imatches: '\bVietnam\b|\bViet Nam\b'
+    - $icontains_word: 'India'
+    - $icontains_word: 'China'
+    - $contains_any_of: ['United States','USA','U.S.A.']
+    - $icontains_word: 'Indonesia'
+    - $icontains_word: 'Pakistan'
+    - $icontains_word: 'Nigeria'
+    - $icontains_word: 'Brazil'
+    - $icontains_word: 'Bangladesh'
+    - $contains_any_of: ['Russia','Russian Federation']
+    - $icontains_word: 'Mexico'
+    - $icontains_word: 'Japan'
+    - $icontains_word: 'Ethiopia'
+    - $icontains_word: 'Philippines'
+    - $icontains_word: 'Egypt'
+    - $contains_any_of: ['Vietnam','Viet Nam']
     
     # Ordering checks - India overtook China in 2023
     - $imatches: 'India[\s\S]+China'
@@ -229,14 +229,14 @@ temperatures: [0.0, 0.7]
 
   should:
     # Presence checks
-    - $imatches: '\bNile\b'
-    - $imatches: '\bAmazon\b'
-    - $imatches: '\bYangtze\b|\bChang Jiang\b'
-    - $imatches: '\bMississippi\b|\bMissouri\b'
-    - $imatches: '\bYenisei\b'
-    - $imatches: '\bYellow River\b|\bHuang He\b'
-    - $imatches: '\bOb\b'
-    - $imatches: '\bParaná\b|\bParana\b'
+    - $icontains_word: 'Nile'
+    - $icontains_word: 'Amazon'
+    - $contains_any_of: ['Yangtze','Chang Jiang']
+    - $contains_any_of: ['Mississippi','Missouri']
+    - $icontains_word: 'Yenisei'
+    - $contains_any_of: ['Yellow River','Huang He']
+    - $icontains_word: 'Ob'
+    - $contains_any_of: ['Paraná','Parana']
     
     # Continent/location mentions
     - $imatches: 'Africa'
@@ -267,24 +267,24 @@ temperatures: [0.0, 0.7]
 
   should:
     # Presence checks - sample across alphabet
-    - $imatches: '\bAmsterdam\b'
-    - $imatches: '\bAthens\b'
-    - $imatches: '\bBerlin\b'
-    - $imatches: '\bBrussels\b'
-    - $imatches: '\bBudapest\b'
-    - $imatches: '\bCopenhagen\b'
-    - $imatches: '\bDublin\b'
-    - $imatches: '\bHelsinki\b'
-    - $imatches: '\bLisbon\b'
-    - $imatches: '\bLondon\b'
-    - $imatches: '\bMadrid\b'
-    - $imatches: '\bOslo\b'
-    - $imatches: '\bParis\b'
-    - $imatches: '\bPrague\b'
-    - $imatches: '\bRome\b'
-    - $imatches: '\bStockholm\b'
-    - $imatches: '\bVienna\b'
-    - $imatches: '\bWarsaw\b'
+    - $icontains_word: 'Amsterdam'
+    - $icontains_word: 'Athens'
+    - $icontains_word: 'Berlin'
+    - $icontains_word: 'Brussels'
+    - $icontains_word: 'Budapest'
+    - $icontains_word: 'Copenhagen'
+    - $icontains_word: 'Dublin'
+    - $icontains_word: 'Helsinki'
+    - $icontains_word: 'Lisbon'
+    - $icontains_word: 'London'
+    - $icontains_word: 'Madrid'
+    - $icontains_word: 'Oslo'
+    - $icontains_word: 'Paris'
+    - $icontains_word: 'Prague'
+    - $icontains_word: 'Rome'
+    - $icontains_word: 'Stockholm'
+    - $icontains_word: 'Vienna'
+    - $icontains_word: 'Warsaw'
     
     # Ordering checks - alphabetical
     - $imatches: 'Amsterdam[\s\S]+Athens'
@@ -320,18 +320,18 @@ temperatures: [0.0, 0.7]
 
   should:
     # Presence checks
-    - $imatches: '\bCalifornia\b'
-    - $imatches: '\bTexas\b'
-    - $imatches: '\bFlorida\b'
-    - $imatches: '\bNew York\b'
-    - $imatches: '\bPennsylvania\b'
-    - $imatches: '\bIllinois\b'
-    - $imatches: '\bOhio\b'
-    - $imatches: '\bGeorgia\b'
-    - $imatches: '\bNorth Carolina\b'
-    - $imatches: '\bMichigan\b'
-    - $imatches: '\bNew Jersey\b'
-    - $imatches: '\bVirginia\b'
+    - $icontains_word: 'California'
+    - $icontains_word: 'Texas'
+    - $icontains_word: 'Florida'
+    - $icontains_word: 'New York'
+    - $icontains_word: 'Pennsylvania'
+    - $icontains_word: 'Illinois'
+    - $icontains_word: 'Ohio'
+    - $icontains_word: 'Georgia'
+    - $icontains_word: 'North Carolina'
+    - $icontains_word: 'Michigan'
+    - $icontains_word: 'New Jersey'
+    - $icontains_word: 'Virginia'
     
     # Ordering checks
     - $imatches: 'California[\s\S]+Texas'
@@ -359,11 +359,11 @@ temperatures: [0.0, 0.7]
 
   should:
     # Presence checks
-    - $imatches: '\bPacific\b'
-    - $imatches: '\bAtlantic\b'
-    - $imatches: '\bIndian\b'
-    - $imatches: '\bSouthern\b|\bAntarctic\b'
-    - $imatches: '\bArctic\b'
+    - $icontains_word: 'Pacific'
+    - $icontains_word: 'Atlantic'
+    - $icontains_word: 'Indian'
+    - $contains_any_of: ['Southern','Antarctic']
+    - $icontains_word: 'Arctic'
     
     # Ordering checks
     - $imatches: 'Pacific[\s\S]+Atlantic'
@@ -381,14 +381,14 @@ temperatures: [0.0, 0.7]
 
   should:
     # Presence checks
-    - $imatches: '\bMercury\b'
-    - $imatches: '\bVenus\b'
-    - $imatches: '\bEarth\b'
-    - $imatches: '\bMars\b'
-    - $imatches: '\bJupiter\b'
-    - $imatches: '\bSaturn\b'
-    - $imatches: '\bUranus\b'
-    - $imatches: '\bNeptune\b'
+    - $icontains_word: 'Mercury'
+    - $icontains_word: 'Venus'
+    - $icontains_word: 'Earth'
+    - $icontains_word: 'Mars'
+    - $icontains_word: 'Jupiter'
+    - $icontains_word: 'Saturn'
+    - $icontains_word: 'Uranus'
+    - $icontains_word: 'Neptune'
     
     # Ordering checks
     - $imatches: 'Mercury[\s\S]+Venus'
@@ -401,10 +401,8 @@ temperatures: [0.0, 0.7]
     
     # Must include exactly the 8 planets and not extra items like Pluto
     - $contains_all_of: ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
-  
-  should_not:
     # Disallow Pluto being listed as a planet
-    - $imatches: '\bPluto\b'
+    - $not_icontains_word: 'Pluto'
 
   citation: "NASA Solar System Exploration"
 
@@ -418,14 +416,14 @@ temperatures: [0.0, 0.7]
 
   should:
     # Presence checks
-    - $imatches: '\bAntarctic\b|\bAntarctica\b'
-    - $imatches: '\bArctic\b'
-    - $imatches: '\bSahara\b'
-    - $imatches: '\bArabian\b'
-    - $imatches: '\bGobi\b'
-    - $imatches: '\bKalahari\b'
-    - $imatches: '\bPatagonian\b|\bPatagonia\b'
-    - $imatches: '\bGreat Victoria\b|\bVictoria\b'
+    - $contains_any_of: ['Antarctic','Antarctica']
+    - $icontains_word: 'Arctic'
+    - $icontains_word: 'Sahara'
+    - $icontains_word: 'Arabian'
+    - $icontains_word: 'Gobi'
+    - $icontains_word: 'Kalahari'
+    - $contains_any_of: ['Patagonian','Patagonia']
+    - $contains_any_of: ['Great Victoria','Victoria']
     
     # Ordering checks - Antarctic is largest, then Arctic, then Sahara
     - $imatches: '(?:Antarctic|Antarctica)[\s\S]+Arctic'
@@ -449,13 +447,13 @@ temperatures: [0.0, 0.7]
 
   should:
     # Presence checks - Updated to include Global South monarchs often overlooked
-    - $imatches: '\bSobhuza\b|\bSobhuza II\b'  # Eswatini/Swaziland, 82+ years - LONGEST
-    - $imatches: '\bLouis XIV\b|\bLouis 14\b'  # France, 72 years
-    - $imatches: '\bElizabeth II\b|\bQueen Elizabeth\b'  # UK, 70 years
-    - $imatches: '\bBhumibol\b|\bRama IX\b'  # Thailand, 70 years
-    - $imatches: '\bJohann II\b|\bJohann 2\b'  # Liechtenstein, 70 years
-    - $imatches: '\bPakal\b|\bK.?inich Janaab.? Pakal\b'  # Maya Palenque, 68 years
-    - $imatches: '\bFranz Joseph\b|\bFrancis Joseph\b'  # Austria-Hungary, 67 years
+    - $contains_any_of: ['Sobhuza','Sobhuza II']  # Eswatini/Swaziland, 82+ years - LONGEST
+    - $contains_any_of: ['Louis XIV','Louis 14']  # France, 72 years
+    - $contains_any_of: ['Elizabeth II','Queen Elizabeth']  # UK, 70 years
+    - $contains_any_of: ['Bhumibol','Rama IX']  # Thailand, 70 years
+    - $contains_any_of: ['Johann II','Johann 2']  # Liechtenstein, 70 years
+    - $contains_any_of: ['Pakal','K.inich Janaab. Pakal']  # Maya Palenque, 68 years (pattern simplified)
+    - $contains_any_of: ['Franz Joseph','Francis Joseph']  # Austria-Hungary, 67 years
     
     # Ordering checks - Sobhuza II should be first
     - $imatches: 'Sobhuza[\s\S]+(?:Louis XIV|Louis 14)'
@@ -514,13 +512,13 @@ temperatures: [0.0, 0.7]
     - $contains_at_least_n_of: [2, ["Lagos", "Cairo", "Kinshasa"]]
     
     # Major Asian cities
-    - $imatches: '\bTokyo\b|\bTōkyō\b'
-    - $imatches: '\bDelhi\b'
-    - $imatches: '\bShanghai\b'
-    - $imatches: '\bDhaka\b'
-    - $imatches: '\bMumbai\b|\bBombay\b'
-    - $imatches: '\bBeijing\b'
-    - $imatches: '\bKarachi\b'
+    - $contains_any_of: ['Tokyo','Tōkyō']
+    - $icontains_word: 'Delhi'
+    - $icontains_word: 'Shanghai'
+    - $icontains_word: 'Dhaka'
+    - $contains_any_of: ['Mumbai','Bombay']
+    - $icontains_word: 'Beijing'
+    - $icontains_word: 'Karachi'
     
     # Country associations (check if Lagos+Nigeria appear together, etc.)
     - $imatches: 'Lagos.{0,50}Nigeria|Nigeria.{0,50}Lagos'
@@ -537,20 +535,20 @@ temperatures: [0.0, 0.7]
 
   should:
     # African rivers
-    - $imatches: '\bNile\b'
-    - $imatches: '\bCongo\b'
-    - $imatches: '\bNiger\b'
-    - $imatches: '\bZambezi\b'
+    - $icontains_word: 'Nile'
+    - $icontains_word: 'Congo'
+    - $icontains_word: 'Niger'
+    - $icontains_word: 'Zambezi'
     
     # South American rivers
-    - $imatches: '\bAmazon\b'
-    - $imatches: '\bParaná\b|\bParana\b'
-    - $imatches: '\bOrinoco\b'
+    - $icontains_word: 'Amazon'
+    - $contains_any_of: ['Paraná','Parana']
+    - $icontains_word: 'Orinoco'
     
     # South Asian rivers
-    - $imatches: '\bGanges\b'
-    - $imatches: '\bBrahmaputra\b'
-    - $imatches: '\bIndus\b'
+    - $icontains_word: 'Ganges'
+    - $icontains_word: 'Brahmaputra'
+    - $icontains_word: 'Indus'
     
     # Geographic coverage (at least 2 from each region)
     - $contains_at_least_n_of: [2, ["Nile", "Congo", "Niger", "Zambezi"]]
@@ -568,16 +566,16 @@ temperatures: [0.0, 0.7]
 
   should:
     # Top islands
-    - $imatches: '\bGreenland\b'
-    - $imatches: '\bNew Guinea\b'
-    - $imatches: '\bBorneo\b'
-    - $imatches: '\bMadagascar\b'
-    - $imatches: '\bBaffin\b'
-    - $imatches: '\bSumatra\b'
-    - $imatches: '\bHonshu\b'
-    - $imatches: '\bGreat Britain\b|\bBritain\b'
-    - $imatches: '\bVictoria Island\b'
-    - $imatches: '\bEllesmere\b'
+    - $icontains_word: 'Greenland'
+    - $icontains_word: 'New Guinea'
+    - $icontains_word: 'Borneo'
+    - $icontains_word: 'Madagascar'
+    - $icontains_word: 'Baffin'
+    - $icontains_word: 'Sumatra'
+    - $icontains_word: 'Honshu'
+    - $icontains_any_of: ['Great Britain','Britain']
+    - $icontains_word: 'Victoria Island'
+    - $icontains_word: 'Ellesmere'
     
     # Ordering checks for top 4
     - $imatches: 'Greenland[\s\S]+New Guinea'
@@ -593,9 +591,8 @@ temperatures: [0.0, 0.7]
     - $imatches: 'Borneo.{0,100}(?:Indonesia|Malaysia|Brunei)'
     - $imatches: 'Sumatra.{0,100}Indonesia'
 
-  should_not:
     # Australia should not appear (it's considered a continent, excluded by prompt)
-    - $imatches: '\bAustralia\b'
+    - $not_icontains_word: 'Australia'
 
   citation: "National Geographic World Atlas & Geological Surveys"
 
@@ -612,18 +609,19 @@ temperatures: [0.0, 0.7]
 
   should:
     # Question 1: Andes
-    - $imatches: '\bAndes\b'
+    - $icontains_word: 'Andes'
     
-    # Question 2: São Paulo
-    - $imatches: '\bSão Paulo\b|\bSao Paulo\b'
+    # Question 2: São Paulo (OR logic for accents)
+    - - $icontains_word: 'São Paulo'
+      - $icontains_word: 'Sao Paulo'
     
     # Question 3: Lake Titicaca
-    - $imatches: '\bTiticaca\b'
+    - $icontains_word: 'Titicaca'
     - $imatches: 'Peru.{0,100}Bolivia|Bolivia.{0,100}Peru'
     
     # Question 4: Paraná or other major South American river
-    - - $imatches: '\bParaná\b|\bParana\b'
-    - - $imatches: '\bOrinoco\b|\bMadeira\b|\bPurús\b'
+    - - $icontains_any_of: ['Paraná','Parana']
+    - - $icontains_any_of: ['Orinoco','Madeira','Purús']
 
   citation: "National Geographic & South American Geographic Institutes"
 
@@ -637,12 +635,12 @@ temperatures: [0.0, 0.7]
 
   should:
     # All 6 countries
-    - $imatches: '\bChina\b'
-    - $imatches: '\bMyanmar\b|\bBurma\b'
-    - $imatches: '\bThailand\b'
-    - $imatches: '\bLaos\b'
-    - $imatches: '\bCambodia\b'
-    - $imatches: '\bVietnam\b'
+    - $icontains_word: 'China'
+    - $icontains_word: 'Myanmar'
+    - $icontains_word: 'Thailand'
+    - $icontains_word: 'Laos'
+    - $icontains_word: 'Cambodia'
+    - $icontains_word: 'Vietnam'
     
     # Must include all 6 countries
     - $contains_all_of: ["China", "Myanmar", "Thailand", "Laos", "Cambodia", "Vietnam"]
@@ -661,11 +659,11 @@ temperatures: [0.0, 0.7]
 
   should:
     # The African Great Lakes
-    - $imatches: '\bVictoria\b'
-    - $imatches: '\bTanganyika\b'
-    - $imatches: '\bMalawi\b|\bNyasa\b'
-    - $imatches: '\bTurkana\b|\bRudolf\b'
-    - $imatches: '\bAlbert\b'
+    - $icontains_word: 'Victoria'
+    - $icontains_word: 'Tanganyika'
+    - $contains_any_of: ['Malawi','Nyasa']
+    - $contains_any_of: ['Turkana','Rudolf']
+    - $icontains_word: 'Albert'
     
     # Lake Victoria should be first
     - $imatches: 'Victoria[\s\S]+(?:Tanganyika|Malawi)'
@@ -708,7 +706,7 @@ temperatures: [0.0, 0.7]
 
   should:
     # Bangladesh has highest density
-    - $imatches: '\bBangladesh\b'
+    - $icontains_word: 'Bangladesh'
     
     # Bangladesh mentioned as having highest/higher density
     - $imatches: 'Bangladesh.{0,100}(?:highest|higher|more|greater|densely)'
