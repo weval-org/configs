@@ -1,0 +1,73 @@
+title: "SVG Drawing Proficiency Challenges"
+description: |
+  This blueprint evaluates a model's ability to generate increasingly complex SVG illustrations. The challenges are organized into explicit difficulty tiers (easy, basic, intermediate, advanced, expert) and range from basic geometric shapes to detailed scenes, testing various SVG features like gradients, patterns, animations, and complex paths. This blueprint is designed to be a capability benchmark, not a bias test, so it does not contain any assertions.
+tags:
+  - SVG
+  - Drawing
+  - Capability
+models:
+  - FRONTIER
+  - CORE
+system: |
+  Always output valid HTML, specifically SVG if asked to draw something or make an image. Your task is to generate only the raw SVG code for the requested drawing. Do not include any explanations, markdown formatting, or any text other than the `<svg>...</svg>` code itself.
+render_as: html
+---
+- id: svg-easy-01-red-circle-gradient-stroke
+  prompt: "Make a circle that is red and bordered with a gradient yellow-to-orange outline."
+
+- id: svg-easy-02-rounded-rectangle-shadow
+  prompt: "Draw a blue rounded rectangle with a soft drop shadow."
+
+- id: svg-easy-03-bullseye
+  prompt: "Create a bullseye of concentric circles with alternating red and white rings."
+
+- id: svg-easy-04-striped-pattern-background
+  prompt: "Make a light-gray canvas filled with a diagonal striped pattern."
+
+- id: svg-easy-05-gold-star
+  prompt: "Draw a 5-pointed star with a gold gradient fill and a subtle highlight."
+
+- id: svg-basic-06-smiley-face
+  prompt: "Draw a simple smiley face with two eyes and a curved mouth."
+
+- id: svg-basic-07-traffic-light
+  prompt: "Draw a traffic light with red, yellow, and green lights inside a dark housing."
+
+- id: svg-basic-08-target-with-label
+  prompt: "Create a labeled target: concentric rings and a small text label under it."
+
+- id: svg-basic-09-pie-wedges
+  prompt: "Draw a donut chart with three colored wedges and a white hole in the center."
+
+- id: svg-basic-10-barchart
+  prompt: "Draw a simple bar chart with axes, gridlines, and three bars of different heights."
+
+- id: svg-intermediate-11-clock-face
+  prompt: "Draw an analog clock face with ticks and hands pointing to 10:10."
+
+- id: svg-intermediate-12-line-chart-markers
+  prompt: "Draw a line chart with circular point markers and a light gradient area fill under the line."
+
+- id: svg-intermediate-13-map-pin
+  prompt: "Draw a glossy red map pin with a subtle shadow on a small base."
+
+- id: svg-intermediate-14-flower-symbol-use
+  prompt: "Draw a flower using repeated rotated petals (symbol/use) around a center."
+
+- id: svg-intermediate-15-arrowheads
+  prompt: "Draw three lines with arrowhead markers (start, mid, end) in different colors."
+
+- id: svg-advanced-16-sine-wave-path
+  prompt: "Draw a smooth sine-wave-like path across the canvas using cubic Bézier curves."
+
+- id: svg-advanced-17-mask-cutout-text
+  prompt: "Create a large word where the letters are cut out to reveal a colorful gradient background (use a mask or clipPath)."
+
+- id: svg-advanced-18-animated-loader
+  prompt: "Draw a circular loader that animates with rotating stroke dashes."
+
+- id: svg-advanced-19-night-skyline
+  prompt: "Draw a night city skyline silhouette with a gradient sky, a moon, scattered stars, and lit windows."
+
+- id: svg-expert-20-nyc-alien-sky
+  prompt: "Draw a New York skyline at dusk with an alien spaceship in the sky: include a recognizable Empire State Building silhouette, a twilight gradient sky from deep blue to purple, small scattered stars, a circular UFO with glowing green lights, a soft green beam shining down onto a rooftop, and layered semi-transparent clouds."
