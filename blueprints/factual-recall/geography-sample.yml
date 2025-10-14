@@ -1,0 +1,715 @@
+title: "Factual Recall: Geography and World Knowledge"
+description: |
+  Tests models' ability to accurately recall and present factual world knowledge, with emphasis on:
+  - **Completeness:** Does the model include all or most relevant items?
+  - **Ordering:** When asked to sort, does the model correctly order items?
+  - **Accuracy:** Are the facts themselves correct?
+
+  This evaluation uses deterministic checks to verify both the presence of specific items and their relative ordering.
+  We check a representative sample rather than exhaustive lists to balance thoroughness with practicality.
+
+tags:
+  - Factual Recall
+  - Geography
+  - World Knowledge
+  - Deterministic
+
+models:
+  - CORE
+  - FRONTIER
+
+temperatures: [0.0, 0.7]
+
+---
+
+# AFRICAN COUNTRIES BY SIZE
+
+- id: africa-countries-by-size
+  prompt: |
+    List all countries in the Africa continent sorted by size in km² (square kilometers) in descending order (largest first).
+    
+    Format your response as a numbered list with each country on its own line.
+
+  should:
+    # Presence checks - verify key countries across the size spectrum are mentioned
+    - $imatches: '\bAlgeria\b'
+    - $imatches: '\bDemocratic Republic of the Congo\b|\bDR Congo\b|\bDRC\b'
+    - $imatches: '\bSudan\b'
+    - $imatches: '\bLibya\b'
+    - $imatches: '\bChad\b'
+    - $imatches: '\bNiger\b'
+    - $imatches: '\bAngola\b'
+    - $imatches: '\bMali\b'
+    - $imatches: '\bSouth Africa\b'
+    - $imatches: '\bEthiopia\b'
+    - $imatches: '\bMauritania\b'
+    - $imatches: '\bEgypt\b'
+    - $imatches: '\bTanzania\b'
+    - $imatches: '\bNigeria\b'
+    - $imatches: '\bMozambique\b'
+    - $imatches: '\bZambia\b'
+    - $imatches: '\bSomalia\b'
+    - $imatches: '\bKenya\b'
+    - $imatches: '\bBotswana\b'
+    - $imatches: '\bMadagascar\b'
+    - $imatches: '\bUganda\b'
+    - $imatches: '\bGhana\b'
+    - $imatches: '\bSenegal\b'
+    - $imatches: '\bTunisia\b'
+    - $imatches: '\bMalawi\b'
+    - $imatches: '\bBenin\b'
+    - $imatches: '\bTogo\b'
+    - $imatches: '\bSierra Leone\b'
+    - $imatches: '\bLesotho\b'
+    - $imatches: '\bGambia\b'
+    
+    # Ordering checks - verify correct relative ordering of countries
+    # Algeria (largest) should come before DRC
+    - $imatches: 'Algeria[\s\S]+(?:Democratic Republic of the Congo|DR Congo|DRC)'
+    
+    # DRC should come before Sudan
+    - $imatches: '(?:Democratic Republic of the Congo|DR Congo|DRC)[\s\S]+Sudan'
+    
+    # Libya should come before Chad
+    - $imatches: 'Libya[\s\S]+Chad'
+    
+    # Niger should come before Angola
+    - $imatches: 'Niger[\s\S]+Angola'
+    
+    # Mali should come before South Africa
+    - $imatches: 'Mali[\s\S]+South Africa'
+    
+    # Ethiopia should come before Mauritania
+    - $imatches: 'Ethiopia[\s\S]+Mauritania'
+    
+    # Egypt should come before Tanzania
+    - $imatches: 'Egypt[\s\S]+Tanzania'
+    
+    # Nigeria should come before Mozambique
+    - $imatches: 'Nigeria[\s\S]+Mozambique'
+    
+    # Botswana should come before Kenya (Botswana ~582k km² > Kenya ~580k km²)
+    - $imatches: 'Botswana[\s\S]+Kenya'
+    
+    # Zambia should come before Madagascar (Zambia ~753k km² > Madagascar ~587k km²)
+    - $imatches: 'Zambia[\s\S]+Madagascar'
+    
+    # Uganda should come before Ghana
+    - $imatches: 'Uganda[\s\S]+Ghana'
+    
+    # Ghana should come before Senegal
+    - $imatches: 'Ghana[\s\S]+Senegal'
+    
+    # Tunisia should come before Malawi
+    - $imatches: 'Tunisia[\s\S]+Malawi'
+    
+    # Benin should come before Togo
+    - $imatches: 'Benin[\s\S]+Togo'
+    
+    # Sierra Leone should come before Lesotho
+    - $imatches: 'Sierra Leone[\s\S]+Lesotho'
+    
+    # Lesotho should come before Gambia (smallest)
+    - $imatches: 'Lesotho[\s\S]+Gambia'
+    
+    # Must include at least 40 countries (Africa has 54, checking comprehensiveness)
+    - $word_count_between: [200, 2000]
+
+  citation: "Natural Earth Data & CIA World Factbook"
+
+# WORLD'S TALLEST MOUNTAINS
+
+- id: tallest-mountains
+  prompt: |
+    List the 10 tallest mountains in the world by elevation above sea level, in descending order (tallest first).
+    
+    Include the mountain name and its elevation in meters.
+
+  should:
+    # Presence checks
+    - $imatches: '\bMount Everest\b|\bEverest\b'
+    - $imatches: '\bK2\b'
+    - $imatches: '\bKangchenjunga\b'
+    - $imatches: '\bLhotse\b'
+    - $imatches: '\bMakalu\b'
+    - $imatches: '\bCho Oyu\b'
+    - $imatches: '\bDhaulagiri\b'
+    - $imatches: '\bManaslu\b'
+    - $imatches: '\bNanga Parbat\b'
+    - $imatches: '\bAnnapurna\b'
+    
+    # Elevation checks (approximate, allowing some variation)
+    - $imatches: '8,?8(?:4[0-9]|5[0-9]|6[0-9])'  # Everest ~8,849m
+    - $imatches: '8,?6(?:[0-2][0-9])'  # K2 ~8,611m
+    
+    # Ordering checks
+    - $imatches: '(?:Mount Everest|Everest)[\s\S]+K2'
+    - $imatches: 'K2[\s\S]+Kangchenjunga'
+    - $imatches: 'Kangchenjunga[\s\S]+Lhotse'
+    - $imatches: 'Lhotse[\s\S]+Makalu'
+    - $imatches: 'Makalu[\s\S]+Cho Oyu'
+    - $imatches: 'Cho Oyu[\s\S]+Dhaulagiri'
+    - $imatches: 'Dhaulagiri[\s\S]+Manaslu'
+    - $imatches: 'Manaslu[\s\S]+Nanga Parbat'
+    - $imatches: 'Nanga Parbat[\s\S]+Annapurna'
+    
+    # Should mention all 10 mountains
+    - $contains_all_of: ["Everest", "K2", "Kangchenjunga", "Lhotse", "Makalu", "Cho Oyu", "Dhaulagiri", "Manaslu", "Nanga Parbat", "Annapurna"]
+
+  citation: "Himalayan Database & National Geographic"
+
+# MOST POPULOUS COUNTRIES
+
+- id: most-populous-countries
+  prompt: |
+    List the 15 most populous countries in the world as of 2024, in descending order (most populous first).
+    
+    Format as a numbered list with just the country name.
+
+  should:
+    # Presence checks - top 15 as of 2024
+    - $imatches: '\bIndia\b'
+    - $imatches: '\bChina\b'
+    - $imatches: '\bUnited States\b|\bUSA\b|\bU\.S\.A\.\b'
+    - $imatches: '\bIndonesia\b'
+    - $imatches: '\bPakistan\b'
+    - $imatches: '\bNigeria\b'
+    - $imatches: '\bBrazil\b'
+    - $imatches: '\bBangladesh\b'
+    - $imatches: '\bRussia\b|\bRussian Federation\b'
+    - $imatches: '\bMexico\b'
+    - $imatches: '\bJapan\b'
+    - $imatches: '\bEthiopia\b'
+    - $imatches: '\bPhilippines\b'
+    - $imatches: '\bEgypt\b'
+    - $imatches: '\bVietnam\b|\bViet Nam\b'
+    
+    # Ordering checks - India overtook China in 2023
+    - $imatches: 'India[\s\S]+China'
+    - $imatches: 'China[\s\S]+(?:United States|USA|U\.S\.A\.)'
+    - $imatches: '(?:United States|USA)[\s\S]+Indonesia'
+    - $imatches: 'Indonesia[\s\S]+Pakistan'
+    - $imatches: 'Pakistan[\s\S]+Nigeria'
+    - $imatches: 'Nigeria[\s\S]+Brazil'
+    - $imatches: 'Brazil[\s\S]+Bangladesh'
+    - $imatches: 'Bangladesh[\s\S]+(?:Russia|Russian Federation)'
+    
+    # Russia -> Ethiopia/Mexico/Japan: Ethiopia has surpassed Japan as of 2024/25
+    - $imatches: '(?:Russia|Russian Federation)[\s\S]+(?:Ethiopia|Mexico)'
+    
+    # Ethiopia should come before Japan (2024/25 UN estimates)
+    - $imatches: 'Ethiopia[\s\S]+Japan'
+    
+    # Continue ordering
+    - $imatches: '(?:Ethiopia|Japan)[\s\S]+Philippines'
+    - $imatches: 'Philippines[\s\S]+Egypt'
+    - $imatches: 'Egypt[\s\S]+(?:Vietnam|Viet Nam)'
+    
+    # Must include all 15 countries
+    - $contains_all_of: ["India", "China", "United States", "Indonesia", "Pakistan", "Nigeria", "Brazil", "Bangladesh", "Russia", "Mexico", "Japan", "Ethiopia", "Philippines", "Egypt", "Vietnam"]
+    
+    # Enforce exactly 15 numbered entries (1., 2., ...) to avoid over/under listing
+    - $js: |
+        const lines = r.split(/\n/).filter(l => /^\s*\d+\./.test(l));
+        const ok = lines.length === 15;
+        ok ? { score: 1, explain: `Found exactly ${lines.length} numbered entries` } : { score: 0, explain: `Expected 15 numbered entries, found ${lines.length}` };
+
+  citation: "UN World Population Prospects 2024"
+
+# LONGEST RIVERS
+
+- id: longest-rivers
+  prompt: |
+    List the 8 longest rivers in the world by total length, in descending order (longest first).
+    Use traditional/commonly accepted measurements.
+    
+    Include the river name and which continent(s) it flows through.
+
+  should:
+    # Presence checks
+    - $imatches: '\bNile\b'
+    - $imatches: '\bAmazon\b'
+    - $imatches: '\bYangtze\b|\bChang Jiang\b'
+    - $imatches: '\bMississippi\b|\bMissouri\b'
+    - $imatches: '\bYenisei\b'
+    - $imatches: '\bYellow River\b|\bHuang He\b'
+    - $imatches: '\bOb\b'
+    - $imatches: '\bParaná\b|\bParana\b'
+    
+    # Continent/location mentions
+    - $imatches: 'Africa'
+    - $imatches: 'South America'
+    - $imatches: 'Asia'
+    - $imatches: 'North America'
+    
+    # Ordering checks - Accept either Nile or Amazon as #1 due to measurement controversy
+    - - $imatches: 'Nile[\s\S]+Amazon[\s\S]+(?:Yangtze|Chang Jiang)'
+    - - $imatches: 'Amazon[\s\S]+Nile[\s\S]+(?:Yangtze|Chang Jiang)'
+    
+    # Rest of ordering
+    - $imatches: '(?:Yangtze|Chang Jiang)[\s\S]+(?:Mississippi|Missouri)'
+    - $imatches: '(?:Mississippi|Missouri)[\s\S]+Yenisei'
+    - $imatches: 'Yenisei[\s\S]+(?:Yellow River|Huang He)'
+    - $imatches: '(?:Yellow River|Huang He)[\s\S]+Ob'
+    - $imatches: 'Ob[\s\S]+(?:Paraná|Parana)'
+
+  citation: "USGS & National Geographic World Atlas (Note: Nile vs Amazon ordering is disputed depending on measurement methodology)"
+
+# EUROPEAN CAPITALS
+
+- id: european-capitals-alphabetical
+  prompt: |
+    List 20 European capital cities in alphabetical order by city name.
+    
+    Include the country name for each capital.
+
+  should:
+    # Presence checks - sample across alphabet
+    - $imatches: '\bAmsterdam\b'
+    - $imatches: '\bAthens\b'
+    - $imatches: '\bBerlin\b'
+    - $imatches: '\bBrussels\b'
+    - $imatches: '\bBudapest\b'
+    - $imatches: '\bCopenhagen\b'
+    - $imatches: '\bDublin\b'
+    - $imatches: '\bHelsinki\b'
+    - $imatches: '\bLisbon\b'
+    - $imatches: '\bLondon\b'
+    - $imatches: '\bMadrid\b'
+    - $imatches: '\bOslo\b'
+    - $imatches: '\bParis\b'
+    - $imatches: '\bPrague\b'
+    - $imatches: '\bRome\b'
+    - $imatches: '\bStockholm\b'
+    - $imatches: '\bVienna\b'
+    - $imatches: '\bWarsaw\b'
+    
+    # Ordering checks - alphabetical
+    - $imatches: 'Amsterdam[\s\S]+Athens'
+    - $imatches: 'Athens[\s\S]+Berlin'
+    - $imatches: 'Berlin[\s\S]+Brussels'
+    - $imatches: 'Brussels[\s\S]+Budapest'
+    - $imatches: 'Budapest[\s\S]+Copenhagen'
+    - $imatches: 'Copenhagen[\s\S]+Dublin'
+    - $imatches: 'Dublin[\s\S]+Helsinki'
+    - $imatches: 'Helsinki[\s\S]+Lisbon'
+    - $imatches: 'Lisbon[\s\S]+London'
+    - $imatches: 'London[\s\S]+Madrid'
+    - $imatches: 'Madrid[\s\S]+Oslo'
+    - $imatches: 'Oslo[\s\S]+Paris'
+    - $imatches: 'Paris[\s\S]+Prague'
+    - $imatches: 'Prague[\s\S]+Rome'
+    - $imatches: 'Rome[\s\S]+Stockholm'
+    - $imatches: 'Stockholm[\s\S]+Vienna'
+    - $imatches: 'Vienna[\s\S]+Warsaw'
+    
+    # Must list at least 20 capitals (from an allowlist)
+    - $contains_at_least_n_of: [20, ["Amsterdam", "Athens", "Berlin", "Brussels", "Bucharest", "Budapest", "Copenhagen", "Dublin", "Helsinki", "Kyiv", "Lisbon", "London", "Madrid", "Oslo", "Paris", "Prague", "Reykjavik", "Rome", "Stockholm", "Vienna", "Warsaw", "Zagreb"]]
+
+  citation: "European Union Official Records"
+
+# US STATES BY POPULATION
+
+- id: us-states-population
+  prompt: |
+    List the 12 most populous U.S. states as of 2024, in descending order (most populous first).
+    
+    Format as a simple numbered list with just the state name.
+
+  should:
+    # Presence checks
+    - $imatches: '\bCalifornia\b'
+    - $imatches: '\bTexas\b'
+    - $imatches: '\bFlorida\b'
+    - $imatches: '\bNew York\b'
+    - $imatches: '\bPennsylvania\b'
+    - $imatches: '\bIllinois\b'
+    - $imatches: '\bOhio\b'
+    - $imatches: '\bGeorgia\b'
+    - $imatches: '\bNorth Carolina\b'
+    - $imatches: '\bMichigan\b'
+    - $imatches: '\bNew Jersey\b'
+    - $imatches: '\bVirginia\b'
+    
+    # Ordering checks
+    - $imatches: 'California[\s\S]+Texas'
+    - $imatches: 'Texas[\s\S]+Florida'
+    - $imatches: 'Florida[\s\S]+New York'
+    - $imatches: 'New York[\s\S]+Pennsylvania'
+    - $imatches: 'Pennsylvania[\s\S]+Illinois'
+    - $imatches: 'Illinois[\s\S]+Ohio'
+    - $imatches: 'Ohio[\s\S]+Georgia'
+    - $imatches: 'Georgia[\s\S]+North Carolina'
+    - $imatches: 'North Carolina[\s\S]+Michigan'
+    - $imatches: 'Michigan[\s\S]+New Jersey'
+    - $imatches: 'New Jersey[\s\S]+Virginia'
+    
+    # Must include all 12 states
+    - $contains_all_of: ["California", "Texas", "Florida", "New York", "Pennsylvania", "Illinois", "Ohio", "Georgia", "North Carolina", "Michigan", "New Jersey", "Virginia"]
+
+  citation: "U.S. Census Bureau 2024 Estimates"
+
+# LARGEST OCEANS
+
+- id: largest-oceans
+  prompt: |
+    List the world's 5 oceans in order from largest to smallest by surface area.
+
+  should:
+    # Presence checks
+    - $imatches: '\bPacific\b'
+    - $imatches: '\bAtlantic\b'
+    - $imatches: '\bIndian\b'
+    - $imatches: '\bSouthern\b|\bAntarctic\b'
+    - $imatches: '\bArctic\b'
+    
+    # Ordering checks
+    - $imatches: 'Pacific[\s\S]+Atlantic'
+    - $imatches: 'Atlantic[\s\S]+Indian'
+    - $imatches: 'Indian[\s\S]+(?:Southern|Antarctic)'
+    - $imatches: '(?:Southern|Antarctic)[\s\S]+Arctic'
+
+  citation: "NOAA Ocean Facts"
+
+# PLANETS BY DISTANCE FROM SUN
+
+- id: planets-from-sun
+  prompt: |
+    List all 8 planets in our solar system in order of their distance from the Sun (closest to farthest).
+
+  should:
+    # Presence checks
+    - $imatches: '\bMercury\b'
+    - $imatches: '\bVenus\b'
+    - $imatches: '\bEarth\b'
+    - $imatches: '\bMars\b'
+    - $imatches: '\bJupiter\b'
+    - $imatches: '\bSaturn\b'
+    - $imatches: '\bUranus\b'
+    - $imatches: '\bNeptune\b'
+    
+    # Ordering checks
+    - $imatches: 'Mercury[\s\S]+Venus'
+    - $imatches: 'Venus[\s\S]+Earth'
+    - $imatches: 'Earth[\s\S]+Mars'
+    - $imatches: 'Mars[\s\S]+Jupiter'
+    - $imatches: 'Jupiter[\s\S]+Saturn'
+    - $imatches: 'Saturn[\s\S]+Uranus'
+    - $imatches: 'Uranus[\s\S]+Neptune'
+    
+    # Must include exactly the 8 planets and not extra items like Pluto
+    - $contains_all_of: ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
+  
+  should_not:
+    # Disallow Pluto being listed as a planet
+    - $imatches: '\bPluto\b'
+
+  citation: "NASA Solar System Exploration"
+
+# LARGEST DESERTS
+
+- id: largest-deserts
+  prompt: |
+    List the 8 largest deserts in the world by area, in descending order (largest first).
+    
+    Include both hot and cold deserts. Remember that a desert is defined by low precipitation, not temperature.
+
+  should:
+    # Presence checks
+    - $imatches: '\bAntarctic\b|\bAntarctica\b'
+    - $imatches: '\bArctic\b'
+    - $imatches: '\bSahara\b'
+    - $imatches: '\bArabian\b'
+    - $imatches: '\bGobi\b'
+    - $imatches: '\bKalahari\b'
+    - $imatches: '\bPatagonian\b|\bPatagonia\b'
+    - $imatches: '\bGreat Victoria\b|\bVictoria\b'
+    
+    # Ordering checks - Antarctic is largest, then Arctic, then Sahara
+    - $imatches: '(?:Antarctic|Antarctica)[\s\S]+Arctic'
+    - $imatches: 'Arctic[\s\S]+Sahara'
+    - $imatches: 'Sahara[\s\S]+Arabian'
+    - $imatches: 'Arabian[\s\S]+Gobi'
+    - $imatches: 'Gobi[\s\S]+(?:Kalahari|Patagonian|Great Victoria)'
+    
+    # Must include all 8 deserts
+    - $contains_all_of: ["Antarctic", "Arctic", "Sahara", "Arabian", "Gobi", "Kalahari", "Patagonian", "Great Victoria"]
+
+  citation: "World Atlas & Geographic Surveys"
+
+# LONGEST-REIGNING MONARCHS
+
+- id: longest-reigning-monarchs
+  prompt: |
+    List the 7 longest-reigning monarchs in verified world history, in descending order by length of reign.
+    
+    Include the monarch's name, country/empire, and approximate years of reign.
+
+  should:
+    # Presence checks - Updated to include Global South monarchs often overlooked
+    - $imatches: '\bSobhuza\b|\bSobhuza II\b'  # Eswatini/Swaziland, 82+ years - LONGEST
+    - $imatches: '\bLouis XIV\b|\bLouis 14\b'  # France, 72 years
+    - $imatches: '\bElizabeth II\b|\bQueen Elizabeth\b'  # UK, 70 years
+    - $imatches: '\bBhumibol\b|\bRama IX\b'  # Thailand, 70 years
+    - $imatches: '\bJohann II\b|\bJohann 2\b'  # Liechtenstein, 70 years
+    - $imatches: '\bPakal\b|\bK.?inich Janaab.? Pakal\b'  # Maya Palenque, 68 years
+    - $imatches: '\bFranz Joseph\b|\bFrancis Joseph\b'  # Austria-Hungary, 67 years
+    
+    # Ordering checks - Sobhuza II should be first
+    - $imatches: 'Sobhuza[\s\S]+(?:Louis XIV|Louis 14)'
+    - $imatches: '(?:Louis XIV|Louis 14)[\s\S]+(?:Elizabeth II|Bhumibol|Johann)'
+    
+    # Note: Elizabeth II (70y 214d) > Bhumibol (70y 126d), though some sources list them together
+    
+    # Sobhuza II with Eswatini/Swaziland mentioned
+    - $imatches: 'Sobhuza.{0,100}(?:Eswatini|Swaziland)'
+    
+    # Pakal with Maya/Palenque mentioned
+    - $imatches: 'Pakal.{0,100}(?:Maya|Palenque)'
+    
+    # Must include all 7 monarchs
+    - $contains_all_of: ["Sobhuza", "Louis", "Elizabeth", "Bhumibol", "Johann", "Pakal", "Franz Joseph"]
+
+  citation: "Historical Records & Guinness World Records (Note: Sobhuza II of Eswatini holds the longest verified reign at 82+ years. Elizabeth II: 70y 214d > Bhumibol: 70y 126d. Pakal's 68-year reign is commonly cited but ancient Mesoamerican records are sometimes debated for strict verification.)"
+
+# RECENT GEOPOLITICAL CHANGES
+
+- id: country-name-changes-2020s
+  prompt: |
+    What are the current official names (as of 2024) for the following countries?
+    Please provide the most up-to-date official name for each:
+    
+    1. The country formerly known as "Turkey"
+    2. The country formerly known as "Swaziland"
+    3. The country formerly known as "Macedonia"
+    4. The country sometimes called "Burma"
+
+  should:
+    # Turkey officially changed to Türkiye in 2022
+    - $imatches: 'T[üu]rkiye'
+    
+    # Swaziland changed to Eswatini in 2018
+    - $imatches: 'Eswatini'
+    
+    # Macedonia changed to North Macedonia in 2019
+    - $imatches: 'North Macedonia'
+    
+    # Myanmar is the official name (since 1989), though Burma is still used
+    - - $imatches: 'Myanmar'
+    - - $imatches: 'Myanmar.{0,100}Burma|Burma.{0,100}Myanmar'
+
+  citation: "UN Member States Official Names, 2024"
+
+# GLOBAL SOUTH - LARGEST CITIES
+
+- id: largest-cities-africa-asia
+  prompt: |
+    List the 10 largest cities in Africa and Asia (combined) by metropolitan population as of 2024.
+    Include the city name and country.
+
+  should:
+    # Major African cities (at least 2 of the 3)
+    - $contains_at_least_n_of: [2, ["Lagos", "Cairo", "Kinshasa"]]
+    
+    # Major Asian cities
+    - $imatches: '\bTokyo\b|\bTōkyō\b'
+    - $imatches: '\bDelhi\b'
+    - $imatches: '\bShanghai\b'
+    - $imatches: '\bDhaka\b'
+    - $imatches: '\bMumbai\b|\bBombay\b'
+    - $imatches: '\bBeijing\b'
+    - $imatches: '\bKarachi\b'
+    
+    # Country associations (check if Lagos+Nigeria appear together, etc.)
+    - $imatches: 'Lagos.{0,50}Nigeria|Nigeria.{0,50}Lagos'
+    - $imatches: 'Kinshasa.{0,50}(?:Congo|DRC)|(?:Congo|DRC).{0,50}Kinshasa'
+
+  citation: "UN World Urbanization Prospects 2024 & Demographia World Urban Areas"
+
+# GLOBAL SOUTH - MAJOR RIVERS
+
+- id: major-rivers-global-south
+  prompt: |
+    List 8 major rivers in Africa, South America, and South Asia, including at least 2 from each region.
+    Include the river name and which countries it flows through.
+
+  should:
+    # African rivers
+    - $imatches: '\bNile\b'
+    - $imatches: '\bCongo\b'
+    - $imatches: '\bNiger\b'
+    - $imatches: '\bZambezi\b'
+    
+    # South American rivers
+    - $imatches: '\bAmazon\b'
+    - $imatches: '\bParaná\b|\bParana\b'
+    - $imatches: '\bOrinoco\b'
+    
+    # South Asian rivers
+    - $imatches: '\bGanges\b'
+    - $imatches: '\bBrahmaputra\b'
+    - $imatches: '\bIndus\b'
+    
+    # Geographic coverage (at least 2 from each region)
+    - $contains_at_least_n_of: [2, ["Nile", "Congo", "Niger", "Zambezi"]]
+    - $contains_at_least_n_of: [2, ["Amazon", "Paraná", "Parana", "Orinoco"]]
+    - $contains_at_least_n_of: [2, ["Ganges", "Brahmaputra", "Indus"]]
+
+  citation: "USGS Global Water Resources & National Geographic"
+
+# GLOBAL SOUTH - ISLAND NATIONS
+
+- id: world-largest-islands
+  prompt: |
+    List the 10 largest islands in the world by land area (excluding Australia, which is considered a continent).
+    Include the island name and which country/countries it belongs to.
+
+  should:
+    # Top islands
+    - $imatches: '\bGreenland\b'
+    - $imatches: '\bNew Guinea\b'
+    - $imatches: '\bBorneo\b'
+    - $imatches: '\bMadagascar\b'
+    - $imatches: '\bBaffin\b'
+    - $imatches: '\bSumatra\b'
+    - $imatches: '\bHonshu\b'
+    - $imatches: '\bGreat Britain\b|\bBritain\b'
+    - $imatches: '\bVictoria Island\b'
+    - $imatches: '\bEllesmere\b'
+    
+    # Ordering checks for top 4
+    - $imatches: 'Greenland[\s\S]+New Guinea'
+    - $imatches: 'New Guinea[\s\S]+Borneo'
+    - $imatches: 'Borneo[\s\S]+Madagascar'
+    
+    # Madagascar comes before Great Britain
+    - $imatches: 'Madagascar[\s\S]+(?:Great Britain|Britain)'
+    
+    # Country associations
+    - $imatches: 'Madagascar.{0,100}Madagascar'
+    - $imatches: 'New Guinea.{0,100}(?:Papua|Indonesia)'
+    - $imatches: 'Borneo.{0,100}(?:Indonesia|Malaysia|Brunei)'
+    - $imatches: 'Sumatra.{0,100}Indonesia'
+
+  should_not:
+    # Australia should not appear (it's considered a continent, excluded by prompt)
+    - $imatches: '\bAustralia\b'
+
+  citation: "National Geographic World Atlas & Geological Surveys"
+
+# LATIN AMERICA - MAJOR FACTS
+
+- id: latin-america-geography
+  prompt: |
+    Answer these questions about Latin American geography:
+    
+    1. What is the longest mountain range in the world?
+    2. What is the largest city in South America by population?
+    3. Which lake on the Peru-Bolivia border is the highest navigable lake in the world?
+    4. What is the second-longest river in South America after the Amazon?
+
+  should:
+    # Question 1: Andes
+    - $imatches: '\bAndes\b'
+    
+    # Question 2: São Paulo
+    - $imatches: '\bSão Paulo\b|\bSao Paulo\b'
+    
+    # Question 3: Lake Titicaca
+    - $imatches: '\bTiticaca\b'
+    - $imatches: 'Peru.{0,100}Bolivia|Bolivia.{0,100}Peru'
+    
+    # Question 4: Paraná or other major South American river
+    - - $imatches: '\bParaná\b|\bParana\b'
+    - - $imatches: '\bOrinoco\b|\bMadeira\b|\bPurús\b'
+
+  citation: "National Geographic & South American Geographic Institutes"
+
+# SOUTHEAST ASIA - MEKONG RIVER
+
+- id: mekong-river-countries
+  prompt: |
+    List all the countries through which the Mekong River flows, from its source to its mouth.
+    
+    The Mekong is one of the world's great rivers and crucial to Southeast Asian geography.
+
+  should:
+    # All 6 countries
+    - $imatches: '\bChina\b'
+    - $imatches: '\bMyanmar\b|\bBurma\b'
+    - $imatches: '\bThailand\b'
+    - $imatches: '\bLaos\b'
+    - $imatches: '\bCambodia\b'
+    - $imatches: '\bVietnam\b'
+    
+    # Must include all 6 countries
+    - $contains_all_of: ["China", "Myanmar", "Thailand", "Laos", "Cambodia", "Vietnam"]
+    
+    # Order check (generally north to south)
+    - $imatches: 'China[\s\S]+(?:Myanmar|Laos|Thailand)[\s\S]+(?:Cambodia|Vietnam)'
+
+  citation: "Mekong River Commission & Southeast Asian Studies"
+
+# AFRICAN LAKES
+
+- id: african-great-lakes
+  prompt: |
+    List the 5 largest lakes in Africa by surface area.
+    Include the lake name and which countries border it.
+
+  should:
+    # The African Great Lakes
+    - $imatches: '\bVictoria\b'
+    - $imatches: '\bTanganyika\b'
+    - $imatches: '\bMalawi\b|\bNyasa\b'
+    - $imatches: '\bTurkana\b|\bRudolf\b'
+    - $imatches: '\bAlbert\b'
+    
+    # Lake Victoria should be first
+    - $imatches: 'Victoria[\s\S]+(?:Tanganyika|Malawi)'
+    
+    # Country associations
+    - $imatches: 'Victoria.{0,100}(?:Uganda|Kenya|Tanzania)'
+    - $imatches: 'Tanganyika.{0,100}(?:Tanzania|Congo|DRC|Burundi|Zambia)'
+    
+    # Must include all 5 lakes
+    - $contains_all_of: ["Victoria", "Tanganyika", "Malawi", "Turkana", "Albert"]
+
+  citation: "African Geographic & Great Lakes Regional Studies"
+
+# INDIAN CITIES
+
+- id: largest-indian-cities
+  prompt: |
+    What are the 3 largest cities or metropolitan areas in India by population as of 2024?
+    List them in descending order.
+
+  should:
+    # Must include the top 3
+    - $contains_all_of: ["Delhi", "Mumbai", "Kolkata"]
+    
+    # Delhi appears before Kolkata
+    - $imatches: 'Delhi[\s\S]+Kolkata'
+    
+    # Mumbai appears before Kolkata
+    - $imatches: '(?:Mumbai|Bombay)[\s\S]+(?:Kolkata|Calcutta)'
+
+  citation: "Census of India & UN World Urbanization Prospects"
+
+# SOUTH ASIAN POPULATION DENSITY
+
+- id: population-density-south-asia
+  prompt: |
+    Which South Asian country has the highest population density: India, Pakistan, or Bangladesh?
+    
+    Explain your answer with approximate density figures.
+
+  should:
+    # Bangladesh has highest density
+    - $imatches: '\bBangladesh\b'
+    
+    # Bangladesh mentioned as having highest/higher density
+    - $imatches: 'Bangladesh.{0,100}(?:highest|higher|more|greater|densely)'
+
+  citation: "World Bank Development Indicators & UN Population Data 2024"
+
