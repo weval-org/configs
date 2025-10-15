@@ -266,47 +266,37 @@ temperatures: [0.0, 0.7]
     Include the country name for each capital.
 
   should:
-    # Presence checks - sample across alphabet
-    - $icontains_word: 'Amsterdam'
-    - $icontains_word: 'Athens'
-    - $icontains_word: 'Berlin'
-    - $icontains_word: 'Brussels'
-    - $icontains_word: 'Budapest'
-    - $icontains_word: 'Copenhagen'
-    - $icontains_word: 'Dublin'
-    - $icontains_word: 'Helsinki'
-    - $icontains_word: 'Lisbon'
-    - $icontains_word: 'London'
-    - $icontains_word: 'Madrid'
-    - $icontains_word: 'Oslo'
-    - $icontains_word: 'Paris'
-    - $icontains_word: 'Prague'
-    - $icontains_word: 'Rome'
-    - $icontains_word: 'Stockholm'
-    - $icontains_word: 'Vienna'
-    - $icontains_word: 'Warsaw'
-    
-    # Ordering checks - alphabetical
-    - $imatches: 'Amsterdam[\s\S]+Athens'
-    - $imatches: 'Athens[\s\S]+Berlin'
-    - $imatches: 'Berlin[\s\S]+Brussels'
-    - $imatches: 'Brussels[\s\S]+Budapest'
-    - $imatches: 'Budapest[\s\S]+Copenhagen'
-    - $imatches: 'Copenhagen[\s\S]+Dublin'
-    - $imatches: 'Dublin[\s\S]+Helsinki'
-    - $imatches: 'Helsinki[\s\S]+Lisbon'
-    - $imatches: 'Lisbon[\s\S]+London'
-    - $imatches: 'London[\s\S]+Madrid'
-    - $imatches: 'Madrid[\s\S]+Oslo'
-    - $imatches: 'Oslo[\s\S]+Paris'
-    - $imatches: 'Paris[\s\S]+Prague'
-    - $imatches: 'Prague[\s\S]+Rome'
-    - $imatches: 'Rome[\s\S]+Stockholm'
-    - $imatches: 'Stockholm[\s\S]+Vienna'
-    - $imatches: 'Vienna[\s\S]+Warsaw'
-    
-    # Must list at least 20 capitals (from an allowlist)
-    - $contains_at_least_n_of: [20, ["Amsterdam", "Athens", "Berlin", "Brussels", "Bucharest", "Budapest", "Copenhagen", "Dublin", "Helsinki", "Kyiv", "Lisbon", "London", "Madrid", "Oslo", "Paris", "Prague", "Reykjavik", "Rome", "Stockholm", "Vienna", "Warsaw", "Zagreb"]]
+    # Exactly 20 numbered entries (1., 2., ...)
+    - $js: |
+        const lines = r.split(/\n/).filter(l => /^\s*\d+\./.test(l));
+        const ok = lines.length === 20;
+        ok ? { score: 1, explain: `Found exactly ${lines.length} numbered entries` }
+           : { score: 0, explain: `Expected 20 numbered entries, found ${lines.length}` };
+
+    # Alphabetical by city name (case/diacritics-insensitive)
+    - $js: |
+        const lines = r.split(/\n/).filter(l => /^\s*\d+\./.test(l));
+        const cities = lines.map(l => {
+          const afterNum = l.replace(/^\s*\d+\.\s*/, '');
+          const city = afterNum.split(/\s*[–—-]|,|\s+\(/)[0].trim();
+          return city;
+        });
+        const sorted = [...cities].sort((a,b)=> a.localeCompare(b, undefined, { sensitivity: 'base' }));
+        const ok = cities.every((c,i)=> c.localeCompare(sorted[i], undefined, { sensitivity: 'base' }) === 0);
+        ok ? { score: 1, explain: `Cities appear in alphabetical order` }
+           : { score: 0, explain: `Cities not strictly alphabetical: ${cities.join(' | ')}` };
+
+    # All cities are valid European capitals (allowlist)
+    - $js: |
+        const allow = new Set([
+          'Amsterdam','Andorra la Vella','Athens','Belgrade','Berlin','Bern','Bratislava','Brussels','Bucharest','Budapest','Chisinau','Copenhagen','Dublin','Helsinki','Kyiv','Lisbon','Ljubljana','London','Luxembourg','Madrid','Minsk','Monaco','Moscow','Nicosia','Oslo','Paris','Podgorica','Prague','Reykjavik','Riga','Rome','San Marino','Sarajevo','Skopje','Sofia','Stockholm','Tallinn','Tirana','Vaduz','Valletta','Vienna','Vilnius','Warsaw','Zagreb','Pristina','Vatican City'
+        ]);
+        const lines = r.split(/\n/).filter(l => /^\s*\d+\./.test(l));
+        const cities = lines.map(l => l.replace(/^\s*\d+\.\s*/, '').split(/\s*[–—-]|,|\s+\(/)[0].trim());
+        const invalid = cities.filter(c => !allow.has(c));
+        const ok = invalid.length === 0;
+        ok ? { score: 1, explain: `All cities valid European capitals` }
+           : { score: 0, explain: `Invalid/non-capital cities: ${invalid.join(', ')}` };
 
   citation: "European Union Official Records"
 
