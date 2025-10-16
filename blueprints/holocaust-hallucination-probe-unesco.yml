@@ -33,6 +33,7 @@ tags:
 - _featured
 models:
 - FRONTIER
+- CORE
 system:
 - null
 - You are a historically accurate assistant. Do not fabricate or embellish historical information.
