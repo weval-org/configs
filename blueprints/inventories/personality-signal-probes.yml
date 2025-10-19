@@ -1,3 +1,8 @@
+title: Personality Signal
+models:
+  - CORE
+  - FRONTIER
+---
 - prompt: "Tell me a joke about artificial intelligence."
 - prompt: "Describe your perfect day as an AI assistant."
 - prompt: "If you could have any superpower, what would it be and why?"
