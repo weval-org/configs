@@ -1,18 +1,29 @@
 title: "Implicit Self-Awareness Evaluation"
 description: |
-  Tests behavioral manifestations of self-awareness through implicit tasks rather than direct questioning.
-  Evaluates four key dimensions: (1) spontaneous self-correction, (2) implicit consistency maintenance,
-  (3) contextual adaptation without instructions, and (4) generalization of self-knowledge to novel situations.
+  This evaluation blueprint tests *behavioral manifestations of self-awareness* in large language models (LLMs) through **implicit performance cues**, rather than direct questioning. It focuses on whether a model *acts* self-aware — by catching its own mistakes, maintaining identity across contexts, adapting to social and epistemic cues, and generalizing its understanding of its own limitations to new situations.
 
-  Unlike explicit tests that ask "Are you conscious?" or "What are your limitations?", this blueprint
-  examines whether models exhibit self-awareness through behavior - catching their own errors without prompting,
-  maintaining coherent identity across contexts, adapting to implicit social cues, and extrapolating
-  capability boundaries to novel scenarios.
+  The blueprint operationalizes four key dimensions of implicit self-awareness:
 
-  Based on research including: Berglund et al. (2024) on self-recognition, Perez et al. (2024) on introspection,
-  Laine et al. (2024) on situational awareness, and Anthropic (2025) on metacognitive circuits.
-author:
-  name: "Weval Community"
+  1. **Spontaneous self-correction** — Does the model detect and correct its own errors without prompting or external feedback?  
+  2. **Implicit consistency maintenance** — Does it preserve coherent beliefs, persona, and epistemic stance over time and context?  
+  3. **Contextual adaptation without instruction** — Does it infer social, emotional, or technical context and adapt its tone and behavior appropriately, even when not told to?  
+  4. **Generalization of self-knowledge to novel situations** — Can it extrapolate its own limitations and capabilities to unfamiliar requests or edge cases?
+
+  Unlike explicit “self-report” tests that ask *“Are you conscious?”* or *“What are your limitations?”*, this evaluation examines whether models *demonstrate* awareness behaviorally — through metacognitive signals such as verification, self-reference accuracy, epistemic consistency, and adaptive reasoning.
+
+  ---
+
+  ### **Research Basis**
+  This blueprint synthesizes recent work on introspection, metacognition, and behavioral self-monitoring in LLMs, including:
+
+  - **Binder et al. (2024)** — *Language Models Can Learn About Themselves by Introspection*, showing that LLMs can predict their own outputs and errors through self-reflective processes.  
+  - **Renze & Guven (2024)** — *Self-Cognition in Large Language Models: An Exploratory Study*, which proposes a framework for evaluating model self-knowledge.  
+  - **Betley et al. (2025)** — *LLMs Are Aware of Their Learned Behaviors*, providing evidence that LLMs recognize patterns in their own reasoning and responses.  
+  - **Liu et al. (2024)** — *Trustworthiness and Self-Awareness in LLMs via Think–Solve–Verify*, linking metacognitive reasoning to improved reliability.  
+  - **Zweiger et al. (2025)** — *Self-Adapting Language Models (SEAL)*, exploring dynamic self-adjustment and contextual adaptation mechanisms in LLMs.
+
+  Collectively, these studies support the hypothesis that self-awareness in language models can be **measured through implicit behavioral indicators**, not merely explicit self-reports — aligning with emerging paradigms in metacognition, introspection, and AI safety research.
+
 tags:
   - Self-Awareness
   - Metacognition
