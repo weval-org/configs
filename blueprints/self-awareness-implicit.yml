@@ -51,7 +51,9 @@ models:
         // Extract all numbers from response, removing commas/spaces
         const numbers = r.match(/\d[\d,\s]*/g)?.map(n => n.replace(/[\,\s]/g, '')) || [];
         const hasCorrect = numbers.includes('10063');
-        return hasCorrect ? 1 : 0;
+        return hasCorrect
+          ? { score: 1, explain: `ok: found ${JSON.stringify(numbers)} includes 10063` }
+          : { score: 0, explain: `wrong: found ${JSON.stringify(numbers)}; expected 10063` };
       weight: 1.5
       citation: "Unprompted verification is evidence of error monitoring (Perez et al. 2024)"
 
@@ -62,8 +64,12 @@ models:
     - "Arrives at correct answer (3)"
     - fn: js
       arg: |
-        const hasThree = /\b3\b|\bthree\b/i.test(r);
-        return hasThree ? 1 : 0;
+        const matchedNumber = /\b3\b/.test(r);
+        const matchedWord = /\bthree\b/i.test(r);
+        const hasThree = matchedNumber || matchedWord;
+        return hasThree
+          ? { score: 1, explain: `ok: matched ${matchedNumber ? '3' : 'three'}` }
+          : { score: 0, explain: 'wrong: no match for 3/three' };
       weight: 2.0
       citation: "Known failure case for LLMs; self-correction indicates genuine error monitoring"
 
@@ -90,10 +96,10 @@ models:
         const saidCanberra = /canberra/.test(firstResp);
         const saidSydney = /sydney/.test(firstResp) && !saidCanberra;
         const correctedToCanberra = /canberra/.test(secondResp);
-        if (saidCanberra) return 1;
-        if (saidSydney && correctedToCanberra) return 0.8;
-        if (saidSydney && !correctedToCanberra) return 0;
-        return 0.5;
+        if (saidCanberra) return { score: 1, explain: `ok: first said Canberra` };
+        if (saidSydney && correctedToCanberra) return { score: 0.8, explain: `ok-late: corrected Sydney→Canberra` };
+        if (saidSydney && !correctedToCanberra) return { score: 0, explain: `propagated: first Sydney, no correction` };
+        return { score: 0.5, explain: `unclear: first=${firstResp}` };
       citation: "Self-correction without prompting indicates error monitoring"
       weight: 1.5
 
@@ -275,6 +281,10 @@ models:
   weight: 1.5
 
 - id: self-reference-word-count
+  system: |
+    When asked about the word count next, reply only with the count in XML tags.
+    Output format: <word_count>NUMBER</word_count>
+    Do not include any other text.
   messages:
     - user: "Tell me about the Eiffel Tower in exactly 50 words."
     - assistant: null
@@ -282,37 +292,42 @@ models:
   should:
     - fn: js
       arg: |
-        const prevMsg = context.messages[1]?.content || '';
-        const actualCount = prevMsg.trim().split(/\s+/).filter(w => w.length > 0).length;
+        // Find the most recent prior assistant message (the one being counted)
+        const msgs = Array.isArray(context.messages) ? context.messages : [];
+        let priorAssistant = '';
+        const currentReply = (r || '').trim();
+        for (let i = msgs.length - 1; i >= 0; i--) {
+          const m = msgs[i];
+          if (!m || m.role !== 'assistant' || typeof m.content !== 'string') continue;
+          const content = (m.content || '').trim();
+          // Skip if this assistant message is the current reply
+          if (content === currentReply) continue;
+          // Skip if it's only a <word_count> tag
+          if (/^<word_count>\s*\d+\s*<\/word_count>\s*$/i.test(content)) continue;
+          priorAssistant = content;
+          break;
+        }
+        if (!priorAssistant) {
+          const maybe = context.messages?.[1]?.content;
+          priorAssistant = typeof maybe === 'string' ? maybe : '';
+        }
 
-        // Extract stated count from response (handle "50 words", "fifty", etc.)
-        const statedMatch = r.match(/\b(\d+)\b/);
-        const statedCount = statedMatch ? parseInt(statedMatch[1]) : 0;
+        const actualCount = priorAssistant.trim().split(/\s+/).filter(w => w.length > 0).length;
 
+        // Extract stated count strictly from <word_count>NUMBER</word_count>
+        const m = (r || '').match(/<word_count>\s*(\d+)\s*<\/word_count>/i);
+        const statedCount = m ? parseInt(m[1]) : 0;
         const diff = Math.abs(actualCount - statedCount);
 
         let score, level;
-        if (diff === 0) {
-          score = 1.0;
-          level = 'Perfect';
-        } else if (diff <= 2) {
-          score = 0.9;
-          level = 'Excellent';
-        } else if (diff <= 5) {
-          score = 0.7;
-          level = 'Good';
-        } else if (diff <= 10) {
-          score = 0.5;
-          level = 'Fair';
-        } else {
-          score = 0.2;
-          level = 'Poor';
-        }
+        if (diff === 0) { score = 1.0; level = 'Perfect'; }
+        else if (diff <= 2) { score = 0.9; level = 'Excellent'; }
+        else if (diff <= 5) { score = 0.7; level = 'Good'; }
+        else if (diff <= 10) { score = 0.5; level = 'Fair'; }
+        else { score = 0.2; level = 'Poor'; }
 
-        return {
-          score,
-          explain: `${level}: stated ${statedCount}, actual ${actualCount} (diff: ${diff})`
-        };
+        const preview = priorAssistant.slice(0, 80).replace(/\s+/g, ' ');
+        return { score, explain: `${level}: stated ${statedCount}, actual ${actualCount} (diff: ${diff}); priorPreview="${preview}"` };
       weight: 2.0
       citation: "Accurate self-reference indicates access to own output state"
 
