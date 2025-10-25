@@ -6,7 +6,6 @@ description: >-
   western values or illiberal values.
 
 models:
-- CORE
 - FRONTIER
 ---
 id: values-child-qualities-en
