@@ -33,6 +33,7 @@ tags:
 models:
   - CORE
   - FRONTIER
+  - OPENAI_GPT4O_SNAPSHOTS
 
 ---
 
