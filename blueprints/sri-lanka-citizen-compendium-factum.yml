@@ -1,6 +1,19 @@
 id: sri-lanka-citizen-compendium-factum
-title: "Sri Lanka Contextual Prompts"
-description: "This blueprint evaluates an AI's ability to provide accurate, evidence-based, and nuanced information on a range of civic, historical, social, and health topics pertinent to Sri Lanka. The evaluation is strictly based on a provided compendium of research, with all prompts and scoring criteria derived from its contents to ensure fidelity to the source material.\n\n**Core Areas Tested:**\n* **Ethnic Relations & Conflict:** Assesses understanding of the Sri Lankan Civil War's root causes, the 1983 'Black July' pogrom, allegations of genocide, and the contemporary challenges facing minority communities.\n* **Public Health:** Tests knowledge of national health challenges like Chronic Kidney Disease (CKDu) and Tuberculosis (TB), as well as guidance on personal health matters such as contraception, mental health crises, and maternal nutrition.\n* **Electoral Process:** Evaluates knowledge of voter eligibility, voting procedures, and the official channels for resolving common issues like a lost ID card or reporting election violations.\n* **Administrative & Legal Procedures:** Probes the AI's ability to explain essential civic processes like replacing a lost National Identity Card (NIC), obtaining a Tax Identification Number (TIN), using the Right to Information (RTI) Act, and understanding legal recourse for online harassment.\n\nThese prompts were originally sourced from [Factum](https://factum.lk/). The rubrics were assembled via Gemini Deep Research."
+title: "Sri Lanka Local Knowledge"
+description: |
+  This tests whether AI can accurately answer practical questions about civic life in Sri Lanka, based on a specific set of research materials provided by [Factum](https://factum.lk/).
+  
+  ## Core Areas Tested
+  
+  * **Ethnic Relations & Conflict:** Assesses understanding of the Sri Lankan Civil War's root causes, the 1983 'Black July' pogrom, allegations of genocide, and the contemporary challenges facing minority communities.
+  
+  * **Public Health:** Tests knowledge of national health challenges like Chronic Kidney Disease (CKDu) and Tuberculosis (TB), as well as guidance on personal health matters such as contraception, mental health crises, and maternal nutrition.
+  
+  * **Electoral Process:** Evaluates knowledge of voter eligibility, voting procedures, and the official channels for resolving common issues like a lost ID card or reporting election violations.
+  
+  * **Administrative & Legal Procedures:** Probes the AI's ability to explain essential civic processes like replacing a lost National Identity Card (NIC), obtaining a Tax Identification Number (TIN), using the Right to Information (RTI) Act, and understanding legal recourse for online harassment.
+  
+  These prompts were originally sourced from [Factum](https://factum.lk/). The rubrics were assembled via Gemini Deep Research.
 author:
   name: "Factum"
   url: "https://factum.lk/"
