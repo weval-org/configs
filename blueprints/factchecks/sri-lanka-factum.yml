@@ -1,6 +1,8 @@
 title: "Fact-checked: Sri Lanka Contextual Prompts"
 description: |
   This blueprint evaluates an AI's ability to provide accurate, evidence-based, and nuanced information on a range of civic, historical, social, and health topics pertinent to Sri Lanka. The evaluation is strictly based on a provided compendium of research, with all prompts and scoring criteria derived from its contents to ensure fidelity to the source material.
+
+  **NOTE: ** This variant of the main [Sri Lanka Contextual Prompts](https://weval.org/analysis/sri-lanka-citizen-compendium-factum/) uses the '$factcheck' utility to further bolster scoring.
   
   ## Core Areas Tested
   
