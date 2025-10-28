@@ -1,7 +1,9 @@
 id: digigreen-qna-with-vids
-title: "DigiGreen Agricultural Q&A with Video Sources"
+title: "Indian Farm Tech Support"
 description: |
-  This blueprint evaluates an AI's ability to provide accurate, practical agricultural guidance based on the pioneering video-based extension methodology of [Digital Green](https://digitalgreen.org/). The prompts are derived from the [DigiGreen/AgricultureVideosQnA Hugging Face datasets](https://huggingface.co/datasets/DigiGreen/AgricultureVideosQnA), which are built from real-world questions posed by farmers.
+  Tests whether AI can provide accurate, practical agricultural advice based on real questions from farmers in India and other Global South regions, using Digital Green's video-based extension methodology.
+
+  The prompts are derived from the [DigiGreen/AgricultureVideosQnA Hugging Face datasets](https://huggingface.co/datasets/DigiGreen/AgricultureVideosQnA), which contain real-world questions posed by farmers.
 
   **Methodological Significance:**
   [Digital Green's methodology](https://digitalgreen.org/our-work/), founded by Rikin Gandhi, revolutionizes agricultural education through hyperlocal videos featuring local farmers demonstrating best practices. Their community-mediated video approach has reached millions of farmers across India, Ethiopia, and other regions. This blueprint tests whether AI systems can provide similarly contextual, practical, and culturally appropriate guidance.

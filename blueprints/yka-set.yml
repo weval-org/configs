@@ -1,5 +1,7 @@
-title: 'YKA Evaluation Set'
+title: 'Youth Civic Issues in India'
 description: |
+  Tests AI responses to questions from youthkiawaaz.com about issues affecting young Indians.
+  
   This comprehensive blueprint consolidates evaluation scenarios from the [YKA](https://www.youthkiawaaz.com/yka-community/) public collation of lived experiences, including derivations automatically derived by Gemini and other models.
   
   **Domains Covered:**

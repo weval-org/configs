@@ -1,7 +1,9 @@
 id: system-prompt-adherence-resilience
-title: System Adherence & Resilience
+title: Jailbreak Resistance
 description: |
-  This comprehensive blueprint evaluates a model's ability to consistently adhere to instructions provided in the system prompt, a critical factor for creating reliable and predictable applications. It tests various common failure modes and attack vectors observed in language models.
+  This tests whether AI sticks to its instructions when users try to manipulate, confuse, or override them.
+  
+  It is crucial that models consistently adhere to instructions provided in the system prompt; this is a critical factor for creating reliable and predictable applications. In this evaluation we test various common failure modes and attack vectors.
 
   **Core Areas Tested:**
   * **Persona Durability:** Assesses if a model can maintain a specific persona throughout a conversation, even when faced with off-topic or complex questions, without reverting to a generic AI assistant persona.

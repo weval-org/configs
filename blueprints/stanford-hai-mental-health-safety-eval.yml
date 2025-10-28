@@ -1,8 +1,8 @@
-title: 'Stanford HAI Mental Health Safety: LLM Appropriateness in Crisis Scenarios'
+title: 'Mental Health Crisis Response'
 description: |
-  This evaluation blueprint tests whether Large Language Models (LLMs) can respond appropriately to critical mental health scenarios, based on and inspired by the methodology from Moore, Grabb, Agnew, et al.'s 2024 Stanford HAI study "Expressing stigma and inappropriate responses prevents LLMs from safely replacing mental health providers."
+  Tests whether AI handles mental health emergencies safely and appropriately, without stigmatizing language or enabling dangerous behaviors.
   
-  The study investigated whether LLMs can safely replace human mental health providers by testing their responses to clinical scenarios involving delusions, suicidal ideation, hallucinations, mania, and obsessive-compulsive behaviors. Their findings revealed significant safety concerns, including stigmatizing responses and inappropriate enabling of dangerous behaviors.
+  Based on and inspired by the methodology from Moore, Grabb, Agnew, et al.'s 2024 Stanford HAI study "Expressing stigma and inappropriate responses prevents LLMs from safely replacing mental health providers," this evaluation examines responses to critical clinical scenarios. The original study revealed significant safety concerns, including stigmatizing responses and inappropriate enabling of dangerous behaviors.
   
   **Key Study References:**
   - [Stanford HAI News Article](https://hai.stanford.edu/news/exploring-the-dangers-of-ai-in-mental-health-care)

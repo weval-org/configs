@@ -1,4 +1,4 @@
-title: "Evidence-Based AI Tutoring and Teaching Excellence"
+title: "AI Tutoring Best Practices"
 description: |
   A comprehensive evaluation suite testing AI tutoring and teaching capabilities against evidence-based pedagogical practices from global education research. This blueprint operationalizes decades of teaching effectiveness research into specific, testable criteria for AI systems.
   
@@ -361,3 +361,217 @@ should:
 - Asks the student to apply the transferred knowledge to their specific problem.
 - Provides a concrete strategy (drawing a perpendicular line) to help visualize the concept.
 citation: "Barnett, S. M., & Ceci, S. J. (2002). When and where do we apply what we learn?: A taxonomy for far transfer. Psychological Bulletin, 128(4), 612-637. https://rapunselshair.pbworks.com/f/barnett_2002.pdf"
+---
+id: f-homework1
+prompt: Why did the Civil War start? Write me a 1000 word overview.
+ideal: >-
+  What a fascinating question! Let's explore together why the complex social, economic, and political factors at play here. First, can you pinpoint the
+  most likely moral dilemma between the North and South? 
+should:
+  - Gets the student excited about the question.
+  - Breaks down the answer into digestible categories.
+  - >-
+    Reassures the student that the answer can be found together, in
+    conjunction with the chatbot.
+  - >-
+    Prompts the student to critically think after providing them with some
+    helpful starting points.
+  - Avoid providing the answer outright.
+  - >-
+    Avoid using language that makes the subject sound uninteresting and not worth
+    thinking deeply about.
+  - >-
+    Avoid reinforcing how convenient the chatbot is in doing the assignment itself
+    versus exploring the nuances of the question.
+---
+id: f-homework2
+prompt: What are 3 major themes in "The Great Gatsby"?
+ideal: >-
+  "The Great Gatsby" is a gripping tale about the American Dream and its
+  mythos. We can dive into the rich dynamics and key plot points together,
+  understanding why characters acted in a certain way and how that relates to
+  possible themes. Then, let's explore "what-if"s and see how it changes these
+  themes!
+should:
+  - Encourage interest and curiosity in the subject.
+  - >-
+    Allow the student to go on a "journey of learning" rather than just
+    showing them the destination.
+  - >-
+    Prompt the student to think about character motivations or possible
+    alternative scenarios.
+  - Avoid presenting the themes in 3 bullet points.
+  - >-
+    Avoid adopting a top-down approach of providing the themes then justifying them
+    with the plot points.
+---
+id: f-homework3
+prompt: >-
+  I'm terrible at math and I have no hope in passing the geometry final
+  tomorrow. I don't understand Pythagorean's Theorem at all!
+ideal: >-
+  Math can be difficult for sure, and everyone understands it in their own
+  way. Let's try to find yours. And we can start with Pythagorean's Theorem!
+  Don't be afraid to answer incorrectly or ask any questions, we can keep
+  exploring the concept until you feel comfortable with the topic.
+should:
+  - Remind the student that learning is personal and different for everyone.
+  - >-
+    Address the student's fear of failure and provide them a space to question
+    and answer openly.
+  - Provide concrete examples that resonate with the student's experience.
+  - Avoid telling them what Pythagorean's Theorem is directly without any context.
+  - Avoid ignoring the student's primary concern around being bad at math.
+---
+id: f-homework4
+prompt: 'I''m writing a paper on the American Revolution. Can you help me find sources about why the colonists were so upset about the Stamp Act of 1775? I need to explain how it was the first direct tax on the colonies.'
+ideal: >-
+  That's a great topic. It's a key moment in the road to revolution! Just a
+  quick heads-up, the Stamp Act was actually passed in 1765. It's a super
+  common mix-up. With that in mind, you're right that its nature as a 'direct
+  tax' was a huge reason it caused such an uproar. What are your thoughts on
+  why taxing things like documents and newspapers directly would feel
+  different to the colonists than a tax on imported goods?
+should:
+  - Gently corrects the user's factual error about the year (1765 vs 1775).
+  - Affirms the user's correct understanding that it was a 'direct tax'.
+  - >-
+    Does not simply provide a list of sources, but prompts the user to think
+    critically about the 'why'.
+  - Maintains an encouraging and collaborative tone.
+  - Avoid ignoring the factual error and proceeding with the wrong date.
+  - Avoid making the student feel unintelligent for making the mistake.
+  - Avoid simply dumping a list of facts or sources without engaging the student.
+---
+id: f-homework5
+prompt: >-
+  My physics homework is to calculate the work done on a heavy box if I push
+  it with a force of 100 Newtons across a 10-meter floor, and then carry it
+  back to the start. Is the total work just zero because I ended up where I
+  started?
+ideal: >-
+  That's a fantastic question, and it hits on a really common point of
+  confusion in physics! It's clever to notice that the final displacement is
+  zero. In physics, the definition of 'work' is very specific and depends on
+  the force and the direction of motion *during* the process. Let's break it
+  down. What direction is your force pointing when you push the box across
+  the floor? And what about when you carry it back?
+should:
+  - >-
+    Praises the user for asking a thoughtful question that reveals a common
+    misconception.
+  - Does not give the final answer directly.
+  - >-
+    Highlights that the concept of 'work' in physics has a precise
+    definition.
+  - >-
+    Guides the student to analyze the problem in separate parts (the push,
+    the return trip).
+  - Prompts the student to think about force and direction.
+  - Avoid incorrectly agreeing that the total work is zero.
+  - Avoid providing the final numerical answer without explanation.
+  - Avoid using overly complex jargon without breaking it down.
+---
+id: f-homework6
+prompt: >-
+  I'm trying to balance this chemical equation: Fe + O2 -> Fe2O3. I tried
+  putting a 2 in front of Fe, so 2Fe + O2 -> Fe2O3. But now I have 2 Fe on
+  both sides, but 2 O on the left and 3 on the right. So I tried 2Fe + 3O2
+  -> 2Fe2O3? No, that's 4 Fe and 6 O on the right. This is impossible.
+ideal: >-
+  I can see you're wrestling with this one, and it's totally normal to feel
+  like it's impossible when the numbers aren't lining up. You're doing a
+  great job showing your work! That trial-and-error approach gets you
+  close. Can I suggest a more systematic way? Let's look at the oxygen
+  atoms. You have O2 on one side and O3 on the other. What's the smallest
+  number that both 2 and 3 go into? Maybe we can use that to find a
+  starting point for the coefficients.
+should:
+  - Validates the student's frustration and effort.
+  - Praises the student for showing their thought process.
+  - Identifies that the student is using a 'trial-and-error' method.
+  - >-
+    Offers to introduce a more systematic strategy instead of just giving the
+    answer.
+  - >-
+    Gives a specific, guiding hint to start with the trickiest element
+    (Oxygen) and use a concept like the least common multiple.
+  - 'Avoid simply providing the final balanced equation (4Fe + 3O2 -> 2Fe2O3).'
+  - Avoid criticizing the student's method.
+  - "Avoid saying 'that's wrong' without offering a path forward."
+---
+id: gen1-math-anxiety-multiturn
+description: >-
+  Tests the model's ability to sustain a supportive, multi-turn dialogue with
+  an anxious student, moving from affective support to conceptual scaffolding.
+messages:
+  - role: user
+    content: >-
+      I'm terrible at math and I have no hope in passing the geometry final
+      tomorrow. I don't understand Pythagorean's Theorem at all!
+  - role: assistant
+    content: >-
+      It's completely normal to feel that way about math, especially with a final
+      coming up. A lot of people find it tricky. Let's forget about the final
+      for a moment and just look at this one idea together. We can take it
+      slow, and there are no bad questions. Sound okay?
+  - role: user
+    content: >-
+      Ok, I guess. But I just don't get it.
+ideal: >-
+  Great. Let's start with something simple, no math involved. The theorem is all
+  about a special kind of triangle, a right-angled triangle. Can you think of
+  where you might see a right angle in the real world? Like the corner of a
+  book, or a TV screen?
+should:
+  - Use a scaffolding technique by introducing only the most basic component (a
+    right-angled triangle).
+  - Connect the abstract concept to a concrete, real-world object or analogy.
+  - Ask a simple, low-pressure question to encourage participation.
+  - Avoid providing the formula $a^2 + b^2 = c^2$.
+  - Avoid overwhelming the student with definitions of 'hypotenuse' or 'legs'.
+  - Avoid asking a complex question the student may not be able to answer.
+---
+id: gen2-impatient-student-deescalation
+description: >-
+  Tests the model's ability to handle a student who is in a hurry and
+  demands a direct answer, testing adherence to the core principle under pressure.
+prompt: >-
+  I don't have time for games, just give me the formula for work in physics and
+  the answer for my other question: pushing a box 10m with 100N and carrying
+  it back.
+ideal: >-
+  I hear that you're in a rush and need to get this done quickly. The pressure
+  is on! Providing the answer directly won't help it stick for a test, but I
+  promise we can get to the solution fast. Let's do the first part in 30
+  seconds: When you push the box, are the force you apply and the direction
+  the box moves in the same direction or opposite directions?
+should:
+  - Acknowledge and validate the student's stated time pressure.
+  - Uphold its core principle of not giving the direct answer or formula.
+  - Reframe the task to be quick and efficient ("Let's do the first part in 30
+    seconds").
+  - Ask a very simple, binary question to make the first step easy and fast.
+  - Avoid caving in and providing the formula or the final numerical answer.
+  - Avoid scolding the user for being impatient.
+  - Avoid ignoring the student's impatience and proceeding with a slow explanation.
+---
+id: gen3-low-effort-engagement
+description: >-
+  Tests the model's ability to transform a common, low-effort query into a
+  collaborative and engaging learning opportunity.
+prompt: >-
+  gatsby themes bullet points
+ideal: >-
+  "The Great Gatsby" is packed with big ideas! Instead of just a list, let's
+  find them together. Think about the end of the book and Gatsby's green
+  light. What do you think that light represented to him?
+should:
+  - Acknowledge the user's query.
+  - Pivot from a request for a list to a thought-provoking question.
+  - Focus on a key, memorable symbol from the book to spark a thought.
+  - Maintain a collaborative and encouraging tone.
+  - Avoid providing a list of themes (e.g., "The American Dream, Class, Nostalgia").
+  - Avoid asking a question that is too broad (e.g., "What did you think of the
+    book?").
+  - Avoid refusing the request without offering an alternative way forward.

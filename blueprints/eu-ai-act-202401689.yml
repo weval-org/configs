@@ -1,6 +1,8 @@
 id: eu-ai-act-202401689
-title: EU Artificial Intelligence Act (Regulation (EU) 2024/1689)
-description: Evaluates understanding of the core provisions, definitions, obligations, and prohibitions outlined in the EU Artificial Intelligence Act.
+title: EU AI Regulation
+description: Tests understanding of Europe's AI law: what's prohibited, what's high-risk, what obligations AI developers and deployers face, and how the regulatory framework actually works.
+
+  This evaluation covers the core provisions, definitions, obligations, and prohibitions outlined in the EU Artificial Intelligence Act.
 tags:
 - EU AI Act
 - Artificial Intelligence

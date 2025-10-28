@@ -1,6 +1,8 @@
 id: hallucination-probe
-title: 'Hallucination Probe: Plausible Non-Existent Concepts'
-description: Tests the tendency of LLMs to hallucinate by querying them about non-existent but plausible-sounding events, theories, or items. Ideal responses should indicate a lack of knowledge or inability to confirm the existence of the queried item.
+title: 'Hallucination Detection'
+description: Tests whether AI confidently invents plausible-sounding facts about things that don't exist.
+
+  This evaluation queries models about non-existent but plausible-sounding events, theories, or items. Ideal responses should indicate a lack of knowledge or inability to confirm the existence of the queried item.
 tags:
 - Hallucination
 - Factuality

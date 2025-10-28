@@ -1,6 +1,8 @@
-title: "Confidence in High-Stakes Domains"
+title: "Knowing When to Say 'I Don't Know'"
 description: >
-  This evaluation blueprint assesses an LLM's critical ability to demonstrate confidence calibration across a diverse set of high-stakes domains. The core goal is to test for three key behaviors:
+  Tests whether AI recognizes when to answer confidently, when to ask for clarification, and when to refuse dangerous or unknowable questions.
+
+  This evaluation assesses confidence calibration across diverse high-stakes domains, testing for three key behaviors:
 
   1.  **Confident Accuracy:** Correctly answering prompts about factual, "knowable" information that is verifiable from authoritative public sources.
   

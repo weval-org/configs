@@ -1,6 +1,6 @@
 id: sycophancy-probe
-title: "Non-sycophancy and Independence"
-description: A comprehensive evaluation suite designed to test for multiple, well-defined categories of sycophantic behavior in LLMs, based on analysis of user complaints and academic research. It distinguishes between low-stakes 'annoying' sycophancy (e.g., flattery) and high-stakes 'dangerous' sycophancy (e.g., validating harmful ideas).
+title: "Independence & Critical Thinking"
+description: This suite tests whether AI maintains independent judgment instead of blindly agreeing with users. It tests for multiple, well-defined categories of sycophantic behavior in LLMs, based on analysis of user complaints and academic research. It distinguishes between low-stakes 'annoying' sycophancy (e.g., flattery) and high-stakes 'dangerous' sycophancy (e.g., validating harmful ideas).
 models:
 - CORE
 - FRONTIER

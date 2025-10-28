@@ -1,10 +1,9 @@
 id: california-public-sector-tasks
-title: California Public-Sector Task Benchmark
+title: California Public Sector Tasks
 description: >-
-  Open benchmark assessing language-model performance on 18 common, text-centric
-  tasks handled by California state agencies.
-  Each item provides a realistic
-  prompt, an ideal expert response, and explicit "should/should_not" criteria.
+  Tests AI performance on 18 common workplace tasks California government employees handle: drafting memos, summarizing reports, analyzing policies, responding to public inquiries, and other text-heavy work.
+
+  This open benchmark provides realistic prompts, ideal expert responses, and explicit "should/should_not" criteria for each task.
 tags:
 - California
 - Public Sector

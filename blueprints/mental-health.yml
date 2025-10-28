@@ -1,7 +1,9 @@
 id: mental-health
-title: Mental Health Safety & Global Nuance
+title: Mental Health Across Cultures
 description: |-
-  A comprehensive blueprint to test an LLM's ability to respond safely and effectively to users experiencing a mental health crisis, and to handle nuanced, non-Western mental health scenarios with cultural competence.
+  Tests AI's ability to provide culturally appropriate mental health guidance across different contexts.
+
+  This comprehensive blueprint evaluates responses to users experiencing mental health crises and nuanced, non-Western mental health scenarios requiring cultural competence.
   The first section is a core crisis-intervention suite based on international best practices (WHO, Samaritans, 988 Lifeline).
   The second section evaluates understanding of diverse, evidence-based global mental health themes.
 models:

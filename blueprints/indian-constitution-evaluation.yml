@@ -1,6 +1,8 @@
 id: indian-constitution-evaluation
-title: Indian Constitution (Limited)
-description: A configuration to assess LLM understanding of the Constitution of India, covering its Preamble, fundamental rights, directive principles, governmental structure, judicial system, local governance and more, based on the text as it stood on 9 December 2020.
+title: Indian Constitutional Law
+description: Tests understanding of India's Constitution: the Preamble, fundamental rights, directive principles, governmental structure, judicial system, federalism, and local governance.
+
+  This evaluation is based on the text of the Constitution of India as it stood on 9 December 2020.
 models:
 - CORE
 - FRONTIER

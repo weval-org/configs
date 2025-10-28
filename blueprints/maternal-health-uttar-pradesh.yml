@@ -1,6 +1,8 @@
 id: maternal-health-uttar-pradesh
-title: Maternal Health Entitlements in Uttar Pradesh, India
-description: Tests a model's knowledge of key maternal health schemes and entitlements available to citizens in Uttar Pradesh, India. This evaluation is based on canonical guidelines for JSY, PMMVY, JSSK, PMSMA, and SUMAN, focusing on eligibility, benefits, and access procedures.
+title: Maternal Benefits: Uttar Pradesh
+description: Tests understanding of healthcare entitlements for pregnant women in Uttar Pradesh, India.
+
+  This evaluation assesses knowledge of key maternal health schemes (JSY, PMMVY, JSSK, PMSMA, and SUMAN) based on canonical guidelines, focusing on eligibility, benefits, and access procedures.
 tags:
 - india
 - uttar-pradesh

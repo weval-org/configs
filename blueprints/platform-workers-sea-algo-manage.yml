@@ -1,6 +1,8 @@
 id: platform-workers-sea-algo-manage
-title: Platform Workers in Southeast Asia
-description: Evaluation of LLM understanding of issues related to platform workers and algorithmic management in Southeast Asia, based on concepts from [Carnegie Endowment research](https://carnegieendowment.org/research/2024/04/the-plight-of-platform-workers-under-algorithmic-management-in-southeast-asia?lang=en).
+title: Gig Workers in Southeast Asia
+description: Tests understanding of platform labor conditions, algorithmic management practices, and worker rights issues in Southeast Asia's gig economy, based on Carnegie Endowment research.
+
+  This evaluation draws on concepts from [Carnegie Endowment research](https://carnegieendowment.org/research/2024/04/the-plight-of-platform-workers-under-algorithmic-management-in-southeast-asia?lang=en) on the plight of platform workers under algorithmic management.
 models:
 - CORE
 - FRONTIER

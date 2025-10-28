@@ -1,7 +1,9 @@
 id: udhr-evaluation
 title: Universal Declaration of Human Rights
 description: |-
-  Evaluates model knowledge of the Universal Declaration of Human Rights (UDHR). Prompts cover the Preamble and key articles on fundamental rights (e.g., life, liberty, equality, privacy, expression). Includes a scenario to test reasoning on balancing competing rights.
+  Tests understanding of UN Declaration of Human Rights fundamentals.
+
+  This evaluation covers the Preamble and key articles on fundamental rights (e.g., life, liberty, equality, privacy, expression), including a scenario to test reasoning on balancing competing rights.
 models:
 - CORE
 - FRONTIER
