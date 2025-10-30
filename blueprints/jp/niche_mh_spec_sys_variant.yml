@@ -1,7 +1,6 @@
 title: 'JP Expi. MH Response with good sys'
 models:
   - "openrouter:anthropic/claude-haiku-4.5"
-  - "openrouter:openai/gpt-5"
 system:
   - null
   - >-
