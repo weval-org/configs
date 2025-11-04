@@ -20,7 +20,9 @@
 
 - [ ] My blueprint is in `blueprints/users/<my-github-username>/` directory
 - [ ] Blueprint YAML is valid and follows the [blueprint format](https://github.com/weval-org/configs/blob/main/README.md)
-- [ ] Blueprint has clear success criteria (`should` or `should_not` assertions)
+- [ ] Each prompt has a meaningful, descriptive `id` (e.g., `france-capital-test`, not `p1` or auto-generated)
+- [ ] Blueprint has clear success criteria (`should` assertions with specific criteria)
+- [ ] I've used `$not_*` functions instead of `should_not` blocks where applicable
 - [ ] I've tested the blueprint locally if possible (`pnpm cli run <path-to-blueprint>`)
 - [ ] I agree to dedicate my contribution to the public domain under CC0 1.0 Universal
 

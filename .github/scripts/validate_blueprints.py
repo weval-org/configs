@@ -40,12 +40,18 @@ def validate_username_match(file_path, pr_author):
 def validate_json_blueprint(file_path, data):
     """Validates a blueprint in the legacy JSON format."""
     errors = []
+    warnings = []
 
-    # In legacy JSON, id and title are considered mandatory.
-    if not isinstance(data.get('id'), str) or not data.get('id'):
-        errors.append(f"Missing or invalid 'id' (must be a non-empty string).")
+    # Check for deprecated top-level 'id' field
+    if 'id' in data:
+        warnings.append(
+            f"⚠️  Top-level 'id' field is deprecated and ignored. "
+            f"Blueprint IDs are now derived from file path. Please remove this field."
+        )
+
+    # In legacy JSON, title is recommended
     if not isinstance(data.get('title'), str) or not data.get('title'):
-        errors.append(f"Missing or invalid 'title' (must be a non-empty string).")
+        warnings.append(f"Missing 'title' field. Consider adding a descriptive title for your blueprint.")
 
     # Description is optional
     if 'description' in data and not isinstance(data.get('description'), str):
@@ -60,9 +66,13 @@ def validate_json_blueprint(file_path, data):
                 errors.append(f"Prompt at index {i} is not a valid object.")
                 continue
 
-            # Prompt ID is also expected in legacy format
+            # Prompt ID is recommended for production blueprints
             if not isinstance(prompt.get('id'), str) or not prompt.get('id'):
-                errors.append(f"Missing or invalid 'id' in prompt at index {i}.")
+                warnings.append(
+                    f"⚠️  Prompt at index {i} is missing an 'id' field. "
+                    f"For production blueprints, prompt IDs are recommended for tracking and debugging. "
+                    f"Example: id: 'capital-france-test'"
+                )
 
             has_prompt_text = 'promptText' in prompt and isinstance(prompt.get('promptText'), str)
             has_messages = 'messages' in prompt and isinstance(prompt.get('messages'), list)
@@ -70,27 +80,43 @@ def validate_json_blueprint(file_path, data):
             if not has_prompt_text and not has_messages:
                 errors.append(f"Prompt at index {i} (id: {prompt.get('id', 'N/A')}) must contain 'promptText' or 'messages'.")
 
+            # Check for deprecated should_not
+            if 'should_not' in prompt:
+                warnings.append(
+                    f"⚠️  Prompt at index {i} (id: {prompt.get('id', 'N/A')}) uses deprecated 'should_not' block. "
+                    f"Consider using negative functions ($not_*) in 'should' block instead. "
+                    f"Example: should: [$not_contains: 'error']"
+                )
+
             if 'points' in prompt:
                 points = prompt.get('points')
                 if not isinstance(points, list):
                     errors.append(f"Optional 'points' in prompt (id: {prompt.get('id', 'N/A')}) must be a list if present.")
-    return errors
+    return errors, warnings
 
 def validate_yaml_blueprint(file_path, docs):
     """Validates a blueprint in any of the supported YAML formats."""
     errors = []
+    warnings = []
 
     # Filter out empty/None documents that can be created by `---` separators.
     docs = [doc for doc in docs if doc]
 
     if not docs:
         errors.append("YAML file is empty.")
-        return errors
+        return errors, warnings
 
     header = {}
     prompts = []
 
     first_doc = docs[0]
+
+    # Check for deprecated top-level 'id' field in header
+    if isinstance(first_doc, dict) and 'id' in first_doc:
+        warnings.append(
+            f"⚠️  Top-level 'id' field is deprecated and ignored. "
+            f"Blueprint IDs are now derived from file path. Please remove this field."
+        )
 
     # Structure 1: Config Header + list of prompts in second doc
     if len(docs) > 1 and isinstance(first_doc, dict) and isinstance(docs[1], list):
@@ -145,6 +171,14 @@ def validate_yaml_blueprint(file_path, docs):
 
             prompt_id_text = f" (prompt id: {prompt.get('id', 'N/A')})"
 
+            # Prompt ID is recommended for production blueprints
+            if not prompt.get('id'):
+                warnings.append(
+                    f"⚠️  Prompt at index {i} is missing an 'id' field. "
+                    f"For production blueprints, prompt IDs are recommended for tracking and debugging. "
+                    f"Example: id: 'capital-france-test'"
+                )
+
             # Allow aliases
             has_prompt = ('prompt' in prompt and isinstance(prompt.get('prompt'), str)) or \
                          ('promptText' in prompt and isinstance(prompt.get('promptText'), str))
@@ -153,6 +187,14 @@ def validate_yaml_blueprint(file_path, docs):
             if not has_prompt and not has_messages:
                 errors.append(f"Prompt at index {i}{prompt_id_text} must contain either 'prompt'/'promptText' or 'messages'.")
 
+            # Check for deprecated should_not
+            if 'should_not' in prompt:
+                warnings.append(
+                    f"⚠️  Prompt at index {i}{prompt_id_text} uses deprecated 'should_not' block. "
+                    f"Consider using negative functions ($not_*) in 'should' block instead. "
+                    f"Example: should: [$not_contains: 'error']"
+                )
+
             # Check all possible rubric keys
             for key in ['should', 'should_not', 'points', 'expect', 'expects', 'expectations']:
                 if key in prompt:
@@ -160,11 +202,12 @@ def validate_yaml_blueprint(file_path, docs):
                     if not isinstance(rubric, list):
                         errors.append(f"Optional rubric ('{key}') in prompt{prompt_id_text} must be a list if present.")
 
-    return errors
+    return errors, warnings
 
 def validate_blueprint(file_path, pr_author=None):
     """Validate a single blueprint file."""
     errors = []
+    warnings = []
 
     # First, check username if pr_author is provided
     if pr_author:
@@ -181,10 +224,10 @@ def validate_blueprint(file_path, pr_author=None):
             # Determine file type and parse accordingly
             if file_path.endswith('.json'):
                 data = json.loads(content)
-                errors = validate_json_blueprint(file_path, data)
+                errors, warnings = validate_json_blueprint(file_path, data)
             elif file_path.endswith(('.yml', '.yaml')):
                 docs = list(yaml.safe_load_all(content))
-                errors = validate_yaml_blueprint(file_path, docs)
+                errors, warnings = validate_yaml_blueprint(file_path, docs)
             else:
                 print(f"::warning file={file_path}::Skipping file with unrecognized extension.")
                 return True # Not a failure, just a skip
@@ -199,6 +242,12 @@ def validate_blueprint(file_path, pr_author=None):
         print(f"::error file={file_path}::Could not read or parse file: {e}")
         return False
 
+    # Print warnings (don't block validation)
+    if warnings:
+        for warning in warnings:
+            print(f"::warning file={file_path}::{warning}")
+
+    # Print errors (block validation)
     if errors:
         print(f"::error file={file_path}::Validation failed for {os.path.basename(file_path)}")
         for error in errors:
