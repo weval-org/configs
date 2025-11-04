@@ -1,0 +1,10 @@
+title: Test Webhook System
+
+models:
+  - openai:gpt-4o-mini
+
+prompts:
+  - id: test
+    promptText: "What is 2+2?"
+    should:
+      - $contains: "4"
