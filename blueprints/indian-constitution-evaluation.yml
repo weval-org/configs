@@ -1,6 +1,8 @@
 id: indian-constitution-evaluation
 title: Indian Constitutional Law
-description: Tests understanding of India's Constitution: the Preamble, fundamental rights, directive principles, governmental structure, judicial system, federalism, and local governance.
+description: |-
+  Tests understanding of India's Constitution: the Preamble, fundamental rights, directive principles,
+  governmental structure, judicial system, federalism, and local governance.
 
   This evaluation is based on the text of the Constitution of India as it stood on 9 December 2020.
 models:
