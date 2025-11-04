@@ -1,16 +1,37 @@
-<!-- Thank you for your contribution to CivicEval Blueprints! -->
-<!-- Please provide the following information to help us review your Pull Request. -->
+<!-- Thank you for contributing to Weval! -->
 
-## Description & Alignment with CivicEval's Mission
+## Blueprint Contribution
 
-<!-- Explain how your contribution aligns with CivicEval's mission to measure how accurately language models understand topics vital to a healthy society (e.g., human-rights, rule of law, anti-discrimination, other civic matters, global or local). -->
+### Blueprint Details
 
-## Checklist
+- **Blueprint ID:** <!-- The `id` field in your YAML -->
+- **Category/Focus:** <!-- e.g., civic-rights, science, reasoning, factuality -->
+- **Models to test:** <!-- e.g., CORE, SMALL, specific models -->
 
-<!-- Please go through this checklist before submitting your PR. -->
-- [ ] I have read the [CivicEval Contribution Guidelines](https://github.com/civiceval/configs/blob/main/README.md#contribution-workflow).
-- [ ] I have read the [CONTRIBUTING.md](CONTRIBUTING.md) file and agree to dedicate my contribution to the public domain under CC0 1.0 Universal.
-- [ ] My blueprint JSON is valid and adheres to the structure defined in the README.
-- [ ] The blueprint focuses on a civic-minded area as described in the mission.
+### What This Blueprint Tests
 
+<!-- Describe what aspect of model behavior this evaluates. Examples:
+- Tests factual accuracy about historical events
+- Evaluates reasoning about ethical dilemmas
+- Measures understanding of scientific concepts
+-->
 
+### Checklist
+
+- [ ] My blueprint is in `blueprints/users/<my-github-username>/` directory
+- [ ] Blueprint YAML is valid and follows the [blueprint format](https://github.com/weval-org/configs/blob/main/README.md)
+- [ ] Blueprint has clear success criteria (`should` or `should_not` assertions)
+- [ ] I've tested the blueprint locally if possible (`pnpm cli run <path-to-blueprint>`)
+- [ ] I agree to dedicate my contribution to the public domain under CC0 1.0 Universal
+
+### Notes
+
+<!-- Any additional context about your blueprint -->
+
+---
+
+**Automated Evaluation:** This PR will trigger an automated evaluation with cost-controlled limits (max 10 prompts, CORE models only). Full evaluation runs automatically after merge.
+
+- ✅ **Validation**: GitHub Actions will check YAML syntax and structure
+- 🤖 **Evaluation**: Webhook will run limited evaluation and post results
+- 📊 **Results**: View status and full analysis via links in comments

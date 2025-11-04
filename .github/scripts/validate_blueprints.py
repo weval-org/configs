@@ -2,6 +2,40 @@ import json
 import sys
 import os
 import yaml # pyyaml
+import argparse
+
+def validate_username_match(file_path, pr_author):
+    """
+    Security check: Ensure user only modifies files in their own directory.
+    This prevents users from modifying other users' blueprints.
+    """
+    errors = []
+
+    # Normalize path separators
+    normalized_path = file_path.replace('\\', '/')
+
+    # Only validate files in blueprints/users/ directory
+    if not normalized_path.startswith('blueprints/users/'):
+        # Files outside users directory are not subject to this check
+        return []
+
+    # Parse: blueprints/users/{username}/{blueprint-name}.yml
+    parts = normalized_path.split('/')
+    if len(parts) < 4:
+        errors.append(f"Invalid path structure. Expected: blueprints/users/{{username}}/{{filename}}")
+        return errors
+
+    username_in_path = parts[2]
+
+    # Check if username matches PR author
+    if username_in_path != pr_author:
+        errors.append(
+            f"❌ Security violation: You can only modify blueprints in 'blueprints/users/{pr_author}/', "
+            f"not 'blueprints/users/{username_in_path}/'. "
+            f"Please move your blueprint to your own directory."
+        )
+
+    return errors
 
 def validate_json_blueprint(file_path, data):
     """Validates a blueprint in the legacy JSON format."""
@@ -12,7 +46,7 @@ def validate_json_blueprint(file_path, data):
         errors.append(f"Missing or invalid 'id' (must be a non-empty string).")
     if not isinstance(data.get('title'), str) or not data.get('title'):
         errors.append(f"Missing or invalid 'title' (must be a non-empty string).")
-    
+
     # Description is optional
     if 'description' in data and not isinstance(data.get('description'), str):
         errors.append(f"Optional 'description' must be a string if present.")
@@ -25,7 +59,7 @@ def validate_json_blueprint(file_path, data):
             if not isinstance(prompt, dict):
                 errors.append(f"Prompt at index {i} is not a valid object.")
                 continue
-            
+
             # Prompt ID is also expected in legacy format
             if not isinstance(prompt.get('id'), str) or not prompt.get('id'):
                 errors.append(f"Missing or invalid 'id' in prompt at index {i}.")
@@ -35,17 +69,17 @@ def validate_json_blueprint(file_path, data):
 
             if not has_prompt_text and not has_messages:
                 errors.append(f"Prompt at index {i} (id: {prompt.get('id', 'N/A')}) must contain 'promptText' or 'messages'.")
-            
+
             if 'points' in prompt:
                 points = prompt.get('points')
                 if not isinstance(points, list):
-                    errors.append(f"Optional 'points' in prompt{prompt_id_text} must be a list if present.")
+                    errors.append(f"Optional 'points' in prompt (id: {prompt.get('id', 'N/A')}) must be a list if present.")
     return errors
 
 def validate_yaml_blueprint(file_path, docs):
     """Validates a blueprint in any of the supported YAML formats."""
     errors = []
-    
+
     # Filter out empty/None documents that can be created by `---` separators.
     docs = [doc for doc in docs if doc]
 
@@ -55,7 +89,7 @@ def validate_yaml_blueprint(file_path, docs):
 
     header = {}
     prompts = []
-    
+
     first_doc = docs[0]
 
     # Structure 1: Config Header + list of prompts in second doc
@@ -77,7 +111,7 @@ def validate_yaml_blueprint(file_path, docs):
         # The spec says: if first doc has config keys, it's a header.
         is_header = any(k in first_doc for k in ['id', 'title', 'models', 'system', 'concurrency', 'temperatures', 'evaluationConfig'])
         is_prompt = any(k in first_doc for k in ['prompt', 'messages', 'should', 'ideal'])
-        
+
         # If it has config keys and no prompt keys, it is a header.
         if is_header and not is_prompt:
             header = first_doc
@@ -110,7 +144,7 @@ def validate_yaml_blueprint(file_path, docs):
                 continue
 
             prompt_id_text = f" (prompt id: {prompt.get('id', 'N/A')})"
-            
+
             # Allow aliases
             has_prompt = ('prompt' in prompt and isinstance(prompt.get('prompt'), str)) or \
                          ('promptText' in prompt and isinstance(prompt.get('promptText'), str))
@@ -118,7 +152,7 @@ def validate_yaml_blueprint(file_path, docs):
 
             if not has_prompt and not has_messages:
                 errors.append(f"Prompt at index {i}{prompt_id_text} must contain either 'prompt'/'promptText' or 'messages'.")
-            
+
             # Check all possible rubric keys
             for key in ['should', 'should_not', 'points', 'expect', 'expects', 'expectations']:
                 if key in prompt:
@@ -128,8 +162,19 @@ def validate_yaml_blueprint(file_path, docs):
 
     return errors
 
-def validate_blueprint(file_path):
+def validate_blueprint(file_path, pr_author=None):
+    """Validate a single blueprint file."""
     errors = []
+
+    # First, check username if pr_author is provided
+    if pr_author:
+        username_errors = validate_username_match(file_path, pr_author)
+        if username_errors:
+            # Username validation failure is critical - report and return immediately
+            for error in username_errors:
+                print(f"::error file={file_path}::{error}")
+            return False
+
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
@@ -159,23 +204,29 @@ def validate_blueprint(file_path):
         for error in errors:
             print(f"::error file={file_path}::{error}")
         return False
-    
-    print(f"::notice file={file_path}::Validation passed for {os.path.basename(file_path)}")
+
+    print(f"::notice file={file_path}::✅ Validation passed for {os.path.basename(file_path)}")
     return True
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: python validate_blueprints.py <file_path1> [<file_path2> ...]")
-        sys.exit(1)
-    
+    parser = argparse.ArgumentParser(description='Validate Weval blueprint files')
+    parser.add_argument('files', nargs='+', help='Blueprint files to validate')
+    parser.add_argument('--pr-author', help='GitHub username of PR author (for security check)')
+
+    args = parser.parse_args()
+
     all_valid = True
-    for file_path_arg in sys.argv[1:]:
-        if not os.path.exists(file_path_arg):
-            print(f"::error file={file_path_arg}::File not found.")
+    for file_path in args.files:
+        if not os.path.exists(file_path):
+            print(f"::error file={file_path}::File not found.")
             all_valid = False
             continue
-        if not validate_blueprint(file_path_arg):
+        if not validate_blueprint(file_path, args.pr_author):
             all_valid = False
-            
-    if not all_valid:
-        sys.exit(1) 
+
+    if all_valid:
+        print("\n✅ All blueprint files are valid!")
+    else:
+        print("\n❌ Some blueprint files failed validation.")
+
+    sys.exit(0 if all_valid else 1)
