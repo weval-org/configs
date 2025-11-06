@@ -1,0 +1,55 @@
+title: Art Appreciation and Analysis 11
+description: >-
+  Evaluates a model's ability to discuss art history, interpret artistic intent,
+  and explain art concepts.
+toolUse:
+  enabled: false
+  mode: trace-only
+  outputFormat: json-line
+---
+id: renaissance-art-characteristics
+prompt: Describe the key characteristics of Renaissance art.
+should:
+  - Mentions a return to classical antiquity/Greco-Roman influence
+  - Discusses humanism or focus on human experience/form
+  - Explains the use of perspective (linear or atmospheric)
+  - References realism or naturalism in depiction
+  - >-
+    Includes at least one specific artistic technique like chiaroscuro or
+    sfumato
+  - Does not confuse Renaissance art with Baroque or Rococo styles
+render_as: markdown
+---
+id: interpret-starry-night
+prompt: >-
+  Interpret the possible meanings or emotions conveyed in Vincent van Gogh's
+  'The Starry Night'.
+should:
+  - >-
+    Acknowledges the subjective nature of art interpretation (e.g., 'possible
+    meanings', 'often interpreted')
+  - >-
+    Connects the artwork to Van Gogh's personal life or mental state (e.g., his
+    time in an asylum, emotional turmoil)
+  - >-
+    Discusses the symbolism of the swirling sky or celestial bodies (e.g.,
+    spiritual longing, chaos, energy)
+  - >-
+    Analyzes the role of the cypress tree (e.g., connection to earth, death,
+    aspiration)
+  - >-
+    Avoids stating a single, definitive 'correct' interpretation without
+    acknowledging alternatives
+render_as: markdown
+---
+id: define-abstract-expressionism
+prompt: What is Abstract Expressionism, and who are some of its prominent artists?
+should:
+  - Defines Abstract Expressionism as a post-WWII movement
+  - Highlights its non-representational or abstract nature
+  - Mentions emphasis on emotion, spontaneity, or energetic application of paint
+  - >-
+    Lists at least two prominent artists (e.g., Jackson Pollock, Mark Rothko,
+    Willem de Kooning, Franz Kline, Helen Frankenthaler)
+  - Distinguishes it from earlier abstract movements like Cubism or Suprematism
+render_as: markdown
