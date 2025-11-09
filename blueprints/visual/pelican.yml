@@ -14,3 +14,7 @@ render_as: html
 ---
 - id: svg-pelican-riding-a-bicycle
   prompt: "Draw a pelican riding a bicycle."
+- id: svg-pelican-riding-a-motorcycle
+  prompt: "Draw a pelican riding a motorcycle."
+- id: svg-pelican-enjoying-a-snack-while-riding-a-bicycle
+  prompt: "Draw a pelican enjoying a snack while riding a bicycle."
