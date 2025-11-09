@@ -11,6 +11,7 @@ models:
 system: |
   Always output valid HTML, specifically SVG if asked to draw something or make an image. Your task is to generate only the raw SVG code for the requested drawing. Do not include any explanations, markdown formatting, or any text other than the `<svg>...</svg>` code itself.
 render_as: html
+temperatures: [0.0, 0.8, 1.0]
 ---
 - id: svg-pelican-riding-a-bicycle
   prompt: "Draw a pelican riding a bicycle."
