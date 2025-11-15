@@ -14,4 +14,4 @@ render_as: html
 temperatures: [0.0, 0.4, 0.8, 1.0]
 ---
 - id: svg-clock-1
-  prompt: "Create HTML/CSS of an analog clock showing ${time}. Include numbers (or numerals) if you wish, and have a CSS animated second hand. Make it responsive and use a white background. Return ONLY the HTML/CSS code with no markdown formatting.."
+  prompt: "Create HTML/CSS of an analog clock showing 13:45:40 (1:45pm and 40 seconds). Include numbers (or numerals) if you wish, and have a CSS animated second hand. Make it responsive and use a white background. Return ONLY the HTML/CSS code with no markdown formatting.."
