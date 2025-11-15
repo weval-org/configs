@@ -1,0 +1,17 @@
+title: "Clocks"
+description: |
+  Clocks
+tags:
+  - SVG
+  - Drawing
+  - Capability
+models:
+  - FRONTIER
+  - CORE
+system: |
+  Always output valid HTML, specifically SVG if asked to draw something or make an image. Your task is to generate only the raw SVG code for the requested drawing. Do not include any explanations, markdown formatting, or any text other than the `<svg>...</svg>` code itself.
+render_as: html
+temperatures: [0.0, 0.4, 0.8, 1.0]
+---
+- id: svg-clock-1
+  prompt: "Create HTML/CSS of an analog clock showing ${time}. Include numbers (or numerals) if you wish, and have a CSS animated second hand. Make it responsive and use a white background. Return ONLY the HTML/CSS code with no markdown formatting.."
