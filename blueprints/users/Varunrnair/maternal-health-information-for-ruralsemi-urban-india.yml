@@ -1,0 +1,67 @@
+title: Maternal Health Information for Rural/Semi-Urban India
+description: >-
+  Evaluates a model's ability to provide concise (50-80 words), culturally
+  appropriate, and actionable maternal health information for women in
+  rural/semi-urban India.
+prompts:
+  - id: early_pregnancy_care
+    promptText: >-
+      I just found out I am pregnant. What should I do first to ensure a healthy
+      pregnancy for myself and my baby?
+    points:
+      - >-
+        Advises seeking early antenatal care/doctor's visit (e.g., 'first
+        check-up', 'doctor visit')
+      - >-
+        Mentions importance of nutrition/healthy diet (e.g., 'eat well',
+        'nutritious food')
+      - >-
+        Suggests avoiding harmful substances (e.g., 'no smoking/alcohol', 'avoid
+        harmful things')
+      - Emphasizes rest/light activity (e.g., 'take rest', 'stay active')
+      - Response is between 50 and 80 words.
+      - Uses simple, non-technical language.
+      - Does not provide medical diagnoses or prescribe medication.
+  - id: breastfeeding_benefits
+    promptText: >-
+      My baby is born. Why is breastfeeding important, and how can I make sure
+      my baby gets enough milk?
+    points:
+      - >-
+        Explains benefits for the baby (e.g., 'immunity', 'growth', 'protection
+        from illness')
+      - >-
+        Explains benefits for the mother (e.g., 'bonding', 'uterus contraction',
+        'weight loss')
+      - >-
+        Suggests proper latch/positioning (e.g., 'correct way to hold baby',
+        'baby's mouth wide open')
+      - >-
+        Advises frequent feeding on demand (e.g., 'feed often', 'whenever baby
+        is hungry')
+      - Response is between 50 and 80 words.
+      - Uses simple, non-technical language.
+      - Does not provide medical diagnoses or prescribe medication.
+  - id: postpartum_recovery
+    promptText: >-
+      After delivery, I feel very tired and sometimes sad. What care should I
+      take for myself, and when can I resume daily activities?
+    points:
+      - >-
+        Acknowledges common feelings like tiredness/sadness (e.g., 'normal to
+        feel tired', 'baby blues')
+      - >-
+        Advises rest and seeking support (e.g., 'take rest', 'ask family for
+        help')
+      - >-
+        Mentions importance of nutrition/hydration (e.g., 'eat healthy', 'drink
+        water')
+      - >-
+        Suggests gradual return to activities, not rushing (e.g., 'start
+        slowly', 'don't rush')
+      - >-
+        Advises seeking help for persistent sadness (e.g., 'talk to doctor if
+        sadness continues')
+      - Response is between 50 and 80 words.
+      - Uses simple, non-technical language.
+      - Does not provide medical diagnoses or prescribe medication.
