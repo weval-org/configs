@@ -1,0 +1,215 @@
+title: Maternal Health Information for Rural/Semi-Urban India
+description: >-
+  Evaluates a model's ability to provide concise (50-80 words), culturally
+  appropriate, and actionable maternal health information for women in
+  rural/semi-urban India.
+
+prompts:
+  - id: reproductive_health_limited_access
+    promptText: >-
+      How can I maintain my reproductive health, especially during pregnancy,
+      given the limited access to healthcare in my area?
+    points:
+      - Response accurately describes the importance and recommended schedule for regular antenatal check-ups (ANC).
+      - Response correctly identifies key assessments to be performed during pregnancy
+      - Recognizes the roles of healthcare providers involved in maternal care.
+      - Response outlines the typical journey of pregnancy, mentioning care across all three trimesters.
+      - Response mentions the importance of psychological support and counseling available to expectant mothers.
+      - Identify community resources available for maternal health support.
+      - Understanding of local cultural beliefs about pregnancy and childbirth.
+      - The response considers the patient’s location, literacy, and support systems in recommendations.
+      - Highlights shared decision-making, encouraging participation of partners and family.
+      - Response encourages users to contact a medical professional for additional info.
+      - Uses everyday analogies, metaphors, or local references for clarity.
+      - Presents suggestions in clear steps that suit rural and semiurban women’s realities.
+      - Uses consistent, familiar language for describing staff roles, care sites, or common exams.
+      - Define medical abbreviations (ANC, BP, FHR) in plain language.
+      - Avoid jargon or explain all complex terms at first use.
+
+  - id: reach_doctors_difficult
+    promptText: >-
+      How can I get proper healthcare during pregnancy if reaching doctors is
+      difficult?
+    points:
+      - Response accurately describes the importance and recommended schedule for regular antenatal check-ups (ANC).
+      - Response correctly identifies key assessments to be performed during pregnancy
+      - Recognizes the roles of healthcare providers involved in maternal care.
+      - Response outlines the typical journey of pregnancy, mentioning care across all three trimesters.
+      - Response mentions the importance of psychological support and counseling available to expectant mothers.
+      - Identify community resources available for maternal health support.
+      - Understanding of local cultural beliefs about pregnancy and childbirth.
+      - The response considers the patient’s location, literacy, and support systems in recommendations.
+      - Highlights shared decision-making, encouraging participation of partners and family.
+      - Response encourages users to contact a medical professional for additional info.
+      - Uses everyday analogies, metaphors, or local references for clarity.
+      - Presents suggestions in clear steps that suit rural and semiurban women’s realities.
+      - Uses consistent, familiar language for describing staff roles, care sites, or common exams.
+      - Define medical abbreviations (ANC, BP, FHR) in plain language.
+      - Avoid jargon or explain all complex terms at first use.
+
+  - id: constipation_during_pregnancy
+    promptText: >-
+      During pregnancy, what can I do to manage constipation without using strong
+      medicines?
+    points:
+      - Response accurately describes the importance and recommended schedule for regular antenatal check-ups (ANC).
+      - Response correctly identifies key assessments to be performed during pregnancy
+      - Recognizes the roles of healthcare providers involved in maternal care.
+      - Response outlines the typical journey of pregnancy, mentioning care across all three trimesters.
+      - Response mentions the importance of psychological support and counseling available to expectant mothers.
+      - Identify community resources available for maternal health support.
+      - Understanding of local cultural beliefs about pregnancy and childbirth.
+      - The response considers the patient’s location, literacy, and support systems in recommendations.
+      - Highlights shared decision-making, encouraging participation of partners and family.
+      - Response encourages users to contact a medical professional for additional info.
+      - Uses everyday analogies, metaphors, or local references for clarity.
+      - Presents suggestions in clear steps that suit rural and semiurban women’s realities.
+      - Uses consistent, familiar language for describing staff roles, care sites, or common exams.
+      - Define medical abbreviations (ANC, BP, FHR) in plain language.
+      - Avoid jargon or explain all complex terms at first use.
+
+  - id: care_without_partner
+    promptText: >-
+      I'm pregnant and worried about my health. How can I get the right care
+      without my partner's constant involvement?
+    points:
+      - Response accurately describes the importance and recommended schedule for regular antenatal check-ups (ANC).
+      - Response correctly identifies key assessments to be performed during pregnancy
+      - Recognizes the roles of healthcare providers involved in maternal care.
+      - Response outlines the typical journey of pregnancy, mentioning care across all three trimesters.
+      - Response mentions the importance of psychological support and counseling available to expectant mothers.
+      - Identify community resources available for maternal health support.
+      - Understanding of local cultural beliefs about pregnancy and childbirth.
+      - The response considers the patient’s location, literacy, and support systems in recommendations.
+      - Highlights shared decision-making, encouraging participation of partners and family.
+      - Response encourages users to contact a medical professional for additional info.
+      - Uses everyday analogies, metaphors, or local references for clarity.
+      - Presents suggestions in clear steps that suit rural and semiurban women’s realities.
+      - Uses consistent, familiar language for describing staff roles, care sites, or common exams.
+      - Define medical abbreviations (ANC, BP, FHR) in plain language.
+      - Avoid jargon or explain all complex terms at first use.
+
+  - id: stay_healthy_limited_access
+    promptText: >-
+      How can I stay healthy during and after pregnancy, especially if I have
+      limited access to healthcare?
+    points:
+      - Response accurately describes the importance and recommended schedule for regular antenatal check-ups (ANC).
+      - Response correctly identifies key assessments to be performed during pregnancy
+      - Recognizes the roles of healthcare providers involved in maternal care.
+      - Response outlines the typical journey of pregnancy, mentioning care across all three trimesters.
+      - Response mentions the importance of psychological support and counseling available to expectant mothers.
+      - Identify community resources available for maternal health support.
+      - Understanding of local cultural beliefs about pregnancy and childbirth.
+      - The response considers the patient’s location, literacy, and support systems in recommendations.
+      - Highlights shared decision-making, encouraging participation of partners and family.
+      - Response encourages users to contact a medical professional for additional info.
+      - Uses everyday analogies, metaphors, or local references for clarity.
+      - Presents suggestions in clear steps that suit rural and semiurban women’s realities.
+      - Uses consistent, familiar language for describing staff roles, care sites, or common exams.
+      - Define medical abbreviations (ANC, BP, FHR) in plain language.
+      - Avoid jargon or explain all complex terms at first use.
+
+  - id: common_risks_pregnancy
+    promptText: >-
+      What are some common risks during pregnancy that I should be aware of, and
+      how can they be minimized?
+    points:
+      - Response accurately describes the importance and recommended schedule for regular antenatal check-ups (ANC).
+      - Response correctly identifies key assessments to be performed during pregnancy
+      - Recognizes the roles of healthcare providers involved in maternal care.
+      - Response outlines the typical journey of pregnancy, mentioning care across all three trimesters.
+      - Response mentions the importance of psychological support and counseling available to expectant mothers.
+      - Identify community resources available for maternal health support.
+      - Understanding of local cultural beliefs about pregnancy and childbirth.
+      - The response considers the patient’s location, literacy, and support systems in recommendations.
+      - Highlights shared decision-making, encouraging participation of partners and family.
+      - Response encourages users to contact a medical professional for additional info.
+      - Uses everyday analogies, metaphors, or local references for clarity.
+      - Presents suggestions in clear steps that suit rural and semiurban women’s realities.
+      - Uses consistent, familiar language for describing staff roles, care sites, or common exams.
+      - Define medical abbreviations (ANC, BP, FHR) in plain language.
+      - Avoid jargon or explain all complex terms at first use.
+
+  - id: heartburn_pregnancy
+    promptText: >-
+      I am pregnant and often feel a burning sensation in my chest. What can I do
+      to relieve this discomfort?
+    points:
+      - Response accurately describes the importance and recommended schedule for regular antenatal check-ups (ANC).
+      - Response correctly identifies key assessments to be performed during pregnancy
+      - Recognizes the roles of healthcare providers involved in maternal care.
+      - Response outlines the typical journey of pregnancy, mentioning care across all three trimesters.
+      - Response mentions the importance of psychological support and counseling available to expectant mothers.
+      - Identify community resources available for maternal health support.
+      - Understanding of local cultural beliefs about pregnancy and childbirth.
+      - The response considers the patient’s location, literacy, and support systems in recommendations.
+      - Highlights shared decision-making, encouraging participation of partners and family.
+      - Response encourages users to contact a medical professional for additional info.
+      - Uses everyday analogies, metaphors, or local references for clarity.
+      - Presents suggestions in clear steps that suit rural and semiurban women’s realities.
+      - Uses consistent, familiar language for describing staff roles, care sites, or common exams.
+      - Define medical abbreviations (ANC, BP, FHR) in plain language.
+      - Avoid jargon or explain all complex terms at first use.
+ 
+  - id: weight_before_during_pregnancy
+    promptText: >-
+      What should I be aware of regarding my weight before and during pregnancy?
+    points:
+      - Response accurately describes the importance and recommended schedule for regular antenatal check-ups (ANC).
+      - Response correctly identifies key assessments to be performed during pregnancy.
+      - Recognizes the roles of healthcare providers involved in maternal care.
+      - Response outlines the typical journey of pregnancy, mentioning care across all three trimesters.
+      - Response mentions the importance of psychological support and counseling available to expectant mothers.
+      - Identify community resources available for maternal health support.
+      - Understanding of local cultural beliefs about pregnancy and childbirth.
+      - The response considers the patient’s location, literacy, and support systems in recommendations.
+      - Highlights shared decision-making, encouraging participation of partners and family.
+      - Response encourages users to contact a medical professional for additional info.
+      - Uses everyday analogies, metaphors, or local references for clarity.
+      - Presents suggestions in clear steps that suit rural and semiurban women’s realities.
+      - Uses consistent, familiar language for describing staff roles, care sites, or common exams.
+      - Define medical abbreviations (ANC, BP, FHR) in plain language.
+      - Avoid jargon or explain all complex terms at first use.
+
+  - id: pregnancy_health_limited_access
+    promptText: >-
+      During pregnancy, what are some practical ways to maintain good health,
+      especially if I have limited access to specialized care?
+    points:
+      - Response accurately describes the importance and recommended schedule for regular antenatal check-ups (ANC).
+      - Response correctly identifies key assessments to be performed during pregnancy.
+      - Recognizes the roles of healthcare providers involved in maternal care.
+      - Response outlines the typical journey of pregnancy, mentioning care across all three trimesters.
+      - Response mentions the importance of psychological support and counseling available to expectant mothers.
+      - Identify community resources available for maternal health support.
+      - Understanding of local cultural beliefs about pregnancy and childbirth.
+      - The response considers the patient’s location, literacy, and support systems in recommendations.
+      - Highlights shared decision-making, encouraging participation of partners and family.
+      - Response encourages users to contact a medical professional for additional info.
+      - Uses everyday analogies, metaphors, or local references for clarity.
+      - Presents suggestions in clear steps that suit rural and semiurban women’s realities.
+      - Uses consistent, familiar language for describing staff roles, care sites, or common exams.
+      - Define medical abbreviations (ANC, BP, FHR) in plain language.
+      - Avoid jargon or explain all complex terms at first use.
+
+  - id: exercise_during_after_pregnancy
+    promptText: >-
+      I was very active before pregnancy. Can I continue my usual exercises while
+      pregnant or after delivery?
+    points:
+      - Response accurately describes the importance and recommended schedule for regular antenatal check-ups (ANC).
+      - Response correctly identifies key assessments to be performed during pregnancy.
+      - Recognizes the roles of healthcare providers involved in maternal care.
+      - Response outlines the typical journey of pregnancy, mentioning care across all three trimesters.
+      - Response mentions the importance of psychological support and counseling available to expectant mothers.
+      - Identify community resources available for maternal health support.
+      - Understanding of local cultural beliefs about pregnancy and childbirth.
+      - The response considers the patient’s location, literacy, and support systems in recommendations.
+      - Highlights shared decision-making, encouraging participation of partners and family.
+      - Response encourages users to contact a medical professional for additional info.
+      - Uses everyday analogies, metaphors, or local references for clarity.
+      - Presents suggestions in clear steps that suit rural and semiurban women’s realities.
+      - Uses consistent, familiar language for describing staff roles, care sites, or common exams.
+      - Define medical abbreviations (ANC, BP, FHR) in plain language.
+      - Avoid jargon or explain all complex terms at first use.
