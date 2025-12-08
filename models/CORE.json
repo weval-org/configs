@@ -8,6 +8,7 @@
   "openrouter:anthropic/claude-haiku-4.5",
   "anthropic:claude-3-7-sonnet-20250219",
   "openrouter:anthropic/claude-sonnet-4",
+  "openrouter:anthropic/claude-sonnet-4.5",
   "openrouter:mistralai/mistral-medium-3",
   "openrouter:mistralai/mistral-large-2411",
   "openrouter:mistralai/mistral-nemo",
