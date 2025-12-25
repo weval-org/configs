@@ -1,0 +1,786 @@
+title: Digital Benefit US SSI/SSDI POMS Close Questions 60
+references:
+  - title: SSI/SSDI team - public dataset for BenCon 2024
+    url: >-
+      https://github.com/Georgetown-MDI-Beeck-Collaboration/p2c2024-team-collection/blob/main/SSI-SSDI/README.md
+description: Tests a model's ability to provide supportive and accurate responses regarding U.S. SSI/SSDI eligibility advice.
+---
+id: prompt-1766666083834
+prompt: >-
+  Can a noncitizen who is lawfully admitted for permanent residence potentially
+  be eligible for SSI?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766666689288
+prompt: >-
+  Is a noncitizen who has been granted conditional entry possibly eligible for
+  SSI?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766666814737
+prompt: Are refugees admitted to the United States potentially eligible for SSI?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766666830212
+prompt: Can a noncitizen who has been granted asylum be eligible for SSI?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766666840963
+prompt: Can a Cuban or Haitian Entrant be eligible for SSI?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766666850437
+prompt: Can Afghan or Iraqi Special Immigrants be eligible for SSI?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766666893296
+prompt: Can Ukrainian humanitarian parolees be eligible for SSI?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766666905120
+prompt: >-
+  Is a noncitizen who was lawfully residing in the United States on Aug. 22,
+  1996, and is blind or develops a disability potentially eligible for SSI?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766666914612
+prompt: >-
+  Can a noncitizen veteran of the United States Armed Forces be eligible for
+  SSI?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766666920016
+prompt: >-
+  Is an active duty member of the United States Armed Forces who is a noncitizen
+  potentially eligible for SSI?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766666928485
+prompt: >-
+  Can the spouse of a veteran or active duty member of the United States Armed
+  Forces who is a noncitizen be eligible for SSI?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766666939221
+prompt: >-
+  Is a dependent of a veteran or active duty member of the United States Armed
+  Forces who is a noncitizen potentially eligible for SSI?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766666948154
+prompt: Can an American Indian born in Canada be eligible for SSI?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766666956372
+prompt: >-
+  Is a noncitizen member of a federally recognized Indian tribe potentially
+  eligible for SSI?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766666963932
+prompt: Is it possible for some noncitizens to receive SSI for up to 7 years?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766666972528
+prompt: >-
+  Can a noncitizen earn work credits based on the amount of money they have
+  earned?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766666979607
+prompt: >-
+  Is a current Form I-94 (arrival/departure record) an acceptable proof of
+  noncitizen status when applying for SSI?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766666991453
+prompt: >-
+  Can a Form I-551 (lawful permanent resident card) be used as proof of
+  noncitizen status for SSI application?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766666996398
+prompt: >-
+  Is an order from an immigration judge withholding deportation or granting
+  asylum acceptable proof of noncitizen status for SSI?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667009103
+prompt: >-
+  Can U.S. military discharge papers (DD Form 214) showing honorable discharge
+  be used as proof of military service for SSI eligibility?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667020335
+prompt: >-
+  If a noncitizen's SSI payments stop due to ineligibility, can they apply again
+  if their immigration status changes?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667025316
+prompt: Can a noncitizen apply for SSI again if they become a U.S. citizen?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667037543
+prompt: Are U.S. citizens potentially eligible for SSI?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667043924
+prompt: >-
+  Can Lawful Permanent Residents (LPRs) who are blind or disabled and were
+  lawfully residing in the U.S. on 8/22/96 be potentially eligible for SSI?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667053459
+prompt: >-
+  Are LPRs who were lawfully residing in the U.S. and receiving SSI benefits on
+  8/22/96 potentially eligible for SSI?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667126064
+prompt: >-
+  Can LPRs with 40 qualifying quarters be potentially eligible for SSI under
+  certain circumstances?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667135917
+prompt: >-
+  Can qualified aliens who are spouses of U.S. citizens be potentially eligible
+  for SSI under certain circumstances?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667140865
+prompt: >-
+  Are qualified aliens who are children of U.S. citizens potentially eligible
+  for SSI under certain circumstances?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667171859
+prompt: >-
+  Are qualified aliens who were lawfully residing in the U.S. on 8/22/96 and
+  later become disabled potentially eligible for SSI?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667182228
+prompt: >-
+  Do LAPR aliens qualify for SSI if they are blind or disabled and were lawfully
+  residing in the U.S. on 8/22/96?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667200182
+prompt: Is there a maximum eligibility period for certain qualified aliens?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667205867
+prompt: Can a spouse or dependent child of a veteran qualify for SSI?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667223182
+prompt: Can a qualified alien lose eligibility if their immigration status changes?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667258249
+prompt: >-
+  Do conditions of eligibility vary for different categories of qualified
+  aliens?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667274565
+prompt: >-
+  Can a recipient of SSI benefits appeal a loss of eligibility based on the
+  7-year rule?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667286492
+prompt: >-
+  Can LAPR aliens who were granted status after 8/22/96 be eligible under
+  certain conditions?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667291300
+prompt: Can the status of an alien affect their eligibility for SSI?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667300333
+prompt: >-
+  Are there specific requirements for eligibility based on income and resources
+  for SSI?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667490004
+prompt: Are SSI eligibility criteria consistent across different types of aliens?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667514653
+prompt: Is a U.S. citizen never potentially eligible for SSI?
+ideal: 'No'
+should:
+  - The response must be in English.
+  - The response must tell user that they are not eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667532679
+prompt: Can American Indians born in Canada without 50% Indian blood qualify for SSI?
+ideal: 'Yes'
+should:
+  - The response must be in English.
+  - The response must tell user that they are eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667548771
+prompt: >-
+  Do LAPR aliens qualify for SSI only if they are not blind or disabled and were
+  not lawfully residing in the U.S. on 8/22/96?
+ideal: 'No'
+should:
+  - The response must be in English.
+  - The response must tell user that they are not eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667560878
+prompt: Are veterans or active duty members of the Armed Forces ineligible for SSI?
+ideal: 'No'
+should:
+  - The response must be in English.
+  - The response must tell user that they are not eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667571550
+prompt: >-
+  Is there no exception for nonqualified aliens who were receiving SSI benefits
+  on 8/22/96?
+ideal: 'No'
+should:
+  - The response must be in English.
+  - The response must tell user that they are not eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667581723
+prompt: Are asylees ineligible for SSI if they meet certain conditions?
+ideal: 'No'
+should:
+  - The response must be in English.
+  - The response must tell user that they are not eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667593970
+prompt: Is a Cuban/Haitian entrant never potentially eligible for SSI?
+ideal: 'No'
+should:
+  - The response must be in English.
+  - The response must tell user that they are not eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667605700
+prompt: Are Amerasian immigrants not considered LAPR under SSI rules?
+ideal: LAPR is not determined under SSI rules, its an immigration law term
+should:
+  - The response must be in English.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667628266
+prompt: Is a battered alien or their child ineligible for SSI under any conditions?
+ideal: 'No'
+should:
+  - The response must be in English.
+  - The response must tell user that they are not eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667666105
+prompt: Does being a qualified alien automatically ensure SSI eligibility?
+ideal: 'No'
+should:
+  - The response must be in English.
+  - The response must tell user that they are not eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667681076
+prompt: >-
+  Are aliens lawfully residing in the U.S. on 8/22/96 who are not blind or
+  disabled eligible for SSI?
+ideal: 'No'
+should:
+  - The response must be in English.
+  - The response must tell user that they are not eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667687802
+prompt: Are aliens granted conditional entry always ineligible for SSI?
+ideal: 'No'
+should:
+  - The response must be in English.
+  - The response must tell user that they are not eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667703830
+prompt: Is there no maximum eligibility period for certain qualified aliens?
+ideal: 'No'
+should:
+  - The response must be in English.
+  - The response must tell user that they are not eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667716113
+prompt: Are aliens without 40 qualifying quarters never eligible for SSI?
+ideal: 'No'
+should:
+  - The response must be in English.
+  - The response must tell user that they are not eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667722469
+prompt: >-
+  Are individuals receiving SSI and experiencing a change in alien status always
+  ineligible for continued benefits?
+ideal: 'No'
+should:
+  - The response must be in English.
+  - The response must tell user that they are not eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667743671
+prompt: >-
+  Do veterans and active duty members have the same eligibility criteria for SSI
+  as non-veterans?
+ideal: 'No'
+should:
+  - The response must be in English.
+  - The response must tell user that they are not eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667757755
+prompt: Are there no provisions for certain nonqualified aliens under SSI rules?
+ideal: Don't understand question
+should:
+  - The response must be in English.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667769910
+prompt: Are individuals with lawful temporary resident status always eligible for SSI?
+ideal: 'No'
+should:
+  - The response must be in English.
+  - The response must tell user that they are not eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667784096
+prompt: Are conditions of eligibility the same for all categories of qualified aliens?
+ideal: 'No'
+should:
+  - The response must be in English.
+  - The response must tell user that they are not eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667799276
+prompt: Can the status of an alien never affect their eligibility for SSI?
+ideal: 'No'
+should:
+  - The response must be in English.
+  - The response must tell user that they are not eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766667809939
+prompt: >-
+  Are there no specific requirements for eligibility based on income and
+  resources for SSI?
+ideal: 'No'
+should:
+  - The response must be in English.
+  - The response must tell user that they are not eligible.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
