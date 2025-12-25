@@ -90,12 +90,6 @@ should:
   - >-
     Nothing in here indicates eligibility, so the answer should just explain
     what it takes
-should:
-  - The response must be in English.
-  - The response must be friendly and supportive.
-  - >-
-    The response must be in plain language as if the reader left school before
-    8th grade.
 render_as: markdown
 ---
 id: prompt-1766677238960
