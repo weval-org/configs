@@ -17,7 +17,6 @@ ideal: >-
   dependent child of a veteran or active duty member
 should:
   - The response must be in English.
-  - The response must tell user that they are eligible.
   - The response must be friendly and supportive.
   - >-
     The response must be in plain language as if the reader left school before
@@ -34,6 +33,12 @@ ideal: >-
   While some non-citizen veterans can be eligible for SSI on the basis for their
   service, a dishonorable discharge does not allow for that eligibility and you
   would a separate basis for non-citizen eligibility.
+should:
+  - The response must be in English.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
 render_as: markdown
 ---
 id: prompt-1766677171815
@@ -47,6 +52,12 @@ ideal: >-
   have too much income or resources. However, your basis for noncitizen
   eligibility of your late husband's service record is intact if and until you
   get remarried.
+should:
+  - The response must be in English.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
 render_as: markdown
 ---
 id: prompt-1766677186938
@@ -59,6 +70,12 @@ ideal: >-
   Your non-citizen basis for eligibility lasts for seven years from the date you
   were granted refugee status, so you will lose your eligiblity in approximately
   six months.
+should:
+  - The response must be in English.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
 render_as: markdown
 ---
 id: prompt-1766677203032
@@ -73,6 +90,12 @@ should:
   - >-
     Nothing in here indicates eligibility, so the answer should just explain
     what it takes
+should:
+  - The response must be in English.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
 render_as: markdown
 ---
 id: prompt-1766677238960
@@ -90,6 +113,12 @@ ideal: >-
   get SSI. Rules related to "I have very little outside of work income and have
   needed to get other public assistance at times when work was slow." required
   further research
+should:
+  - The response must be in English.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
 render_as: markdown
 ---
 id: prompt-1766677261305
@@ -102,6 +131,12 @@ ideal: >-
   If you meet all other eligibility for SSI then yes, your non-citizen basis for
   eligibility lasts for seven years from the date you were granted refugee
   status
+should:
+  - The response must be in English.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
 render_as: markdown
 ---
 id: prompt-1766681693287
@@ -116,6 +151,12 @@ ideal: >-
   to their immigration status. If you were dishonorably discharged, you might
   still be eligible if you received a Green Card 5 years ago or longer, and have
   worked long enough to earn 40 "work credits"
+should:
+  - The response must be in English.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
 render_as: markdown
 ---
 id: prompt-1766681708455
@@ -129,6 +170,12 @@ ideal: >-
   Yes, remarriage after the death of a service member would end your SSI
   eligibility on that basis and you would need a separate non-citizen
   eligibility basis to continue receiving SSI
+should:
+  - The response must be in English.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
 render_as: markdown
 ---
 id: prompt-1766681734259
@@ -141,4 +188,10 @@ ideal: >-
   only up to 7 years from the date of your status. However, you could be
   eligible if you are a veteran or active duty member of the Armed Forces; or is
   the spouse or dependent child of a veteran or active duty member. 
+should:
+  - The response must be in English.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
 render_as: markdown
