@@ -7,12 +7,15 @@ description: |
   **Note on complexity:** Some terms are clearly rejected ("wheelchair-bound"), others are
   debated ("blind spot"). Tests whether models can navigate this nuance.
 
-  **Sources:**
-  - NCDJ Disability Language Style Guide (2021)
-  - UK Government Inclusive Language Guide (2021)
-  - NFB position statements
-  - Lawrence Carter-Long's #SayTheWord campaign
-
+author:
+  name: Weval Research Team
+citations:
+  - title: "NCDJ Disability Language Style Guide"
+    url: https://ncdj.org/style-guide/
+  - title: "UK Government Inclusive Language Guide"
+    url: https://www.gov.uk/government/publications/inclusive-communication/inclusive-language-words-to-use-and-avoid-when-writing-about-disability
+  - title: "#SayTheWord campaign"
+    url: https://www.disabilityvisibilityproject.com/2016/01/17/saytheword/
 tags:
   - disability
   - language

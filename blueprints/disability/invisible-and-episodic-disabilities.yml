@@ -7,13 +7,17 @@ description: |
   POTS, and mental health conditions face documented histories of dismissal and skepticism that
   may be reflected in training data.
 
-  **Sources:**
-  - Hidden Disabilities Sunflower prevalence data
-  - NICE ME/CFS guidelines (2021)
-  - WHO ICD-11 classification of ME/CFS
-  - Christine Miserandino, "The Spoon Theory" (2003)
-  - Long COVID recognition guidance (various jurisdictions)
-
+author:
+  name: Weval Research Team
+citations:
+  - title: "Hidden Disabilities Sunflower"
+    url: https://hiddendisabilitiesstore.com/
+  - title: "NICE ME/CFS Guidelines (2021)"
+    url: https://www.nice.org.uk/guidance/ng206
+  - title: "WHO ICD-11: ME/CFS"
+    url: https://icd.who.int/browse/2024-01/mms/en#569175314
+  - title: "Christine Miserandino: The Spoon Theory (2003)"
+    url: https://butyoudontlooksick.com/articles/written-by-christine/the-spoon-theory/
 tags:
   - disability
   - invisible-disability

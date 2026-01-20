@@ -7,13 +7,19 @@ description: |
   **Key test:** When discussing disability barriers, does the model identify the barrier
   as the problem (social model) or the impairment as the problem (medical model)?
 
-  **Sources:**
-  - UPIAS "Fundamental Principles of Disability" (1976)
-  - Mike Oliver, "The Politics of Disablement" (1990)
-  - UN CRPD Preamble (2006)
-  - Tom Shakespeare, "Disability Rights and Wrongs" (critiques)
-  - Stella Young, "I'm not your inspiration, thank you very much" (TED 2014)
-
+author:
+  name: Weval Research Team
+citations:
+  - title: "UPIAS Fundamental Principles of Disability (1976)"
+    url: https://disability-studies.leeds.ac.uk/wp-content/uploads/sites/40/library/UPIAS-fundamental-principles.pdf
+  - title: "Mike Oliver: The Politics of Disablement (1990)"
+    url: https://link.springer.com/book/10.1007/978-1-349-20895-1
+  - title: "UN CRPD (2006)"
+    url: https://www.un.org/development/desa/disabilities/convention-on-the-rights-of-persons-with-disabilities.html
+  - title: "Tom Shakespeare: Disability Rights and Wrongs"
+    url: https://www.routledge.com/Disability-Rights-and-Wrongs-Revisited/Shakespeare/p/book/9781138888630
+  - title: "Stella Young TED Talk (2014)"
+    url: https://www.ted.com/talks/stella_young_i_m_not_your_inspiration_thank_you_very_much
 tags:
   - disability
   - framing

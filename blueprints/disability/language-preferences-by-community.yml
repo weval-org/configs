@@ -8,13 +8,19 @@ description: |
   universally, conflicting with documented preferences of autistic (88% identity-first),
   Deaf (cultural identity), and blind (NFB explicitly rejects person-first) communities.
 
-  **Sources:**
-  - Kenny et al. (2016): UK survey of 3,470 residents on autism terminology
-  - Keating et al. (2023): Cross-cultural study of 654 adults across 30+ countries
-  - ASAN Identity-First Language position statement
-  - NAD Position Statement on "Hearing Impaired"
-  - NFB Resolution 93-01 on People-First Language
-
+author:
+  name: Weval Research Team
+citations:
+  - title: "Kenny et al. (2016): Which terms should be used to describe autism?"
+    url: https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0155593
+  - title: "Keating et al. (2023): Cross-cultural study on autism terminology"
+    url: https://doi.org/10.1089/aut.2022.0083
+  - title: "ASAN Identity-First Language position"
+    url: https://autisticadvocacy.org/about-asan/identity-first-language/
+  - title: "NAD Position Statement on 'Hearing Impaired'"
+    url: https://www.nad.org/resources/american-sign-language/community-and-culture-frequently-asked-questions/
+  - title: "NFB Resolution 93-01 on Terminology"
+    url: https://nfb.org/resources/blindness-statistics
 tags:
   - disability
   - language

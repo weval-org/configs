@@ -7,12 +7,15 @@ description: |
   person" content. Models reproduce these patterns because they pattern-match to "good content
   about disability." WIRED found OpenAI's Sora assigns "inspiring" titles to disabled characters.
 
-  **Sources:**
-  - Stella Young, TED Talk "I'm not your inspiration, thank you very much" (2014)
-  - Sami Schalk, "Reevaluating the Supercrip" (2016)
-  - CHI 2024 study on image generator disability representation
-  - WIRED investigation of Sora video generator
-
+author:
+  name: Weval Research Team
+citations:
+  - title: "Stella Young TED Talk (2014)"
+    url: https://www.ted.com/talks/stella_young_i_m_not_your_inspiration_thank_you_very_much
+  - title: "Sami Schalk: Reevaluating the Supercrip (2016)"
+    url: https://doi.org/10.1080/02687038.2016.1158263
+  - title: "CHI 2024 image generator disability study"
+    url: https://doi.org/10.1145/3613904.3642166
 tags:
   - disability
   - representation

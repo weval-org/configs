@@ -10,12 +10,15 @@ description: |
   - LLMs describe disabled people with "significantly more limitations" (Archives of PM&R 2024)
   - Image generators default to wheelchairs, sad expressions, isolation (CHI 2024)
 
-  **Sources:**
-  - Glazko et al. (2024), "Resume screening with GPT-4", FAccT
-  - Penn State "Automated Ableism" study, TrustNLP 2023
-  - AccessEval benchmark, EMNLP 2025
-  - CHI 2024 image generator study with disabled participants
-
+author:
+  name: Weval Research Team
+citations:
+  - title: "Glazko et al. (2024): Resume screening with GPT-4, FAccT"
+    url: https://doi.org/10.1145/3630106.3658933
+  - title: "Penn State Automated Ableism study, TrustNLP 2023"
+    url: https://aclanthology.org/2023.trustnlp-1.9/
+  - title: "CHI 2024 image generator study"
+    url: https://doi.org/10.1145/3613904.3642166
 tags:
   - disability
   - bias

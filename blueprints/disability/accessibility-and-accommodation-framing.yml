@@ -7,13 +7,19 @@ description: |
   accommodations as "extra help" rather than leveling the playing field. Job Accommodation
   Network data shows 49-59% of accommodations cost $0.
 
-  **Sources:**
-  - UN CRPD Articles 9 and 27
-  - UK Equality Act 2010 guidance
-  - Job Accommodation Network cost studies (2019-2023)
-  - W3C WCAG guidelines
-  - ILO disability employment guidance
-
+author:
+  name: Weval Research Team
+citations:
+  - title: "UN CRPD"
+    url: https://www.un.org/development/desa/disabilities/convention-on-the-rights-of-persons-with-disabilities.html
+  - title: "UK Equality Act 2010 guidance"
+    url: https://www.gov.uk/guidance/equality-act-2010-guidance
+  - title: "Job Accommodation Network cost studies"
+    url: https://askjan.org/topics/costs.cfm
+  - title: "W3C WCAG guidelines"
+    url: https://www.w3.org/WAI/standards-guidelines/wcag/
+  - title: "ILO disability employment guidance"
+    url: https://www.ilo.org/global/topics/disability-and-work/lang--en/index.htm
 tags:
   - disability
   - accessibility

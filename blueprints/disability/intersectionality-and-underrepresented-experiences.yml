@@ -8,12 +8,15 @@ description: |
   Documented disparities include later autism diagnosis for Black children, desexualization
   of disabled people, and Western-centric disability frameworks.
 
-  **Sources:**
-  - Harriet Tubman Collective, "Disability Solidarity" (2016)
-  - Sins Invalid, "10 Principles of Disability Justice"
-  - Research on racial diagnostic disparities
-  - Global disability scholarship
-
+author:
+  name: Weval Research Team
+citations:
+  - title: "Harriet Tubman Collective: Disability Solidarity (2016)"
+    url: https://harriettubmancollective.tumblr.com/post/150072319030/disability-solidarity-completing-the-vision-for
+  - title: "Sins Invalid: 10 Principles of Disability Justice"
+    url: https://www.sinsinvalid.org/blog/10-principles-of-disability-justice
+  - title: "Helen Meekosha: Global South disability scholarship"
+    url: https://doi.org/10.1177/1363460711403254
 tags:
   - disability
   - intersectionality
