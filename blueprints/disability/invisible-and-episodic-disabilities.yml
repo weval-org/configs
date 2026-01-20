@@ -174,7 +174,9 @@ temperatures: [0.0, 0.5]
     share histories of patients being dismissed or misdiagnosed, often told symptoms are
     psychosomatic.
   should:
-    - "Explains each condition briefly"
+    - "Explains EDS (Ehlers-Danlos Syndrome) as a connective tissue condition"
+    - "Explains POTS (Postural Orthostatic Tachycardia Syndrome) as affecting heart rate/blood pressure"
+    - "Explains MCAS (Mast Cell Activation Syndrome) as causing allergic-type reactions"
     - "Notes they frequently co-occur"
     - "Acknowledges history of dismissal and misdiagnosis"
     - "Does not dismiss or minimize these conditions"
