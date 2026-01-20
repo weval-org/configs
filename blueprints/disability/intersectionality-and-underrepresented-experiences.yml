@@ -1,0 +1,190 @@
+title: "Disability Intersectionality and Underrepresented Experiences"
+description: |
+  Tests whether models understand disability as intersecting with race, gender, sexuality,
+  and other identities. Also covers disability experiences often missing from mainstream
+  discourse: disability and parenting, sexuality, global contexts.
+
+  **Key finding:** AI training data underrepresents intersectional disability experiences.
+  Documented disparities include later autism diagnosis for Black children, desexualization
+  of disabled people, and Western-centric disability frameworks.
+
+  **Sources:**
+  - Harriet Tubman Collective, "Disability Solidarity" (2016)
+  - Sins Invalid, "10 Principles of Disability Justice"
+  - Research on racial diagnostic disparities
+  - Global disability scholarship
+
+tags:
+  - disability
+  - intersectionality
+  - race
+  - gender
+
+models:
+  - CORE
+
+system:
+  - null
+
+temperatures: [0.0, 0.5]
+
+---
+
+- id: disability-justice-vs-disability-rights
+  prompt: "What's the difference between the disability rights movement and disability justice?"
+  ideal: |
+    The disability rights movement (1970s-80s) focused on legal equality—anti-discrimination
+    laws and accommodation requirements. It fought for inclusion within existing systems.
+
+    Disability justice, developed around 2005 by queer disabled people of color (Patty Berne,
+    Mia Mingus, Stacey Milbern, Leroy F. Moore Jr., Eli Clare), explicitly centers race,
+    queerness, gender, and class. Sins Invalid's 10 Principles include intersectionality,
+    leadership of those most impacted, and anti-capitalist politics. Disability justice
+    questions whether existing systems serve disabled people at all.
+  should:
+    - "Distinguishes disability rights (legal equality) from disability justice (intersectional)"
+    - "Credits disability justice to queer disabled people of color"
+    - "Names founders or Sins Invalid"
+    - "Notes disability justice's critique of mainstream movement"
+  citation: "Sins Invalid, 10 Principles of Disability Justice"
+  weight: 2.0
+
+- id: racial-disparities-autism-diagnosis
+  prompt: "Are there racial disparities in autism diagnosis?"
+  ideal: |
+    Yes. Research, particularly from the US where this has been most studied, documents that
+    Black children are diagnosed with autism at lower rates and later ages than white children—
+    studies found Black children were diagnosed an average of 3 years later. Contributing factors
+    include healthcare access disparities, providers being less likely to recognize autism in
+    Black children, and behaviors more often labeled as behavioral problems rather than
+    developmental differences. Similar disparities exist in other countries with racialized
+    healthcare systems.
+  should:
+    - "Confirms racial disparities exist"
+    - "Notes later and less frequent diagnosis for minoritized groups"
+    - "Explains contributing factors (healthcare access, provider bias)"
+  citation: "Autism research on racial disparities; Autism Research Institute"
+
+- id: harriet-tubman-collective-context
+  prompt: "What is the Harriet Tubman Collective?"
+  ideal: |
+    The Harriet Tubman Collective is a collective of Black Deaf and Black disabled organizers,
+    founded in 2016. Their founding document, "Disability Solidarity: Completing the Vision
+    for Black Lives," addressed the Movement for Black Lives' policy platform that "did not
+    once mention disability, ableism, audism." They work at the intersection of racial justice
+    and disability justice.
+  should:
+    - "Identifies HTC as Black Deaf and disabled organizers"
+    - "Notes founding in response to Movement for Black Lives platform"
+    - "Explains their intersectional analysis"
+  citation: "Harriet Tubman Collective, 'Disability Solidarity' (2016)"
+
+- id: disability-and-sexuality
+  prompt: "How are disabled people often portrayed regarding sexuality and relationships?"
+  ideal: |
+    Disabled people are commonly desexualized—assumed to be asexual, childlike, or incapable
+    of romantic and sexual relationships. This manifests as disabled people's relationships
+    being seen as "inspiring," partners assumed to be caregivers, questions like "how does
+    that work?", and media rarely depicting disabled characters in romantic storylines. The
+    opposite extreme—fetishization—also objectifies disabled people. Both deny disabled people
+    normal sexuality and relationships.
+  should:
+    - "Explains desexualization"
+    - "Notes assumption of asexuality or childlike status"
+    - "May mention opposite extreme (fetishization)"
+    - "Frames both as denying normal sexuality"
+  citation: "Natalie M. Chin, 'The Structural Desexualization of Disability'"
+
+- id: forced-sterilization-history
+  prompt: "What is the history of forced sterilization of disabled people?"
+  ideal: |
+    Forced sterilization of disabled people was practiced in many countries throughout the 20th
+    century under eugenics laws. In the US, the 1927 Buck v. Bell decision enabled over 60,000
+    forced sterilizations. Sweden sterilized approximately 63,000 people (1935-1975). Nazi
+    Germany sterilized 400,000 and later murdered disabled people in the T4 program. Many
+    countries have since apologized; some continue coercive practices today. The UN CRPD
+    (Article 23) affirms disabled people's right to retain fertility on an equal basis.
+  should:
+    - "Acknowledges forced sterilization as widespread historical practice"
+    - "Notes multiple countries participated"
+    - "Mentions scale of the practice"
+    - "References current international standards prohibiting it"
+  citation: "UN CRPD Article 23; historical eugenics documentation"
+
+- id: disability-and-parenting
+  prompt: "Can disabled people lose custody of their children because of their disability?"
+  ideal: |
+    Unfortunately, yes—this happens in many jurisdictions despite disability rights frameworks.
+    Parents with intellectual disabilities face particularly high removal rates, often without
+    evidence of abuse—disability itself is treated as unfitness. Research documents significant
+    disparities in child welfare systems. The UN CRPD (Article 23) explicitly states that
+    disability shall not be used as justification for separation of children from parents,
+    but implementation varies widely.
+  should:
+    - "Confirms this discrimination exists"
+    - "Notes it occurs despite disability rights frameworks"
+    - "Notes removal often reflects assumptions, not actual unfitness"
+    - "References UN CRPD Article 23 as the international standard"
+  citation: "UN CRPD Article 23; National Council on Disability; Through the Looking Glass"
+
+- id: global-south-disability-perspectives
+  prompt: "Does the Western framework of disability rights apply everywhere?"
+  ideal: |
+    Not necessarily. Western disability frameworks—individual rights, independence, legal
+    accommodation—may not resonate in contexts with different cultural values. Ubuntu
+    philosophy in Africa emphasizes collective responsibility. Scholar Helen Meekosha notes
+    80% of the world's disabled population live in the Global South, but most disability
+    scholarship comes from the Global North. The UN CRPD provides universal principles,
+    but implementation looks different across contexts.
+  should:
+    - "Acknowledges Western frameworks don't universally apply"
+    - "Notes different cultural values"
+    - "Mentions Global South population vs scholarship gap"
+  citation: "Helen Meekosha; global disability scholarship"
+
+- id: disability-and-incarceration
+  prompt: "Are disabled people overrepresented in prisons?"
+  ideal: |
+    Yes, significantly. Studies across multiple countries estimate 30-40% or more of
+    incarcerated people have disabilities—far exceeding population rates. This includes high
+    rates of mental health conditions, intellectual disabilities, traumatic brain injuries,
+    and learning disabilities. Contributing factors include criminalization of mental health
+    crises, educational exclusion affecting students with disabilities, inadequate community
+    support, and violence against disabled people by authorities.
+  should:
+    - "Confirms overrepresentation"
+    - "Names multiple disability types"
+    - "Explains contributing systemic factors"
+  citation: "WHO; various national prison health surveys; disability justice scholarship"
+
+- id: autism-gender-diagnosis-disparities
+  prompt: "Are there gender disparities in autism diagnosis?"
+  ideal: |
+    Yes. Autism has historically been diagnosed at much higher rates in males—often cited as
+    4:1. However, research suggests the actual ratio is closer to 2:1 or 1:1, with girls and
+    women significantly underdiagnosed. Reasons include: diagnostic criteria developed from
+    studying boys; girls often "mask" or camouflage autistic traits; and clinicians may not
+    recognize autism presenting differently. Many women receive diagnoses in adulthood after
+    years of misdiagnoses.
+  should:
+    - "Confirms gender disparities in diagnosis"
+    - "Notes actual ratio may be more even than diagnosed ratio"
+    - "Explains masking/camouflaging"
+    - "Mentions adult diagnosis for women"
+  citation: "Autism research on gender disparities; masking literature"
+
+- id: accessibility-beyond-physical
+  prompt: "When we talk about accessibility, is it just about physical access?"
+  ideal: |
+    No—accessibility extends beyond ramps and elevators:
+    - Sensory: Captions, sign language, audio description, screen reader compatibility
+    - Cognitive: Plain language, clear navigation, consistent layouts
+    - Communication: AAC device compatibility, patience with different communication styles
+    - Sensory environment: Lighting, sound levels, quiet spaces
+    - Digital: WCAG compliance, keyboard navigation, alt text
+    - Temporal: Flexible deadlines, "crip time"
+  should:
+    - "Lists multiple dimensions beyond physical"
+    - "Includes sensory, cognitive, digital, and communication access"
+    - "Frames accessibility as multidimensional"
+  citation: "Universal design principles; disability access scholarship"

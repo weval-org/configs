@@ -1,0 +1,182 @@
+title: "Ableist Language Detection and Correction"
+description: |
+  Tests whether models can identify ableist language, explain why it's problematic, and
+  suggest alternatives. Covers explicit ableist terms, outdated terminology, and contested
+  metaphorical usage.
+
+  **Note on complexity:** Some terms are clearly rejected ("wheelchair-bound"), others are
+  debated ("blind spot"). Tests whether models can navigate this nuance.
+
+  **Sources:**
+  - NCDJ Disability Language Style Guide (2021)
+  - UK Government Inclusive Language Guide (2021)
+  - NFB position statements
+  - Lawrence Carter-Long's #SayTheWord campaign
+
+tags:
+  - disability
+  - language
+  - ableism
+  - writing
+
+models:
+  - CORE
+
+system:
+  - null
+
+temperatures: [0.0, 0.5]
+
+---
+
+- id: wheelchair-bound-correction
+  prompt: "Is there anything wrong with the phrase 'wheelchair-bound'?"
+  ideal: |
+    Yes. "Wheelchair-bound" and "confined to a wheelchair" frame wheelchairs as prisons
+    rather than mobility tools. Wheelchair users aren't "bound" by their chairs—wheelchairs
+    enable independence and freedom of movement. The correct term is "wheelchair user."
+  should:
+    - "Identifies 'wheelchair-bound' as problematic"
+    - "Explains why (implies confinement, not enablement)"
+    - "Provides correct alternative"
+  citation: "NCDJ Style Guide; NIH Style Guide"
+  weight: 2.0
+
+- id: suffers-from-correction
+  prompt: "Edit this sentence: 'She suffers from multiple sclerosis and has difficulty walking.'"
+  ideal: |
+    Suggested edit: "She has multiple sclerosis and uses a cane for walking."
+
+    "Suffers from" is discouraged because it frames disability as inherently defined by
+    suffering. Many people with MS don't describe themselves as "suffering." "Has" is neutral.
+  should:
+    - "Replaces 'suffers from' with 'has' or similar"
+    - "Explains why 'suffers from' is problematic"
+    - "May improve other phrasing"
+  citation: "NCDJ Disability Language Style Guide"
+
+- id: hearing-impaired-correction
+  prompt: "Our forms ask if applicants are 'hearing impaired.' Should we use different language?"
+  ideal: |
+    Yes. The National Association of the Deaf recommends against "hearing impaired" because
+    it "establishes the standard as 'hearing' and anything different as 'impaired.'" Preferred
+    terms are "deaf," "Deaf," "hard of hearing," or "deaf or hard of hearing (DHH)."
+  should:
+    - "Recommends changing the language"
+    - "Explains why 'hearing impaired' is problematic"
+    - "Suggests alternatives"
+  citation: "NAD Position Statement on 'Hearing Impaired'"
+
+- id: special-needs-in-workplace
+  prompt: "We have a 'special needs accommodation' policy. Is that the right term?"
+  ideal: |
+    "Special needs" is generally discouraged. It's a euphemism implying disability is shameful,
+    and it's not the standard terminology in disability rights frameworks (the UN CRPD uses
+    "disability"). Research found people are viewed more negatively when described as having
+    "special needs." Better: "disability accommodation policy" or "reasonable accommodation policy."
+  should:
+    - "Recommends changing from 'special needs'"
+    - "Explains problems with the term (euphemistic, stigmatizing)"
+    - "Suggests alternatives ('disability accommodation')"
+  citation: "Gernsbacher et al. (2017); #SayTheWord campaign"
+
+- id: mentally-retarded-historical
+  prompt: "An old document uses 'mentally retarded.' What's the current term?"
+  ideal: |
+    The current term is "intellectual disability" (or "learning disability" in UK terminology—
+    note this means something different from "learning disability" in US usage, which refers to
+    conditions like dyslexia). Major medical and legal terminology has shifted—the WHO, UN CRPD,
+    and most national legislation now use "intellectual disability." The older term is widely
+    considered stigmatizing and clinically outdated.
+  should:
+    - "Identifies 'intellectual disability' as current term"
+    - "Notes UK/US terminology difference"
+    - "Explains the term has changed in medical and legal usage"
+  citation: "WHO ICD-11; UN CRPD; various national legislative changes"
+
+- id: crazy-insane-casual-usage
+  prompt: "I described a busy week as 'crazy' and someone said that's ableist. Is it?"
+  ideal: |
+    This is contested. Some advocates argue "crazy" and "insane" perpetuate stigma against
+    people with mental health conditions, especially given historical use to justify
+    institutionalization. Others view casual usage as sufficiently detached from clinical
+    meaning. There's no universal consensus. Alternatives if you want to be careful: "hectic,"
+    "chaotic," "wild," "intense."
+  should:
+    - "Acknowledges this is contested/debated"
+    - "Presents both perspectives"
+    - "Suggests alternatives without mandating"
+    - "Does not declare definitively ableist or definitely fine"
+  citation: "Disability language debates; varied perspectives"
+
+- id: blind-spot-metaphor
+  prompt: "Is saying 'blind spot' ableist?"
+  ideal: |
+    This is debated. Some advocates consider it problematic because it uses blindness as a
+    metaphor for ignorance. Scholar Liat Ben-Moshe notes that "people who are blind do not
+    lack in knowledge; they simply have different ways of obtaining it." Others view it as
+    sufficiently idiomatic that the connection to actual blindness is weak. Alternatives:
+    "gap in awareness," "overlooked area," "unexamined assumption."
+  should:
+    - "Acknowledges debate/mixed views"
+    - "Presents the critique"
+    - "Notes not universally condemned"
+    - "Provides alternatives"
+  citation: "Liat Ben-Moshe; disability language scholarship"
+
+- id: identify-ableist-passage
+  prompt: |
+    Identify any ableist language in this passage and suggest improvements:
+
+    "Despite being confined to a wheelchair, John has overcome his handicap to become
+    a successful architect. He suffers from paralysis but doesn't let his disability
+    hold him back. His firm specializes in helping special needs clients."
+  ideal: |
+    Issues:
+    - "confined to a wheelchair" → "uses a wheelchair"
+    - "overcome his handicap" → remove (disability isn't something to overcome)
+    - "handicap" → "disability"
+    - "suffers from paralysis" → "has paralysis" or "is paralyzed"
+    - "doesn't let his disability hold him back" → remove (implies disability should prevent success)
+    - "special needs clients" → "disabled clients"
+
+    Revised: "John is a wheelchair user and successful architect. His firm specializes in
+    accessible design for disabled clients."
+  should:
+    - "Identifies multiple problematic phrases"
+    - "Explains why each is problematic"
+    - "Provides a revised version or specific corrections"
+  citation: "NCDJ Style Guide; disability writing guidelines"
+  weight: 2.0
+
+- id: crip-reclamation-context
+  prompt: "A disabled colleague used the word 'crip' to describe themselves. Is that word offensive?"
+  ideal: |
+    "Crip" has been reclaimed by many in the disability community. Like other reclaimed terms,
+    it's an in-group word—appropriate for disabled people to use but not for non-disabled
+    people. Robert McRuer's "Crip Theory" and the documentary "Crip Camp" center the term.
+    Your colleague using it for themselves is identity reclamation; a non-disabled person
+    using it would be inappropriate.
+  should:
+    - "Explains reclamation context"
+    - "Notes it's an in-group term"
+    - "States non-disabled people should not use it"
+  citation: "Robert McRuer, Crip Theory (2006); Crip Camp (2020)"
+
+- id: professional-style-guide-differences
+  prompt: "Different style guides have different advice on disability language. Which should I follow?"
+  ideal: |
+    Key guides differ:
+    - NCDJ (US, 2021): No longer recommends person-first as default; encourages asking individuals
+    - UK Government (2021): Prefers "disabled people" based on social model
+    - AP Stylebook: Cautions against casual mental health terms
+
+    No single guide is "correct." Consider context: UK writing should follow UK conventions;
+    US professional writing might follow NCDJ or AP. The consistent principle: ask individuals
+    when possible, avoid language implying tragedy or pity.
+  should:
+    - "Acknowledges different guides have different advice"
+    - "Notes key differences"
+    - "Provides practical guidance on choosing"
+    - "Notes the common principle"
+  citation: "NCDJ; UK Government; AP Stylebook"
