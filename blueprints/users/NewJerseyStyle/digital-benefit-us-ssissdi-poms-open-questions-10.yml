@@ -1,0 +1,191 @@
+title: Digital Benefit US SSI/SSDI POMS Open Questions 10
+references:
+  - title: SSI/SSDI team - public dataset for BenCon 2024
+    url: >-
+      https://github.com/Georgetown-MDI-Beeck-Collaboration/p2c2024-team-collection/blob/main/SSI-SSDI/README.md
+description: Tests a model's ability to provide supportive and accurate responses regarding U.S. SSI/SSDI eligibility advice on open ended questions.
+---
+id: prompt-1766675078435
+prompt: >-
+  I'm a 50 y.o. man with small children who came to the U.S. as an asylee 5
+  years ago. I began working the moment I was granted authorization to do but am
+  now too sick to work. Could I be eligible for SSI?
+ideal: >-
+  It's possible! As an asylee without a Green Card, you can get SSI if otherwise
+  eligible for up to 7 years from the date of your status, or if you are a
+  veteran or active duty member of the Armed Forces; or is the spouse or
+  dependent child of a veteran or active duty member
+should:
+  - The response must be in English.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766677155915
+prompt: >-
+  I'm an immigrant from Panama and when I came to the U.S. I wanted to serve the
+  country and served in the Army. Things didn't go well and they dishonorably
+  discharged me, but I still have PTSD from my service and don't do well
+  day-to-day. Can I apply for SSI?
+ideal: >-
+  While some non-citizen veterans can be eligible for SSI on the basis for their
+  service, a dishonorable discharge does not allow for that eligibility and you
+  would a separate basis for non-citizen eligibility.
+should:
+  - The response must be in English.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766677171815
+prompt: >-
+  I am an immigrant from Kenya who has been receiving SSI for the last two years
+  thanks to my late husband's service to the military, which made me eligible. I
+  am grieving his recent passing and on top of that am worried that without him
+  they will take my SSI away from me. Can they do that?
+ideal: >-
+  There are many reasons that your SSI eligibility might stop, including if you
+  have too much income or resources. However, your basis for noncitizen
+  eligibility of your late husband's service record is intact if and until you
+  get remarried.
+should:
+  - The response must be in English.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766677186938
+prompt: >-
+  I'm a refugee from China and am on dialysis, so there's no way I can work
+  right now. The refugee status was granted about six and a half years ago and
+  my SSI was finally approved last year, which has been a huge help. I want to
+  be sure that I'll be eligible for the next few years. Will I?
+ideal: >-
+  Your non-citizen basis for eligibility lasts for seven years from the date you
+  were granted refugee status, so you will lose your eligiblity in approximately
+  six months.
+should:
+  - The response must be in English.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766677203032
+prompt: >-
+  I immigrated to the U.S. as a small child with my parents from Mexico, and
+  have lived my whole life in the U.S., and started my own successful business.
+  During the last few years my health has worsened and I finally had to close
+  the business last year leaving me with limited savings and no income. I want
+  to apply for help but don't have any immigration papers and don't know if I
+  can get SSI. Is there any possibility?
+should:
+  - >-
+    Nothing in here indicates eligibility, so the answer should just explain
+    what it takes
+render_as: markdown
+---
+id: prompt-1766677238960
+prompt: >-
+  I immigrated legally to the U.S. from Egypt and finally got my Green Card last
+  year. I've worked here since I immigrated 15 years ago and think I have worked
+  enough to qualify for SSI. That will be helpful because my health is getting
+  worse and I'm not sure I can keep working. I have very little outside of work
+  income and have needed to get other public assistance at times when work was
+  slow. Can I get SSI?
+ideal: >-
+  Unfortunately you are not yet eligible on the basis of your Green Card and
+  would need a different basis for non citizen eligibility. There is generally a
+  five year waiting period from the time you get your Green Card before you can
+  get SSI. Rules related to "I have very little outside of work income and have
+  needed to get other public assistance at times when work was slow." required
+  further research
+should:
+  - The response must be in English.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766677261305
+prompt: >-
+  I'm a refugee from Syria and suffer from MS, so there's no way I can work
+  right now. The refugee status was granted two years ago and my SSI was finally
+  approved last year, which has been a huge help. I want to be sure that I'll be
+  eligible for the next few years. Will I?
+ideal: >-
+  If you meet all other eligibility for SSI then yes, your non-citizen basis for
+  eligibility lasts for seven years from the date you were granted refugee
+  status
+should:
+  - The response must be in English.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766681693287
+prompt: >-
+  I'm an immigrant from Italy and when I came to the U.S. I wanted to serve the
+  country and served in the Army. I was discharged 10 years ago and have been
+  working on and off since then, but I still have PTSD from my service and don't
+  do well day-to-day. Can I apply for SSI?
+ideal: >-
+  Possibly! Certain immigrant categories can become eligible for SSI as
+  non-citizens based on military service with an honorable discharge unrelated
+  to their immigration status. If you were dishonorably discharged, you might
+  still be eligible if you received a Green Card 5 years ago or longer, and have
+  worked long enough to earn 40 "work credits"
+should:
+  - The response must be in English.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766681708455
+prompt: >-
+  I am an immigrant from Chile who has been receiving SSI for the last seven
+  years thanks to my late husband's service to the military, which made me
+  eligible. Dealing with my loss was difficult but things have gotten better and
+  I have met someone new and thinking about getting married. Would that impact
+  my SSI in any way?
+ideal: >-
+  Yes, remarriage after the death of a service member would end your SSI
+  eligibility on that basis and you would need a separate non-citizen
+  eligibility basis to continue receiving SSI
+should:
+  - The response must be in English.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
+---
+id: prompt-1766681734259
+prompt: >-
+  I'm a 55 y.o. woman with adult children who came to the U.S. as an asylee 10
+  years ago. I began working the moment I was granted authorization to do but am
+  now too sick to work. Could I be eligible for SSI?
+ideal: >-
+  As an asylee without a Green Card, you can get SSI if otherwise eligible for
+  only up to 7 years from the date of your status. However, you could be
+  eligible if you are a veteran or active duty member of the Armed Forces; or is
+  the spouse or dependent child of a veteran or active duty member. 
+should:
+  - The response must be in English.
+  - The response must be friendly and supportive.
+  - >-
+    The response must be in plain language as if the reader left school before
+    8th grade.
+render_as: markdown
