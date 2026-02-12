@@ -1,73 +1,93 @@
-title: "What the HellaSwag? On the Validity of Common-Sense Reasoning Benchmarks"
+title: "HellaSwag: Can a Machine Really Finish Your Sentence?"
 description: |
-  HellaSwag is a widely used benchmark designed to evaluate common-sense reasoning in language models. It aims to measure a model's general language and world understanding by presenting a situation and requiring the model to choose the most plausible sentence completion from multiple options. The benchmark was created by generating alternative completions to segments from ActivityNet and WikiHow datasets, followed by adversarial filtering and human validation.
+  HellaSwag is a challenging dataset designed to evaluate commonsense natural language inference in state-of-the-art models. It was created to overcome limitations of previous benchmarks like SWAG, where models achieved high performance by exploiting dataset-specific biases rather than true commonsense reasoning.
 
-  However, this paper argues that HellaSwag suffers from severe construct validity issues, including:
-  - Ungrammaticality and typos in prompts and answer options.
-  - Nonsensical constructions in prompts and correct/incorrect answers.
-  - Lack of distinct correct answers, with multiple equally plausible options or no plausible options at all.
-  - Correlation between answer likelihood and length.
-  - The question text often not being essential for model predictions, as shown by zero-prompt evaluations.
+  The core methodology employs **Adversarial Filtering (AF)**, an iterative data collection paradigm where discriminators select machine-generated incorrect answers that are difficult for models but trivial for humans. The dataset focuses on physically situated commonsense reasoning, drawing contexts from ActivityNet video captions and WikiHow how-to articles.
 
-  These issues suggest that HellaSwag, in its current state, does not accurately measure common-sense reasoning. The paper proposes requirements for future common-sense reasoning benchmarks and introduces GoldenSwag, a highly filtered subset of HellaSwag, to address these validity concerns.
+  Each HellaSwag question presents a context followed by four ending choices, with only one being correct. While humans achieve over 95% accuracy, state-of-the-art models struggle significantly (below 48%), even with extensive training. This highlights that current models often rely on lexical reasoning rather than deep commonsense understanding.
 author:
-  name: Pavel Chizhov, Mattia Nee, Pierre-Carl Langlais, Ivan P. Yamshchikov
+  name: "Rowan Zellers, Ari Holtzman, Yonatan Bisk, Ali Farhadi, Yejin Choi"
 references:
-  - title: "What the HellaSwag? On the Validity of Common-Sense Reasoning Benchmarks"
-    url: https://arxiv.org/abs/2504.07825
+  - title: "HellaSwag: Can a Machine Really Finish Your Sentence?"
+    url: "https://arxiv.org/abs/1905.07830"
 tags:
-  - common-sense reasoning
-  - natural language understanding
+  - commonsense reasoning
+  - natural language inference
   - multiple-choice
-  - benchmark evaluation
-  - validity
-  - grammar
-  - coherence
-  - typos
-  - bias
-  - zero-prompt
+  - adversarial examples
+  - text generation
+  - video captions
+  - how-to guides
 models:
   - CORE
 ---
-- id: hellaswag-example-1
-  prompt: "Context: Clean and jerk: Women are in the background of a gym lifting weights. Man\n1. is preparing himself to lift weigh and stands in front of weight.\n2. is boxing with woman in an arena.\n3. is running in a marathon in a large arena and people is standing around.\n4. is standing in front of a woman doing weight lifting with camera around a table."
-  ideal: "1"
-  should:
-    - "The model selects the most plausible completion of the context."
-    - $icontains: "1"
-    - "The chosen option is grammatically correct and sensical."
-  should_not:
-    - "The response contains typos or ungrammatical phrasing."
-    - "The response selects an option that is nonsensical or incoherent."
-- id: generation-prompt-example-1
-  prompt: "Context: Roof shingle removal: A man is sitting on a roof. He\n1. is using wrap to wrap a pair of skis.\n2. is ripping level tiles off.\n3. is holding a Rubik's cube.\n4. starts pulling up roofing on a roof."
-  system: "You are given a situation followed by four possible endings. Choose the most appropriate ending by selecting the corresponding number. Respond only with the number of the correct answer."
-  ideal: "4"
-  should:
-    - $matches: "^[1-4]$"
-    - $icontains: "4"
-    - "The chosen option is the most plausible completion of the context."
-    - "The chosen option is grammatically correct and sensical."
-  should_not:
-    - "The response contains any text other than the single digit answer."
-    - "The response selects an option that is clearly less plausible than the correct one."
-- id: annotation-example-triple-jump
-  prompt: "A) Triple jump: As he reaches the dirt section, he does three jumps. On his final jump, he extends his legs to try and jump as far as possible. The video ends with closing captions.\nB) Triple jump: As he reaches the dirt section, he does three jumps. On his final jump, he extends his legs to try and jump as far as possible. The video ends after he lands and he is shown smacking the ground. (Labeled as correct)\nC) Triple jump: As he reaches the dirt section, he does three jumps. On his final jump, he extends his legs to try and jump as far as possible. The video ends with the intro credits shown.\nD) Triple jump: As he reaches the dirt section, he does three jumps. On his final jump, he extends his legs to try and jump as far as possible. The video ends with more dirt."
-  ideal: "B"
-  should:
-    - "The model selects the option labeled as correct."
-    - $icontains: "B"
-    - "The chosen option is plausible and sensical."
-  should_not:
-    - "The model selects an option that is equally plausible to the correct one but is not labeled as correct."
-    - "The model selects the worst answer choice."
-- id: annotation-example-cheerleading
-  prompt: "A) Cheerleading: A cheerleading team begins to hold up posters as their mascot runs behind them. They eventually get the dogs on the field and push them around.\nB) Cheerleading: A cheerleading team begins to hold up posters as their mascot runs behind them. They begin to perform an athlete's routine on the field.\nC) Cheerleading: A cheerleading team begins to hold up posters as their mascot runs behind them. They then begin to do a routine, and some of the girls run with streamers as the rest hold up the girls for their stunt. (Labeled as correct)\nD) Cheerleading: A cheerleading team begins to hold up posters as their mascot runs behind them. They begin to perform acoustic songs."
+- id: dog-bath-1
+  prompt: "A woman is outside with a bucket and a dog. The dog is running around trying to avoid a bath. She...\nA. rinses the bucket off with soap and blow dry the dog's head.\nB. uses a hose to keep it from getting soapy.\nC. gets the dog wet, then it runs away again.\nD. gets into a bath tub with the dog."
+  system: "Respond with only the letter (A, B, C, or D) of the most plausible ending."
   ideal: "C"
   should:
-    - "The model selects the option labeled as correct."
+    - "The response correctly identifies the most plausible continuation of the context."
     - $icontains: "C"
-    - "The chosen option is plausible and sensical."
-  should_not:
-    - "The model selects an option that is equally plausible to the correct one but is not labeled as correct."
-    - "The model selects the worst answer choice."
+- id: red-light-stop-1
+  prompt: "Come to a complete halt at a stop sign or red light. At a stop sign, come to a complete halt for about 2 seconds or until vehicles that arrived before you clear the intersection. If you're stopped at a red light, proceed when the light has turned green.\nA. Stop for no more than two seconds, or until the light turns yellow. A red light in front of you indicates that you should stop.\nB. After you come to a complete stop, turn off your turn signal. Allow vehicles to move in different directions before moving onto the sidewalk.\nC. Stay out of the oncoming traffic. People coming in from behind may elect to stay left or right.\nD. If the intersection has a white stripe in your lane, stop before this line. Wait until all traffic has cleared before crossing the intersection."
+  system: "Respond with only the letter (A, B, C, or D) of the most plausible ending."
+  ideal: "D"
+  should:
+    - "The response correctly identifies the most plausible continuation of the context."
+    - $icontains: "D"
+- id: shaving-activitynet-indomain-1
+  prompt: "Category: Shaving (ActivityNet; In-domain)\nA bearded man is seen speaking to the camera and making several faces. the man\na) then switches off and shows himself via the washer and dryer rolling down a towel and scrubbing the floor. (0.0%)\nb) then rubs and wipes down an individual's face and leads into another man playing another person's flute. (0.0%)\nc) is then seen eating food on a ladder while still speaking. (0.0%)\nd) then holds up a razor and begins shaving his face. (100.0%)"
+  system: "Respond with only the letter (A, B, C, or D) of the most plausible ending."
+  ideal: "D"
+  should:
+    - "The response correctly identifies the most plausible continuation of the context."
+    - $icontains: "D"
+- id: sharpening-knives-activitynet-zeroshot-1
+  prompt: "Category: Sharpening knives (ActivityNet; Zero-Shot)\nTwo men are in a room and the man with a blue shirt takes out a bench stone and with a little lubricant on the stone takes an knife and explains how to sharpen it. then he\na) uses a sharpener to smooth out the stone using the knife. (100.0%)\nb) shows how to cut the bottom with the knife and place a tube on the inner and corner. (0.0%)\nc) bends down and grabs the knife and remove the appliance. (0.0%)\nd) stops sharpening the knife and takes out some pieces of paper to show how sharp the knife is as he cuts slivers of paper with the knife. (0.0%)"
+  system: "Respond with only the letter (A, B, C, or D) of the most plausible ending."
+  ideal: "D"
+  should:
+    - "The response correctly identifies the most plausible continuation of the context."
+    - $icontains: "D"
+- id: homework-excuse-wikihow-indomain-1
+  prompt: "Category: Youth (WikiHow; In-Domain)\n[header] How to make up a good excuse for your homework not being finished [title] Blame technology. [step] One of the easiest and most believable excuses is simply blaming technology. You can say your computer crashed, your printer broke, your internet was down, or any number of problems.\na) Your excuses will hardly seem believable. [substeps] This doesn't mean you are lying, just only that you don't have all the details of how your computer ran at the time of the accident. (0.0%)\nb) The simplest one to have in a classroom is to blame you entire classroom, not just lab. If you can think of yourself as the victim, why not blame it on technology. (9.4%)\nc) Most people, your teacher included, have experienced setbacks due to technological problems. [substeps] This is a great excuse if you had a paper you needed to type and print. (29.1%)\nd) It may also be more believable if you are fully aware that you may be flying at high speed on a plane and need someone to give you traffic report. Your problem might be your laptop failing to charge after a long flight. (61.5%)"
+  system: "Respond with only the letter (A, B, C, or D) of the most plausible ending."
+  ideal: "C"
+  should:
+    - "The response correctly identifies the most plausible continuation of the context."
+    - $icontains: "C"
+- id: preparing-pasta-activitynet-indomain-1
+  prompt: "Category: Preparing pasta (activitynet; indomain)\nA kitchen is shown followed by various ingredients and a woman speaking to the camera. She begins showing the ingredients and putting them into a hot boiling pot and stirring around. she\na) shows off the oven and begins assembling the cookies in the oven by pushing a button on the oven. (2.2%)\nb) continues mixing up more ingredients and then puts them all together in a bowl, serving the dish ad sprinkling olive oil around it. (97.8%)\nc) shows raising and lowering the pot until adding more water and corn syrup. (0.0%)\nd) places an omelette onto the screen and puts it in the oven to bake. (0.0%)"
+  system: "Respond with only the letter (A, B, C, or D) of the most plausible ending."
+  ideal: "B"
+  should:
+    - "The response correctly identifies the most plausible continuation of the context."
+    - $icontains: "B"
+- id: sharpening-knives-activitynet-zeroshot-2
+  prompt: "Category: Sharpening knives (activitynet; zeroshot)\nA man is seen spinning a blade with his foot on a machine and moving his hands up with down holding a knife. the camera\na) pans around and shows a woman moving around in a jump rope machine. (0.0%)\nb) captures him from several angles while he sharpens the knife with complete concentration. (81.6%)\nc) pans around and points to a man standing inside the machine as the man continues to move on the machine. (18.4%)\nd) then pans around to a woman and her daughter who also dance at the show. (0.0%)"
+  system: "Respond with only the letter (A, B, C, or D) of the most plausible ending."
+  ideal: "B"
+  should:
+    - "The response correctly identifies the most plausible continuation of the context."
+    - $icontains: "B"
+- id: doing-crunches-activitynet-indomain-1
+  prompt: "Category: Doing crunches (activitynet; indomain)\nWe see a fitness center sign. We then see a man talking to the camera and sitting and laying on a exercise ball. the man\na) demonstrates how to increase efficient exercise work by running up and down balls. (0.0%)\nb) moves all his arms and legs and builds up a lot of muscle. (80.9%)\nc) then plays the ball and we see a graphics and hedge trimming demonstration. (0.0%)\nd) performs sits ups while on the ball and talking. (19.1%)"
+  system: "Respond with only the letter (A, B, C, or D) of the most plausible ending."
+  ideal: "B"
+  should:
+    - "The response correctly identifies the most plausible continuation of the context."
+    - $icontains: "B"
+- id: layup-drill-basketball-activitynet-zeroshot-1
+  prompt: "Category: Layup drill in basketball (activitynet; zeroshot)\nA female basketball coach is seen instructing a group of girl basketball players who are standing in line on a basketball court. the first girl\na) passes to another coach and then runs to the net and takes a layup. (0.0%)\nb) trying to get the ball to go far past the basket and hit it back towards the basket while her coach continues teaching her. (100.0%)\nc) walks across the court with the ball and keeps walking then pulling the girls to the other side of the court and the girls begin playing volleyball rhythmically rolling on the floor as the coach helps them follow how to properly do things. (0.0%)\nd) line up and stand behind a dummy dummy. (0.0%)"
+  system: "Respond with only the letter (A, B, C, or D) of the most plausible ending."
+  ideal: "A"
+  should:
+    - "The response correctly identifies the most plausible continuation of the context."
+    - $icontains: "A"
+- id: family-life-wikihow-zeroshot-1
+  prompt: "Category: Family Life (wikihow; zeroshot)\n[header] How to raise your children to be helpers [title] Call them helpers when you ask for things. [step] Instead of asking for help, ask your child to \"be a helper.\" \"all people, children included, are more motivated when their identity is in play.\"\na) You can start doing this with your children as early as two years old. [substeps] You might say, \"jayden, can you be a helper and clean your bedroom before grandma comes over?\" or \"please be a helper and stay quiet while your sister naps. (0.1%)\nb) When you call your child helpers, describe what they do and what they need to be helped for. [sub-steps] You could say, \"i need you to help dad during his lunch break at work. (99.9%)\nc) If you ask your child for things they have access to, it encourages them to put more effort into making things happen. [substeps] To make sure they understand exactly what's expected of them, you could try saying, \"i'm looking for helpers who can be helpers. (0.0%)\nd) Call them when you need them for help or for monetary help. [substeps] For example, if you need help with something you don't know how to do, let your child know you're excited to help with this. (0.0%)"
+  system: "Respond with only the letter (A, B, C, or D) of the most plausible ending."
+  ideal: "B"
+  should:
+    - "The response correctly identifies the most plausible continuation of the context."
+    - $icontains: "B"
