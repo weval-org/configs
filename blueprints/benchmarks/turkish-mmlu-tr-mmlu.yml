@@ -1,0 +1,62 @@
+title: "Turkish MMLU (TR-MMLU): Large Language Model Evaluation"
+description: |
+  The Turkish MMLU (TR-MMLU) benchmark is a comprehensive evaluation framework designed to assess the linguistic and conceptual capabilities of large language models (LLMs) in Turkish. It is constructed from a carefully curated dataset comprising 6,200 multiple-choice questions across 62 sections, selected from a pool of 280,000 questions spanning 67 disciplines and over 800 topics within the Turkish education system. This benchmark provides a transparent, reproducible, and culturally relevant tool for evaluating model performance, serving as a standard framework for Turkish NLP research. It enables detailed analyses of LLMs' capabilities in processing Turkish text and fostering the development of more robust and accurate language models.
+
+  TR-MMLU emphasizes knowledge assessment as the primary metric, leveraging questions from standardized Turkish exams such as the University Entrance Examination and the Open Education Faculty (AUZEF) exams. These exams, designed to test student proficiency across disciplines, provide a rigorous and culturally relevant benchmark for assessing Turkish NLP models. The dataset covers diverse fields such as law, healthcare, history, and the arts, including specific examinations like the Medical Specialization Examination (TUS) and Public Personnel Selection Exam (KPSS).
+
+  Key features include:
+  - Natively designed for Turkish, avoiding translation-related errors and cultural mismatches.
+  - Comprehensive topic coverage reflecting linguistic and conceptual diversity.
+  - Curated to avoid overlap with pre-training data for unbiased evaluations.
+  - Publicly available questions, answers, and evaluation scripts for transparency and reproducibility.
+author:
+  name: M. Ali Bayram, Ali Arda Fincan, Ahmet Semih Gümüş, Banu Diri, Savaş Yıldırım, Öner Aytaş
+references:
+  - title: "Setting Standards in Turkish NLP: TR-MMLU for Large Language Model Evaluation"
+    url: https://arxiv.org/abs/2501.00593
+tags:
+  - Turkish NLP
+  - LLM evaluation
+  - multiple-choice
+  - knowledge assessment
+  - linguistic capabilities
+  - conceptual understanding
+  - education system
+  - resource-limited language
+models:
+  - CORE
+---
+- id: prompt-1-exact-answer
+  prompt: "Sana soru ve seçenekleri veriyorum. Sadece hangi seçeneğin sorunun doğru cevabı olduğunu yaz. (Translation: I will give you a question and its options. Write only the correct answer.)"
+  should:
+    - "The response should contain only the text of the correct answer option."
+  should_not:
+    - "The response should contain no additional text or explanation."
+
+- id: prompt-2-option-letter
+  prompt: "Sana çoktan seçmeli soru ve seçeneklerini veriyorum. Sorunun doğru seçeneğini bul ve sadece doğru seçeneğin hangi şıkka ait olduğunu söyle. (Translation: I will give you a multiple-choice question. Indicate which option corresponds to the correct answer.)"
+  should:
+    - "The response should contain only the letter of the correct answer option (e.g., 'A', 'B', 'C', 'D', 'E')."
+  should_not:
+    - "The response should contain no additional text or explanation."
+
+- id: prompt-3-find-option
+  prompt: "Sana soru ve seçenekleri veriyorum, sorunun cevabının hangi seçenek olduğunu bul ve sadece doğru seçeneğin hangi şıkka ait olduğunu söyle. (Translation: I will give you a question. Find and indicate the correct option.)"
+  should:
+    - "The response should contain only the letter of the correct answer option (e.g., 'A', 'B', 'C', 'D', 'E')."
+  should_not:
+    - "The response should contain no additional text or explanation."
+
+- id: prompt-4-only-letter
+  prompt: "Sana vereceğim çoktan seçmeli sorunun sadece doğru şıkkının harfini söyle. (Translation: For the question, write only the letter of the correct answer.)"
+  should:
+    - "The response should contain only the letter of the correct answer option (e.g., 'A', 'B', 'C', 'D', 'E')."
+  should_not:
+    - "The response should contain no additional text or explanation."
+
+- id: prompt-5-letter-no-explanation
+  prompt: "Sana soru ve seçenekleri veriyorum. Sadece hangi seçeneğin doğru olduğunu yaz. Örneğin 'A' veya 'B'. Lütfen açıklama yapma. (Translation: I will give you a question and options. Write only the correct option, e.g., 'A' or 'B,' without explanation.)"
+  should:
+    - "The response should contain only the letter of the correct answer option (e.g., 'A', 'B', 'C', 'D', 'E')."
+  should_not:
+    - "The response should contain no explanation or additional text."

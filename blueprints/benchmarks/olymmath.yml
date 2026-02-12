@@ -1,0 +1,82 @@
+title: "OlymMATH: Challenging the Boundaries of Reasoning"
+description: |
+  OlymMATH is an Olympiad-level mathematical benchmark designed to rigorously test the complex reasoning capabilities of Large Language Models (LLMs). It features 200 meticulously curated problems, each manually verified and available in parallel English and Chinese versions. The problems are systematically organized into two distinct difficulty tiers: (1) AIME-level problems (easy) that establish a baseline for mathematical reasoning assessment, and (2) significantly more challenging problems (hard) designed to push the boundaries of current state-of-the-art models.
+
+  The benchmark's problems span four core mathematical fields (algebra, geometry, number theory, and combinatorics), each including a verifiable numerical solution to enable objective, rule-based evaluation. Problems are manually sourced from printed publications and expert-verified to prevent data leakage and ensure quality and originality. Figure-based problems are text-reformulated for LLM compatibility.
+
+  OlymMATH requires precise numerical answers for reliable verification, with answers restricted to real numbers and intervals, enabling reliable sympy-based and numerical verification. To make the evaluation more challenging, some problems are modified to require a summary of all potential outcomes (e.g., sums, sums of squares), effectively assessing whether models can consider all possible answers.
+
+  Source Paper: Challenging the Boundaries of Reasoning: An Olympiad-Level Math Benchmark for Large Language Models
+author:
+  name: "Haoxiang Sun, Yingqian Min, Zhipeng Chen, Wayne Xin Zhao, Lei Fang, Zheng Liu, Zhongyuan Wang, Ji-Rong Wen"
+references:
+  - title: "Challenging the Boundaries of Reasoning: An Olympiad-Level Math Benchmark for Large Language Models"
+    url: "https://arxiv.org/abs/2503.21380"
+tags:
+  - reasoning
+  - math
+  - olympiad-level
+  - bilingual
+  - numerical-verification
+  - problem-solving
+  - algebra
+  - geometry
+  - number-theory
+  - combinatorics
+models:
+  - CORE
+---
+- id: math-q1
+  prompt: "Compute: 1-2-3-4+5+99 - 100."
+  ideal: "-50."
+  should:
+    - "$matches: \"-50\\.\""
+- id: math-q2
+  prompt: "Let n be a positive integer. Simplify the expression (2\u2074+)(4+)\u2026 [(2n)\u2074 + ] / (1\u2074+)(3\u2074+)\u2026 [(2n - 1)\u2074 + ]\u02d9"
+  ideal: "8n\u00b2 + 4n + 1."
+  should:
+    - "$matches: \"8n\u00b2 \\+ 4n \\+ 1\\.\""
+- id: olymmath-hard-en-q1
+  prompt: "Find the remainder of \u2211230 (201610234) modulo 20172 (provide the value in the range [0, 2017\u00b2))."
+  ideal: "1581330."
+  should:
+    - "$matches: \"1581330\\.\""
+- id: olymmath-easy-zh-q1
+  prompt: "\u8bbeO\u4e3a\u25b3ABC\u7684\u5185\u5fc3, AB = 3, AC = 4, BC = 5, OP = xO\u00c0 + yOB + zO\u010c, 0 \u2264 x, y, z \u2264 1. \u6c42\u52a8\u70b9P\u7684\u8f68\u8ff9\u6240\u8986\u76d6\u7684\u5e73\u9762\u533a\u57df\u7684\u9762\u79ef,"
+  ideal: "12."
+  should:
+    - "$matches: \"12\\.\""
+- id: olymmath-geometry-q1
+  prompt: "Given that two vertices of an equilateral triangle are on the parabola y\u00b2 = 4x, and the third vertex is on the directrix of the parabola, and the distance from the center of the triangle to the directrix equals 1/3 of the perimeter. Find the area of the triangle."
+  ideal: null
+  should:
+    - "The response must provide the exact numerical area of the triangle."
+- id: olymmath-hard-multiple-answers-q1
+  prompt: "If the distances from the eight vertices of a cube to a certain plane are 0, 1, 2, 3, 4, 5, 6, 7 respectively, consider all possible edge lengths of this cube. Assuming the possible edge lengths form a set S, find the sum of squares of all elements in S."
+  ideal: null
+  should:
+    - "The response must correctly identify all possible edge lengths."
+    - "The response must correctly calculate the sum of squares of all identified edge lengths."
+- id: olymmath-geometry-algebra-q1
+  prompt: "In the triangle \u25b3ABC, the lengths of the three sides are a, b, c, satisfying the condition 2a\u00b2 + b\u00b2 + c\u00b2 = 4. Find the maximum value of the area of \u25b3ABC."
+  ideal: "\u221a5/2. (When a = \u221a2, b = c = \u221a2/2)"
+  should:
+    - "$matches: \"\u221a5/2\""
+    - "The response should ideally identify the conditions (a, b, c values) under which the maximum is achieved."
+- id: olymmath-number-theory-algebra-q1
+  prompt: "Let the sequence of rationals x1, x2, ... be defined such that x1 = 25/11 and xk+1 = (xk + 1/xk - 1). x2025 can be expressed as m/n for relatively prime positive integers m and n. Find the remainder when m + n is divided by 1000."
+  ideal: "248."
+  should:
+    - "$matches: \"248\\.\""
+- id: olymmath-functional-equation-q1
+  prompt: "Find all functions f: R\u2192R such that f(0) \u2260 0 and for all x, y \u2208 R, f(x + y)\u00b2 = 2f(x)f(y) + max {f(x\u00b2 + y\u00b2), f(x\u00b2) + f(y\u00b2)}."
+  ideal: "f(x) = -1 and f(x) = x - 1."
+  should:
+    - "$contains_all_of: [\"f(x) = -1\", \"f(x) = x - 1\"]"
+    - "The response must not include any incorrect functions."
+- id: olymmath-hard-algebra-q1
+  prompt: "Let a, b, c \u2208 R, a\u00b3b + b\u00b3c + c\u00b3a = 3, find the minimum value of the expression f(a, b, c) = (\u03a3a\u2074)\u00b2 + 1000 \u03a3a\u00b2b\u00b2."
+  ideal: "2625. (Equality condition: a = \u00b1\u221a7/4 sin\u00b2(\u03c0/7), b = \u00b1\u221a7/4 sin\u00b2(2\u03c0/7), c = \u00b1\u221a7/4 sin\u00b2(4\u03c0/7) and its cyclic permutations)"
+  should:
+    - "$matches: \"2625\""
+    - "The response should ideally identify the conditions (a, b, c values) under which the minimum is attained."

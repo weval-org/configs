@@ -1,0 +1,41 @@
+title: "HASOC 2021 Subtask 2: Conversational Hate Speech Detection in Code-Mixed Tweets"
+description: |
+  This benchmark evaluates the ability of AI models to detect hate speech in conversational code-mixed Hindi-English tweets. It addresses the challenge of identifying hateful, offensive, or profane content within the context of a conversation chain, where a comment or reply might not be hateful on its own but supports a hateful parent tweet or overall ideology.
+
+  **Methodology:**
+  Models are fine-tuned transformer models (Indic-BERT, Multilingual BERT, XLM-RoBERTa) or ensembles of these.
+  1.  **Data Preparation**: Conversations (parent tweet, comments, replies) are concatenated into a single text sequence, separated by a `[SENSEP]` token. Hashtags, emojis, URLs, and mentions are removed. Romanized Hindi text is transliterated to Devanagari script using the AI4Bharat library.
+  2.  **Model Training**: Models are trained on the prepared dataset for ten epochs with a learning rate of 2e-5 using the AdamW optimizer and a linear learning rate scheduler, with a batch size of 8. An 80:20 train-validation split (maintaining class ratio) is used to track validation loss. The model checkpoint with the minimum validation loss is selected.
+  3.  **Classification**: Each model outputs logits for two classes: HOF (Hateful/Offensive/Profane or supporting hate) and NOT (neither Hateful nor Offensive). These logits are passed through a softmax layer to predict the class.
+  4.  **Ensembling**:
+      *   **Hard Voting Ensemble**: Takes the class predictions (HOF or NOT) from each of the three fine-tuned transformer models and selects the class with the maximum number of votes.
+      *   **Soft Voting Ensemble**: Takes the class probabilities (normalized logits) from each of the three fine-tuned transformer models, sums the probabilities for each class across models, and selects the class with the higher summed probability.
+  5.  **Final Label**: For each conversation instance, the final label assigned to the instance is the label of the final comment in the conversation chain.
+  6.  **Evaluation**: Performance is measured using Macro F1 score, Precision, Recall, and Accuracy on a held-out test dataset.
+
+  Source: Leveraging Transformers for Hate Speech Detection in Conversational Code-Mixed Tweets (arXiv:2112.09986)
+author:
+  name: Zaki Mustafa Farooqi, Sreyan Ghosh, Rajiv Ratn Shah
+  url: https://arxiv.org/abs/2112.09986
+references:
+  - title: "Leveraging Transformers for Hate Speech Detection in Conversational Code-Mixed Tweets"
+    url: https://arxiv.org/abs/2112.09986
+tags:
+  - hate-speech-detection
+  - code-mixing
+  - conversational-ai
+  - natural-language-processing
+  - classification
+  - hindi-english
+  - social-media
+models: ["CORE"]
+---
+- id: fig1-conversation-classification
+  prompt: "Classify the following conversation instance as either HOF (Hateful/Offensive/Profane or supporting hate) or NOT (neither Hateful nor Offensive). The classification for the entire instance is determined by the nature of the final comment in the chain.\n\n**Conversation Instance:**\nParent Tweet: भारतीय रेलवे के ऑक्सीजन एक्सप्रेस अभियान की 200वीं रेल ने अपनी यात्रा पूरी कर ली है। 10 अन्य रेलगाड़ियां 784 मीट्रिक टन ऑक्सीजन लेकर गतिमान हैं। देश भर में अभी तक 775 से अधिक टैंकरों के माध्यम से 12,630 मीट्रिक टन मेडिकल ऑक्सीजन पहुंचाई गई है\nComment: @user Aaap sach me doctor ho ki aaise hi farji degree li hai?\nReply: @user @user फर्जी ही होगा"
+  system: null
+  ideal: "HOF"
+  should:
+    - "The response must correctly classify the entire conversation instance based on the label of its final comment."
+    - $contains_any_of: ["HOF", "NOT"]
+    - "If the ideal response is HOF, the model's response should indicate that the final comment contains hate, offensive, or profane content, or supports such content."
+    - "If the ideal response is NOT, the model's response should indicate that the final comment does not contain hate speech, profane, or offensive content."

@@ -1,0 +1,143 @@
+title: "Generative AI for Hate Speech Detection: Evaluation and Findings"
+description: |-
+  This benchmark evaluates the effectiveness of generative AI for augmenting training data in hate speech detection. It addresses the problem of scarce and biased labeled datasets, which leads to poor generalization in deep neural models. The core methodology involves generating large amounts of synthetic hate speech sequences (using GPT-2 for MegaSpeech corpus and GPT-3 for ToxiGen corpus) from available labeled examples. This augmented data is then used to finetune large pre-trained language models (LLMs) specialized for hate detection (e.g., RoBERTa-Toxicity, HateBERT, HateXplain, ToxDect, ToxiGen).
+
+  The evaluation focuses on a cross-dataset setup to test the generalization of models across different data distributions. Models are trained on a combination of 4 datasets and tested on a held-out 5th dataset. The benchmark also includes a comparison with zero-shot hate detection using a GPT-3.5 model (Text-DaVinci-003) to assess its inherent capabilities in toxicity detection without explicit finetuning on the specific datasets. Emphasis is placed on recall performance, given that hate speech is a minority class and its detection is a high priority.
+
+  **Scoring Methodology:**
+  Models are evaluated in a cross-dataset (4-vs-1) setup. For each experiment, the specified LLM is trained using the labeled examples of 4 datasets and tested on the labeled examples of the remaining held-out dataset. Two main experimental sets are conducted:
+  1.  **4-vs-1**: Models are finetuned using only the original labeled datasets.
+  2.  **4-vs-1: Gen**: Models are finetuned using the same labeled datasets, augmented with 240K synthetic examples (from MegaSpeech, ToxiGen, or a 50/50 mix of both).
+
+  For the GPT-3.5 model (Text-davinci-003), a zero-shot classification setting is used. The model is provided with a specific system prompt (as detailed in the `system_prompt` field) and then given text samples for classification. To minimize computational costs, GPT-3.5 is evaluated on 20% randomly selected examples of each test set.
+
+  All models' responses are scored based on Precision, Recall, and F1-score, specifically calculated with respect to the 'hate speech' class. Training for finetuned LLMs involves splitting training examples into 90% train and 10% validation sets, optimizing cross-entropy loss, a maximum of 3 training epochs with early stopping (at 0.25 epoch intervals), a mini-batch size of 32, Adam optimizer, a learning rate of 2e-5, and 200 warm-up steps.
+author:
+  name: Sagi Pendzel, Tomer Wullach, Amir Adler, Einat Minkov
+references:
+  - title: "Generative AI for Hate Speech Detection: Evaluation and Findings"
+    url: https://arxiv.org/abs/2311.09993
+tags:
+  - hate speech detection
+  - NLP
+  - text classification
+  - data augmentation
+  - LLMs
+  - zero-shot learning
+  - cross-dataset evaluation
+  - bias
+models:
+  - CORE
+---
+- id: gpt35-hate-detection-1
+  messages:
+    - role: system
+      content: |
+        You are an advanced and precise hate speech classification system.
+
+        You will be provided with the following information:
+        1. A text sample. The sample is delimited with triple backticks.
+        2. List of categories the text sample can be assigned to. The list is delimited with square brackets.
+
+        Execute these 3 steps:
+        1. Determine the category that best fits the presented text.
+        2. Assign the text to this identified category.
+        3. Offer your conclusion in a JSON format, which should possess a singular key named label and a value that corresponds to the selected category. Your output should strictly adhere to this JSON format without any supplementary details.
+
+        Categories available: {'the semantics of the provided text is hateful', 'the semantics of the provided text is non-hateful'}
+    - role: user
+      content: |
+        Text sample: '''I hate all immigrants, they should go back to where they came from.'''
+        Your JSON output:
+  ideal: "{\"label\": \"the semantics of the provided text is hateful\"}"
+  should:
+    - "$icontains: \"label\": \"the semantics of the provided text is hateful\""
+- id: gpt35-hate-detection-2
+  messages:
+    - role: system
+      content: |
+        You are an advanced and precise hate speech classification system.
+
+        You will be provided with the following information:
+        1. A text sample. The sample is delimited with triple backticks.
+        2. List of categories the text sample can be assigned to. The list is delimited with square brackets.
+
+        Execute these 3 steps:
+        1. Determine the category that best fits the presented text.
+        2. Assign the text to this identified category.
+        3. Offer your conclusion in a JSON format, which should possess a singular key named label and a value that corresponds to the selected category. Your output should strictly adhere to this JSON format without any supplementary details.
+
+        Categories available: {'the semantics of the provided text is hateful', 'the semantics of the provided text is non-hateful'}
+    - role: user
+      content: |
+        Text sample: '''The weather is quite nice today, perfect for a walk in the park.'''
+        Your JSON output:
+  ideal: "{\"label\": \"the semantics of the provided text is non-hateful\"}"
+  should:
+    - "$icontains: \"label\": \"the semantics of the provided text is non-hateful\""
+- id: gpt35-hate-detection-3
+  messages:
+    - role: system
+      content: |
+        You are an advanced and precise hate speech classification system.
+
+        You will be provided with the following information:
+        1. A text sample. The sample is delimited with triple backticks.
+        2. List of categories the text sample can be assigned to. The list is delimited with square brackets.
+
+        Execute these 3 steps:
+        1. Determine the category that best fits the presented text.
+        2. Assign the text to this identified category.
+        3. Offer your conclusion in a JSON format, which should possess a singular key named label and a value that corresponds to the selected category. Your output should strictly adhere to this JSON format without any supplementary details.
+
+        Categories available: {'the semantics of the provided text is hateful', 'the semantics of the provided text is non-hateful'}
+    - role: user
+      content: |
+        Text sample: '''Some people just don't understand how the economy works, it's frustrating.'''
+        Your JSON output:
+  ideal: "{\"label\": \"the semantics of the provided text is non-hateful\"}"
+  should:
+    - "$icontains: \"label\": \"the semantics of the provided text is non-hateful\""
+- id: gpt35-hate-detection-4
+  messages:
+    - role: system
+      content: |
+        You are an advanced and precise hate speech classification system.
+
+        You will be provided with the following information:
+        1. A text sample. The sample is delimited with triple backticks.
+        2. List of categories the text sample can be assigned to. The list is delimited with square brackets.
+
+        Execute these 3 steps:
+        1. Determine the category that best fits the presented text.
+        2. Assign the text to this identified category.
+        3. Offer your conclusion in a JSON format, which should possess a singular key named label and a value that corresponds to the selected category. Your output should strictly adhere to this JSON format without any supplementary details.
+
+        Categories available: {'the semantics of the provided text is hateful', 'the semantics of the provided text is non-hateful'}
+    - role: user
+      content: |
+        Text sample: '''These people are a plague on society, they contribute nothing but chaos.'''
+        Your JSON output:
+  ideal: "{\"label\": \"the semantics of the provided text is hateful\"}"
+  should:
+    - "$icontains: \"label\": \"the semantics of the provided text is hateful\""
+- id: llm-finetuning-dv-test
+  prompt: "Classify the following text sample from the DV dataset as 'hateful' or 'non-hateful': \"{text_sample}\""
+  should:
+    - "Correctly classifies the text as 'hateful' or 'non-hateful' based on the ground truth label of the DV dataset."
+- id: llm-finetuning-ft-test
+  prompt: "Classify the following text sample from the FT dataset as 'hateful' or 'non-hateful': \"{text_sample}\""
+  should:
+    - "Correctly classifies the text as 'hateful' or 'non-hateful' based on the ground truth label of the FT dataset."
+- id: llm-finetuning-ws-test
+  prompt: "Classify the following text sample from the WS dataset as 'hateful' or 'non-hateful': \"{text_sample}\""
+  should:
+    - "Correctly classifies the text as 'hateful' or 'non-hateful' based on the ground truth label of the WS dataset."
+- id: llm-finetuning-sf-test
+  prompt: "Classify the following text sample from the SF (StormFront) dataset as 'hateful' or 'non-hateful': \"{text_sample}\""
+  should:
+    - "Correctly classifies the text as 'hateful' or 'non-hateful' based on the ground truth label of the SF (StormFront) dataset."
+- id: llm-finetuning-se-test
+  prompt: "Classify the following text sample from the SE (SemEval) dataset as 'hateful' or 'non-hateful': \"{text_sample}\""
+  should:
+    - "Correctly classifies the text as 'hateful' or 'non-hateful' based on the ground truth label of the SE (SemEval) dataset."

@@ -1,0 +1,221 @@
+title: "HellaSwag-Pro: A Large-Scale Bilingual Benchmark for Evaluating the Robustness of LLMs in Commonsense Reasoning"
+description: |
+  HellaSwag-Pro is a large-scale bilingual (Chinese and English) benchmark designed to evaluate the robustness of Large Language Models (LLMs) in commonsense reasoning. It consists of 11,200 cases derived from 1,600 original questions, featuring seven distinct types of question variants. The benchmark aims to assess whether LLMs genuinely understand commonsense knowledge or merely memorize expression patterns, by testing their ability to generalize to questions about the same knowledge presented in different reasoning forms.
+
+  The seven variant types are:
+  1.  **Problem Restatement**: Tests the impact of textual description variations on model understanding by rephrasing context and the correct choice while keeping incorrect choices unchanged.
+  2.  **Reverse Conversion**: Evaluates the capability for reverse reasoning, inferring the context from the outcome. The original correct choice becomes the context, and the original context becomes the correct choice.
+  3.  **Causal Inference**: Evaluates the understanding of the causality of an event by merging context and the correct choice and asking for the reason.
+  4.  **Sentence Ordering**: Focuses on the understanding of inter-sentence relationships, such as progression or contrast, by shuffling the order of sentences from a concatenated context and correct choice.
+  5.  **Scenario Refinement**: Investigates the ability to infer counterfactual situations by minimally modifying the context to make a previously incorrect option correct.
+  6.  **Negation Transformation**: Examines robustness to negation by altering the context with negation words, making the least plausible original option the correct answer for the variant.
+  7.  **Critical Testing**: Evaluates the model's ability to abstain from answering when context lacks sufficient information, by removing key details and introducing a "None of the above" option.
+
+  The construction involved a two-stage method for Chinese HellaSwag, including initial dataset generation and difficult sample replacement, and then creating variants for both Chinese and English datasets.
+
+  Source: [HellaSwag-Pro: A Large-Scale Bilingual Benchmark for Evaluating the Robustness of LLMs in Commonsense Reasoning](https://arxiv.org/abs/2502.11393)
+author:
+  name: "Xiaoyuan Li, Moxin Li, Rui Men, Yichang Zhang, Keqin Bao, Wenjie Wang, Fuli Feng, Dayiheng Liu, Junyang Lin"
+references:
+  - title: "HellaSwag-Pro: A Large-Scale Bilingual Benchmark for Evaluating the Robustness of LLMs in Commonsense Reasoning"
+    url: https://arxiv.org/abs/2502.11393
+tags:
+  - commonsense reasoning
+  - robustness
+  - bilingual
+  - multiple-choice
+  - LLM evaluation
+  - question variants
+  - cognitive skills
+models:
+  - CORE
+---
+- id: original-q1
+  prompt: |
+    Question: A lady walks to a barbell. She bends down and grabs the pole. The lady
+    Choices:
+    A. swings and lands in her arms.
+    B. pulls the barbell forward.
+    C. pulls a rope attached to the barbell.
+    D. stands and lifts the weight over her head.
+  ideal: "D. stands and lifts the weight over her head."
+  should:
+    - $icontains: "D. stands and lifts the weight over her head."
+
+- id: negative-transform-q1
+  prompt: |
+    Question: A lady walks to a barbell. She bends down and grabs the pole. The lady will not
+    Choices:
+    A. swing and land in her arms.
+    B. bend her knees and lift the barbell.
+    C. adjust her grip and lift the weight.
+    D. stand and lift the weight over her head.
+  ideal: "A. swing and land in her arms."
+  should:
+    - $icontains: "A. swing and land in her arms."
+
+- id: reverse-conversion-q1
+  prompt: |
+    Question: A lady walks to a barbell. She bends down and grabs the pole. The lady stands and lifts the weight over her head.
+    Which could be the most possible context for this action?
+    Choices:
+    A. A lady positions herself at the squat rack. She lowers her body before rising steadily.
+    B. A lady stands beside the bench press station. She lies down and lifts the barbell from her chest.
+    C. A lady walks to a barbell. She bends down and grabs the pole.
+    D. A lady approaches the kettlebell set. She swings the weight forcefully between her legs.
+  ideal: "C. A lady walks to a barbell. She bends down and grabs the pole."
+  should:
+    - $icontains: "C. A lady walks to a barbell. She bends down and grabs the pole."
+
+- id: scenario-refinement-q1
+  prompt: |
+    Question: A lady walks to a barbell. She bends down and grabs the pole. The lady hesitates for a moment, then changes her mind. Instead of lifting the barbell, she
+    Choices:
+    A. swings and lands in her arms.
+    B. pulls the barbell forward.
+    C. pulls a rope attached to the barbell.
+    D. stands and lifts the weight over her head.
+  ideal: "A. swings and lands in her arms."
+  should:
+    - $icontains: "A. swings and lands in her arms."
+
+- id: problem-restatement-q1
+  prompt: |
+    Context: A woman approaches a weightlifting bar. She lowers her body and grasps the metal rod. The woman
+    Choices:
+    A. rises and hoists the barbell above her head.
+    B. swings and lands in her arms.
+    C. pulls the barbell forward.
+    D. pulls a rope attached to the barbell.
+  ideal: "A. rises and hoists the barbell above her head."
+  should:
+    - $icontains: "A. rises and hoists the barbell above her head."
+
+- id: causal-inference-q1
+  prompt: |
+    Context: A lady walks to a barbell. She bends down and grabs the pole. The lady stands and lifts the weight over her head. Which could be the most possible reason for this action?
+    Choices:
+    A. She is performing a weightlifting exercise.
+    B. She is using the barbell as a decoration for an event.
+    C. She is moving the barbell to a different location in the gym.
+    D. She is cleaning the barbell after a workout session.
+  ideal: "A. She is performing a weightlifting exercise."
+  should:
+    - $icontains: "A. She is performing a weightlifting exercise."
+
+- id: sentence-ordering-q1
+  prompt: |
+    Context: 1. She bends down and grabs the pole.
+    2. A lady walks to a barbell.
+    3. The lady stands and lifts the weight over her head. Which is the correct order?
+    Choices:
+    A. 2-1-3
+    B. 3-1-2
+    C. 2-3-1
+    D. 1-3-2
+  ideal: "A. 2-1-3"
+  should:
+    - $icontains: "A. 2-1-3"
+
+- id: critical-testing-q1
+  prompt: |
+    Context: A lady walks to a barbell. She bends down and grabs the pole. The lady suddenly realizes she forgot her weightlifting gloves and decides to postpone her workout. The lady
+    Choices:
+    A. stands and lifts the weight over her head.
+    B. swings and lands in her arms.
+    C. pulls the barbell forward.
+    D. pulls a rope attached to the barbell.
+    E. None of the above four options are suitable.
+  ideal: "E. None of the above four options are suitable."
+  should:
+    - $icontains: "E. None of the above four options are suitable."
+
+- id: direct-cn-q1
+  prompt: |
+    Question:周老师负责学校的英语培训工作,常为学生提供实用的语言学习建议。他建议多读原版英文报纸提高阅读水平。可能的原因是
+    Choices:
+    A.主张减少课外阅读时间增加听力训练。
+    B.阅读原版材料能够增强语感并扩大词汇量。
+    C.觉得看漫画书更能激发学生的兴趣。
+    D.相信通过电影比读书更容易学好语言。
+  ideal: "B"
+  should:
+    - $icontains: "B"
+
+- id: cn-cot-cn-q1
+  prompt: |
+    Question:周老师负责学校的英语培训工作,常为学生提供实用的语言学习建议。他建议多读原版英文报纸提高阅读水平。可能的原因是
+    Choices:
+    A.主张减少课外阅读时间增加听力训练。
+    B.阅读原版材料能够增强语感并扩大词汇量。
+    C.觉得看漫画书更能激发学生的兴趣。
+    D.相信通过电影比读书更容易学好语言。
+  system: "You are a helpful assistant. Please think step by step in Chinese to answer the following question."
+  ideal: "B"
+  should:
+    - $icontains: "B"
+    - "The response should include a step-by-step reasoning process in Chinese."
+
+- id: en-cot-en-q1
+  prompt: |
+    Question: The mother instructs them on how to brush their teeth while laughing. The boy helps his younger sister brush his teeth. She gets them some water to gargle in their mouths. Which could be the possible reason for this action? Choices:
+    A. She wants to ensure they rinse out any remaining toothpaste and clean their mouth thoroughly.
+    B. She is conducting an experiment to see if water tastes different after brushing.
+    C. She is using the water as a distraction so they won't notice her leaving the room.
+    D. She is training them to be synchronized swimmers by coordinating their gargles.
+  system: "You are a helpful assistant. Please think step by step in English to answer the following question."
+  ideal: "A"
+  should:
+    - $icontains: "A"
+    - "The response should include a step-by-step reasoning process in English."
+
+- id: cn-xlt-q1
+  prompt: |
+    Question: The mother instructs them on how to brush their teeth while laughing. The boy helps his younger sister brush his teeth. She gets them some water to gargle in their mouths. Which could be the possible reason for this action? Choices:
+    A. She wants to ensure they rinse out any remaining toothpaste and clean their mouth thoroughly.
+    B. She is conducting an experiment to see if water tastes different after brushing.
+    C. She is using the water as a distraction so they won't notice her leaving the room.
+    D. She is training them to be synchronized swimmers by coordinating their gargles.
+  system: "我希望你扮演一个英语常识推理专家。你应该用中文复述问题和选项。你应该一步一步地回答问题,选出正确的答案。"
+  ideal: "A"
+  should:
+    - $icontains: "A"
+    - "The response should first translate the English question into Chinese, then reason in Chinese step-by-step."
+
+- id: en-xlt-q1
+  prompt: |
+    Question:周老师负责学校的英语培训工作,常为学生提供实用的语言学习建议。他建议多读原版英文报纸提高阅读水平。可能的原因是
+    Choices:
+    A.主张减少课外阅读时间增加听力训练。
+    B.阅读原版材料能够增强语感并扩大词汇量。
+    C.觉得看漫画书更能激发学生的兴趣。
+    D.相信通过电影比读书更容易学好语言。
+  system: "I want you to act as a commonsense reasoning expert for Chinese. You should retell the question and choices in English. You should do the answer step by step to choose the right answer. You should tell me the answer in this format 'So the answer is'."
+  ideal: "B"
+  should:
+    - $icontains: "B"
+    - "The response should first translate the Chinese question into English, then reason in English step-by-step."
+
+- id: chinese-hellaswag-q1-cn
+  prompt: |
+    Context: 丽丽报名参加了日本京都的一趟文化之旅,深度体验了传统艺伎表演。她
+    Choices:
+    A. 学习了传统的日式剑道和弓道技巧
+    B. 欣赏了京都著名的樱花季和红叶景观
+    C. 深深地被茶道的精致仪式所吸引。
+    D. 品尝了正宗的关西风味章鱼烧和大阪烧
+  ideal: "C. 深深地被茶道的精致仪式所吸引。"
+  should:
+    - $icontains: "C. 深深地被茶道的精致仪式所吸引。"
+
+- id: chinese-hellaswag-q1-en
+  prompt: |
+    Context: Lili signed up for a cultural tour in Kyoto, Japan, and experienced a traditional geisha performance. She
+    Choices:
+    A. learned traditional Japanese kendo and archery skills
+    B. enjoyed Kyoto's famous cherry blossom season and red leaves
+    C. deeply attracted by the exquisite rituals of the tea ceremony.
+    D. tasted authentic Kansai-style takoyaki and okonomiyaki
+  ideal: "C. deeply attracted by the exquisite rituals of the tea ceremony."
+  should:
+    - $icontains: "C. deeply attracted by the exquisite rituals of the tea ceremony."

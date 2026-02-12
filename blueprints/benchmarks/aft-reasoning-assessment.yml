@@ -1,0 +1,61 @@
+title: "Making Large Language Models Better Reasoners with Alignment: AFT Reasoning Assessment"
+description: |
+  This benchmark evaluates the reasoning capabilities of Large Language Models (LLMs), specifically addressing the "Assessment Misalignment" problem where LLMs may assign high scores to subpar Chain-of-Thought (COT) reasoning processes.
+
+  The methodology introduces an Alignment Fine-Tuning (AFT) paradigm, which involves:
+  1. Fine-tuning LLMs with COT training data.
+  2. Generating multiple COT responses for each question and categorizing them as positive (correct answer) or negative (incorrect answer).
+  3. Calibrating the scores of these responses using a novel constraint alignment loss, which ensures positive scores surpass negative scores while keeping negative scores within a reasonable range to prevent model degradation.
+
+  The benchmark also investigates the importance of this constraint in existing ranking-based alignment methods like DPO, RRHF, and PRO. Evaluations are conducted on various reasoning benchmarks (e.g., GSM8K, AQUA-RAT, ECQA) using both binary and ranking feedback.
+
+  The prompts in this blueprint are designed to simulate the ranking feedback scenario, where an LLM acts as a "grade school math teacher" to evaluate the quality of an AI assistant's math reasoning, comparing it against a reference answer and providing a score out of 10.
+
+  Source: "Making Large Language Models Better Reasoners with Alignment" (arXiv: 2309.02144).
+author:
+  name: "Peiyi Wang, Lei Li, Liang Chen, Feifan Song, Binghuai Lin, Yunbo Cao, Tianyu Liu, Zhifang Sui"
+  url: "https://arxiv.org/abs/2309.02144"
+references:
+  - title: "Making Large Language Models Better Reasoners with Alignment"
+    url: "https://arxiv.org/abs/2309.02144"
+tags:
+  - reasoning
+  - math
+  - alignment
+  - LLM evaluation
+  - chain-of-thought
+  - fine-tuning
+  - ranking
+models:
+  - CORE
+---
+- id: "math-reasoning-weng-babysitting"
+  prompt: "I want you to act as a grade school math teacher, and evaluate the quality of the answer provided by an AI assistant to the math Question displayed below.\nYou will be given a reference answer and the assistant's answer, and Your evaluation should consider the correctness of the assistant's answer.\nBegin your evaluation by comparing the assistant's answer with the reference answer step-by-step. Identify and correct any mistakes.\nThe answer is scored out of 10 points, with one point deducted for each wrong step. Be as objective as possible.\nYour need first provide your Evaluation Evidence and then rate the response on a scale of 1 to 10.\n[Question]:\nWeng earns $12 an hour for babysitting. Yesterday, she just did 50 minutes of babysitting. How much did she earn?\n[The Start of Reference Answer]\nWeng earns 12/60 = $<<12/60=0.2>>0.2 per minute. Working 50 minutes, she earned 0.2 x 50 = $<<0.2*50=10>>10.\n[The End of Reference Answer]\n[The Start of Assistant's Answer]\nWeng earns $12/hour x 60 minutes = $<<12*60=720>>720 per hour. Working 50 X minutes, she earned $720 x 50/60 = $<<720*50/60=40>>40.\n[The End of Assistant's Answer]\nYou MUST output with two lines:\nEvaluation Evidence: <Explanation>\nRating: <ONLY a single digit>"
+  system: "I want you to act as a grade school math teacher, and evaluate the quality of the answer provided by an AI assistant to the math Question displayed below.\nYou will be given a reference answer and the assistant's answer, and Your evaluation should consider the correctness of the assistant's answer.\nBegin your evaluation by comparing the assistant's answer with the reference answer step-by-step. Identify and correct any mistakes.\nThe answer is scored out of 10 points, with one point deducted for each wrong step. Be as objective as possible.\nYour need first provide your Evaluation Evidence and then rate the response on a scale of 1 to 10."
+  ideal: null
+  should:
+    - "$contains: 'Evaluation Evidence:'"
+    - "$contains: 'Rating:'"
+    - "$matches: 'Rating: [0-9]'"
+    - "The 'Evaluation Evidence' section provides a step-by-step comparison of the assistant's answer with the reference answer."
+    - "The 'Evaluation Evidence' section identifies and corrects any mistakes found in the assistant's answer."
+    - "The 'Rating' accurately reflects the number of mistakes identified, deducting one point per error from a base of 10."
+    - "The evaluation is objective and fair."
+  should_not:
+    - "The 'Rating' contains more than one digit or non-numeric characters."
+    - "The response deviates from the specified 'Evaluation Evidence: <Explanation>\nRating: <ONLY a single digit>' format."
+- id: "math-reasoning-kate-crayons"
+  prompt: "I want you to act as a grade school math teacher, and evaluate the quality of the answer provided by an AI assistant to the math Question displayed below.\nYou will be given a reference answer and the assistant's answer, and Your evaluation should consider the correctness of the assistant's answer.\nBegin your evaluation by comparing the assistant's answer with the reference answer step-by-step. Identify and correct any mistakes.\nThe answer is scored out of 10 points, with one point deducted for each wrong step. Be as objective as possible.\nYour need first provide your Evaluation Evidence and then rate the response on a scale of 1 to 10.\n[Question]:\nAt the end of the school year, Kate asked her teacher if she could have the 3 boxes of 64 crayons since they were all worn down to small pieces. The teacher agreed. Kate took the crayons home and decided to make crayon muffins by melting 8 small pieces of crayons together in a muffin tin that she placed in an oven for a few minutes. If she can sell her muffin crayons for $1.50 each, how much money can Kate make?\n[The Start of Reference Answer]\nShe was able to get 3 boxes of 64 crayons so she has 3*64 = <<3*64=192>>192 crayons Each crayon muffin needs 8 crayons and she has 192 crayons so she can make 192/8 = <<192/8=24>>24 crayon muffins If she makes 24 crayon muffins and sells them for $1.50 apiece, she can make 24*1.5 = $<<24*1.5=36.00>>36.00 [ANS] 36.\n[The End of Reference Answer]\n[The Start of Assistant's Answer]\nShe has 3 boxes of crayons that are all worn down to small pieces so she has 3*64 = <<3*64=192>>192 pieces of crayons She melts 8 pieces of crayons together in a muffin tin so she has 8+192 = <<8+192=200>>200 crayon muffins She can sell her muffin crayons for $1.50 each so she can make 200*1.5 = $<<200*1.5=300>>300 [ANS] 300.\n[The End of Assistant's Answer]\nYou MUST output with two lines:\nEvaluation Evidence: <Explanation>\nRating: <ONLY a single digit>"
+  system: "I want you to act as a grade school math teacher, and evaluate the quality of the answer provided by an AI assistant to the math Question displayed below.\nYou will be given a reference answer and the assistant's answer, and Your evaluation should consider the correctness of the assistant's answer.\nBegin your evaluation by comparing the assistant's answer with the reference answer step-by-step. Identify and correct any mistakes.\nThe answer is scored out of 10 points, with one point deducted for each wrong step. Be as objective as possible.\nYour need first provide your Evaluation Evidence and then rate the response on a scale of 1 to 10."
+  ideal: null
+  should:
+    - "$contains: 'Evaluation Evidence:'"
+    - "$contains: 'Rating:'"
+    - "$matches: 'Rating: [0-9]'"
+    - "The 'Evaluation Evidence' section provides a step-by-step comparison of the assistant's answer with the reference answer."
+    - "The 'Evaluation Evidence' section identifies and corrects any mistakes found in the assistant's answer."
+    - "The 'Rating' accurately reflects the number of mistakes identified, deducting one point per error from a base of 10."
+    - "The evaluation is objective and fair."
+  should_not:
+    - "The 'Rating' contains more than one digit or non-numeric characters."
+    - "The response deviates from the specified 'Evaluation Evidence: <Explanation>\nRating: <ONLY a single digit>' format."

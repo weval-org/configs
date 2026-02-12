@@ -1,0 +1,194 @@
+title: "STEM-POM: Evaluating Language Models Math-Symbol Reasoning in Document Parsing"
+description: |
+  STEM-POM is a comprehensive benchmark dataset designed to evaluate Large Language Models' (LLMs) reasoning abilities on mathematical symbols within contextual scientific text. It combines Part-of-Math Tagging with document parsing, an approach inspired by part-of-speech tagging, to classify mathematical tokens according to a given taxonomy of attributes.
+
+  The dataset is sourced from real-world ArXiv documents, containing over 2,000 meticulously annotated math symbols. Each symbol is classified into hierarchical attributes, reflecting its role and context within the original document. The first-level attributes include Variable, Constant, Operator, and Unit Descriptor, with further sub-attributes like scalar/vector/matrix for variables and local/global/discipline-specific labels for constants and operators.
+
+  This benchmark aims to enhance LLMs' understanding of math-rich documents and improve their downstream mathematical reasoning capabilities by correctly classifying symbols in real-world scenarios.
+author:
+  name: Jiaru Zou, Qing Wang, Pratyush Thakur, Nickvash Kani
+references:
+  - title: "STEM-POM: Evaluating Language Models Math-Symbol Reasoning in Document Parsing"
+    url: https://arxiv.org/abs/2411.00387
+tags:
+  - math
+  - reasoning
+  - classification
+  - document parsing
+  - NLP
+  - STEM
+models:
+  - CORE
+---
+- id: stem-pom-first-level-alpha
+  prompt: |
+    ### First-level Attribution Categories and Definitions:
+    1. **Constant**: A value that does not change in a mathematical expression.
+    2. **Operator**: A symbol that operates on one or more operands.
+    3. **Variable**: A symbol that represents an unknown or changeable quantity in a mathematical expression.
+    4. **Unit Descriptor**: A symbol that describes a unit of measurement or a physical dimension.
+
+    ### Demonstrations for Reference:
+    <Few-shot example 1>
+    <Few-shot example 2>
+    <Few-shot example 3>
+
+    ### Input:
+    - **Math Symbol**: `\u03b1`
+    - **Related Content**: Contextual sentences extracted from the original article: "The coefficient \u03b1 controls the rate of decay in the model."
+
+    ### Instructions:
+    1. Review the provided mathematical symbol and its contextual content.
+    2. Refer to the main attribute definitions and demonstrations above.
+    3. Classify the math symbol into its most appropriate primary attribute category.
+
+    ### Output Format:
+    Return classified attributes only with no additional explanation or formatting.
+  system: "You are an advanced Al system specializing in mathematical language processing. Your task is to analyze a given mathematical symbol extracted from a STEM article and its associated contextual content and accurately classify the symbol into its correct primary attribute category based on the provided definitions."
+  ideal: "Variable"
+  should:
+    - $matches: "Variable"
+- id: stem-pom-first-level-psi
+  prompt: |
+    ### First-level Attribution Categories and Definitions:
+    1. **Constant**: A value that does not change in a mathematical expression.
+    2. **Operator**: A symbol that operates on one or more operands.
+    3. **Variable**: A symbol that represents an unknown or changeable quantity in a mathematical expression.
+    4. **Unit Descriptor**: A symbol that describes a unit of measurement or a physical dimension.
+
+    ### Demonstrations for Reference:
+    <Few-shot example 1>
+    <Few-shot example 2>
+    <Few-shot example 3>
+
+    ### Input:
+    - **Math Symbol**: `\u03c8`
+    - **Related Content**: Contextual sentences extracted from the original article: "The wave function \u03c8 represents the quantum state of the system."
+
+    ### Instructions:
+    1. Review the provided mathematical symbol and its contextual content.
+    2. Refer to the main attribute definitions and demonstrations above.
+    3. Classify the math symbol into its most appropriate primary attribute category.
+
+    ### Output Format:
+    Return classified attributes only with no additional explanation or formatting.
+  system: "You are an advanced Al system specializing in mathematical language processing. Your task is to analyze a given mathematical symbol extracted from a STEM article and its associated contextual content and accurately classify the symbol into its correct primary attribute category based on the provided definitions."
+  ideal: "Operator"
+  should:
+    - $matches: "Operator"
+- id: stem-pom-first-level-sigma
+  prompt: |
+    ### First-level Attribution Categories and Definitions:
+    1. **Constant**: A value that does not change in a mathematical expression.
+    2. **Operator**: A symbol that operates on one or more operands.
+    3. **Variable**: A symbol that represents an unknown or changeable quantity in a mathematical expression.
+    4. **Unit Descriptor**: A symbol that describes a unit of measurement or a physical dimension.
+
+    ### Demonstrations for Reference:
+    <Few-shot example 1>
+    <Few-shot example 2>
+    <Few-shot example 3>
+
+    ### Input:
+    - **Math Symbol**: `\u03a3`
+    - **Related Content**: Contextual sentences extracted from the original article: "The summation \u03a3 is over all possible states."
+
+    ### Instructions:
+    1. Review the provided mathematical symbol and its contextual content.
+    2. Refer to the main attribute definitions and demonstrations above.
+    3. Classify the math symbol into its most appropriate primary attribute category.
+
+    ### Output Format:
+    Return classified attributes only with no additional explanation or formatting.
+  system: "You are an advanced Al system specializing in mathematical language processing. Your task is to analyze a given mathematical symbol extracted from a STEM article and its associated contextual content and accurately classify the symbol into its correct primary attribute category based on the provided definitions."
+  ideal: "Constant"
+  should:
+    - $matches: "Constant"
+- id: stem-pom-second-level-variable-scalar
+  prompt: |
+    ### First/Second-level Attribution Categories and Definitions:
+    1. **Constant**: A value that does not change in a mathematical expression.
+       - **Local Constant**: Constant that is specific to a particular system or model, such as the gravitational constant in a simulation of a specific planetary system.
+       - **Global Constant**: Constant that is applicable in all contexts, like the speed of light in a vacuum.
+       - **Discipline-specified Constant**: Constant that applies to particular fields of study, for instance, Planck's constant in quantum mechanics.
+    2. **Operator**: A symbol that operates on one or more operands.
+       - **Local Operators**: Operator that is applied in a localized or specific context within a discipline, like a self-defined operation in matrix processing.
+       - **Global Operators**: Operators that is used broadly across different disciplines, like the addition or multiplication operator.
+       - **Discipline-specified Operators**: Operator that is unique to certain fields, such as the Hamiltonian operator in quantum physics.
+    3. **Variable**: A symbol that represents an unknown or changeable quantity in a mathematical expression.
+       - **Scalar**: A quantity that has only magnitude, no direction.
+       - **Vector**: A quantity that has both magnitude and direction.
+       - **Matrix**: A rectangular array of numbers or symbols arranged in rows and columns.
+    4. **Unit Descriptor**: A symbol that describes a unit of measurement or a physical dimension.
+
+    ### Demonstrations for Reference:
+    <Few-shot example 1>
+    <Few-shot example 2>
+    <Few-shot example 3>
+
+    ### Input:
+    - **Math Symbol**: `m`
+    - **Related Content**: Contextual sentences extracted from the original article: "The mass m of the particle is constant."
+
+    ### Instructions:
+    1. Review the provided mathematical symbol and its contextual content.
+    2. Refer to the main attribute definitions and demonstrations above.
+    3. Classify the math symbol into its most appropriate primary and secondary attribute categories.
+
+    ### Output Format:
+    Return classified attributes only (e.g., 'Variable, Scalar') with no additional explanation or formatting.
+  system: "You are an advanced Al system specializing in mathematical language processing. Your task is to analyze a given mathematical symbol extracted from a STEM article and its associated contextual content and accurately classify the symbol into its correct primary and secondary attribute categories based on the provided definitions."
+  ideal: "Constant, Local Constant"
+  should:
+    - $matches: "Constant, Local Constant"
+- id: downstream-reasoning-gsm8k
+  prompt: |
+    ### Problem
+    <Problem Description for GSM8K: e.g., 'A store has 12 apples. If they sell 5 apples, how many are left?'>
+
+    ### 3-shot Demonstration
+    Here are three examples similar to your problem, please follow the example to reason step by step and output the answers following the same format.
+    <Example 1>
+    <Example 2>
+    <Example 3>
+
+    Your Response:
+  system: "You are an advanced Al system specializing in mathematical language processing. Your task is to solve the following math problem efficiently and clearly. Please reason step by step using chain-of-thought to solve the following math problem efficiently and clearly. Please reason step by step and return your final answers."
+  ideal: null
+  should:
+    - "The model's final answer must be numerically correct."
+    - "The model's reasoning process should be clear and logical (Chain-of-Thought)."
+- id: downstream-reasoning-math
+  prompt: |
+    ### Problem
+    <Problem Description for MATH: e.g., 'Find the value of x if 2x + 3 = 7.'>
+
+    ### 3-shot Demonstration
+    Here are three examples similar to your problem, please follow the example to reason step by step and output the answers following the same format.
+    <Example 1>
+    <Example 2>
+    <Example 3>
+
+    Your Response:
+  system: "You are an advanced Al system specializing in mathematical language processing. Your task is to solve the following math problem efficiently and clearly. Please reason step by step using chain-of-thought to solve the following math problem efficiently and clearly. Please reason step by step and return your final answers."
+  ideal: null
+  should:
+    - "The model's final answer must be numerically correct."
+    - "The model's reasoning process should be clear and logical (Chain-of-Thought)."
+- id: downstream-reasoning-olympiadbench
+  prompt: |
+    ### Problem
+    <Problem Description for OlympiadBench: e.g., 'A particle moves along a straight line such that its displacement s (in meters) at time t (in seconds) is given by s(t) = t^3 - 6t^2 + 9t. Find the time(s) when the particle's velocity is zero.'>
+
+    ### 3-shot Demonstration
+    Here are three examples similar to your problem, please follow the example to reason step by step and output the answers following the same format.
+    <Example 1>
+    <Example 2>
+    <Example 3>
+
+    Your Response:
+  system: "You are an advanced Al system specializing in mathematical language processing. Your task is to solve the following math problem efficiently and clearly. Please reason step by step using chain-of-thought to solve the following math problem efficiently and clearly. Please reason step by step and return your final answers."
+  ideal: null
+  should:
+    - "The model's final answer must be numerically correct."
+    - "The model's reasoning process should be clear and logical (Chain-of-Thought)."

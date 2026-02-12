@@ -1,0 +1,54 @@
+title: "Discriminating Similar Languages (DSL) Shared Task"
+description: |
+  This benchmark evaluates the performance of machine learning classifiers in discriminating between similar languages and language varieties. It uses data from the DSL Corpus Collection (DSLCC), which consists of short excerpts from journalistic texts. The task involves identifying the specific language or variety (e.g., Bosnian vs. Croatian, Brazilian Portuguese vs. European Portuguese) from a given text snippet. The evaluation includes analyzing progress between shared task editions, estimating upper bounds using ensemble and oracle combinations, and investigating challenging instances through learning curves and human annotation.
+
+  For machine learning models, responses are scored based on accuracy, calculated as the percentage of correctly identified language or language variety labels. Ensemble methods are also used:
+  - **Plurality Voting**: The label with the highest number of votes from all participating systems is selected.
+  - **Oracle**: An instance is considered correctly classified if at least one of the constituent classifiers in the ensemble produces the correct label, providing an upper bound on performance.
+  - **Accuracy@N**: An extension of plurality voting where labels are ranked by vote counts, and an instance is correctly classified if the true label is among the top N ranked candidates (N=2 and N=3 are used).
+
+  For human evaluation, annotators assign the correct language or variety to misclassified sentences. Scoring is based on the percentage of times instances were correctly annotated by native speakers.
+
+  The paper describes the DSL shared task, which involves language identification. It provides the dataset (DSLCC) with text excerpts and corresponding language labels (gold answers). Accuracy is the primary evaluation metric, and ensemble methods and oracle performance are discussed, indicating clear scoring criteria. A manual annotation experiment further solidifies the evaluation methodology.
+author:
+  name: Cyril Goutte, Serge Léger, Shervin Malmasi, Marcos Zampieri
+references:
+  - title: "Discriminating Similar Languages: Evaluations and Explorations"
+    url: https://arxiv.org/abs/1610.00031
+tags:
+  - language identification
+  - natural language processing
+  - classification
+  - linguistics
+  - dialectology
+  - machine learning evaluation
+models:
+  - CORE
+---
+- id: manual-annotation-ps-1
+  prompt: "Identify the language or language variety of the following text excerpt:\n\n\"Entonces lo entiendo todo. La prensa no tiene raz\u00f3n. No estamos en guerra, ni falta que hace. Esta especie de bronca continua es una ilusi\u00f3n, una imagen grotesca que proyectan los medios, pero no es real. Por el amor de Dios, que no os pase como a m\u00ed, que meriendo paellas de orfidales todos los d\u00edas. En ocasiones veo Truebas, s\u00ed, pero mis amigos me ponen en mi sitio. No nos dejemos enga\u00f1ar.\""
+  system: "Predict first the language group of the text, and subsequently the specific language or language variety."
+  ideal: "Peninsular Spanish"
+  should:
+    - "$icontains: Peninsular Spanish"
+
+- id: manual-annotation-ep-1
+  prompt: "Identify the language or language variety of the following text excerpt:\n\n\"O m\u00e9dio Bruno Neves tem 25 anos e jogou a \u00faltima \u00e9poca no Gr\u00eamio, do Brasil, tendo tamb\u00e9m alinhado j\u00e1 no Fluminense e no Cruzeiro.\""
+  system: "Predict first the language group of the text, and subsequently the specific language or language variety."
+  ideal: "European Portuguese"
+  should:
+    - "$icontains: European Portuguese"
+
+- id: dslcc-excerpt-group-a-example-1
+  prompt: "Identify the language or language variety of the following text excerpt:\n\n\"[TEXT_EXCERPT_FROM_GROUP_A_JOURNALISTIC_TEXT]\"\n\nExample (hypothetical, based on paper's description):\n\"U Bosni i Hercegovini, kao i u cijeloj regiji, raste interes za digitalne medije.\""
+  system: "Predict first the language group of the text, and subsequently the specific language or language variety."
+  ideal: "Bosnian"
+  should:
+    - "Correctly identify the language/variety (e.g., Bosnian, Croatian, or Serbian) from the given text excerpt."
+
+- id: dslcc-excerpt-group-b-example-1
+  prompt: "Identify the language or language variety of the following text excerpt:\n\n\"[TEXT_EXCERPT_FROM_GROUP_B_JOURNALISTIC_TEXT]\"\n\nExample (hypothetical, based on paper's description):\n\"Pemerintah Indonesia mengumumkan paket kebijakan ekonomi baru untuk mendorong investasi.\""
+  system: "Predict first the language group of the text, and subsequently the specific language or language variety."
+  ideal: "Indonesian"
+  should:
+    - "Correctly identify the language/variety (e.g., Indonesian or Malay) from the given text excerpt."

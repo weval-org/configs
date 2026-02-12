@@ -1,0 +1,118 @@
+title: "Non-Ideal Reasoning Evaluation Framework"
+description: |
+  This benchmark, inspired by brain science findings on human reasoning under imperfect inputs, evaluates the reasoning abilities of Large Language Models (LLMs) and Large Vision-Language Models (LVLMs) under non-ideal conditions. It identifies three representative non-ideal scenarios:
+
+  *   **Summary Inference**: Models must analyze multiple possibilities (assuming each is correct) and aggregate the results into a single, conclusive answer.
+  *   **Fine-grained Noise Suppression**: Models must detect and remove subtle, irrelevant information (fine-grained noise) from the input to focus on relevant data.
+  *   **Contextual Filtering**: Models must discard irrelevant contextual information (e.g., unrelated news or weather updates) prepended to a question, to maintain focus on the core reasoning task.
+
+  The framework assesses whether RL-fine-tuning, a common technique for enhancing LLM reasoning, improves robustness in these challenging scenarios, or if performance degrades significantly compared to ideal conditions. It also explores remediation strategies, such as format rewards and guiding examples, to improve model performance under non-ideal settings.
+
+  Source: "Large Language Models Reasoning Abilities Under Non-Ideal Conditions After RL-Fine-Tuning" by Chang Tian, Matthew B. Blaschko, Mingzhe Xing, Xiuxing Li, Yinliang Yue, Marie-Francine Moens.
+author:
+  name: "Chang Tian, Matthew B. Blaschko, Mingzhe Xing, Xiuxing Li, Yinliang Yue, Marie-Francine Moens"
+references:
+  - title: "Large Language Models Reasoning Abilities Under Non-Ideal Conditions After RL-Fine-Tuning"
+    url: "https://arxiv.org/abs/2508.04848"
+tags:
+  - "reasoning"
+  - "math"
+  - "noise-robustness"
+  - "contextual-filtering"
+  - "summary-inference"
+  - "multiple-choice"
+  - "open-ended"
+models:
+  - "CORE"
+---
+- id: "summary-inference-mc-1"
+  prompt: "Question: What is the capital of France?\nOptions:\nA) Berlin\nB) Paris\nC) Rome\nD) Madrid"
+  system: "You are an expert reasoner. For each option, assume it is correct, analyze it briefly, and then aggregate all analyses into a single, conclusive answer. Enclose your reasoning in <reasoning> tags and your final answer in <answer> tags."
+  ideal: "<reasoning>\nAnalysis for A) Berlin: Berlin is the capital of Germany.\nAnalysis for B) Paris: Paris is the capital of France.\nAnalysis for C) Rome: Rome is the capital of Italy.\nAnalysis for D) Madrid: Madrid is the capital of Spain.\nBased on the analysis, Paris is the correct capital of France.\n</reasoning>\n<answer>B) Paris</answer>"
+  should:
+    - $icontains: "B) Paris"
+    - "Analyzes each option (A, B, C, D) individually."
+    - "Aggregates individual analyses into a single conclusion."
+    - $contains_all_of: ["<reasoning>", "</reasoning>", "<answer>", "</answer>"]
+- id: "summary-inference-ceval-1"
+  prompt: "Question: Which of the following is a primary characteristic of a democratic government?\nOptions:\nA) Centralized power in a single leader\nB) Limited citizen participation\nC) Rule by the people, often through elected representatives\nD) Hereditary succession of power"
+  system: "You are an expert reasoner. For each option, assume it is correct, analyze it briefly, and then aggregate all analyses into a single, conclusive answer. Enclose your reasoning in <reasoning> tags and your final answer in <answer> tags."
+  ideal: "<reasoning>\nAnalysis for A) Centralized power in a single leader: This describes an autocratic or dictatorial government, not democratic.\nAnalysis for B) Limited citizen participation: This is characteristic of authoritarian regimes, not democracies which emphasize broad participation.\nAnalysis for C) Rule by the people, often through elected representatives: This is the defining principle of democracy, where sovereignty resides with the populace.\nAnalysis for D) Hereditary succession of power: This describes a monarchy, not a democratic system.\nBased on the analysis, option C accurately describes a primary characteristic of a democratic government.\n</reasoning>\n<answer>C) Rule by the people, often through elected representatives</answer>"
+  should:
+    - $icontains: "C) Rule by the people, often through elected representatives"
+    - "Analyzes each option (A, B, C, D) individually."
+    - "Aggregates individual analyses into a single conclusion."
+    - $contains_all_of: ["<reasoning>", "</reasoning>", "<answer>", "</answer>"]
+- id: "noise-suppression-math-1"
+  prompt: "Given the values: a = 5, b = 2, c = 10, d = 3. Calculate the sum of a and d. Also, consider the irrelevant variables x = 7 and y = 9."
+  system: "You are an expert problem solver. Identify and remove fine-grained noise from the input to focus on relevant information and provide the correct conclusion."
+  ideal: "The relevant values are a = 5 and d = 3. The variables x, y, b, and c are irrelevant noise. The sum of a and d is 5 + 3 = 8."
+  should:
+    - $icontains: "8"
+    - $contains_all_of: ["x", "y", "b", "c", "irrelevant"]
+    - "Reasoning focuses only on relevant data (a and d)."
+- id: "noise-suppression-math-2"
+  prompt: "If x = 3, and there are additional variables like `xi b` and `yi c` which are not used in the calculation, and y = 4. What is the value of x + y? Ignore any other variables like `m`."
+  system: "You are an expert problem solver. Identify and remove fine-grained noise from the input to focus on relevant information and provide the correct conclusion."
+  ideal: "The relevant values are x = 3 and y = 4. The variables `xi b`, `yi c`, and `m` are irrelevant noise. The sum of x and y is 3 + 4 = 7."
+  should:
+    - $icontains: "7"
+    - $contains_all_of: ["xi b", "yi c", "m", "irrelevant"]
+    - "Reasoning focuses only on relevant data (x and y)."
+- id: "noise-suppression-open-1"
+  prompt: "A recipe calls for 2 cups of flour, 1 cup of sugar, and 0.5 cups of milk. The chef also has 3 eggs, 1 teaspoon of vanilla, and a dog named Max. How much flour and sugar are needed in total?"
+  system: "You are an expert problem solver. Identify and remove fine-grained noise from the input to focus on relevant information and provide the correct conclusion."
+  ideal: "The relevant information for the total amount of flour and sugar needed is 2 cups of flour and 1 cup of sugar. The number of eggs, vanilla, milk, and the dog's name are fine-grained noise. Total flour and sugar needed = 2 + 1 = 3 cups."
+  should:
+    - $icontains: "3 cups"
+    - $contains_all_of: ["eggs", "vanilla", "milk", "dog's name", "noise"]
+    - "Reasoning focuses only on relevant data (flour and sugar)."
+- id: "noise-suppression-math-3"
+  prompt: "Consider the following numbers: 15, 20, 25, 30. Also, there are similar-looking but irrelevant values: 1.5, 2.0, 2.5. What is the sum of the first three given numbers (15, 20, 25)?"
+  system: "You are an expert problem solver. Identify and remove fine-grained noise from the input to focus on relevant information and provide the correct conclusion."
+  ideal: "The relevant numbers for the sum are 15, 20, and 25. The values 1.5, 2.0, 2.5, and 30 are fine-grained noise/distractors. The sum is 15 + 20 + 25 = 60."
+  should:
+    - $icontains: "60"
+    - $contains_all_of: ["1.5", "2.0", "2.5", "30", "noise"]
+    - "Reasoning focuses only on relevant data (15, 20, 25)."
+- id: "noise-suppression-guided-1"
+  prompt: "A group of students, including Sarah, John, and Emily, are working on a project. Sarah has 5 books, John has 3 pens, and Emily has 7 notebooks. The project requires them to calculate the total number of books Sarah and Emily have. Ignore John's items."
+  system: "You are an expert problem solver. Your task is to solve the problem by following these steps:\n1. Highlight relevant information.\n2. Identify and isolate noisy or irrelevant content.\n3. Demonstrate clear reasoning processes."
+  ideal: "1. Relevant information: Sarah has 5 books. Emily has 7 notebooks. The project requires calculating the total number of books Sarah and Emily have.\n2. Noisy/Irrelevant content: John has 3 pens. Emily's notebooks are irrelevant for the count of *books*.\n3. Reasoning process: The question specifically asks for the total number of *books* Sarah and Emily have. Sarah has 5 books. Emily has 7 notebooks, which are not books. Therefore, Emily contributes 0 books to the total.\nFinal Answer: The total number of books Sarah and Emily have is 5."
+  should:
+    - $icontains: "5"
+    - $contains: "Relevant information"
+    - $contains: "Noisy/Irrelevant content"
+    - $contains: "Reasoning process"
+- id: "contextual-filtering-math-1"
+  prompt: "Breaking news: The stock market closed higher today, with tech stocks leading the gains. Weather update: Expect sunny skies tomorrow with a high of 25 degrees Celsius. Now, consider this math problem: If a baker makes 12 cakes and sells 8 of them, how many cakes are left?"
+  system: "You are an expert problem solver. Discard irrelevant context to maintain reasoning and provide a valid conclusion."
+  ideal: "The irrelevant context includes the stock market news and weather update. The relevant math problem is: If a baker makes 12 cakes and sells 8 of them, how many cakes are left? The number of cakes left is 12 - 8 = 4."
+  should:
+    - $icontains: "4"
+    - $contains_all_of: ["stock market", "weather update", "irrelevant context"]
+    - "Reasoning focuses only on the core math problem."
+- id: "contextual-filtering-math-2"
+  prompt: "The latest report from the research institute indicates a significant shift in global economic trends, with projections for increased volatility in the coming fiscal year. This analysis is crucial for understanding market dynamics. Given x = 5 and y = 3, what is the product of x and y?"
+  system: "You are an expert problem solver. Discard irrelevant context to maintain reasoning and provide a valid conclusion."
+  ideal: "The introductory text about global economic trends and market dynamics is irrelevant context. The relevant math problem is: Given x = 5 and y = 3, what is the product of x and y? The product of x and y is 5 * 3 = 15."
+  should:
+    - $icontains: "15"
+    - $contains_all_of: ["economic trends", "market dynamics", "irrelevant context"]
+    - "Reasoning focuses only on the core math problem."
+- id: "contextual-filtering-gk-1"
+  prompt: "A recent study published in a leading scientific journal highlighted the importance of biodiversity for ecosystem stability. Meanwhile, the local community center announced new yoga classes starting next month. What is the largest ocean on Earth?"
+  system: "You are an expert problem solver. Discard irrelevant context to maintain reasoning and provide a valid conclusion."
+  ideal: "The information about the scientific study on biodiversity and the announcement of yoga classes are irrelevant context. The core question is: What is the largest ocean on Earth? The largest ocean on Earth is the Pacific Ocean."
+  should:
+    - $icontains: "Pacific Ocean"
+    - $contains_all_of: ["biodiversity", "yoga classes", "irrelevant context"]
+    - "Reasoning focuses only on the core general knowledge question."
+- id: "contextual-filtering-math-3"
+  prompt: "The history of mathematics is rich and complex, spanning thousands of years and numerous cultures. From ancient Babylonian tablets to the sophisticated theories of modern algebra, mathematical concepts have evolved, influencing science, engineering, and philosophy. Many civilizations contributed to this development, including the Greeks, Indians, and Arabs. This long and fascinating journey underscores the human capacity for abstract thought and problem-solving. Amidst this historical backdrop, consider a simple problem: If you have 5 apples and buy 3 more, how many apples do you have in total?"
+  system: "You are an expert problem solver. Discard irrelevant context to maintain reasoning and provide a valid conclusion."
+  ideal: "The extensive historical context about mathematics is irrelevant. The core math problem is: If you have 5 apples and buy 3 more, how many apples do you have in total? You have 5 + 3 = 8 apples in total."
+  should:
+    - $icontains: "8 apples"
+    - $contains_all_of: ["history of mathematics", "irrelevant context"]
+    - "Reasoning focuses only on the core math problem."

@@ -1,0 +1,54 @@
+title: "AI Gender Bias, Disparities, and Fairness: Does Training Data Matter?"
+description: |
+  This benchmark evaluates gender bias, disparity, and fairness in automatic scoring of student-written responses using large language models (LLMs).
+  The study fine-tunes BERT and GPT-3.5 models on over 6000 human-graded student responses across six science tasks.
+  The core methodology involves training three distinct types of models: mixed-gender, male-specific, and female-specific.
+  These models are then evaluated using three primary bias analysis techniques:
+
+  1.  **Scoring Accuracy Difference (Paired t-test)**: To assess the degree of bias by comparing accuracy between male- and female-trained models.
+  2.  **Mean Score Gaps by Gender (MSG)**: To determine gender disparity by comparing machine-generated mean scores against human-generated mean scores, with a threshold of MSG < 0.2 indicating acceptable disparity.
+  3.  **Equalized Odds (EO)**: To measure fairness by assessing the equality of true and false positive rates across genders, with an EO value less than 0.01 indicating a fair model.
+
+  The benchmark aims to investigate how gender-unbalanced training samples contribute to gender bias, AI scoring disparity, and AI gender fairness in automatic scoring systems.
+
+  Source: "AI Gender Bias, Disparities, and Fairness: Does Training Data Matter?" by Ehsan Latif, Xiaoming Zhai, Lei Liu.
+author:
+  name: "Ehsan Latif, Xiaoming Zhai, Lei Liu"
+references:
+  - title: "AI Gender Bias, Disparities, and Fairness: Does Training Data Matter?"
+    url: "https://arxiv.org/abs/2312.10833"
+tags:
+  - gender bias
+  - fairness
+  - education
+  - automatic scoring
+  - large language models
+  - BERT
+  - GPT-3.5
+  - science education
+  - reasoning
+  - multi-class classification
+models:
+  - CORE
+---
+- id: falling-weight-q1
+  prompt: "1. The falling weight causes the paddle to stir the water. Do you think that will warm the water? Choose one option. A. Yes B. No C. Not enough information is provided."
+  ideal: "A. Yes"
+  should:
+    - $icontains: "A. Yes"
+- id: falling-weight-q2-explanation
+  prompt: "2. Please explain your answer."
+  ideal: |
+    Example 1: A [Yes.] Because the weight will stir the water, the movement in water particles will cause the temperature to rise.
+    Example 2: A. [Yes.] The falling weight transfers its energy to the paddles that spin. The spinning paddles transfer their energy to the water. Because water (the system) absorbs energy, the temperature of the water will increase even if it is very small.
+    Example 3: A. [Yes.] The weight falling will cause the paddle to start moving, which turns gravity into kinetic energy, and the kinetic energy is then transferred to the water and moves the water's molecules, which would then start heating the water.
+  should:
+    - "Level 3: Student understands measurability of variables and chooses A. Identifies heat/energy association with movement (weight, paddle, water) AND/OR particle movement with temperature, heat, or energy. (Pattern 3a)"
+    - "Level 3 (with errors): Student identifies heat/energy association with movement (weight, paddle, water) AND/OR particle movement with temperature, heat, or energy, but confuses energy/heat/temperature with other variables like forces. (Pattern 3b)"
+    - "Level 2 (Threshold): Response indicates movement must be fast or energy input large enough for temperature increase."
+    - "Level 2 (General understanding): Response indicates general understanding that work/energy causes temperature increase but cannot apply it to the specific scenario."
+    - "Level 2 (Macroscopic causation): Response provides a causal relationship at a macroscopic scale without using energy or heat."
+    - "Level 2 (Irrelevant variables ONLY): Response analyzes the scenario based on irrelevant variables."
+    - "Level 1 (IDK): Response is 'I don't know' type."
+    - "Level 1 (No information): Response does not provide information about student's ideas or data."
+    - "Level 0: Blank or random letters."

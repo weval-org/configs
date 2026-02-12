@@ -1,0 +1,126 @@
+title: "Video-MMLU: A Massive Multi-Discipline Lecture Understanding Benchmark"
+description: |
+  Video-MMLU is a massive benchmark designed to evaluate the capabilities of Large Multimodal Models (LMMs) in understanding multi-discipline lectures. It specifically targets lecture videos that involve theorem demonstrations and problem-solving across disciplines including mathematics, physics, and chemistry.
+
+  The benchmark assesses whether models can perceive and comprehend multi-discipline lectures, much like a student taking notes and being tested later. This involves generating detailed captions as 'notes' to assess visual perception and answering 15 reasoning questions as a 'quiz' to evaluate content comprehension and the ability to apply learned knowledge.
+
+  The evaluation uses a multi-stage annotation pipeline that integrates video captions as the backbone and enriches them with frame-level captions. Scoring involves metrics like VDCscore and an LLM assistant (Qwen2.5-72B) providing True/False judgments and scores (0-5) based on specific criteria for OCR-related and non-OCR-related questions.
+
+  Source: [Video-MMLU: A Massive Multi-Discipline Lecture Understanding Benchmark](https://arxiv.org/abs/2504.14693)
+author:
+  name: "Enxin Song, Wenhao Chai, Weili Xu, Jianwen Xie, Yuxuan Liu, Gaoang Wang"
+references:
+  - title: "Video-MMLU: A Massive Multi-Discipline Lecture Understanding Benchmark"
+    url: "https://arxiv.org/abs/2504.14693"
+tags:
+  - video understanding
+  - multimodal
+  - lecture comprehension
+  - reasoning
+  - perception
+  - mathematics
+  - physics
+  - chemistry
+  - open-ended QA
+  - captioning
+  - OCR
+models:
+  - CORE
+---
+- id: qa-generation-1
+  prompt: |
+    Please generate 15 question-answer pairs given a detailed description of a video or image: detailed description: In this comprehensive mathematical exploration, the lecture delves into the fundamental nature of the exponential function et by examining its defining properties and unique characteristics. The presentation begins with a crucial questioning approach, shifting from "What is e¹?to the more profound inquiry "What properties define e¹?" This methodological shift proves instrumental in understanding the function's essence
+
+    Please generate the response in the form of a Python list of tuple with the question and the corresponding answer. DO NOT PROVIDE ANY OTHER OUTPUT TEXT OR EXPLANATION. Only provide the Python list of tuple. For example, your response should look like this: [(the question 1, the answer 1), (the question 2, the answer 2), . . . ].
+  system: |
+    You are an intelligent chatbot designed for generating 20 question-answer pairs given a detailed description of a video or image. You are describing the video. Here's how you can accomplish the task: INSTRUCTIONS: - Cover the main objects and actions in the video or image. - The questions should be open-ended and start with 'What', 'Who', 'Where', 'When', 'Why', 'How', etc. - The answer should be a short sentence or phrase. - Generate 20 question-answer pairs.
+  ideal: "[\"question\": \"What background color is used in the visual presentation?\u201d, \"answer\": \"Dark background\", \"question\": \"What is the initial condition of et mentioned in the lecture?\u201d, \"answer\": \"e\u00ba = 1\", \"question\": \"What is the approximate value of e\u00af\u00b2 shown in the presentation?\u201d, \"answer\": \"0.135\", \"question\": \"What is the value of e0.675 shown in the lecture?\", \"answer\": \"314.19\", \"question\": \"What is the approximate value of e1.27?\", \"answer\": \"3.58\", \"question\": \"What is the approximate value of e3.07?\", \"answer\": \"21.47\", \"question\": \"What is the approximate value of e2.17?\", \"answer\": \"8.73\", \"question\": \"What are the strategic marker positions shown on the number line?\", \"answer\": \"25, 50, and 75\", \"question\": \"What is the approximate value of e4.86?\", \"answer\": \"128.81\", \"question\": \"What is the approximate value of e3.96?\", \"answer\": \"52.37\", \"question\": \"What is the approximate value of e0.37?\", \"answer\": \"1.45\", \"question\": \"What is the typical span of the number line shown?\", \"answer\": \"0 to 9, sometimes extending to 800\", \"question\": \"What label is given to the horizontal number line?\", \"answer\": \"Position\", \"question\": \"What visual elements are used to show relationships on the number line?\", \"answer\": \"Arrows pointing to positions and velocities\u201d, \"question\": \"What is the derivative of e2t?\", \"answer\": \"2 \u00b7 e2t\"]"
+  should:
+    - "Questions should be open-ended and start with 'What', 'Who', 'Where', 'When', 'Why', 'How', etc."
+    - "Answers should be a short sentence or phrase."
+    - "Cover the main objects and actions in the video or image."
+    - "Generate 15 question-answer pairs."
+    - $matches: "^\\[\\s*\\([^,]+\\s*,\\s*[^)]+\\)\\s*(?:,\\s*\\([^,]+\\s*,\\s*[^)]+\\)\\s*){14}\\]$"
+    - "The response should contain only the Python list of tuples, with no other text or explanation."
+- id: answer-extraction-1
+  prompt: |
+    Please provide accurate answers to questions related to the content based on a detailed description of a video or image:
+
+    detailed description: This detailed mathematics tutorial video provides comprehensive instruction on applying the product rule for derivatives, featuring a consistent bright green background and an engaging male instructor positioned in the lower right corner, dressed in a dark jacket. The instructor maintains an enthusiastic and approachable teaching style throughout the presentation, making complex calculus concepts more accessible to viewers.
+
+    question: What color is the video background?
+
+    DO NOT PROVIDE ANY OTHER OUTPUT TEXT OR EXPLANATION. Only provide short but accurate answer.
+  system: |
+    You are an intelligent chatbot designed for providing accurate answers to questions related to the content based on a detailed description of a video or image. Here's how you can accomplish the task:
+
+    ##INSTRUCTIONS:
+    - Read the detailed description carefully.
+    - Answer the question only based on the detailed description.
+    - The answer should be a short sentence or phrase.
+  ideal: "Bright green."
+  should:
+    - "Answer only based on the detailed description."
+    - "Answer should be a short sentence or phrase."
+    - "Answer should be accurate."
+    - "The response should contain only the short, accurate answer, with no other text or explanation."
+- id: evaluation-ocr-1
+  prompt: |
+    Please evaluate the following video-based question-answer pair:
+    Question: What specific DNA sequence is shown in the presentation?
+    Correct Answer: TCCGTGCAGTAAATGC
+    Predicted Answer: TTCCGTAATACGACTGCGC
+    Provide your evaluation only as a yes/no and score where the score is an integer value between 0 and 5, with 5 indicating the highest meaningful match.
+    Please generate the response in the form of a Python dictionary string with keys 'pred' and 'score', where value of 'pred' is a string of 'yes' or 'no' and value of 'score' is in INTEGER, not STRING.
+    DO NOT PROVIDE ANY OTHER OUTPUT TEXT OR EXPLANATION. Only provide the Python dictionary string.
+    For example, your response should look like this: {'pred': 'yes', 'score': 4.8}.
+  system: |
+    You are an intelligent chatbot designed for evaluating the correctness of generative outputs for question-answer pairs. Your task is to compare the predicted answer with the correct answer and determine if they match meaningfully. The evaluation criteria differ based on the type of question:
+
+    ##INSTRUCTIONS:
+    1. For OCR-related questions:
+    - Perform a strict letter-by-letter comparison.
+    - Any difference in characters (including case, punctuation, or letter substitution) must result in 'no'.
+    - Minor spelling errors or missing characters should not be accepted.
+    2. For non-OCR-related questions:
+    - Focus on the meaningful match between the predicted answer and the correct answer.
+    - Synonyms or paraphrases can be considered valid matches.
+    - Minor spelling differences or alternative expressions should not be penalized.
+  ideal: "{'pred': 'no', 'score': 0}"
+  should:
+    - "Perform a strict letter-by-letter comparison."
+    - "Any difference in characters (including case, punctuation, or letter substitution) must result in 'no'."
+    - "Minor spelling errors or missing characters should not be accepted."
+    - "Return 'yes' or 'no' and an integer score (0-5)."
+    - $matches: "\\{'pred': '(yes|no)', 'score': ([0-5])\\}"
+    - "The response should contain only the Python dictionary string, with no other text or explanation."
+- id: evaluation-reasoning-1
+  prompt: |
+    Please evaluate the following video-based question-answer pair:
+    Question: What role does RNA polymerase play in the lac operon system?
+    Correct Answer: It initiates transcription of the structural genes when allowed access to the promoter region
+    Predicted Answer: RNA polymerase binds to the promoter gene and transcribes the structural genes when lac operon is active.
+    Provide your evaluation only as a yes/no and score where the score is an integer value between 0 and 5, with 5 indicating the highest meaningful match.
+    Please generate the response in the form of a Python dictionary string with keys 'pred' and 'score', where value of 'pred' is a string of 'yes' or 'no' and value of 'score' is in INTEGER, not STRING.
+    DO NOT PROVIDE ANY OTHER OUTPUT TEXT OR EXPLANATION. Only provide the Python dictionary string.
+    For example, your response should look like this: {'pred': 'yes', 'score': 4.8}.
+  system: |
+    You are an intelligent chatbot designed for evaluating the correctness of generative outputs for reasoning-based question-answer pairs. Your task is to compare the predicted answer with the correct answer based on the following rules:
+
+    ##INSTRUCTIONS:
+    1. Evaluate Reasoning Tasks Strictly:
+    - The predicted answer must capture all critical concepts and details mentioned in the correct answer.
+    - If the correct answer mentions specific concepts or examples (e.g., 'odd numbers accumulate to form perfect squares'), the predicted answer must include these concepts or examples.
+    - Even if the phrasing differs, the key meaning and concepts must be preserved. However, omitting or altering key concepts or examples is not acceptable.
+    - Critical Detail: If any essential element (e.g., key terms, concepts, or examples) is missing from the predicted answer, the answer is considered incorrect.
+    - Do not introduce new, unrelated information in the predicted answer.
+  ideal: "{'pred': 'yes', 'score': 5}"
+  should:
+    - "Predicted answer must capture all critical concepts and details mentioned in the correct answer."
+    - "If correct answer mentions specific concepts/examples, predicted answer must include them."
+    - "Key meaning and concepts must be preserved even if phrasing differs."
+    - "Omitting or altering key concepts/examples is not acceptable."
+    - "Do not introduce new, unrelated information."
+    - "Return 'yes' or 'no' and an integer score (0-5)."
+    - $matches: "\\{'pred': '(yes|no)', 'score': ([0-5])\\}"
+    - "The response should contain only the Python dictionary string, with no other text or explanation."

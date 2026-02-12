@@ -1,0 +1,255 @@
+title: "LLM-SRBench: A New Benchmark for Scientific Equation Discovery with Large Language Models"
+description: |
+  LLM-SRBench is a comprehensive benchmark designed to rigorously evaluate the capabilities of Large Language Models (LLMs) in scientific equation discovery. It addresses the limitations of existing benchmarks by constructing problem sets that avoid trivial memorization, leveraging scientific priors embedded in LLMs, and simulating conditions akin to genuine scientific discovery.
+
+  The benchmark is structured around two main categories:
+
+  1.  **LSR-Transform**: This category comprises 111 problems derived from transforming common physical models (like Feynman equations) into less common mathematical representations. This tests LLMs' reasoning beyond memorized forms and their ability to handle unfamiliar instantiations of familiar problems.
+  2.  **LSR-Synth**: This category introduces 128 synthetic, discovery-driven problems across four scientific domains (chemistry, biology, physics, material science). These problems combine known scientific terms with novel synthetic terms, requiring LLMs to perform data-driven reasoning and demonstrate discovery capabilities in unobserved contexts.
+
+  The overall task for LLMs is to derive a hypothesis (mathematical equation/law) from a given task dataset and scientific context, ensuring high precision and scientific plausibility. This process involves iterative hypothesis generation and refinement, where LLMs leverage both scientific knowledge and empirical data.
+
+  Source paper: LLM-SRBench: A New Benchmark for Scientific Equation Discovery with Large Language Models.
+author:
+  name: "Parshin Shojaee, Ngoc-Hieu Nguyen, Kazem Meidani, Amir Barati Farimani, Khoa D Doan, Chandan K Reddy"
+references:
+  - title: "LLM-SRBench: A New Benchmark for Scientific Equation Discovery with Large Language Models"
+    url: "https://arxiv.org/abs/2504.10415"
+tags:
+  - reasoning
+  - math
+  - code
+  - scientific discovery
+  - symbolic regression
+  - equation discovery
+  - LLM evaluation
+  - physics
+  - chemistry
+  - biology
+  - material science
+models:
+  - CORE
+---
+- id: "LSR-Transform-1"
+  prompt: "Find a mathematical expression that represents the total energy (E) of a harmonic oscillator system, given data on the mass of the object (m), the angular frequency of the system (w), the natural angular frequency of the system (wo), and the displacement from the equilibrium position (x). The target variable is m.\nOriginal Equation: E = (1/4) * m * (\u03c9\u00b2 + \u03c9\u2080\u00b2) * x\u00b2\nTransformed Equation (target m): m = 4E / ((\u03c9\u00b2 + \u03c9\u2080\u00b2) * x\u00b2)"
+  ideal: "m = 4E / ((\u03c9\u00b2 + \u03c9\u2080\u00b2) * x\u00b2)"
+  should:
+    - "Response is mathematically equivalent to the ideal response"
+    - "Response demonstrates data fidelity (Acc, NMSE)"
+    - "Response is scientifically plausible"
+- id: "LSR-Transform-2"
+  prompt: "Find a mathematical expression that represents the total energy (E) of a harmonic oscillator system, given data on the mass of the object (m), the angular frequency of the system (w), the natural angular frequency of the system (wo), and the displacement from the equilibrium position (x). The target variable is \u03c9.\nOriginal Equation: E = (1/4) * m * (\u03c9\u00b2 + \u03c9\u2080\u00b2) * x\u00b2\nTransformed Equation (target \u03c9): \u03c9 = sqrt(4E / (m * x\u00b2) - \u03c9\u2080\u00b2)"
+  ideal: "\u03c9 = sqrt(4E / (m * x\u00b2) - \u03c9\u2080\u00b2)"
+  should:
+    - "Response is mathematically equivalent to the ideal response"
+    - "Response demonstrates data fidelity (Acc, NMSE)"
+    - "Response is scientifically plausible"
+- id: "LSR-Transform-3"
+  prompt: "Find a mathematical expression that represents the electric potential (Ve) at a point in space due to an electric dipole, given data on the dipole moment (pa), the angle between the dipole axis and the radius vector to the point (\u03b8), the distance from the dipole to the point (r), and the permittivity of free space (\u03b5). The target variable is pa.\nOriginal Equation: Ve = (1 / (4\u03c0\u03b5)) * (pa * cos(\u03b8) / r\u00b2)\nTransformed Equation (target pa): pa = (4\u03c0\u03b5 * Ve * r\u00b2) / cos(\u03b8)"
+  ideal: "pa = (4\u03c0\u03b5 * Ve * r\u00b2) / cos(\u03b8)"
+  should:
+    - "Response is mathematically equivalent to the ideal response"
+    - "Response demonstrates data fidelity (Acc, NMSE)"
+    - "Response is scientifically plausible"
+- id: "LSR-Transform-4"
+  prompt: "Find a mathematical expression that represents the electric potential (Ve) at a point in space due to an electric dipole, given data on the dipole moment (pa), the angle between the dipole axis and the radius vector to the point (\u03b8), the distance from the dipole to the point (r), and the permittivity of free space (\u03b5). The target variable is r.\nOriginal Equation: Ve = (1 / (4\u03c0\u03b5)) * (pa * cos(\u03b8) / r\u00b2)\nTransformed Equation (target r): r = sqrt(pa * cos(\u03b8) / (4\u03c0\u03b5 * Ve))"
+  ideal: "r = sqrt(pa * cos(\u03b8) / (4\u03c0\u03b5 * Ve))"
+  should:
+    - "Response is mathematically equivalent to the ideal response"
+    - "Response demonstrates data fidelity (Acc, NMSE)"
+    - "Response is scientifically plausible"
+- id: "LSR-Transform-5"
+  prompt: "Find a mathematical expression that represents the electric potential (Ve) at a point in space due to an electric dipole, given data on the dipole moment (pa), the angle between the dipole axis and the radius vector to the point (\u03b8), the distance from the dipole to the point (r), and the permittivity of free space (\u03b5). The target variable is \u03b8.\nOriginal Equation: Ve = (1 / (4\u03c0\u03b5)) * (pa * cos(\u03b8) / r\u00b2)\nTransformed Equation (target \u03b8): \u03b8 = arccos((4\u03c0\u03b5 * Ve * r\u00b2) / pa)"
+  ideal: "\u03b8 = arccos((4\u03c0\u03b5 * Ve * r\u00b2) / pa)"
+  should:
+    - "Response is mathematically equivalent to the ideal response"
+    - "Response demonstrates data fidelity (Acc, NMSE)"
+    - "Response is scientifically plausible"
+- id: "LSR-Transform-6"
+  prompt: "Find a mathematical expression that represents the current (I) in a semiconductor diode, given data on the saturation current (I\u2080), the elementary charge (q), the voltage across the diode (V), Boltzmann's constant (k_b), and the absolute temperature (T). The target variable is V.\nOriginal Equation: I = I\u2080 * (exp(qV / (k_b T)) - 1)\nTransformed Equation (target V): V = (k_b T / q) * ln(I/I\u2080 + 1)"
+  ideal: "V = (k_b T / q) * ln(I/I\u2080 + 1)"
+  should:
+    - "Response is mathematically equivalent to the ideal response"
+    - "Response demonstrates data fidelity (Acc, NMSE)"
+    - "Response is scientifically plausible"
+- id: "LSR-Transform-7"
+  prompt: "Find a mathematical expression that represents the current (I) in a semiconductor diode, given data on the saturation current (I\u2080), the elementary charge (q), the voltage across the diode (V), Boltzmann's constant (k_b), and the absolute temperature (T). The target variable is T.\nOriginal Equation: I = I\u2080 * (exp(qV / (k_b T)) - 1)\nTransformed Equation (target T): T = (qV) / (k_b * ln(I/I\u2080 + 1))"
+  ideal: "T = (qV) / (k_b * ln(I/I\u2080 + 1))"
+  should:
+    - "Response is mathematically equivalent to the ideal response"
+    - "Response demonstrates data fidelity (Acc, NMSE)"
+    - "Response is scientifically plausible"
+- id: "LSR-Synth-CKR1"
+  prompt: "Discover the mathematical equation that describes the rate of change of concentration (dA/dt) based on given input variables: concentration (A(t)) and time (t). The problem is in the field of chemistry, reaction kinetics. Data samples are provided.\nKnown terms in this domain might include first-order (-kA) and second-order kinetics (-kA\u00b2). Synthetic terms may be present, requiring data-driven reasoning."
+  ideal: "-kA(t)\u00b2 + kzA(t)\u00b2/(\u03b2A(t)\u2074 + 1)"
+  should:
+    - "Response is mathematically equivalent to the ideal response"
+    - "Response demonstrates data fidelity (Acc, NMSE)"
+    - "Response is scientifically plausible"
+    - "Response demonstrates novelty of discovered terms"
+- id: "LSR-Synth-CKR2"
+  prompt: "Discover the mathematical equation that describes the rate of change of concentration (dA/dt) based on given input variables: concentration (A(t)) and time (t). The problem is in the field of chemistry, reaction kinetics. Data samples are provided.\nKnown terms in this domain might include first-order (-kA) and second-order kinetics (-kA\u00b2). Synthetic terms may be present, requiring data-driven reasoning."
+  ideal: "-kA(t)\u00b2 - kA(t) + kw cos(log(A(t) + 1))"
+  should:
+    - "Response is mathematically equivalent to the ideal response"
+    - "Response demonstrates data fidelity (Acc, NMSE)"
+    - "Response is scientifically plausible"
+    - "Response demonstrates novelty of discovered terms"
+- id: "LSR-Synth-CKR3"
+  prompt: "Discover the mathematical equation that describes the rate of change of concentration (dA/dt) based on given input variables: concentration (A(t)) and time (t). The problem is in the field of chemistry, reaction kinetics. Data samples are provided.\nKnown terms in this domain might include first-order (-kA) and second-order kinetics (-kA\u00b2). Synthetic terms may be present, requiring data-driven reasoning."
+  ideal: "-kA(t) + kw cos(log(A(t) + 1))"
+  should:
+    - "Response is mathematically equivalent to the ideal response"
+    - "Response demonstrates data fidelity (Acc, NMSE)"
+    - "Response is scientifically plausible"
+    - "Response demonstrates novelty of discovered terms"
+- id: "LSR-Synth-CKR4"
+  prompt: "Discover the mathematical equation that describes the rate of change of concentration (dA/dt) based on given input variables: concentration (A(t)) and time (t). The problem is in the field of chemistry, reaction kinetics. Data samples are provided.\nKnown terms in this domain might include first-order (-kA) and second-order kinetics (-kA\u00b2). Synthetic terms may be present, requiring data-driven reasoning."
+  ideal: "-kA(t)\u00b2 - kA(t) exp(-kst) + kw cos(log(A(t) + 1))"
+  should:
+    - "Response is mathematically equivalent to the ideal response"
+    - "Response demonstrates data fidelity (Acc, NMSE)"
+    - "Response is scientifically plausible"
+    - "Response demonstrates novelty of discovered terms"
+- id: "LSR-Synth-CKR5"
+  prompt: "Discover the mathematical equation that describes the rate of change of concentration (dA/dt) based on given input variables: concentration (A(t)) and time (t). The problem is in the field of chemistry, reaction kinetics. Data samples are provided.\nKnown terms in this domain might include first-order (-kA) and second-order kinetics (-kA\u00b2). Synthetic terms may be present, requiring data-driven reasoning."
+  ideal: "-kA(t)\u00b2 + kqA(t) log(\u03b3t + 1)"
+  should:
+    - "Response is mathematically equivalent to the ideal response"
+    - "Response demonstrates data fidelity (Acc, NMSE)"
+    - "Response is scientifically plausible"
+    - "Response demonstrates novelty of discovered terms"
+- id: "LSR-Synth-BPG1"
+  prompt: "Discover the mathematical equation that describes the growth rate of a population (dP/dt) based on given input variables: population size (P(t)) and time (t). The problem is in the field of biology, population dynamics. Data samples are provided.\nKnown terms in this domain might include logistic growth (rP(1-P/K)) or exponential growth (rP). Synthetic terms may be present, requiring data-driven reasoning."
+  ideal: "r(1 \u2013 P(t)/Ko)P(t) + rP(t)\u2070.\u00b3\u00b3"
+  should:
+    - "Response is mathematically equivalent to the ideal response"
+    - "Response demonstrates data fidelity (Acc, NMSE)"
+    - "Response is scientifically plausible"
+    - "Response demonstrates novelty of discovered terms"
+- id: "LSR-Synth-BPG2"
+  prompt: "Discover the mathematical equation that describes the growth rate of a population (dP/dt) based on given input variables: population size (P(t)) and time (t). The problem is in the field of biology, population dynamics. Data samples are provided.\nKnown terms in this domain might include logistic growth (rP(1-P/K)) or exponential growth (rP). Synthetic terms may be present, requiring data-driven reasoning."
+  ideal: "rP(t) exp(-\u03b3t) + rP(t)\u00b2/(\u03b1P(t) + 1)"
+  should:
+    - "Response is mathematically equivalent to the ideal response"
+    - "Response demonstrates data fidelity (Acc, NMSE)"
+    - "Response is scientifically plausible"
+    - "Response demonstrates novelty of discovered terms"
+- id: "LSR-Synth-BPG3"
+  prompt: "Discover the mathematical equation that describes the growth rate of a population (dP/dt) based on given input variables: population size (P(t)) and time (t). The problem is in the field of biology, population dynamics. Data samples are provided.\nKnown terms in this domain might include logistic growth (rP(1-P/K)) or exponential growth (rP). Synthetic terms may be present, requiring data-driven reasoning."
+  ideal: "\u03b2P(t) sin(\u03c9t) + rP(t) exp(-\u03b3t)"
+  should:
+    - "Response is mathematically equivalent to the ideal response"
+    - "Response demonstrates data fidelity (Acc, NMSE)"
+    - "Response is scientifically plausible"
+    - "Response demonstrates novelty of discovered terms"
+- id: "LSR-Synth-BPG4"
+  prompt: "Discover the mathematical equation that describes the growth rate of a population (dP/dt) based on given input variables: population size (P(t)) and time (t). The problem is in the field of biology, population dynamics. Data samples are provided.\nKnown terms in this domain might include logistic growth (rP(1-P/K)) or exponential growth (rP). Synthetic terms may be present, requiring data-driven reasoning."
+  ideal: "r(\u22121 + P(t)/a)(1 \u2013 P(t)/K\u2080)P(t) + r(1 \u2212 exp(-\u03b3P(t)))P(t)"
+  should:
+    - "Response is mathematically equivalent to the ideal response"
+    - "Response demonstrates data fidelity (Acc, NMSE)"
+    - "Response is scientifically plausible"
+    - "Response demonstrates novelty of discovered terms"
+- id: "LSR-Synth-PO1"
+  prompt: "Discover the mathematical equation that describes the acceleration (a) of a damped harmonic oscillator based on given input variables: position (x(t)), velocity (v(t)), and time (t). The problem is in the field of physics, damped harmonic oscillators. Data samples are provided.\nKnown terms in this domain might include Hooke's law (-kx) or damping force (-bv). Synthetic terms may be present, requiring data-driven reasoning."
+  ideal: "F\u2080 sin(t) \u2013 \u03b2sin(v(t)) \u2013 \u03c9\u2080\u00b2x(t)\u00b3 \u2013 \u03c9\u2080\u00b2x(t) exp(-|x(t)|)"
+  should:
+    - "Response is mathematically equivalent to the ideal response"
+    - "Response demonstrates data fidelity (Acc, NMSE)"
+    - "Response is scientifically plausible"
+    - "Response demonstrates novelty of discovered terms"
+- id: "LSR-Synth-PO2"
+  prompt: "Discover the mathematical equation that describes the acceleration (a) of a damped harmonic oscillator based on given input variables: position (x(t)), velocity (v(t)), and time (t). The problem is in the field of physics, damped harmonic oscillators. Data samples are provided.\nKnown terms in this domain might include Hooke's law (-kx) or damping force (-bv). Synthetic terms may be present, requiring data-driven reasoning."
+  ideal: "F\u2080 sin(t) \u2013 \u03c9\u2080\u00b2x(t) \u2013 \u03c9\u2080\u00b2x(t) exp(-|x(t)|)"
+  should:
+    - "Response is mathematically equivalent to the ideal response"
+    - "Response demonstrates data fidelity (Acc, NMSE)"
+    - "Response is scientifically plausible"
+    - "Response demonstrates novelty of discovered terms"
+- id: "LSR-Synth-PO3"
+  prompt: "Discover the mathematical equation that describes the acceleration (a) of a damped harmonic oscillator based on given input variables: position (x(t)), velocity (v(t)), and time (t). The problem is in the field of physics, damped harmonic oscillators. Data samples are provided.\nKnown terms in this domain might include Hooke's law (-kx) or damping force (-bv). Synthetic terms may be present, requiring data-driven reasoning."
+  ideal: "-\u03b1v(t)\u00b3 \u2013 \u03bc(1 \u2212 x(t)\u00b2)v(t) \u2013 \u03c9\u2080\u00b2x(t) \u2013 \u03c9\u2080\u00b2x(t) exp(-|x(t)|)"
+  should:
+    - "Response is mathematically equivalent to the ideal response"
+    - "Response demonstrates data fidelity (Acc, NMSE)"
+    - "Response is scientifically plausible"
+    - "Response demonstrates novelty of discovered terms"
+- id: "LSR-Synth-PO4"
+  prompt: "Discover the mathematical equation that describes the acceleration (a) of a damped harmonic oscillator based on given input variables: position (x(t)), velocity (v(t)), and time (t). The problem is in the field of physics, damped harmonic oscillators. Data samples are provided.\nKnown terms in this domain might include Hooke's law (-kx) or damping force (-bv). Synthetic terms may be present, requiring data-driven reasoning."
+  ideal: "F\u2080 sin(t) - \u03b2sin(v(t)) \u2013 2\u03b2v(t)"
+  should:
+    - "Response is mathematically equivalent to the ideal response"
+    - "Response demonstrates data fidelity (Acc, NMSE)"
+    - "Response is scientifically plausible"
+    - "Response demonstrates novelty of discovered terms"
+- id: "LSR-Synth-MatSci1"
+  prompt: "Discover the mathematical equation that describes the stress (\u03c3) based on given input variables: strain (\u03b5) and temperature (T). The problem is in the field of material science, stress-strain relationships. Data samples are provided.\nKnown terms in this domain might include Young's modulus (E\u03b5) or thermal expansion (\u03b1\u0394T). Synthetic terms may be present, requiring data-driven reasoning."
+  ideal: "E\u2080\u03b5(-\u03b1\u03c4(T \u2013 T\u2080) + 1) \u2013 \u03b2(T \u2013 T\u2080) + \u03b5\u1d39\u03b7(T \u2013 T\u2080)"
+  should:
+    - "Response is mathematically equivalent to the ideal response"
+    - "Response demonstrates data fidelity (Acc, NMSE)"
+    - "Response is scientifically plausible"
+    - "Response demonstrates novelty of discovered terms"
+- id: "LSR-Synth-MatSci2"
+  prompt: "Discover the mathematical equation that describes the stress (\u03c3) based on given input variables: strain (\u03b5) and temperature (T). The problem is in the field of material science, stress-strain relationships. Data samples are provided.\nKnown terms in this domain might include Young's modulus (E\u03b5) or thermal expansion (\u03b1\u0394T). Synthetic terms may be present, requiring data-driven reasoning."
+  ideal: "H\u03b5\u00b3 + K\u03b5\u1d3a exp(-Q/(RT)) + \u03b5\u03b7 sin(T \u2013 T\u2080)"
+  should:
+    - "Response is mathematically equivalent to the ideal response"
+    - "Response demonstrates data fidelity (Acc, NMSE)"
+    - "Response is scientifically plausible"
+    - "Response demonstrates novelty of discovered terms"
+- id: "LSR-Synth-MatSci3"
+  prompt: "Discover the mathematical equation that describes the stress (\u03c3) based on given input variables: strain (\u03b5) and temperature (T). The problem is in the field of material science, stress-strain relationships. Data samples are provided.\nKnown terms in this domain might include Young's modulus (E\u03b5) or thermal expansion (\u03b1\u0394T). Synthetic terms may be present, requiring data-driven reasoning."
+  ideal: "H\u03b5\u00b3 + \u03b7(T \u2013 T\u2080) exp(-\u03b5)"
+  should:
+    - "Response is mathematically equivalent to the ideal response"
+    - "Response demonstrates data fidelity (Acc, NMSE)"
+    - "Response is scientifically plausible"
+    - "Response demonstrates novelty of discovered terms"
+- id: "LSR-Synth-MatSci4"
+  prompt: "Discover the mathematical equation that describes the stress (\u03c3) based on given input variables: strain (\u03b5) and temperature (T). The problem is in the field of material science, stress-strain relationships. Data samples are provided.\nKnown terms in this domain might include Young's modulus (E\u03b5) or thermal expansion (\u03b1\u0394T). Synthetic terms may be present, requiring data-driven reasoning."
+  ideal: "H\u03b5\u00b3 + K\u03b5\u1d3a exp(-Q/(RT)) + \u03b5\u00b3\u03b7(T \u2013 T\u2080)"
+  should:
+    - "Response is mathematically equivalent to the ideal response"
+    - "Response demonstrates data fidelity (Acc, NMSE)"
+    - "Response is scientifically plausible"
+    - "Response demonstrates novelty of discovered terms"
+- id: "GPT-40-Symbolic-Eval-1"
+  prompt: "Given the ground truth mathematical expression A and the hypothesis B, determine if there exist any constant parameter values that would make the hypothesis equivalent to the given ground truth expression.\nLet's think step by step. Explain your reasoning and then provide the final answer as:\n{ \"reasoning\": \"Brief step-by-step analysis\", \"answer\": \"Yes/No\" }\n(A): 'sqrt(q1/(Ef*epsilon))/(2*sqrt(pi))'\n(B): Hypothesis as Program\ndef equation (Ef, q1, epsilon, params):\nEf_Epsilon = np.maximum (Ef* epsilon, 1e-10)\ndenominator = 4* np.pi * Ef_Epsilon * params [0]\nintermediate_result = q1 / denominator\nradius_length = np.sqrt(params [1] * intermediate_result)\nreturn params [2] * radius_length"
+  ideal: "Yes"
+  should:
+    - "Correctly identify mathematical equivalence"
+    - "Provide clear step-by-step reasoning"
+- id: "GPT-40-Symbolic-Eval-2"
+  prompt: "Given the ground truth mathematical expression A and the hypothesis B, determine if there exist any constant parameter values that would make the hypothesis equivalent to the given ground truth expression.\nLet's think step by step. Explain your reasoning and then provide the final answer as:\n{ \"reasoning\": \"Brief step-by-step analysis\", \"answer\": \"Yes/No\" }\n(A): 'sqrt(4*E/m - omega^2 *x^2)/x'\n(B): Hypothesis as Expression\n- C1 * sqrt(4*E/m)/x\n- C2 * omega\n+ C3 * omega * sqrt(4*E/m)/x"
+  ideal: "No"
+  should:
+    - "Correctly identify mathematical equivalence"
+    - "Provide clear step-by-step reasoning"
+- id: "LLM-SR-Code-Template-1"
+  prompt: "Complete the 'equation' function below, considering the physical meaning and relationships of inputs.\n```python\nimport numpy as np\n#Initialize parameters\nMAX_NPARAMS = 10\nparams = [1.0] * MAX_NPARAMS\ndef evaluate (data: dict) -> float:\n    \"\"\" Evaluate the equation on data observations.\"\"\"\n### Function Examples\ndef equation_v0 (INPUT_VAR[0], ..., INPUT_VAR[N], params):\n    \"\"\" Mathematical function for {OUTPUT_VAR_DESC}\n    Args:\n        INPUT_VAR[0]: A numpy array representing observations of {INPUT_VAR_DESC[0]}.\n        ...\n        INPUT_VAR[N]: A numpy array representing observations of {INPUT_VAR_DESC[N]}.\n        params: Array of numeric constants or parameters to be optimized\n    Return:\n        A numpy array representing {OUTPUT_VAR_DES} as the result of applying the mathematical function to the inputs.\n    \"\"\"\n    # Equation example 1 logic as function body\ndef equation_v1 (INPUT_VAR[0], ..., INPUT_VAR[N], params):\n    # Equation example 2\n### Function to be completed\n```"
+  system: "You are a helpful assistant tasked with discovering mathematical function structures for scientific systems. Complete the 'equation' function below, considering the physical meaning and relationships of inputs."
+  should:
+    - "Generated code is syntactically correct Python"
+    - "Generated code implements the correct mathematical function"
+    - "Generated code is scientifically plausible"
+    - "Generated code fits the provided data"
+- id: "LaSR-LLMINIT-1"
+  prompt: "<User prompt>\nSuggestion 1: {{assump1}}\nSuggestion 2: {{assump2}}\nSuggestion 3: {{assump3}}\nPropose {{N}} expressions that would be appropriate given the suggestions. Provide short commentary for each of your decisions. End with a JSON list that enumerates the proposed expressions following this format:\n```json\n[\"expr1\", \"expr2\", ..., \"expr{{N}}\"]\n```"
+  system: "You are a helpful assistant that proposes a mathematical expression by following three provided suggestions. An expression must consist of the following variables: {{variables}}. All constants will be represented with the symbol C. Each expression will only use these operators: {{operators}}."
+  should:
+    - "Generated expressions are mathematically valid"
+    - "Generated expressions use specified variables and operators"
+    - "Generated expressions align with suggestions"
+    - "Short commentary is provided"
+- id: "SGA-Task-Prompt-1"
+  prompt: "### Context\nThe objective is to construct a mathematical expression that accurately maps input variables to a target output based on a provided dataset. The task involves filling in a code block to define a symbolic expression or model that minimizes the difference between predicted and ground-truth outputs. The code block defines a class with two functions: one for parameters within the expression and another for generating or modifying the symbolic structure of the expression. Feedback is provided in the form of metrics measuring the error between the model's predictions and the ground-truth values, as well as guidance on structural improvements to the symbolic expression.\nThe expression represents {OUTPUT_VAR_DESC}, given data on {INPUTS_DESC}.\n### Code Requirements\n1. The only library allowed is PyTorch. Follow the format provided by the user examples.\n2. Annotate the size of the tensor as comment after each tensor operation. For example, % (B, 3, 3).\n3. Separate the code into parameters that can be tuned with differentiable optimization and the symbolic expression represented by PyTorch code. Define them respectively in the\n5. The proposed code must strictly follow the structure and function signatures below:\n```python\nimport torch\nimport torch.nn as nn\nclass SymbolicEquation (nn.Module):\n    def __init__ (self, {$PARAM_INPUTS}):\n        \"\"\"\n        Define trainable continuous parameters for differentiable optimization.\n        Tentatively initialize the parameters with the default values in args.\n        Args:\n            {$PARAM_DESCRIPTION}\n        \"\"\"\n        super().__init__()\n        {$PARAM_INIT}\n    def forward(self, {$INPUT_VARIABLES}) -> torch.Tensor:\n        {$FORWARD_FUNCTION_DESCRIPTION$}\n```\n### Solution Requirements\n1. Analyze step-by-step what the potential problem is in the previous iterations based on the feedback. Think about why the results from previous iterations mismatched with the ground truth. Do not give advice about how to optimize. Focus on the formulation of the scientific equation. Start this section with \"### Analysis\". Analyze all iterations individually, and start the subsection for each iteration with \"#### Iteration N\", where N stands for the index. Remember to analyze every iteration in the history.\n2. Think step-by-step what you need to do in this iteration. Think about what is needed to improve performance. If the analysis suggests specific functional forms or constraints, think about how these will be incorporated into the symbolic equation. Think about how to separate your algorithm into a continuous parameter part and a symbolic expression model part. Describe your plan in pseudo-code, written out in great detail. Remember to update the default values of the trainable parameters based on previous optimizations. Start this section with \"### Step-by-Step Plan\".\n3. Output the code in a single code block \"```python ... ```\" with detailed comments in the code block. Do not add any trailing comments before or after the code block. Start this section with \"### Code\"."
+  system: "You are an intelligent AI assistant for coding and scientific equation discovery. You are tasked with discovering mathematical function structures for scientific systems. Follow the user's requirements carefully and make sure you understand them. Keep your answers short and to the point. Do not provide any information that is not requested. Always document your code as comments to explain the reason behind them. Use Markdown to format your solution. You are very familiar with Python and PyTorch. Do not use any external libraries other than the libraries used in the examples."
+  should:
+    - "Generated code is syntactically correct PyTorch"
+    - "Generated code implements the correct mathematical function"
+    - "Generated code is scientifically plausible"
+    - "Generated code fits the provided data"
+    - "Reasoning and plan are provided as requested"
+    - "Code follows formatting requirements"

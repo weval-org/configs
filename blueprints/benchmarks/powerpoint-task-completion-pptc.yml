@@ -1,0 +1,79 @@
+title: "PPTC Benchmark: Evaluating Large Language Models for PowerPoint Task Completion"
+description: |
+  The PowerPoint Task Completion (PPTC) benchmark evaluates Large Language Models (LLMs) on their ability to create and edit PowerPoint (PPT) files based on user instructions. It features 279 multi-turn dialogue sessions with varying difficulty, involving hundreds of multi-modal operations. The core methodology involves providing the LLM with the current instruction, previous instructions (dialogue history), PPT file content (transformed into text by a 'PPT reader' function), and an API reference file. The LLM then generates an API sequence, which is executed by an API executor to produce a 'prediction PPT file'.
+
+  Evaluation is based on the final status of this prediction file, using the PPTX-Match Evaluation System. This system extracts all attributes (text, style, position) from both the prediction and a label output file, checking if objects' positions conform to label relations and if attribute content matches. An LLM successfully completes a turn if all attributes of the generated file pass these tests, allowing for various correct API sequences. Turn-based accuracy is calculated as the ratio of correctly completed turns to the total number of turns. Session-based accuracy is the ratio of correctly completed sessions to the overall session count.
+
+  Source: PPTC Benchmark: Evaluating Large Language Models for PowerPoint Task Completion (arXiv:2311.01767)
+author:
+  name: Yiduo Guo, Zekai Zhang, Yaobo Liang, Dongyan Zhao, Nan Duan
+references:
+  - title: "PPTC Benchmark: Evaluating Large Language Models for PowerPoint Task Completion"
+    url: https://arxiv.org/abs/2311.01767
+tags:
+  - code-execution
+  - multi-turn dialogue
+  - multi-modal
+  - PowerPoint
+  - API-use
+  - tool-use
+  - instruction following
+  - text generation
+  - positional reasoning
+  - document editing
+models:
+  - CORE
+system: |
+  You are an AI assistant to help the user to operate PowerPoint and edit the contents. Give you the user instruction:<Current user instruction>, you can complete it based on the following APIs and PPT file content. Current you are at page <Page id>. Please finish the user instruction with the functions you have. Don't generate instructions beyond what the user has instructed. Don't guess what the user may instruct in the next step and generete API for them. Don't use python loop to call API. You can only call API once in one line. If the user does not specify the page to be modified, you can directly start using the APIs without having to navigate to other pages. You need to generate code which can finish the user instruction. The multiple lines of code should be surrounded by <code> and </code> such as: <code> API(); API(); </code> For example, if the user instruction is "create a slide", then the answer should be: <code> create_slide(); </code>
+---
+- id: fig1-q1
+  prompt: "Please create a new slide with title \"IT Company\""
+  ideal: "OK, here is the API sequence: create_slide(); choose_title(); insert_text(\"IT Company\");"
+  should:
+    - "LLM correctly generates API sequence to create a slide and set its title."
+    - "Generated API sequence executes successfully."
+    - "Resulting PPT file contains a new slide with the title 'IT Company'."
+    - "All attributes of the file pass tests (PPTX-Match Evaluation System)."
+- id: fig1-q2
+  prompt: "Emm, it's better to set title size to 32. Also, I want a picture of Microsoft company logo with height and width all set to 5."
+  ideal: "OK, here is the API sequence: set_fone_size(32); insert_picture(\"Microsoft Company Logo\"); set_height(5);set_width(5);"
+  should:
+    - "LLM correctly generates API sequence to set title font size, insert a picture, and set its dimensions."
+    - "Generated API sequence executes successfully."
+    - "Resulting PPT file reflects title size 32 and a picture of Microsoft Company Logo with height 5 and width 5."
+    - "All attributes of the file pass tests (PPTX-Match Evaluation System)."
+- id: fig1-q3
+  prompt: "Create a table about Microsoft Annual Revenue with 2 rows and 3 columns. The first row is \"2020\", \"2021\", \"2022\". The second row is \"143B\", \"168B\", \"198B\"."
+  ideal: "OK, here is the API sequence: insert_table(2,3); insert_table_row([\"2020\", \"2021\", \"2022\"]); insert_table_row([\"143B\",\"168B\",\"198B\"]);"
+  should:
+    - "LLM correctly generates API sequence to create a table and insert specified row data."
+    - "Generated API sequence executes successfully."
+    - "Resulting PPT file contains a 2x3 table with the specified data."
+    - "All attributes of the file pass tests (PPTX-Match Evaluation System)."
+- id: fig2-q1
+  prompt: "Navigate to the slide with the months table and update the third row of first column as 'Set up a plan'. Below the table, add a caption: 'Annual plans for stopping marine pollution.' which matches font color in slide 9."
+  ideal: "move_to_slide(10); choose_table(); choose_table_cell(2, 0); delete_text(); insert_text(\"Set up a plan\"); insert_textbox(); set_top(8824); insert_text(\"Annual plans for stopping marine pollution.\"); set_font_color(\"yellow\");"
+  should:
+    - "LLM correctly generates API sequence to navigate to slide 10, select table, update cell (row 2, col 0) with 'Set up a plan'."
+    - "LLM correctly generates API sequence to add a textbox below the table with caption 'Annual plans for stopping marine pollution.' and set its font color to yellow."
+    - "Generated API sequence executes successfully."
+    - "Resulting PPT file reflects all specified changes including position and font color."
+    - "All attributes of the file pass tests (PPTX-Match Evaluation System)."
+- id: fig8-cs-q1
+  prompt: "Instruction: Increase the font size of the content to 20."
+  system: |
+    You are an Al assistant for PowerPoint. Your task is to determine what kind of content is necessary to fulfill the user's instruction. You have an API to extract the content, please call the get_content api with correct parameters to fulfill the user's instruction. You need to extract the minimum necessary information to fulfill user's instruction.
+    Get_content API: get_content(need_text: Indicates whether text information is required. The text infor- mation encompasses text in title, content, textbox, table, chart, and shape. This parameter is particularly useful when inserting or modifying text of title, content, textbox, table, chart, and shape, or when information about these objects is essential. need_style: Indicates whether style information is required. Style information includes attributes like font type, font size, color, background color, line space, bold, undeline, italic and other visual aspects of objects like rotation. This is useful when changing the appearance of text or objects or when information about an object's appearance is essential. need_position: Indicates whether position information is required. The position details encompass an object's height, width, and its left and top positions. This is crucial when moving objects or altering an object's size. need_title: Determines if information related to the title is required. need_content: Determines if information related to the content is required. need_picture: Determines if information related to the picture is required. need_table: Determines if information related to the table is required. need_chart: Determines if information related to the chart is required. need_textbox: Determines if information related to the textbox is required. need_shape: Determines if information related to the shapes (rectangle, right arrow, rounded rectangle, triangle, callout, cloud, star, circle) is required.) Where the parameters are either 1 (needed) or 0 (not needed). You should only answer with calling get_content() with the right parameters.
+  ideal: "get_content(need_text=1,need_style=1,need_position=0, need_title=0,need_content=1,need_picture=0,need_ table=0,need_chart=0,need_textbox=0,need_shape=0)"
+  should:
+    - "LLM correctly identifies that text and style information are needed for content."
+    - $matches: "get_content\\(need_text=1,need_style=1,need_position=0, need_title=0,need_content=1,need_picture=0,need_ table=0,need_chart=0,need_textbox=0,need_shape=0\\)"
+- id: fig8-cs-q2
+  prompt: "Instruction: Add a picture of a cat to the slide."
+  system: |
+    You are an Al assistant for PowerPoint. Your task is to determine what kind of content is necessary to fulfill the user's instruction. You have an API to extract the content, please call the get_content api with correct parameters to fulfill the user's instruction. You need to extract the minimum necessary information to fulfill user's instruction.
+    Get_content API: get_content(need_text: Indicates whether text information is required. The text infor- mation encompasses text in title, content, textbox, table, chart, and shape. This parameter is particularly useful when inserting or modifying text of title, content, textbox, table, chart, and shape, or when information about these objects is essential. need_style: Indicates whether style information is required. Style information includes attributes like font type, font size, color, background color, line space, bold, undeline, italic and other visual aspects of objects like rotation. This is useful when changing the appearance of text or objects or when information about an object's appearance is essential. need_position: Indicates whether position information is required. The position details encompass an object's height, width, and its left and top positions. This is crucial when moving objects or altering an object's size. need_title: Determines if information related to the title is required. need_content: Determines if information related to the content is required. need_picture: Determines if information related to the picture is required. need_table: Determines if information related to the table is required. need_chart: Determines if information related to the chart is required. need_textbox: Determines if information related to the textbox is required. need_shape: Determines if information related to the shapes (rectangle, right arrow, rounded rectangle, triangle, callout, cloud, star, circle) is required.) Where the parameters are either 1 (needed) or 0 (not needed). You should only answer with calling get_content() with the right parameters.
+  ideal: "get_content(need_text=0,need_style=0,need_position=0, need_title=0,need_content=0,need_picture=1,need_ table=0,need_chart=0,need_textbox=0,need_shape=0)"
+  should:
+    - "LLM correctly identifies that picture information is needed."
+    - $matches: "get_content\\(need_text=0,need_style=0,need_position=0, need_title=0,need_content=0,need_picture=1,need_ table=0,need_chart=0,need_textbox=0,need_shape=0\\)"

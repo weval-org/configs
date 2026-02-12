@@ -1,0 +1,197 @@
+title: "BOSS: Revisiting Out-of-distribution Robustness in NLP"
+description: |
+  BOSS is a comprehensive benchmark suite designed to rigorously evaluate the out-of-distribution (OOD) robustness of NLP models, including Pretrained Language Models (PLMs) and Large Language Models (LLMs). It addresses deficiencies in previous benchmarks, which often suffered from dataset similarity and limited distribution shift challenges.
+
+  BOSS comprises 5 essential NLP tasks (sentiment analysis, toxic detection, natural language inference, name entity recognition, and extractive question answering) across 20 datasets. The benchmark construction protocol ensures clear differentiation and challenging distribution shifts by selecting large, diverse in-distribution (ID) datasets and prioritizing OOD datasets with distinct distributions, low semantic similarity, and significant performance degradation.
+
+  This blueprint evaluates specific examples from the benchmark, focusing on the model's ability to provide the correct classification, entity extraction, or answer based on the given context and task instructions.
+
+  Source paper: [Revisiting Out-of-distribution Robustness in NLP: Benchmark, Analysis, and LLMs Evaluations](https://arxiv.org/abs/2306.04618)
+author:
+  name: Lifan Yuan, Yangyi Chen, Ganqu Cui, Hongcheng Gao, Fangyuan Zou, Xingyi Cheng, Heng Ji, Zhiyuan Liu, Maosong Sun
+references:
+  - title: "Revisiting Out-of-distribution Robustness in NLP: Benchmark, Analysis, and LLMs Evaluations"
+    url: https://arxiv.org/abs/2306.04618
+tags:
+  - robustness
+  - out-of-distribution
+  - nlp
+  - classification
+  - named entity recognition
+  - question answering
+  - natural language inference
+  - sentiment analysis
+  - toxic detection
+  - large language models
+models:
+  - CORE
+---
+# Prompts
+- id: sa-1
+  prompt: |
+    Text: This movie was absolutely fantastic, a real masterpiece! // Prediction:
+  system: |
+    ### Instruction ###
+    Solve the sentiment analysis task. Options for sentiment: negative, positive, neutral.
+    ### Format ###
+    Text: {{Text}} // Prediction: {{Prediction}}
+    ### Input ###
+    Text: {{input}} // Prediction:
+  ideal: "positive"
+  should:
+    - "The model's prediction for sentiment should match the ground truth (positive, negative, or neutral)."
+    - $icontains: "positive"
+- id: sa-2
+  prompt: |
+    Text: The customer service was incredibly slow and unhelpful. // Prediction:
+  system: |
+    ### Instruction ###
+    Solve the sentiment analysis task. Options for sentiment: negative, positive, neutral.
+    ### Format ###
+    Text: {{Text}} // Prediction: {{Prediction}}
+    ### Input ###
+    Text: {{input}} // Prediction:
+  ideal: "negative"
+  should:
+    - "The model's prediction for sentiment should match the ground truth (positive, negative, or neutral)."
+    - $icontains: "negative"
+- id: td-1
+  prompt: |
+    Text: You are an idiot for saying that. // Prediction:
+  system: |
+    ### Instruction ###
+    Solve the toxic detection task. Options for toxicity: benign, toxic.
+    ### Format ###
+    Text: {{Text}} // Prediction: {{Prediction}}
+    ### Input ###
+    Text: {{input}} // Prediction:
+  ideal: "toxic"
+  should:
+    - "The model's prediction for toxicity should match the ground truth (benign or toxic)."
+    - $icontains: "toxic"
+- id: td-2
+  prompt: |
+    Text: I hope you have a wonderful day! // Prediction:
+  system: |
+    ### Instruction ###
+    Solve the toxic detection task. Options for toxicity: benign, toxic.
+    ### Format ###
+    Text: {{Text}} // Prediction: {{Prediction}}
+    ### Input ###
+    Text: {{input}} // Prediction:
+  ideal: "benign"
+  should:
+    - "The model's prediction for toxicity should match the ground truth (benign or toxic)."
+    - $icontains: "benign"
+- id: nli-1
+  prompt: |
+    Premise: A person is riding a bicycle. // Hypothesis: A person is on a bike. // Prediction:
+  system: |
+    ### Instruction ###
+    Solve the NLI task. Options for entailment relationship: entailment, neutral, contradic-tion.
+    ### Format ###
+    Premise: {{Premise}} // Hypothesis: {{Hypothesis}} // Prediction: {{Prediction}}
+    ### Input ###
+    Premise: {{input_1}} // Hypothesis: {{input_2}} // Prediction:
+  ideal: "entailment"
+  should:
+    - "The model's prediction for the relationship between premise and hypothesis should match the ground truth (entailment, neutral, or contradiction)."
+    - $icontains: "entailment"
+- id: nli-2
+  prompt: |
+    Premise: A cat is sleeping on the mat. // Hypothesis: A dog is barking loudly. // Prediction:
+  system: |
+    ### Instruction ###
+    Solve the NLI task. Options for entailment relationship: entailment, neutral, contradic-tion.
+    ### Format ###
+    Premise: {{Premise}} // Hypothesis: {{Hypothesis}} // Prediction: {{Prediction}}
+    ### Input ###
+    Premise: {{input_1}} // Hypothesis: {{input_2}} // Prediction:
+  ideal: "neutral"
+  should:
+    - "The model's prediction for the relationship between premise and hypothesis should match the ground truth (entailment, neutral, or contradiction)."
+    - $icontains: "neutral"
+- id: nli-3
+  prompt: |
+    Premise: The man is eating an apple. // Hypothesis: The man is drinking water. // Prediction:
+  system: |
+    ### Instruction ###
+    Solve the NLI task. Options for entailment relationship: entailment, neutral, contradic-tion.
+    ### Format ###
+    Premise: {{Premise}} // Hypothesis: {{Hypothesis}} // Prediction: {{Prediction}}
+    ### Input ###
+    Premise: {{input_1}} // Hypothesis: {{input_2}} // Prediction:
+  ideal: "neutral"
+  should:
+    - "The model's prediction for the relationship between premise and hypothesis should match the ground truth (entailment, neutral, or contradiction)."
+    - $icontains: "neutral"
+- id: ner-1
+  prompt: |
+    Text: Barack Obama visited New York City to attend a UN conference. // Entity:
+  system: |
+    ### Instruction ###
+    Solve the NER task, identifying the Organization, Person, Location, Miscellaneous, Building, Art, Product, and Event entities from given text.
+    ### Format ###
+    Text: {{Text}} // Entity: Organization: None || Person: Word1 || Location: Word6, Word7 || Miscellaneous: None || Building: None || Art: Word 3 || Product: None || Event: None.
+    ### Input ###
+    Text: {{input}} // Entity:
+  ideal: "Organization: UN || Person: Barack Obama || Location: New York City || Miscellaneous: None || Building: None || Art: None || Product: None || Event: conference."
+  should:
+    - "The model should correctly identify and categorize all named entities (Organization, Person, Location, Miscellaneous, Building, Art, Product, Event) present in the text."
+    - $icontains: "Organization: UN"
+    - $icontains: "Person: Barack Obama"
+    - $icontains: "Location: New York City"
+    - $icontains: "Event: conference"
+    - $icontains: "Miscellaneous: None"
+    - $icontains: "Building: None"
+    - $icontains: "Art: None"
+    - $icontains: "Product: None"
+- id: ner-2
+  prompt: |
+    Text: The Eiffel Tower in Paris is a famous landmark. // Entity:
+  system: |
+    ### Instruction ###
+    Solve the NER task, identifying the Organization, Person, Location, Miscellaneous, Building, Art, Product, and Event entities from given text.
+    ### Format ###
+    Text: {{Text}} // Entity: Organization: None || Person: Word1 || Location: Word6, Word7 || Miscellaneous: None || Building: None || Art: Word 3 || Product: None || Event: None.
+    ### Input ###
+    Text: {{input}} // Entity:
+  ideal: "Organization: None || Person: None || Location: Paris || Miscellaneous: None || Building: Eiffel Tower || Art: None || Product: None || Event: None."
+  should:
+    - "The model should correctly identify and categorize all named entities (Organization, Person, Location, Miscellaneous, Building, Art, Product, Event) present in the text."
+    - $icontains: "Location: Paris"
+    - $icontains: "Building: Eiffel Tower"
+    - $icontains: "Organization: None"
+    - $icontains: "Person: None"
+    - $icontains: "Miscellaneous: None"
+    - $icontains: "Art: None"
+    - $icontains: "Product: None"
+    - $icontains: "Event: None"
+- id: eqa-1
+  prompt: |
+    Passage: The Amazon River is the second-longest river in the world, flowing through South America. It is home to a vast array of wildlife. // Question: What continent does the Amazon River flow through? // Answer:
+  system: |
+    ### Instruction ###
+    Solve the extractive question answering task. Refering to the passage below and extract answer for the question. The answer should be the shortest phrase as it can be.
+    ### Format ###
+    Passage: {{Passage}} // Question: {{Question}} // Answer: {{Answer}}.
+    ### Input ###
+    Passage: {{input_1}} // Question: {{input_2}} // Answer:
+  ideal: "South America"
+  should:
+    - "The model should extract the shortest correct answer span from the provided passage that directly answers the question."
+    - $icontains: "South America"
+- id: eqa-2
+  prompt: |
+    Passage: Photosynthesis is a process used by plants and other organisms to convert light energy into chemical energy that can later be released to fuel the organisms' activities. // Question: What process converts light energy into chemical energy? // Answer:
+  system: |
+    ### Instruction ###
+    Solve the extractive question answering task. Refering to the passage below and extract answer for the question. The answer should be the shortest phrase as it can be.
+    ### Format ###
+    Passage: {{Passage}} // Question: {{Question}} // Answer: {{Answer}}.
+    ### Input ###
+    Passage: {{input_1}} // Question: {{input_2}} // Answer:
+  ideal: "Photosynthesis"
+  should:
+    - "The model should extract the shortest correct answer span from the provided passage that directly answers the question."
+    - $icontains: "Photosynthesis"

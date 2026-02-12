@@ -1,0 +1,191 @@
+title: "Open-LLM-Leaderboard: From Multi-choice to Open-style Questions for LLMs Evaluation, Benchmark, and Arena"
+description: |
+  The Open-LLM-Leaderboard is an evaluation framework designed to assess Large Language Models (LLMs) using open-style questions, moving away from traditional multiple-choice questions (MCQ). This shift aims to fundamentally eliminate issues such as selection bias (LLMs favoring certain answer choice IDs) and random guessing, which can misrepresent a model's true capabilities, especially for smaller LLMs. The benchmark focuses on evaluating LLMs' ability to generate coherent, relevant, and contextually appropriate open-ended responses, offering deeper insights into their generative capabilities, understanding of context, and ability to engage with complex tasks.
+
+  The methodology involves a multi-stage filtering process to convert suitable MCQs into open-style questions and an automated GPT-4-based evaluation system to validate the correctness of LLM responses against human-annotated ground-truths. This approach provides debiased results and offers a faster, cheaper, and automatic evaluation compared to crowd-user-based leaderboards. Responses are evaluated for correctness by an LLM evaluator (specifically GPT-4-0125-preview) using a customized prompt, comparing the generated answer against the correct answer derived from the original MCQ ground truth. Evaluation is based *only* on factual accuracy, allowing for additional non-conflicting information and ignoring minor punctuation/phrasing differences.
+
+  Source: [Open-LLM-Leaderboard: From Multi-choice to Open-style Questions for LLMs Evaluation, Benchmark, and Arena](https://arxiv.org/abs/2406.07545)
+author:
+  name: "Aidar Myrzakhan, Sondos Mahmoud Bsharat, Zhiqiang Shen"
+  url: "https://arxiv.org/abs/2406.07545"
+references:
+  - title: "Open-LLM-Leaderboard: From Multi-choice to Open-style Questions for LLMs Evaluation, Benchmark, and Arena"
+    url: "https://arxiv.org/abs/2406.07545"
+tags:
+  - reasoning
+  - factuality
+  - commonsense
+  - reading_comprehension
+  - medical
+  - science
+  - bias_mitigation
+  - open_ended_generation
+models:
+  - CORE
+---
+- id: filter-coarse-1
+  prompt: |
+    """Your task is to review a series of multiple-choice questions and evaluate their ability to be answered without the provided answer choices. For questions that begin with an incomplete sentence (e.g., "During swallowing, ..."), use your knowledge to attempt to complete the sentence accurately. For direct questions that ask for specific information or identification (e.g., "Which of the following structures is part of the small intestine?"), assess whether the question is formulated clearly enough that an informed answer can be given without seeing the multiple-choice options. For mathematical or analytical questions (e.g., "Find all cosets of the subgroup 4Z of 2Z"), determine if the question provides enough context and information for a solution to be formulated without additional options. Please follow this format for your evaluation: QUESTION: [Insert the question here] VERDICT: Respond with "YES" if the question is clear and can be directly answered based on its content alone, or "NO" if it relies on the answer choices to be understood or answered. Your response should include only the verdict without any justification or reasoning."""
+  should:
+    - $matches: "^(YES|NO)$"
+    - "Response should not include any justification or reasoning"
+- id: filter-fine-grained-1
+  prompt: |
+    You will assign a numerical score from 1 to 10 based on how confidently it can be answered without the choices. The scoring criteria are as follows: 1: The question is entirely dependent on its choices for an answer, making it impossible to answer without them. Example: 'Which of the following statements is correct?' 10: The question can be easily and confidently answered based solely on the question stem, without any need to refer to the provided options. Example: 'What is the first law of thermodynamics in physics?' Intermediate Scores: 2-4: The question stem gives very little information and is highly reliant on the choices for context. Example: 'Which of these is a prime number?' 5: The question provides some context or information, that gives a moderate possibility to answer the question. Example: 'Which of the following best describes the structure that collects urine in the body?' 6: The question provides a good amount of context or information, that gives a moderate possibility to answer the question. Example: 'Statement 'State 1 | A factor group of a non-Abelian group is non-Abelian. Statement 2 | If K is a normal subgroup of H and H is a normal subgroup of G, then K is a normal subgroup of G.' 7: The question provides a good amount of context or information, that gives a high possibility to answer the question. Example: 'The element (4, 2) of Z_12 x Z_8 has order' 8-9: The question provides a good amount of context or information, that gives a high possibility to answer the question. Example: 'A "dished face" profile is often associated with' ONLY GIVE THE VALUE BETWEEN 1-10 AS YOUR ANSWER. DO NOT INCLUDE ANY OTHER INFORMATION IN YOUR RESPONSE Example Format: QUESTION: question here VERDICT: value in [1-10] here
+  should:
+    - $matches: "^(10|[1-9])$"
+    - "Response should not include any other information or justification"
+- id: evaluator-verification-1
+  prompt: |
+    """Evaluate the answer of a AI model to a question. You will be provided with the question, the AI model's answer, and the correct answer. Your task is to evaluate the AI model's response and determine whether it is Correct or Incorrect. Grade the AI model answers based ONLY on their factual accuracy. It is OK if the AI model answer contains more information than the true answer, as long as it does not contain any conflicting statements. Otherwise, it should be marked as Incorrect. Ignore differences in punctuation and phrasing between the AI model's answer and the true answer. Example Format: QUESTION: question here STUDENT ANSWER: student's answer here TRUE ANSWER: true answer here GRADE: Correct or Incorrect here Your response should include only the verdict without any justification or reasoning."""
+  should:
+    - $matches: "^(Correct|Incorrect)$"
+    - "Evaluation based ONLY on factual accuracy"
+    - "Extra information in student answer is acceptable if not conflicting"
+    - "Ignore punctuation and phrasing differences"
+    - "Response should not include any justification or reasoning"
+- id: mmlu-mcq-suitable-1
+  prompt: "Question that is suitable for open-style: Let x = 1. What is x < 3 in Python 3? Options: A. 1 B. 3 C. 8 D. 16 Answer: C"
+  ideal: "C"
+  should:
+    - $icontains: "C"
+- id: mmlu-mcq-unsuitable-1
+  prompt: "Question that is not suitable for open-style: Which of the following statements is true? Options: A. Every equivalence relation is a partial-ordering relation. B. Number of relations form A = x, y, z to B= (1, 2), is 64. C. Empty relation is reflexive D. Properties of a relation being symmetric and being un-symmetric are negative of each other. Answer: B"
+  ideal: "B"
+  should:
+    - $icontains: "B"
+- id: mmlu-mcq-incorrect-example-1
+  prompt: "Question that is correct for OSQ and incorrect for MCQ: How many CO2 and ATP molecules are formed during one complete turn of the tricarboxylic acid cycle (Krebs' cycle)? Options: A. 2CO2 and 2ATP B. 2CO2 and 16ATP C. 2CO2 and 12ATP D. 2CO2 and 1ATP Ground Truth: D"
+  ideal: "D"
+  should:
+    - $icontains: "D"
+- id: mmlu-osq-correct-example-1
+  prompt: "How many CO2 and ATP molecules are formed during one complete turn of the tricarboxylic acid cycle (Krebs' cycle)?"
+  ideal: |
+    During one complete turn of the tricarboxylic acid cycle (also known as the Krebs' cycle or the citric acid cycle), a series of chemical reactions occur in the mitochondria of cells that result in the production of carbon dioxide (CO2) and adenosine triphosphate (ATP), among other molecules. For each acetyl-CoA molecule that enters the cycle, the following are produced: - 2 molecules of CO2: Each acetyl-CoA contributes two carbons to the cycle, which are eventually released as two molecules of carbon dioxide. - 1 molecule of ATP: One molecule of ATP (or an equivalent, such as GTP, depending on the cell type) is produced directly in the cycle through substrate-level phosphorylation. However, the cycle also produces reduced coenzymes, specifically NADH and FADH2, which are used in the electron transport chain to produce additional ATP through oxidative phosphorylation. For each acetyl-CoA that enters the cycle: - 3 molecules of NADH are produced, which can be used to generate approximately 2.5 ATP each through the electron transport chain. - 1 molecule of FADH2 is produced, which can be used to generate approximately 1.5 ATP through the electron transport chain. Therefore, while only 1 ATP is produced directly in the cycle per acetyl-CoA, the NADH and FADH2 generated can lead to the production of additional ATP in the electron transport chain. The exact number of ATP molecules produced can vary depending on the efficiency of the electron transport chain and the ATP synthase complex in different organisms and cell types.
+  should:
+    - "Factually accurate answer regarding CO2 and ATP production in Krebs' cycle"
+    - "$icontains: \"2 molecules of CO2\""
+    - "$icontains: \"1 molecule of ATP\""
+- id: mmlu-mcq-correct-example-1
+  prompt: "Question that is correct for MCQ and incorrect for OSQ: A tree is a connected graph with no cycles. How many nonisomorphic trees with 5 vertices exist? Options: A. 1 B. 2 C. 3 D. 4 Ground Truth: C"
+  ideal: "C"
+  should:
+    - $icontains: "C"
+- id: mmlu-osq-incorrect-example-1
+  prompt: "A tree is a connected graph with no cycles. How many nonisomorphic trees with 5 vertices exist?"
+  ideal: "3"
+  should:
+    - $matches: "^3$"
+    - "Provide the correct number of nonisomorphic trees with 5 vertices"
+- id: mmlu-mcq-1
+  prompt: "MCQ Prompt: The following is the multiple choice question about abstract algebra. Please select the correct answer from the options A, B, C, D. For example, if you think the correct answer is A, your response should be 'A'. Question: Find the degree for the given field extension Q(sqrt(2), sqrt(3), sqrt(18)) over Q. A. 0 B. 4 C. 2 D. 6 Answer:"
+  ideal: "B"
+  should:
+    - $icontains: "B"
+- id: mmlu-osq-1
+  prompt: "Find the degree for the given field extension Q(sqrt(2), sqrt(3), sqrt(18)) over Q."
+  system: "Answer the following question about abstract algebra."
+  ideal: "4"
+  should:
+    - $matches: "^4$"
+    - "Provide the correct degree of the field extension"
+- id: arc-mcq-1
+  prompt: "MCQ Prompt: The following is the multiple choice question. Please select the correct answer from the options A, B, C, D. For example, if you think the correct answer is A, your response should be 'A'. Question: Tiny organisms called plankton live in oceans. Some plankton can take energy from the Sun and turn it into food. How are plankton most useful to the animals that live in the ocean? A. Plankton are colorful. B. Plankton clean the water. C. Plankton release oxygen. D. Plankton reproduce quickly. Answer:"
+  ideal: "C"
+  should:
+    - $icontains: "C"
+- id: arc-osq-1
+  prompt: "Tiny organisms called plankton live in oceans. Some plankton can take energy from the Sun and turn it into food. How are plankton most useful to the animals that live in the ocean?"
+  system: "Answer the following question."
+  ideal: "Plankton release oxygen."
+  should:
+    - "Provide a factually correct answer about plankton's usefulness to ocean animals"
+    - "$icontains: \"oxygen\""
+- id: commonsenseqa-mcq-1
+  prompt: "MCQ Prompt: The following is the multiple choice question. Please select the correct answer from the options A, B, C, D, E. For example, if you think the correct answer is A, your response should be 'A'. Question: A revolving door is convenient for two direction travel, but it also serves as a security measure at a what? A. bank B. library C. department store D. mall E. New York Answer:"
+  ideal: "A"
+  should:
+    - $icontains: "A"
+- id: commonsenseqa-osq-1
+  prompt: "A revolving door is convenient for two direction travel, but it also serves as a security measure at a what?"
+  system: "You will be presented with a variety of questions that require an understanding of everyday scenarios, human behaviors, and common sense. Your task is to provide the best possible answer to each question based solely on your understanding and reasoning."
+  ideal: "bank"
+  should:
+    - "Provide a commonsense answer for where a revolving door serves as a security measure"
+    - "$icontains: \"bank\""
+- id: medmcqa-mcq-1
+  prompt: "MCQ Prompt: The following is the multiple choice question about medicine. Please select the correct answer from the options A, B, C, D. For example, if you think the correct answer is A, your response should be 'A'. Question: Modulus of elasticity means: A. Rigidity or stiffness of the material B. Ability to be stretched with permanent deformation C. Ductility of a material D. Malleability of the metal Answer:"
+  ideal: "A"
+  should:
+    - $icontains: "A"
+- id: medmcqa-osq-1
+  prompt: "Modulus of elasticity means:"
+  system: "Answer the following question about medicine."
+  ideal: "Rigidity or stiffness of the material"
+  should:
+    - "Provide the correct definition of modulus of elasticity"
+    - "$icontains: \"Rigidity or stiffness\""
+- id: hellaswag-mcq-1
+  prompt: "MCQ Prompt: The following is the multiple choice question. Please select the correct answer from the options A, B, C, D. For example, if you think the correct answer is A, your response should be 'A'. Question: How to clean your rv windows and mirrors fast without using any spray. you A. also have a bucket that you spray paint a window in. B. can reach for a running water hose and clean the inside of your rv quickly. C. get a wash cloth and you put it under the faucet to get wet and then you rinse it out so it's not soaking. D. meticulously clean the window in the glass shop and then take the plastic off and start taking the hood off. Answer:"
+  ideal: "C"
+  should:
+    - $icontains: "C"
+- id: hellaswag-osq-1
+  prompt: "How to clean your rv windows and mirrors fast without using any spray. you"
+  system: "Imagine you are provided with a scenario or a partial story taken from everyday life or a common activity. Your task is to continue this story or scenario in a way that makes the most sense based on what typically happens in such situations. Please complete the sentence."
+  ideal: "get a wash cloth and you put it under the faucet to get wet and then you rinse it out so it's not soaking."
+  should:
+    - "Provide a plausible and commonsense continuation of the scenario"
+    - "$icontains: \"wash cloth\""
+    - "$icontains: \"wet\""
+- id: openbookqa-mcq-1
+  prompt: "MCQ Prompt: The following is the multiple choice question. Please select the correct answer from the options A, B, C, D. For example, if you think the correct answer is A, your response should be 'A'. Question: what system is needed for a body to get its needed supply of the gas humans breathe in? A. the circulatory system B. the digestive system C. the school system D. central nervous system Answer:"
+  ideal: "A"
+  should:
+    - $icontains: "A"
+- id: openbookqa-osq-1
+  prompt: "what system is needed for a body to get its needed supply of the gas humans breathe in?"
+  system: "Consider common scenarios or outcomes that fit the context of the sentence. Attempt to logically complete the sentences based on common knowledge and reasoning."
+  ideal: "the circulatory system"
+  should:
+    - "Provide a factually correct answer based on common knowledge"
+    - "$icontains: \"circulatory system\""
+- id: piqa-mcq-1
+  prompt: "MCQ Prompt: The following is the multiple choice question. Please select the correct answer from the options A, B. For example, if you think the correct answer is A, your response should be 'A'. Question: How do I ready a guinea pig cage for it's new occupants? A. Provide the guinea pig with a cage full of a few inches of bedding made of ripped paper strips, you will also need to supply it with a water bottle and a food dish. B. Provide the guinea pig with a cage full of a few inches of bedding made of ripped jeans material, you will also need to supply it with a water bottle and a food dish. Answer:"
+  ideal: "A"
+  should:
+    - $icontains: "A"
+- id: piqa-osq-1
+  prompt: "How do I ready a guinea pig cage for it's new occupants?"
+  system: "Consider common scenarios or outcomes that fit the context of the sentence. Attempt to logically complete the sentences based on common knowledge and reasoning."
+  ideal: "Provide the guinea pig with a cage full of a few inches of bedding made of ripped paper strips, you will also need to supply it with a water bottle and a food dish."
+  should:
+    - "Provide a practical and commonsense answer for preparing a guinea pig cage"
+    - "$icontains: \"paper strips\""
+    - "$icontains: \"water bottle\""
+    - "$icontains: \"food dish\""
+- id: race-mcq-1
+  prompt: "MCQ Prompt: I will give you a passage with multiple-choice question. Please select the correct answer from the options A, B, C, D. For example, if you think the correct answer is A, your response should be 'A'. Passage:... Question: What did Nancy try to do before she fell over? A. Measure the depth of the river B. Look for a fallen tree trunk C. Protect her cows from being drowned D. Run away from the flooded farm Answer:"
+  ideal: "C"
+  should:
+    - $icontains: "C"
+- id: race-osq-1
+  prompt: "What did Nancy try to do before she fell over?"
+  system: "I will give you passage with question. Please, answer the question. Passage:..."
+  ideal: "Protect her cows from being drowned"
+  should:
+    - "Provide a factually correct answer based on the provided passage"
+    - "$icontains: \"Protect her cows\""
+- id: winogrande-mcq-1
+  prompt: "MCQ Prompt: The following is the multiple choice question. Please put the correct words in place of _. Your response should include only the option without any justification or reasoning. Please select the correct answer from the options A, B. Question: Sarah was a much better surgeon than Maria so _ always got the easier cases. A. Sarah B. Maria Answer:"
+  ideal: "B"
+  should:
+    - $icontains: "B"
+- id: winogrande-osq-1
+  prompt: "Sarah was a much better surgeon than Maria so _ always got the easier cases."
+  system: "Please put the correct words in place of _. Give only the word that fits the sentence."
+  ideal: "Maria"
+  should:
+    - "$icontains: \"Maria\""
+    - "Provide the correct word to complete the sentence logically"

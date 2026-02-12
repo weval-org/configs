@@ -1,0 +1,45 @@
+title: "Robustness and Reliability of Benchmark-Based LLM Evaluation"
+description: |
+  This benchmark systematically assesses the robustness of Large Language Models (LLMs) to linguistic variability and investigates the reliability of benchmark-based evaluations. It addresses whether LLM evaluation results change significantly when benchmark questions are replaced by simple paraphrases, and if question paraphrasing decreases LLM effectiveness, revealing limitations in their generalization capabilities.
+
+  The methodology involves systematically generating various paraphrases of questions across six common benchmarks (ARC-C, HellaSwag, MMLU, OpenBookQA, RACE, SciQ) and measuring the resulting variations in effectiveness of 34 state-of-the-art LLMs. The findings indicate that while LLM rankings remain relatively stable across paraphrased inputs, absolute effectiveness scores change and decline significantly, suggesting LLMs struggle with linguistic variability and that current benchmark methodologies may overestimate true model capabilities.
+
+  This evaluation focuses on multiple-choice, zero-shot question answering. Responses are scored based on top-1 token probability, with models instructed to generate strictly numerical answers (a single digit from 1 to 4).
+
+  Source: 'On Robustness and Reliability of Benchmark-Based Evaluation of LLMs'
+author:
+  name: "Riccardo Lunardi, Vincenzo Della Mea, Stefano Mizzaro, Kevin Roitero"
+references:
+  - title: "On Robustness and Reliability of Benchmark-Based Evaluation of LLMs"
+    url: "https://arxiv.org/abs/2509.04013"
+tags:
+  - robustness
+  - linguistic variability
+  - paraphrasing
+  - multiple-choice
+  - zero-shot
+  - reasoning
+  - knowledge
+  - benchmark evaluation
+  - model stability
+models:
+  - CORE
+---
+- id: "mc-factual-q1"
+  prompt: |
+    You will be asked to answer a question by choosing the correct option number only (1-4). Please respond with just the number, without any additional text, symbols, or punctuation.
+    Question: What is the capital of France?
+    Options:
+    1. Berlin
+    2. Madrid
+    3. Paris
+    4. Rome
+    Provide only the number of the correct answer (1-4). For example, if the correct answer is the first option, respond with 1 only.
+    Answer:
+  ideal: "3"
+  should:
+    - $matches: "^[1-4]$"
+    - $matches: "3"
+  should_not:
+    - "The response contains any text or symbols other than the single digit."
+    - "The response is not a valid option number (1-4)."

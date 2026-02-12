@@ -1,0 +1,194 @@
+title: "BAMBOO: A Comprehensive Benchmark for Evaluating Long Text Modeling Capacities of Large Language Models"
+description: |
+  BAMBOO is a multi-task long context benchmark designed to comprehensively evaluate the long context ability of Large Language Models (LLMs). It adheres to four core principles:
+
+  1.  **Comprehensive Capacity Evaluation**: It assesses LLMs' abilities in language generation, knowledge utilization, reasoning, and tool manipulation over long texts, covering both coarse-grained comprehension and fine-grained reasoning across diverse domains.
+  2.  **Avoidance of Data Contamination**: Efforts are made to minimize overlap between test data and LLM training corpora by using data released in 2023 or modifying answers in older datasets.
+  3.  **Accurate Automatic Evaluation**: Tasks are designed for precise automatic evaluation, transforming some generation tasks into multi-choice formats to avoid issues with subjective metrics.
+  4.  **Different Length Levels**: Each task includes two distinct length levels (4k and 16k tokens) to analyze the impact of varying input lengths on LLM performance.
+
+  The benchmark consists of 10 datasets from 5 long text understanding tasks: question answering, hallucination detection, text sorting, language modeling, and code completion. This evaluation blueprint focuses on these tasks to assess LLMs' ability to process and reason over long contexts.
+
+  Source paper: Zican Dong, Tianyi Tang, Junyi Li, Wayne Xin Zhao, Ji-Rong Wen. "BAMBOO: A Comprehensive Benchmark for Evaluating Long Text Modeling Capacities of Large Language Models". arXiv:2309.13345.
+author:
+  name: "Zican Dong, Tianyi Tang, Junyi Li, Wayne Xin Zhao, Ji-Rong Wen"
+  url: "https://arxiv.org/abs/2309.13345"
+references:
+  - title: "BAMBOO: A Comprehensive Benchmark for Evaluating Long Text Modeling Capacities of Large Language Models"
+    url: "https://arxiv.org/abs/2309.13345"
+tags:
+  - long-context
+  - question-answering
+  - hallucination-detection
+  - text-sorting
+  - language-modeling
+  - code-completion
+  - reasoning
+  - knowledge-utilization
+  - tool-manipulation
+  - multi-task
+  - evaluation
+models:
+  - CORE
+---
+- id: qa-paper-1
+  prompt: |
+    Document: [Long text of a research paper discussing a new machine learning algorithm, its methodology, and experimental results across several paragraphs. This document is approximately 3000 tokens long.]
+
+    Question: What was the primary finding regarding the algorithm's performance on Dataset X compared to previous methods?
+    A) It achieved a 15% improvement in accuracy.
+    B) It showed a 5% decrease in inference time.
+    C) It demonstrated comparable performance but with higher computational cost.
+    D) It failed to generalize to unseen data.
+
+    Select the correct option (A, B, C, or D) based on the document.
+  should:
+    - $matches: "^[A-D]$"
+    - "The selected option must accurately reflect information and reasoning derived from the provided document."
+    - "The response should demonstrate comprehension of the document's details and ability to synthesize information across paragraphs."
+- id: qa-meeting-1
+  prompt: |
+    Meeting Transcript: [Long transcript of a committee meeting discussing budget allocations, project timelines, and team responsibilities. The transcript includes multiple speakers and covers various topics over approximately 7000 tokens.]
+
+    Question: According to the discussion, what was the final decision regarding the funding for Project Alpha?
+    A) It was approved for full funding.
+    B) It was deferred until the next quarter.
+    C) It received partial funding with conditions.
+    D) It was rejected due to resource constraints.
+
+    Select the correct option (A, B, C, or D) based on the meeting transcript.
+  should:
+    - $matches: "^[A-D]$"
+    - "The selected option must accurately reflect information and reasoning derived from the provided meeting transcript."
+    - "The response should demonstrate comprehension of the dialogue and ability to identify key decisions."
+- id: qa-alt-1
+  prompt: |
+    Wikipedia Documents: [Multiple Wikipedia articles about historical events, scientific discoveries, and biographical information. The combined text is approximately 10000 tokens long. All numerical values in the original text related to the answer have been modified to prevent data contamination.]
+
+    Question: In what year did Event Z occur, based on the provided documents?
+
+    Provide only the numerical year as your answer.
+  should:
+    - $matches: "^\\d{4}$"
+    - "The year must be accurately extracted or reasoned from the provided Wikipedia documents."
+    - "The response should demonstrate the ability to find specific factual information in long, diverse texts."
+- id: hallucination-sen-1
+  prompt: |
+    Paper: [Long text of a scientific paper detailing experimental procedures and results, approximately 4000 tokens long.]
+
+    Hypothesis: 'The experiment was conducted using a novel catalyst, leading to a 25% increase in yield, which is a significant improvement over previous methods.'
+
+    Does the hypothesis entail or contradict the paper? Respond with 'Entailment' or 'Contradiction'.
+  should:
+    - $matches: "^(Entailment|Contradiction)$"
+    - "If the hypothesis is fully supported by the paper, the response should be 'Entailment'."
+    - "If the hypothesis contains information that conflicts with or is not present in the paper, the response should be 'Contradiction'."
+- id: hallucination-abs-1
+  prompt: |
+    Paper: [Long text of an abstract from a research paper summarizing its main contributions and findings, approximately 10000 tokens long.]
+
+    Hypothesis: 'This paper introduces a new framework for multi-modal data fusion, achieving state-of-the-art results on three benchmark datasets, specifically outperforming all baselines by over 10%.'
+
+    Does the hypothesis entail or contradict the paper? Respond with 'Entailment' or 'Contradiction'.
+  should:
+    - $matches: "^(Entailment|Contradiction)$"
+    - "If the hypothesis is fully supported by the paper, the response should be 'Entailment'."
+    - "If the hypothesis contains information that conflicts with or is not present in the paper, the response should be 'Contradiction'."
+- id: sorting-shows-1
+  prompt: |
+    Shuffled TV Show Transcript Segments:
+    Segment 1: '...and then Sarah walked in, looking surprised.'
+    Segment 2: 'John had just finished explaining the plan...'
+    Segment 3: '...The audience gasped as the plot twist was revealed.'
+    Segment 4: 'Earlier, the detective found a crucial clue in the abandoned warehouse.'
+
+    Reorder these segments to form the original coherent TV show narrative. Provide the correct order as a comma-separated list of segment IDs (e.g., '4,2,1,3').
+  should:
+    - $matches: "^[0-9]+(,[0-9]+)*$"
+    - "The order of segments must match the original logical flow of the TV show transcript."
+    - "The response should demonstrate understanding of contextual continuity and narrative coherence."
+- id: sorting-report-1
+  prompt: |
+    Government Report Summaries (Shuffled):
+    Summary A: 'The report concludes with recommendations for policy changes in environmental protection.'
+    Summary B: 'Section 2 details the economic impact of recent legislative reforms.'
+    Summary C: 'Introduction provides an overview of the report's scope and objectives.'
+    Summary D: 'Case studies illustrating the effects of climate change are presented in Section 3.'
+
+    Reorder these summaries according to their positions within the complete government report. Provide the correct order as a comma-separated list of summary IDs (e.g., 'C,B,D,A').
+  should:
+    - $matches: "^[A-D]+(,[A-D]+)*$"
+    - "The order of summaries must reflect their original positions within the government report."
+    - "The response should demonstrate understanding of the report's structure and content organization."
+- id: lm-shows-1
+  prompt: |
+    TV Show Dialogue:
+    Character A: 'Did you see what happened last night?'
+    Character B: 'I can't believe it! It was totally unexpected.'
+    Character A: 'I know, right? The twist was incredible.'
+    Character C: 'I think we need to re-evaluate our strategy after this.'
+    Character B: 'What do you mean?'
+    Character C: 'The whole dynamic has changed.'
+    Character A: 'So, what's the next step?'
+    Character B: 'I'm not sure, I need to think.'
+    Character A: 'Well, we don't have much time.'
+    Character B: 'I'll figure it out.'
+    Character A: 'Okay, but be quick.'
+    Character B: 'I will.'
+    Character A: 'Good.'
+    Character B: 'I'll call you later.'
+    Character A: 'Sounds good.'
+    Character B: 'Bye.'
+    Character A: 'Bye.'
+
+    'I'll call you later.' said by [BLANK]. Predict the speaker for the last utterance.
+  should:
+    - "The response must be the name of a character from the dialogue."
+    - "The predicted speaker must be correct based on the dialogue history and speaker patterns."
+    - "The response should demonstrate understanding of conversational flow and speaker characteristics."
+- id: code-completion-1
+  prompt: |
+    API Documents:
+    [Extensive documentation for a Python library, including function signatures, descriptions, and example usage for various modules like `torchdata.datapipes.iter`, `torchdata.dataloader`, etc. This documentation is approximately 8000 tokens long.]
+
+    Partial Code Snippet:
+    ```python
+    import torchdata.datapipes.iter as dp
+
+    def create_pipeline(data_source):
+        # The goal is to create a DataPipe that shuffles and batches data.
+        # Complete the following lines using the provided API documents.
+        dp_shuffled = data_source.shuffle()
+        dp_batched = dp_shuffled.batch(
+        # ... complete this line ...
+    ```
+
+    Complete the partial code snippet using the provided API documents. Focus on correctly using the library functions and arguments. Provide only the completed code snippet.
+  should:
+    - "The response must be valid Python code that completes the snippet."
+    - "The completed code must correctly use functions and arguments from the provided API documents."
+    - "The response should demonstrate the ability to understand API documentation and apply it to code completion tasks."
+    - "The completed code should achieve the stated goal (e.g., shuffling and batching)."
+- id: code-completion-2
+  prompt: |
+    API Documents:
+    [Extensive documentation for a Python library, including function signatures, descriptions, and example usage for various modules like `torchdata.datapipes.iter`, `torchdata.dataloader`, etc. This documentation is approximately 8000 tokens long.]
+
+    Partial Code Snippet:
+    ```python
+    import torchdata.datapipes.iter as dp
+
+    def process_data(filepaths):
+        # The goal is to create a DataPipe that reads files and maps a processing function.
+        # Complete the following lines using the provided API documents.
+        dp_files = dp.FileOpener(filepaths, mode='r')
+        dp_processed = dp_files.map(
+        # ... complete this line ...
+    ```
+
+    Complete the partial code snippet using the provided API documents. Focus on correctly using the library functions and arguments. Provide only the completed code snippet.
+  should:
+    - "The response must be valid Python code that completes the snippet."
+    - "The completed code must correctly use functions and arguments from the provided API documents."
+    - "The response should demonstrate the ability to understand API documentation and apply it to code completion tasks."
+    - "The completed code should achieve the stated goal (e.g., reading files and mapping a processing function)."

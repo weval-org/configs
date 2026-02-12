@@ -1,0 +1,273 @@
+title: LLM Performance Prediction on BIG-bench
+description: 'This benchmark investigates the predictability of large language model (LLM) capabilities. Given records of
+  past experiments using different model families, numbers of parameters, tasks, and numbers of in-context examples, the goal
+  is to accurately predict LLM performance on new experiment configurations. This has practical implications for LLM users
+  (e.g., deciding which models to try), developers (e.g., prioritizing evaluation on representative tasks), and the research
+  community (e.g., identifying hard-to-predict capabilities that warrant further investigation).
+
+
+  The core methodology involves training a regression model (e.g., MLP, Gradient Boosted Trees) on a dataset of BIG-bench
+  experiment records. The model learns patterns from existing performance data to predict performance on unseen configurations.
+  A key aspect is also searching for a "small-bench" – an informative subset of BIG-bench tasks from which the performance
+  on the full set can be maximally recovered, enabling efficient evaluation of new LLMs while maintaining evaluation generality.
+
+
+  **Evaluation type:** regression prediction
+
+
+  **Metrics:** root mean square error (RMSE), coefficient of determination score (R2), Task-average Pearson Correlation, Task-average
+  Kendall Rank Correlation
+
+
+  **Scoring:** The prediction model''s performance is evaluated using several metrics:
+
+
+  1.  **Root Mean Square Error (RMSE)**: Defined as `sqrt(1/n * sum((ŷ - y)^2))`, where `ŷ` is the predicted performance,
+  `y` is the actual performance, and `n` is the number of samples. A lower RMSE indicates better prediction accuracy.
+
+
+  2.  **Coefficient of Determination Score (R2)**: Characterizes the proportion of variance explained by the model. It is
+  defined as `R² = Explained Variance / Total Variance = 1 - sum((ŷ - y)^2) / sum((y_i - mean(y))^2)`. An R² score closer
+  to 1 indicates that the model explains a large proportion of the variance in the target variable.
+
+
+  3.  **Task-average Pearson Correlation**: For each task `t` in the test set, the Pearson Correlation between predicted and
+  actual performance is computed. The average of these correlation values across all tasks is then reported.
+
+
+  4.  **Task-average Kendall Rank Correlation**: Similar to Pearson Correlation, but computes the Kendall Rank Correlation
+  for each task and then averages them. This metric is less sensitive to the magnitude of errors and focuses on the ranking
+  of predictions.
+
+
+  For the "small-bench" search problem, the objective is to find a subset of tasks `T_train` that maximizes `R²(T_test × L_test)`,
+  where `T_test` are the remaining tasks and `L_test` are unseen model families. This is evaluated using nested cross-validation
+  on `L`.
+
+
+  **Source:** [How Predictable Are Large Language Model Capabilities? A Case Study on BIG-bench](https://arxiv.org/abs/2305.14947)'
+author:
+  name: Ye et al.
+references:
+- title: How Predictable Are Large Language Model Capabilities? A Case Study on BIG-bench
+  url: https://arxiv.org/abs/2305.14947
+tags:
+- benchmark
+- automated-extraction
+- llm-performance-prediction
+- big-bench
+- regression
+- scaling-laws
+- emergent-abilities
+- task-selection
+- benchmarking
+- arithmetic
+- linguistics
+- reasoning
+- question-answering
+- bias
+- code
+- logic
+- factuality
+- in-context-learning
+- text-analysis
+- game-theory
+- temporal-reasoning
+- recommendation
+- navigation
+- counting
+- dialogue-generation
+- instruction-following
+models:
+- CORE
+---
+- id: ma-three-digit-addition-control
+  prompt: modified_arithmetic:three_digit_addition_control
+  should:
+  - Predictability based on R² score (higher is better)
+  - Accuracy of performance prediction for this task
+  description: 'Category: Arithmetic'
+- id: ma-two-digit-multiplication-control
+  prompt: modified_arithmetic:two_digit_multiplication_control
+  should:
+  - Predictability based on R² score (higher is better)
+  - Accuracy of performance prediction for this task
+  description: 'Category: Arithmetic'
+- id: lm-sentence-negation-json
+  prompt: linguistic_mappings:sentence_negation_json
+  should:
+  - Predictability based on R² score (higher is better)
+  - Accuracy of performance prediction for this task
+  description: 'Category: Linguistics'
+- id: qa-wikidata
+  prompt: qa_wikidata
+  should:
+  - Predictability based on R² score (higher is better)
+  - Accuracy of performance prediction for this task
+  description: 'Category: Question Answering'
+- id: ma-three-digit-subtraction-control
+  prompt: modified_arithmetic:three_digit_subtraction_control
+  should:
+  - Predictability based on R² score (higher is better)
+  - Accuracy of performance prediction for this task
+  description: 'Category: Arithmetic'
+- id: linguistics-puzzles
+  prompt: linguistics_puzzles
+  should:
+  - Predictability based on R² score (lower is worse)
+  - Accuracy of performance prediction for this task
+  description: 'Category: Linguistics'
+- id: checkmate-in-one
+  prompt: checkmate_in_one
+  should:
+  - Predictability based on R² score (lower is worse)
+  - Accuracy of performance prediction for this task
+  description: 'Category: Game Theory'
+- id: gender-inclusive-sentences-german
+  prompt: gender_inclusive_sentences_german
+  should:
+  - Predictability based on R² score (lower is worse)
+  - Accuracy of performance prediction for this task
+  description: 'Category: Bias/Fairness'
+- id: paragraph-segmentation
+  prompt: paragraph_segmentation
+  should:
+  - Predictability based on R² score (lower is worse)
+  - Accuracy of performance prediction for this task
+  description: 'Category: Text Processing'
+- id: authorship-verification-swapped
+  prompt: authorship_verification:swapped
+  should:
+  - Predictability based on R² score (lower is worse)
+  - Accuracy of performance prediction for this task
+  description: 'Category: Text Analysis'
+- id: bbq-lite-json-age-ambig
+  prompt: bbq_lite_json:bbq_lite_json_age_ambig
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: Bias/Fairness (BBQ-Lite)'
+- id: code-line-description
+  prompt: code_line_description
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: Code Understanding'
+- id: conceptual-combinations-emergent-properties
+  prompt: conceptual_combinations:emergent_properties
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: Reasoning'
+- id: formal-fallacies-syllogisms-negation
+  prompt: formal_fallacies_syllogisms_negation
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: Logic/Reasoning'
+- id: hindu-knowledge
+  prompt: hindu_knowledge
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: Knowledge'
+- id: language-identification
+  prompt: language_identification
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: Linguistics'
+- id: logic-grid-puzzle
+  prompt: logic_grid_puzzle
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: Logic/Puzzles'
+- id: logical-deduction-three-objects
+  prompt: logical_deduction:three_objects
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: Logic/Reasoning'
+- id: strategyqa
+  prompt: strategyqa
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: Question Answering'
+- id: vitaminc-fact-verification
+  prompt: vitaminc_fact_verification
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: Factuality'
+- id: causal-judgment
+  prompt: causal_judgment
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: Reasoning'
+- id: date-understanding
+  prompt: date_understanding
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: Temporal Reasoning'
+- id: disambiguation-qa
+  prompt: disambiguation_qa
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: Question Answering'
+- id: dyck-languages
+  prompt: dyck_languages
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: Formal Languages'
+- id: geometric-shapes
+  prompt: geometric_shapes
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: Geometry'
+- id: movie-recommendation
+  prompt: movie_recommendation
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: Recommendation'
+- id: navigate
+  prompt: navigate
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: Navigation'
+- id: object-counting
+  prompt: object_counting
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: Counting'
+- id: reasoning-about-colored-objects
+  prompt: reasoning_about_colored_objects
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: Reasoning'
+- id: sports-understanding
+  prompt: sports_understanding
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: Domain Knowledge'
+- id: arithmetic-5-digit-subtraction
+  prompt: arithmetic:5_digit_subtraction
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: Arithmetic'
+- id: goal-step-wikihow-goal-inference
+  prompt: goal_step_wikihow:goal_inference
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: Instruction Following'
+- id: gem-cs-restaurants
+  prompt: gem:cs_restaurants
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: Dialogue/Generation'
+- id: unnatural-in-context-learning-dates-unnatural-content
+  prompt: unnatural_in_context_learning:dates_unnatural_content
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: In-context Learning'
+- id: anachronisms
+  prompt: anachronisms
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: Knowledge/Factuality'
+- id: natural-instructions-subtask032-winogrande-question-generation-person
+  prompt: natural_instructions:subtask032_winogrande_question_generation_person
+  should:
+  - Predictability of LLM performance on this task
+  description: 'Category: Instruction Following/QA'

@@ -1,0 +1,65 @@
+title: "MMLU Translation Impact Evaluation: Spanish and LLM Benchmarks"
+description: |
+  This benchmark evaluates the impact of automatic translation on Large Language Models (LLMs) performance in non-English languages, specifically Spanish. It uses selected categories from the well-known Massive Multitask Language Understanding (MMLU) benchmark.
+
+  **Methodology:**
+  The core methodology involves translating English MMLU questions into Spanish using automated tools (Azure Translator and ChatGPT4), running LLMs (ChatGPT4) on both original English and translated Spanish versions, and then identifying and manually analyzing discrepancies in answers to determine if they are caused by translation errors. The goal is to highlight how translation quality can distort benchmark results, especially for multiple-choice tests designed for automatic processing at scale.
+
+  **Scoring Methodology:**
+  The evaluation procedure involves several steps:
+  1.  **Translation**: Questions from selected MMLU categories (Miscellaneous, Philosophy, US foreign policy) are translated from English into Spanish using two automatic translation tools: Azure Translator and ChatGPT4.
+  2.  **Initial LLM Run**: ChatGPT4 is used to answer both the original English questions and the two Spanish translated versions. The answers and their log probabilities are recorded.
+  3.  **Discrepancy Identification**: Questions are filtered to identify those that were answered correctly by ChatGPT4 in English but incorrectly in either of the Spanish translated versions. This step focuses the manual review effort.
+  4.  **Manual Analysis and Correction**: Two independent experts manually review the identified discrepant questions. They determine if the differing answers are due to errors in the automatic translation. Questions are categorized as 'correct' or 'having translation errors'. Identified translation errors are then revised and corrected manually.
+  5.  **Re-evaluation**: The manually corrected Spanish questions are run again on ChatGPT4.
+  6.  **Impact Estimation**: The number of correct answers from the re-evaluation is logged and reported to quantify the impact of translation errors on the benchmark results.
+  The primary scoring criterion for individual questions is whether the LLM's response matches the predefined correct answer for multiple-choice questions.
+
+  This blueprint is based on the methodology described in the paper 'Spanish and LLM Benchmarks: is MMLU Lost in Translation?'.
+author:
+  name: "Irene Plaza, Nina Melero, Cristina del Pozo, Javier Conde, Pedro Reviriego, Marina Mayor-Rocher, María Grandury"
+references:
+  - title: "Spanish and LLM Benchmarks: is MMLU Lost in Translation?"
+    url: "https://arxiv.org/abs/2406.17789"
+tags:
+  - LLM evaluation
+  - multilingual
+  - translation quality
+  - benchmark
+  - bias
+  - multiple-choice
+  - Spanish
+  - MMLU
+models:
+  - CORE
+---
+- id: mmlu-misc-q1-en
+  prompt: "Which of the following artists is an English landscape painter who created a poetic sense of changing atmospheric effects by using tiny applications of local colour? Please answer:\n\n[A] John Constable\n[B] William Morris\n[C] William Hogarth\n[D] Joshua Reynolds"
+  ideal: "John Constable"
+  should:
+    - $icontains: "John Constable"
+- id: mmlu-misc-q1-es-chatgpt
+  prompt: "¿Cuál de los siguientes artistas es un pintor paisajista inglés que creó un sentido poético de los cambios en los efectos atmosféricos utilizando pequeñas aplicaciones de color local? Por favor responda:\n\n[A] John Constable\n[B] William Morris\n[C] William Hogarth\n[D] Joshua Reynolds"
+  ideal: "John Constable"
+  should:
+    - $icontains: "John Constable"
+- id: mmlu-misc-q1-es-azure
+  prompt: "¿Cuál de los siguientes artistas es un pintor paisajista inglés que creó un sentido poético de los efectos atmosféricos cambiantes mediante el uso de pequeñas aplicaciones de color local? Por favor, responda:\n\n[A] Juan Alguacil\n[B] William Morris\n[C] William Hogarth\n[D] Joshua Reynolds"
+  ideal: "John Constable"
+  should:
+    - $icontains: "John Constable"
+- id: mmlu-us-foreign-policy-q1-en
+  prompt: "What was meant by the term \"American multiplication table\"? Please answer:\n\n[A] Increase in the US population\n[B] Increase in US finances\n[C] Increase in US military capability\n[D] Increase in US international influence"
+  ideal: "Increase in the US population"
+  should:
+    - $icontains: "Increase in the US population"
+- id: mmlu-us-foreign-policy-q1-es-chatgpt
+  prompt: "¿Qué se entendía por el término “tabla de multiplicación americana”? Por favor responda:\n\n[A] Aumento en la población de EE.UU\n[B] Aumento de las finanzas de EE.UU\n[C] Aumento en la capacidad militar de EE.UU\n[D] Aumento en la influencia internacional de EE.UU"
+  ideal: "Increase in the US population"
+  should:
+    - $icontains: "Increase in the US population"
+- id: mmlu-us-foreign-policy-q1-es-azure
+  prompt: "¿Qué se entendía por el término \"tabla de multiplicación americana\"? Por favor, responda:\n\n[A] Aumento en la población de EE.UU\n[B] Aumento de las finanzas de EE.UU\n[C] Aumento en la capacidad militar de EE.UU\n[D] Aumento de la influencia internacional de Estados Unidos"
+  ideal: "Increase in the US population"
+  should:
+    - $icontains: "Increase in the US population"
