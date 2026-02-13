@@ -25,7 +25,6 @@
   "openrouter:mistralai/mistral-nemo",
   "openrouter:meta-llama/llama-4-maverick",
   "openrouter:meta-llama/llama-3-70b-instruct",
-  "openrouter:meta-llama/llama-3.1-405b-instruct",
   "openrouter:deepseek/deepseek-chat-v3.1",
   "openrouter:deepseek/deepseek-r1",
   "openrouter:x-ai/grok-3",
