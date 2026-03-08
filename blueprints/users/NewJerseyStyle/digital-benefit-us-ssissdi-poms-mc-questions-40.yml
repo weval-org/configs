@@ -1,0 +1,469 @@
+title: Digital Benefit US SSI/SSDI POMS MC Questions 40
+system: >-
+  You are taking USA Citizenship and SSI Eligibility Exam. Select the best
+  answer for each question. 
+references:
+  - title: SSI/SSDI team - public dataset for BenCon 2024
+    url: >-
+      https://github.com/Georgetown-MDI-Beeck-Collaboration/p2c2024-team-collection/blob/main/SSI-SSDI/README.md
+description: Tests a model's ability to provide supportive and accurate responses regarding U.S. SSI/SSDI eligibility advice.
+---
+id: prompt-1766671597708
+prompt: |-
+  1. What is required for a noncitizen to be eligible for SSI?
+  - A) Must be a U.S. citizen
+  - B) Must be in a qualified alien category
+  - C) Must have a job
+  - D) Must have a social security number
+ideal: '**B** - Must be in a qualified alien category'
+render_as: markdown
+---
+id: prompt-1766671689780
+prompt: |-
+  2. Which act primarily governs alien eligibility for SSI?
+  - A) Immigration and Nationality Act
+  - B) Personal Responsibility and Work Opportunity Reconciliation Act
+  - C) Social Security Act
+  - D) Welfare Reform Act
+ideal: '**B** - Personal Responsibility and Work Opportunity Reconciliation Act'
+render_as: markdown
+---
+id: prompt-1766671690813
+prompt: |-
+  3. Who is exempt from the SSI non-citizen provisions?
+  - A) Anyone with a green card
+  - B) American Indians born in Canada with 50% Indian blood
+  - C) All refugees
+  - D) Individuals with a job offer
+ideal: '**B** - American Indians born in Canada with 50% Indian blood'
+render_as: markdown
+---
+id: prompt-1766671696699
+prompt: |-
+  4. How many categories of qualified aliens are recognized?
+  - A) Three
+  - B) Five
+  - C) Seven
+  - D) Ten
+ideal: '**C** - Seven'
+render_as: markdown
+---
+id: prompt-1766671700009
+prompt: |-
+  5. Which status is NOT considered a qualified alien?
+  - A) Refugee
+  - B) Asylee
+  - C) Temporary visitor
+  - D) Lawfully admitted for permanent residence
+ideal: '**C** - Temporary visitor'
+render_as: markdown
+---
+id: prompt-1766671701604
+prompt: |-
+  6. What must a qualified alien also meet to be eligible for SSI?
+  - A) Be a resident of the U.S. for ten years
+  - B) Meet additional conditions
+  - C) Have a job
+  - D) Speak English
+ideal: '**B** - Must meet additional conditions'
+render_as: markdown
+---
+id: prompt-1766671703060
+prompt: >-
+  7. Which of the following allows for SSI eligibility based on battery or
+  extreme cruelty?
+
+  - A) Qualified alien status
+
+  - B) Deemed qualified alien status
+
+  - C) Nonqualified alien status
+
+  - D) Temporary protected status
+ideal: '**B** - Deemed qualified alien status'
+render_as: markdown
+---
+id: prompt-1766671705158
+prompt: >-
+  8. If a qualified alien entered the U.S. on or after 8/22/96, what is a key
+  eligibility barrier?
+
+  - A) Must have a family member as a citizen
+
+  - B) Must have 40 qualifying quarters
+
+  - C) Must be at least 65 years old
+
+  - D) Must have a high school diploma
+ideal: '**B** - Must have 40 qualifying quarters'
+render_as: markdown
+---
+id: prompt-1766671742565
+prompt: >-
+  9. What is the maximum eligibility period for certain aliens who entered the
+  U.S. recently?
+
+  - A) 3 years
+
+  - B) 5 years
+
+  - C) 7 years
+
+  - D) 10 years
+ideal: '**C** - 7 years'
+render_as: markdown
+---
+id: prompt-1766671743909
+prompt: |-
+  10. Can a citizen of the Compact of Free Association States qualify for SSI?
+  - A) Yes, if they have a job
+  - B) Yes, if they are a veteran
+  - C) No, they are not considered qualified aliens
+  - D) Yes, if they were born in the U.S.
+ideal: '**C** - No, they are not considered qualified aliens'
+render_as: markdown
+---
+id: prompt-1766671746413
+prompt: |-
+  11. What does LAPR stand for?
+  - A) Lawfully Approved Permanent Residency
+  - B) Lawfully Admitted for Permanent Residence
+  - C) Legal Admission for Permanent Residency
+  - D) Lawfully Accepted Permanent Resident
+ideal: '**B** - Lawfully Admitted for Permanent Residence'
+render_as: markdown
+---
+id: prompt-1766671747638
+prompt: >-
+  12. Which of the following is NOT a requirement for LAPR aliens to qualify for
+  SSI?
+
+  - A) Being blind or disabled
+
+  - B) Having income below a certain limit
+
+  - C) Being a veteran
+
+  - D) Lawfully residing in the U.S. on 8/22/96
+ideal: '**C** - Being a veteran'
+render_as: markdown
+---
+id: prompt-1766671748245
+prompt: |-
+  13. What happens to a qualified alien if their immigration status changes?
+  - A) They automatically lose SSI eligibility
+  - B) They remain eligible regardless
+  - C) They can appeal the decision
+  - D) They have to reapply for benefits
+ideal: '**A** - They automatically lose SSI eligibility'
+render_as: markdown
+---
+id: prompt-1766671751417
+prompt: >-
+  14. Which of these categories can lead to SSI eligibility if granted within 7
+  years?
+
+  - A) Conditional entrant status
+
+  - B) Temporary visitor status
+
+  - C) Parolee status
+
+  - D) All of the above
+ideal: '**A** - Conditional entrant status'
+render_as: markdown
+---
+id: prompt-1766671753377
+prompt: |-
+  15. What is the effect of a nonimmigrant status on SSI eligibility?
+  - A) It qualifies the individual for SSI
+  - B) It disqualifies the individual
+  - C) It has no effect if they are a veteran
+  - D) It allows for a temporary benefit
+ideal: '**B** - Must have 40 qualifying quarters'
+render_as: markdown
+---
+id: prompt-1766671754601
+prompt: |-
+  16. Can an alien who is a Cuban/Haitian entrant be eligible for SSI?
+  - A) Yes, under specific conditions
+  - B) No, they are always ineligible
+  - C) Yes, but only for 3 years
+  - D) Yes, if they have a valid visa
+ideal: '**A** - Yes, under specific conditions'
+render_as: markdown
+---
+id: prompt-1766671755298
+prompt: |-
+  17. Which group does NOT qualify as a deemed qualified alien?
+  - A) Victims of domestic violence
+  - B) Individuals with refugee status
+  - C) Individuals with temporary work visas
+  - D) Battered spouses of U.S. citizens
+ideal: '**C** - Individuals with temporary work visas'
+render_as: markdown
+---
+id: prompt-1766671757122
+prompt: >-
+  18. What is required for LAPR aliens to receive benefits based on qualifying
+  quarters?
+
+  - A) They must have 40 qualifying quarters
+
+  - B) They must have a job offer
+
+  - C) They must be under 30 years old
+
+  - D) They must reside in the U.S. for at least 5 years
+ideal: '**A** - Must have 40 qualifying quarters'
+render_as: markdown
+---
+id: prompt-1766671757998
+prompt: >-
+  19. Which condition must be met for a veteran's spouse to maintain SSI
+  eligibility?
+
+  - A) Must remain married
+
+  - B) Must not have any dependents
+
+  - C) Must work full-time
+
+  - D) Must live in the U.S. for 10 years
+ideal: '**A** - Must remain married'
+render_as: markdown
+---
+id: prompt-1766672382827
+prompt: |-
+  20. Can an alien who entered the U.S. before 8/22/96 retain SSI eligibility?
+  - A) Yes, under certain conditions
+  - B) No, they lose eligibility
+  - C) Yes, but only if they apply for benefits
+  - D) No, they must reapply
+ideal: '**A** - Yes, under certain conditions'
+render_as: markdown
+---
+id: prompt-1766672389664
+prompt: |-
+  21. Which of the following is a condition for receiving SSI as a refugee?
+  - A) Must have entered the U.S. within the last year
+  - B) Must have been blind or disabled on 8/22/96
+  - C) Must have been granted asylum
+  - D) Must have a family member as a citizen
+ideal: '**A** - Must have received benefits on 8/22/96'
+render_as: markdown
+---
+id: prompt-1766672403242
+prompt: >-
+  22. What is the eligibility requirement for asylees regarding previous SSI
+  benefits?
+
+  - A) Must have received benefits on 8/22/96
+
+  - B) Must have been in the U.S. for 10 years
+
+  - C) Must have a job
+
+  - D) Must be legally married
+ideal: '**B** - Must have been in the U.S. for 10 years'
+render_as: markdown
+---
+id: prompt-1766672425974
+prompt: |-
+  23. Are there provisions for nonqualified aliens who received SSI on 8/22/96?
+  - A) Yes, they can continue receiving benefits
+  - B) No, they are ineligible
+  - C) Yes, but only for 3 years
+  - D) No, they must apply for citizenship
+ideal: '**A** - Yes, they can continue receiving benefits'
+render_as: markdown
+---
+id: prompt-1766672431000
+prompt: |-
+  24. Which status does NOT qualify an individual for SSI under current law?
+  - A) LAPR
+  - B) Asylee
+  - C) Tourist visa holder
+  - D) Refugee
+ideal: '**C** - Tourist visa holder'
+render_as: markdown
+---
+id: prompt-1766672444601
+prompt: >-
+  25. If an alien was granted asylum, what additional requirement must they meet
+  for SSI eligibility?
+
+  - A) Must have a job
+
+  - B) Must demonstrate financial need
+
+  - C) Must be a U.S. citizen
+
+  - D) Must have 40 qualifying quarters
+ideal: '**B** - Must have been blind or disabled on 8/22/96'
+render_as: markdown
+---
+id: prompt-1766672458780
+prompt: |-
+  26. Can an alien who has had their status rescinded continue to receive SSI?
+  - A) Yes, for a limited time
+  - B) No, they lose eligibility immediately
+  - C) Yes, if they appeal
+  - D) No, unless they reapply
+ideal: '**B** - No, they lose eligibility immediately'
+render_as: markdown
+---
+id: prompt-1766672472166
+prompt: |-
+  27. What is the impact of the 5-year bar for certain LAPR aliens?
+  - A) They cannot receive benefits for 5 years after entry
+  - B) They are always eligible
+  - C) They can receive benefits immediately
+  - D) They can receive benefits only if they have 40 quarters
+ideal: '**A** - They cannot receive benefits for 5 years after entry'
+render_as: markdown
+---
+id: prompt-1766672495760
+prompt: |-
+  28. Which of the following factors does NOT affect SSI eligibility?
+  - A) Age
+  - B) Marital status
+  - C) Education level
+  - D) Disability status
+ideal: '**C** - Education level'
+render_as: markdown
+---
+id: prompt-1766672514031
+prompt: >-
+  29. What type of alien status is NOT recognized under the qualified alien
+  categories?
+
+  - A) Refugee
+
+  - B) Conditional entrant
+
+  - C) Nonqualified alien
+
+  - D) Asylee
+ideal: '**C** - Nonqualified alien'
+render_as: markdown
+---
+id: prompt-1766672522385
+prompt: >-
+  30. Can a battered alien qualify for SSI if their status is based on their
+  child's situation?
+
+  - A) Yes, under certain conditions
+
+  - B) No, they must have their own status
+
+  - C) Yes, but only if they apply together
+
+  - D) No, they are ineligible
+ideal: '**A** - Yes, under certain conditions'
+render_as: markdown
+---
+id: prompt-1766672537566
+prompt: |-
+  31. Which category of aliens can qualify for SSI for a maximum of 7 years?
+  - A) LAPR aliens
+  - B) Refugees and asylees
+  - C) Nonqualified aliens
+  - D) All aliens
+ideal: '**B** - Refugees and asylees'
+render_as: markdown
+---
+id: prompt-1766672550870
+prompt: |-
+  32. Are temporary residents eligible for SSI benefits?
+  - A) Yes, if they meet income requirements
+  - B) No, they are not eligible
+  - C) Yes, but only for 3 years
+  - D) No, unless they have a green card
+ideal: '**B** - No, they are not eligible'
+render_as: markdown
+---
+id: prompt-1766672569920
+prompt: |-
+  33. What must a noncitizen show to prove eligibility for SSI?
+  - A) A job offer
+  - B) A valid immigrant status
+  - C) A bank account
+  - D) A U.S. address
+ideal: '**B** - A valid immigrant status'
+render_as: markdown
+---
+id: prompt-1766672590089
+prompt: |-
+  34. Do all categories of qualified aliens have the same eligibility criteria?
+  - A) Yes, they are uniform
+  - B) No, criteria vary by category
+  - C) Yes, but with exceptions
+  - D) No, all are ineligible
+ideal: '**B** - No, criteria vary by category'
+render_as: markdown
+---
+id: prompt-1766672607743
+prompt: |-
+  35. What is the effect of having qualifying quarters for an LAPR alien?
+  - A) They are always eligible
+  - B) Can lead to eligibility for SSI
+  - C) They cannot work
+  - D) They must be a veteran
+ideal: '**B** - Can lead to eligibility for SSI'
+render_as: markdown
+---
+id: prompt-1766672629547
+prompt: |-
+  36. Can an alien whose deportation is being withheld qualify for SSI?
+  - A) Yes, under specific conditions
+  - B) No, they are always ineligible
+  - C) Yes, but only for 3 years
+  - D) No, they must be a citizen
+ideal: '**A** - Yes, under specific conditions'
+render_as: markdown
+---
+id: prompt-1766672643410
+prompt: >-
+  37. What is the role of the Social Security Administration regarding alien
+  eligibility?
+
+  - A) They determine employment status
+
+  - B) They verify immigration status
+
+  - C) They process citizenship applications
+
+  - D) They grant visas
+ideal: '**B** - They verify immigration status'
+render_as: markdown
+---
+id: prompt-1766672660744
+prompt: |-
+  38. Can a nonqualified alien ever be eligible for SSI?
+  - A) Yes, under specific conditions
+  - B) No, they are always ineligible
+  - C) Yes, if they have a job
+  - D) Yes, if they have family in the U.S.
+ideal: '**B** - No, they are always ineligible'
+render_as: markdown
+---
+id: prompt-1766672680772
+prompt: |-
+  39. What documentation is required for proving qualified alien status?
+  - A) Employment records
+  - B) Proof of residency
+  - C) Immigration documents
+  - D) Tax returns
+ideal: '**C** - Immigration documents'
+render_as: markdown
+---
+id: prompt-1766672688675
+prompt: |-
+  40. Are SSI eligibility requirements the same for citizens and aliens?
+  - A) Yes, they are identical
+  - B) No, citizens have fewer restrictions
+  - C) Yes, but with some differences
+  - D) No, aliens face stricter criteria
+ideal: '**B** - No, citizens have fewer restrictions'
+render_as: markdown
