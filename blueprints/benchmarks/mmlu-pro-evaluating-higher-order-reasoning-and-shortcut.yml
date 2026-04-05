@@ -1,0 +1,58 @@
+title: "MMLU-Pro+: Evaluating Higher-Order Reasoning and Shortcut Learning in LLMs"
+description: |
+  MMLU-Pro+ is an enhanced benchmark built upon MMLU-Pro, designed to assess higher-order reasoning capabilities and identify shortcut learning behaviors in Large Language Models (LLMs). It addresses the limitations of existing benchmarks that struggle to differentiate between top-performing models due to performance saturation.
+
+  The benchmark introduces questions with multiple correct answers across diverse domains, forcing LLMs to engage in complex reasoning and resist simplistic problem-solving strategies. The core methodology involves modifying original MMLU-Pro questions into three categories:
+
+  1.  **True Positive Pairs (TPP)**: Questions where a "Both X and Y are correct" option is introduced. X is the original correct answer, and Y is a newly generated correct option.
+  2.  **Partial False Positive Pairs (PFPP)**: Questions where a "Both X and Y are correct" option is introduced, but Y is a randomly selected incorrect option from the original set.
+  3.  **Complete False Positive Pairs (CFPP)**: Questions where a "Both X and Y are correct" option is introduced, but both X and Y are randomly selected incorrect options.
+
+  This structure tests models' ability to evaluate the validity of multiple statements independently, recognize the potential for more than one correct answer, discern subtle differences between correct and incorrect information, and resist anchoring bias. It introduces novel metrics like Shortcut Selection Ratio (SSR) and Correct Pair Identification (CPI) Ratio to provide a more nuanced understanding of model performance beyond simple accuracy.
+
+  Source: MMLU-Pro+: Evaluating Higher-Order Reasoning and Shortcut Learning in LLMs (arXiv:2409.02257)
+author:
+  name: "Saeid Asgari Taghanaki, Aliasgahr Khani, Amir Khasahmadi"
+references:
+  - title: "MMLU-Pro+: Evaluating Higher-Order Reasoning and Shortcut Learning in LLMs"
+    url: "https://arxiv.org/abs/2409.02257"
+tags:
+  - reasoning
+  - shortcut learning
+  - multiple-choice
+  - bias
+  - math
+  - computer science
+  - multi-answer
+  - evaluation
+models:
+  - CORE
+---
+- id: math-q1
+  prompt: |
+    Question (Math): What number multiplied by 4 equals 36?
+    Options:
+    [A] 11, [B] 10, [C] 12, [D] 6, [E] 15, [F] 9, [G] 7, [H] 8, [I] 13, [J] 14, [K] 36/4, [L] Both 9 and 36/4 are correct.
+  ideal: "L"
+  should:
+    - $icontains: "L"
+    - "Correctly identifies that both '9' and '36/4' are valid solutions to the problem."
+    - "Demonstrates higher-order reasoning by recognizing multiple correct representations of the answer."
+  should_not:
+    - "Selects only a single correct option (e.g., 'F' for 9 or 'K' for 36/4) instead of the combined correct option 'L'."
+    - "Selects any entirely incorrect option (A, B, C, D, E, G, H, I, J)."
+    - "Exhibits shortcut learning by failing to consider all valid options."
+- id: cs-q1
+  prompt: |
+    Question (Computer Science): The disadvantage of Grid search is
+    Options:
+    [A] It cannot handle categorical variables., [B] It cannot be applied to non-differentiable functions., [C] It is not suitable for datasets with a large number of features., [D] It cannot handle missing data., [E] It cannot be used with neural networks., [F] It runs reasonably slow for multiple linear regression., [G] It can only be used for binary classification problems., [H] It is hard to implement., [I] It cannot be applied to non-continuous functions., [J] It is computationally expensive for large datasets., [K] Both It runs reasonably slow for multiple linear regression and It is computationally expensive for large datasets are correct.
+  ideal: "K"
+  should:
+    - $icontains: "K"
+    - "Correctly identifies that both 'It runs reasonably slow for multiple linear regression' and 'It is computationally expensive for large datasets' are disadvantages of Grid search."
+    - "Demonstrates comprehensive understanding of Grid search limitations by recognizing multiple valid disadvantages."
+  should_not:
+    - "Selects only a single correct disadvantage (e.g., 'F' or 'J') instead of the combined correct option 'K'."
+    - "Selects any entirely incorrect option (A, B, C, D, E, G, H, I)."
+    - "Exhibits shortcut learning by failing to consider all valid disadvantages."

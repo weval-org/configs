@@ -1,0 +1,402 @@
+title: A Zero-shot and Few-shot Study of Instruction-Finetuned Large Language Models Applied to Clinical and Biomedical Tasks
+description: 'This benchmark evaluates four state-of-the-art instruction-tuned Large Language Models (LLMs) – ChatGPT, Flan-T5
+  UL2, Tk-Instruct, and Alpaca – on a diverse set of 13 real-world clinical and biomedical Natural Language Processing (NLP)
+  tasks in English. The evaluation aims to assess how well these LLMs encode medical knowledge and demonstrate their capabilities
+  in specific domains, particularly in zero-shot and few-shot inference scenarios. The tasks include Named-Entity Recognition
+  (NER), Question-Answering (QA), Relation Extraction (RE), Natural Language Inference (NLI), Classification (CLS), and Semantic
+  Textual Similarity (STS). A novel method called Recursive Chain-of-Thought (RCoT) is introduced for NER, mimicking human
+  reasoning through sequential prompt enrichment. The benchmark compares LLM performance against a fine-tuned PubMedBERT model,
+  highlighting LLMs'' ability to approach state-of-the-art performance in many tasks, especially QA, even without prior exposure
+  to specific task examples. However, it also notes shortcomings in classification and RE compared to specialized medical
+  models.
+
+
+  **Evaluation type:** multi-task
+
+
+  **Metrics:** F1-measure, Accuracy
+
+
+  **Scoring:** Responses from generative models are scored using manually developed parsing scripts tailored to each task
+  and model. These scripts align the free-text outputs with predefined classes or formats to capture correct answers and compute
+  metrics like Accuracy and F1-measure. This approach allows for direct comparison with baseline BERT-based models. For Named-Entity
+  Recognition, two inference methods are used: one based on Ye et al. (2023) for ChatGPT, and a novel Recursive Chain-of-Thought
+  (RCoT) method for all generative models. RCoT involves iterating over tokens and providing the current prediction state
+  as input to the model to generate the label for the Nth token, ensuring entity generation for each token.
+
+
+  **Source:** [A Zero-shot and Few-shot Study of Instruction-Finetuned Large Language Models Applied to Clinical and Biomedical
+  Tasks](https://arxiv.org/abs/2307.12114)'
+author:
+  name: Labrak et al.
+references:
+- title: A Zero-shot and Few-shot Study of Instruction-Finetuned Large Language Models Applied to Clinical and Biomedical
+    Tasks
+  url: https://arxiv.org/abs/2307.12114
+tags:
+- benchmark
+- automated-extraction
+- biomedical
+- clinical
+- nlp
+- zero-shot
+- few-shot
+- instruction-tuning
+- named-entity-recognition
+- question-answering
+- relation-extraction
+- natural-language-inference
+- classification
+- semantic-textual-similarity
+models:
+- CORE
+---
+- id: ner-0shot-method1-example1
+  prompt: 'Instruction: Do named-entity recognition task for the given text using the categories in candidate list, output
+    using the format as "Word1|Category||Word2|Category||Word3|Category"
+
+    Candidate list: O, B-Disease or I-Disease
+
+    Text: Identification|Category || of|Category || APC2|Category ||,|Category || a|Category || homologue|Category || of|Category
+    || the|Category || adenomatous|Category || polyposis|Category || coli|Category || tumour|Category || suppressor|Category
+    || .|Category
+
+    Output:'
+  ideal: Identification|O|| of|O|| APC2|O||,|O|| a|O|| homologue|O|| of|O|| the|O|| adenomatous|B-Disease|| polyposis|I-Disease||
+    coli|I-Disease|| tumour|I-Disease|| suppressor|I-Disease|| .|O
+  should:
+  - Correctly identify and label entities (O, B-Disease, I-Disease) in the specified 'Word|Category||' format for each word
+    in the input text.
+  description: 'Category: Named-Entity Recognition (NER)'
+- id: ner-0shot-method1-example2
+  prompt: 'Instruction: You are a healthcare named-entity recognition expert system and we are giving you a sequence of words
+    that you have to labelized using the following output format ''Word1|Label||Word2|Label||Word3|Label''
+
+    Labels: O, B-Disease or I-Disease
+
+    Unfilled sequence: Identification|Label||of|Label||APC2|Label||,|Label||a|Label||homologue|Label||of|Label||the|Label
+    ||adenomatous|Label||polyposis|Label||coli|Label||tumour|Label||suppressor|Label||.|Label
+
+    Constraints: The answer must be one and only one of the given labels.
+
+    Output:'
+  ideal: Identification|O||of|O||APC2|O||,|O||a|O||homologue|O||of|O||the|O||adenomatous|B-Disease||polyposis|I-Disease||coli|I-Disease||tumour|I-Disease||suppressor|I-Disease||.|O
+  should:
+  - Correctly label each word in the sequence with one of the given labels (O, B-Disease, I-Disease) in the specified 'Word|Label||'
+    format.
+  - Adhere to the constraint of providing only one label per word.
+  description: 'Category: Named-Entity Recognition (NER)'
+- id: ner-0shot-method1-example3
+  prompt: 'Instruction: As a healthcare named-entity recognition expert, your job is to label a sequence of words provided
+    to you using the following format: ''Word1|Label||Word2|Label||Word3|Label''. Your goal is to identify all the named entities
+    in the given text. The available labels for this task are: O, B-Disease or I-Disease
+
+    Input: Identification|Label||of|Label||APC2|Label||,|Label||a|Label||homologue|Label||of|Label||the|Label| ||adenomatous|Label
+    ||polyposis|Label||coli|Label||tumour|Label||suppressor|Label||.|Label
+
+    Output:'
+  ideal: Identification|O||of|O||APC2|O||,|O||a|O||homologue|O||of|O||the|O||adenomatous|B-Disease||polyposis|I-Disease||coli|I-Disease||tumour|I-Disease||suppressor|I-Disease||.|O
+  should:
+  - Correctly identify and label all named entities (O, B-Disease, I-Disease) in the input text using the specified 'Word|Label||'
+    format.
+  description: 'Category: Named-Entity Recognition (NER)'
+- id: ner-5shot-rcot-example1
+  prompt: 'Examples:
+
+    Example 1: Mutations|none|| at|none|| the|none|| ataxia|disease|| -|disease|| telangiectasia|disease|| locus|none|| and|none||
+    clinical|none|| phenotypes|none|| of|none|| A|disease|| - |disease || T|disease|| patients|none|| .|none
+
+    Example 2: Splicing|none || defects|none|| in|none|| the|none|| ataxia|disease|| -|disease|| telangiectasia|disease||
+    gene|none||, |none|| ATM|none|| :|none|| underlying|none|| mutations|none|| and|none|| consequences|none|| .|none
+
+    Example 3: Somatic|none|| mutations|none|| in|none|| the|none|| BRCA1|none|| gene|none|| in|none|| spo-radic|disease||
+    ovarian|disease|| tumours|disease|| .|none
+
+    Example 4: Malignant|disease || neoplasms|disease|| in|none || the|none || families|none|| of|none|| patients|none|| with|none||
+    ataxia|disease|| -|disease|| telangiectasia|disease|| .|none
+
+    Example 5: Founder|none || mutations|none|| in|none|| the|none || BRCA1|none || gene|none|| in|none|| Pol-ish|none ||
+    families|none|| with|none|| breast|disease|| -|disease|| ovarian|disease || cancer|disease|| .|none
+
+    Considering the sentence: Clustering of missense mutations in the ataxia - telangiectasia gene in a sporadic T - cell
+    leukaemia.
+
+    And considering your precedents predictions : Clustering|none|| of|none|| missense|none|| muta-tions|none|| in|none||
+    the|none|| ataxia|disease|| -|disease|| telangiectasia|disease|| gene|none|| in|none|| a|none|| sporadic|disease|| T|disease||
+    -|disease|| cell|disease || leukaemia |Label
+
+    Input: The label of « leukaemia » at the position 17 of the sentence is ?
+
+    Output:'
+  ideal: disease
+  should:
+  - Correctly identify the label ('disease' or 'none') for the specified token ('leukaemia') at the given position (17) in
+    the sentence.
+  - Follow the Recursive Chain-of-Thought (RCoT) reasoning process demonstrated in the examples.
+  system: 'Instruction: You are a highly intelligent and accurate healthcare domain Named-entity recognition (NER) system.
+    You are tasked to do Named-entity recognition (NER) for ''disease'' and ''none'' only, please generate the appropriate
+    label. Constraints: You can choose only one label from: none or disease.'
+  description: 'Category: Named-Entity Recognition (NER)'
+- id: mcqa-0shot-method1-example1
+  prompt: 'Input: Heavy forces on periodontal ligament causes: (A) Hyalinization (B) Osteoclastic activity around tooth (C)
+    Osteoblastic activity around tooth (D) Crest bone resorption
+
+    Output:'
+  ideal: A
+  should:
+  - Output a single correct letter (A, B, C, or D) corresponding to the best answer option.
+  - Adhere to the constraint of not generating any extra text or justification.
+  system: 'Instruction: You are given a science question (easy level) and four answer options (associated with "A”, “В”, “С”,
+    "D"). Your task is to find the correct answer based on scientific facts, knowledge and reasoning. Don''t generate anything
+    other than one of the following characters: ''A B C D''. Constraints: The answer must be one or more of the following
+    letters: ''A'',''B'',''C'',''D''. You must generate one and only one letter for each question. All questions have an answer.
+    No justification is required.'
+  description: 'Category: Multiple-Choice Question Answering (MCQA)'
+- id: mcqa-5shot-method2-example1
+  prompt: 'Examples:
+
+    Example 1: Hyalinisation of the periodontal Ligament, due to excessive orthodontic forces results in (A) Frontal resorption
+    (B) Undermining resorption (C) Cementum remaining intact (D) Dentine remaining intact
+
+    Output: B
+
+    Example 2: The earliest response of pulpitis is: (A) Cyst formation (B) Calcification (C) Hyalinization (D) Formation
+    of dental granuloma
+
+    Output: C
+
+    Example 3: Among the secondary changes in tooth the most useful one for age determination is: (A) Attrition (B) Secondary
+    dentine deposition (C) Root resorption (D) Root transparency
+
+    Output: D
+
+    Example 4: Feature of aging periodontium is (A) Lacunae in bone and cementum (B) Increased cell size (C) Increased cell
+    number (D) Scalloping of cementum & alveolar bone surface
+
+    Output: D
+
+    Example 5: Bacteria found in gingivitis are localized in (A) Connective tissue fibres (B) Gingival sulcus (C) Alveolar
+    bone (D) Periodontal ligament
+
+    Output: B
+
+    Input: Heavy forces on periodontal ligament causes: (A) Hyalinization (B) Osteoclastic activity around tooth (C) Osteoblastic
+    activity around tooth (D) Crest bone resorption
+
+    Output:'
+  ideal: A
+  should:
+  - Output a single correct letter (A, B, C, or D) corresponding to the best answer option.
+  - Adhere to the constraint of not generating any extra text or justification.
+  - Demonstrate understanding of the task by following the few-shot examples.
+  system: 'Instruction: You are given a science question (easy level) and four answer options (associated with “A”, “B”, “C”,
+    "D"). Your task is to find the correct answer based on scientific facts, knowledge and reasoning. Don''t generate anything
+    other than one of the following characters: ''A B C D''. Constraints: The answer must be one or more of the following
+    letters: ''A'',''B'',''C'',''D''. You must generate one and only one letter for each question. All questions have an answer.
+    No justification is required.'
+  description: 'Category: Multiple-Choice Question Answering (MCQA)'
+- id: re-0shot-method1-example1
+  prompt: 'Input: These results suggest that the C1772T polymorphism in @GENE$ is not involved in progression or metastasis
+    of @DISEASE$
+
+    Output:'
+  ideal: negative
+  should:
+  - Output either 'positive' or 'negative' based on whether a gene-disease relation exists as described in the input text.
+  - Adhere to the constraint of not providing justification or explanations.
+  system: 'Instruction: Your goal is to do relation extraction and identifying if a gene-disease relation exist (positive)
+    or not (negative). Constraints: You have to output one label among « negative » or « positive ». Justification and explanations
+    are prohibited.'
+  description: 'Category: Relation Extraction (RE)'
+- id: re-5shot-method2-example1
+  prompt: 'Examples:
+
+    Example 1: These findings suggest that the Gly460Trp polymorphism of @GENE$ is not associated with @DISEASE$.
+
+    Output: Positive
+
+    Example 2: Our results suggest that deletion polymorphism of the @GENE$ gene is not associated with the pathogenesis of
+    @DISEASE$ in Taiwanese.
+
+    Output: Positive
+
+    Example 3: The results suggest that the 5A/6A polymorphism of @GENE$ gene may not be linked with appearance and/or progression
+    of @DISEASE$.
+
+    Output: Positive
+
+    Example 4: Our study implies that the G/C polymorphism of the @GENE$ gene may not be directly involved in the development
+    and=or progression of @DISEASE$.
+
+    Output: Positive
+
+    Example 5: Our study implies that the G/C polymorphism of the @GENE$ gene may not be directly involved in the development
+    and=or @DISEASE$ of breast cancer.
+
+    Output: Negative
+
+    Input: These results suggest that the C1772T polymorphism in @GENE$ is not involved in progression or metastasis of @DISEASE$.
+
+    Output:'
+  ideal: Negative
+  should:
+  - Output either 'positive' or 'negative' based on whether a gene-disease relation exists as described in the input text.
+  - Adhere to the constraint of not providing justification or explanations.
+  - Demonstrate understanding of the task by following the few-shot examples.
+  system: 'Instruction: Your goal is to do relation extraction and identifying if a gene-disease relation exist (positive)
+    or not (negative). Constraints: You have to output one label among « negative » or « positive ». Justification and explanations
+    are prohibited.'
+  description: 'Category: Relation Extraction (RE)'
+- id: nli-0shot-method1-example1
+  prompt: 'Input premise: The liver is divided into the right lobe and left lobes.
+
+    Input hypothesis: The gallbladder is near the right lobe of the liver.
+
+    Output:'
+  ideal: neutral
+  should:
+  - Output either 'entails' or 'neutral' based on the logical relationship between the premise and hypothesis.
+  - Adhere to the constraint of not providing justification or explanations.
+  system: 'Instruction: Your goal is to do solve a natural language inference task by identifying if the hypothesis is either
+    « entails » or « neutral » to the premise. Constraints: You have to output one label among « entails » or « neutral ».
+    Justification and explanations are prohibited.'
+  description: 'Category: Natural Language Inference (NLI)'
+- id: nli-5shot-method2-example1
+  prompt: 'Examples:
+
+    Example 1:
+
+    Premise: Located primarily on the right side of the abdominal cavity, just above the duodenum, the liver aids in the digestion
+    of fats by secreting bile into the duodenum.
+
+    Hypothesis: Most digestion is completed in the duodenum.
+
+    Output: neutral
+
+    Example 2:
+
+    Premise: The brain is divided into the right and left hemisphere and each hemisphere is divided into 4 lobes called the
+    frontal, temporal, occipital and parietal lobes.
+
+    Hypothesis: Each hemisphere of the cerebrum divided into 4 lobes.
+
+    Output: entails
+
+    Example 3:
+
+    Premise: The small intestine, where most digestion takes place, is a convoluted tube in the abdomen that begins at the
+    pylorus of the stomach and ends at the opening to the large intestine.
+
+    Hypothesis: Most of the digestion reactions occur in the small intestine.
+
+    Output: entails
+
+    Example 4:
+
+    Premise: The small intestine is the long, thin segment of bowel that begins at the stomach and ends at the large intestine
+    or colon.
+
+    Hypothesis: The small intestine begins in the stomach.
+
+    Output: entails
+
+    Example 5:
+
+    Premise: The small intestine begins at the stomach and ends at the colon (large intestine).
+
+    Hypothesis: The small intestine begins in the stomach.
+
+    Output: entails
+
+    Premise: The liver is divided into the right lobe and left lobes.
+
+    Hypothesis: The gallbladder is near the right lobe of the liver.
+
+    Output:'
+  ideal: neutral
+  should:
+  - Output either 'entails' or 'neutral' based on the logical relationship between the premise and hypothesis.
+  - Adhere to the constraint of not providing justification or explanations.
+  - Demonstrate understanding of the task by following the few-shot examples.
+  system: 'Instruction: Your goal is to do solve a natural language inference task by identifying if the hypothesis is either
+    « entails » or « neutral » to the premise. Constraints: You have to output one label among « entails » or « neutral ».
+    Justification and explanations are prohibited.'
+  description: 'Category: Natural Language Inference (NLI)'
+- id: cls-0shot-method1-example1
+  prompt: 'Input: Cytotoxicity was shown in manganese-treated groups (100, 200, 400, and 800microM of MnCI(2)) , and cell
+    viability was decreased to 58.8% of the control group at 2days after treatment with 800microM of MnCI(2).
+
+    Output:'
+  ideal: none
+  should:
+  - Output one or more correct labels from the provided list that describe the hallmarks of cancer present in the document.
+  - Adhere to the constraint of not providing justification or explanations.
+  system: 'Instruction: Your goal is to do solve a classification task by identifying if one or more of the following hallmarks
+    of cancer are present in the document: « evading growth suppressors », « tumor promoting inflammation », « enabling replicative
+    immortality », « cellular energetics », « resisting cell death », « activating invasion and metastasis », « genomic instability
+    and mutation », « none », « inducing angiogenesis », « sustaining proliferative signaling » or « avoiding immune destruction
+    ». Constraints: You have to output one or more label(s) among « evading growth suppressors », « tumor promoting inflammation
+    », « enabling replicative immortality », « cellular energetics », « resisting cell death », « activating invasion and
+    metastasis », « genomic instability and mutation », « none », « inducing angiogenesis », « sustaining proliferative signaling
+    » or « avoiding immune destruction ». Justification and explanations are prohibited.'
+  description: 'Category: Classification (CLS)'
+- id: cls-5shot-method2-example1
+  prompt: 'Examples:
+
+    Example 1: However, significant cytotoxicity was only observed in PCB 52 concentrations larger than 0.1 microg ml(-1),
+    while there was no significant inhibition in PCB 77-treated cells at concentrations selected.
+
+    Output: none
+
+    Example 2: In MeT-5A cells, both CNTs caused a dose-dependent induction of DNA damage (% DNA in comet tail) in the 48-h
+    treatment and SWCNTs additionally in the 24-h treatment, with a statistically significant increase at 40 u03bcg/cm(2)
+    of SWCNTs and (after 48 h ) 80 u03bcg/cm(2) of both CNTs .
+
+    Output: none
+
+    Example 3: Copper-induced DNA strand breakage was first observed after 24 h of exposure, and was recorded again at 96
+    h, at a copper concentration of 20 microg l(-1).
+
+    Output: genomic instability and mutation
+
+    Example 4: Drug concentrations of 12.5 to 300 03bcM caused a pronounced reduction in cell survival rates five days after
+    treatment, whereas concentrations higher than 25 03bcM were effective in reducing the survival rates to However, the maximum
+    apoptosis frequency was 20.4% for 25 03bcM cisplatin in cells analyzed at 72 h, indicating that apoptosis is not the only
+    kind of cell death induced by cisplatin.
+
+    Output: none
+
+    Example 5: In contrast, in MCF 7 cells, molecular iodine (100 microM) inhibited growth from 100% to 83% but delta-iodolactone
+    (1, 5 and 10 microM) dose-dependently decreased growth rate from 100% to 82% and 62%, respectively.
+
+    Output: none
+
+    Input: Cytotoxicity was shown in manganese-treated groups (100, 200, 400, and 800microM of MnCI(2)), and cell viability
+    was decreased to 58.8% of the control group at 2days after treatment with 800microM of MnCI(2).
+
+    Output:'
+  ideal: none
+  should:
+  - Output one or more correct labels from the provided list that describe the hallmarks of cancer present in the document.
+  - Adhere to the constraint of not providing justification or explanations.
+  - Demonstrate understanding of the task by following the few-shot examples.
+  system: 'Instruction: Your goal is to do solve a classification task by identifying if one or more of the following hallmarks
+    of cancer are present in the document: « evading growth suppressors », « tumor promoting inflammation », « enabling replicative
+    immortality », « cellular energetics », « resisting cell death », « activating invasion and metastasis », « genomic instability
+    and mutation », « none », « inducing angiogenesis », « sustaining proliferative signaling » or « avoiding immune destruction
+    ». Constraints: You have to output one or more label(s) among « evading growth suppressors », « tumor promoting inflammation
+    », « enabling replicative immortality », « cellular energetics », « resisting cell death », « activating invasion and
+    metastasis », « genomic instability and mutation », « none », « inducing angiogenesis », « sustaining proliferative signaling
+    » or « avoiding immune destruction ». Justification and explanations are prohibited.'
+  description: 'Category: Classification (CLS)'
+- id: sts-0shot-method1-example1
+  prompt: 'Input: The original sentence is: "- Eviter le contact de l''embout avec l''œil ou les paupières." can you tell
+    me if the sentence is similar to: "Evitez le contact de l''embout du flacon avec l''œil ou les paupières.".
+
+    Output:'
+  ideal: '5'
+  should:
+  - Output a single numerical similarity score between 0 and 5.
+  - The score should accurately reflect the semantic similarity between the two input sentences.
+  system: 'Instruction: Give me a similarity score beetween 0 et 5 and only the similarity score.'
+  description: 'Category: Semantic Textual Similarity (STS)'

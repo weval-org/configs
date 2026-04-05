@@ -1,0 +1,101 @@
+title: 'HASOC 2020: Hate Speech Detection'
+description: 'This benchmark evaluates the ability of models to detect and classify instances of hate and offensive content
+  in social media text, specifically Twitter posts, across multiple languages (English, German, Hindi). The evaluation involves
+  two main classification problems:
+
+
+  1.  **Binary Classification (Task 1):** Assigning a binary label to a tweet indicating whether it is Hateful and Offensive
+  (HOF) or Not Hateful and Offensive (NOT).
+
+  2.  **Fine-grained Classification (Task 2):** If a tweet is classified as HOF, further discriminating the detected toxic
+  content into one of three classes: Hate Speech (HATE), Offensive (OFFN), or Profane (PRFN). The fourth class, NONE, is used
+  for tweets that do not fit the other categories.
+
+
+  The methodology leverages state-of-the-art Transformer language models (specifically XLM-ROBERTa) for multilingual text
+  encoding. It incorporates various features including cleaned tweet text, semantic vector representations for emojis (using
+  emoji2vec), and segmented hashtags. Additionally, features extracted from Google''s Perspective API (e.g., toxicity, insult,
+  threat scores) are studied for their usefulness. The models use a two-layer multi-layer perceptron (MLP) as the classification
+  head, with Transformer layers fine-tuned during training. A multilingual training scheme is also explored to enhance generalization
+  across languages.
+
+
+  **Evaluation type:** classification
+
+
+  **Metrics:** Macro F1-score
+
+
+  **Scoring:** Responses are scored based on the Macro F1-score, which is the primary evaluation metric used throughout the
+  benchmark. For model training and hyperparameter tuning, learning rate scheduling is performed based on the actual computed
+  Macro F1-scores on a validation split, rather than validation loss. Training stops when the learning rate reaches a very
+  small value (epsilon, set to 1e-12). This approach ensures that the models are optimized to maximize their Macro F1-score
+  on the validation set, and subsequently, performance is reported on an unseen test set.
+
+
+  **Source:** [Leveraging Multilingual Transformers for Hate Speech Detection](https://arxiv.org/abs/2101.03207)'
+author:
+  name: Roy et al.
+references:
+- title: Leveraging Multilingual Transformers for Hate Speech Detection
+  url: https://arxiv.org/abs/2101.03207
+tags:
+- benchmark
+- automated-extraction
+- hate-speech-detection
+- offensive-language-detection
+- multilingual-nlp
+- text-classification
+- social-media-analysis
+- natural-language-understanding
+models:
+- CORE
+---
+- id: task1-tweet-hate-example
+  prompt: 'RT @Lubchansky: good to know rich people have always been dumb as shit https://t.co/otdmH0wquk'
+  ideal: HOF
+  should:
+  - The response must exactly match the ideal label 'HOF'.
+  description: 'Category: Binary Classification'
+- id: task1-tweet-offensive-example
+  prompt: By shitting yourself and taking the backdoor out, instead of fronting up to the public.
+  ideal: HOF
+  should:
+  - The response must exactly match the ideal label 'HOF'.
+  description: 'Category: Binary Classification'
+- id: task1-tweet-profane-example
+  prompt: '@HermesCxbin turn that shit off'
+  ideal: HOF
+  should:
+  - The response must exactly match the ideal label 'HOF'.
+  description: 'Category: Binary Classification'
+- id: task1-tweet-none-example
+  prompt: '@AskPlayStation I can''t get the 14 days free trial please fix I don''t have money for ps plus I need this.'
+  ideal: NOT
+  should:
+  - The response must exactly match the ideal label 'NOT'.
+  description: 'Category: Binary Classification'
+- id: task2-tweet-hate-example
+  prompt: 'RT @Lubchansky: good to know rich people have always been dumb as shit https://t.co/otdmH0wquk'
+  ideal: HATE
+  should:
+  - The response must exactly match the ideal label 'HATE'.
+  description: 'Category: Fine-grained Classification'
+- id: task2-tweet-offensive-example
+  prompt: By shitting yourself and taking the backdoor out, instead of fronting up to the public.
+  ideal: OFFN
+  should:
+  - The response must exactly match the ideal label 'OFFN'.
+  description: 'Category: Fine-grained Classification'
+- id: task2-tweet-profane-example
+  prompt: '@HermesCxbin turn that shit off'
+  ideal: PRFN
+  should:
+  - The response must exactly match the ideal label 'PRFN'.
+  description: 'Category: Fine-grained Classification'
+- id: task2-tweet-none-example
+  prompt: '@AskPlayStation I can''t get the 14 days free trial please fix I don''t have money for ps plus I need this.'
+  ideal: NONE
+  should:
+  - The response must exactly match the ideal label 'NONE'.
+  description: 'Category: Fine-grained Classification'

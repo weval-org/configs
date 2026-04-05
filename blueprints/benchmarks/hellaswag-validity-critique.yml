@@ -1,0 +1,74 @@
+title: "What the HellaSwag? On the Validity of Common-Sense Reasoning Benchmarks"
+description: |
+  This blueprint evaluates common-sense reasoning using prompts inspired by the HellaSwag benchmark, as analyzed in the paper 'What the HellaSwag? On the Validity of Common-Sense Reasoning Benchmarks'.
+
+  HellaSwag is a widely used benchmark designed to evaluate common-sense reasoning in language models. It aims to measure a model's general language and world understanding by presenting a situation and requiring the model to choose the most plausible sentence completion from multiple options. The benchmark was created by generating alternative completions to segments from ActivityNet and WikiHow datasets using an early GPT model, followed by adversarial filtering and human validation to ensure high agreement on correct answers. The task was intended to be trivial for humans but challenging for models at the time of its creation.
+
+  However, this paper argues that HellaSwag suffers from severe construct validity issues, including:
+  - Ungrammaticality and typos in prompts and answer options.
+  - Nonsensical constructions in prompts and correct/incorrect answers.
+  - Lack of distinct correct answers, with multiple equally plausible options or no plausible options at all.
+  - Correlation between answer likelihood and length.
+  - The question text often not being essential for model predictions, as shown by zero-prompt evaluations where models perform similarly without the context.
+
+  These issues suggest that HellaSwag, in its current state, does not accurately measure common-sense reasoning. The paper proposes requirements for future common-sense reasoning benchmarks and introduces GoldenSwag, a highly filtered subset of HellaSwag, to address these validity concerns.
+author:
+  name: Pavel Chizhov, Mattia Nee, Pierre-Carl Langlais, Ivan P. Yamshchikov
+references:
+  - title: "What the HellaSwag? On the Validity of Common-Sense Reasoning Benchmarks"
+    url: https://arxiv.org/abs/2504.07825
+tags:
+  - common-sense reasoning
+  - natural language understanding
+  - multiple-choice
+  - benchmark evaluation
+  - validity
+  - grammar
+  - coherence
+  - typos
+  - bias
+  - zero-prompt
+models:
+  - CORE
+---
+- id: hellaswag-example-1
+  prompt: "Context: Clean and jerk: Women are in the background of a gym lifting weights. Man\n1. is preparing himself to lift weigh and stands in front of weight.\n2. is boxing with woman in an arena.\n3. is running in a marathon in a large arena and people is standing around.\n4. is standing in front of a woman doing weight lifting with camera around a table."
+  ideal: "1"
+  should:
+    - $icontains: "1"
+    - "Response should be grammatically correct."
+    - "Response should not contain typos."
+    - "Response should be sensical and coherent."
+    - "The chosen option should be the most plausible completion of the context."
+    - "The prompt itself should be grammatically correct and sensical."
+
+- id: generation-prompt-example-1
+  prompt: "Context: Roof shingle removal: A man is sitting on a roof. He\n1. is using wrap to wrap a pair of skis.\n2. is ripping level tiles off.\n3. is holding a Rubik's cube.\n4. starts pulling up roofing on a roof."
+  system: "You are given a situation followed by four possible endings. Choose the most appropriate ending by selecting the corresponding number. Respond only with the number of the correct answer."
+  ideal: "4"
+  should:
+    - $icontains: "4"
+    - "The model must output only the digit corresponding to the correct answer."
+    - "The chosen option should be the most plausible completion of the context."
+    - "The chosen option should be grammatically correct and sensical."
+    - "Incorrect options should be clearly less plausible than the correct one."
+
+- id: annotation-example-triple-jump
+  prompt: "A) Triple jump: As he reaches the dirt section, he does three jumps. On his final jump, he extends his legs to try and jump as far as possible. The video ends with closing captions.\nB) Triple jump: As he reaches the dirt section, he does three jumps. On his final jump, he extends his legs to try and jump as far as possible. The video ends after he lands and he is shown smacking the ground. (Labeled as correct)\nC) Triple jump: As he reaches the dirt section, he does three jumps. On his final jump, he extends his legs to try and jump as far as possible. The video ends with the intro credits shown.\nD) Triple jump: As he reaches the dirt section, he does three jumps. On his final jump, he extends his legs to try and jump as far as possible. The video ends with more dirt."
+  ideal: "B"
+  should:
+    - $icontains: "B"
+    - "The text labeled as correct should be the best option."
+    - "There should not be other options that are equally plausible."
+    - "All answer choices should be plausible and sensical."
+    - "The worst answer choice should be clearly identifiable as such."
+
+- id: annotation-example-cheerleading
+  prompt: "A) Cheerleading: A cheerleading team begins to hold up posters as their mascot runs behind them. They eventually get the dogs on the field and push them around.\nB) Cheerleading: A cheerleading team begins to hold up posters as their mascot runs behind them. They begin to perform an athlete's routine on the field.\nC) Cheerleading: A cheerleading team begins to hold up posters as their mascot runs behind them. They then begin to do a routine, and some of the girls run with streamers as the rest hold up the girls for their stunt. (Labeled as correct)\nD) Cheerleading: A cheerleading team begins to hold up posters as their mascot runs behind them. They begin to perform acoustic songs."
+  ideal: "C"
+  should:
+    - $icontains: "C"
+    - "The text labeled as correct should be the best option."
+    - "There should not be other options that are equally plausible."
+    - "All answer choices should be plausible and sensical."
+    - "The worst answer choice should be clearly identifiable as such."

@@ -1,0 +1,144 @@
+title: "Causal Language Understanding Evaluation (CLUE) framework"
+description: |
+  The Causal Language Understanding Evaluation (CLUE) framework is proposed as a general framework for assessing causal understanding in Large Language Models (LLMs) and for designing novel benchmarks. It aims to address the shortcomings of existing benchmarks, many of which can be solved through mere knowledge retrieval or by identifying simple statistical associations, rather than true causal reasoning.
+
+  The CLUE framework is designed to evaluate higher levels of causal reasoning, moving beyond 'seeing' (statistical associations) to 'doing' (interventions) and 'imagining' (counterfactuals), aligning with Pearl's Ladder of Causation and Zhang et al.'s three-level hierarchy. It emphasizes tasks that require abstraction, imagination, and the ability to handle complex, intersecting factors, rather than simple retrieval of domain knowledge.
+
+  Key criteria for tasks within the CLUE framework include:
+  1.  **Causal rather than correlative**: Tasks should be carefully designed using causal language to reveal causal, not correlative, relations, dealing with directional interventions and/or counterfactuals.
+  2.  **Open-ended**: Benchmarks should allow LLMs to cover as many causal reasoning possibilities as possible, rather than providing a fixed set list of options.
+  3.  **Scalable**: Rather than simple one-step questions, benchmarks should introduce multiple factors, allowing for a gradual increase in complexity while following the same causal structure.
+  4.  **Non-retrievable**: Benchmarks should be phrased with non-informative or fictional context, such that answers cannot simply be looked up from pretraining data.
+
+  This blueprint includes example prompts from existing benchmarks reviewed and critiqued in the paper, illustrating various levels of causal reasoning and common pitfalls. The paper advocates for a shift from evaluating superficial linguistic similarity or knowledge retrieval to assessing the LLM's ability to perform abstract, imaginative, and intervention-based causal reasoning.
+
+  Source: "A Critical Review of Causal Reasoning Benchmarks for Large Language Models" by Linying Yang, Vik Shirvaikar, Oscar Clivio, Fabian Falck.
+author:
+  name: "Linying Yang, Vik Shirvaikar, Oscar Clivio, Fabian Falck"
+references:
+  - title: "A Critical Review of Causal Reasoning Benchmarks for Large Language Models"
+    url: "https://arxiv.org/abs/2407.08029"
+tags:
+  - causal reasoning
+  - LLM evaluation
+  - benchmarking
+  - natural language understanding
+  - knowledge retrieval
+  - counterfactuals
+  - interventions
+  - commonsense reasoning
+  - causal inference
+  - causal discovery
+  - explanation generation
+models:
+  - CORE
+---
+- id: zhang-type1-q1
+  prompt: "Person: I am balancing a glass of water on my head. Suppose I take a quick step to the right. What will happen to the glass?"
+  ideal: "The glass will fall."
+  should:
+    - $icontains: "the glass will fall"
+    - "Correctly identify the causal relationship using domain knowledge."
+- id: zhang-type2-q1
+  prompt: "Here are outcomes for our business if we tried strategy A vs. strategy B: [text about outcomes]. Which one leads to greater success?"
+  should:
+    - "Discover new knowledge from provided data to determine which strategy leads to greater success."
+- id: zhang-type3-q1
+  prompt: "The patient got doses X and Y of certain medicines last time and reported a 40% decrease in blood pressure. What dose Z should I give the patient this time?"
+  should:
+    - "Quantitatively estimate the consequences of actions based on given data."
+- id: pearl-rung1-q1
+  prompt: "What is the relationship between this and that?"
+  should:
+    - "Describe basic statistical associations, as defined by joint and conditional distributions within the data."
+- id: pearl-rung2-q1
+  prompt: "If I do this, what will happen?"
+  should:
+    - "Formalize the concept of interventions and predict outcomes."
+- id: pearl-rung3-q1
+  prompt: "If I had done this, what would have happened?"
+  should:
+    - "Reason about alternative or counterfactual scenarios, which may contradict what actually happened."
+- id: fig1-causal-id-q1
+  prompt: "Input: Minutes after a woman was suspended and escorted from her job at the Kraft Foods plant in Northeast Philadelphia, she returned with a gun and opened fire, killing two women and critically injuring a third co-worker before being taken into custody. Question: is there a causal relationship between \"suspended\" and \"injuring\"?"
+  ideal: "Yes"
+  should:
+    - $icontains: "yes"
+    - "Correctly identify if a causal relationship exists between the two specified events."
+- id: fig2-com2sense-physical-q1
+  prompt: "As Bob is afraid of heights, he rode the carousel instead of the ferris wheel. T/F?"
+  ideal: "True"
+  should:
+    - $icontains: "true"
+    - "Correctly identify the causal relationship based on physical commonsense knowledge."
+- id: fig2-com2sense-physical-q2
+  prompt: "As Bob is afraid of heights, he rode the ferris wheel instead of the carousel. T/F?"
+  ideal: "False"
+  should:
+    - $icontains: "false"
+    - "Correctly identify the causal relationship based on physical commonsense knowledge."
+- id: fig2-com2sense-social-q1
+  prompt: "Expecting ten fish in the net, Sammy was thrilled to see forty fish swimming in there. T/F?"
+  ideal: "False"
+  should:
+    - $icontains: "false"
+    - "Correctly identify the causal relationship based on social commonsense knowledge."
+- id: fig2-com2sense-social-q2
+  prompt: "Expecting ten fish in the net, Sammy was thrilled to see five fish swimming in there. T/F?"
+  ideal: "False"
+  should:
+    - $icontains: "false"
+    - "Correctly identify the causal relationship based on social commonsense knowledge."
+- id: fig2-com2sense-temporal-q1
+  prompt: "It suddenly snows, so they will spend more time on the road getting home than usual. T/F?"
+  ideal: "True"
+  should:
+    - $icontains: "true"
+    - "Correctly identify the causal relationship based on temporal commonsense knowledge."
+- id: fig2-com2sense-temporal-q2
+  prompt: "It suddenly snows, so they will spend a similar amount of time on the road getting home as usual. T/F?"
+  ideal: "False"
+  should:
+    - $icontains: "false"
+    - "Correctly identify the causal relationship based on temporal commonsense knowledge."
+- id: fig3-intuitive-physics-q1
+  prompt: "A block is placed on one support. What happens if the support is removed?"
+  ideal: "The block will fall."
+  should:
+    - $icontains: "the block will fall"
+    - "Predict the outcome of a physical scenario based on intuitive physics."
+- id: fig4-ceg-q1
+  prompt: "Cause: The assailant struck the man in the head. Effect: The man fell unconscious. Question: why the cause can lead to the effect? Answer: Hit to head caused brain disruption, leading to unconsciousness."
+  ideal: "Hit to head caused brain disruption, leading to unconsciousness."
+  should:
+    - $icontains: "brain disruption"
+    - "Generate an accurate explanation for the causal relationship between the given cause and effect. The explanation should clearly link the cause to the effect."
+- id: fig5-ecare-q1
+  prompt: "Cause: Mary sent an emoticon \"crying\" to her boyfriend on her cell phone. Effect: Her boyfriend immediately called to comfort her. Conceptual Explanation: Emoticons are combinations of characters used to represent various emotions."
+  ideal: "Mary sent a 'crying' emoticon to express sadness, which prompted her boyfriend to call and comfort her."
+  should:
+    - $icontains: "sadness"
+    - $icontains: "comfort her"
+    - "Generate a correct conceptual explanation for the causal relationship between the given cause and effect. The explanation should accurately link the emotional expression to the boyfriend's action, rather than a generic definition."
+- id: fig6-ecare-poor-data-q1
+  prompt: "{\"She sells rose seeds for a living.\", \"ask-for\": \"cause\", \"hypothesis1\": \"Maria plants a lot of roses.\", \"hypothesis2\": \"The woman's husband thought she was going to be rich because she said she had a great harvest.\", \"label\": 0}"
+  should:
+    - "Identify the correct causal hypothesis. Note: The paper indicates this task has poor data quality, making it difficult even for humans to determine the correct cause from the given hypotheses."
+- id: fig6-ecare-poor-data-q2
+  prompt: "{\"He analyzed the composition of the soil.\", \"ask-for\": \"effect\", \"hypothesis1\": \"He discovered many different elements.\", \"hypothesis2\": \"He did it.\", \"label\": 0}"
+  ideal: "He discovered many different elements."
+  should:
+    - $icontains: "discovered many different elements"
+    - "Identify the correct causal hypothesis. Note: The paper indicates this task has poor data quality, making it difficult even for humans to determine the correct effect from the given hypotheses."
+- id: fig7-bigbench-entailed-polarity-q1
+  prompt: "Input: Ed remained to be convinced. Question: Was Ed convinced? Answer: No"
+  ideal: "No"
+  should:
+    - $icontains: "no"
+    - "Correctly infer the entailed polarity from the input sentence."
+- id: fig7-bigbench-entailed-polarity-q2
+  prompt: "Input: Ed didn't predict that Mary arrived. Question: Did Mary arrive? Answer: Yes"
+  ideal: "Yes"
+  should:
+    - $icontains: "yes"
+    - "Correctly infer the entailed polarity from the input sentence."

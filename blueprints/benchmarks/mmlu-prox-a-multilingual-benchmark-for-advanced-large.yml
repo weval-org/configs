@@ -1,0 +1,203 @@
+title: "MMLU-ProX: A Multilingual Benchmark for Advanced Large Language Model Evaluation"
+description: |
+  MMLU-ProX is a comprehensive multilingual benchmark designed to evaluate advanced Large Language Models (LLMs) across 29 typologically diverse languages. It addresses the limitations of existing benchmarks, which often focus on English or lack parallel questions for assessing cross-linguistic reasoning.
+
+  **Methodology:**
+  The benchmark is built upon an English benchmark and features 11,829 identical questions per language (with a lite version of 658 questions per language). This design enables direct cross-linguistic comparisons while controlling for question difficulty. The development process is semi-automated, involving multiple powerful LLMs (Claude Sonnet 3.7, OpenAI 03, GPT-4.1) for translation, followed by rigorous expert review to ensure:
+  - Accurate expression
+  - Consistent terminology
+  - Cultural relevance
+
+  The evaluation primarily employs 5-shot Chain-of-Thought (CoT) prompting for model evaluation. Model responses to multiple-choice questions are scored based on accuracy, reported as a percentage of correct answers.
+
+  **Source Paper:**
+  This benchmark methodology is extracted from the paper "MMLU-ProX: A Multilingual Benchmark for Advanced Large Language Model Evaluation".
+author:
+  name: "Weihao Xuan, Rui Yang, Heli Qi, Qingcheng Zeng, Yunze Xiao, Aosong Feng, Dairui Liu, Yun Xing, Junjue Wang, Fan Gao, Jinghui Lu, Yuang Jiang, Huitao Li, Xin Li, Kunyu Yu, Ruihai Dong, Shangding Gu, Yuekang Li, Xiaofei Xie, Felix Juefei-Xu, Foutse Khomh, Osamu Yoshie, Qingyu Chen, Douglas Teodoro, Nan Liu, Randy Goebel, Lei Ma, Edison Marrese-Taylor, Shijian Lu, Yusuke Iwasawa, Yutaka Matsuo, Irene Li"
+references:
+  - title: "MMLU-ProX: A Multilingual Benchmark for Advanced Large Language Model Evaluation"
+    url: "https://arxiv.org/abs/2503.10497"
+tags:
+  - multilingual
+  - reasoning
+  - benchmark creation
+  - translation quality
+  - multiple-choice
+  - LLM evaluation
+models:
+  - CORE
+---
+- id: "initial-translation-prompt"
+  prompt: |
+    Please translate the following Law assessment question and options:
+    <SOURCE_TEXT>
+    {
+      "question": "What is the legal term for a person who dies without a will?",
+      "options": {
+        "option1": "Testator",
+        "option2": "Intestate",
+        "option3": "Beneficiary",
+        "option4": "Executor"
+      }
+    }
+    </SOURCE_TEXT>
+
+    Output:
+    Only provide the Japanese translation for the above text. Do not include any explanations or text apart from the translation.
+    Different options are separated by newline characters(\n).
+    The number of options in the output must match the input exactly. Do not skip or combine any options.
+    Return the translation in the following JSON format, with keys "question" and "options", where the value of "options" is a dictionary with keys option1, option2, option3, etc. All JSON keys must remain in English exactly as shown and only translate the content inside square brackets:
+    <TRANSLATION>
+    {{
+    "question": "[translation of question]",
+    "options": {{
+    "option1": "[translation of option1 ]",
+    "option2": "[translation of option2 ]",
+    "option3": "[translation of option3 ]"
+    }}
+    }}
+    </TRANSLATION>
+  system: |
+    You are a professional translator specializing in accurate translation of technical and academic content from English to Japanese.
+
+    Your task is to translate assessment questions in the Law field while:
+    1. Preserving technical accuracy and terminology
+    2. Ensuring cultural appropriateness for Japanese speakers
+    3. Keeping terminology consistent throughout questions and options
+    4. Preserving all LaTeX notation, mathematical formulas, and programming code exactly as they appear (do not translate content inside LaTeX delimiters or code blocks, including variable names, function names, and comments)
+    5. Preserving all currency symbols ($) exactly as they appear in the original text, without converting to local currency units
+    6. For units of measurement: Use the conventional translations in the target language while preserving the exact numerical values and relationships
+    7. Preserving any special formatting or emphasis in the original text
+  ideal: "A JSON object containing the Japanese translation of the question and its options, adhering to the specified format and translation requirements."
+  should:
+    - "Preserves technical accuracy and terminology."
+    - "Ensures cultural appropriateness for target language speakers."
+    - "Keeps terminology consistent throughout questions and options."
+    - "Preserves all LaTeX notation, mathematical formulas, and programming code exactly as they appear."
+    - "Preserves all currency symbols ($) exactly as they appear in the original text, without converting to local currency units."
+    - "Uses conventional translations for units of measurement while preserving exact numerical values and relationships."
+    - "Preserves any special formatting or emphasis in the original text."
+    - $matches: "^\\s*\\{\\s*\"question\":\\s*\".*\",\\s*\"options\":\\s*\\{.*\\}\\s*\\}\\s*$"
+    - $contains_all_of: ["\"question\":", "\"options\": {", "\"option1\":", "\"option2\":", "\"option3\":", "\"option4\":"]
+    - "Number of options in the output must match the input exactly (4 options in this example)."
+    - "No extra explanations or text apart from the translation."
+
+- id: "self-reflection-prompt"
+  prompt: |
+    Input:
+    <SOURCE_TEXT>
+    {
+      "question": "What is the legal term for a person who dies without a will?",
+      "options": {
+        "option1": "Testator",
+        "option2": "Intestate",
+        "option3": "Beneficiary",
+        "option4": "Executor"
+      }
+    }
+    </SOURCE_TEXT>
+
+    <INITIAL_TRANSLATION>
+    {
+      "question": "[遺言なしで死亡した人の法的用語は何ですか？]",
+      "options": {
+        "option1": "[遺言者]",
+        "option2": "[無遺言者]",
+        "option3": "[受益者]",
+        "option4": "[執行者]"
+      }
+    }
+    </INITIAL_TRANSLATION>
+
+    Output:
+    <SUGGESTIONS>
+    [Your suggestions here ]
+    </SUGGESTIONS>
+  system: |
+    You are a Law translation expert, specializing in translation from English to Japanese.
+
+    Task Description:
+    Carefully review the source text and its translation from English to Japanese, and then provide constructive suggestions in English.
+
+    Requirements:
+    1. Do not add, remove, or explain any information.
+    2. Make sure retain the original format for specialized information, e.g., anonymous information.
+    3. Identify any instances where proper nouns remain untranslated or where the translation contains unnecessary explanations, parenthetical original terms, or additions from English.
+    4. Examine whether any technical terms, subject-specific concepts, or other specialized vocabulary have been left in English instead of using their established Japanese equivalents.
+    5. Verify that currency symbols, mathematical operators, and measurement units remain exactly as they appear in English text. These symbols should not be converted to their written form in Japanese.
+    6. Check that no additional symbols or written representations have been added to options where they did not exist in English text.
+  ideal: "A block of text within <SUGGESTIONS> tags, containing constructive suggestions in English for improving the initial translation, based on the specified requirements."
+  should:
+    - "Suggestions do not add, remove, or explain any information."
+    - "Original format for specialized information is retained."
+    - "Identifies proper nouns remaining untranslated or unnecessary explanations/additions."
+    - "Identifies technical terms left in source language instead of target language equivalents."
+    - "Verifies currency symbols, mathematical operators, and measurement units appear exactly as in source text."
+    - "Checks that no additional symbols or written representations are added to options that did not exist in source text."
+    - $matches: "^\\s*<SUGGESTIONS>.*</SUGGESTIONS>\\s*$"
+
+- id: "improve-translation-prompt"
+  prompt: |
+    Input:
+    <SOURCE_TEXT>
+    {
+      "question": "What is the legal term for a person who dies without a will?",
+      "options": {
+        "option1": "Testator",
+        "option2": "Intestate",
+        "option3": "Beneficiary",
+        "option4": "Executor"
+      }
+    }
+    </SOURCE_TEXT>
+
+    <INITIAL_TRANSLATION>
+    {
+      "question": "[遺言なしで死亡した人の法的用語は何ですか？]",
+      "options": {
+        "option1": "[遺言者]",
+        "option2": "[無遺言者]",
+        "option3": "[受益者]",
+        "option4": "[執行者]"
+      }
+    }
+    </INITIAL_TRANSLATION>
+
+    <EXPERT_SUGGESTIONS>
+    [Suggestions from self-reflection or human expert review, e.g., "Option2 '無遺言者' is too literal, consider '遺言を残さなかった者' for better fluency."]
+    </EXPERT_SUGGESTIONS>
+
+    Output:
+    Only provide the improved translation. Do not include any explanations or text apart from the translation.
+    Different options are separated by newline characters(\n).
+    The number of options in the output must match the input exactly. Do not skip or combine any options.
+    Return the translation in the following JSON format, with keys "question" and "options", where the value of "options" is a dictionary with keys option1, option2, option3, etc. All JSON keys must remain in English exactly as shown and only translate the content inside square brackets:
+    <IMPROVED_TRANSLATION>
+    {{
+    "question": "[improved translation of question ]",
+    "options": {{
+    "option1": "[improved translation of option1 ]",
+    "option2": "[improved translation of option2 ]",
+    "option3": "[improved translation of option3 ]"
+    }}
+    }}
+    </IMPROVED_TRANSLATION>
+  system: |
+    You are a Law translation expert, specializing in translation from English to Japanese.
+
+    Task Description:
+    Carefully review and edit the Law translation from English to Japanese, incorporating the expert feedback.
+
+    Requirements:
+    1. Do not explain any information.
+    2. Strictly keep the single quotes in the original text and do not add new single and double quotes.
+    3. Remove unnecessary explanations or original terms from English if present in the translation.
+  ideal: "A JSON object containing the improved Japanese translation of the question and its options, adhering to the specified format and requirements, and incorporating the provided suggestions."
+  should:
+    - "No explanations or extra information are included."
+    - "Single quotes from the original text are strictly kept, and no new single or double quotes are added."
+    - "Unnecessary explanations or original terms from the source language are removed."
+    - $matches: "^\\s*\\{\\s*\"question\":\\s*\".*\",\\s*\"options\":\\s*\\{.*\\}\\s*\\}\\s*$"
+    - $contains_all_of: ["\"question\":", "\"options\": {", "\"option1\":", "\"option2\":", "\"option3\":", "\"option4\":"]
+    - "Number of options in the output must match the input exactly (4 options in this example)."
+    - "No extra explanations or text apart from the translation."

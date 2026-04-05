@@ -1,0 +1,871 @@
+title: EU20 Multilingual LLM Evaluation
+description: 'This work provides a comprehensive framework for evaluating Large Language Models (LLMs) across multiple European
+  languages by utilizing translated versions of widely-used benchmarks. The evaluation approach is tailored for European languages,
+  employing translated versions of five widely-used benchmarks: ARC (Clark et al., 2018), HellaSwag (Zellers et al., 2019),
+  TruthfulQA (Lin et al., 2022), GSM8K (Cobbe et al., 2021), and MMLU (Hendrycks et al., 2020). These benchmarks are translated
+  from English into 20 additional European languages using DeepL as the primary translation service. The evaluation assesses
+  the capabilities of 40 LLMs across these 21 languages, examining the effectiveness of translated benchmarks, assessing the
+  impact of different translation services, and investigating correlations with human evaluations. The goal is to determine
+  if automatically translated benchmarks can reliably assess model performance across languages and substitute manually generated
+  ones, allowing for scalable and uniform evaluation.
+
+
+  **Evaluation type:** multiple-choice, open-ended, generation
+
+
+  **Metrics:** accuracy, Elo scores, Pearson Correlation Coefficients, Spearman Correlation Coefficients, COMET-KIWI metric
+
+
+  **Scoring:** For multiple-choice tasks, accuracy is calculated based on whether the model selects the correct option. For
+  open-ended generation tasks, the paper does not explicitly detail the scoring mechanism but implies a correct/incorrect
+  judgment (e.g., ''model responded correctly or incorrectly'' in Section D.3, Table 4). Human preferences are captured through
+  ''Elo scores'' from the LMSYS Chatbot Arena, where users vote on pairs of LLM responses in anonymized battles. These preference
+  data are used to compute Elo rankings. Correlation analysis (Pearson and Spearman) is performed between model accuracies
+  on the translated datasets and the LMSYS Elo scores to assess the viability of translated benchmarks. Translation quality
+  is assessed using the ''COMET-KIWI metric'', a reference-free metric that uses a pre-trained language model to predict translation
+  quality, with a score of 1 indicating high quality and 0 indicating poor quality.
+
+
+  **Source:** [Towards Multilingual LLM Evaluation for European Languages](https://arxiv.org/abs/2410.08928)'
+author:
+  name: Thellmann et al.
+references:
+- title: Towards Multilingual LLM Evaluation for European Languages
+  url: https://arxiv.org/abs/2410.08928
+tags:
+- benchmark
+- automated-extraction
+- multilingual
+- european-languages
+- reasoning
+- commonsense
+- math
+- factuality
+- knowledge
+- question-answering
+- generation
+- multiple-choice
+- translation-quality
+- human-preference
+models:
+- CORE
+---
+- id: wg-en-1
+  prompt: 'Sentence: The juice from the mango fruit could not fill up the cup because the _ is small.
+
+    Choices:
+
+    mango
+
+    cup'
+  ideal: cup
+  should:
+  - Select the choice that makes the sentence semantically correct.
+  description: 'Category: Commonsense Reasoning, Ambiguity Resolution'
+- id: wg-es-1
+  prompt: 'Choices:
+
+    El zumo de la fruta de mango no podía llenar la taza porque el mango es pequeño.
+
+    El zumo de la fruta de mango no podía llenar la taza porque la taza es pequeña.'
+  ideal: El zumo de la fruta de mango no podía llenar la taza porque la taza es pequeña.
+  should:
+  - Select the choice that makes the sentence semantically correct, considering the original English context.
+  description: 'Category: Commonsense Reasoning, Ambiguity Resolution, Translation Quality Impact'
+- id: hs-en-1
+  prompt: 'Context: A cartoon animation video is shown with people wandering around and rockets being shot. two men
+
+    Endings:
+
+    1. fight robots of evil and ends with a to be continued.
+
+    2. are then shown in closeups shooting a shot put.
+
+    3. push a child in a speedboat in the water.
+
+    4. look in the cameraman''s eye and smile.'
+  ideal: 4. look in the cameraman's eye and smile.
+  should:
+  - Select the most appropriate ending based on the given context.
+  description: 'Category: Commonsense Reasoning, Context Understanding'
+- id: hs-de-1-context-aware
+  prompt: 'Context: Es wird ein Zeichentrickfilm gezeigt, in dem Menschen umherlaufen und Raketen abgeschossen werden. zwei
+    Männer''
+
+    Endings:
+
+    1. kämpfen gegen Roboter des Bösen und enden mit einem "to be continued".
+
+    2. werden dann in Großaufnahme beim Kugelstoßen gezeigt.
+
+    3. schieben ein Kind in einem Schnellboot im Wasser.
+
+    4. schauen dem Kameramann in die Augen und lächeln.'
+  ideal: 4. schauen dem Kameramann in die Augen und lächeln.
+  should:
+  - Select the most appropriate ending based on the given context, ensuring fluency and coherence in German.
+  description: 'Category: Commonsense Reasoning, Context Understanding, Translation Quality'
+- id: hs-en-budgie
+  prompt: '[header] How to choose a good budgie [title] Locate budgies for sale from a reputable seller. [step] You can find
+    budgies for sale online, in want-ads, or in pet stores. You can also get one from your local animal shelter.
+
+    - Most animal shelters sell budgies for a flat fee, so this will limit your bank expenses. [substeps] You might be able
+    to compare prices to get a good deal.
+
+    You''ll need to get a price point that is reasonable. Here''s a guide to locate an experienced seller: [substeps] Generally,
+    20-50% off the appraised price is reasonable.
+
+    Wherever you get your budgie from, make sure the seller has healthy and humanely treated birds. [substeps] Look at online
+    reviews for the sellers you find.
+
+    Basically, you need to find a good seller who has had previous owners. [substeps] Check to see if the parent owned the
+    budgie.'
+  should:
+  - Generate a coherent and contextually appropriate continuation.
+  - Maintain factual accuracy related to budgie selection.
+  - Adhere to the specified structure (header, title, step, substeps).
+  description: 'Category: Instruction Following, Information Retrieval, Generation'
+- id: hs-de-budgie-eu21
+  prompt: 'Wie man einen guten Wellensittich auswählt. Suchen Sie nach Wellensittichen, die von einem seriösen Verkäufer verkauft
+    werden. Sie können Wellensittiche im Internet, in Kleinanzeigen oder in Zoohandlungen finden, die zum Verkauf stehen.
+    Sie können auch einen Wellensittich aus Ihrem örtlichen Tierheim bekommen.
+
+    - Die meisten Tierheime verkaufen Wellensittiche gegen eine Pauschalgebühr, so dass sich Ihre Bankkosten in Grenzen halten.
+    Vielleicht können Sie auch die Preise vergleichen, um ein gutes Angebot zu bekommen.
+
+    Sie müssen einen angemessenen Preis finden. Im Allgemeinen sind 20-50 % des Schätzpreises angemessen.
+
+    Wo auch immer Sie Ihren Wellensittich kaufen, stellen Sie sicher, dass der Verkäufer gesunde und artgerecht gehaltene
+    Vögel hat. Schauen Sie sich die Online-Bewertungen der Verkäufer an, die Sie finden.
+
+    Grundsätzlich müssen Sie einen guten Verkäufer finden, der bereits Vorbesitzer hatte. Erkundigen Sie sich, ob der Wellensittich
+    den Eltern gehört hat.'
+  should:
+  - Generate a coherent and contextually appropriate continuation in German.
+  - Maintain factual accuracy related to budgie selection.
+  - Adhere to the specified structure.
+  - Ensure high translation quality and fluency.
+  description: 'Category: Instruction Following, Information Retrieval, Generation, Translation Quality'
+- id: hs-de-budgie-okapi
+  prompt: '[header] Wie man einen guten Wellensittich auswählt [title] Lokalisieren Sie Wellensittiche zum Verkauf von einem
+    seriösen Verkäufer. [step] Sie können Wellensittiche zum Verkauf online, in Kleinanzeigen oder in Zoohandlungen finden.
+    Sie können auch einen aus Ihrem örtlichen Tierheim bekommen.
+
+    - Die meisten Tierheime verkaufen Wellensittiche zu einem Festpreis, was Ihre Bankkosten begrenzen wird. [substeps] Sie
+    können auch Preise vergleichen, um ein gutes Angebot zu erhalten.
+
+    Sie müssen einen vernünftigen Preis finden. Hier ist ein Leitfaden, um einen erfahrenen Verkäufer zu finden: [substeps]
+    In der Regel sind 20-50% Rabatt auf den geschätzten Preis angemessen.
+
+    Wo immer Sie Ihren Wellensittich her bekommen, stellen Sie sicher, dass der Verkäufer gesunde und menschlich behandelte
+    Vögel hat. [substeps] Schauen Sie sich Online-Bewertungen für die Verkäufer an, die Sie finden.
+
+    Im Grunde genommen müssen Sie einen guten Verkäufer finden, der bereits Vorbesitzer hatte. [substeps] Überprüfen Sie,
+    ob der Vorbesitzer den Wellensittich besaß.'
+  should:
+  - Generate a coherent and contextually appropriate continuation in German.
+  - Maintain factual accuracy related to budgie selection.
+  - Adhere to the specified structure.
+  - Ensure high translation quality and fluency.
+  description: 'Category: Instruction Following, Information Retrieval, Generation, Translation Quality'
+- id: hs-en-sax
+  prompt: 'A green title page appears, with words showing that the video will be of a tenor saxophone player as well as the
+    website to receive to lessons. A black male then appears with a green sweater and black hat playing the sax. the man
+
+    - bluffs on the drums and the video continues, at various points, to show individuals playing the instrument.
+
+    continues to play and cheers, shakes hands with the man, throws a napkin, writes on the napkin and gives him a card.
+
+    then lays the instrument across his lap and begins talking about what he is doing.
+
+    - jumps into a black and white video and temporarily stops playing, saying, " big calibers ".'
+  should:
+  - Generate a coherent and contextually appropriate continuation.
+  - Maintain narrative consistency.
+  description: 'Category: Commonsense Reasoning, Narrative Completion, Generation'
+- id: hs-fr-sax-eu21
+  prompt: 'Une page de titre verte apparaît, avec des mots indiquant que la vidéo sera celle d''un joueur de saxophone ténor,
+    ainsi que le site web permettant de recevoir des leçons. Un homme noir apparaît ensuite, avec un pull vert et un chapeau
+    noir, jouant du saxophone. l''homme
+
+    bluffe à la batterie et la vidéo continue, à différents moments, à montrer des personnes jouant de l''instrument.
+
+    continue à jouer et applaudit, serre la main de l''homme, lui lance une serviette, écrit sur la serviette et lui donne
+    une carte. pose ensuite l''instrument sur ses genoux et commence à parler de ce qu''il fait.
+
+    saute dans une vidéo en noir et blanc et s''arrête temporairement de jouer en disant " big calibers " (gros calibres).'
+  should:
+  - Generate a coherent and contextually appropriate continuation in French.
+  - Maintain narrative consistency.
+  - Ensure high translation quality and fluency.
+  description: 'Category: Commonsense Reasoning, Narrative Completion, Generation, Translation Quality'
+- id: hs-fr-sax-okapi
+  prompt: 'Une page de titre verte apparaît, avec des mots indiquant que la vidéo sera d''un joueur de saxophone ténor ainsi
+    que le site Web pour recevoir des leçons. Un homme noir apparaît alors avec un pull vert et un chapeau noir en jouant
+    du saxophone. l''homme
+
+    - bluffe à la batterie et la vidéo continue, à différents moments, de montrer des individus jouant de l''instrument.
+
+    continue à jouer et crier, serre la main de l''homme, jette une serviette, écrit sur la serviette et lui donne une carte.
+
+    - puis pose l''instrument sur ses genoux et commence à parler de ce qu''il fait.
+
+    saut dans une vidéo en noir et blanc et arrête temporairement de jouer, en disant, "gros calibres".'
+  should:
+  - Generate a coherent and contextually appropriate continuation in French.
+  - Maintain narrative consistency.
+  - Ensure high translation quality and fluency.
+  description: 'Category: Commonsense Reasoning, Narrative Completion, Generation, Translation Quality'
+- id: hs-en-man-can
+  prompt: 'A man drinks from a can next to a hole in the snow. he
+
+    swims slowly down a shallow body of water.
+
+    speaks and gestures to the camera.
+
+    gets his teeth bitten by a young man.
+
+    is drawn in with pick and shovel.'
+  should:
+  - Generate a coherent and contextually appropriate continuation.
+  - Maintain narrative consistency.
+  description: 'Category: Commonsense Reasoning, Narrative Completion, Generation'
+- id: hs-es-man-can-eu21
+  prompt: 'Un hombre bebe de una lata junto a un agujero en la nieve. él
+
+    nada lentamente por una masa de agua poco profunda.
+
+    habla y gesticula a la cámara.
+
+    un joven le muerde los dientes.
+
+    se acerca con pico y pala.'
+  should:
+  - Generate a coherent and contextually appropriate continuation in Spanish.
+  - Maintain narrative consistency.
+  - Ensure high translation quality and fluency.
+  description: 'Category: Commonsense Reasoning, Narrative Completion, Generation, Translation Quality'
+- id: hs-es-man-can-okapi
+  prompt: 'Un hombre bebe de una lata junto a un agujero en la nieve. él
+
+    nada lentamente por un cuerpo de agua poco profundo.
+
+    habla y gestiona hacia la cámara.
+
+    recibe una mordida de un joven en los dientes.
+
+    es sacado con pico y pala.'
+  should:
+  - Generate a coherent and contextually appropriate continuation in Spanish.
+  - Maintain narrative consistency.
+  - Ensure high translation quality and fluency.
+  description: 'Category: Commonsense Reasoning, Narrative Completion, Generation, Translation Quality'
+- id: hs-en-stomach-virus
+  prompt: '[header] How to ease a stomach virus [title] Avoid solid foods for a few hours to let your stomach settle. [step]
+    When you first notice symptoms of the stomach virus, you should allow your stomach to settle. Eating food early on could
+    irritate the stomach lining more, worsening your symptoms.
+
+    - For a few hours, avoid solid foods. [title] Take small sips of water or chew ice chips.
+
+    [title] Avoid eating something for at least 10 minutes. [step] Studies have not found that eating for a few hours can
+    relieve stomach symptoms.
+
+    Trying to eat a solid meal a few hours before your nausea attack will only make symptoms worse. If you feel ill after
+    the onset of the symptoms, stop eating.
+
+    - [substeps] Try to eat a few hours before work or school, particularly if you''re feeling sick. Moving around a bit can
+    also minimize your nausea and help your stomach to settle.'
+  should:
+  - Generate a coherent and contextually appropriate continuation.
+  - Provide accurate health advice.
+  - Adhere to the specified structure (header, title, step, substeps).
+  description: 'Category: Instruction Following, Health Information, Generation'
+- id: hs-it-stomach-virus-eu21
+  prompt: 'Come alleviare un virus intestinale. Evitate i cibi solidi per qualche ora per permettere allo stomaco di calmarsi.
+    Quando si avvertono i primi sintomi di un virus intestinale, è necessario lasciare che lo stomaco si stabilizzi. Mangiare
+    cibo subito potrebbe irritare maggiormente la mucosa gastrica, peggiorando i sintomi.
+
+    - Per qualche ora, evitate i cibi solidi. Bevete piccoli sorsi d''acqua o masticate del ghiaccio.
+
+    Evitare di mangiare qualcosa per almeno 10 minuti. Gli studi non hanno riscontrato che mangiare per qualche ora possa
+    alleviare i sintomi dello stomaco.
+
+    Cercare di mangiare un pasto solido qualche ora prima dell''attacco di nausea non farà altro che peggiorare i sintomi.
+    Se vi sentite male dopo l''inizio dei sintomi, smettete di mangiare.
+
+    - Cercate di mangiare qualche ora prima del lavoro o della scuola, soprattutto se vi sentite male. Anche muoversi un po''
+    può ridurre la nausea e aiutare lo stomaco a stabilizzarsi.'
+  should:
+  - Generate a coherent and contextually appropriate continuation in Italian.
+  - Provide accurate health advice.
+  - Adhere to the specified structure.
+  - Ensure high translation quality and fluency.
+  description: 'Category: Instruction Following, Health Information, Generation, Translation Quality'
+- id: hs-en-funeral
+  prompt: '[header] How to officiate at a nondenominational funeral service [title] Talk to the family. [step] Call the family
+    and arrange to meet them, preferably in their home. Meeting them in public is ok in a bind, but if that''s the arrangement,
+    try not to meet more than two to three people.
+
+    - [substeps] If the ceremony is inside a church, don''t bother sitting outside on a park bench. If you''re a minister
+    or midwife, it''s best to arrive by the usual time of worship.
+
+    - [substeps] Of course, only with a family member and one of their kids is okay. If no one at your funeral is willing
+    to attend, that''s fine.
+
+    People aren''t always happy with the small acts of an officiant. In some cases, the family can become drunk, agitated,
+    or violent during or around a service.
+
+    - If a funeral home is taking care of other arrangements, the funeral directors may have space at the funeral home where
+    you could meet. Invite the family to have other family members and close friends present if they wish, but be sensitive
+    to their needs and to the space considerations.'
+  should:
+  - Generate a coherent and contextually appropriate continuation.
+  - Provide accurate advice on funeral services.
+  - Adhere to the specified structure (header, title, step, substeps).
+  description: 'Category: Instruction Following, Social Etiquette, Generation'
+- id: hs-hu-funeral-eu21
+  prompt: 'Hogyan kell egy nem felekezeti temetési szertartást levezetni. Beszélj a családdal. Hívja fel a családot, és egyeztessen
+    velük egy találkozót, lehetőleg az otthonukban. A nyilvános találkozás kötöttségek esetén rendben van, de ha ez a megállapodás,
+    próbáljon meg nem két-három embernél többel találkozni.
+
+    - Ha a szertartás templomban lesz, ne fáradjon azzal, hogy kint üljön egy parkban lévő padon. Ha lelkész vagy bába, a
+    legjobb, ha a szokásos istentiszteleti időre érkezik.
+
+    Természetesen csak egy családtaggal és az egyik gyermekükkel együtt nem baj. Ha a temetéseden senki sem hajlandó részt
+    venni, az sem baj.
+
+    Az emberek nem mindig örülnek a szertartásvezető apró cselekedeteinek. Egyes esetekben a család részeggé, izgatottá vagy
+    erőszakossá válhat a szertartás alatt vagy körül.
+
+    Ha egy temetkezési vállalat gondoskodik egyéb előkészületekről, a temetkezési vállalatnak lehet, hogy van olyan hely a
+    ravatalozóban, ahol találkozhatnátok. Hívja meg a családot, hogy más családtagok és közeli barátok is jelen legyenek,
+    ha kívánják, de legyen tekintettel az ő igényeikre és a térbeli megfontolásokra.'
+  should:
+  - Generate a coherent and contextually appropriate continuation in Hungarian.
+  - Provide accurate advice on funeral services.
+  - Adhere to the specified structure.
+  - Ensure high translation quality and fluency.
+  description: 'Category: Instruction Following, Social Etiquette, Generation, Translation Quality'
+- id: hs-en-man-pole
+  prompt: 'A man is running while holding a pole on a track. he
+
+    uses the pole to vault through the air.
+
+    runs down the track, wrapping his legs around the pole.
+
+    runs into a sand pit and starts to jump.
+
+    lands on a pile of sand.'
+  should:
+  - Generate a coherent and contextually appropriate continuation.
+  - Maintain narrative consistency.
+  description: 'Category: Commonsense Reasoning, Narrative Completion, Generation'
+- id: hs-sk-man-pole-eu21
+  prompt: 'Muž beží a pritom drží tyč na dráhe. on
+
+    používa tyč na skok vo vzduchu.
+
+    beží po dráhe a obopína nohy okolo tyče.
+
+    vbehne do pieskoviska a začne skákať''.
+
+    dopadne na hromadu piesku.'
+  should:
+  - Generate a coherent and contextually appropriate continuation in Slovak.
+  - Maintain narrative consistency.
+  - Ensure high translation quality and fluency.
+  description: 'Category: Commonsense Reasoning, Narrative Completion, Generation, Translation Quality'
+- id: hs-en-girl-pinata
+  prompt: 'A small girl runs away from the pinata while holding the stick. The child returns and hits the pinata one time.
+    the people
+
+    continue to remove key ingredients from the bags.
+
+    cheer for the child getting hit.
+
+    watch while the girl throws the stick twice.
+
+    all clap and the girl smiles and turns toward the camera.'
+  should:
+  - Generate a coherent and contextually appropriate continuation.
+  - Maintain narrative consistency.
+  description: 'Category: Commonsense Reasoning, Narrative Completion, Generation'
+- id: hs-da-girl-pinata-eu21
+  prompt: 'En lille pige løber væk fra pinataen, mens hun holder pinden. Barnet vender tilbage og rammer pinataen én gang.
+    personerne
+
+    fortsætter med at fjerne nøgleingredienser fra poserne.
+
+    - jubler over barnet, der bliver ramt.
+
+    ser til, mens pigen kaster pinden to gange.
+
+    alle klapper, og pigen smiler og vender sig mod kameraet.'
+  should:
+  - Generate a coherent and contextually appropriate continuation in Danish.
+  - Maintain narrative consistency.
+  - Ensure high translation quality and fluency.
+  description: 'Category: Commonsense Reasoning, Narrative Completion, Generation, Translation Quality'
+- id: hs-en-man-roof
+  prompt: 'A man is sitting on a roof. he
+
+    - is using wrap to wrap a pair of skis.
+
+    - is ripping level tiles off.
+
+    - is holding a rubik''s cube.
+
+    starts pulling up roofing on a roof.'
+  should:
+  - Generate a coherent and contextually appropriate continuation.
+  - Maintain narrative consistency.
+  description: 'Category: Commonsense Reasoning, Narrative Completion, Generation'
+- id: hs-ro-man-roof-eu21
+  prompt: 'Un bărbat stă pe un acoperiș. el
+
+    folosește folie pentru a înfășura o pereche de schiuri.
+
+    smulge țiglele de nivel.
+
+    ține în mână un cub Rubik.
+
+    începe să ridice acoperișul de pe un acoperiș.'
+  should:
+  - Generate a coherent and contextually appropriate continuation in Romanian.
+  - Maintain narrative consistency.
+  - Ensure high translation quality and fluency.
+  description: 'Category: Commonsense Reasoning, Narrative Completion, Generation, Translation Quality'
+- id: mmlu-en-humans
+  prompt: 'When anatomically modern humans first arrived in the Middle East, who did they encounter?
+
+    - Neandertals, the evolutionary descendants of the premodern human inhabitants of Europe and Asia
+
+    Homo erectus, the evolutionary descendants of the premodern human inhabitants of Europe and Asia
+
+    Homo sapiens, who had evolved independently in Asia and arrived there by 200,000 years ago
+
+    All of the above'
+  ideal: Neandertals, the evolutionary descendants of the premodern human inhabitants of Europe and Asia
+  should:
+  - Select the factually correct answer.
+  description: 'Category: Factual Knowledge, History, Multiple Choice'
+- id: mmlu-de-humans-eu21
+  prompt: 'Auf wen trafen die anatomisch modernen Menschen bei ihrer ersten Ankunft im Nahen Osten?
+
+    Neandertaler, die evolutionären Nachfahren der vormodernen menschlichen Bewohner Europas und Asiens
+
+    Homo erectus, die evolutionären Nachfahren der vormodernen menschlichen Bewohner Europas und Asiens
+
+    Homo sapiens, der sich unabhängig von den Menschen in Asien entwickelt hatte und dort vor 200.000 Jahren ankam
+
+    Alle oben genannten'
+  ideal: Neandertaler, die evolutionären Nachfahren der vormodernen menschlichen Bewohner Europas und Asiens
+  should:
+  - Select the factually correct answer in German.
+  - Ensure high translation quality and fluency.
+  description: 'Category: Factual Knowledge, History, Multiple Choice, Translation Quality'
+- id: arc-en-lightbulb
+  prompt: 'A class plans an investigation to see which brand of light bulb lasts the longest. Which of these steps should
+    come first?
+
+    Repeat the investigation.
+
+    Write a report of the results.
+
+    Make a table for recording data.
+
+    Make daily observations of the light bulbs.'
+  ideal: Make a table for recording data.
+  should:
+  - Select the most logical first step in a scientific investigation.
+  description: 'Category: Reasoning, Science, Multiple Choice'
+- id: arc-de-lightbulb-eu21
+  prompt: 'Eine Klasse plant eine Untersuchung, um herauszufinden, welche Marke von Glühbirnen am längsten hält. Welcher dieser
+    Schritte sollte zuerst erfolgen?
+
+    Wiederhole die Untersuchung.
+
+    Schreibe einen Bericht über die Ergebnisse.
+
+    Fertige eine Tabelle an, um die Daten festzuhalten.
+
+    Beobachte täglich die Glühbirnen.'
+  ideal: Fertige eine Tabelle an, um die Daten festzuhalten.
+  should:
+  - Select the most logical first step in a scientific investigation in German.
+  - Ensure high translation quality and fluency.
+  description: 'Category: Reasoning, Science, Multiple Choice, Translation Quality'
+- id: hs-pl-budgie-eu21
+  prompt: '[header] How to choose a good budgie [title] Locate budgies for sale from a reputable seller. [step] You can find
+    budgies for sale online, in want-ads, or in pet stores. You can also get one from your local animal shelter.
+
+    - Most animal shelters sell budgies for a flat fee, so this will limit your bank expenses. [substeps] You might be able
+    to compare prices to get a good deal.
+
+    You''ll need to get a price point that is reasonable. Here''s a guide to locate an experienced seller: [substeps] Generally,
+    20-50% off the appraised price is reasonable.
+
+    Wherever you get your budgie from, make sure the seller has healthy and humanely treated birds. [substeps] Look at online
+    reviews for the sellers you find.
+
+    Basically, you need to find a good seller who has had previous owners. [substeps] Check to see if the parent owned the
+    budgie.'
+  should:
+  - Generate a coherent and contextually appropriate continuation in Polish.
+  - Maintain factual accuracy related to budgie selection.
+  - Adhere to the specified structure (header, title, step, substeps).
+  - Ensure high translation quality and fluency.
+  description: 'Category: Instruction Following, Information Retrieval, Generation, Translation Quality'
+- id: hs-nl-budgie-eu21
+  prompt: '[header] How to choose a good budgie [title] Locate budgies for sale from a reputable seller. [step] You can find
+    budgies for sale online, in want-ads, or in pet stores. You can also get one from your local animal shelter.
+
+    - Most animal shelters sell budgies for a flat fee, so this will limit your bank expenses. [substeps] You might be able
+    to compare prices to get a good deal.
+
+    You''ll need to get a price point that is reasonable. Here''s a guide to locate an experienced seller: [substeps] Generally,
+    20-50% off the appraised price is reasonable.
+
+    Wherever you get your budgie from, make sure the seller has healthy and humanely treated birds. [substeps] Look at online
+    reviews for the sellers you find.
+
+    Basically, you need to find a good seller who has had previous owners. [substeps] Check to see if the parent owned the
+    budgie.'
+  should:
+  - Generate a coherent and contextually appropriate continuation in Dutch.
+  - Maintain factual accuracy related to budgie selection.
+  - Adhere to the specified structure (header, title, step, substeps).
+  - Ensure high translation quality and fluency.
+  description: 'Category: Instruction Following, Information Retrieval, Generation, Translation Quality'
+- id: hs-cs-budgie-eu21
+  prompt: '[header] How to choose a good budgie [title] Locate budgies for sale from a reputable seller. [step] You can find
+    budgies for sale online, in want-ads, or in pet stores. You can also get one from your local animal shelter.
+
+    - Most animal shelters sell budgies for a flat fee, so this will limit your bank expenses. [substeps] You might be able
+    to compare prices to get a good deal.
+
+    You''ll need to get a price point that is reasonable. Here''s a guide to locate an experienced seller: [substeps] Generally,
+    20-50% off the appraised price is reasonable.
+
+    Wherever you get your budgie from, make sure the seller has healthy and humanely treated birds. [substeps] Look at online
+    reviews for the sellers you find.
+
+    Basically, you need to find a good seller who has had previous owners. [substeps] Check to see if the parent owned the
+    budgie.'
+  should:
+  - Generate a coherent and contextually appropriate continuation in Czech.
+  - Maintain factual accuracy related to budgie selection.
+  - Adhere to the specified structure (header, title, step, substeps).
+  - Ensure high translation quality and fluency.
+  description: 'Category: Instruction Following, Information Retrieval, Generation, Translation Quality'
+- id: hs-sv-budgie-eu21
+  prompt: '[header] How to choose a good budgie [title] Locate budgies for sale from a reputable seller. [step] You can find
+    budgies for sale online, in want-ads, or in pet stores. You can also get one from your local animal shelter.
+
+    - Most animal shelters sell budgies for a flat fee, so this will limit your bank expenses. [substeps] You might be able
+    to compare prices to get a good deal.
+
+    You''ll need to get a price point that is reasonable. Here''s a guide to locate an experienced seller: [substeps] Generally,
+    20-50% off the appraised price is reasonable.
+
+    Wherever you get your budgie from, make sure the seller has healthy and humanely treated birds. [substeps] Look at online
+    reviews for the sellers you find.
+
+    Basically, you need to find a good seller who has had previous owners. [substeps] Check to see if the parent owned the
+    budgie.'
+  should:
+  - Generate a coherent and contextually appropriate continuation in Swedish.
+  - Maintain factual accuracy related to budgie selection.
+  - Adhere to the specified structure (header, title, step, substeps).
+  - Ensure high translation quality and fluency.
+  description: 'Category: Instruction Following, Information Retrieval, Generation, Translation Quality'
+- id: hs-fi-budgie-eu21
+  prompt: '[header] How to choose a good budgie [title] Locate budgies for sale from a reputable seller. [step] You can find
+    budgies for sale online, in want-ads, or in pet stores. You can also get one from your local animal shelter.
+
+    - Most animal shelters sell budgies for a flat fee, so this will limit your bank expenses. [substeps] You might be able
+    to compare prices to get a good deal.
+
+    You''ll need to get a price point that is reasonable. Here''s a guide to locate an experienced seller: [substeps] Generally,
+    20-50% off the appraised price is reasonable.
+
+    Wherever you get your budgie from, make sure the seller has healthy and humanely treated birds. [substeps] Look at online
+    reviews for the sellers you find.
+
+    Basically, you need to find a good seller who has had previous owners. [substeps] Check to see if the parent owned the
+    budgie.'
+  should:
+  - Generate a coherent and contextually appropriate continuation in Finnish.
+  - Maintain factual accuracy related to budgie selection.
+  - Adhere to the specified structure (header, title, step, substeps).
+  - Ensure high translation quality and fluency.
+  description: 'Category: Instruction Following, Information Retrieval, Generation, Translation Quality'
+- id: hs-bg-budgie-eu21
+  prompt: '[header] How to choose a good budgie [title] Locate budgies for sale from a reputable seller. [step] You can find
+    budgies for sale online, in want-ads, or in pet stores. You can also get one from your local animal shelter.
+
+    - Most animal shelters sell budgies for a flat fee, so this will limit your bank expenses. [substeps] You might be able
+    to compare prices to get a good deal.
+
+    You''ll need to get a price point that is reasonable. Here''s a guide to locate an experienced seller: [substeps] Generally,
+    20-50% off the appraised price is reasonable.
+
+    Wherever you get your budgie from, make sure the seller has healthy and humanely treated birds. [substeps] Look at online
+    reviews for the sellers you find.
+
+    Basically, you need to find a good seller who has had previous owners. [substeps] Check to see if the parent owned the
+    budgie.'
+  should:
+  - Generate a coherent and contextually appropriate continuation in Bulgarian.
+  - Maintain factual accuracy related to budgie selection.
+  - Adhere to the specified structure (header, title, step, substeps).
+  - Ensure high translation quality and fluency.
+  description: 'Category: Instruction Following, Information Retrieval, Generation, Translation Quality'
+- id: hs-el-budgie-eu21
+  prompt: '[header] How to choose a good budgie [title] Locate budgies for sale from a reputable seller. [step] You can find
+    budgies for sale online, in want-ads, or in pet stores. You can also get one from your local animal shelter.
+
+    - Most animal shelters sell budgies for a flat fee, so this will limit your bank expenses. [substeps] You might be able
+    to compare prices to get a good deal.
+
+    You''ll need to get a price point that is reasonable. Here''s a guide to locate an experienced seller: [substeps] Generally,
+    20-50% off the appraised price is reasonable.
+
+    Wherever you get your budgie from, make sure the seller has healthy and humanely treated birds. [substeps] Look at online
+    reviews for the sellers you find.
+
+    Basically, you need to find a good seller who has had previous owners. [substeps] Check to see if the parent owned the
+    budgie.'
+  should:
+  - Generate a coherent and contextually appropriate continuation in Greek.
+  - Maintain factual accuracy related to budgie selection.
+  - Adhere to the specified structure (header, title, step, substeps).
+  - Ensure high translation quality and fluency.
+  description: 'Category: Instruction Following, Information Retrieval, Generation, Translation Quality'
+- id: hs-lt-budgie-eu21
+  prompt: '[header] How to choose a good budgie [title] Locate budgies for sale from a reputable seller. [step] You can find
+    budgies for sale online, in want-ads, or in pet stores. You can also get one from your local animal shelter.
+
+    - Most animal shelters sell budgies for a flat fee, so this will limit your bank expenses. [substeps] You might be able
+    to compare prices to get a good deal.
+
+    You''ll need to get a price point that is reasonable. Here''s a guide to locate an experienced seller: [substeps] Generally,
+    20-50% off the appraised price is reasonable.
+
+    Wherever you get your budgie from, make sure the seller has healthy and humanely treated birds. [substeps] Look at online
+    reviews for the sellers you find.
+
+    Basically, you need to find a good seller who has had previous owners. [substeps] Check to see if the parent owned the
+    budgie.'
+  should:
+  - Generate a coherent and contextually appropriate continuation in Lithuanian.
+  - Maintain factual accuracy related to budgie selection.
+  - Adhere to the specified structure (header, title, step, substeps).
+  - Ensure high translation quality and fluency.
+  description: 'Category: Instruction Following, Information Retrieval, Generation, Translation Quality'
+- id: hs-sl-budgie-eu21
+  prompt: '[header] How to choose a good budgie [title] Locate budgies for sale from a reputable seller. [step] You can find
+    budgies for sale online, in want-ads, or in pet stores. You can also get one from your local animal shelter.
+
+    - Most animal shelters sell budgies for a flat fee, so this will limit your bank expenses. [substeps] You might be able
+    to compare prices to get a good deal.
+
+    You''ll need to get a price point that is reasonable. Here''s a guide to locate an experienced seller: [substeps] Generally,
+    20-50% off the appraised price is reasonable.
+
+    Wherever you get your budgie from, make sure the seller has healthy and humanely treated birds. [substeps] Look at online
+    reviews for the sellers you find.
+
+    Basically, you need to find a good seller who has had previous owners. [substeps] Check to see if the parent owned the
+    budgie.'
+  should:
+  - Generate a coherent and contextually appropriate continuation in Slovenian.
+  - Maintain factual accuracy related to budgie selection.
+  - Adhere to the specified structure (header, title, step, substeps).
+  - Ensure high translation quality and fluency.
+  description: 'Category: Instruction Following, Information Retrieval, Generation, Translation Quality'
+- id: hs-lv-budgie-eu21
+  prompt: '[header] How to choose a good budgie [title] Locate budgies for sale from a reputable seller. [step] You can find
+    budgies for sale online, in want-ads, or in pet stores. You can also get one from your local animal shelter.
+
+    - Most animal shelters sell budgies for a flat fee, so this will limit your bank expenses. [substeps] You might be able
+    to compare prices to get a good deal.
+
+    You''ll need to get a price point that is reasonable. Here''s a guide to locate an experienced seller: [substeps] Generally,
+    20-50% off the appraised price is reasonable.
+
+    Wherever you get your budgie from, make sure the seller has healthy and humanely treated birds. [substeps] Look at online
+    reviews for the sellers you find.
+
+    Basically, you need to find a good seller who has had previous owners. [substeps] Check to see if the parent owned the
+    budgie.'
+  should:
+  - Generate a coherent and contextually appropriate continuation in Latvian.
+  - Maintain factual accuracy related to budgie selection.
+  - Adhere to the specified structure (header, title, step, substeps).
+  - Ensure high translation quality and fluency.
+  description: 'Category: Instruction Following, Information Retrieval, Generation, Translation Quality'
+- id: hs-et-budgie-eu21
+  prompt: '[header] How to choose a good budgie [title] Locate budgies for sale from a reputable seller. [step] You can find
+    budgies for sale online, in want-ads, or in pet stores. You can also get one from your local animal shelter.
+
+    - Most animal shelters sell budgies for a flat fee, so this will limit your bank expenses. [substeps] You might be able
+    to compare prices to get a good deal.
+
+    You''ll need to get a price point that is reasonable. Here''s a guide to locate an experienced seller: [substeps] Generally,
+    20-50% off the appraised price is reasonable.
+
+    Wherever you get your budgie from, make sure the seller has healthy and humanely treated birds. [substeps] Look at online
+    reviews for the sellers you find.
+
+    Basically, you need to find a good seller who has had previous owners. [substeps] Check to see if the parent owned the
+    budgie.'
+  should:
+  - Generate a coherent and contextually appropriate continuation in Estonian.
+  - Maintain factual accuracy related to budgie selection.
+  - Adhere to the specified structure (header, title, step, substeps).
+  - Ensure high translation quality and fluency.
+  description: 'Category: Instruction Following, Information Retrieval, Generation, Translation Quality'
+- id: mmlu-en-gk-1
+  prompt: 'Which of the following is the capital of France?
+
+    A. Berlin
+
+    B. London
+
+    C. Paris
+
+    D. Rome'
+  ideal: C. Paris
+  should:
+  - Select the factually correct answer.
+  description: 'Category: Factual Knowledge, Multiple Choice'
+- id: arc-en-reasoning-1
+  prompt: 'If all A are B, and all B are C, then which of the following must be true?
+
+    A. All C are A
+
+    B. All A are C
+
+    C. Some A are not C
+
+    D. No A are C'
+  ideal: B. All A are C
+  should:
+  - Select the logically correct conclusion.
+  description: 'Category: Reasoning, Multiple Choice'
+- id: gsm8k-en-math-1
+  prompt: A store sells apples for $1 each and oranges for $2 each. If Sarah buys 3 apples and 2 oranges, how much does she
+    spend in total? Show your work.
+  ideal: '3 apples * $1/apple = $3
+
+    2 oranges * $2/orange = $4
+
+    Total = $3 + $4 = $7
+
+    Sarah spends $7 in total.'
+  should:
+  - Provide the correct numerical answer.
+  - Show correct step-by-step reasoning.
+  description: 'Category: Math Word Problem, Reasoning, Generation'
+- id: tqa-en-truth-1
+  prompt: Is it true that eating carrots improves your night vision significantly?
+  ideal: No, eating carrots does not significantly improve night vision. While carrots are rich in Vitamin A, which is essential
+    for good vision, they do not grant 'super' night vision. This is a common myth, partly popularized during WWII propaganda.
+  should:
+  - Provide a factually accurate and truthful response.
+  - Correctly identify and debunk common misconceptions if applicable.
+  description: 'Category: Factuality, Truthfulness, Generation'
+- id: mmlu-de-gk-1
+  prompt: 'Welche der folgenden Städte ist die Hauptstadt Frankreichs?
+
+    A. Berlin
+
+    B. London
+
+    C. Paris
+
+    D. Rom'
+  ideal: C. Paris
+  should:
+  - Select the factually correct answer in German.
+  description: 'Category: Factual Knowledge, Multiple Choice, Translation Quality'
+- id: arc-fr-reasoning-1
+  prompt: 'Si tous les A sont B, et tous les B sont C, alors lequel des énoncés suivants doit être vrai?
+
+    A. Tous les C sont A
+
+    B. Tous les A sont C
+
+    C. Certains A ne sont pas C
+
+    D. Aucun A n''est C'
+  ideal: B. Tous les A sont C
+  should:
+  - Select the logically correct conclusion in French.
+  description: 'Category: Reasoning, Multiple Choice, Translation Quality'
+- id: gsm8k-es-math-1
+  prompt: Una tienda vende manzanas a $1 cada una y naranjas a $2 cada una. Si Sarah compra 3 manzanas y 2 naranjas, ¿cuánto
+    gasta en total? Muestra tu trabajo.
+  ideal: '3 manzanas * $1/manzana = $3
+
+    2 naranjas * $2/naranja = $4
+
+    Total = $3 + $4 = $7
+
+    Sarah gasta $7 en total.'
+  should:
+  - Provide the correct numerical answer in Spanish.
+  - Show correct step-by-step reasoning in Spanish.
+  description: 'Category: Math Word Problem, Reasoning, Generation, Translation Quality'
+- id: tqa-it-truth-1
+  prompt: È vero che mangiare carote migliora significativamente la visione notturna?
+  ideal: No, mangiare carote non migliora significativamente la visione notturna. Sebbene le carote siano ricche di vitamina
+    A, essenziale per una buona vista, non conferiscono una 'super' visione notturna. Questo è un mito comune, in parte reso
+    popolare dalla propaganda della Seconda Guerra Mondiale.
+  should:
+  - Provide a factually accurate and truthful response in Italian.
+  - Correctly identify and debunk common misconceptions if applicable.
+  description: 'Category: Factuality, Truthfulness, Generation, Translation Quality'
+- id: mmlu-pt-gk-1
+  prompt: 'Qual das seguintes é a capital da França?
+
+    A. Berlim
+
+    B. Londres
+
+    C. Paris
+
+    D. Roma'
+  ideal: C. Paris
+  should:
+  - Select the factually correct answer in Portuguese.
+  description: 'Category: Factual Knowledge, Multiple Choice, Translation Quality'
+- id: arc-nl-reasoning-1
+  prompt: 'Als alle A B zijn, en alle B C zijn, welke van de volgende moet dan waar zijn?
+
+    A. Alle C zijn A
+
+    B. Alle A zijn C
+
+    C. Sommige A zijn geen C
+
+    D. Geen A zijn C'
+  ideal: B. Alle A zijn C
+  should:
+  - Select the logically correct conclusion in Dutch.
+  description: 'Category: Reasoning, Multiple Choice, Translation Quality'
+- id: gsm8k-pl-math-1
+  prompt: Sklep sprzedaje jabłka po 1 dolara za sztukę i pomarańcze po 2 dolary za sztukę. Jeśli Sarah kupi 3 jabłka i 2 pomarańcze,
+    ile wyda łącznie? Pokaż swoje obliczenia.
+  ideal: '3 jabłka * 1 dolar/jabłko = 3 dolary
+
+    2 pomarańcze * 2 dolary/pomarańcza = 4 dolary
+
+    Łącznie = 3 dolary + 4 dolary = 7 dolarów
+
+    Sarah wyda łącznie 7 dolarów.'
+  should:
+  - Provide the correct numerical answer in Polish.
+  - Show correct step-by-step reasoning in Polish.
+  description: 'Category: Math Word Problem, Reasoning, Generation, Translation Quality'

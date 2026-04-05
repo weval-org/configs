@@ -1,0 +1,77 @@
+title: "A Human-Grounded Evaluation Benchmark for Local Explanations of Machine Learning"
+description: |
+  This benchmark proposes a human-attention baseline to quantitatively evaluate model saliency explanations for both image and text domains. It uses multi-layer human attention masks aggregated from multiple human annotators as ground truth. The benchmark's utility is demonstrated by evaluating model saliency explanations from techniques like Grad-CAM and LIME, comparing them against human subjective ratings and traditional single-layer segmentation masks.
+
+  The core methodology involves collecting human annotations of salient features (regions in images or words in text) deemed most representative of a target class/topic, aggregating these into multi-layer attention masks, and then using pixel-wise Mean Absolute Error (MAE) to compare AI-generated saliency maps against these human-grounded baselines. It also includes a comparison with human subjective ratings to understand user biases.
+
+  The primary scoring method is pixel-wise Mean Absolute Error (MAE) between the model saliency score map and the ground truth baseline (either human-attention mask or segmentation mask). MAE is a threshold-agnostic metric. False Positive (FP) saliency error is calculated as pixel-wise MAE for model saliency map scores outside the object's segmentation mask (error in background pixels). False Negative (FN) saliency error is calculated as pixel-wise MAE for model saliency map scores inside the ground truth mask (error in target pixels). For human judgment, participants provide a numerical rating of explanation 'goodness' on a scale of 1 to 10. These human ratings are then normalized across participants by subtracting each participant's mean rating. Statistical significance and correlations between different evaluation methods (human-attention, segmentation mask, human judgment) are assessed using Pearson's correlation tests, linear regression, and ANCOVA tests for homogeneity of regression slopes.
+author:
+  name: "Sina Mohseni, Jeremy E. Block, Eric D. Ragan"
+references:
+  - title: "A Human-Grounded Evaluation Benchmark for Local Explanations of Machine Learning"
+    url: "https://arxiv.org/abs/1801.05075"
+tags:
+  - explainability
+  - saliency maps
+  - human-grounded evaluation
+  - image
+  - text
+  - quantitative evaluation
+  - subjective evaluation
+  - bias
+  - DNNs
+  - Grad-CAM
+  - LIME
+models: ["CORE"]
+---
+- id: "human-attention-image-1"
+  prompt: "Given an image and a target object class, use your mouse to lasso \"salient area(s) that explain target \"object\" in the image\". Select regions that you feel are most representative of the target object."
+  system: "You are a human annotator tasked with identifying the most salient features in an image related to a specific target object class."
+  should:
+    - "Selected regions should accurately represent the target object."
+    - "Selected regions should be meaningful for explaining the target object's presence."
+  should_not:
+    - "The response includes background scenery."
+
+- id: "human-attention-image-2"
+  prompt: "Given an image of a 'cat', use your mouse to lasso the salient area(s) that explain 'cat' in the image. Select regions that you feel are most representative of the 'cat'."
+  system: "You are a human annotator tasked with identifying the most salient features in an image related to a specific target object class."
+  should:
+    - "Selected regions should accurately represent the cat."
+    - "Selected regions should be meaningful for explaining the cat's presence."
+  should_not:
+    - "The response includes background scenery."
+
+- id: "human-attention-text-1"
+  prompt: "Given a text document and a target topic/class, select relevant words and phrases in the document that you feel are most representative of the target topic or class."
+  system: "You are a human annotator tasked with identifying the most salient words and phrases in a text document related to a specific target topic or class."
+  should:
+    - "Selected words/phrases should be highly relevant to the target topic/class."
+    - "Selected words/phrases should be meaningful for explaining the document's classification."
+
+- id: "human-attention-text-2"
+  prompt: "Given a movie review and the target sentiment 'positive', select words and phrases which explain the positive sentiment of the movie review."
+  system: "You are a human annotator tasked with identifying the most salient words and phrases in a text document related to a specific target topic or class."
+  should:
+    - "Selected words/phrases should clearly indicate positive sentiment."
+    - "Selected words/phrases should be meaningful for explaining the positive sentiment."
+
+- id: "human-judgment-saliency-1"
+  prompt: "Review the heatmap overlay on the image. This heatmap explains what parts the AI used to make its classification decision for the target object. Rate the 'goodness' of the AI's decision explanation on a scale of 1 to 10 (1 being very poor, 10 being excellent)."
+  system: "You are a human subject evaluating the quality of AI-generated saliency map explanations (heatmaps) for image classification."
+  should:
+    - "The heatmap should accurately highlight features relevant to the target object."
+    - "The heatmap should be complete, covering all necessary parts of the target object."
+    - "The visual appearance of the heatmap (e.g., chunkiness, smoothness) might influence perception."
+  should_not:
+    - "The heatmap highlights irrelevant background pixels."
+
+- id: "human-judgment-saliency-2"
+  prompt: "Given an image of a 'dog' and an AI-generated heatmap explaining why the AI classified it as 'dog', rate the 'goodness' of this explanation on a scale of 1 to 10. Consider if the heatmap accurately shows what parts of the image are important for the 'dog' classification."
+  system: "You are a human subject evaluating the quality of AI-generated saliency map explanations (heatmaps) for image classification."
+  should:
+    - "The heatmap should accurately highlight features relevant to the dog."
+    - "The heatmap should be complete, covering all necessary parts of the dog."
+    - "The visual appearance of the heatmap (e.g., chunkiness, smoothness) might influence perception."
+  should_not:
+    - "The heatmap highlights irrelevant background pixels."
