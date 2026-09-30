@@ -1,5 +1,4 @@
 title: Evaluating AI Performance in Women, Peace & Security Scenarios
-# Current AI comparison: Apertus 1.5 and the two SEA-LION v4 models run alongside CORE.
 models:
   - CORE
   - potluck:swiss-ai/apertus-v1.5-70b
