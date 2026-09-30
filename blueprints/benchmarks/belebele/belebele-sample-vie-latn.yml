@@ -33,7 +33,6 @@ tags:
 - multiple-choice
 - belebele
 - Vietnamese
-system: Answer with only the letter (A, B, C, or D) of the correct answer.
 ---
 - id: bb-5b0a62ca-q2
   prompt: 'Read the passage and answer the question.
@@ -58,7 +57,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Trước lúc 11:00
 
-    D. Vào lúc 11:20'
+    D. Vào lúc 11:20
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -82,7 +84,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Chúng làm tổ và thay đổi tổ sau 17 ngày
 
-    D. Chúng di chuyển vào ban ngày'
+    D. Chúng di chuyển vào ban ngày
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -105,7 +110,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Bảy
 
-    D. Tám'
+    D. Tám
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -128,7 +136,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Phóng viên
 
-    D. Người dân Gaziantep'
+    D. Người dân Gaziantep
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -153,7 +164,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Templo de San Diego
 
-    D. Callejon del Beso'
+    D. Callejon del Beso
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -179,7 +193,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Người Maori đến từ Polynesia
 
-    D. Người Maori đến từ lục địa'
+    D. Người Maori đến từ lục địa
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -205,7 +222,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Ngân hàng Đức Deutsche Bank
 
-    D. Chính phủ Pakistan'
+    D. Chính phủ Pakistan
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -228,7 +248,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Quy định về hạn mức hành lý
 
-    D. Kiểm soát hải quan'
+    D. Kiểm soát hải quan
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -252,7 +275,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Tồn tại những điểm mơ hồ trong hiến pháp
 
-    D. Chi phí bầu cử quá đắt đỏ'
+    D. Chi phí bầu cử quá đắt đỏ
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -275,7 +301,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Người theo chủ nghĩa vô chính phủ
 
-    D. Băng nhóm'
+    D. Băng nhóm
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -300,7 +329,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Ở lễ hội tại sân đền
 
-    D. Mang những vật hiến tế vào nhà thờ bên trong'
+    D. Mang những vật hiến tế vào nhà thờ bên trong
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -325,7 +357,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Hòa âm Xuất sắc nhất
 
-    D. Bài hát Nhạc phim Xuất sắc nhất'
+    D. Bài hát Nhạc phim Xuất sắc nhất
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -349,7 +384,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Quân đội Xô Viết
 
-    D. Một cuộc điều tra chưa hoàn thành'
+    D. Một cuộc điều tra chưa hoàn thành
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -371,7 +409,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Một cặp đôi ở độ tuổi 70
 
-    D. Hai gia đình đi du lịch cùng các con'
+    D. Hai gia đình đi du lịch cùng các con
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -396,7 +437,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Sở cứu hỏa của Nhật Bản
 
-    D. Apple'
+    D. Apple
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -421,7 +465,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Central Auckland
 
-    D. Vịnh Long'
+    D. Vịnh Long
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -446,7 +493,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Các điều tra viên của chính phủ
 
-    D. Tommy Dreamer'
+    D. Tommy Dreamer
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -472,7 +522,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Vụ rơi máy bay đang trên đường bay từ Armenia tới Iran
 
-    D. Vụ máy bay đâm vào tường tại Mashhad'
+    D. Vụ máy bay đâm vào tường tại Mashhad
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -499,7 +552,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 4
 
-    D. 45'
+    D. 45
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -526,7 +582,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Scotland
 
-    D. Lithuania'
+    D. Lithuania
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -550,7 +609,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Quảng cáo dịch vụ của bạn
 
-    D. Phớt lờ những người cũng đi quá giang thuyền'
+    D. Phớt lờ những người cũng đi quá giang thuyền
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -575,7 +637,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Họ được trang bị để đối phó với thách thức
 
-    D. Ca nhiễm này không nghiêm trọng'
+    D. Ca nhiễm này không nghiêm trọng
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -601,7 +666,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Số người có thể bị truyền nhiễm từ một người nhiễm bệnh
 
-    D. Tỷ lệ gây thương vong cao'
+    D. Tỷ lệ gây thương vong cao
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -628,7 +696,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Ansa
 
-    D. Paolo Borsellino'
+    D. Paolo Borsellino
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -654,7 +725,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Thiết kế đường bộ
 
-    D. Mật độ giao thông'
+    D. Mật độ giao thông
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -677,7 +751,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Tại mục tiêu của chiếc máy bay phản lực đầu tiên
 
-    D. Ở giữa công viên tưởng niệm'
+    D. Ở giữa công viên tưởng niệm
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -704,7 +781,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Du học sinh
 
-    D. Khách du lịch đi công tác'
+    D. Khách du lịch đi công tác
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -730,7 +810,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. LATAM Oneworld
 
-    D. SkyTeam'
+    D. SkyTeam
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -754,7 +837,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Sự hiện diện của quân đội tại thung lũng
 
-    D. Xung đột biên giới'
+    D. Xung đột biên giới
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -781,7 +867,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Sự tập trung quyền lực trong Nhà thờ
 
-    D. Liệu giáo lý chính của Nhà thờ có được tuân theo'
+    D. Liệu giáo lý chính của Nhà thờ có được tuân theo
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -807,7 +896,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Một địa chỉ web
 
-    D. 54 triệu hồ sơ người dùng'
+    D. 54 triệu hồ sơ người dùng
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -831,7 +923,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Phần lớn các hòn đảo đều đón nhận những trận mưa
 
-    D. Một số trận mưa rào đi kèm với chớp'
+    D. Một số trận mưa rào đi kèm với chớp
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -857,7 +952,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Vắc-xin viêm não
 
-    D. Màn chống muỗi'
+    D. Màn chống muỗi
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -883,7 +981,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Gót
 
-    D. Đế rộng'
+    D. Đế rộng
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -908,7 +1009,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Tránh việc đi qua các trạm kiểm soát hộ chiếu nhiều lần
 
-    D. Không cần hộ chiếu'
+    D. Không cần hộ chiếu
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -931,7 +1035,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Nam giới
 
-    D. Cả nam giới và nữ giới'
+    D. Cả nam giới và nữ giới
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -956,7 +1063,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Đức
 
-    D. Na Uy'
+    D. Na Uy
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -979,7 +1089,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Bảng chữ cái được phát minh bởi vị vua thứ tư trong Triều đại Joseon
 
-    D. Bảng chữ cái được phát minh có chủ đích'
+    D. Bảng chữ cái được phát minh có chủ đích
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -1003,7 +1116,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Vụ nổ súng xảy ra tại một bữa tiệc ở Texas
 
-    D. Vụ nổ súng xảy ra tại lễ cưới của cặp đôi'
+    D. Vụ nổ súng xảy ra tại lễ cưới của cặp đôi
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -1030,7 +1146,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Pha trò
 
-    D. Khắc lên tường'
+    D. Khắc lên tường
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$

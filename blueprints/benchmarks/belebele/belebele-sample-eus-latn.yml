@@ -33,7 +33,6 @@ tags:
 - multiple-choice
 - belebele
 - Basque
-system: Answer with only the letter (A, B, C, or D) of the correct answer.
 ---
 - id: bb-5b0a62ca-q2
   prompt: 'Read the passage and answer the question.
@@ -57,7 +56,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 11:00 baino lehen
 
-    D. 11:20an'
+    D. 11:20an
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -80,7 +82,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 17 egunen buruan aldatzen dituzten habiak egiten dituzte
 
-    D. Egunez desfilatzen dute'
+    D. Egunez desfilatzen dute
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -104,7 +109,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Zazpitan
 
-    D. Zortzitan'
+    D. Zortzitan
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -127,7 +135,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Kazetariek
 
-    D. Gaziantep-eko herritarrek'
+    D. Gaziantep-eko herritarrek
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -152,7 +163,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. San Diego-ko Tenplua
 
-    D. Callejón del Beso'
+    D. Callejón del Beso
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -179,7 +193,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Polinesiako maoriek
 
-    D. Kontinenteko maoriek'
+    D. Kontinenteko maoriek
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -206,7 +223,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Deutsche Bank
 
-    D. Pakistango gobernua'
+    D. Pakistango gobernua
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -228,7 +248,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Artikuluen muga legalak
 
-    D. Aduanak'
+    D. Aduanak
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -252,7 +275,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Konstituzioan anbiguotasunak zeudelako
 
-    D. Hauteskundea garestiegia zelako'
+    D. Hauteskundea garestiegia zelako
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -275,7 +301,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Anarkistek
 
-    D. Jende-multzoek'
+    D. Jende-multzoek
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -300,7 +329,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Tenpluaren patio irekian jaialdiak egiten
 
-    D. Barneko santutegira sakrifizioak ekartzen'
+    D. Barneko santutegira sakrifizioak ekartzen
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -325,7 +357,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Soinu-nahasketa onenerako
 
-    D. Jatorrizko abesti onenerako'
+    D. Jatorrizko abesti onenerako
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -349,7 +384,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Sobietarren armadek
 
-    D. Egiten ari zen ikerketa batek'
+    D. Egiten ari zen ikerketa batek
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -371,7 +409,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 70 urte inguru duen bikote batek
 
-    D. Haurrekin bidaiatzen ari diren bi familiek'
+    D. Haurrekin bidaiatzen ari diren bi familiek
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -396,7 +437,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Japoniako suhiltzaileek
 
-    D. Apple-k'
+    D. Apple-k
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -421,7 +465,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Auckland erdialdean
 
-    D. Long Bay-n'
+    D. Long Bay-n
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -445,7 +492,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Gobernuko ikertzaileek
 
-    D. Tommy Dreamer-ek'
+    D. Tommy Dreamer-ek
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -471,7 +521,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Armeniatik Iran-era bidean zihoan hegazkinarenak
 
-    D. Mashhad-en izandakoak'
+    D. Mashhad-en izandakoak
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -498,7 +551,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 4
 
-    D. 45'
+    D. 45
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -525,7 +581,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Eskoziak
 
-    D. Lituaniak'
+    D. Lituaniak
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -550,7 +609,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Zure zerbitzuak eskaintzea
 
-    D. Itsasontzietan bidaiatzeko beste auto-stop bidaiariei jaramonik ez egitea'
+    D. Itsasontzietan bidaiatzeko beste auto-stop bidaiariei jaramonik ez egitea
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -574,7 +636,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Erronkari aurre egiteko prestatuta daudela
 
-    D. Kasua ez dela serioa'
+    D. Kasua ez dela serioa
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -600,7 +665,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Infektatuek infekta dezaketen pertsona kopurua
 
-    D. Heriotza-tasa altua'
+    D. Heriotza-tasa altua
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -626,7 +694,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Ansa
 
-    D. Paolo Borsellino'
+    D. Paolo Borsellino
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -652,7 +723,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Galtzaden diseinua
 
-    D. Trafikoaren dentsitatea'
+    D. Trafikoaren dentsitatea
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -674,7 +748,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Lehen hegazkinaren itura
 
-    D. Oroitzapen-parkearen erdian'
+    D. Oroitzapen-parkearen erdian
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -701,7 +778,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Nazioarteko ikasle batek
 
-    D. Negozioengatik bidaiatzen ari den batek'
+    D. Negozioengatik bidaiatzen ari den batek
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -728,7 +808,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. LATAM Oneworld-ek
 
-    D. SkyTeam-ek'
+    D. SkyTeam-ek
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -752,7 +835,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Bailaran militarrak egotea
 
-    D. Mugen inguruko eztabaida'
+    D. Mugen inguruko eztabaida
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -779,7 +865,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Ea Eliza barruan boterea nola biltzen zen
 
-    D. Ea Elizaren printzipio nagusiak betetzen ziren'
+    D. Ea Elizaren printzipio nagusiak betetzen ziren
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -807,7 +896,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Web helbide batek
 
-    D. 54 milioi profilek'
+    D. 54 milioi profilek
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -831,7 +923,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Uharte gehienek prezipitazioa izan zuten
 
-    D. Batzuetan euria tximistekin batera erortzen zen'
+    D. Batzuetan euria tximistekin batera erortzen zen
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -857,7 +952,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Entzefalitisaren txertoak
 
-    D. Eltxoetatik babesteko gortinak'
+    D. Eltxoetatik babesteko gortinak
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -883,7 +981,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Takoi batek
 
-    D. Oin-zola zabal batek'
+    D. Oin-zola zabal batek
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -909,7 +1010,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Segurtasun-kontrolak hainbatetan zeharkatzea saihestea
 
-    D. Pasaportea eramateko betekizuna ez izatea'
+    D. Pasaportea eramateko betekizuna ez izatea
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -932,7 +1036,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Gizonezkoek
 
-    D. Bai gizonezko bai emakumezko banakoek'
+    D. Bai gizonezko bai emakumezko banakoek
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -957,7 +1064,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Alemaniatik
 
-    D. Norvegiatik'
+    D. Norvegiatik
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -980,7 +1090,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Joseon dinastiako laugarren erregeak asmatu zuen
 
-    D. Berariaz asmatu zen'
+    D. Berariaz asmatu zen
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -1004,7 +1117,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Texasko festa batean izan zen
 
-    D. Bikotearen ezkontzan izan zen'
+    D. Bikotearen ezkontzan izan zen
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -1029,7 +1145,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Txisteak egitea
 
-    D. Egitura batean arrastoak egitea'
+    D. Egitura batean arrastoak egitea
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$

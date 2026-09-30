@@ -33,7 +33,6 @@ tags:
 - multiple-choice
 - belebele
 - Italian
-system: Answer with only the letter (A, B, C, or D) of the correct answer.
 ---
 - id: bb-5b0a62ca-q2
   prompt: 'Read the passage and answer the question.
@@ -59,7 +58,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Prima delle 11:00
 
-    D. Alle 11:20'
+    D. Alle 11:20
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -83,7 +85,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Fanno nidi che vengono cambiati dopo 17 giorni
 
-    D. Marciano durante il giorno'
+    D. Marciano durante il giorno
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -107,7 +112,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Sette
 
-    D. Otto'
+    D. Otto
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -130,7 +138,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Giornalisti
 
-    D. Cittadini di Gaziantep'
+    D. Cittadini di Gaziantep
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -156,7 +167,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Templo de San Diego
 
-    D. Callejon del Beso'
+    D. Callejon del Beso
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -183,7 +197,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Il popolo Maori della Polinesia
 
-    D. I Maori della terraferma'
+    D. I Maori della terraferma
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -210,7 +227,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Deutsche Bank
 
-    D. Il governo pakistano'
+    D. Il governo pakistano
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -232,7 +252,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Limiti legali di articoli
 
-    D. Controllo doganale'
+    D. Controllo doganale
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -256,7 +279,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. C''era ambiguità nella Costituzione
 
-    D. Le elezioni erano troppo costose'
+    D. Le elezioni erano troppo costose
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -280,7 +306,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Anarchici
 
-    D. Bande di persone'
+    D. Bande di persone
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -305,7 +334,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. A una festa nel cortile di un tempio
 
-    D. A portare sacrifici a un santuario interno'
+    D. A portare sacrifici a un santuario interno
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -331,7 +363,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Miglior montaggio sonoro
 
-    D. Miglior canzone originale'
+    D. Miglior canzone originale
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -356,7 +391,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. L''esercito sovietico
 
-    D. Un''indagine in corso'
+    D. Un''indagine in corso
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -378,7 +416,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Una coppia di 70 anni
 
-    D. Due famiglie in viaggio con i loro bambini'
+    D. Due famiglie in viaggio con i loro bambini
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -404,7 +445,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. I vigili del fuoco del Giappone
 
-    D. Apple'
+    D. Apple
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -431,7 +475,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Central Auckland
 
-    D. Long Bay'
+    D. Long Bay
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -456,7 +503,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Investigatori governativi
 
-    D. Tommy Dreamer'
+    D. Tommy Dreamer
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -482,7 +532,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. L''aereo si è schiantato mentre era diretto in Iran dall''Armenia
 
-    D. L''incidente aereo a Mashhad'
+    D. L''incidente aereo a Mashhad
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -509,7 +562,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 4
 
-    D. 45'
+    D. 45
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -536,7 +592,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Scozia
 
-    D. Lituania'
+    D. Lituania
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -561,7 +620,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Pubblicizzare i propri servizi
 
-    D. Ignorare gli altri autostoppisti di barche'
+    D. Ignorare gli altri autostoppisti di barche
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -587,7 +649,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Sono disponibili gli strumenti adatti ad affrontare la sfida
 
-    D. Il caso non è serio'
+    D. Il caso non è serio
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -614,7 +679,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. La quantità di persone che una persona infetta potrebbe contagiare
 
-    D. L''alto tasso di mortalità'
+    D. L''alto tasso di mortalità
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -640,7 +708,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Ansa
 
-    D. Paolo Borsellino'
+    D. Paolo Borsellino
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -669,7 +740,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Progettazione delle strutture viarie
 
-    D. Densità del traffico'
+    D. Densità del traffico
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -692,7 +766,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. In corrispondenza dell''obiettivo del primo velivolo
 
-    D. Al centro del parco commemorativo'
+    D. Al centro del parco commemorativo
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -721,7 +798,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Uno studente internazionale
 
-    D. Un viaggiatore per motivi di lavoro'
+    D. Un viaggiatore per motivi di lavoro
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -748,7 +828,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. LATAM Oneworld
 
-    D. SkyTeam'
+    D. SkyTeam
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -773,7 +856,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Presenza militare nella valle
 
-    D. La disputa sui confini'
+    D. La disputa sui confini
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -800,7 +886,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. La concentrazione del potere all’interno della Chiesa
 
-    D. Se i principi fondamentali della religione venivano rispettati'
+    D. Se i principi fondamentali della religione venivano rispettati
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -828,7 +917,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Un indirizzo web
 
-    D. 54 milioni di profili'
+    D. 54 milioni di profili
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -854,7 +946,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. La maggior parte delle isole ha registrato precipitazioni
 
-    D. Alcune precipitazioni sono state accompagnate da fulmini'
+    D. Alcune precipitazioni sono state accompagnate da fulmini
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -881,7 +976,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Vaccini contro l''encefalite
 
-    D. Zanzariere'
+    D. Zanzariere
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -910,7 +1008,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Un tacco
 
-    D. Una suola larga'
+    D. Una suola larga
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -936,7 +1037,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Evitare più controlli del passaporto
 
-    D. Non è richiesto il passaporto'
+    D. Non è richiesto il passaporto
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -959,7 +1063,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Uomini
 
-    D. Uomini e donne'
+    D. Uomini e donne
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -984,7 +1091,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Germania
 
-    D. Norvegia'
+    D. Norvegia
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -1007,7 +1117,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. È stato inventato dal quarto re della dinastia Joseon
 
-    D. È stato inventato intenzionalmente'
+    D. È stato inventato intenzionalmente
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -1032,7 +1145,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Si è verificato durante una festa in Texas
 
-    D. Si è verificato durante il matrimonio della coppia'
+    D. Si è verificato durante il matrimonio della coppia
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -1058,7 +1174,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Fare battute
 
-    D. Fare un graffio a una struttura'
+    D. Fare un graffio a una struttura
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$

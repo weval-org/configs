@@ -33,7 +33,6 @@ tags:
 - multiple-choice
 - belebele
 - Thai
-system: Answer with only the letter (A, B, C, or D) of the correct answer.
 ---
 - id: bb-5b0a62ca-q2
   prompt: 'Read the passage and answer the question.
@@ -56,7 +55,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. ก่อน 11:00 น.
 
-    D. เวลา 11:20 น.'
+    D. เวลา 11:20 น.
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -78,7 +80,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. สร้างรังที่ต้องเปลี่ยนทุก 17 วัน
 
-    D. เดินขบวนตอนกลางวัน'
+    D. เดินขบวนตอนกลางวัน
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -101,7 +106,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 7
 
-    D. 8'
+    D. 8
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -123,7 +131,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. ผู้รายงานข่าว
 
-    D. คนท้องถิ่นกาเซียนเท็ป'
+    D. คนท้องถิ่นกาเซียนเท็ป
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -147,7 +158,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Templo de San Diego
 
-    D. Callejon del Beso'
+    D. Callejon del Beso
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -172,7 +186,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. ชนเผ่าเมารีจากโพลีนีเซีย
 
-    D. ชาวเมารีจากแผ่นดินใหญ่'
+    D. ชาวเมารีจากแผ่นดินใหญ่
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -196,7 +213,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. ดอยซ์แบงก์
 
-    D. รัฐบาลปากีสถาน'
+    D. รัฐบาลปากีสถาน
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -217,7 +237,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. การตรวจจำนวนสัมภาระที่ถูกต้องทางกฎหมาย
 
-    D. การควบคุมภาษี'
+    D. การควบคุมภาษี
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -239,7 +262,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. มีความคลุมเคลือในรัฐธรรมนูญ
 
-    D. การเลือกตั้งใช้ค่าใช้จ่ายสูงเกินไป'
+    D. การเลือกตั้งใช้ค่าใช้จ่ายสูงเกินไป
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -261,7 +287,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. กลุ่มอนาธิปไตย
 
-    D. แก๊งต่าง ๆ'
+    D. แก๊งต่าง ๆ
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -284,7 +313,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. ร่วมเทศกาลในลานวิหาร
 
-    D. นำเครื่องสังเวยไปถวายในวิหารชั้นใน'
+    D. นำเครื่องสังเวยไปถวายในวิหารชั้นใน
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -308,7 +340,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. ลำดับเสียงยอดเยี่ยม
 
-    D. เพลงประกอบภาพยนตร์ยอดเยี่ยม'
+    D. เพลงประกอบภาพยนตร์ยอดเยี่ยม
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -331,7 +366,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. กองทัพโซเวียต
 
-    D. การตรวจสอบที่รอดำเนินการ'
+    D. การตรวจสอบที่รอดำเนินการ
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -352,7 +390,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. คู่สามีภรรยาวัย 70
 
-    D. สองครอบครัวที่เดินทางมาพร้อมกับลูก'
+    D. สองครอบครัวที่เดินทางมาพร้อมกับลูก
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -376,7 +417,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. หน่วยดับเพลิงของญี่ปุ่น
 
-    D. บริษัทแอปเปิล'
+    D. บริษัทแอปเปิล
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -401,7 +445,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. เซนทรัลโอ๊คแลนด์
 
-    D. ลองเบย์'
+    D. ลองเบย์
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -424,7 +471,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. พนักงานสอบสวน
 
-    D. ทอมมี่ ดรีมเมอร์'
+    D. ทอมมี่ ดรีมเมอร์
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -448,7 +498,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. สายการบินจากอาร์เมเนียไปอิหร่านตกระหว่างทาง
 
-    D. เครื่องบินตกในมัชฮัด'
+    D. เครื่องบินตกในมัชฮัด
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -474,7 +527,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 4
 
-    D. 45'
+    D. 45
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -499,7 +555,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. สกอตแลนด์
 
-    D. ลิทัวเนีย'
+    D. ลิทัวเนีย
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -521,7 +580,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. โฆษณาบริการของคุณ
 
-    D. เพิกเฉยกับคนขออาศัยเรือไปด้วย'
+    D. เพิกเฉยกับคนขออาศัยเรือไปด้วย
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -544,7 +606,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. พวกเขามีความพร้อมที่จะเผชิญความท้าทาย
 
-    D. เคสดังกล่าวไม่ร้ายแรง'
+    D. เคสดังกล่าวไม่ร้ายแรง
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -568,7 +633,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. จำนวนคนที่อาจติดจากผู้ติดเชื้อ
 
-    D. อัตราการเสียชีวิตสูง'
+    D. อัตราการเสียชีวิตสูง
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -592,7 +660,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Ansa
 
-    D. Paolo Borsellino'
+    D. Paolo Borsellino
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -616,7 +687,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. การออกแบบถนน
 
-    D. ความหนาแน่นของจราจร'
+    D. ความหนาแน่นของจราจร
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -638,7 +712,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. เป้าหมายของเจตลำแรก
 
-    D. ตรงกลางของของสวนอนุสรณ์'
+    D. ตรงกลางของของสวนอนุสรณ์
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -663,7 +740,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. นักท่องเที่ยวไปต่างประเทศ
 
-    D. นักท่องเที่ยวธุรกิจ'
+    D. นักท่องเที่ยวธุรกิจ
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -687,7 +767,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. LATAM Oneworld
 
-    D. SkyTeam'
+    D. SkyTeam
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -710,7 +793,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. กองทัพในหุบเขา
 
-    D. ข้อพิพาทเหนือเส้นเขตแดน'
+    D. ข้อพิพาทเหนือเส้นเขตแดน
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -734,7 +820,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. การกระจุกตัวของอำนาจภายในคริสตจักร
 
-    D. ได้ปฏิบัติตามหลักการที่สำคัญของคริสตจักรหรือไม่'
+    D. ได้ปฏิบัติตามหลักการที่สำคัญของคริสตจักรหรือไม่
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -758,7 +847,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. ที่อยู่เว็บที่อยู่เดียว
 
-    D. บัญชีผู้ใช้งาน 54 ล้านคน'
+    D. บัญชีผู้ใช้งาน 54 ล้านคน
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -780,7 +872,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. เกาะส่วนใหญ่เจอฝนฟ้าคะนอง
 
-    D. ฝนตกบางครั้งมีฟ้าผ่าด้วย'
+    D. ฝนตกบางครั้งมีฟ้าผ่าด้วย
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -804,7 +899,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. วัคซีนไข้สมองอักเสบ
 
-    D. มุ้งกันยุง'
+    D. มุ้งกันยุง
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -827,7 +925,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. ส้น
 
-    D. ฝ่าเท้าที่กว้าง'
+    D. ฝ่าเท้าที่กว้าง
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -850,7 +951,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. การเลี่ยงจุดตรวจสอบควบคุมหนังสือเดินทาง
 
-    D. ไม่จำเป็นต้องมีหนังสือเดินทาง'
+    D. ไม่จำเป็นต้องมีหนังสือเดินทาง
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -871,7 +975,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. ผู้ชาย
 
-    D. บุคคลทั้งชายและหญิง'
+    D. บุคคลทั้งชายและหญิง
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -894,7 +1001,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. เยอรมนี
 
-    D. นอร์เวย์'
+    D. นอร์เวย์
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -917,7 +1027,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. ถูกประดิษฐ์ขึ้นโดยกษัตริย์องค์ที่สี่แห่งราชวงศ์โชซอน
 
-    D. ถูกประดิษฐ์ขึ้นโดยมีเจตนา'
+    D. ถูกประดิษฐ์ขึ้นโดยมีเจตนา
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -940,7 +1053,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. เหตุเกิดขึ้นที่งานปาร์ตี้ในเท็กซัส
 
-    D. เหตุเกิดขึ้นที่งานแต่งงานของคู่รัก'
+    D. เหตุเกิดขึ้นที่งานแต่งงานของคู่รัก
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -964,7 +1080,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. ทำอะไรตลก ๆ
 
-    D. ขูดขีดสิ่งก่อสร้าง'
+    D. ขูดขีดสิ่งก่อสร้าง
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$

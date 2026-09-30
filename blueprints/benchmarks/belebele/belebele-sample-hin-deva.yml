@@ -33,7 +33,6 @@ tags:
 - multiple-choice
 - belebele
 - Hindi
-system: Answer with only the letter (A, B, C, or D) of the correct answer.
 ---
 - id: bb-5b0a62ca-q2
   prompt: 'Read the passage and answer the question.
@@ -58,7 +57,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 11:00 बजे से पहले
 
-    D. 11:20 बजे'
+    D. 11:20 बजे
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -81,7 +83,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. वे घोंसले बनाते हैं जो 17 दिनों के बाद बदल जाते हैं
 
-    D. वे दिन में मार्च करते हैं'
+    D. वे दिन में मार्च करते हैं
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -104,7 +109,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. सात
 
-    D. आठ'
+    D. आठ
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -127,7 +135,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. संवाददाताओं से
 
-    D. गाजियांटेप स्थानीय'
+    D. गाजियांटेप स्थानीय
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -152,7 +163,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. टेंपलो डी सैन डिएगो
 
-    D. Callejon del Beso'
+    D. Callejon del Beso
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -178,7 +192,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. पोलिनेशिया से माओरी लोग
 
-    D. मुख्य भूमि से माओरी'
+    D. मुख्य भूमि से माओरी
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -204,7 +221,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. देउत्शे बैंक
 
-    D. पाकिस्तानी सरकार'
+    D. पाकिस्तानी सरकार
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -226,7 +246,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. आइटम्स की कानूनी सीमाएं
 
-    D. सीमा शुल्क नियंत्रण'
+    D. सीमा शुल्क नियंत्रण
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -249,7 +272,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. संविधान की अस्पष्टता थी
 
-    D. चुनाव के उच्च लागत थी'
+    D. चुनाव के उच्च लागत थी
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -272,7 +298,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. अराजकतावादी
 
-    D. लोगों का गिरोह'
+    D. लोगों का गिरोह
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -297,7 +326,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. मंदिर की छत पर आयोजित उत्सव
 
-    D. आंतरिक अभयारण्य में बलिदान लाना'
+    D. आंतरिक अभयारण्य में बलिदान लाना
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -322,7 +354,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. बेस्ट ध्वनि मिश्रण
 
-    D. बेस्ट मूल गीत'
+    D. बेस्ट मूल गीत
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -345,7 +380,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. सोवियत सेना
 
-    D. लंबित जांच'
+    D. लंबित जांच
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -367,7 +405,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 70 के दशक में एक जोड़ा
 
-    D. दो परिवार अपने बच्चों के साथ यात्रा कर रहे हैं'
+    D. दो परिवार अपने बच्चों के साथ यात्रा कर रहे हैं
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -391,7 +432,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. जापान का अग्निशमन विभाग
 
-    D. एप्पल'
+    D. एप्पल
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -417,7 +461,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. सेंट्रल ऑकलैंड
 
-    D. लंबी खाड़ी'
+    D. लंबी खाड़ी
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -441,7 +488,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. सरकारी जांचकर्ता
 
-    D. टॉमी ड्रीमर'
+    D. टॉमी ड्रीमर
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -466,7 +516,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. आर्मेनिया से ईरान जा रहा विमान दुर्घटनाग्रस्त हो गया
 
-    D. मशहद में विमान दुर्घटनाग्रस्त'
+    D. मशहद में विमान दुर्घटनाग्रस्त
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -492,7 +545,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 4
 
-    D. 45'
+    D. 45
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -518,7 +574,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. स्कॉटलैंड
 
-    D. लिथुआनिया'
+    D. लिथुआनिया
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -542,7 +601,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. अपनी सेवाओं को बढ़ावा देना
 
-    D. साथी नाव सहयात्रियों की उपेक्षा'
+    D. साथी नाव सहयात्रियों की उपेक्षा
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -566,7 +628,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. वे चुनौतियों का सामना करने के लिए तैयार हैं
 
-    D. गंभीर मामला नहीं'
+    D. गंभीर मामला नहीं
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -591,7 +656,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. संक्रमित व्यक्ति कितने लोगों को संक्रमित कर सकता है
 
-    D. यह उच्च मृत्यु दर है'
+    D. यह उच्च मृत्यु दर है
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -617,7 +685,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. अन्सा
 
-    D. पाओलो बोरसेलिनो'
+    D. पाओलो बोरसेलिनो
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -644,7 +715,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. सड़क मार्ग डिजाइन
 
-    D. यातायात घनत्व'
+    D. यातायात घनत्व
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -666,7 +740,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. पहले जेट ने अपना निशाना
 
-    D. स्मारक पार्क के बीच में'
+    D. स्मारक पार्क के बीच में
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -693,7 +770,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. अंतरराष्ट्रीय छात्र
 
-    D. व्यापार यात्री'
+    D. व्यापार यात्री
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -719,7 +799,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. LATAM Oneworld
 
-    D. स्काईटीम'
+    D. स्काईटीम
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -743,7 +826,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. घाटी में सैन्य स्थिति गई है
 
-    D. सीमा विवाद को लेकर है'
+    D. सीमा विवाद को लेकर है
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -769,7 +855,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. चर्चों में शक्ति का केंद्रीकरण
 
-    D. यदि चर्चों के महत्वपूर्ण सिद्धांतों का पालन किया जाता है'
+    D. यदि चर्चों के महत्वपूर्ण सिद्धांतों का पालन किया जाता है
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -796,7 +885,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. वेब एड्रेस
 
-    D. 54 मिलियन प्रोफाइल'
+    D. 54 मिलियन प्रोफाइल
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -820,7 +912,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. अधिकांश द्वीपों में बारिश हुई
 
-    D. बिजली चमकने के साथ कुछ बारिश भी हुई'
+    D. बिजली चमकने के साथ कुछ बारिश भी हुई
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -846,7 +941,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. एन्सेफलाइटिस के टीके
 
-    D. मच्छरदानी'
+    D. मच्छरदानी
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -873,7 +971,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. एड़ी
 
-    D. चौड़ा तल'
+    D. चौड़ा तल
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -898,7 +999,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. कई पासपोर्ट नियंत्रण चौकियों से बचें
 
-    D. पासपोर्ट की आवश्यकता नहीं'
+    D. पासपोर्ट की आवश्यकता नहीं
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -921,7 +1025,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. पुरुषों
 
-    D. महिला और पुरुष, दोनों की ओर से बड़ी संख्या में मिले'
+    D. महिला और पुरुष, दोनों की ओर से बड़ी संख्या में मिले
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -945,7 +1052,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. जर्मनी
 
-    D. नॉर्वे'
+    D. नॉर्वे
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -968,7 +1078,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. यह जोसोंग राजवंश के चौथे राजा द्वारा खोजा गया था
 
-    D. यह जानबूझकर आविष्कार किया गया था'
+    D. यह जानबूझकर आविष्कार किया गया था
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -992,7 +1105,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. यह टेक्सास में एक पार्टी में हुआ
 
-    D. यह युगल की शादी में हुआ'
+    D. यह युगल की शादी में हुआ
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -1017,7 +1133,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. मजाक बनाना
 
-    D. संरचना को खरोंचना'
+    D. संरचना को खरोंचना
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$

@@ -33,7 +33,6 @@ tags:
 - multiple-choice
 - belebele
 - Chinese (Simplified)
-system: Answer with only the letter (A, B, C, or D) of the correct answer.
 ---
 - id: bb-5b0a62ca-q2
   prompt: 'Read the passage and answer the question.
@@ -53,7 +52,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 在 11:00 之前
 
-    D. 在 11:20 时'
+    D. 在 11:20 时
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -74,7 +76,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 它们建造的巢穴每 17 天更换一次
 
-    D. 它们在白天出行'
+    D. 它们在白天出行
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -95,7 +100,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 七个
 
-    D. 八个'
+    D. 八个
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -116,7 +124,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 记者
 
-    D. 加齐安泰普当地人'
+    D. 加齐安泰普当地人
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -137,7 +148,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 圣地亚哥圣殿
 
-    D. Callejon del Beso'
+    D. Callejon del Beso
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -158,7 +172,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 来自波利尼西亚的毛利人
 
-    D. 来自大陆的毛利人'
+    D. 来自大陆的毛利人
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -179,7 +196,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 德意志银行
 
-    D. 巴基斯坦政府'
+    D. 巴基斯坦政府
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -199,7 +219,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 物件的法定限额
 
-    D. 海关管制'
+    D. 海关管制
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -220,7 +243,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 宪法存在歧义
 
-    D. 选举过于昂贵'
+    D. 选举过于昂贵
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -241,7 +267,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 无政府主义者
 
-    D. 一伙人'
+    D. 一伙人
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -262,7 +291,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 在神殿庭院的节庆中
 
-    D. 在内殿里献祭'
+    D. 在内殿里献祭
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -284,7 +316,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 最佳混音
 
-    D. 最佳原创配乐'
+    D. 最佳原创配乐
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -305,7 +340,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 苏联军队
 
-    D. 一项待定调查'
+    D. 一项待定调查
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -325,7 +363,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 一对 70 多岁的夫妇
 
-    D. 两个带着孩子旅行的家庭'
+    D. 两个带着孩子旅行的家庭
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -346,7 +387,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 日本消防部门
 
-    D. 苹果公司'
+    D. 苹果公司
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -368,7 +412,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 奥克兰中部
 
-    D. 长湾'
+    D. 长湾
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -389,7 +436,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 政府调查人员
 
-    D. 汤米·追梦儿'
+    D. 汤米·追梦儿
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -410,7 +460,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 从亚美尼亚前往伊朗的飞机坠毁
 
-    D. 飞机在马什哈德坠毁'
+    D. 飞机在马什哈德坠毁
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -432,7 +485,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 4
 
-    D. 45'
+    D. 45
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -453,7 +509,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 苏格兰
 
-    D. 立陶宛'
+    D. 立陶宛
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -474,7 +533,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 宣传你的服务
 
-    D. 无视其他搭船者'
+    D. 无视其他搭船者
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -495,7 +557,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 准备好设备应对挑战
 
-    D. 这个病例不严重'
+    D. 这个病例不严重
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -517,7 +582,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 被感染者可能感染的人数
 
-    D. 它的高致死率'
+    D. 它的高致死率
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -538,7 +606,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 安莎通讯社
 
-    D. 保罗·博尔塞利诺'
+    D. 保罗·博尔塞利诺
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -559,7 +630,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 道路设计
 
-    D. 交通密度'
+    D. 交通密度
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -579,7 +653,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 在第一架飞机的目标处
 
-    D. 在纪念公园中央'
+    D. 在纪念公园中央
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -600,7 +677,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 一位国际学生
 
-    D. 一位商务旅行者'
+    D. 一位商务旅行者
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -621,7 +701,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 南美航空寰宇一家
 
-    D. 天合联盟'
+    D. 天合联盟
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -641,7 +724,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 山谷中的军事力量
 
-    D. 边界争端'
+    D. 边界争端
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -662,7 +748,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 教会内权力的集中
 
-    D. 教会的主要信条是否被遵守'
+    D. 教会的主要信条是否被遵守
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -683,7 +772,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 一个网址
 
-    D. 5400 万个注册帐号'
+    D. 5400 万个注册帐号
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -704,7 +796,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 大部分岛屿都降雨了
 
-    D. 有些降雨伴随闪电'
+    D. 有些降雨伴随闪电
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -725,7 +820,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 脑炎疫苗
 
-    D. 蚊帐'
+    D. 蚊帐
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -746,7 +844,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 鞋跟
 
-    D. 宽鞋底'
+    D. 宽鞋底
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -767,7 +868,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 避免多个护照检查站
 
-    D. 不需要护照'
+    D. 不需要护照
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -787,7 +891,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 男性
 
-    D. 男女个人都有'
+    D. 男女个人都有
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -808,7 +915,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 德国
 
-    D. 挪威'
+    D. 挪威
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -828,7 +938,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 它是由朝鲜王朝的第四任君主发明的
 
-    D. 它是特意发明的'
+    D. 它是特意发明的
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -849,7 +962,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 发生在德克萨斯州的一个聚会上
 
-    D. 发生在夫妇的婚礼上'
+    D. 发生在夫妇的婚礼上
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -870,7 +986,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 开玩笑
 
-    D. 划伤建筑物'
+    D. 划伤建筑物
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$

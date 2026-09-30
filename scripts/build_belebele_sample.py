@@ -63,13 +63,17 @@ DEFAULT_LANGS = {
 
 LETTERS = ["A", "B", "C", "D"]
 
-SYSTEM_PROMPT = "Answer with only the letter (A, B, C, or D) of the correct answer."
+ANSWER_INSTRUCTION = "Answer with only the letter (A, B, C, or D) of the correct answer."
 
+# The answer instruction goes at the end of the user prompt, not in a system message:
+# some hosted models (Apertus on Current AI's router) reject a share of requests that
+# carry a system message, and every model must see the same prompt.
 PROMPT_TEMPLATE = (
     "Read the passage and answer the question.\n\n"
     "Passage: {passage}\n\n"
     "Question: {question}\n\n"
-    "A. {a1}\nB. {a2}\nC. {a3}\nD. {a4}"
+    "A. {a1}\nB. {a2}\nC. {a3}\nD. {a4}\n\n"
+    + ANSWER_INSTRUCTION
 )
 
 
@@ -132,7 +136,6 @@ def build_header(lang: str, name: str, n: int, seed: int) -> dict:
             {"title": "facebook/belebele on Hugging Face", "url": "https://huggingface.co/datasets/facebook/belebele"},
         ],
         "tags": ["benchmark", "multilingual", "reading-comprehension", "multiple-choice", "belebele", name],
-        "system": SYSTEM_PROMPT,
     }
 
 

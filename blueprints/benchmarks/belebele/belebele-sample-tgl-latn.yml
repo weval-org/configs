@@ -33,7 +33,6 @@ tags:
 - multiple-choice
 - belebele
 - Tagalog
-system: Answer with only the letter (A, B, C, or D) of the correct answer.
 ---
 - id: bb-5b0a62ca-q2
   prompt: 'Read the passage and answer the question.
@@ -59,7 +58,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Bago mag-11:00
 
-    D. Noong 11:20'
+    D. Noong 11:20
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -85,7 +87,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Gumagawa ang mga ito ng pugad na kanilang papalitan matapos ang 17 araw
 
-    D. Nagmamartsa ang mga ito tuwing umaga'
+    D. Nagmamartsa ang mga ito tuwing umaga
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -109,7 +114,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Pito
 
-    D. Walo'
+    D. Walo
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -133,7 +141,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Mga reporter
 
-    D. Mga Lokal ng Gaziantep'
+    D. Mga Lokal ng Gaziantep
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -159,7 +170,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Ang Templo de San Diego
 
-    D. Ang Callejon del Beso'
+    D. Ang Callejon del Beso
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -187,7 +201,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Mga taong Maori mula sa Polynesia
 
-    D. Mga Maori mula sa mainland'
+    D. Mga Maori mula sa mainland
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -215,7 +232,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Ang Deutsche Bank
 
-    D. Ang pamahalaan ng Pakistan'
+    D. Ang pamahalaan ng Pakistan
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -238,7 +258,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Ang legal na limitasyon ng mga aytem
 
-    D. Pagkontrol sa adwana'
+    D. Pagkontrol sa adwana
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -262,7 +285,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Nagkaroon ng kalabuan sa Konstitusyon
 
-    D. Ang halalan ay masyadong magastos'
+    D. Ang halalan ay masyadong magastos
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -286,7 +312,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Mga anarkista
 
-    D. Mga pulutong ng tao'
+    D. Mga pulutong ng tao
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -311,7 +340,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Sa isang piyesta sa looban ng templo
 
-    D. Nagdadala ng mga sakripisyo sa panloob na santuwaryo'
+    D. Nagdadala ng mga sakripisyo sa panloob na santuwaryo
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -338,7 +370,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Best Sound Mixing
 
-    D. Best Original Song'
+    D. Best Original Song
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -362,7 +397,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Ang militar ng Sobyet
 
-    D. Isang nakabinbing imbestigasyon'
+    D. Isang nakabinbing imbestigasyon
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -385,7 +423,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Mag-asawa na nasa edad 70
 
-    D. Dalawang pamilya na naglalakbay kasama ang kanilang mga anak'
+    D. Dalawang pamilya na naglalakbay kasama ang kanilang mga anak
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -411,7 +452,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Ang kagawaran ng bumbero ng Japan
 
-    D. Apple'
+    D. Apple
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -438,7 +482,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Gitnang Auckland
 
-    D. Long Bay'
+    D. Long Bay
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -463,7 +510,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Mga imbestigador ng gobyerno
 
-    D. Tommy Dreamer'
+    D. Tommy Dreamer
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -490,7 +540,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Ang pagbagsak ng eroplano papuntang Iran mula sa Armenia
 
-    D. Ang pagbagsak ng eroplano sa Mashhad'
+    D. Ang pagbagsak ng eroplano sa Mashhad
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -517,7 +570,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 4
 
-    D. 45'
+    D. 45
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -545,7 +601,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Scotland
 
-    D. Lithuania'
+    D. Lithuania
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -571,7 +630,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Pag-aabiso ng iyong mga serbisyo
 
-    D. Huwag pansinin ang mga kapwa hitchhiker ng bangka'
+    D. Huwag pansinin ang mga kapwa hitchhiker ng bangka
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -597,7 +659,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Handa sila upang matugunan ang hamon
 
-    D. Ang kaso ay hindi seryoso'
+    D. Ang kaso ay hindi seryoso
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -624,7 +689,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Ang dami ng mga taong maaaring mahawa ng isang taong nahawaan
 
-    D. Mataas na porsiyento ng pagkamatay'
+    D. Mataas na porsiyento ng pagkamatay
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -651,7 +719,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Ansa
 
-    D. Paolo Borsellino'
+    D. Paolo Borsellino
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -679,7 +750,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Disenyo ng kalsada
 
-    D. Bigat ng trapiko'
+    D. Bigat ng trapiko
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -702,7 +776,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Sa target ng unang jet
 
-    D. Sa gitna ng Memoryal na Parke'
+    D. Sa gitna ng Memoryal na Parke
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -731,7 +808,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Isang internasyonal na mag-aaral
 
-    D. Isang nagbibiyahe para sa negosyo'
+    D. Isang nagbibiyahe para sa negosyo
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -759,7 +839,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. LATAM Oneworld
 
-    D. SkyTeam'
+    D. SkyTeam
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -784,7 +867,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Presensya ng militar sa lambak
 
-    D. Ang pagtatalo sa mga hangganan'
+    D. Ang pagtatalo sa mga hangganan
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -811,7 +897,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Ang konsentrasyon ng kapangyarihan sa loob ng Simbahan
 
-    D. Kung natutugunan ba ang mga pangunahing paniniwala ng Simbahan'
+    D. Kung natutugunan ba ang mga pangunahing paniniwala ng Simbahan
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -839,7 +928,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Isang web address
 
-    D. 54 milyon na profile'
+    D. 54 milyon na profile
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -863,7 +955,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Karamihan sa mga isla ay nakakita ng pag-ulan
 
-    D. Ang ilang pag-ulan ay sinamahan ng kidlat'
+    D. Ang ilang pag-ulan ay sinamahan ng kidlat
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -891,7 +986,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Mga bakuna laban sa encephalitis
 
-    D. Mga kulambo'
+    D. Mga kulambo
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -920,7 +1018,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Takong
 
-    D. Isang malapad na suwelas'
+    D. Isang malapad na suwelas
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -947,7 +1048,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Pag-iwas sa maraming checkpoint na para sa pagkontrol ng pasaporte
 
-    D. Hindi kinakailangan ng pasaporte'
+    D. Hindi kinakailangan ng pasaporte
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -971,7 +1075,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Mga kalalakihan
 
-    D. Parehong lalaki at babaeng indibidwal'
+    D. Parehong lalaki at babaeng indibidwal
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -997,7 +1104,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Germany
 
-    D. Norway'
+    D. Norway
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -1021,7 +1131,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Naimbento ito ng ikaapat na hari ng Dinastiyang Joseon
 
-    D. Sinadya itong inimbento'
+    D. Sinadya itong inimbento
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -1046,7 +1159,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Naganap ito sa isang pagdiriwang sa Texas
 
-    D. Nangyari ito sa kasal ng mag-asawa'
+    D. Nangyari ito sa kasal ng mag-asawa
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -1073,7 +1189,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Pagbibiro
 
-    D. Pagsira ng isang estruktura'
+    D. Pagsira ng isang estruktura
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$

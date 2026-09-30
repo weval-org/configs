@@ -33,7 +33,6 @@ tags:
 - multiple-choice
 - belebele
 - Swahili
-system: Answer with only the letter (A, B, C, or D) of the correct answer.
 ---
 - id: bb-5b0a62ca-q2
   prompt: 'Read the passage and answer the question.
@@ -58,7 +57,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Kabla ya 11:00
 
-    D. Saa 11 dakika 20'
+    D. Saa 11 dakika 20
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -82,7 +84,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Wanatengeneza viota ambavyo hubadilishwa baada ya siku 17
 
-    D. Wanafanya maandamano mchana'
+    D. Wanafanya maandamano mchana
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -105,7 +110,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Saba
 
-    D. Nane'
+    D. Nane
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -128,7 +136,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Waandishi wa habari
 
-    D. Wakazi wa Gaziantep'
+    D. Wakazi wa Gaziantep
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -153,7 +164,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Templo de San Diego
 
-    D. Callejon del Beso'
+    D. Callejon del Beso
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -180,7 +194,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Watu wa Maori kutoka Polynesia
 
-    D. Watu wa Maori kutoka bara'
+    D. Watu wa Maori kutoka bara
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -207,7 +224,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Benki ya Ujerumani
 
-    D. Serikali ya Pakistani'
+    D. Serikali ya Pakistani
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -229,7 +249,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Mipaka ya kisheria ya bidhaa
 
-    D. Udhibiti wa forodha'
+    D. Udhibiti wa forodha
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -253,7 +276,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Kulikuwa na tata katika katiba
 
-    D. Uchaguzi ulikuwa na gharama za juu sana'
+    D. Uchaguzi ulikuwa na gharama za juu sana
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -276,7 +302,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Wavunjaji sheria
 
-    D. Makundi ya watu'
+    D. Makundi ya watu
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -301,7 +330,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Kwenye tamasha katika uwanja wa hekalu
 
-    D. Akileta dhabihu kwenye mahali pa ndani patakatifu'
+    D. Akileta dhabihu kwenye mahali pa ndani patakatifu
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -326,7 +358,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Uhariri Bora wa Sauti
 
-    D. Wimbo Bora Asilia'
+    D. Wimbo Bora Asilia
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -349,7 +384,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Wanajeshi wa Sovieti
 
-    D. Uchunguzi unaoendelea'
+    D. Uchunguzi unaoendelea
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -371,7 +409,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Wanandoa katika miaka yao ya 70
 
-    D. Familia mbili zikisafiri na watoto wao'
+    D. Familia mbili zikisafiri na watoto wao
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -396,7 +437,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Idara ya zima moto ya Japan
 
-    D. Apple'
+    D. Apple
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -422,7 +466,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Auckland ya kati
 
-    D. Long Bay'
+    D. Long Bay
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -447,7 +494,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Wachunguzi wa serikali
 
-    D. Tommy Dreamer'
+    D. Tommy Dreamer
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -472,7 +522,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Ajali ya ndege ikielekea Iran kutoka Amenia
 
-    D. Ajali ya ndege huko Mashhad'
+    D. Ajali ya ndege huko Mashhad
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -499,7 +552,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. 4
 
-    D. 45'
+    D. 45
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -526,7 +582,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Uskoti
 
-    D. Lithuania'
+    D. Lithuania
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -550,7 +609,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Kutangaza huduma zako
 
-    D. Kupuuza waombajilifti wa mashua wenzako'
+    D. Kupuuza waombajilifti wa mashua wenzako
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -576,7 +638,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Wana uwezo mzuri wa kukabiliana na changamoto
 
-    D. Kesi sio nzito'
+    D. Kesi sio nzito
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -602,7 +667,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Idadi ya watu wanaoweza kuambukizwa na mtu aliye na ugonjwa huo
 
-    D. Ina kiwango cha juu cha vifo'
+    D. Ina kiwango cha juu cha vifo
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -628,7 +696,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Ansa
 
-    D. Paolo Borsellino'
+    D. Paolo Borsellino
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -654,7 +725,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Muundo wa barabara
 
-    D. Uzito wa trafiki'
+    D. Uzito wa trafiki
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -676,7 +750,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Pale ambapo ndege ya jeti ya kwanza ilipiga lengo
 
-    D. Katikati ya mbuga ya ukumbusho'
+    D. Katikati ya mbuga ya ukumbusho
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -703,7 +780,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Mwanafunzi wa kimataifa
 
-    D. Msafiri wa kibiashara'
+    D. Msafiri wa kibiashara
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -730,7 +810,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. LATAM Oneworld
 
-    D. SkyTeam'
+    D. SkyTeam
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -754,7 +837,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Uwepo wa kijeshi kwenye bonde
 
-    D. Mzozo wa mipaka'
+    D. Mzozo wa mipaka
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -780,7 +866,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Mamlaka ya kanisa kuwa mahali pamoja
 
-    D. Kama itikadi kuu za Kanisa zilikuwa zinatimizwa'
+    D. Kama itikadi kuu za Kanisa zilikuwa zinatimizwa
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -807,7 +896,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Anwani moja ya tovuti
 
-    D. Wasajili milioni 54'
+    D. Wasajili milioni 54
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -831,7 +923,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Visiwa vingi vilipata usafirishaji wa joto
 
-    D. Baadhi ya mvua ziliambatana na radi'
+    D. Baadhi ya mvua ziliambatana na radi
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: B
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?B(?:[^A-Za-z0-9][\s\S]*)?$
@@ -857,7 +952,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Chanjo ya uvimbe wa ubongo
 
-    D. Mapazia ya mbu'
+    D. Mapazia ya mbu
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -885,7 +983,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Kisigino
 
-    D. Soli pana'
+    D. Soli pana
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -910,7 +1011,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Kuepuka vituo vingi vya ukaguzi wa pasipoti
 
-    D. Pasipoti haihitajiki'
+    D. Pasipoti haihitajiki
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: C
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?C(?:[^A-Za-z0-9][\s\S]*)?$
@@ -932,7 +1036,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Waume
 
-    D. Watu wote, waume na wanawake'
+    D. Watu wote, waume na wanawake
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -957,7 +1064,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Ujerumani
 
-    D. Norwe'
+    D. Norwe
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: D
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?D(?:[^A-Za-z0-9][\s\S]*)?$
@@ -980,7 +1090,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Ilivumbuliwa na mfalme wa nne wa Nasaba ya Joseon
 
-    D. Ilivumbuliwa kimakusudi'
+    D. Ilivumbuliwa kimakusudi
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -1004,7 +1117,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Ulitokea kwenye sherehe iliyofanywa huko Texas
 
-    D. Ulitokea kwenye harusi ya wenzi hao'
+    D. Ulitokea kwenye harusi ya wenzi hao
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
@@ -1030,7 +1146,10 @@ system: Answer with only the letter (A, B, C, or D) of the correct answer.
 
     C. Kufanya utani
 
-    D. Kukata michoro kwenye muundo'
+    D. Kukata michoro kwenye muundo
+
+
+    Answer with only the letter (A, B, C, or D) of the correct answer.'
   ideal: A
   should:
   - $imatches: ^[^A-Za-z0-9]*(?:answer[^A-Za-z0-9]*)?A(?:[^A-Za-z0-9][\s\S]*)?$
