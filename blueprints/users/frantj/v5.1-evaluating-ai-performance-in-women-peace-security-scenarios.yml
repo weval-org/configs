@@ -1,4 +1,16 @@
 title: Evaluating AI Performance in Women, Peace & Security Scenarios
+description: |
+  This benchmark evaluates how well large language models (LLMs) integrate Women, Peace and Security (WPS) principles when advising on conflict and peace operations. It contains 24 scenarios across three prompt tiers, scored against 7 positive criteria and 2 negative criteria (expressed as negative 'should' statements).
+
+  **Prompt tiers:**
+
+  - **T1, Context-Rich (scenarios 1–8):** Full WPS context embedded in the prompt.
+  - **T2, Gender-Neutral Framing (scenarios 9–16):** No explicit WPS or gender language.
+  - **T3, Sparse/Ambiguous (scenarios 17–24):** Minimal briefing, no gender cues.
+
+  All scenarios are weighted equally; tier-level differences are analyzed separately rather than baked into the aggregate score.
+
+  **Source:** WPS AI Evaluation Benchmark v5.1 (2025-04-03) by [Our Secure Future](https://oursecurefuture.org), licensed [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 models:
   - CORE
   - potluck:swiss-ai/apertus-v1.5-70b
